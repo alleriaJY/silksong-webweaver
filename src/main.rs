@@ -93,6 +93,28 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Decrypted JSON saved to output.json");
 
     // Start the parsing.
+
+    // - Steel Soul?
+    //    "permadeathMode": 0,
+
+    // - Where am I?
+    // - Location of Coccoon?
+    // - Mask Shards
+    // - Silk Hearts
+    // - Rosaries
+    // - Shell Shards
+
+    // "respawnMarkerName": "RestBench",
+    // "respawnScene": "Song_Enclave",
+    // "respawnType": 1,
+    // "silk"
+
+        // "atBench": false,
+    // "currentArea": "ABYSS",
+    // "mapZone": 37,
+    // "entered_Tut01b": true,
+    // "environmentType": 0,
+
     let statsGameSaveVersion = &savefile_json_player["version"].as_str().unwrap_or("");
     let statsSteelSoul = &savefile_json_player["permadeathMode"].as_bool().unwrap_or(false);
     let statsCompletionPercentage = &savefile_json_player["completionPercentage"];
@@ -117,11 +139,32 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Equipped Crest
     let currentCrestID = &savefile_json_player["CurrentCrestID"];
 
+    // Equipped Tools
+    // This needs further parsing + logic
+
+    // Nail Level Picture
+    // Quill
+    // "QuillState": 1,
+
     // 1.8 Misc Information
     // Your respawn location
     let statsRespawnLocation = &savefile_json_player["respawnScene"];
     let statsRespawnType = &savefile_json_player["respawnType"];
     let statsRespawnMarker = &savefile_json_player["respawnMarkerName"];
+
+    // - Location of Coccoon?
+    // Where is da Coccoon?
+    //     "HeroCorpseMoneyPool": 0,
+    //     "HeroCorpseScene": "",
+    //     "HeroCorpseType": 0,
+    //     "HeroDeathScenePos": {
+    //       "x": 48.71,
+    //       "y": 8.17
+    //     },
+    //     "HeroDeathSceneSize": {
+    //       "x": 65.0,
+    //       "y": 1024.0
+    //     },
 
     // Need Enum here
     let statsBellBeastLocation = &savefile_json_player["FastTravelNPCLocation"];
@@ -190,6 +233,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // 1.5 Current Equipment
     // println!("\n=====\n1.5 Current Equipment\n=====");
+    
 
     // 1.8 Misc Information
     println!("\n=====\n1.8 Misc Information\n=====");
@@ -197,6 +241,61 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Will Respawn At    : {}", statsRespawnLocation);
     println!("Respawn ZoneName   : {}", statsRespawnMarker);
     println!("Respawn Type (WIP) : {}\n", statsRespawnType);
+    
+    // - Location of Coccoon?
+    // Where is da Coccoon?
+    //     "HeroCorpseMoneyPool": 0,
+    //     "HeroCorpseScene": "",
+    //     "HeroCorpseType": 0,
+    //     "HeroDeathScenePos": {
+    //       "x": 48.71,
+    //       "y": 8.17
+    //     },
+    //     "HeroDeathSceneSize": {
+    //       "x": 65.0,
+    //       "y": 1024.0
+    //     },
+
+    // Where is da Taxi?
+    //    "FastTravelNPCLocation": 2,
+
+    // Where are the Fleas?
+    // FleasCollectedTargetOrder
+    
+    // 2. Bosses (49 Total?)
+    //println!("\n=====\n2. Bosses\n=====\n");
+
+    // 3. 11 Crests
+    //println!("\n=====\n3. Crests\n=====\n");
+
+    // 4. Upgrades
+    //println!("\n=====\n4. Upgrades\n=====\n");
+    // - Needle Upgradess
+    // - Crafting Kit Upgrades
+    // "ToolKitUpgrades": 4,
+    // - Unlocked Tool Pouches
+    // - Mask Shards
+    // - Spool Fragments
+    // - Abilities
+    // - Silk Skills
+
+    // 5. Quests
+    //println!("\n=====\n5. Quests\n=====\n");
+    // - Objectives
+
+    //    "HasMelodyArchitect": true,
+    //    "HasMelodyConductor": true,
+    //    "HasMelodyLibrarian": true,
+
+
+    // - Wishes
+
+    // 6. Areas
+    //println!("\n=====\n6. Map\n=====\n");
+    // - Maps
+    // - Bellway Stations
+    // - Ventrica Stations
+
 
     // 7. Tools
     println!("\n=====\n7. Tools\n=====");
@@ -205,6 +304,40 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Tools Selected: {}", toolsSelectedCount);
     println!("Tools Seen: {}", toolsSeenCount);
     println!("Tools Unlocked: {}", toolsUnlockedCount);
+
+    // 8. Collectables
+    //println!("\n=====\n8. Collectables\n=====\n");
+    // - Fleas
+    // - Simple Keys
+    // - Other Keys
+    //    "HasSlabKeyA": true,
+    //    "HasSlabKeyB": true,
+    //    "HasSlabKeyC": true,
+    // - Craftmetal
+    // - Pale Oil
+    // - 20 Memory Lockets
+    // - Mossberries
+    // - Mementos
+    // - Relics
+
+    // 9. Hunter's Journal
+    //println!("\n=====\n9. Hunter's Journal\n=====\n");
+
+    // 10. Memorium
+    //println!("\n=====\n10. Memorium\n=====\n");
+
+
+
+    //Silksong Percentage: 4 Needle Upgrade - 4%
+    //Silksong Percentage: 5 Mask Shard - 5%, 20 Mask Shards
+    //Silksong Percentage: 9 Silk Spool - 9%, 18 Spool Fragments
+    //Silksong Percentage: 3 Silk Hearts - 3%
+    //Silksong Percentage: 6 Silk Skills - 6%
+    //Silksong Percentage: 2 Misc - Everbloom & Sylphsong - 2%
+    //Silksong Percentage: 6 Crests - 6%
+    //Silksong Percentage: 4 Crafting Kit - 4%
+    //Silksong Percentage: 4 Tool Pouch Upgrade - 4%
+    //Silksong Percentage: 6 Abilities - 6%
 
     Ok(())
 }
