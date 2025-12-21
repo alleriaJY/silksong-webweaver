@@ -10,6 +10,37 @@ use aes::Aes256;
 use cipher::{KeyInit, BlockDecryptMut};
 use ecb::{Decryptor};
 use base64::Engine;
+use std::collections::HashMap;
+
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize)]
+struct Tool {
+    Name: String,
+    Data: ToolData,
+}
+
+#[derive(Debug, Deserialize)]
+struct ToolData {
+    AmountLeft: u32,
+    HasBeenSeen: bool,
+    HasBeenSelected: bool,
+    IsHidden: bool,
+    IsUnlocked: bool,
+}
+
+fn seconds_to_hms(seconds: Option<f64>) -> String {
+    let seconds = match seconds {
+        Some(s) => s,
+        None => return "00h 00m 00s".to_string(),
+    };
+
+    let hours = (seconds / 3600.0) as u64;
+    let minutes = ((seconds % 3600.0) / 60.0) as u64;
+    let secs = seconds % 60.0;
+
+    format!("{:02}h {:02}m {:02.0}s", hours, minutes, secs)
+}
 
 /*
  * Base 64 Decodes a string then decrypts it via Rijndael/ECB/RKCS7 with the key UKu52ePUBwetZ9wNX88o54dnfKRu0T1l 
@@ -47,15 +78,133 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let decrypted_savefile = decrypt_aes256_ecb(&trimmed_data)?;
 
     // Convert the output into JSON
-    let json_str = String::from_utf8_lossy(&decrypted_savefile);
-    let json_value: Value = serde_json::from_str(&json_str)?;
+    let savefile_json_str = String::from_utf8_lossy(&decrypted_savefile);
+
+    let savefile_full_json: Value = serde_json::from_str(&savefile_json_str)?;
+
+    let savefile_json_player = &savefile_full_json["playerData"];
+    let savefile_json_scene= &savefile_full_json["sceneData"];
 
     // Save to output.json
     let mut file = File::create("output.json")?;
-    let pretty = serde_json::to_string_pretty(&json_value)?;
-    file.write_all(pretty.as_bytes())?;
+    let pretty_savefile_full_json = serde_json::to_string_pretty(&savefile_full_json)?;
+    file.write_all(pretty_savefile_full_json.as_bytes())?;
 
     println!("Decrypted JSON saved to output.json");
+
+    // Start the parsing.
+    let statsGameSaveVersion = &savefile_json_player["version"].as_str().unwrap_or("");
+    let statsSteelSoul = &savefile_json_player["permadeathMode"].as_bool().unwrap_or(false);
+    let statsCompletionPercentage = &savefile_json_player["completionPercentage"];
+    let statsPlayTime = seconds_to_hms(savefile_json_player["playTime"].as_f64());
+
+    let statsCurrentHealth = &savefile_json_player["health"];
+    let statsCurrentSilk = &savefile_json_player["silk"];
+
+    let statsMaxSilk = &savefile_json_player["silkMax"];
+    let statsMaxSilkHearts = &savefile_json_player["silkRegenMax"];
+    let statsMaxHealth = &savefile_json_player["maxHealth"];
+
+    let statsCurrentRosaries = &savefile_json_player["geo"];
+    let statsCurrentShellShards = &savefile_json_player["ShellShards"];
+
+    // 1.5 Current Equipments
+    let statsCurrentArea = &savefile_json_player["currentArea"].as_str().unwrap_or("");
+    let statsMapZone = &savefile_json_player["mapZone"];
+    let statsAtBench = &savefile_json_player["atBench"];
     
+    // "PreviousCrestID": "Reaper",
+    // Equipped Crest
+    let currentCrestID = &savefile_json_player["CurrentCrestID"];
+
+    // 1.8 Misc Information
+    // Your respawn location
+    let statsRespawnLocation = &savefile_json_player["respawnScene"];
+    let statsRespawnType = &savefile_json_player["respawnType"];
+    let statsRespawnMarker = &savefile_json_player["respawnMarkerName"];
+
+    // Need Enum here
+    let statsBellBeastLocation = &savefile_json_player["FastTravelNPCLocation"];
+
+    // Where are the Fleas?
+    // FleasCollectedTargetOrder
+
+    // Silksong Percentage: 51% for Tools
+    //println!("{}", savefile_json_player["Tools"]["savedData"]);
+
+    let mut toolsCount = 0;
+    let mut toolsSeenCount = 0;
+    let mut toolsSelectedCount = 0;
+    let mut toolsUnlockedCount = 0;
+
+    // Per-tool stats
+    let mut toolStats: HashMap<String, ToolData> = HashMap::new();
+
+    if let Some(toolsArray) = savefile_json_player["Tools"]["savedData"].as_array() {
+        for tool_value in toolsArray {
+
+            //println!("{}", tool_value);
+
+            let tool: Tool = serde_json::from_value(tool_value.clone())?;
+            toolsCount += 1;
+
+            if tool.Data.HasBeenSeen {
+                toolsSeenCount += 1;
+            }
+            if tool.Data.HasBeenSelected {
+                toolsSelectedCount += 1;
+            }
+            if tool.Data.IsUnlocked {
+                toolsUnlockedCount += 1;
+            }
+
+            // Store per-name stats
+            toolStats.insert(tool.Name.clone(), tool.Data);
+        }
+    }
+
+    // 1. Generic Stats
+    println!("\n=====\n1. Generic Stats\n=====");
+
+    println!("Game Version       : {}", statsGameSaveVersion);
+    println!("Completion %       : {}%", statsCompletionPercentage);
+    println!("Play Time          : {}\n", statsPlayTime);
+
+    println!("Max Health         : {}", statsMaxHealth);
+    println!("Max Silk           : {}", statsMaxSilk);
+    println!("Silk Hearts        : {}\n", statsMaxSilkHearts);
+
+    println!("Rosaries           : {}", statsCurrentRosaries);
+    println!("Shell Shards       : {}\n", statsCurrentShellShards);
+
+    // Current Stats
+    println!("\n=====\n1.2 Current Stats\n=====");
+
+    println!("Current Health     : {}/{}", statsCurrentHealth, statsMaxHealth);
+    println!("Current Silk       : {}/{}\n", statsCurrentSilk, statsMaxSilk);
+
+    // - Where am I?
+    println!("Current Area         : {}", statsCurrentArea);
+    println!("Current AreaZone     : {}", statsMapZone);
+    println!("At Bench?            : {}\n", statsAtBench);
+
+    // 1.5 Current Equipment
+    // println!("\n=====\n1.5 Current Equipment\n=====");
+
+    // 1.8 Misc Information
+    println!("\n=====\n1.8 Misc Information\n=====");
+    // - What If i Die?
+    println!("Will Respawn At    : {}", statsRespawnLocation);
+    println!("Respawn ZoneName   : {}", statsRespawnMarker);
+    println!("Respawn Type (WIP) : {}\n", statsRespawnType);
+
+    // 7. Tools
+    println!("\n=====\n7. Tools\n=====");
+
+    println!("Tools Count: {}", toolsCount);
+    println!("Tools Selected: {}", toolsSelectedCount);
+    println!("Tools Seen: {}", toolsSeenCount);
+    println!("Tools Unlocked: {}", toolsUnlockedCount);
+
     Ok(())
 }
