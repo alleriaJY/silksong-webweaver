@@ -1,0 +1,14 @@
+# Rust build artifacts
+/target/
+Cargo.lock
+
+# WASM build output
+/pkg/
+/wasm-crypto/target/
+
+# Web dependencies
+/web/node_modules/
+/web/dist/
+
+# Save files and outputs (user data)
+output.json
