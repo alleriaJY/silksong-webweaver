@@ -61,45 +61,49 @@
 
                 <!-- Tab Navigation -->
                 <nav class="tab-nav" id="tab-nav">
-                    <button class="tab-btn active" data-tab="overview">
-                        <span class="tab-icon">🎮</span>
-                        <span class="tab-text">Overview</span>
+                    <button class="tab-btn active" data-tab="general">
+                        <span class="tab-text">GENERAL</span>
                     </button>
-                    <button class="tab-btn" data-tab="health">
-                        <span class="tab-icon">❤️</span>
-                        <span class="tab-text">Health & Silk</span>
-                    </button>
-                    <button class="tab-btn" data-tab="location">
-                        <span class="tab-icon">📍</span>
-                        <span class="tab-text">Location</span>
-                    </button>
-                    <button class="tab-btn" data-tab="tools">
-                        <span class="tab-icon">🔧</span>
-                        <span class="tab-text">Tools</span>
-                    </button>
-                    <button class="tab-btn" data-tab="currency">
-                        <span class="tab-icon">💰</span>
-                        <span class="tab-text">Currency</span>
+                    <button class="tab-btn" data-tab="current">
+                        <span class="tab-text">CURRENT STATS</span>
                     </button>
                     <button class="tab-btn" data-tab="misc">
-                        <span class="tab-icon">📋</span>
-                        <span class="tab-text">Misc</span>
+                        <span class="tab-text">MISC</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tools">
+                        <span class="tab-text">TOOLS</span>
+                    </button>
+                    <button class="tab-btn" data-tab="bosses">
+                        <span class="tab-text">BOSSES</span>
+                    </button>
+                    <button class="tab-btn" data-tab="fleas">
+                        <span class="tab-text">FLEAS</span>
+                    </button>
+                    <button class="tab-btn" data-tab="collectables">
+                        <span class="tab-text">COLLECTABLES</span>
                     </button>
                 </nav>
 
                 <!-- Tab Panels -->
                 <div class="tab-panels">
-                    <!-- Overview Tab -->
-                    <div class="tab-panel active" id="panel-overview">
+
+                    <!-- 1. General Tab -->
+                    <div class="tab-panel active" id="panel-general">
                         <div class="panel-header">
-                            <h3>Game Overview</h3>
-                            <p class="panel-description">General information about your save file</p>
+                            <h3>General Information</h3>
+                            <p class="panel-description">Overview of your save file</p>
                         </div>
                         <div class="panel-content">
-                            <div class="stat-card large">
+                            <!-- Game Info Card -->
+                            <div class="stat-card">
+                                <h4>🎮 Game Info</h4>
                                 <div class="stat-row">
                                     <span class="stat-label">Game Version</span>
                                     <span class="stat-value" data-stat="version">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Game Mode</span>
+                                    <span class="stat-value" data-stat="permadeath">-</span>
                                 </div>
                                 <div class="stat-row">
                                     <span class="stat-label">Completion</span>
@@ -109,63 +113,73 @@
                                     <span class="stat-label">Play Time</span>
                                     <span class="stat-value highlight" data-stat="playTime">-</span>
                                 </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Steel Soul Mode</span>
-                                    <span class="stat-value" data-stat="permadeath">-</span>
-                                </div>
                             </div>
-                            <div class="panel-image-placeholder">
-                                <!-- Future: Add overview illustration -->
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Health & Silk Tab -->
-                    <div class="tab-panel" id="panel-health">
-                        <div class="panel-header">
-                            <h3>Health & Silk</h3>
-                            <p class="panel-description">Your current health and silk resources</p>
-                        </div>
-                        <div class="panel-content">
+                            <!-- Max Unlocked Card -->
                             <div class="stat-card">
-                                <h4>❤️ Health</h4>
-                                <div class="stat-row">
-                                    <span class="stat-label">Current Health</span>
-                                    <span class="stat-value" data-stat="health">-</span>
-                                </div>
+                                <h4>⬆️ Stats</h4>
                                 <div class="stat-row">
                                     <span class="stat-label">Max Health</span>
                                     <span class="stat-value" data-stat="maxHealth">-</span>
-                                </div>
-                                <div class="health-bar" id="health-bar">
-                                    <div class="health-fill" id="health-fill"></div>
-                                </div>
-                            </div>
-                            <div class="stat-card">
-                                <h4>🧵 Silk</h4>
-                                <div class="stat-row">
-                                    <span class="stat-label">Current Silk</span>
-                                    <span class="stat-value" data-stat="silk">-</span>
                                 </div>
                                 <div class="stat-row">
                                     <span class="stat-label">Max Silk</span>
                                     <span class="stat-value" data-stat="maxSilk">-</span>
                                 </div>
                                 <div class="stat-row">
-                                    <span class="stat-label">Silk Hearts</span>
-                                    <span class="stat-value highlight" data-stat="silkHearts">-</span>
+                                    <span class="stat-label">Max Silk Hearts</span>
+                                    <span class="stat-value" data-stat="silkHearts">-</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Location Tab -->
-                    <div class="tab-panel" id="panel-location">
+                    <!-- 2. Current Stats Tab -->
+                    <div class="tab-panel" id="panel-current">
                         <div class="panel-header">
-                            <h3>Location</h3>
-                            <p class="panel-description">Where you are in Pharloom</p>
+                            <h3>Current Stats</h3>
+                            <p class="panel-description">Your current in-game status</p>
                         </div>
                         <div class="panel-content">
+                            <!-- Health & Silk Card -->
+                            <div class="stat-card">
+                                <h4>❤️ Health & Silk</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Current Health</span>
+                                    <span class="stat-value" data-stat="healthDisplay">-</span>
+                                </div>
+                                <div class="health-bar" id="health-bar">
+                                    <div class="health-fill" id="health-fill"></div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Current Silk</span>
+                                    <span class="stat-value" data-stat="silkDisplay">-</span>
+                                </div>
+                            </div>
+
+                            <!-- Currency Card -->
+                            <div class="stat-card">
+                                <h4>💰 Currency</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Rosaries</span>
+                                    <span class="stat-value highlight" data-stat="geo">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Shell Shards</span>
+                                    <span class="stat-value" data-stat="shellShards">-</span>
+                                </div>
+                            </div>
+
+                            <!-- Equipment Card -->
+                            <div class="stat-card">
+                                <h4>⚔️ Equipment</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Equipped Crest</span>
+                                    <span class="stat-value" data-stat="crest">-</span>
+                                </div>
+                            </div>
+
+                            <!-- Current Position Card -->
                             <div class="stat-card">
                                 <h4>📍 Current Position</h4>
                                 <div class="stat-row">
@@ -181,10 +195,21 @@
                                     <span class="stat-value" data-stat="atBench">-</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Misc Tab -->
+                    <div class="tab-panel" id="panel-misc">
+                        <div class="panel-header">
+                            <h3>Miscellaneous</h3>
+                            <p class="panel-description">Additional save file details</p>
+                        </div>
+                        <div class="panel-content">
+                            <!-- Respawn Info Card -->
                             <div class="stat-card">
                                 <h4>🔄 Respawn Info</h4>
                                 <div class="stat-row">
-                                    <span class="stat-label">Respawn Scene</span>
+                                    <span class="stat-label">Respawn Area</span>
                                     <span class="stat-value" data-stat="respawnScene">-</span>
                                 </div>
                                 <div class="stat-row">
@@ -192,14 +217,19 @@
                                     <span class="stat-value" data-stat="respawnMarker">-</span>
                                 </div>
                             </div>
-                            <div class="panel-image-placeholder map-placeholder">
-                                <!-- Future: Add map visualization -->
-                                <span>🗺️ Map view coming soon</span>
+
+                            <!-- Save Info Card -->
+                            <div class="stat-card">
+                                <h4>📝 Save Info</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Respawn Type</span>
+                                    <span class="stat-value" data-stat="respawnType">-</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tools Tab -->
+                    <!-- 4. Tools Tab -->
                     <div class="tab-panel" id="panel-tools">
                         <div class="panel-header">
                             <h3>Tools</h3>
@@ -220,10 +250,6 @@
                                     <span class="stat-label">Seen</span>
                                     <span class="stat-value" data-stat="toolsSeen">-</span>
                                 </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Selected</span>
-                                    <span class="stat-value" data-stat="toolsSelected">-</span>
-                                </div>
                             </div>
                             <div class="tools-grid" id="tools-grid">
                                 <!-- Future: Add individual tool icons -->
@@ -231,60 +257,45 @@
                         </div>
                     </div>
 
-                    <!-- Currency Tab -->
-                    <div class="tab-panel" id="panel-currency">
+                    <!-- 5. Bosses Tab (Placeholder) -->
+                    <div class="tab-panel" id="panel-bosses">
                         <div class="panel-header">
-                            <h3>Currency</h3>
-                            <p class="panel-description">Your wealth in Pharloom</p>
+                            <h3>Bosses</h3>
+                            <p class="panel-description">Boss encounters and defeats</p>
                         </div>
                         <div class="panel-content">
-                            <div class="stat-card large">
-                                <div class="currency-display">
-                                    <div class="currency-item">
-                                        <span class="currency-icon">🔮</span>
-                                        <div class="currency-info">
-                                            <span class="currency-label">Rosaries</span>
-                                            <span class="currency-value" data-stat="geo">-</span>
-                                        </div>
-                                    </div>
-                                    <div class="currency-item">
-                                        <span class="currency-icon">🐚</span>
-                                        <div class="currency-info">
-                                            <span class="currency-label">Shell Shards</span>
-                                            <span class="currency-value" data-stat="shellShards">-</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="placeholder-card">
+                                <p>Boss tracking coming soon!</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Misc Tab -->
-                    <div class="tab-panel" id="panel-misc">
+                    <!-- 6. Fleas Tab (Placeholder) -->
+                    <div class="tab-panel" id="panel-fleas">
                         <div class="panel-header">
-                            <h3>Miscellaneous</h3>
-                            <p class="panel-description">Other save file details</p>
+                            <h3>Fleas</h3>
+                            <p class="panel-description">Flea encounters</p>
                         </div>
                         <div class="panel-content">
-                            <div class="stat-card">
-                                <h4>⚔️ Equipment</h4>
-                                <div class="stat-row">
-                                    <span class="stat-label">Equipped Crest</span>
-                                    <span class="stat-value" data-stat="crest">-</span>
-                                </div>
-                            </div>
-                            <div class="stat-card">
-                                <h4>📝 Save Info</h4>
-                                <div class="stat-row">
-                                    <span class="stat-label">Respawn Type</span>
-                                    <span class="stat-value" data-stat="respawnType">-</span>
-                                </div>
-                            </div>
-                            <div class="panel-image-placeholder">
-                                <!-- Future: Add additional details -->
+                            <div class="placeholder-card">
+                                <p>Flea tracking coming soon!</p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- 7. Collectables Tab (Placeholder) -->
+                    <div class="tab-panel" id="panel-collectables">
+                        <div class="panel-header">
+                            <h3>Collectables</h3>
+                            <p class="panel-description">Items and collectables found</p>
+                        </div>
+                        <div class="panel-content">
+                            <div class="placeholder-card">
+                                <p>Collectable tracking coming soon!</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </main>

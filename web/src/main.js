@@ -183,18 +183,20 @@ function displayStats(data) {
         });
     };
 
-    // Overview Tab
+    // General Tab - Game Info
     setStat('version', data.version || 'Unknown');
+    setStat('permadeath', data.permadeathMode ? 'Steel Soul' : 'Classic');
     setStat('completion', `${data.completionPercentage?.toFixed(1) || 0}%`);
     setStat('playTime', data.playTimeFormatted || '00h 00m 00s');
-    setStat('permadeath', data.permadeathMode ? '✓ Yes (Steel Soul)' : '✗ No');
 
-    // Health & Silk Tab
-    setStat('health', data.health);
+    // General Tab - Max Unlocked
     setStat('maxHealth', data.maxHealth);
-    setStat('silk', data.silk);
     setStat('maxSilk', data.maxSilk);
     setStat('silkHearts', data.silkHearts);
+
+    // Current Stats Tab - Health & Silk
+    setStat('healthDisplay', `${data.health}/${data.maxHealth}`);
+    setStat('silkDisplay', `${data.silk}/${data.maxSilk}`);
 
     // Update health bar
     const healthPercent = data.maxHealth > 0 ? (data.health / data.maxHealth) * 100 : 100;
@@ -203,29 +205,30 @@ function displayStats(data) {
         healthFill.style.width = `${healthPercent}%`;
     }
 
-    // Currency Tab
+    // Current Stats Tab - Currency
     setStat('geo', data.geo?.toLocaleString() || '0');
     setStat('shellShards', data.shellShards?.toLocaleString() || '0');
 
-    // Location Tab
+    // Current Stats Tab - Equipment
+    setStat('crest', data.currentCrestId || 'None');
+
+    // Current Stats Tab - Position
     setStat('currentArea', data.currentArea || 'Unknown');
     setStat('mapZone', data.mapZone);
     setStat('atBench', data.atBench ? '✓ Yes' : '✗ No');
+
+    // Misc Tab - Respawn Info
     setStat('respawnScene', data.respawnScene || 'Unknown');
     setStat('respawnMarker', data.respawnMarkerName || '-');
+    setStat('respawnType', data.respawnType);
 
     // Tools Tab
     setStat('toolsTotal', data.toolsTotal);
     setStat('toolsUnlocked', data.toolsUnlocked);
     setStat('toolsSeen', data.toolsSeen);
-    setStat('toolsSelected', data.toolsSelected);
 
-    // Misc Tab
-    setStat('crest', data.currentCrestId || 'None');
-    setStat('respawnType', data.respawnType);
-
-    // Switch to overview tab and scroll to stats
-    switchTab('overview');
+    // Switch to general tab and scroll to stats
+    switchTab('general');
     statsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
