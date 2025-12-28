@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hollow Knight: Silksong Save File Viewer - Analyze your save game progress">
+    <title>Silksong Webweaver - Save Viewer</title>
+    <link rel="icon"
+        href="https://raw.githubusercontent.com/alleriaJY/silksong-webweaver/main/.assets/img/silksong_logo.ico"
+        type="image/x-icon">
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="https://raw.githubusercontent.com/alleriaJY/silksong-webweaver/main/.assets/img/silksong_logo.ico"
+                alt="Silksong Logo" class="logo">
+            <h1>Silksong: Webweaver</h1>
+            <p class="subtitle">Re-weaving the timeline</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <h2>Upload Save File</h2>
+                <div class="upload-area" id="upload-area">
+                    <input type="file" id="file-input" accept=".dat" hidden>
+                    <label for="file-input" class="upload-label">
+                        <div class="upload-icon">📁</div>
+                        <span class="upload-text">Drop your .dat file here or click to browse</span>
+                        <span class="file-name" id="file-name"></span>
+                    </label>
+                </div>
+                <p class="upload-hint">Your save file is processed entirely in your browser. Nothing is uploaded to any
+                    server.</p>
+
+                <!-- Analyze Button -->
+                <button class="analyze-btn" id="analyze-btn" disabled>
+                    <span class="btn-icon">🔍</span>
+                    <span>Analyze Save File</span>
+                </button>
+            </section>
+
+            <!-- Loading Indicator -->
+            <div class="loading" id="loading" hidden>
+                <div class="spinner"></div>
+                <p>Decrypting and parsing save file...</p>
+            </div>
+
+            <!-- Error Display -->
+            <div class="error-message" id="error-message" hidden>
+                <span class="error-icon">⚠️</span>
+                <span id="error-text"></span>
+            </div>
+
+            <!-- Stats Section with Tabs -->
+            <section class="stats-section" id="stats-section" hidden>
+                <h2>📊 Save File Statistics</h2>
+
+                <!-- Tab Navigation -->
+                <nav class="tab-nav" id="tab-nav">
+                    <button class="tab-btn active" data-tab="overview">
+                        <span class="tab-icon">🎮</span>
+                        <span class="tab-text">Overview</span>
+                    </button>
+                    <button class="tab-btn" data-tab="health">
+                        <span class="tab-icon">❤️</span>
+                        <span class="tab-text">Health & Silk</span>
+                    </button>
+                    <button class="tab-btn" data-tab="location">
+                        <span class="tab-icon">📍</span>
+                        <span class="tab-text">Location</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tools">
+                        <span class="tab-icon">🔧</span>
+                        <span class="tab-text">Tools</span>
+                    </button>
+                    <button class="tab-btn" data-tab="currency">
+                        <span class="tab-icon">💰</span>
+                        <span class="tab-text">Currency</span>
+                    </button>
+                    <button class="tab-btn" data-tab="misc">
+                        <span class="tab-icon">📋</span>
+                        <span class="tab-text">Misc</span>
+                    </button>
+                </nav>
+
+                <!-- Tab Panels -->
+                <div class="tab-panels">
+                    <!-- Overview Tab -->
+                    <div class="tab-panel active" id="panel-overview">
+                        <div class="panel-header">
+                            <h3>Game Overview</h3>
+                            <p class="panel-description">General information about your save file</p>
+                        </div>
+                        <div class="panel-content">
+                            <div class="stat-card large">
+                                <div class="stat-row">
+                                    <span class="stat-label">Game Version</span>
+                                    <span class="stat-value" data-stat="version">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Completion</span>
+                                    <span class="stat-value highlight" data-stat="completion">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Play Time</span>
+                                    <span class="stat-value highlight" data-stat="playTime">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Steel Soul Mode</span>
+                                    <span class="stat-value" data-stat="permadeath">-</span>
+                                </div>
+                            </div>
+                            <div class="panel-image-placeholder">
+                                <!-- Future: Add overview illustration -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health & Silk Tab -->
+                    <div class="tab-panel" id="panel-health">
+                        <div class="panel-header">
+                            <h3>Health & Silk</h3>
+                            <p class="panel-description">Your current health and silk resources</p>
+                        </div>
+                        <div class="panel-content">
+                            <div class="stat-card">
+                                <h4>❤️ Health</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Current Health</span>
+                                    <span class="stat-value" data-stat="health">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Max Health</span>
+                                    <span class="stat-value" data-stat="maxHealth">-</span>
+                                </div>
+                                <div class="health-bar" id="health-bar">
+                                    <div class="health-fill" id="health-fill"></div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <h4>🧵 Silk</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Current Silk</span>
+                                    <span class="stat-value" data-stat="silk">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Max Silk</span>
+                                    <span class="stat-value" data-stat="maxSilk">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Silk Hearts</span>
+                                    <span class="stat-value highlight" data-stat="silkHearts">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Tab -->
+                    <div class="tab-panel" id="panel-location">
+                        <div class="panel-header">
+                            <h3>Location</h3>
+                            <p class="panel-description">Where you are in Pharloom</p>
+                        </div>
+                        <div class="panel-content">
+                            <div class="stat-card">
+                                <h4>📍 Current Position</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Current Area</span>
+                                    <span class="stat-value highlight" data-stat="currentArea">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Map Zone</span>
+                                    <span class="stat-value" data-stat="mapZone">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">At Bench</span>
+                                    <span class="stat-value" data-stat="atBench">-</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <h4>🔄 Respawn Info</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Respawn Scene</span>
+                                    <span class="stat-value" data-stat="respawnScene">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Respawn Marker</span>
+                                    <span class="stat-value" data-stat="respawnMarker">-</span>
+                                </div>
+                            </div>
+                            <div class="panel-image-placeholder map-placeholder">
+                                <!-- Future: Add map visualization -->
+                                <span>🗺️ Map view coming soon</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools Tab -->
+                    <div class="tab-panel" id="panel-tools">
+                        <div class="panel-header">
+                            <h3>Tools</h3>
+                            <p class="panel-description">Your collected tools and abilities</p>
+                        </div>
+                        <div class="panel-content">
+                            <div class="stat-card">
+                                <h4>🔧 Tool Statistics</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Total Tools</span>
+                                    <span class="stat-value" data-stat="toolsTotal">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Unlocked</span>
+                                    <span class="stat-value highlight" data-stat="toolsUnlocked">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Seen</span>
+                                    <span class="stat-value" data-stat="toolsSeen">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Selected</span>
+                                    <span class="stat-value" data-stat="toolsSelected">-</span>
+                                </div>
+                            </div>
+                            <div class="tools-grid" id="tools-grid">
+                                <!-- Future: Add individual tool icons -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Currency Tab -->
+                    <div class="tab-panel" id="panel-currency">
+                        <div class="panel-header">
+                            <h3>Currency</h3>
+                            <p class="panel-description">Your wealth in Pharloom</p>
+                        </div>
+                        <div class="panel-content">
+                            <div class="stat-card large">
+                                <div class="currency-display">
+                                    <div class="currency-item">
+                                        <span class="currency-icon">🔮</span>
+                                        <div class="currency-info">
+                                            <span class="currency-label">Rosaries</span>
+                                            <span class="currency-value" data-stat="geo">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="currency-item">
+                                        <span class="currency-icon">🐚</span>
+                                        <div class="currency-info">
+                                            <span class="currency-label">Shell Shards</span>
+                                            <span class="currency-value" data-stat="shellShards">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Misc Tab -->
+                    <div class="tab-panel" id="panel-misc">
+                        <div class="panel-header">
+                            <h3>Miscellaneous</h3>
+                            <p class="panel-description">Other save file details</p>
+                        </div>
+                        <div class="panel-content">
+                            <div class="stat-card">
+                                <h4>⚔️ Equipment</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Equipped Crest</span>
+                                    <span class="stat-value" data-stat="crest">-</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <h4>📝 Save Info</h4>
+                                <div class="stat-row">
+                                    <span class="stat-label">Respawn Type</span>
+                                    <span class="stat-value" data-stat="respawnType">-</span>
+                                </div>
+                            </div>
+                            <div class="panel-image-placeholder">
+                                <!-- Future: Add additional details -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Silksong Webweaver &copy; <span id="current-year"></span> |
+                <a href="https://github.com/alleriaJY/silksong-webweaver" target="_blank">GitHub</a>
+            </p>
+            <p class="footer-note">Powered by Rust + WebAssembly</p>
+        </footer>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>
