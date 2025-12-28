@@ -1,7 +1,7 @@
 pub mod crypto;
-pub mod parser;
 pub mod data;
+pub mod parser;
 
 // Re-export main types for convenience
 pub use crypto::decrypt_save_file;
-pub use parser::{SaveFile, PlayerData, ToolData};
+pub use parser::{PlayerData, SaveFile, ToolData};

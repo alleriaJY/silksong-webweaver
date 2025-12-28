@@ -73,7 +73,10 @@ fn print_stats(save: &SaveFile) {
     println!("Shell Shards       : {}\n", player.shell_shards);
 
     println!("\n=====\n1.2 Current Stats\n=====");
-    println!("Current Health     : {}/{}", player.health, player.max_health);
+    println!(
+        "Current Health     : {}/{}",
+        player.health, player.max_health
+    );
     println!("Current Silk       : {}/{}\n", player.silk, player.max_silk);
 
     println!("Current Area       : {}", player.current_area);
