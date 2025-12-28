@@ -5,21 +5,26 @@
 Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for fun.
 
 ## To-Do List (By Priority)
-1. Basic Parsing
 
-    - Generic Stats
-    - Current Stats
-    - Misc Stats
-    - Completion Stuffs
-    - Tools
-    - Map
-    - Bosses
-    - Fleas
-    - Collectables
+### Completed
+- [x] Web UI with file upload
+- [x] WASM-based decryption
+- [x] GitHub Pages deployment
 
-2. Simple Web UI - Just basic icons
-3. Restructure codebase into JSON library for game data
-4. Upload Savefile (.dat)
-5. Better UI - With more icons
-6. (Stretch) Interactive Map View
-7. (Stretch) Historical map unlocking by time / heat map? One shall be optimistic.
+### Planned
+- [ ] More parsing
+    - [ ] More Stats
+    - [ ] Tools
+    - [ ] Map
+    - [ ] Bosses
+    - [ ] Fleas
+    - [ ] Collectables
+- [ ] UI -> Icons! Better categories/tabs
+- [ ] Map visualization
+- [ ] Restructure game data stuffs (JSON) to add more details
+- [ ] (Stretch) Interactive map view
+- [ ] (Stretch) Heat map / Hero's Path
+
+## 📄 License
+
+See [LICENSE](LICENSE) for details.
