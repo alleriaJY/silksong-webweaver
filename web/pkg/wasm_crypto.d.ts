@@ -2,9 +2,10 @@
 /* eslint-disable */
 
 /**
- * Decrypt and parse a Silksong save file
+ * Decrypt a Silksong save file
  * 
- * Takes raw bytes from a .dat file and returns parsed save data as JSON
+ * Takes raw bytes from a .dat file and returns the raw playerData JSON
+ * Parsing is handled by JavaScript using the schema system
  */
 export function decrypt_and_parse(data: Uint8Array): any;
 
