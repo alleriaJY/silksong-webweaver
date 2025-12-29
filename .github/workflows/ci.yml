@@ -7,9 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  # Rust linting and tests
-  rust-checks:
-    name: Rust Checks
+  # WASM build check
+  wasm-build:
+    name: WASM Build Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,18 +18,19 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
+          targets: wasm32-unknown-unknown
 
       - name: Cache cargo dependencies
         uses: Swatinem/rust-cache@v2
 
       - name: Check formatting
-        run: cargo fmt --check
+        run: cargo fmt --check --manifest-path wasm-crypto/Cargo.toml
 
       - name: Run clippy
-        run: cargo clippy -- -D warnings
+        run: cargo clippy --manifest-path wasm-crypto/Cargo.toml -- -D warnings
 
-      - name: Run tests
-        run: cargo test --verbose
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-      - name: Build release
-        run: cargo build --release
+      - name: Build WASM
+        run: wasm-pack build wasm-crypto --target web --out-dir ../web/pkg

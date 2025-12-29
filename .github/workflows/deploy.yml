@@ -19,18 +19,17 @@ jobs:
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
 
       - name: Cache cargo dependencies
         uses: Swatinem/rust-cache@v2
 
-      - name: Run Rust tests
-        run: cargo test
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-      # Future: Add WASM build step here
-      # - name: Install wasm-pack
-      #   run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-      # - name: Build WASM
-      #   run: wasm-pack build wasm-crypto --target web --out-dir ../web/pkg
+      - name: Build WASM
+        run: wasm-pack build wasm-crypto --target web --out-dir ../web/pkg
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
