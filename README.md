@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/alleriaJY/silksong-webweaver/main/.assets/img/silksong_logo.ico" alt="Silksong" title="Silksong Webweaver" align="left" height="70" />
+<img src="https://raw.githubusercontent.com/alleriaJY/silksong-webweaver/refs/heads/main/web/assets/img/silksong_logo.ico" alt="Silksong" title="Silksong Webweaver" align="left" height="70" />
 
 # Silksong: Webweaver
 
