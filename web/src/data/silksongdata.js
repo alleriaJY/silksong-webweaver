@@ -76,7 +76,7 @@ export const TOOLS_LIST = [
     { json: 'Mosscreep Tool 1', display: "Druid's Eye", category: 'Blue', icon: 'T_mossmedal.png' },
     { json: 'Mosscreep Tool 2', display: "Druid's Eyes", category: 'Blue', icon: 'T_mossmedal_second.png' },
     { json: 'Lava Charm', display: 'Magma Bell', category: 'Blue', icon: 'Hornet_T_lava_charm.png' },
-    { json: 'Bell Bind', display: 'Warding Bell', category: 'Blue', icon: 'Hornet_T_lava_charm.png' },
+    { json: 'Bell Bind', display: 'Warding Bell', category: 'Blue', icon: 'Hornet_icon_0001_T_bell_shield.png' },
     { json: 'Poison Pouch', display: 'Pollip Pouch', category: 'Blue', icon: 'T_poison_pouch.png' },
     { json: 'Fractured Mask', display: 'Fractured Mask', category: 'Blue', icon: 'Hornet_T_Fractured_Mask.png' },
     { json: 'Multibind', display: 'Multibinder', category: 'Blue', icon: 'T_multi_bind.png' },
@@ -91,7 +91,7 @@ export const TOOLS_LIST = [
     { json: 'Thief Claw', display: 'Snitch Pick', category: 'Blue', icon: 'Thief_Claw.png' },
     { json: 'Zap Imbuement', display: 'Volt Filament', category: 'Blue', icon: 'T_zap_imbuement.png' },
     { json: 'Quick Sling', display: 'Quick Sling', category: 'Blue', icon: 'T_quick_sling.png' },
-    { json: 'Maggot Charm', display: 'Wreath of Purity', category: 'Blue', icon: 'T_poison_pouch.png' },
+    { json: 'Maggot Charm', display: 'Wreath of Purity', category: 'Blue', icon: 'poultice_pouch_icon.png' },
     { json: 'Longneedle', display: 'Longclaw', category: 'Blue', icon: 'T_longneedle.png' },
     { json: 'Wisp Lantern', display: 'Wispfire Lantern', category: 'Blue', icon: 'T_wisp_lantern.png' },
     { json: 'Flea Charm', display: 'Egg of Flealia', category: 'Blue', icon: 'Flea_Egg.png' },
@@ -110,13 +110,6 @@ export const TOOLS_LIST = [
     { json: 'Musician Charm', display: 'Spider Strings', category: 'Yellow', icon: 'T_attunement_charm.png' },
     { json: 'Sprintmaster', display: 'Silkspeed Anklets', category: 'Yellow', icon: 'T_icon_sprintmaster.png' },
     { json: 'Thief Charm', display: "Thief's Mark", category: 'Yellow', icon: 'Thief_Brooch.png' },
-    // Silk Skills
-    { json: 'Silk Spear', display: 'Silkspear', category: 'Skill', icon: 'Art_Rune__0002_silk_spear.png' },
-    { json: 'Thread Sphere', display: 'Thread Storm', category: 'Skill', icon: 'Art_Rune__0008_silk_sphere.png' },
-    { json: 'Parry', display: 'Cross Stitch', category: 'Skill', icon: 'Art_Rune__0014_cross_stitch.png' },
-    { json: 'Silk Charge', display: 'Sharpdart', category: 'Skill', icon: 'Art_Rune__0017_silk_dart.png' },
-    { json: 'Silk Bomb', display: 'Rune Rage', category: 'Skill', icon: 'Art_Rune__0005_silk_bomb.png' },
-    { json: 'Silk Boss Needle', display: 'Pale Nails', category: 'Skill', icon: 'Art_Rune__0011_finger_blades.png' },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════

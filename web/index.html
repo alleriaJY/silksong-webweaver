@@ -79,6 +79,9 @@
                     <button class="tab-btn" data-tab="fleas">
                         <span class="tab-text">FLEAS</span>
                     </button>
+                    <button class="tab-btn" data-tab="maps">
+                        <span class="tab-text">MAPS</span>
+                    </button>
                     <button class="tab-btn" data-tab="collectables">
                         <span class="tab-text">COLLECTABLES</span>
                     </button>
@@ -131,6 +134,23 @@
                                     <span class="stat-value" data-stat="silkHearts">-</span>
                                 </div>
                             </div>
+
+                            <!-- Stats Visual - Full Width -->
+                            <div class="stat-card full-width">
+                                <h4>❤️ Health & Silk Visual</h4>
+                                <div class="stat-visual-row">
+                                    <span class="stat-visual-label">Max Health:</span>
+                                    <div class="icon-container" id="health-icons">
+                                        <!-- Health icons will be populated by JS -->
+                                    </div>
+                                </div>
+                                <div class="stat-visual-row">
+                                    <span class="stat-visual-label">Silk Hearts:</span>
+                                    <div class="icon-container" id="silkheart-icons">
+                                        <!-- Silk heart icons will be populated by JS -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -148,12 +168,15 @@
                                     <span class="stat-label">Current Health</span>
                                     <span class="stat-value" data-stat="healthDisplay">-</span>
                                 </div>
-                                <div class="health-bar" id="health-bar">
-                                    <div class="health-fill" id="health-fill"></div>
+                                <div class="stat-bar" id="health-bar">
+                                    <div class="stat-bar-fill health-fill" id="health-fill"></div>
                                 </div>
                                 <div class="stat-row">
                                     <span class="stat-label">Current Silk</span>
                                     <span class="stat-value" data-stat="silkDisplay">-</span>
+                                </div>
+                                <div class="stat-bar" id="silk-bar">
+                                    <div class="stat-bar-fill silk-fill" id="silk-fill"></div>
                                 </div>
                             </div>
 
@@ -161,18 +184,24 @@
                             <div class="stat-card">
                                 <h4>💰 Currency</h4>
                                 <div class="stat-row">
-                                    <span class="stat-label">Rosaries</span>
+                                    <span class="stat-label"><img src="assets/img/general/general_rosaries.png"
+                                            alt="Rosary" class="stat-icon"> Rosaries</span>
                                     <span class="stat-value highlight" data-stat="geo">-</span>
                                 </div>
                                 <div class="stat-row">
-                                    <span class="stat-label">Shell Shards</span>
+                                    <span class="stat-label"><img src="assets/img/general/general_shard.png"
+                                            alt="Shell Shard" class="stat-icon"> Shell Shards</span>
                                     <span class="stat-value" data-stat="shellShards">-</span>
                                 </div>
                             </div>
 
-                            <!-- Equipment Card -->
+                            <!-- Equipment Card with Crest Image -->
                             <div class="stat-card">
                                 <h4>⚔️ Equipment</h4>
+                                <div class="crest-display">
+                                    <img src="assets/img/general/crests/Select_Game_Crest_Spools__0000_hunter.png"
+                                        alt="Equipped Crest" id="crest-image" class="crest-image">
+                                </div>
                                 <div class="stat-row">
                                     <span class="stat-label">Equipped Crest</span>
                                     <span class="stat-value" data-stat="crest">-</span>
@@ -233,39 +262,32 @@
                     <div class="tab-panel" id="panel-tools">
                         <div class="panel-header">
                             <h3>Tools</h3>
-                            <p class="panel-description">Your collected tools and abilities</p>
+                            <p class="panel-description">Unlocked: <span id="tools-unlocked-count">0</span>/59 | Seen:
+                                <span id="tools-seen-count">0</span>/59</p>
                         </div>
                         <div class="panel-content">
-                            <div class="stat-card">
-                                <h4>🔧 Tool Statistics</h4>
-                                <div class="stat-row">
-                                    <span class="stat-label">Total Tools</span>
-                                    <span class="stat-value" data-stat="toolsTotal">-</span>
+                            <div class="stat-card full-width">
+                                <h4>🔧 Tool Collection</h4>
+                                <div class="tools-grid" id="tools-grid">
+                                    <!-- Tool icons will be populated by JS -->
                                 </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Unlocked</span>
-                                    <span class="stat-value highlight" data-stat="toolsUnlocked">-</span>
-                                </div>
-                                <div class="stat-row">
-                                    <span class="stat-label">Seen</span>
-                                    <span class="stat-value" data-stat="toolsSeen">-</span>
-                                </div>
-                            </div>
-                            <div class="tools-grid" id="tools-grid">
-                                <!-- Future: Add individual tool icons -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- 5. Bosses Tab (Placeholder) -->
+                    <!-- 5. Bosses Tab -->
                     <div class="tab-panel" id="panel-bosses">
                         <div class="panel-header">
                             <h3>Bosses</h3>
-                            <p class="panel-description">Boss encounters and defeats</p>
+                            <p class="panel-description">Boss encounters defeated (<span id="bosses-count">0</span>/36)
+                            </p>
                         </div>
                         <div class="panel-content">
-                            <div class="placeholder-card">
-                                <p>Boss tracking coming soon!</p>
+                            <div class="stat-card full-width">
+                                <h4>⚔️ Boss Encounters</h4>
+                                <div class="bosses-grid" id="bosses-grid">
+                                    <!-- Boss icons will be populated by JS -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -279,6 +301,22 @@
                         <div class="panel-content">
                             <div class="placeholder-card">
                                 <p>Flea tracking coming soon!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Maps Tab -->
+                    <div class="tab-panel" id="panel-maps">
+                        <div class="panel-header">
+                            <h3>Maps</h3>
+                            <p class="panel-description">Collected area maps (<span id="maps-count">0</span>/28)</p>
+                        </div>
+                        <div class="panel-content">
+                            <div class="stat-card full-width">
+                                <h4>🗺️ Area Maps</h4>
+                                <div class="maps-grid" id="maps-grid">
+                                    <!-- Map icons will be populated by JS -->
+                                </div>
                             </div>
                         </div>
                     </div>

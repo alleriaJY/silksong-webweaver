@@ -5,6 +5,7 @@
  */
 
 import init, { decrypt_and_parse } from '../pkg/wasm_crypto.js';
+import { parseAllData, formatPlayTime, formatNumber } from './data/index.js';
 
 // State
 let wasmReady = false;
@@ -150,12 +151,13 @@ async function analyzeFile() {
 
         console.log('Processing file...', bytes.length, 'bytes');
 
-        // Decrypt and parse using WASM
+        // Decrypt using WASM
         const result = decrypt_and_parse(bytes);
 
         if (result.success) {
-            currentData = result.data;
-            displayStats(result.data);
+            // Parse raw playerData using schema system
+            currentData = parseAllData(result.playerData);
+            displayStats(currentData);
             console.log('✓ Save file parsed successfully');
         } else {
             throw new Error(result.error || 'Unknown error');
@@ -171,6 +173,7 @@ async function analyzeFile() {
 
 /**
  * Display parsed stats across all tabs
+ * Uses schema-based parsed data structure
  */
 function displayStats(data) {
     statsSection.hidden = false;
@@ -183,49 +186,235 @@ function displayStats(data) {
         });
     };
 
+    // Helper to get value from parsed field
+    const getField = (category, fieldName) => {
+        return data[category]?.[fieldName]?.value;
+    };
+
     // General Tab - Game Info
-    setStat('version', data.version || 'Unknown');
-    setStat('permadeath', data.permadeathMode ? 'Steel Soul' : 'Classic');
-    setStat('completion', `${data.completionPercentage?.toFixed(1) || 0}%`);
-    setStat('playTime', data.playTimeFormatted || '00h 00m 00s');
+    setStat('version', getField('general', 'version') || 'Unknown');
+    setStat('permadeath', getField('general', 'permadeathMode') ? 'Steel Soul' : 'Classic');
+    const completion = getField('general', 'completionPercentage');
+    setStat('completion', completion !== undefined ? `${completion.toFixed(1)}%` : '0%');
+    const playTime = getField('general', 'playTime');
+    setStat('playTime', playTime ? formatPlayTime(playTime) : '00h 00m 00s');
 
     // General Tab - Max Unlocked
-    setStat('maxHealth', data.maxHealth);
-    setStat('maxSilk', data.maxSilk);
-    setStat('silkHearts', data.silkHearts);
+    const maxHealthVal = getField('general', 'maxHealth') || 0;
+    const silkHeartsVal = getField('general', 'silkRegenMax') || 0;
+    setStat('maxHealth', maxHealthVal);
+    setStat('maxSilk', getField('general', 'silkMax'));
+    setStat('silkHearts', silkHeartsVal);
+
+    // General Tab - Stats Visual Icons
+    const healthIconsContainer = document.getElementById('health-icons');
+    const silkHeartIconsContainer = document.getElementById('silkheart-icons');
+
+    // Populate health icons (max 10)
+    if (healthIconsContainer) {
+        healthIconsContainer.innerHTML = '';
+        const healthCount = Math.min(Math.max(0, maxHealthVal), 10);
+        for (let i = 0; i < healthCount; i++) {
+            const img = document.createElement('img');
+            img.src = 'assets/img/general/general_hp.png';
+            img.alt = 'Health';
+            img.title = `Health ${i + 1}`;
+            healthIconsContainer.appendChild(img);
+        }
+        if (healthCount === 0) {
+            healthIconsContainer.innerHTML = '<span style="color: var(--text-secondary);">None</span>';
+        }
+    }
+
+    // Populate silk heart icons (max 3)
+    if (silkHeartIconsContainer) {
+        silkHeartIconsContainer.innerHTML = '';
+        const silkCount = Math.min(Math.max(0, silkHeartsVal), 3);
+        for (let i = 0; i < silkCount; i++) {
+            const img = document.createElement('img');
+            img.src = 'assets/img/general/general_silkheart.png';
+            img.alt = 'Silk Heart';
+            img.title = `Silk Heart ${i + 1}`;
+            silkHeartIconsContainer.appendChild(img);
+        }
+        if (silkCount === 0) {
+            silkHeartIconsContainer.innerHTML = '<span style="color: var(--text-secondary);">None</span>';
+        }
+    }
 
     // Current Stats Tab - Health & Silk
-    setStat('healthDisplay', `${data.health}/${data.maxHealth}`);
-    setStat('silkDisplay', `${data.silk}/${data.maxSilk}`);
+    const health = getField('current', 'health') || 0;
+    const maxHealth = getField('current', 'maxHealth') || 0;
+    const silk = getField('current', 'silk') || 0;
+    const maxSilk = getField('current', 'silkMax') || 0;
+    setStat('healthDisplay', `${health}/${maxHealth}`);
+    setStat('silkDisplay', `${silk}/${maxSilk}`);
 
     // Update health bar
-    const healthPercent = data.maxHealth > 0 ? (data.health / data.maxHealth) * 100 : 100;
+    const healthPercent = maxHealth > 0 ? (health / maxHealth) * 100 : 0;
     const healthFill = document.getElementById('health-fill');
     if (healthFill) {
         healthFill.style.width = `${healthPercent}%`;
     }
 
-    // Current Stats Tab - Currency
-    setStat('geo', data.geo?.toLocaleString() || '0');
-    setStat('shellShards', data.shellShards?.toLocaleString() || '0');
+    // Update silk bar
+    const silkPercent = maxSilk > 0 ? (silk / maxSilk) * 100 : 0;
+    const silkFill = document.getElementById('silk-fill');
+    if (silkFill) {
+        silkFill.style.width = `${silkPercent}%`;
+    }
 
-    // Current Stats Tab - Equipment
-    setStat('crest', data.currentCrestId || 'None');
+    // Current Stats Tab - Currency
+    const geo = getField('current', 'geo');
+    const shellShards = getField('current', 'ShellShards');
+    setStat('geo', geo !== undefined ? formatNumber(geo) : '0');
+    setStat('shellShards', shellShards !== undefined ? formatNumber(shellShards) : '0');
+
+    // Current Stats Tab - Equipment & Crest Display
+    const crestId = getField('current', 'CurrentCrestID') || '';
+    const isSteelSoul = getField('general', 'permadeathMode') || false;
+    setStat('crest', crestId || 'None');
+
+    // Update crest image
+    const crestImage = document.getElementById('crest-image');
+    if (crestImage && crestId) {
+        const crestMap = {
+            'Hunter': isSteelSoul ? 'Select_Game_Crest_Spools__0000_hunter_SS.png' : 'Select_Game_Crest_Spools__0000_hunter.png',
+            'Hunter_v2': isSteelSoul ? 'Select_Game_Crest_Spools__0003_hunter_v2_SS.png' : 'Select_Game_Crest_Spools__0003_hunter_v2.png',
+            'Hunter_v3': isSteelSoul ? 'Select_Game_Crest_Spools__0001_hunter_v3_SS.png' : 'Select_Game_Crest_Spools__0001_hunter_v3.png',
+            'Shaman': isSteelSoul ? 'Select_Game_Crest_Spools__0005_shaman_SS.png' : 'Select_Game_Crest_Spools__0005_shaman.png',
+            'Reaper': isSteelSoul ? 'Select_Game_Crest_Spools__0004_reaper_SS.png' : 'Select_Game_Crest_Spools__0004_reaper.png',
+            'Architect': isSteelSoul ? 'Select_Game_Crest_Spools__0006_architect_SS.png' : 'Select_Game_Crest_Spools__0006_architect.png',
+            'Warrior': isSteelSoul ? 'Select_Game_Crest_Spools__0007_warrior_SS.png' : 'Select_Game_Crest_Spools__0007_warrior.png',
+            'Wanderer': isSteelSoul ? 'Select_Game_Crest_Spools__0008_wanderer_SS.png' : 'Select_Game_Crest_Spools__0008_wanderer.png',
+            'Witch': isSteelSoul ? 'Select_Game_Crest_Spools__0009_witch_SS.png' : 'Select_Game_Crest_Spools__0009_witch.png',
+            'Cursed': isSteelSoul ? 'Select_Game_Crest_Spools__0002_cursed_SS.png' : 'Select_Game_Crest_Spools__0002_cursed.png',
+        };
+        const crestFile = crestMap[crestId] || crestMap['Hunter'];
+        crestImage.src = `assets/img/general/crests/${crestFile}`;
+        crestImage.alt = crestId;
+    }
 
     // Current Stats Tab - Position
-    setStat('currentArea', data.currentArea || 'Unknown');
-    setStat('mapZone', data.mapZone);
-    setStat('atBench', data.atBench ? '✓ Yes' : '✗ No');
+    setStat('currentArea', getField('current', 'currentArea') || 'Unknown');
+    setStat('mapZone', getField('current', 'mapZone'));
+    const atBench = getField('current', 'atBench');
+    setStat('atBench', atBench ? '✓ Yes' : '✗ No');
 
     // Misc Tab - Respawn Info
-    setStat('respawnScene', data.respawnScene || 'Unknown');
-    setStat('respawnMarker', data.respawnMarkerName || '-');
-    setStat('respawnType', data.respawnType);
+    setStat('respawnScene', getField('misc', 'respawnScene') || 'Unknown');
+    setStat('respawnMarker', getField('misc', 'respawnMarkerName') || '-');
+    setStat('respawnType', getField('misc', 'respawnType'));
 
-    // Tools Tab
-    setStat('toolsTotal', data.toolsTotal);
-    setStat('toolsUnlocked', data.toolsUnlocked);
-    setStat('toolsSeen', data.toolsSeen);
+    // Tools Tab - Populate tool grid
+    const toolsGrid = document.getElementById('tools-grid');
+    const toolsUnlockedCount = document.getElementById('tools-unlocked-count');
+    const toolsSeenCount = document.getElementById('tools-seen-count');
+    if (toolsGrid && data.tools) {
+        toolsGrid.innerHTML = '';
+        let unlockedCount = 0;
+        let seenCount = 0;
+
+        for (const tool of data.tools.tools) {
+            const toolItem = document.createElement('div');
+            toolItem.className = 'tool-item';
+
+            const img = document.createElement('img');
+            img.src = `assets/img/tools/${tool.icon || 'T_straight_pin.png'}`;
+            img.alt = tool.display;
+            img.title = `${tool.display} (${tool.unlocked ? 'Unlocked' : 'Locked'}, ${tool.seen ? 'Seen' : 'Not Seen'})`;
+            img.className = tool.unlocked ? 'unlocked' : 'locked';
+
+            if (tool.unlocked) unlockedCount++;
+            if (tool.seen) seenCount++;
+
+            const label = document.createElement('span');
+            label.textContent = tool.display;
+            label.title = tool.display;
+
+            toolItem.appendChild(img);
+            toolItem.appendChild(label);
+            toolsGrid.appendChild(toolItem);
+        }
+
+        if (toolsUnlockedCount) toolsUnlockedCount.textContent = unlockedCount;
+        if (toolsSeenCount) toolsSeenCount.textContent = seenCount;
+    }
+
+    // Maps Tab - Populate map grid
+    const mapsGrid = document.getElementById('maps-grid');
+    const mapsCount = document.getElementById('maps-count');
+    if (mapsGrid && data.maps) {
+        mapsGrid.innerHTML = '';
+        let unlockedCount = 0;
+
+        for (const map of data.maps.maps) {
+            const mapItem = document.createElement('div');
+            mapItem.className = 'map-item';
+
+            const img = document.createElement('img');
+            img.src = `assets/img/maps/${map.icon || 'I_map.png'}`;
+            img.alt = map.display;
+            img.title = map.display;
+
+            // Special handling for placeholder icons (e.g., Abyss)
+            const isPlaceholder = map.json === 'HasAbyssMap';
+            if (isPlaceholder) {
+                img.className = map.value ? 'unlocked placeholder-icon' : 'locked placeholder-icon';
+            } else {
+                img.className = map.value ? 'unlocked' : 'locked';
+            }
+
+            if (map.value) unlockedCount++;
+
+            const label = document.createElement('span');
+            label.textContent = map.display;
+            label.title = map.display;
+
+            mapItem.appendChild(img);
+            mapItem.appendChild(label);
+            mapsGrid.appendChild(mapItem);
+        }
+
+        if (mapsCount) {
+            mapsCount.textContent = unlockedCount;
+        }
+    }
+
+    // Bosses Tab - Populate boss grid
+    const bossesGrid = document.getElementById('bosses-grid');
+    const bossesCount = document.getElementById('bosses-count');
+    if (bossesGrid && data.bosses) {
+        bossesGrid.innerHTML = '';
+        let defeatedCount = 0;
+
+        for (const boss of data.bosses.bosses) {
+            const bossItem = document.createElement('div');
+            bossItem.className = 'boss-item';
+
+            const img = document.createElement('img');
+            // Encode the icon filename to handle special characters like #
+            const iconFile = boss.icon || 'bestiary_icon__0001_frame_empty.png';
+            img.src = `assets/img/bosses/${encodeURIComponent(iconFile)}`;
+            img.alt = boss.display;
+            img.title = boss.display;
+            img.className = boss.value ? 'defeated' : 'not-defeated';
+
+            if (boss.value) defeatedCount++;
+
+            const label = document.createElement('span');
+            label.textContent = boss.display;
+            label.title = boss.display;
+
+            bossItem.appendChild(img);
+            bossItem.appendChild(label);
+            bossesGrid.appendChild(bossItem);
+        }
+
+        if (bossesCount) {
+            bossesCount.textContent = defeatedCount;
+        }
+    }
 
     // Switch to general tab and scroll to stats
     switchTab('general');

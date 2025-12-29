@@ -387,21 +387,243 @@ header h1 {
     font-size: 1.1rem;
 }
 
-/* Health Bar */
-.health-bar {
-    height: 12px;
+/* Stat Icons - inline icons in labels */
+.stat-icon {
+    height: 20px;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 4px;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+}
+
+/* Full Width Stat Card */
+.stat-card.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Stats Visual Row */
+.stat-visual-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+}
+
+.stat-visual-row:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-visual-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    min-width: 100px;
+}
+
+.icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+}
+
+.icon-container img {
+    height: 32px;
+    width: auto;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+    transition: transform 0.2s ease;
+}
+
+.icon-container img:hover {
+    transform: scale(1.15);
+}
+
+/* Stat Bar (Health & Silk) */
+.stat-bar {
+    height: 10px;
     background: var(--border-color);
-    border-radius: 6px;
-    margin-top: 1rem;
+    border-radius: 5px;
+    margin: 0.5rem 0;
     overflow: hidden;
 }
 
-.health-fill {
+.stat-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--health-color), #f87171);
-    border-radius: 6px;
+    border-radius: 5px;
     transition: width 0.5s ease;
-    width: 100%;
+    width: 0%;
+}
+
+.stat-bar-fill.health-fill {
+    background: linear-gradient(90deg, var(--health-color), #f87171);
+}
+
+.stat-bar-fill.silk-fill {
+    background: linear-gradient(90deg, #e0e0e0, #ffffff);
+}
+
+/* Crest Display */
+.crest-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+.crest-image {
+    height: 40px;
+    width: auto;
+    filter: drop-shadow(0 2px 6px rgba(139, 92, 246, 0.4));
+    transition: transform 0.3s ease;
+}
+
+.crest-image:hover {
+    transform: scale(1.1);
+}
+
+/* Maps Grid */
+.maps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.map-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.map-item img {
+    height: 60px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.map-item img.unlocked {
+    filter: drop-shadow(0 2px 6px rgba(16, 185, 129, 0.5));
+}
+
+.map-item img.locked {
+    filter: grayscale(100%) brightness(0.5);
+    opacity: 0.5;
+}
+
+/* Special placeholder icon (e.g., Abyss) - black/grey styling */
+.map-item img.placeholder-icon.unlocked {
+    filter: brightness(0.2) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
+}
+
+.map-item img.placeholder-icon.locked {
+    filter: grayscale(100%) brightness(0.6);
+    opacity: 0.4;
+}
+
+.map-item img:hover {
+    transform: scale(1.15);
+}
+
+.map-item span {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Bosses Grid - similar to Maps Grid */
+.bosses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.boss-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.boss-item img {
+    height: 64px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.boss-item img.defeated {
+    filter: drop-shadow(0 2px 6px rgba(16, 185, 129, 0.5));
+}
+
+.boss-item img.not-defeated {
+    filter: grayscale(100%) brightness(0.5);
+    opacity: 0.5;
+}
+
+.boss-item img:hover {
+    transform: scale(1.15);
+}
+
+.boss-item span {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Tools Grid - similar to Bosses/Maps Grid */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.tool-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.tool-item img {
+    height: 48px;
+    width: auto;
+    max-width: 60px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.tool-item img.unlocked {
+    filter: drop-shadow(0 2px 6px rgba(16, 185, 129, 0.5));
+}
+
+.tool-item img.locked {
+    filter: grayscale(100%) brightness(0.5);
+    opacity: 0.5;
+}
+
+.tool-item img:hover {
+    transform: scale(1.15);
+}
+
+.tool-item span {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Currency Display */
