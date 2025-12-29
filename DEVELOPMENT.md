@@ -27,21 +27,6 @@ python3 -m http.server 8080 --bind 0.0.0.0
 # On other device, open: http://192.168.1.xxx:8080
 ```
 
-### CLI Version
-```bash
-# Build
-cargo build --release
-
-# Run with default file (user1.dat)
-cargo run
-
-# Run with custom input/output
-cargo run -- -i path/to/save.dat -o output.json
-
-# Quiet mode (JSON only)
-cargo run -- -i save.dat -o output.json -q
-```
-
 ## Development
 
 ### Building WASM Module
