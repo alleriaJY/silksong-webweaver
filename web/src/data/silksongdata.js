@@ -78,7 +78,7 @@ export const TOOLS_LIST = [
     { json: 'Lava Charm', display: 'Magma Bell', category: 'Blue', icon: 'Hornet_T_lava_charm.png' },
     { json: 'Bell Bind', display: 'Warding Bell', category: 'Blue', icon: 'Hornet_icon_0001_T_bell_shield.png' },
     { json: 'Poison Pouch', display: 'Pollip Pouch', category: 'Blue', icon: 'T_poison_pouch.png' },
-    { json: 'Fractured Mask', display: 'Fractured Mask', category: 'Blue', icon: 'Hornet_T_Fractured_Mask.png' },
+    { json: 'Fractured Mask', display: 'Fractured Mask', category: 'Blue', icon: 'Hornet_T_fractured_mask.png' },
     { json: 'Multibind', display: 'Multibinder', category: 'Blue', icon: 'T_multi_bind.png' },
     { json: 'White Ring', display: 'Weavelight', category: 'Blue', icon: 'T_icon_white_ring.png' },
     { json: 'Brolly Spike', display: 'Sawtooth Circlet', category: 'Blue', icon: 'T_brolly_spike.png' },
