@@ -18,6 +18,7 @@
     --warning-color: #f59e0b;
     --health-color: #ef4444;
     --silk-color: #06b6d4;
+    --sidebar-width: 200px;
 }
 
 * {
@@ -33,6 +34,146 @@ body {
     min-height: 100vh;
     line-height: 1.6;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   APP LAYOUT - Sidebar + Main Content
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.app-sidebar {
+    width: var(--sidebar-width);
+    background: linear-gradient(180deg, #0d0d1a 0%, #16162a 100%);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-logo {
+    width: 36px;
+    height: 36px;
+    filter: drop-shadow(0 0 10px var(--primary-glow));
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.sidebar-nav-list {
+    list-style: none;
+    padding: 12px 8px;
+    flex: 1;
+}
+
+.sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    margin-bottom: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-secondary);
+}
+
+.sidebar-nav-item:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+.sidebar-nav-item.active {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+/* Hide dev-only nav items by default (shown via JS when ?dev in URL) */
+.sidebar-nav-item.dev-only {
+    display: none;
+}
+
+.sidebar-icon {
+    font-size: 1.2rem;
+}
+
+.sidebar-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.sidebar-github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: var(--bg-card);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.sidebar-github:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+/* Main Content Area */
+.app-main {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+}
+
+.app-page {
+    display: none;
+    min-height: 100vh;
+}
+
+.app-page.active {
+    display: block;
+}
+
+/* Map Viewer Iframe */
+.map-viewer-iframe {
+    width: 100%;
+    height: 100vh;
+    border: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTAINER (for Parser page)
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .container {
     max-width: 1200px;

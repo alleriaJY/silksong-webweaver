@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharloom Map Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .map-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .map-container:active {
+            cursor: grabbing;
+        }
+
+        #map-wrapper {
+            position: absolute;
+            transform-origin: 0 0;
+        }
+
+        #fullmap {
+            display: block;
+            max-width: none;
+        }
+
+        .tile-overlay {
+            position: absolute;
+            border: 2px solid;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            opacity: 0.7;
+        }
+
+        .tile-overlay:hover {
+            opacity: 1;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-overlay.highlighted {
+            opacity: 1;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.8);
+        }
+
+        /* Area colors */
+        .area-Abyss {
+            border-color: #9c27b0;
+            background: rgba(156, 39, 176, 0.15);
+        }
+
+        .area-Ant {
+            border-color: #ff5722;
+            background: rgba(255, 87, 34, 0.15);
+        }
+
+        .area-Aqueduct {
+            border-color: #00bcd4;
+            background: rgba(0, 188, 212, 0.15);
+        }
+
+        .area-Arborium {
+            border-color: #8bc34a;
+            background: rgba(139, 195, 74, 0.15);
+        }
+
+        .area-Aspid {
+            border-color: #ffc107;
+            background: rgba(255, 193, 7, 0.15);
+        }
+
+        .area-Bellshrine {
+            border-color: #e91e63;
+            background: rgba(233, 30, 99, 0.15);
+        }
+
+        .area-Belltown {
+            border-color: #2196f3;
+            background: rgba(33, 150, 243, 0.15);
+        }
+
+        .area-Bellway {
+            border-color: #03a9f4;
+            background: rgba(3, 169, 244, 0.15);
+        }
+
+        .area-Bone {
+            border-color: #9e9e9e;
+            background: rgba(158, 158, 158, 0.15);
+        }
+
+        .area-Bonegrave {
+            border-color: #607d8b;
+            background: rgba(96, 125, 139, 0.15);
+        }
+
+        .area-Bonetown {
+            border-color: #795548;
+            background: rgba(121, 85, 72, 0.15);
+        }
+
+        .area-Clover {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.15);
+        }
+
+        .area-Cog {
+            border-color: #ff9800;
+            background: rgba(255, 152, 0, 0.15);
+        }
+
+        .area-Coral {
+            border-color: #e91e63;
+            background: rgba(233, 30, 99, 0.15);
+        }
+
+        .area-Cradle {
+            border-color: #9575cd;
+            background: rgba(149, 117, 205, 0.15);
+        }
+
+        .area-Crawl {
+            border-color: #a1887f;
+            background: rgba(161, 136, 127, 0.15);
+        }
+
+        .area-Dock {
+            border-color: #26a69a;
+            background: rgba(38, 166, 154, 0.15);
+        }
+
+        .area-Dust {
+            border-color: #bcaaa4;
+            background: rgba(188, 170, 164, 0.15);
+        }
+
+        .area-Greymoor {
+            border-color: #78909c;
+            background: rgba(120, 144, 156, 0.15);
+        }
+
+        .area-Hang {
+            border-color: #f06292;
+            background: rgba(240, 98, 146, 0.15);
+        }
+
+        .area-Library {
+            border-color: #ba68c8;
+            background: rgba(186, 104, 200, 0.15);
+        }
+
+        .area-Mosstown {
+            border-color: #81c784;
+            background: rgba(129, 199, 132, 0.15);
+        }
+
+        .area-Peak {
+            border-color: #4dd0e1;
+            background: rgba(77, 208, 225, 0.15);
+        }
+
+        .area-Room {
+            border-color: #ffab91;
+            background: rgba(255, 171, 145, 0.15);
+        }
+
+        .area-Shadow {
+            border-color: #5c6bc0;
+            background: rgba(92, 107, 192, 0.15);
+        }
+
+        .area-Shellwood {
+            border-color: #aed581;
+            background: rgba(174, 213, 129, 0.15);
+        }
+
+        .area-Slab {
+            border-color: #90a4ae;
+            background: rgba(144, 164, 174, 0.15);
+        }
+
+        .area-Song {
+            border-color: #ce93d8;
+            background: rgba(206, 147, 216, 0.15);
+        }
+
+        .area-Tube {
+            border-color: #4db6ac;
+            background: rgba(77, 182, 172, 0.15);
+        }
+
+        .area-Tut {
+            border-color: #ffcc80;
+            background: rgba(255, 204, 128, 0.15);
+        }
+
+        .area-Under {
+            border-color: #616161;
+            background: rgba(97, 97, 97, 0.15);
+        }
+
+        .area-Ward {
+            border-color: #ec407a;
+            background: rgba(236, 64, 122, 0.15);
+        }
+
+        .area-Weave {
+            border-color: #7e57c2;
+            background: rgba(126, 87, 194, 0.15);
+        }
+
+        .area-Wisp {
+            border-color: #64ffda;
+            background: rgba(100, 255, 218, 0.15);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: #16213e;
+            border-left: 2px solid #333;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .sidebar h2 {
+            color: #e94560;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background: #2a2a4e;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        .stat-item {
+            background: #2a2a4e;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .stat-value {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        /* Tile Info Panel */
+        .tile-info {
+            background: #2a2a4e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .tile-info.active {
+            display: block;
+        }
+
+        .tile-info h3 {
+            color: #e94560;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+
+        .tile-details {
+            font-size: 0.9rem;
+        }
+
+        .tile-details p {
+            margin: 6px 0;
+            color: #aaa;
+        }
+
+        .tile-details span {
+            color: #fff;
+        }
+
+        .tile-preview {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .tile-preview img {
+            max-width: 100%;
+            max-height: 120px;
+            border: 2px solid #444;
+            border-radius: 6px;
+        }
+
+        /* Area Legend */
+        .legend {
+            margin-top: 15px;
+        }
+
+        .legend h3 {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px;
+            font-size: 0.75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .legend-item:hover {
+            background: #3a3a5e;
+        }
+
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            border: 1px solid;
+        }
+
+        /* Tile List */
+        .tile-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .tile-list-item {
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tile-list-item:hover {
+            background: #3a3a5e;
+        }
+
+        .tile-list-item.active {
+            background: #e94560;
+        }
+
+        /* Zoom Controls */
+        .zoom-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 340px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+        }
+
+        .zoom-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: #2a2a4e;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .zoom-btn:hover {
+            background: #e94560;
+        }
+
+        /* Loading */
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .loading.hidden {
+            display: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #333;
+            border-top-color: #e94560;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Map Area -->
+        <div class="map-container" id="map-container">
+            <div id="map-wrapper">
+                <img id="fullmap" src="assets/img/fullmap/full_pharloom_clean.webp" alt="Pharloom Map">
+                <div id="overlay-container"></div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>🗺️ Pharloom Map</h2>
+
+            <input type="text" class="search-box" id="search-box" placeholder="Search tiles by name or area...">
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="confirmed-count">0</span> Confirmed Tiles
+                </div>
+            </div>
+
+            <!-- Tile Info Panel -->
+            <div class="tile-info" id="tile-info">
+                <h3 id="tile-name">-</h3>
+                <div class="tile-details">
+                    <p>Area: <span id="tile-area">-</span></p>
+                    <p>Position: <span id="tile-position">-</span></p>
+                    <p>Size: <span id="tile-size">-</span></p>
+                </div>
+                <div class="tile-preview">
+                    <img id="tile-preview-img" src="" alt="Tile Preview">
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="legend">
+                <h3>Area Colors</h3>
+                <div class="legend-grid" id="legend-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Tile List -->
+            <div class="tile-list" id="tile-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Zoom Controls -->
+    <div class="zoom-controls">
+        <button class="zoom-btn" id="zoom-in">+</button>
+        <button class="zoom-btn" id="zoom-out">−</button>
+        <button class="zoom-btn" id="zoom-reset">⌂</button>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p style="margin-top: 15px;">Loading map data...</p>
+    </div>
+
+    <script>
+        // State
+        let tileData = null;
+        let confirmedTiles = {};
+        let scale = 0.5;
+        let panX = 0, panY = 0;
+        let isDragging = false;
+        let startX, startY;
+        let selectedTile = null;
+
+        // Area colors for legend
+        const areaColors = {
+            'Abyss': '#9c27b0', 'Ant': '#ff5722', 'Aqueduct': '#00bcd4', 'Arborium': '#8bc34a',
+            'Aspid': '#ffc107', 'Bellshrine': '#e91e63', 'Belltown': '#2196f3', 'Bellway': '#03a9f4',
+            'Bone': '#9e9e9e', 'Bonegrave': '#607d8b', 'Bonetown': '#795548', 'Clover': '#4caf50',
+            'Cog': '#ff9800', 'Coral': '#e91e63', 'Cradle': '#9575cd', 'Crawl': '#a1887f',
+            'Dock': '#26a69a', 'Dust': '#bcaaa4', 'Greymoor': '#78909c', 'Hang': '#f06292',
+            'Library': '#ba68c8', 'Mosstown': '#81c784', 'Peak': '#4dd0e1', 'Room': '#ffab91',
+            'Shadow': '#5c6bc0', 'Shellwood': '#aed581', 'Slab': '#90a4ae', 'Song': '#ce93d8',
+            'Tube': '#4db6ac', 'Tut': '#ffcc80', 'Under': '#616161', 'Ward': '#ec407a',
+            'Weave': '#7e57c2', 'Wisp': '#64ffda'
+        };
+
+        // DOM elements
+        const mapContainer = document.getElementById('map-container');
+        const mapWrapper = document.getElementById('map-wrapper');
+        const overlayContainer = document.getElementById('overlay-container');
+        const loading = document.getElementById('loading');
+        const tileInfo = document.getElementById('tile-info');
+
+        // Initialize
+        async function init() {
+            try {
+                // Load tile coordinates
+                const response = await fetch('assets/img/fullmap/tile_coordinates.json');
+                tileData = await response.json();
+
+                // Filter only confirmed tiles
+                confirmedTiles = {};
+                for (const [name, tile] of Object.entries(tileData.tiles)) {
+                    if (tile.confirmed === true) {
+                        confirmedTiles[name] = tile;
+                    }
+                }
+
+                // Update stats
+                document.getElementById('confirmed-count').textContent = Object.keys(confirmedTiles).length;
+
+                // Create overlays
+                createOverlays();
+
+                // Create legend
+                createLegend();
+
+                // Create tile list
+                updateTileList();
+
+                // Setup event listeners
+                setupMapControls();
+                setupSearch();
+
+                // Initial transform
+                updateTransform();
+
+                loading.classList.add('hidden');
+            } catch (error) {
+                console.error('Error loading map data:', error);
+                loading.innerHTML = '<p style="color: #f44336;">Error loading map data. Please refresh.</p>';
+            }
+        }
+
+        function createOverlays() {
+            overlayContainer.innerHTML = '';
+
+            for (const [name, tile] of Object.entries(confirmedTiles)) {
+                const overlay = document.createElement('div');
+                overlay.className = `tile-overlay area-${tile.area}`;
+                overlay.style.left = `${tile.x}px`;
+                overlay.style.top = `${tile.y}px`;
+                overlay.style.width = `${tile.width}px`;
+                overlay.style.height = `${tile.height}px`;
+                overlay.dataset.name = name;
+                overlay.title = name;
+
+                overlay.addEventListener('click', () => selectTile(name));
+
+                overlayContainer.appendChild(overlay);
+            }
+        }
+
+        function createLegend() {
+            const legendGrid = document.getElementById('legend-grid');
+            legendGrid.innerHTML = '';
+
+            // Get areas that have confirmed tiles
+            const areasInUse = new Set();
+            for (const tile of Object.values(confirmedTiles)) {
+                areasInUse.add(tile.area);
+            }
+
+            for (const area of [...areasInUse].sort()) {
+                const color = areaColors[area] || '#666';
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                item.innerHTML = `
+                    <div class="legend-color" style="background: ${color}; border-color: ${color};"></div>
+                    <span>${area}</span>
+                `;
+                item.addEventListener('click', () => filterByArea(area));
+                legendGrid.appendChild(item);
+            }
+        }
+
+        function updateTileList(filter = '') {
+            const tileList = document.getElementById('tile-list');
+            tileList.innerHTML = '';
+
+            const filtered = Object.entries(confirmedTiles)
+                .filter(([name, tile]) => {
+                    const searchTerm = filter.toLowerCase();
+                    return name.toLowerCase().includes(searchTerm) ||
+                        tile.area.toLowerCase().includes(searchTerm);
+                })
+                .sort((a, b) => a[1].area.localeCompare(b[1].area) || a[0].localeCompare(b[0]));
+
+            for (const [name, tile] of filtered) {
+                const item = document.createElement('div');
+                item.className = 'tile-list-item';
+                item.innerHTML = `
+                    <span>${name.replace('.png', '')}</span>
+                    <span style="color: ${areaColors[tile.area] || '#666'};">${tile.area}</span>
+                `;
+                item.addEventListener('click', () => selectTile(name));
+                tileList.appendChild(item);
+            }
+        }
+
+        function selectTile(name) {
+            // Update selection
+            selectedTile = name;
+            const tile = confirmedTiles[name];
+
+            // Highlight overlay
+            document.querySelectorAll('.tile-overlay').forEach(el => el.classList.remove('highlighted'));
+            const overlay = document.querySelector(`.tile-overlay[data-name="${name}"]`);
+            if (overlay) overlay.classList.add('highlighted');
+
+            // Update tile list
+            document.querySelectorAll('.tile-list-item').forEach(el => el.classList.remove('active'));
+
+            // Show tile info
+            tileInfo.classList.add('active');
+            document.getElementById('tile-name').textContent = name;
+            document.getElementById('tile-area').textContent = tile.area;
+            document.getElementById('tile-position').textContent = `(${tile.x}, ${tile.y})`;
+            document.getElementById('tile-size').textContent = `${tile.width} × ${tile.height}`;
+
+            // Load preview image
+            const previewImg = document.getElementById('tile-preview-img');
+            previewImg.src = `assets/img/fullmap/${encodeURIComponent(name)}`;
+            previewImg.onerror = () => { previewImg.style.display = 'none'; };
+            previewImg.onload = () => { previewImg.style.display = 'block'; };
+
+            // Center on tile
+            centerOnTile(tile);
+        }
+
+        function centerOnTile(tile) {
+            const containerRect = mapContainer.getBoundingClientRect();
+            const centerX = tile.x + tile.width / 2;
+            const centerY = tile.y + tile.height / 2;
+
+            panX = containerRect.width / 2 - centerX * scale;
+            panY = containerRect.height / 2 - centerY * scale;
+
+            updateTransform();
+        }
+
+        function filterByArea(area) {
+            document.getElementById('search-box').value = area;
+            updateTileList(area);
+        }
+
+        function setupSearch() {
+            const searchBox = document.getElementById('search-box');
+            searchBox.addEventListener('input', (e) => {
+                updateTileList(e.target.value);
+            });
+        }
+
+        function setupMapControls() {
+            // Pan
+            mapContainer.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX - panX;
+                startY = e.clientY - panY;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                panX = e.clientX - startX;
+                panY = e.clientY - startY;
+                updateTransform();
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Zoom with wheel
+            mapContainer.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.max(0.1, Math.min(3, scale * delta));
+
+                // Zoom towards cursor
+                const rect = mapContainer.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                panX = mouseX - (mouseX - panX) * (newScale / scale);
+                panY = mouseY - (mouseY - panY) * (newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            // Zoom buttons
+            document.getElementById('zoom-in').addEventListener('click', () => {
+                scale = Math.min(3, scale * 1.2);
+                updateTransform();
+            });
+
+            document.getElementById('zoom-out').addEventListener('click', () => {
+                scale = Math.max(0.1, scale * 0.8);
+                updateTransform();
+            });
+
+            document.getElementById('zoom-reset').addEventListener('click', () => {
+                scale = 0.5;
+                panX = 0;
+                panY = 0;
+                updateTransform();
+            });
+        }
+
+        function updateTransform() {
+            mapWrapper.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+        }
+
+        // Start
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>

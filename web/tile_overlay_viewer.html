@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharloom Map Tile Overlay Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            padding: 15px 20px;
+            border-bottom: 2px solid #e94560;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: #e94560;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-group label {
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        input[type="text"] {
+            padding: 6px 10px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background: #2a2a4e;
+            color: #fff;
+            width: 180px;
+        }
+
+        select {
+            padding: 6px 10px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background: #2a2a4e;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .stat-value {
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        .stat-confirmed {
+            color: #4caf50;
+        }
+
+        .stat-rejected {
+            color: #f44336;
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 140px);
+        }
+
+        .map-container {
+            flex: 1;
+            overflow: auto;
+            position: relative;
+            background: #0a0a15;
+        }
+
+        .map-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .map-wrapper img {
+            display: block;
+        }
+
+        .tile-overlay {
+            position: absolute;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            opacity: 0.6;
+        }
+
+        .tile-overlay:hover {
+            opacity: 1;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .tile-overlay.highlighted {
+            opacity: 1;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.8);
+        }
+
+        /* Status indicators */
+        .tile-overlay.confirmed {
+            border-width: 3px;
+            border-style: solid;
+            opacity: 0.9;
+        }
+
+        .tile-overlay.confirmed::after {
+            content: '✓';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #4caf50;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tile-overlay.rejected {
+            border-color: #f44336 !important;
+            background: rgba(244, 67, 54, 0.3) !important;
+            opacity: 0.4;
+        }
+
+        .tile-overlay.rejected::after {
+            content: '✗';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #f44336;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Draggable tiles - unconfirmed tiles can be dragged */
+        .tile-overlay.draggable {
+            cursor: grab;
+        }
+
+        .tile-overlay.draggable:active,
+        .tile-overlay.dragging {
+            cursor: grabbing;
+            z-index: 1000;
+            opacity: 1;
+            box-shadow: 0 0 25px rgba(255, 193, 7, 0.8);
+        }
+
+        /* Position modified indicator */
+        .tile-overlay.position-modified::before {
+            content: '↔';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background: #ff9800;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar {
+            width: 380px;
+            background: #16213e;
+            border-left: 2px solid #333;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .sidebar h2 {
+            color: #e94560;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .tile-info {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tile-info h3 {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            word-break: break-all;
+        }
+
+        .tile-info .detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px solid #333;
+            font-size: 0.85rem;
+        }
+
+        .tile-info .detail:last-of-type {
+            border-bottom: none;
+        }
+
+        .tile-info .detail-label {
+            color: #888;
+        }
+
+        .tile-info .detail-value {
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        /* Confirmation buttons */
+        .confirmation-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .confirm-btn,
+        .reject-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .confirm-btn {
+            background: #4caf50;
+            color: white;
+        }
+
+        .confirm-btn:hover {
+            background: #45a049;
+        }
+
+        .confirm-btn:disabled {
+            background: #2e7d32;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .reject-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .reject-btn:hover {
+            background: #da190b;
+        }
+
+        .reject-btn:disabled {
+            background: #c62828;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .status-badge.confirmed {
+            background: #4caf50;
+            color: white;
+        }
+
+        .status-badge.rejected {
+            background: #f44336;
+            color: white;
+        }
+
+        .status-badge.unconfirmed {
+            background: #ff9800;
+            color: white;
+        }
+
+        .tile-preview {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .tile-preview img {
+            max-width: 100%;
+            max-height: 150px;
+            border: 2px solid #444;
+            border-radius: 6px;
+        }
+
+        .tile-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .tile-list-item {
+            padding: 6px 10px;
+            background: #1a1a2e;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tile-list-item:hover {
+            background: #2a2a4e;
+        }
+
+        .tile-list-item.active {
+            background: #e94560;
+            color: #fff;
+        }
+
+        .tile-list-item .tile-name {
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .tile-list-item .tile-status {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .tile-list-item .tile-status.confirmed {
+            background: #4caf50;
+        }
+
+        .tile-list-item .tile-status.rejected {
+            background: #f44336;
+        }
+
+        .confidence-bar {
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin-top: 4px;
+        }
+
+        .confidence-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+        }
+
+        .confidence-high {
+            background: #4caf50;
+        }
+
+        .confidence-medium {
+            background: #ff9800;
+        }
+
+        .confidence-low {
+            background: #f44336;
+        }
+
+        /* Area color coding */
+        .area-Abyss {
+            border-color: #9c27b0;
+            background: rgba(156, 39, 176, 0.2);
+        }
+
+        .area-Ant {
+            border-color: #795548;
+            background: rgba(121, 85, 72, 0.2);
+        }
+
+        .area-Aqueduct {
+            border-color: #00bcd4;
+            background: rgba(0, 188, 212, 0.2);
+        }
+
+        .area-Arborium {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.2);
+        }
+
+        .area-Aspid {
+            border-color: #ff5722;
+            background: rgba(255, 87, 34, 0.2);
+        }
+
+        .area-Bellshrine {
+            border-color: #ffc107;
+            background: rgba(255, 193, 7, 0.2);
+        }
+
+        .area-Belltown {
+            border-color: #2196f3;
+            background: rgba(33, 150, 243, 0.2);
+        }
+
+        .area-Bellway {
+            border-color: #03a9f4;
+            background: rgba(3, 169, 244, 0.2);
+        }
+
+        .area-Bone {
+            border-color: #9e9e9e;
+            background: rgba(158, 158, 158, 0.2);
+        }
+
+        .area-Bonegrave {
+            border-color: #607d8b;
+            background: rgba(96, 125, 139, 0.2);
+        }
+
+        .area-Bonetown {
+            border-color: #8d6e63;
+            background: rgba(141, 110, 99, 0.2);
+        }
+
+        .area-Clover {
+            border-color: #8bc34a;
+            background: rgba(139, 195, 74, 0.2);
+        }
+
+        .area-Cog {
+            border-color: #ff9800;
+            background: rgba(255, 152, 0, 0.2);
+        }
+
+        .area-Coral {
+            border-color: #e91e63;
+            background: rgba(233, 30, 99, 0.2);
+        }
+
+        .area-Cradle {
+            border-color: #673ab7;
+            background: rgba(103, 58, 183, 0.2);
+        }
+
+        .area-Crawl {
+            border-color: #795548;
+            background: rgba(121, 85, 72, 0.2);
+        }
+
+        .area-Dock {
+            border-color: #009688;
+            background: rgba(0, 150, 136, 0.2);
+        }
+
+        .area-Dust {
+            border-color: #cddc39;
+            background: rgba(205, 220, 57, 0.2);
+        }
+
+        .area-Greymoor {
+            border-color: #78909c;
+            background: rgba(120, 144, 156, 0.2);
+        }
+
+        .area-Hang {
+            border-color: #f06292;
+            background: rgba(240, 98, 146, 0.2);
+        }
+
+        .area-Library {
+            border-color: #ba68c8;
+            background: rgba(186, 104, 200, 0.2);
+        }
+
+        .area-Mosstown {
+            border-color: #81c784;
+            background: rgba(129, 199, 132, 0.2);
+        }
+
+        .area-Peak {
+            border-color: #90caf9;
+            background: rgba(144, 202, 249, 0.2);
+        }
+
+        .area-Room {
+            border-color: #ce93d8;
+            background: rgba(206, 147, 216, 0.2);
+        }
+
+        .area-Shadow {
+            border-color: #424242;
+            background: rgba(66, 66, 66, 0.4);
+        }
+
+        .area-Shellwood {
+            border-color: #a1887f;
+            background: rgba(161, 136, 127, 0.2);
+        }
+
+        .area-Slab {
+            border-color: #b0bec5;
+            background: rgba(176, 190, 197, 0.2);
+        }
+
+        .area-Song {
+            border-color: #ffeb3b;
+            background: rgba(255, 235, 59, 0.2);
+        }
+
+        .area-Tube {
+            border-color: #4dd0e1;
+            background: rgba(77, 208, 225, 0.2);
+        }
+
+        .area-Tut {
+            border-color: #fff176;
+            background: rgba(255, 241, 118, 0.2);
+        }
+
+        .area-Under {
+            border-color: #616161;
+            background: rgba(97, 97, 97, 0.2);
+        }
+
+        .area-Ward {
+            border-color: #ec407a;
+            background: rgba(236, 64, 122, 0.2);
+        }
+
+        .area-Weave {
+            border-color: #7e57c2;
+            background: rgba(126, 87, 194, 0.2);
+        }
+
+        .area-Wisp {
+            border-color: #64ffda;
+            background: rgba(100, 255, 218, 0.2);
+        }
+
+        .area-default {
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.2);
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-size: 1.5rem;
+            color: #888;
+        }
+
+        .legend {
+            margin-top: 15px;
+            padding: 12px;
+            background: #1a1a2e;
+            border-radius: 8px;
+        }
+
+        .legend h3 {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 6px;
+            background: #2a2a4e;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+
+        .legend-item:hover {
+            background: #3a3a5e;
+        }
+
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            border: 1px solid;
+        }
+
+        .zoom-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+        }
+
+        .zoom-btn {
+            width: 36px;
+            height: 36px;
+            background: #16213e;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .zoom-btn:hover {
+            background: #e94560;
+        }
+
+        /* Export button */
+        .export-section {
+            margin-top: 15px;
+            padding: 12px;
+            background: #1a1a2e;
+            border-radius: 8px;
+        }
+
+        .export-btn {
+            width: 100%;
+            padding: 10px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+
+        .export-btn:hover {
+            background: #1976d2;
+        }
+
+        .import-btn {
+            width: 100%;
+            padding: 10px;
+            background: #9c27b0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .import-btn:hover {
+            background: #7b1fa2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🗺️ Pharloom Map Tile Overlay Viewer</h1>
+        <div class="controls">
+            <div class="control-group">
+                <label>Search:</label>
+                <input type="text" id="searchInput" placeholder="Search tile name...">
+            </div>
+            <div class="control-group">
+                <label>Area:</label>
+                <select id="areaFilter">
+                    <option value="">All Areas</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>Confidence:</label>
+                <select id="confidenceFilter">
+                    <option value="0">All</option>
+                    <option value="0.3">≥ 30%</option>
+                    <option value="0.4">≥ 40%</option>
+                    <option value="0.5">≥ 50%</option>
+                    <option value="0.6">≥ 60%</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>Status:</label>
+                <select id="statusFilter">
+                    <option value="">All</option>
+                    <option value="unconfirmed" selected>Unconfirmed</option>
+                    <option value="confirmed">Confirmed ✓</option>
+                    <option value="rejected">Rejected ✗</option>
+                </select>
+            </div>
+        </div>
+        <div class="stats">
+            <div>Total: <span class="stat-value" id="totalTiles">-</span></div>
+            <div>Visible: <span class="stat-value" id="visibleTiles">-</span></div>
+            <div class="stat-confirmed">Confirmed: <span id="confirmedCount">0</span></div>
+            <div class="stat-rejected">Rejected: <span id="rejectedCount">0</span></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="map-container" id="mapContainer">
+            <div class="loading" id="loadingIndicator">Loading map data...</div>
+            <div class="map-wrapper" id="mapWrapper" style="display: none;">
+                <img id="mapImage" src="assets/img/fullmap/full_pharloom_clean.webp" alt="Pharloom Map">
+            </div>
+        </div>
+        <div class="sidebar">
+            <h2>📍 Tile Information</h2>
+            <div class="tile-info" id="tileInfo">
+                <p style="color: #666; text-align: center;">Hover over a tile to see details</p>
+            </div>
+
+            <h2>📋 Tile List</h2>
+            <div class="tile-list" id="tileList"></div>
+
+            <div class="legend">
+                <h3>Area Colors</h3>
+                <div class="legend-items" id="legendItems"></div>
+            </div>
+
+            <div class="export-section">
+                <h3 style="color: #888; font-size: 0.85rem; margin-bottom: 8px;">💾 Data Management</h3>
+                <button class="export-btn" onclick="exportConfirmedTiles()">Export Confirmed Tiles</button>
+                <button class="import-btn" onclick="document.getElementById('importFile').click()">Import Confirmed
+                    Tiles</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;"
+                    onchange="importConfirmedTiles(event)">
+            </div>
+        </div>
+    </div>
+
+    <div class="zoom-controls">
+        <button class="zoom-btn" onclick="zoomIn()">+</button>
+        <button class="zoom-btn" onclick="zoomOut()">−</button>
+        <button class="zoom-btn" onclick="resetZoom()">⟲</button>
+    </div>
+
+    <script>
+        let tileData = null;
+        let currentZoom = 1;
+        let filteredTiles = {};
+        let overlayElements = {};
+        let currentTileName = null;
+
+        // Confirmation data stored in localStorage
+        let confirmedTiles = {};
+
+        const STORAGE_KEY = 'pharloom_confirmed_tiles';
+
+        // Load confirmed tiles from localStorage
+        function loadConfirmedTiles() {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    confirmedTiles = JSON.parse(stored);
+                }
+            } catch (e) {
+                console.error('Error loading confirmed tiles:', e);
+                confirmedTiles = {};
+            }
+        }
+
+        // Save confirmed tiles to localStorage
+        function saveConfirmedTiles() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(confirmedTiles));
+                updateConfirmationStats();
+            } catch (e) {
+                console.error('Error saving confirmed tiles:', e);
+            }
+        }
+
+        // Get tile status
+        function getTileStatus(name) {
+            if (confirmedTiles[name]) {
+                return confirmedTiles[name].status; // 'confirmed' or 'rejected'
+            }
+            return 'unconfirmed';
+        }
+
+        // Confirm a tile
+        function confirmTile(name) {
+            if (!tileData || !tileData.tiles[name]) return;
+
+            const tile = tileData.tiles[name];
+            confirmedTiles[name] = {
+                status: 'confirmed',
+                x: tile.x,
+                y: tile.y,
+                width: tile.width,
+                height: tile.height,
+                area: tile.area,
+                confidence: 1.0,
+                confirmed_at: new Date().toISOString()
+            };
+
+            saveConfirmedTiles();
+            updateOverlayStatus(name);
+            showTileInfo(name, tile);
+            applyFilters();
+        }
+
+        // Reject a tile
+        function rejectTile(name) {
+            if (!tileData || !tileData.tiles[name]) return;
+
+            confirmedTiles[name] = {
+                status: 'rejected',
+                rejected_at: new Date().toISOString()
+            };
+
+            saveConfirmedTiles();
+            updateOverlayStatus(name);
+
+            const tile = tileData.tiles[name];
+            showTileInfo(name, tile);
+            applyFilters();
+        }
+
+        // Reset tile status
+        function resetTileStatus(name) {
+            delete confirmedTiles[name];
+            saveConfirmedTiles();
+            updateOverlayStatus(name);
+
+            if (tileData && tileData.tiles[name]) {
+                showTileInfo(name, tileData.tiles[name]);
+            }
+            applyFilters();
+        }
+
+        // Update overlay visual status
+        function updateOverlayStatus(name) {
+            const overlay = overlayElements[name];
+            if (!overlay) return;
+
+            overlay.classList.remove('confirmed', 'rejected');
+            const status = getTileStatus(name);
+            if (status !== 'unconfirmed') {
+                overlay.classList.add(status);
+            }
+        }
+
+        // Update all overlay statuses
+        function updateAllOverlayStatuses() {
+            Object.keys(overlayElements).forEach(name => {
+                updateOverlayStatus(name);
+            });
+        }
+
+        // Update confirmation stats
+        function updateConfirmationStats() {
+            let confirmed = 0;
+            let rejected = 0;
+
+            Object.values(confirmedTiles).forEach(tile => {
+                if (tile.status === 'confirmed') confirmed++;
+                else if (tile.status === 'rejected') rejected++;
+            });
+
+            document.getElementById('confirmedCount').textContent = confirmed;
+            document.getElementById('rejectedCount').textContent = rejected;
+        }
+
+        // Export confirmed tiles as JSON
+        function exportConfirmedTiles() {
+            const exportData = {
+                metadata: {
+                    exported_at: new Date().toISOString(),
+                    total_confirmed: Object.values(confirmedTiles).filter(t => t.status === 'confirmed').length,
+                    total_rejected: Object.values(confirmedTiles).filter(t => t.status === 'rejected').length
+                },
+                tiles: confirmedTiles
+            };
+
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'confirmed_tiles.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Import confirmed tiles from JSON
+        function importConfirmedTiles(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.tiles) {
+                        // Merge with existing
+                        Object.assign(confirmedTiles, data.tiles);
+                        saveConfirmedTiles();
+                        updateAllOverlayStatuses();
+                        applyFilters();
+                        alert(`Imported ${Object.keys(data.tiles).length} tile confirmations!`);
+                    }
+                } catch (err) {
+                    alert('Error importing file: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = ''; // Reset file input
+        }
+
+        // Load tile coordinates
+        async function loadData() {
+            loadConfirmedTiles();
+
+            try {
+                const response = await fetch('assets/img/fullmap/tile_coordinates.json');
+                tileData = await response.json();
+                initializeViewer();
+            } catch (error) {
+                document.getElementById('loadingIndicator').textContent = 'Error loading data: ' + error.message;
+            }
+        }
+
+        function initializeViewer() {
+            document.getElementById('loadingIndicator').style.display = 'none';
+            document.getElementById('mapWrapper').style.display = 'inline-block';
+
+            document.getElementById('totalTiles').textContent = Object.keys(tileData.tiles).length;
+
+            const areas = [...new Set(Object.values(tileData.tiles).map(t => t.area))].sort();
+
+            const areaFilter = document.getElementById('areaFilter');
+            areas.forEach(area => {
+                const option = document.createElement('option');
+                option.value = area;
+                option.textContent = `${area} (${Object.values(tileData.tiles).filter(t => t.area === area).length})`;
+                areaFilter.appendChild(option);
+            });
+
+            const legendItems = document.getElementById('legendItems');
+            areas.forEach(area => {
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                item.innerHTML = `<div class="legend-color area-${area}"></div><span>${area}</span>`;
+                item.onclick = () => {
+                    document.getElementById('areaFilter').value = area;
+                    applyFilters();
+                };
+                legendItems.appendChild(item);
+            });
+
+            createOverlays();
+
+            // Load and apply any previously modified positions
+            loadModifiedPositions();
+            applyModifiedPositions();
+
+            updateConfirmationStats();
+            applyFilters();
+
+            document.getElementById('searchInput').addEventListener('input', applyFilters);
+            document.getElementById('areaFilter').addEventListener('change', applyFilters);
+            document.getElementById('confidenceFilter').addEventListener('change', applyFilters);
+            document.getElementById('statusFilter').addEventListener('change', applyFilters);
+        }
+
+        function createOverlays() {
+            const wrapper = document.getElementById('mapWrapper');
+
+            Object.entries(tileData.tiles).forEach(([name, tile]) => {
+                const overlay = document.createElement('div');
+                overlay.className = `tile-overlay area-${tile.area} area-default`;
+                overlay.style.left = tile.x + 'px';
+                overlay.style.top = tile.y + 'px';
+                overlay.style.width = tile.width + 'px';
+                overlay.style.height = tile.height + 'px';
+                overlay.dataset.name = name;
+                overlay.dataset.area = tile.area;
+                overlay.dataset.originalX = tile.x;
+                overlay.dataset.originalY = tile.y;
+
+                overlay.addEventListener('mouseenter', () => showTileInfo(name, tile));
+                overlay.addEventListener('click', (e) => {
+                    // Don't select if we just finished dragging
+                    if (overlay.dataset.justDragged === 'true') {
+                        overlay.dataset.justDragged = 'false';
+                        return;
+                    }
+                    currentTileName = name;
+                    showTileInfo(name, tile);
+                    scrollToTileInList(name);
+                });
+
+                // Enable dragging for unconfirmed tiles
+                setupTileDragging(overlay, name, tile);
+
+                wrapper.appendChild(overlay);
+                overlayElements[name] = overlay;
+
+                // Apply initial status
+                updateOverlayStatus(name);
+            });
+        }
+
+        // Drag state
+        let isDragging = false;
+        let draggedTile = null;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        let tileStartX = 0;
+        let tileStartY = 0;
+
+        function setupTileDragging(overlay, name, tile) {
+            overlay.addEventListener('mousedown', (e) => {
+                // Only allow dragging for unconfirmed tiles
+                const status = getTileStatus(name);
+                if (status === 'confirmed') return;
+
+                // Right-click or ctrl+click to drag
+                if (e.button === 2 || e.ctrlKey) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    isDragging = true;
+                    draggedTile = { overlay, name, tile };
+                    dragStartX = e.clientX;
+                    dragStartY = e.clientY;
+                    tileStartX = parseInt(overlay.style.left);
+                    tileStartY = parseInt(overlay.style.top);
+
+                    overlay.classList.add('dragging', 'draggable');
+                    document.body.style.cursor = 'grabbing';
+                }
+            });
+
+            // Prevent context menu on tiles
+            overlay.addEventListener('contextmenu', (e) => {
+                const status = getTileStatus(name);
+                if (status !== 'confirmed') {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        // Global mouse move and up handlers for dragging
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging || !draggedTile) return;
+
+            const deltaX = (e.clientX - dragStartX) / currentZoom;
+            const deltaY = (e.clientY - dragStartY) / currentZoom;
+
+            const newX = Math.max(0, Math.round(tileStartX + deltaX));
+            const newY = Math.max(0, Math.round(tileStartY + deltaY));
+
+            draggedTile.overlay.style.left = newX + 'px';
+            draggedTile.overlay.style.top = newY + 'px';
+
+            // Update tile data live
+            draggedTile.tile.x = newX;
+            draggedTile.tile.y = newY;
+        });
+
+        document.addEventListener('mouseup', (e) => {
+            if (!isDragging || !draggedTile) return;
+
+            isDragging = false;
+            draggedTile.overlay.classList.remove('dragging');
+            document.body.style.cursor = '';
+
+            const newX = parseInt(draggedTile.overlay.style.left);
+            const newY = parseInt(draggedTile.overlay.style.top);
+            const origX = parseInt(draggedTile.overlay.dataset.originalX);
+            const origY = parseInt(draggedTile.overlay.dataset.originalY);
+
+            // Check if position actually changed
+            if (newX !== origX || newY !== origY) {
+                draggedTile.overlay.classList.add('position-modified');
+                draggedTile.overlay.dataset.justDragged = 'true';
+
+                // Store modified position
+                storeModifiedPosition(draggedTile.name, newX, newY);
+
+                // Update tile info
+                showTileInfo(draggedTile.name, draggedTile.tile);
+
+                console.log(`Moved ${draggedTile.name} from (${origX}, ${origY}) to (${newX}, ${newY})`);
+            }
+
+            draggedTile = null;
+        });
+
+        // Store modified tile positions
+        let modifiedPositions = {};
+
+        function storeModifiedPosition(name, x, y) {
+            modifiedPositions[name] = { x, y };
+            // Save to localStorage for persistence
+            try {
+                localStorage.setItem('pharloom_modified_positions', JSON.stringify(modifiedPositions));
+            } catch (e) {
+                console.warn('Could not save modified positions:', e);
+            }
+        }
+
+        function loadModifiedPositions() {
+            try {
+                const stored = localStorage.getItem('pharloom_modified_positions');
+                if (stored) {
+                    modifiedPositions = JSON.parse(stored);
+                }
+            } catch (e) {
+                console.warn('Could not load modified positions:', e);
+                modifiedPositions = {};
+            }
+        }
+
+        function applyModifiedPositions() {
+            Object.entries(modifiedPositions).forEach(([name, pos]) => {
+                const overlay = overlayElements[name];
+                if (overlay && tileData.tiles[name]) {
+                    overlay.style.left = pos.x + 'px';
+                    overlay.style.top = pos.y + 'px';
+                    overlay.classList.add('position-modified', 'draggable');
+                    tileData.tiles[name].x = pos.x;
+                    tileData.tiles[name].y = pos.y;
+                }
+            });
+        }
+
+        // Reset a tile's position to original
+        function resetTilePosition(name) {
+            const overlay = overlayElements[name];
+            if (!overlay) return;
+
+            const origX = parseInt(overlay.dataset.originalX);
+            const origY = parseInt(overlay.dataset.originalY);
+
+            overlay.style.left = origX + 'px';
+            overlay.style.top = origY + 'px';
+            overlay.classList.remove('position-modified');
+
+            if (tileData.tiles[name]) {
+                tileData.tiles[name].x = origX;
+                tileData.tiles[name].y = origY;
+            }
+
+            delete modifiedPositions[name];
+            localStorage.setItem('pharloom_modified_positions', JSON.stringify(modifiedPositions));
+
+            showTileInfo(name, tileData.tiles[name]);
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const area = document.getElementById('areaFilter').value;
+            const minConfidence = parseFloat(document.getElementById('confidenceFilter').value);
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            let visibleCount = 0;
+            filteredTiles = {};
+
+            Object.entries(tileData.tiles).forEach(([name, tile]) => {
+                const overlay = overlayElements[name];
+                const matchesSearch = name.toLowerCase().includes(search);
+                const matchesArea = !area || tile.area === area;
+                const matchesConfidence = tile.confidence >= minConfidence;
+
+                const tileStatus = getTileStatus(name);
+                const matchesStatus = !statusFilter || tileStatus === statusFilter;
+
+                const visible = matchesSearch && matchesArea && matchesConfidence && matchesStatus;
+
+                overlay.style.display = visible ? 'block' : 'none';
+                if (visible) {
+                    visibleCount++;
+                    filteredTiles[name] = tile;
+                }
+            });
+
+            document.getElementById('visibleTiles').textContent = visibleCount;
+            updateTileList();
+        }
+
+        function updateTileList() {
+            const list = document.getElementById('tileList');
+            list.innerHTML = '';
+
+            Object.entries(filteredTiles)
+                .sort((a, b) => b[1].confidence - a[1].confidence)
+                .slice(0, 100)
+                .forEach(([name, tile]) => {
+                    const item = document.createElement('div');
+                    item.className = 'tile-list-item';
+                    item.dataset.name = name;
+
+                    const status = getTileStatus(name);
+                    let statusHtml = '';
+                    if (status === 'confirmed') {
+                        statusHtml = '<span class="tile-status confirmed">✓</span>';
+                    } else if (status === 'rejected') {
+                        statusHtml = '<span class="tile-status rejected">✗</span>';
+                    }
+
+                    item.innerHTML = `
+                        <div>
+                            <div class="tile-name">${name}</div>
+                            <div style="color: #888; font-size: 0.7rem;">${tile.area} | ${(tile.confidence * 100).toFixed(0)}%</div>
+                        </div>
+                        ${statusHtml}
+                    `;
+
+                    item.addEventListener('mouseenter', () => highlightTile(name));
+                    item.addEventListener('mouseleave', () => unhighlightTile(name));
+                    item.addEventListener('click', () => {
+                        currentTileName = name;
+                        scrollToTile(name);
+                    });
+
+                    list.appendChild(item);
+                });
+        }
+
+        function showTileInfo(name, tile) {
+            currentTileName = name;
+            const info = document.getElementById('tileInfo');
+            const status = getTileStatus(name);
+            const confidenceClass = tile.confidence >= 0.5 ? 'confidence-high' :
+                tile.confidence >= 0.35 ? 'confidence-medium' : 'confidence-low';
+
+            let statusBadge = '';
+            if (status === 'confirmed') {
+                statusBadge = '<span class="status-badge confirmed">CONFIRMED</span>';
+            } else if (status === 'rejected') {
+                statusBadge = '<span class="status-badge rejected">REJECTED</span>';
+            } else {
+                statusBadge = '<span class="status-badge unconfirmed">UNCONFIRMED</span>';
+            }
+
+            const isConfirmed = status === 'confirmed';
+            const isRejected = status === 'rejected';
+
+            // Check if position was modified
+            const overlay = overlayElements[name];
+            const isModified = modifiedPositions[name] || (overlay && overlay.classList.contains('position-modified'));
+            const origX = overlay ? parseInt(overlay.dataset.originalX) : tile.x;
+            const origY = overlay ? parseInt(overlay.dataset.originalY) : tile.y;
+
+            let positionHtml = `<span class="detail-value">(${tile.x}, ${tile.y})</span>`;
+            if (isModified) {
+                positionHtml = `<span class="detail-value" style="color: #ff9800;">(${tile.x}, ${tile.y}) ↔ moved</span>`;
+            }
+
+            info.innerHTML = `
+                <h3>${name}${statusBadge}</h3>
+                <div class="detail">
+                    <span class="detail-label">Area</span>
+                    <span class="detail-value">${tile.area}</span>
+                </div>
+                <div class="detail">
+                    <span class="detail-label">Position</span>
+                    ${positionHtml}
+                </div>
+                ${isModified ? `
+                <div class="detail" style="font-size: 0.75rem; color: #888;">
+                    <span class="detail-label">Original</span>
+                    <span class="detail-value">(${origX}, ${origY})</span>
+                </div>
+                ` : ''}
+                <div class="detail">
+                    <span class="detail-label">Size</span>
+                    <span class="detail-value">${tile.width} × ${tile.height}</span>
+                </div>
+                <div class="detail">
+                    <span class="detail-label">Confidence</span>
+                    <span class="detail-value">${(tile.confidence * 100).toFixed(1)}%</span>
+                </div>
+                <div class="confidence-bar" style="margin-top: 8px;">
+                    <div class="confidence-bar-fill ${confidenceClass}" style="width: ${tile.confidence * 100}%"></div>
+                </div>
+                ${!isConfirmed ? `
+                <div style="margin-top: 8px; padding: 8px; background: rgba(255, 152, 0, 0.2); border-radius: 6px; font-size: 0.75rem; color: #ff9800;">
+                    💡 Right-click + drag to reposition this tile
+                </div>
+                ` : ''}
+                <div class="tile-preview">
+                    <img src="assets/img/fullmap/${encodeURIComponent(name)}" alt="${name}" onerror="this.style.display='none'">
+                </div>
+                <div class="confirmation-buttons">
+                    <button class="confirm-btn" onclick="confirmTile('${name}')" ${isConfirmed ? 'disabled' : ''}>
+                        ✓ Confirm (C)
+                    </button>
+                    <button class="reject-btn" onclick="rejectTile('${name}')" ${isRejected ? 'disabled' : ''}>
+                        ✗ Reject (X)
+                    </button>
+                </div>
+                ${isModified ? `
+                    <button onclick="resetTilePosition('${name}')" style="width: 100%; margin-top: 8px; padding: 8px; background: #ff9800; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        ↩ Reset Position
+                    </button>
+                ` : ''}
+                ${status !== 'unconfirmed' ? `
+                    <button onclick="resetTileStatus('${name}')" style="width: 100%; margin-top: 8px; padding: 8px; background: #555; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        Reset Status (R)
+                    </button>
+                ` : ''}
+            `;
+
+            document.querySelectorAll('.tile-list-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.name === name);
+            });
+        }
+
+        function highlightTile(name) {
+            const overlay = overlayElements[name];
+            if (overlay) overlay.classList.add('highlighted');
+        }
+
+        function unhighlightTile(name) {
+            const overlay = overlayElements[name];
+            if (overlay) overlay.classList.remove('highlighted');
+        }
+
+        function scrollToTile(name) {
+            const tile = tileData.tiles[name];
+            if (!tile) return;
+
+            const container = document.getElementById('mapContainer');
+            const x = tile.x * currentZoom - container.clientWidth / 2 + tile.width * currentZoom / 2;
+            const y = tile.y * currentZoom - container.clientHeight / 2 + tile.height * currentZoom / 2;
+
+            container.scrollTo({ left: x, top: y, behavior: 'smooth' });
+
+            showTileInfo(name, tile);
+            highlightTile(name);
+            setTimeout(() => unhighlightTile(name), 2000);
+        }
+
+        function scrollToTileInList(name) {
+            const item = document.querySelector(`.tile-list-item[data-name="${name}"]`);
+            if (item) {
+                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                item.classList.add('active');
+            }
+        }
+
+        function zoomIn() { setZoom(currentZoom * 1.25); }
+        function zoomOut() { setZoom(currentZoom / 1.25); }
+        function resetZoom() { setZoom(1); }
+
+        function setZoom(zoom) {
+            currentZoom = Math.max(0.25, Math.min(3, zoom));
+            const wrapper = document.getElementById('mapWrapper');
+            wrapper.style.transform = `scale(${currentZoom})`;
+            wrapper.style.transformOrigin = 'top left';
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Only trigger if we have a selected tile
+            if (!currentTileName) return;
+
+            // Ignore if user is typing in an input field
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            const key = e.key.toLowerCase();
+
+            if (key === 'c') {
+                // C = Confirm
+                e.preventDefault();
+                confirmTile(currentTileName);
+            } else if (key === 'x') {
+                // X = Reject
+                e.preventDefault();
+                rejectTile(currentTileName);
+            } else if (key === 'r') {
+                // R = Reset (bonus shortcut)
+                e.preventDefault();
+                const status = getTileStatus(currentTileName);
+                if (status !== 'unconfirmed') {
+                    resetTileStatus(currentTileName);
+                }
+            }
+        });
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+
+</html>
