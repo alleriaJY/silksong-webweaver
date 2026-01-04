@@ -1,0 +1,11 @@
+{
+    "name": "silksong-webweaver",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "test": "vitest run"
+    },
+    "devDependencies": {
+        "vitest": "^3.0.0"
+    }
+}
