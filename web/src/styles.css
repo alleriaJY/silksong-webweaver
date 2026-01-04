@@ -767,6 +767,98 @@ header h1 {
     white-space: nowrap;
 }
 
+/* Abilities Grid */
+.abilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.ability-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.ability-item img {
+    height: 64px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.ability-item img.unlocked {
+    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.6));
+}
+
+.ability-item img.locked {
+    filter: grayscale(100%) brightness(0.5);
+    opacity: 0.5;
+}
+
+.ability-item img:hover {
+    transform: scale(1.15);
+}
+
+.ability-item span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.skill-item img {
+    height: 64px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.skill-item img.unlocked {
+    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.6));
+}
+
+.skill-item img.locked {
+    filter: grayscale(100%) brightness(0.5);
+    opacity: 0.5;
+}
+
+.skill-item img:hover {
+    transform: scale(1.15);
+}
+
+.skill-item span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /* Currency Display */
 .currency-display {
     display: flex;

@@ -188,6 +188,48 @@ export function parseMaps(playerData) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+// ABILITIES PARSING
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Parse abilities (movement abilities) with statistics - includes icon property
+ */
+export function parseAbilities(playerData) {
+    const abilities = schemas.ABILITY_LIST.map(item => ({
+        json: item.json,
+        display: item.display,
+        icon: item.icon,
+        value: getValue(playerData, item.json) || false,
+    }));
+    const stats = {
+        total: abilities.length,
+        unlocked: abilities.filter(a => a.value).length,
+    };
+    return { abilities, stats };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SKILLS PARSING
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Parse skills (combat skills) with statistics - includes icon property
+ */
+export function parseSkills(playerData) {
+    const skills = schemas.SKILLS_LIST.map(item => ({
+        json: item.json,
+        display: item.display,
+        icon: item.icon,
+        value: getValue(playerData, item.json) || false,
+    }));
+    const stats = {
+        total: skills.length,
+        unlocked: skills.filter(s => s.value).length,
+    };
+    return { skills, stats };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // MASTER PARSE FUNCTION
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -211,8 +253,11 @@ export function parseAllData(playerData) {
         bosses: parseBosses(playerData),
         fleas: parseFleas(playerData),
         maps: parseMaps(playerData),
+        abilities: parseAbilities(playerData),
+        skills: parseSkills(playerData),
 
         // Keep raw data for any custom access
         raw: playerData,
     };
 }
+

@@ -303,6 +303,68 @@ function displayStats(data) {
     setStat('respawnMarker', getField('misc', 'respawnMarkerName') || '-');
     setStat('respawnType', getField('misc', 'respawnType'));
 
+    // Abilities Tab - Populate abilities grid
+    const abilitiesGrid = document.getElementById('abilities-grid');
+    const abilitiesUnlockedCount = document.getElementById('abilities-unlocked-count');
+    if (abilitiesGrid && data.abilities) {
+        abilitiesGrid.innerHTML = '';
+        let unlockedCount = 0;
+
+        for (const ability of data.abilities.abilities) {
+            const abilityItem = document.createElement('div');
+            abilityItem.className = 'ability-item';
+
+            const img = document.createElement('img');
+            img.src = `assets/img/general/ability/${ability.icon || 'swiftstep.png'}`;
+            img.alt = ability.display;
+            img.title = `${ability.display} (${ability.value ? 'Unlocked' : 'Locked'})`;
+            img.className = ability.value ? 'unlocked' : 'locked';
+
+            if (ability.value) unlockedCount++;
+
+            const label = document.createElement('span');
+            label.textContent = ability.display;
+            label.title = ability.display;
+
+            abilityItem.appendChild(img);
+            abilityItem.appendChild(label);
+            abilitiesGrid.appendChild(abilityItem);
+        }
+
+        if (abilitiesUnlockedCount) abilitiesUnlockedCount.textContent = unlockedCount;
+    }
+
+    // Skills Tab - Populate skills grid
+    const skillsGrid = document.getElementById('skills-grid');
+    const skillsUnlockedCount = document.getElementById('skills-unlocked-count');
+    if (skillsGrid && data.skills) {
+        skillsGrid.innerHTML = '';
+        let unlockedCount = 0;
+
+        for (const skill of data.skills.skills) {
+            const skillItem = document.createElement('div');
+            skillItem.className = 'skill-item';
+
+            const img = document.createElement('img');
+            img.src = `assets/img/general/skills/${skill.icon || 'Art_Rune__0002_silk_spear.png'}`;
+            img.alt = skill.display;
+            img.title = `${skill.display} (${skill.value ? 'Unlocked' : 'Locked'})`;
+            img.className = skill.value ? 'unlocked' : 'locked';
+
+            if (skill.value) unlockedCount++;
+
+            const label = document.createElement('span');
+            label.textContent = skill.display;
+            label.title = skill.display;
+
+            skillItem.appendChild(img);
+            skillItem.appendChild(label);
+            skillsGrid.appendChild(skillItem);
+        }
+
+        if (skillsUnlockedCount) skillsUnlockedCount.textContent = unlockedCount;
+    }
+
     // Tools Tab - Populate tool grid
     const toolsGrid = document.getElementById('tools-grid');
     const toolsUnlockedCount = document.getElementById('tools-unlocked-count');

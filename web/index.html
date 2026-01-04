@@ -106,6 +106,12 @@
                                 <button class="tab-btn" data-tab="misc">
                                     <span class="tab-text">MISC</span>
                                 </button>
+                                <button class="tab-btn" data-tab="abilities">
+                                    <span class="tab-text">ABILITIES</span>
+                                </button>
+                                <button class="tab-btn" data-tab="skills">
+                                    <span class="tab-text">SKILLS</span>
+                                </button>
                                 <button class="tab-btn" data-tab="tools">
                                     <span class="tab-text">TOOLS</span>
                                 </button>
@@ -295,7 +301,43 @@
                                     </div>
                                 </div>
 
-                                <!-- 4. Tools Tab -->
+                                <!-- 4. Abilities Tab -->
+                                <div class="tab-panel" id="panel-abilities">
+                                    <div class="panel-header">
+                                        <h3>Abilities</h3>
+                                        <p class="panel-description">Unlocked: <span
+                                                id="abilities-unlocked-count">0</span>/8
+                                        </p>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="stat-card full-width">
+                                            <h4>🦋 Movement Abilities</h4>
+                                            <div class="abilities-grid" id="abilities-grid">
+                                                <!-- Ability icons will be populated by JS -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5. Skills Tab -->
+                                <div class="tab-panel" id="panel-skills">
+                                    <div class="panel-header">
+                                        <h3>Skills</h3>
+                                        <p class="panel-description">Unlocked: <span
+                                                id="skills-unlocked-count">0</span>/6
+                                        </p>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="stat-card full-width">
+                                            <h4>⚔️ Combat Skills</h4>
+                                            <div class="skills-grid" id="skills-grid">
+                                                <!-- Skill icons will be populated by JS -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 6. Tools Tab -->
                                 <div class="tab-panel" id="panel-tools">
                                     <div class="panel-header">
                                         <h3>Tools</h3>

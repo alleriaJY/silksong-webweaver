@@ -5,9 +5,6 @@
  * To add new fields, simply add entries to the appropriate list.
  */
 
-// ═══════════════════════════════════════════════════════════════════════════
-// GENERAL FIELDS - Overview tab data (direct playerData access)
-// ═══════════════════════════════════════════════════════════════════════════
 export const GENERAL_FIELDS_LIST = [
     { json: 'version', display: 'Game Version' },
     { json: 'permadeathMode', display: 'Game Mode' },
@@ -18,9 +15,6 @@ export const GENERAL_FIELDS_LIST = [
     { json: 'silkRegenMax', display: 'Max Silk Hearts' },
 ];
 
-// ═══════════════════════════════════════════════════════════════════════════
-// CURRENT STATS FIELDS - Current gameplay state
-// ═══════════════════════════════════════════════════════════════════════════
 export const CURRENT_FIELDS_LIST = [
     { json: 'health', display: 'Current Health' },
     { json: 'maxHealth', display: 'Max Health' },
@@ -34,9 +28,6 @@ export const CURRENT_FIELDS_LIST = [
     { json: 'atBench', display: 'At Bench' },
 ];
 
-// ═══════════════════════════════════════════════════════════════════════════
-// MISC FIELDS - Respawn and other info
-// ═══════════════════════════════════════════════════════════════════════════
 export const MISC_FIELDS_LIST = [
     { json: 'respawnScene', display: 'Respawn Area' },
     { json: 'respawnMarkerName', display: 'Respawn Marker' },
@@ -112,9 +103,6 @@ export const TOOLS_LIST = [
     { json: 'Thief Charm', display: "Thief's Mark", category: 'Yellow', icon: 'Thief_Brooch.png' },
 ];
 
-// ═══════════════════════════════════════════════════════════════════════════
-// BOSSES - direct playerData boolean flags
-// ═══════════════════════════════════════════════════════════════════════════
 export const BOSSES_LIST = [
     { json: 'defeatedMossMother', display: 'Moss Mother', icon: 'Moss Mother - Mossbone Mother.png' },
     { json: 'defeatedBellBeast', display: 'Bell Beast', icon: 'Bell Beast - Bone Beast.png' },
@@ -154,9 +142,6 @@ export const BOSSES_LIST = [
     { json: 'defeatedCloverDancers', display: 'Clover Dancers', icon: 'Clover Dancers - Clover Dancer.png' },
 ];
 
-// ═══════════════════════════════════════════════════════════════════════════
-// FLEAS - direct playerData boolean flags
-// ═══════════════════════════════════════════════════════════════════════════
 export const FLEAS_LIST = [
     { json: 'SavedFlea_Ant_03', display: 'Flea (Ant 03)' },
     { json: 'SavedFlea_Belltown_04', display: 'Flea (Belltown 04)' },
@@ -190,9 +175,26 @@ export const FLEAS_LIST = [
     { json: 'MetTroupeHunterWild', display: 'Vog' },
 ];
 
-// ═══════════════════════════════════════════════════════════════════════════
-// MAPS - direct playerData boolean flags
-// ═══════════════════════════════════════════════════════════════════════════
+export const ABILITY_LIST = [
+    { json: 'hasDash', display: 'Swift Step', icon: 'swiftstep.png' },
+    { json: 'hasBrolly', display: 'Drifter\'s Cloak', icon: 'drifterscloak.png' },
+    { json: 'hasWalljump', display: 'Cling Grip', icon: 'clinggrip.png' },
+    { json: 'hasNeedolin', display: 'Needolin', icon: 'needolin.png' },
+    { json: 'hasHarpoonDash', display: 'Clawline', icon: 'clawline.png' },
+    { json: 'hasDoubleJump', display: 'Faydown Cloak', icon: 'faydown_cloak.png' },
+    { json: 'hasChargeSlash', display: 'Needle Strike', icon: 'needlestrike.png' },
+    { json: 'hasSuperJump', display: 'Silk Soar', icon: 'silksoar.png' },
+];
+
+export const SKILLS_LIST = [
+    { json: 'hasNeedleThrow', display: 'Silkspear', icon: 'Art_Rune__0002_silk_spear.png' },
+    { json: 'hasParry', display: 'Cross Stitch', icon: 'Art_Rune__0014_cross_stitch.png' },
+    { json: 'hasThreadSphere', display: 'Thread Storm', icon: 'Art_Rune__0008_silk_sphere.png' },
+    { json: 'hasSilkCharge', display: 'Sharp Dart', icon: 'Art_Rune__0017_silk_dart.png' },
+    { json: 'hasSilkBomb', display: 'Rune Rage', icon: 'Art_Rune__0005_silk_bomb.png' },
+    { json: 'hasSilkBossNeedle', display: 'Pale Nails', icon: 'Art_Rune__0011_finger_blades.png' },
+];
+
 export const MAPS_LIST = [
     { json: 'HasMossGrottoMap', display: 'Moss Grotto', icon: 'Shop_map_icon__0003_moss.png' },
     { json: 'HasBoneforestMap', display: 'The Marrow', icon: 'Shop_map_icon__0008_sinners.png' },
