@@ -10,20 +10,23 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
 - [x] Web UI with file upload
 - [x] WASM-based decryption
 - [x] GitHub Pages deployment
+- [x] Simple map visualization
 
 ### Planned
+- [ ] (WIP) Heat map / Hero's Path - still need to fully map sub-areas
 - [ ] More parsing
     - [ ] More Stats
-    - [ ] Tools
+    - [x] Tools
     - [ ] Map
-    - [ ] Bosses
+    - [x] Bosses
     - [ ] Fleas
     - [ ] Collectables
+    - [ ] Hunter's Journal
 - [ ] UI -> Icons! Better categories/tabs
-- [ ] Map visualization
 - [ ] Restructure game data stuffs (JSON) to add more details
 - [ ] (Stretch) Interactive map view
-- [ ] (Stretch) Heat map / Hero's Path
+
+
 
 ## 📄 License
 
