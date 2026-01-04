@@ -230,6 +230,123 @@ export function parseSkills(playerData) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+// EQUIPPED TOOLS PARSING
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Mapping from equipped tool names to skill icons (skills can be equipped)
+const SKILL_ICON_MAP = {
+    'Silk Spear': { display: 'Silkspear', icon: 'Art_Rune__0002_silk_spear.png', isSkill: true },
+    'Thread Sphere': { display: 'Thread Storm', icon: 'Art_Rune__0008_silk_sphere.png', isSkill: true },
+    'Cross Stitch': { display: 'Cross Stitch', icon: 'Art_Rune__0014_cross_stitch.png', isSkill: true },
+    'Silk Dart': { display: 'Sharp Dart', icon: 'Art_Rune__0017_silk_dart.png', isSkill: true },
+    'Silk Bomb': { display: 'Rune Rage', icon: 'Art_Rune__0005_silk_bomb.png', isSkill: true },
+    'Finger Blades': { display: 'Pale Nails', icon: 'Art_Rune__0011_finger_blades.png', isSkill: true },
+    // Abilities that might appear
+    'Wallcling': { display: 'Cling Grip', icon: 'clinggrip.png', isAbility: true },
+};
+
+/**
+ * Parse currently equipped tools from ToolEquips based on CurrentCrestID
+ * Also parses ExtraToolEquips for extra equipment slots
+ * Returns array of equipped tool objects with display names and icons
+ */
+export function parseEquippedTools(playerData) {
+    // Get the current crest ID
+    const currentCrestId = getValue(playerData, 'CurrentCrestID');
+
+    // Build a lookup map from TOOLS_LIST for icons
+    const toolsLookup = new Map();
+    for (const tool of schemas.TOOLS_LIST) {
+        toolsLookup.set(tool.json, tool);
+    }
+
+    // Helper to get tool info (checks tools, then skills/abilities)
+    const getToolInfo = (toolName) => {
+        // First check TOOLS_LIST
+        const toolDef = toolsLookup.get(toolName);
+        if (toolDef) {
+            return {
+                name: toolName,
+                display: toolDef.display || toolName,
+                icon: toolDef.icon || 'T_straight_pin.png',
+                category: toolDef.category || 'Tool',
+                iconPath: 'tools'
+            };
+        }
+        // Check skill/ability mapping
+        const skillDef = SKILL_ICON_MAP[toolName];
+        if (skillDef) {
+            return {
+                name: toolName,
+                display: skillDef.display || toolName,
+                icon: skillDef.icon,
+                category: skillDef.isSkill ? 'Skill' : 'Ability',
+                iconPath: skillDef.isSkill ? 'general/skills' : 'general/ability'
+            };
+        }
+        // Fallback
+        return {
+            name: toolName,
+            display: toolName,
+            icon: 'T_straight_pin.png',
+            category: 'Unknown',
+            iconPath: 'tools'
+        };
+    };
+
+    // Parse ToolEquips (main crest slots)
+    const equippedTools = [];
+    if (currentCrestId) {
+        const toolEquipsObj = getValue(playerData, 'ToolEquips');
+        const toolEquipsData = toolEquipsObj instanceof Map
+            ? (toolEquipsObj.get('savedData') || [])
+            : (toolEquipsObj?.savedData || []);
+
+        // Find the crest matching CurrentCrestID
+        let matchingCrest = null;
+        for (const crest of toolEquipsData) {
+            const crestName = crest instanceof Map ? crest.get('Name') : crest?.Name;
+            if (crestName === currentCrestId) {
+                matchingCrest = crest;
+                break;
+            }
+        }
+
+        if (matchingCrest) {
+            const crestData = matchingCrest instanceof Map ? matchingCrest.get('Data') : matchingCrest?.Data;
+            const slots = crestData instanceof Map ? (crestData.get('Slots') || []) : (crestData?.Slots || []);
+
+            for (const slot of slots) {
+                const toolName = slot instanceof Map ? slot.get('EquippedTool') : slot?.EquippedTool;
+                if (toolName && toolName !== '') {
+                    equippedTools.push(getToolInfo(toolName));
+                }
+            }
+        }
+    }
+
+    // Parse ExtraToolEquips
+    const extraEquippedTools = [];
+    const extraToolEquipsObj = getValue(playerData, 'ExtraToolEquips');
+    const extraToolEquipsData = extraToolEquipsObj instanceof Map
+        ? (extraToolEquipsObj.get('savedData') || [])
+        : (extraToolEquipsObj?.savedData || []);
+
+    for (const entry of extraToolEquipsData) {
+        const entryData = entry instanceof Map ? entry.get('Data') : entry?.Data;
+        const toolName = entryData instanceof Map ? entryData.get('EquippedTool') : entryData?.EquippedTool;
+        const slotName = entry instanceof Map ? entry.get('Name') : entry?.Name;
+        if (toolName && toolName !== '') {
+            const info = getToolInfo(toolName);
+            info.slotName = slotName; // e.g., "Explore1", "Attack1"
+            extraEquippedTools.push(info);
+        }
+    }
+
+    return { equippedTools, extraEquippedTools, crestId: currentCrestId };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // MASTER PARSE FUNCTION
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -255,9 +372,11 @@ export function parseAllData(playerData) {
         maps: parseMaps(playerData),
         abilities: parseAbilities(playerData),
         skills: parseSkills(playerData),
+        equippedTools: parseEquippedTools(playerData),
 
         // Keep raw data for any custom access
         raw: playerData,
     };
 }
+
 

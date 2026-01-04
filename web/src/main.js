@@ -292,6 +292,64 @@ function displayStats(data) {
         crestImage.alt = crestId;
     }
 
+    // Current Stats Tab - Equipped Tools
+    const equippedToolsRow = document.getElementById('equipped-tools-row');
+    if (equippedToolsRow && data.equippedTools) {
+        equippedToolsRow.innerHTML = '';
+        const { equippedTools } = data.equippedTools;
+
+        if (equippedTools.length === 0) {
+            equippedToolsRow.innerHTML = '<span style="color: var(--text-secondary); font-size: 0.85rem;">No tools equipped</span>';
+        } else {
+            for (const tool of equippedTools) {
+                const toolItem = document.createElement('div');
+                toolItem.className = 'equipped-tool-item';
+
+                const img = document.createElement('img');
+                img.src = `assets/img/${tool.iconPath || 'tools'}/${tool.icon}`;
+                img.alt = tool.display;
+                img.title = `${tool.display} (${tool.category || 'Tool'})`;
+
+                const label = document.createElement('span');
+                label.textContent = tool.display;
+                label.title = tool.display;
+
+                toolItem.appendChild(img);
+                toolItem.appendChild(label);
+                equippedToolsRow.appendChild(toolItem);
+            }
+        }
+    }
+
+    // Current Stats Tab - Extra Tool Equips
+    const extraToolsRow = document.getElementById('extra-tools-row');
+    if (extraToolsRow && data.equippedTools) {
+        extraToolsRow.innerHTML = '';
+        const { extraEquippedTools } = data.equippedTools;
+
+        if (!extraEquippedTools || extraEquippedTools.length === 0) {
+            extraToolsRow.innerHTML = '<span style="color: var(--text-secondary); font-size: 0.85rem;">No extra slots</span>';
+        } else {
+            for (const tool of extraEquippedTools) {
+                const toolItem = document.createElement('div');
+                toolItem.className = 'equipped-tool-item';
+
+                const img = document.createElement('img');
+                img.src = `assets/img/${tool.iconPath || 'tools'}/${tool.icon}`;
+                img.alt = tool.display;
+                img.title = `${tool.display} (${tool.slotName || 'Extra'})`;
+
+                const label = document.createElement('span');
+                label.textContent = tool.display;
+                label.title = tool.display;
+
+                toolItem.appendChild(img);
+                toolItem.appendChild(label);
+                extraToolsRow.appendChild(toolItem);
+            }
+        }
+    }
+
     // Current Stats Tab - Position
     setStat('currentArea', getField('current', 'currentArea') || 'Unknown');
     setStat('mapZone', getField('current', 'mapZone'));
