@@ -88,3 +88,93 @@ fn decrypt_aes256_ecb(input: &[u8]) -> Result<Vec<u8>, String> {
 
     Ok(plaintext)
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// UNIT TESTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// Test that files smaller than header + trailer are rejected
+    #[test]
+    fn test_decrypt_file_too_small() {
+        // 26 bytes is the minimum (25 header + 1 trailer)
+        let small_data = vec![0u8; 25];
+        let result = decrypt_save_file(&small_data);
+        assert!(result.is_err());
+        assert_eq!(result.unwrap_err(), "Save file too small");
+    }
+
+    /// Test that exactly 26 bytes (minimal valid size) results in empty content error
+    #[test]
+    fn test_decrypt_minimal_size() {
+        let minimal_data = vec![0u8; 26];
+        let result = decrypt_save_file(&minimal_data);
+        // Should fail because content is empty/invalid
+        assert!(result.is_err());
+    }
+
+    /// Test that invalid base64 content is handled
+    #[test]
+    fn test_invalid_base64() {
+        // Create data with header + invalid base64 + trailer
+        let mut data = vec![0u8; 25]; // Header
+        data.extend_from_slice(b"!!!invalid-base64!!!"); // Invalid base64
+        data.push(0); // Trailer
+
+        let result = decrypt_save_file(&data);
+        assert!(result.is_err());
+        // Should fail at base64 decode or UTF-8 conversion
+    }
+
+    /// Test that valid base64 but wrong encryption fails gracefully
+    #[test]
+    fn test_wrong_encrypted_content() {
+        // Create data with header + valid base64 (but wrong content) + trailer
+        let mut data = vec![0u8; 25]; // Header
+        // "dGVzdA==" is base64 for "test" - wrong length for AES block
+        data.extend_from_slice(b"dGVzdA==");
+        data.push(0); // Trailer
+
+        let result = decrypt_save_file(&data);
+        assert!(result.is_err());
+    }
+
+    /// Test DecryptResult serialization structure
+    #[test]
+    fn test_decrypt_result_structure() {
+        // Test success result
+        let success_result = DecryptResult {
+            success: true,
+            error: None,
+            player_data: Some(serde_json::json!({"test": "value"})),
+        };
+        assert!(success_result.success);
+        assert!(success_result.error.is_none());
+        assert!(success_result.player_data.is_some());
+
+        // Test error result
+        let error_result = DecryptResult {
+            success: false,
+            error: Some("Test error".to_string()),
+            player_data: None,
+        };
+        assert!(!error_result.success);
+        assert_eq!(error_result.error, Some("Test error".to_string()));
+        assert!(error_result.player_data.is_none());
+    }
+
+    /// Test that header size constant is correct
+    #[test]
+    fn test_header_size_constant() {
+        assert_eq!(HEADER_SIZE, 25);
+    }
+
+    /// Test that encryption key has correct length for AES-256
+    #[test]
+    fn test_encryption_key_length() {
+        assert_eq!(ENCRYPTION_KEY.len(), 32); // AES-256 requires 32 bytes
+    }
+}
