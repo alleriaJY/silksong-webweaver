@@ -149,8 +149,6 @@ async function analyzeFile() {
         const arrayBuffer = await selectedFile.arrayBuffer();
         const bytes = new Uint8Array(arrayBuffer);
 
-        console.log('Processing file...', bytes.length, 'bytes');
-
         // Decrypt using WASM
         const result = decrypt_and_parse(bytes);
 
@@ -158,7 +156,6 @@ async function analyzeFile() {
             // Parse raw playerData using schema system
             currentData = parseAllData(result.playerData);
             displayStats(currentData);
-            console.log('✓ Save file parsed successfully');
         } else {
             throw new Error(result.error || 'Unknown error');
         }
