@@ -235,14 +235,13 @@ export function parseSkills(playerData) {
 
 // Mapping from equipped tool names to skill icons (skills can be equipped)
 const SKILL_ICON_MAP = {
+    // Skills
     'Silk Spear': { display: 'Silkspear', icon: 'Art_Rune__0002_silk_spear.png', isSkill: true },
     'Thread Sphere': { display: 'Thread Storm', icon: 'Art_Rune__0008_silk_sphere.png', isSkill: true },
-    'Cross Stitch': { display: 'Cross Stitch', icon: 'Art_Rune__0014_cross_stitch.png', isSkill: true },
+    'Parry': { display: 'Cross Stitch', icon: 'Art_Rune__0014_cross_stitch.png', isSkill: true },
     'Silk Dart': { display: 'Sharp Dart', icon: 'Art_Rune__0017_silk_dart.png', isSkill: true },
     'Silk Bomb': { display: 'Rune Rage', icon: 'Art_Rune__0005_silk_bomb.png', isSkill: true },
     'Finger Blades': { display: 'Pale Nails', icon: 'Art_Rune__0011_finger_blades.png', isSkill: true },
-    // Abilities that might appear
-    'Wallcling': { display: 'Cling Grip', icon: 'clinggrip.png', isAbility: true },
 };
 
 /**
