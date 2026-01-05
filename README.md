@@ -19,6 +19,13 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
     - [x] Tools
     - [ ] Map
     - [x] Bosses
+    - [ ] Silk Spools
+    - [ ] Masks
+    - [ ] Silk Hearts
+    - [ ] Crafting Kit
+    - [ ] Tool Pouch
+    - [ ] Needle
+    - [ ] Crests
     - [ ] Fleas
     - [ ] Collectables
     - [ ] Hunter's Journal
