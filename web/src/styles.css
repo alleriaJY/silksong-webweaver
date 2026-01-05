@@ -807,6 +807,30 @@ header h1 {
     white-space: nowrap;
 }
 
+/* Tools Separator */
+.tools-separator {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0 1rem 0;
+    text-align: center;
+}
+
+.tools-separator::before,
+.tools-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.tools-separator span {
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
 /* Abilities Grid */
 .abilities-grid {
     display: grid;
@@ -1002,6 +1026,179 @@ footer a:hover {
 .footer-note {
     margin-top: 0.5rem;
     font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Tool Variants Modal */
+.tool-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-modal-content {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.tool-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tool-modal-header h3 {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 1.3rem;
+}
+
+.tool-modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.tool-modal-close:hover {
+    color: var(--accent-color);
+}
+
+.tool-modal-body {
+    padding: 1.5rem;
+    max-height: calc(80vh - 100px);
+    overflow-y: auto;
+}
+
+.spoiler-warning {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 165, 0, 0.1);
+    border: 2px dashed rgba(255, 165, 0, 0.3);
+    border-radius: 8px;
+}
+
+.spoiler-warning p {
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.reveal-spoiler-btn {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.reveal-spoiler-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+#variants-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.variant-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.variant-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.variant-item img {
+    height: 50px;
+    width: auto;
+    max-width: 60px;
+    object-fit: contain;
+}
+
+.variant-label {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.variant-label strong {
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.variant-status {
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.status-unlocked {
+    color: var(--accent-color);
+}
+
+.status-locked {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.tool-upgrade-set {
+    position: relative;
+}
+
+.tool-upgrade-set::after {
+    content: '🔄';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.9rem;
     opacity: 0.7;
 }
 

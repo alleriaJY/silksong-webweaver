@@ -72,6 +72,111 @@ function setupFileUpload() {
 }
 
 /**
+ * Show popup with tool variants (spoiler-protected)
+ */
+function showToolVariantsPopup(tool) {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('tool-variants-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'tool-variants-modal';
+        modal.className = 'tool-modal';
+        modal.innerHTML = `
+            <div class="tool-modal-content">
+                <div class="tool-modal-header">
+                    <h3 id="tool-modal-title"></h3>
+                    <button class="tool-modal-close">&times;</button>
+                </div>
+                <div class="tool-modal-body">
+                    <div class="spoiler-warning">
+                        <p>⚠️ This section contains spoilers about tool variations</p>
+                        <button class="reveal-spoiler-btn">Click to Reveal Variants</button>
+                    </div>
+                    <div class="variants-container" style="display: none;">
+                        <div id="variants-grid"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        // Close button handler
+        modal.querySelector('.tool-modal-close').addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Click outside to close
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Reveal spoiler button
+        modal.querySelector('.reveal-spoiler-btn').addEventListener('click', (e) => {
+            e.target.parentElement.style.display = 'none';
+            modal.querySelector('.variants-container').style.display = 'block';
+        });
+    }
+
+    // Populate variants
+    const title = modal.querySelector('#tool-modal-title');
+    const variantsGrid = modal.querySelector('#variants-grid');
+    title.textContent = `${tool.upgradeSetName} Variants`;
+    variantsGrid.innerHTML = '';
+
+    // Reset spoiler state
+    modal.querySelector('.spoiler-warning').style.display = 'block';
+    modal.querySelector('.variants-container').style.display = 'none';
+
+    // Render each variant
+    for (const variant of tool.variants) {
+        const variantItem = document.createElement('div');
+        variantItem.className = 'variant-item';
+
+        const img = document.createElement('img');
+        img.src = `assets/img/tools/${variant.icon}`;
+        img.alt = variant.display;
+        img.className = variant.unlocked ? 'unlocked' : 'locked';
+
+        const label = document.createElement('div');
+        label.className = 'variant-label';
+
+        // Determine status text based on upgrade set type
+        let statusText;
+        let statusClass;
+        if (tool.upgradeSetType === 'gameMode' && tool.variantLabels) {
+            // Special gameMode labels (e.g., "Classic Only", "Steel Soul Only")
+            if (variant.unlocked) {
+                statusText = '✓ Unlocked';
+                statusClass = 'status-unlocked';
+            } else {
+                statusText = tool.variantLabels[variant.json] || '✗ Locked';
+                statusClass = 'status-locked';
+            }
+        } else {
+            // Default Locked/Unlocked labels
+            statusText = variant.unlocked ? '✓ Unlocked' : '✗ Locked';
+            statusClass = variant.unlocked ? 'status-unlocked' : 'status-locked';
+        }
+
+        label.innerHTML = `
+            <strong>${variant.display}</strong>
+            <span class="variant-status ${statusClass}">
+                ${statusText}
+            </span>
+        `;
+
+        variantItem.appendChild(img);
+        variantItem.appendChild(label);
+        variantsGrid.appendChild(variantItem);
+    }
+
+    // Show modal
+    modal.style.display = 'flex';
+}
+
+/**
  * Set up tab navigation
  */
 function setupTabs() {
@@ -426,24 +531,29 @@ function displayStats(data) {
     // Tools Tab - Populate tool grid
     const toolsGrid = document.getElementById('tools-grid');
     const toolsUnlockedCount = document.getElementById('tools-unlocked-count');
-    const toolsSeenCount = document.getElementById('tools-seen-count');
+    const toolsTotalCount = document.getElementById('tools-total-count');
     if (toolsGrid && data.tools) {
         toolsGrid.innerHTML = '';
         let unlockedCount = 0;
-        let seenCount = 0;
 
         for (const tool of data.tools.tools) {
             const toolItem = document.createElement('div');
             toolItem.className = 'tool-item';
 
+            // Add special class for upgrade sets
+            if (tool.isUpgradeSet) {
+                toolItem.classList.add('tool-upgrade-set');
+                toolItem.style.cursor = 'pointer';
+                toolItem.title = `Click to view ${tool.upgradeSetName} variants (Spoilers)`;
+            }
+
             const img = document.createElement('img');
             img.src = `assets/img/tools/${tool.icon || 'T_straight_pin.png'}`;
             img.alt = tool.display;
-            img.title = `${tool.display} (${tool.unlocked ? 'Unlocked' : 'Locked'}, ${tool.seen ? 'Seen' : 'Not Seen'})`;
+            img.title = `${tool.display} (${tool.unlocked ? 'Unlocked' : 'Locked'})`;
             img.className = tool.unlocked ? 'unlocked' : 'locked';
 
             if (tool.unlocked) unlockedCount++;
-            if (tool.seen) seenCount++;
 
             const label = document.createElement('span');
             label.textContent = tool.display;
@@ -451,11 +561,42 @@ function displayStats(data) {
 
             toolItem.appendChild(img);
             toolItem.appendChild(label);
+
+            // Add click handler for upgrade sets
+            if (tool.isUpgradeSet) {
+                toolItem.addEventListener('click', () => showToolVariantsPopup(tool));
+            }
+
             toolsGrid.appendChild(toolItem);
         }
 
         if (toolsUnlockedCount) toolsUnlockedCount.textContent = unlockedCount;
-        if (toolsSeenCount) toolsSeenCount.textContent = seenCount;
+        if (toolsTotalCount) toolsTotalCount.textContent = data.tools.stats.total;
+    }
+
+    // Other Tools Grid - Items not counted in total
+    const otherToolsGrid = document.getElementById('other-tools-grid');
+    if (otherToolsGrid && data.tools && data.tools.otherTools) {
+        otherToolsGrid.innerHTML = '';
+
+        for (const tool of data.tools.otherTools) {
+            const toolItem = document.createElement('div');
+            toolItem.className = 'tool-item';
+
+            const img = document.createElement('img');
+            img.src = `assets/img/tools/${tool.icon || 'T_straight_pin.png'}`;
+            img.alt = tool.display;
+            img.title = `${tool.display} (${tool.unlocked ? 'Unlocked' : 'Locked'})`;
+            img.className = tool.unlocked ? 'unlocked' : 'locked';
+
+            const label = document.createElement('span');
+            label.textContent = tool.display;
+            label.title = tool.display;
+
+            toolItem.appendChild(img);
+            toolItem.appendChild(label);
+            otherToolsGrid.appendChild(toolItem);
+        }
     }
 
     // Maps Tab - Populate map grid

@@ -114,15 +114,105 @@ export function parseTools(playerData) {
         };
     });
 
-    // Calculate statistics
+    // Define upgrade sets (tools that should be displayed as one with variants)
+    const upgradeSets = [
+        {
+            name: 'Curveclaw',
+            tools: ['Curve Claws', 'Curve Claws Upgraded'],
+            preferredUpgrade: 'Curve Claws Upgraded'
+        },
+        {
+            name: 'Silkshot',
+            tools: ['WebShot Forge', 'WebShot Architect', 'WebShot Weaver'],
+            preferredUpgrade: 'WebShot Weaver'
+        },
+        {
+            name: "Druid's Eye",
+            tools: ['Mosscreep Tool 1', 'Mosscreep Tool 2'],
+            preferredUpgrade: 'Mosscreep Tool 2'
+        },
+        {
+            name: 'Money Pouch',
+            tools: ['Dead Mans Purse', 'Shell Satchel'],
+            preferredUpgrade: 'Shell Satchel',
+            type: 'gameMode', // Special type for Classic/Steel Soul variants
+            variantLabels: {
+                'Dead Mans Purse': 'Classic Only',
+                'Shell Satchel': 'Steel Soul Only'
+            }
+        },
+        {
+            name: 'Claw Mirror',
+            tools: ['Dazzle Bind', 'Dazzle Bind Upgraded'], // Claw Mirror, Claw Mirrors
+            preferredUpgrade: 'Dazzle Bind Upgraded'
+        }
+    ];
+
+    // Process upgrade sets: filter tools and create variant info
+    const filteredTools = [];
+    const usedToolNames = new Set();
+    const toolVariants = new Map(); // Store all variants for popup
+
+    for (const tool of tools) {
+        const upgradeSet = upgradeSets.find(set => set.tools.includes(tool.json));
+
+        if (upgradeSet && !usedToolNames.has(upgradeSet.name)) {
+            // This tool belongs to an upgrade set
+            const variants = tools.filter(t => upgradeSet.tools.includes(t.json));
+
+            // Determine which variant to show
+            let displayTool;
+            const unlockedVariant = variants.find(v => v.unlocked);
+
+            if (unlockedVariant) {
+                // If multiple are unlocked (shouldn't happen), prefer the upgrade
+                const preferredTool = variants.find(v => v.json === upgradeSet.preferredUpgrade && v.unlocked);
+                displayTool = preferredTool || unlockedVariant;
+            } else {
+                // All locked: show base tool (first in list)
+                displayTool = variants.find(v => v.json === upgradeSet.tools[0]);
+            }
+
+            // Mark as special tool with variants
+            displayTool.isUpgradeSet = true;
+            displayTool.upgradeSetName = upgradeSet.name;
+            displayTool.upgradeSetType = upgradeSet.type; // e.g., 'gameMode'
+            displayTool.variantLabels = upgradeSet.variantLabels; // Custom labels if any
+            displayTool.variants = variants;
+
+            filteredTools.push(displayTool);
+            usedToolNames.add(upgradeSet.name);
+
+            // Mark all variants as used
+            upgradeSet.tools.forEach(t => usedToolNames.add(t));
+        } else if (!upgradeSets.some(set => set.tools.includes(tool.json))) {
+            // Regular tool, not part of any upgrade set
+            filteredTools.push(tool);
+        }
+    }
+
+    // Separate "Others" tools that shouldn't be counted
+    const otherTools = [];
+    const regularTools = [];
+
+    for (const tool of filteredTools) {
+        // Move Snare Setter and Needle Phial to Others section
+        if (tool.json === 'Silk Snare' || tool.json === 'Extractor') {
+            tool.isOther = true;
+            otherTools.push(tool);
+        } else {
+            regularTools.push(tool);
+        }
+    }
+
+    // Calculate statistics based on regular tools only (exclude "Others")
     const stats = {
-        total: tools.length,
-        unlocked: tools.filter(t => t.unlocked).length,
-        seen: tools.filter(t => t.seen).length,
-        selected: tools.filter(t => t.selected).length,
+        total: regularTools.length,
+        unlocked: regularTools.filter(t => t.unlocked).length,
+        // Removed: seen count (no longer needed)
     };
 
-    return { tools, stats };
+    return { tools: regularTools, otherTools, stats };
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
