@@ -134,7 +134,7 @@ mod tests {
     fn test_wrong_encrypted_content() {
         // Create data with header + valid base64 (but wrong content) + trailer
         let mut data = vec![0u8; 25]; // Header
-        // "dGVzdA==" is base64 for "test" - wrong length for AES block
+                                      // "dGVzdA==" is base64 for "test" - wrong length for AES block
         data.extend_from_slice(b"dGVzdA==");
         data.push(0); // Trailer
 
