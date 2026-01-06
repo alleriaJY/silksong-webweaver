@@ -20,11 +20,11 @@
                 <span class="sidebar-title">Webweaver</span>
             </div>
             <ul class="sidebar-nav-list">
-                <li class="sidebar-nav-item active" data-page="parser">
+                <li class="sidebar-nav-item active" data-page="parser" tabindex="0" role="button" aria-label="Parser Page">
                     <span class="sidebar-icon">📁</span>
                     <span class="sidebar-label">Parser</span>
                 </li>
-                <li class="sidebar-nav-item" data-page="timeline">
+                <li class="sidebar-nav-item" data-page="timeline" tabindex="0" role="button" aria-label="Timeline Page">
                     <span class="sidebar-icon">⏱️</span>
                     <span class="sidebar-label">Timeline</span>
                 </li>
@@ -33,7 +33,7 @@
                     <span class="sidebar-label">Map Viewer</span>
                 </li> -->
                 <!-- Dev tool - only visible if URL has ?dev -->
-                <li class="sidebar-nav-item dev-only" data-page="map-viewer-dev">
+                <li class="sidebar-nav-item dev-only" data-page="map-viewer-dev" tabindex="0" role="button" aria-label="Map Viewer Developer Page">
                     <span class="sidebar-icon">🔧</span>
                     <span class="sidebar-label">Map Viewer (Dev)</span>
                 </li>
@@ -473,16 +473,26 @@
         }
 
         // Sidebar page navigation
-        document.querySelectorAll('.sidebar-nav-item').forEach(item => {
-            item.addEventListener('click', () => {
-                // Update active nav item
-                document.querySelectorAll('.sidebar-nav-item').forEach(nav => nav.classList.remove('active'));
-                item.classList.add('active');
+        function activateSidebarItem(item) {
+            // Update active nav item
+            document.querySelectorAll('.sidebar-nav-item').forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
 
-                // Show corresponding page
-                const pageId = 'page-' + item.dataset.page;
-                document.querySelectorAll('.app-page').forEach(page => page.classList.remove('active'));
-                document.getElementById(pageId).classList.add('active');
+            // Show corresponding page
+            const pageId = 'page-' + item.dataset.page;
+            document.querySelectorAll('.app-page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        document.querySelectorAll('.sidebar-nav-item').forEach(item => {
+            item.addEventListener('click', () => activateSidebarItem(item));
+
+            // Add keyboard support (Enter or Space)
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    activateSidebarItem(item);
+                }
             });
         });
     </script>
