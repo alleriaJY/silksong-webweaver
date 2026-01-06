@@ -1031,7 +1031,25 @@
                 overlay.dataset.originalX = tile.x;
                 overlay.dataset.originalY = tile.y;
 
+                // UX: Accessibility and Tooltips
+                overlay.title = `${name} (${tile.area})`;
+                overlay.tabIndex = 0;
+                overlay.role = 'button';
+                overlay.ariaLabel = `Map tile: ${name}, Area: ${tile.area}`;
+
                 overlay.addEventListener('mouseenter', () => showTileInfo(name, tile));
+
+                // Keyboard support for selecting tile
+                overlay.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        // Trigger click logic
+                        currentTileName = name;
+                        showTileInfo(name, tile);
+                        scrollToTileInList(name);
+                    }
+                });
+
                 overlay.addEventListener('click', (e) => {
                     // Don't select if we just finished dragging
                     if (overlay.dataset.justDragged === 'true') {

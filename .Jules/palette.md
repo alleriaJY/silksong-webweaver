@@ -1,1 +1,3 @@
-## 2024-05-22 - Improved Sidebar Accessibility **Learning:** Adding `tabindex="0"`, `role="button"`, and `aria-label` to non-interactive elements like `<li>` makes them keyboard accessible, but you must also add `keydown` event listeners for 'Enter' and 'Space' keys to mimic button behavior. **Action:** Next time, consider using `<button>` elements directly if styling permits, as it handles keyboard events natively.
+## 2024-05-23 - Accessibility Enhancements
+Learning: Map tiles in the viewer are interactive (clickable, draggable) but lack keyboard accessibility and standard tooltips.
+Action: Adding 'tabindex=0', 'role=button', 'aria-label', and 'title' attributes to map tiles to improve accessibility for keyboard and screen reader users.
