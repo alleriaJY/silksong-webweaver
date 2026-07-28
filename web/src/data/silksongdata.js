@@ -13,6 +13,7 @@ export const GENERAL_FIELDS_LIST = [
     { json: 'maxHealth', display: 'Max Health' },
     { json: 'silkMax', display: 'Max Silk' },
     { json: 'silkRegenMax', display: 'Max Silk Hearts' },
+    { json: 'nailUpgrades', display: 'Nail Upgrades' },
 ];
 
 export const CURRENT_FIELDS_LIST = [
@@ -177,13 +178,16 @@ export const FLEAS_LIST = [
 
 export const ABILITY_LIST = [
     { json: 'hasDash', display: 'Swift Step', icon: 'swiftstep.png' },
-    { json: 'hasBrolly', display: 'Drifter\'s Cloak', icon: 'drifterscloak.png' },
     { json: 'hasWalljump', display: 'Cling Grip', icon: 'clinggrip.png' },
     { json: 'hasNeedolin', display: 'Needolin', icon: 'needolin.png' },
     { json: 'hasHarpoonDash', display: 'Clawline', icon: 'clawline.png' },
-    { json: 'hasDoubleJump', display: 'Faydown Cloak', icon: 'faydown_cloak.png' },
     { json: 'hasChargeSlash', display: 'Needle Strike', icon: 'needlestrike.png' },
     { json: 'hasSuperJump', display: 'Silk Soar', icon: 'silksoar.png' },
+];
+
+export const OTHER_ABILITY_LIST = [
+    { json: 'hasBrolly', display: 'Drifter\'s Cloak', icon: 'drifterscloak.png' },
+    { json: 'hasDoubleJump', display: 'Faydown Cloak', icon: 'faydown_cloak.png' },
 ];
 
 export const SKILLS_LIST = [

@@ -13,10 +13,14 @@ let selectedFile = null;
 let currentData = null;
 
 // DOM Elements
+const uploadBtn = document.getElementById('upload-btn');
+const resetBtn = document.getElementById('reset-btn');
+const uploadModal = document.getElementById('upload-modal');
+const uploadModalBackdrop = document.getElementById('upload-modal-backdrop');
+const uploadModalClose = document.getElementById('upload-modal-close');
 const uploadArea = document.getElementById('upload-area');
 const fileInput = document.getElementById('file-input');
 const fileName = document.getElementById('file-name');
-const analyzeBtn = document.getElementById('analyze-btn');
 const loading = document.getElementById('loading');
 const errorMessage = document.getElementById('error-message');
 const errorText = document.getElementById('error-text');
@@ -41,7 +45,14 @@ async function initWasm() {
  * Set up file upload handlers
  */
 function setupFileUpload() {
-    // Click to upload
+    // Upload button opens modal
+    uploadBtn.addEventListener('click', showUploadModal);
+
+    // Close modal handlers
+    uploadModalClose.addEventListener('click', hideUploadModal);
+    uploadModalBackdrop.addEventListener('click', hideUploadModal);
+
+    // File input change - auto analyze
     fileInput.addEventListener('change', (e) => {
         if (e.target.files.length > 0) {
             handleFileSelect(e.target.files[0]);
@@ -67,8 +78,37 @@ function setupFileUpload() {
         }
     });
 
-    // Analyze button
-    analyzeBtn.addEventListener('click', analyzeFile);
+    // Reset button
+    resetBtn.addEventListener('click', resetStats);
+}
+
+/**
+ * Show upload modal
+ */
+function showUploadModal() {
+    uploadModal.hidden = false;
+    hideError();
+}
+
+/**
+ * Hide upload modal
+ */
+function hideUploadModal() {
+    uploadModal.hidden = true;
+}
+
+/**
+ * Reset stats and return to initial state
+ */
+function resetStats() {
+    selectedFile = null;
+    currentData = null;
+    fileName.textContent = '';
+    uploadArea.classList.remove('has-file');
+    statsSection.hidden = true;
+    resetBtn.hidden = true;
+    fileInput.value = '';
+    hideError();
 }
 
 /**
@@ -177,6 +217,106 @@ function showToolVariantsPopup(tool) {
 }
 
 /**
+ * Cloak tier data
+ */
+const CLOAK_TIERS = [
+    { name: 'Crimson Cloak', level: 'Base', icon: 'I_crimson_cloak.png' },
+    { name: "Drifter's Cloak", level: 'Tier 1', icon: 'I_spine_cloak.png' },
+    { name: 'Faydown Cloak', level: 'Tier 2', icon: 'I_spine_cloak_down.png' },
+];
+
+/**
+ * Needle upgrade data
+ */
+const NEEDLE_DATA = [
+    { name: 'Needle', level: 1, icon: 'Inv_0033_inv_nail_01.png' },
+    { name: 'Sharpened Needle', level: 2, icon: 'Inv_0033_inv_nail_02.png' },
+    { name: 'Shining Needle', level: 3, icon: 'Inv_0033_inv_nail_03.png' },
+    { name: 'Hivesteel Needle', level: 4, icon: 'Inv_0033_inv_nail_04.png' },
+    { name: 'Pale Steel Needle', level: 5, icon: 'Inv_0033_inv_nail_05.png' },
+];
+
+/**
+ * Update cloak display based on ability unlocks
+ */
+function updateCloakDisplay(data) {
+    const cloakIcon = document.getElementById('cloak-icon');
+    const cloakName = document.getElementById('cloak-name');
+
+    if (!cloakIcon || !cloakName) return;
+
+    // Determine cloak tier based on abilities
+    let cloakTier = 0; // Default: Crimson Cloak
+    if (data.abilities && data.abilities.otherAbilities) {
+        const hasDrifters = data.abilities.otherAbilities.some(a => a.json === 'hasBrolly' && a.value);
+        const hasFaydown = data.abilities.otherAbilities.some(a => a.json === 'hasDoubleJump' && a.value);
+
+        if (hasFaydown) {
+            cloakTier = 2;
+        } else if (hasDrifters) {
+            cloakTier = 1;
+        }
+    }
+
+    const cloak = CLOAK_TIERS[cloakTier];
+    cloakIcon.src = `assets/img/general/ability/${cloak.icon}`;
+    cloakIcon.alt = cloak.name;
+    cloakName.textContent = cloak.name;
+}
+
+/**
+ * Update needle display based on nailUpgrades
+ */
+function updateNeedleDisplay(data) {
+    // Current Stats elements
+    const needleIcon = document.getElementById('needle-icon');
+    const needleName = document.getElementById('needle-name');
+
+    // Unlockables elements
+    const unlockablesNeedleIcon = document.getElementById('unlockables-needle-icon');
+    const unlockablesNeedleName = document.getElementById('unlockables-needle-name');
+    const unlockablesNeedleLevel = document.getElementById('unlockables-needle-level');
+    const unlockablesNeedleUpgrades = document.getElementById('unlockables-needle-upgrades');
+
+    // Get nail upgrades from raw data (more reliable)
+    let nailUpgrades = 0;
+    if (data.raw) {
+        // Try direct access first
+        if (typeof data.raw.nailUpgrades !== 'undefined') {
+            nailUpgrades = parseInt(data.raw.nailUpgrades) || 0;
+        } else if (data.raw.get && typeof data.raw.get === 'function') {
+            // Handle Map objects from WASM
+            nailUpgrades = parseInt(data.raw.get('nailUpgrades')) || 0;
+        }
+    }
+    console.log('Nail upgrades:', nailUpgrades);
+
+    // Clamp to valid range (0-4)
+    nailUpgrades = Math.max(0, Math.min(4, nailUpgrades));
+
+    const needle = NEEDLE_DATA[nailUpgrades];
+
+    // Update Current Stats display (just icon and name)
+    if (needleIcon && needleName) {
+        needleIcon.src = `assets/img/general/nail/${needle.icon}`;
+        needleIcon.alt = needle.name;
+        needleName.textContent = needle.name;
+    }
+
+    // Update Unlockables display (with level)
+    if (unlockablesNeedleIcon && unlockablesNeedleName && unlockablesNeedleLevel) {
+        unlockablesNeedleIcon.src = `assets/img/general/nail/${needle.icon}`;
+        unlockablesNeedleIcon.alt = needle.name;
+        unlockablesNeedleName.textContent = needle.name;
+        unlockablesNeedleLevel.textContent = needle.level;
+    }
+
+    if (unlockablesNeedleUpgrades) {
+        unlockablesNeedleUpgrades.textContent = `${nailUpgrades} Upgrade${nailUpgrades !== 1 ? 's' : ''}`;
+    }
+}
+
+/**
  * Set up tab navigation
  */
 function setupTabs() {
@@ -208,9 +348,9 @@ function switchTab(tabId) {
 }
 
 /**
- * Handle file selection
+ * Handle file selection - auto-triggers analysis
  */
-function handleFileSelect(file) {
+async function handleFileSelect(file) {
     hideError();
 
     if (!file.name.endsWith('.dat')) {
@@ -221,12 +361,11 @@ function handleFileSelect(file) {
     selectedFile = file;
     fileName.textContent = file.name;
     uploadArea.classList.add('has-file');
-    analyzeBtn.disabled = false;
-
-    // Hide any previous stats
-    statsSection.hidden = true;
 
     console.log('File selected:', file.name, `(${(file.size / 1024).toFixed(1)} KB)`);
+
+    // Auto-analyze the file
+    await analyzeFile();
 }
 
 /**
@@ -243,9 +382,9 @@ async function analyzeFile() {
         return;
     }
 
-    // Show loading
+    // Hide modal and show loading
+    hideUploadModal();
     loading.hidden = false;
-    analyzeBtn.disabled = true;
     statsSection.hidden = true;
     hideError();
 
@@ -261,6 +400,8 @@ async function analyzeFile() {
             // Parse raw playerData using schema system
             currentData = parseAllData(result.playerData);
             displayStats(currentData);
+            // Show reset button after successful analysis
+            resetBtn.hidden = false;
         } else {
             throw new Error(result.error || 'Unknown error');
         }
@@ -269,7 +410,6 @@ async function analyzeFile() {
         showError('Failed to analyze save file: ' + error.message);
     } finally {
         loading.hidden = true;
-        analyzeBtn.disabled = false;
     }
 }
 
@@ -461,6 +601,10 @@ function displayStats(data) {
     const atBench = getField('current', 'atBench');
     setStat('atBench', atBench ? '✓ Yes' : '✗ No');
 
+    // Current Stats Tab - Cloak & Needle
+    updateCloakDisplay(data);
+    updateNeedleDisplay(data);
+
     // Misc Tab - Respawn Info
     setStat('respawnScene', getField('misc', 'respawnScene') || 'Unknown');
     setStat('respawnMarker', getField('misc', 'respawnMarkerName') || '-');
@@ -468,14 +612,18 @@ function displayStats(data) {
 
     // Abilities Tab - Populate abilities grid
     const abilitiesGrid = document.getElementById('abilities-grid');
+    const otherAbilitiesGrid = document.getElementById('other-abilities-grid');
     const abilitiesUnlockedCount = document.getElementById('abilities-unlocked-count');
+    const abilitiesPercent = document.getElementById('abilities-percent');
     if (abilitiesGrid && data.abilities) {
         abilitiesGrid.innerHTML = '';
         let unlockedCount = 0;
+        const total = data.abilities.abilities.length;
 
         for (const ability of data.abilities.abilities) {
             const abilityItem = document.createElement('div');
             abilityItem.className = 'ability-item';
+            if (!ability.value) abilityItem.classList.add('locked');
 
             const img = document.createElement('img');
             img.src = `assets/img/general/ability/${ability.icon || 'swiftstep.png'}`;
@@ -495,18 +643,54 @@ function displayStats(data) {
         }
 
         if (abilitiesUnlockedCount) abilitiesUnlockedCount.textContent = unlockedCount;
+        if (abilitiesPercent) {
+            abilitiesPercent.textContent = `${unlockedCount}%`;
+            if (unlockedCount === total) {
+                abilitiesPercent.classList.add('maxed');
+            } else {
+                abilitiesPercent.classList.remove('maxed');
+            }
+        }
+    }
+
+    // Other Abilities Grid (Drifter's Cloak) - Not counted in main stats
+    if (otherAbilitiesGrid && data.abilities && data.abilities.otherAbilities) {
+        otherAbilitiesGrid.innerHTML = '';
+
+        for (const ability of data.abilities.otherAbilities) {
+            const abilityItem = document.createElement('div');
+            abilityItem.className = 'ability-item';
+            if (!ability.value) abilityItem.classList.add('locked');
+
+            const img = document.createElement('img');
+            img.src = `assets/img/general/ability/${ability.icon || 'drifterscloak.png'}`;
+            img.alt = ability.display;
+            img.title = `${ability.display} (${ability.value ? 'Unlocked' : 'Locked'})`;
+            img.className = ability.value ? 'unlocked' : 'locked';
+
+            const label = document.createElement('span');
+            label.textContent = ability.display;
+            label.title = ability.display;
+
+            abilityItem.appendChild(img);
+            abilityItem.appendChild(label);
+            otherAbilitiesGrid.appendChild(abilityItem);
+        }
     }
 
     // Skills Tab - Populate skills grid
     const skillsGrid = document.getElementById('skills-grid');
     const skillsUnlockedCount = document.getElementById('skills-unlocked-count');
+    const skillsPercent = document.getElementById('skills-percent');
     if (skillsGrid && data.skills) {
         skillsGrid.innerHTML = '';
         let unlockedCount = 0;
+        const total = data.skills.skills.length;
 
         for (const skill of data.skills.skills) {
             const skillItem = document.createElement('div');
             skillItem.className = 'skill-item';
+            if (!skill.value) skillItem.classList.add('locked');
 
             const img = document.createElement('img');
             img.src = `assets/img/general/skills/${skill.icon || 'Art_Rune__0002_silk_spear.png'}`;
@@ -526,15 +710,25 @@ function displayStats(data) {
         }
 
         if (skillsUnlockedCount) skillsUnlockedCount.textContent = unlockedCount;
+        if (skillsPercent) {
+            skillsPercent.textContent = `${unlockedCount}%`;
+            if (unlockedCount === total) {
+                skillsPercent.classList.add('maxed');
+            } else {
+                skillsPercent.classList.remove('maxed');
+            }
+        }
     }
 
     // Tools Tab - Populate tool grid
     const toolsGrid = document.getElementById('tools-grid');
     const toolsUnlockedCount = document.getElementById('tools-unlocked-count');
     const toolsTotalCount = document.getElementById('tools-total-count');
+    const toolsPercent = document.getElementById('tools-percent');
     if (toolsGrid && data.tools) {
         toolsGrid.innerHTML = '';
         let unlockedCount = 0;
+        const total = data.tools.stats.total;
 
         for (const tool of data.tools.tools) {
             const toolItem = document.createElement('div');
@@ -571,7 +765,15 @@ function displayStats(data) {
         }
 
         if (toolsUnlockedCount) toolsUnlockedCount.textContent = unlockedCount;
-        if (toolsTotalCount) toolsTotalCount.textContent = data.tools.stats.total;
+        if (toolsTotalCount) toolsTotalCount.textContent = total;
+        if (toolsPercent) {
+            toolsPercent.textContent = `${unlockedCount}%`;
+            if (unlockedCount === total) {
+                toolsPercent.classList.add('maxed');
+            } else {
+                toolsPercent.classList.remove('maxed');
+            }
+        }
     }
 
     // Other Tools Grid - Items not counted in total
@@ -628,6 +830,11 @@ function displayStats(data) {
             const label = document.createElement('span');
             label.textContent = map.display;
             label.title = map.display;
+
+            // Add special colored status for Abyss map (since icon is hard to see)
+            if (isPlaceholder) {
+                label.classList.add(map.value ? 'status-unlocked' : 'status-locked');
+            }
 
             mapItem.appendChild(img);
             mapItem.appendChild(label);

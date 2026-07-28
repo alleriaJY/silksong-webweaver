@@ -222,6 +222,164 @@ header h1 {
     font-style: italic;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPACT STATS HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stats-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
+.stats-header-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.header-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-btn .btn-icon {
+    font-size: 1rem;
+}
+
+.header-btn.upload-btn {
+    color: white;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.header-btn.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px var(--primary-glow);
+}
+
+.header-btn.reset-btn {
+    color: var(--text-primary);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+.header-btn.reset-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--primary-color);
+}
+
+.header-btn[hidden] {
+    display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UPLOAD MODAL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.upload-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-modal[hidden] {
+    display: none;
+}
+
+.upload-modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.upload-modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-panel) 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.upload-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.upload-modal-header h2 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.upload-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.upload-modal-close:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+.upload-modal .upload-area {
+    margin-bottom: 1rem;
+}
+
+.upload-modal .upload-hint {
+    text-align: center;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
 /* Upload Section */
 .upload-section {
     margin-bottom: 2rem;
@@ -501,6 +659,54 @@ header h1 {
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Section Header with Unlocked Stats */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.unlocked-stats {
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: var(--text-secondary);
+}
+
+.unlocked-stats strong {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.unlocked-stats strong.maxed {
+    color: #22c55e;
+}
+
+/* Compact Placeholder Card */
+.placeholder-card.compact {
+    padding: 0.25rem 0;
+    text-align: left;
+    color: var(--text-secondary);
+}
+
+.placeholder-card.compact p {
+    margin: 0;
+    font-size: 0.75rem;
+    font-style: italic;
+    opacity: 0.6;
+}
+
+/* Status Colors for Map Labels */
+.status-unlocked {
+    color: var(--accent-color) !important;
+    font-weight: 600;
+}
+
+.status-locked {
+    color: #f87171 !important;
+    font-weight: 600;
+}
+
 .stat-row {
     display: flex;
     justify-content: space-between;
@@ -659,6 +865,91 @@ header h1 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/* Equipment Display (Cloak & Needle) */
+.equipment-display {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.equipment-display.centered {
+    justify-content: center;
+}
+
+.equipment-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-panel);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.equipment-item.large {
+    padding: 1rem 1.5rem;
+}
+
+.equipment-item img {
+    height: 48px;
+    width: auto;
+    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.4));
+}
+
+.equipment-item.large img {
+    height: 64px;
+}
+
+.equipment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.equipment-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.equipment-level {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+/* Equipment Columns (2-column layout for Cloak & Needle) */
+.equipment-columns {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+.equipment-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.equipment-column img {
+    height: 48px;
+    width: auto;
+    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.4));
+}
+
+#needle-icon {
+    height: 40px;
+}
+
+.equipment-column span {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
 }
 
 /* Maps Grid */
@@ -877,6 +1168,10 @@ header h1 {
     white-space: nowrap;
 }
 
+.ability-item.locked span {
+    opacity: 0.5;
+}
+
 /* Skills Grid */
 .skills-grid {
     display: grid;
@@ -921,6 +1216,10 @@ header h1 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.skill-item.locked span {
+    opacity: 0.5;
 }
 
 /* Currency Display */

@@ -291,11 +291,17 @@ export function parseAbilities(playerData) {
         icon: item.icon,
         value: getValue(playerData, item.json) || false,
     }));
+    const otherAbilities = schemas.OTHER_ABILITY_LIST.map(item => ({
+        json: item.json,
+        display: item.display,
+        icon: item.icon,
+        value: getValue(playerData, item.json) || false,
+    }));
     const stats = {
         total: abilities.length,
         unlocked: abilities.filter(a => a.value).length,
     };
-    return { abilities, stats };
+    return { abilities, otherAbilities, stats };
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
