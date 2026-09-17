@@ -1,0 +1,4 @@
+# Development dependencies for Python tools testing
+# These are for local development only, not deployed to GitHub Pages
+
+pytest>=8.0.0
