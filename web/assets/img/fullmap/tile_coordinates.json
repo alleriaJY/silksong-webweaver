@@ -3,63 +3,11 @@
     "fullmap": "full_pharloom_clean.webp",
     "fullmap_width": 4096,
     "fullmap_height": 4096,
-    "total_tiles": 832,
-    "matched_tiles": 641,
-    "failed_tiles": 128,
-    "low_confidence_tiles": 0,
-    "min_confidence_threshold": 0.3,
-    "scales_tested": [
-      0.7,
-      0.8,
-      0.9,
-      1.0,
-      1.1,
-      1.2,
-      1.3
-    ],
-    "generated_at": "2025-12-31 15:50:28"
+    "total_tiles": 669,
+    "confirmed_count": 629,
+    "generated_at": "2026-07-28 17:31:02"
   },
   "tiles": {
-    "__0000_Ward_05_right.png": {
-      "x": 2476,
-      "y": 2084,
-      "width": 105,
-      "height": 40,
-      "confidence": 0.5229,
-      "scale": 1.3,
-      "area": "0000",
-      "confirmed": false
-    },
-    "__0001_Ward_05.png": {
-      "x": 1965,
-      "y": 1549,
-      "width": 145,
-      "height": 35,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "0001",
-      "confirmed": true
-    },
-    "__0002_Ward_01_top_right.png": {
-      "x": 639,
-      "y": 1752,
-      "width": 27,
-      "height": 51,
-      "confidence": 0.56,
-      "scale": 0.9,
-      "area": "0002",
-      "confirmed": false
-    },
-    "__0003_Ward_04.png": {
-      "x": 1975,
-      "y": 1576,
-      "width": 59,
-      "height": 42,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "0003",
-      "confirmed": true
-    },
     "Abyss_01.png": {
       "x": 1743,
       "y": 3279,
@@ -105,6 +53,16 @@
       "y": 3166,
       "width": 93,
       "height": 55,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Abyss",
+      "confirmed": true
+    },
+    "Abyss_04.png": {
+      "x": 1838,
+      "y": 3365,
+      "width": 44,
+      "height": 20,
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Abyss",
@@ -335,10 +293,10 @@
       "y": 2464,
       "width": 122,
       "height": 28,
-      "confidence": 0.6077,
-      "scale": 1.2,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Ant",
-      "confirmed": false
+      "confirmed": true
     },
     "Ant_20.png": {
       "x": 2463,
@@ -371,14 +329,14 @@
       "confirmed": true
     },
     "Ant_Merchant.png": {
-      "x": 1293,
-      "y": 2121,
-      "width": 124,
-      "height": 28,
-      "confidence": 0.4728,
-      "scale": 1.1,
+      "x": 2238,
+      "y": 2468,
+      "width": 113,
+      "height": 26,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Ant",
-      "confirmed": false
+      "confirmed": true
     },
     "Ant_Merchant_b.png": {
       "x": 2393,
@@ -391,14 +349,14 @@
       "confirmed": true
     },
     "Ant_Merchant_left.png": {
-      "x": 2271,
-      "y": 2547,
+      "x": 2238,
+      "y": 2460,
       "width": 158,
       "height": 36,
-      "confidence": 0.5322,
-      "scale": 1.1,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Ant",
-      "confirmed": false
+      "confirmed": true
     },
     "Aqueduct_01 #4264982.png": {
       "x": 2718,
@@ -561,14 +519,14 @@
       "confirmed": true
     },
     "Arborium_04.png": {
-      "x": 2107,
-      "y": 1205,
-      "width": 282,
-      "height": 61,
-      "confidence": 0.4328,
-      "scale": 1.3,
+      "x": 2212,
+      "y": 1182,
+      "width": 217,
+      "height": 47,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Arborium",
-      "confirmed": false
+      "confirmed": true
     },
     "Arborium_05 #4264780.png": {
       "x": 2237,
@@ -690,6 +648,16 @@
       "area": "Aspid",
       "confirmed": true
     },
+    "Bellshrine #4264913.png": {
+      "x": 2328,
+      "y": 2747,
+      "width": 54,
+      "height": 29,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bellshrine #4264913",
+      "confirmed": true
+    },
     "Bellshrine_Coral.png": {
       "x": 1120,
       "y": 1681,
@@ -708,16 +676,6 @@
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Bellshrine",
-      "confirmed": true
-    },
-    "Bellshrine #4264913.png": {
-      "x": 2328,
-      "y": 2747,
-      "width": 54,
-      "height": 29,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "Bellshrine #4264913",
       "confirmed": true
     },
     "Belltown.png": {
@@ -771,14 +729,14 @@
       "confirmed": true
     },
     "Belltown_07.png": {
-      "x": 2121,
-      "y": 2845,
-      "width": 144,
-      "height": 33,
-      "confidence": 0.6221,
-      "scale": 1.3,
+      "x": 1598,
+      "y": 2363,
+      "width": 111,
+      "height": 26,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Belltown",
-      "confirmed": false
+      "confirmed": true
     },
     "Belltown_08 #4265402.png": {
       "x": 1676,
@@ -901,14 +859,14 @@
       "confirmed": true
     },
     "Bellway_Aqueduct_top.png": {
-      "x": 3120,
-      "y": 1521,
+      "x": 3079,
+      "y": 1108,
       "width": 105,
       "height": 100,
-      "confidence": 0.4601,
-      "scale": 1.3,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Bellway",
-      "confirmed": false
+      "confirmed": true
     },
     "Bellway_City.png": {
       "x": 2279,
@@ -948,6 +906,16 @@
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Bellway",
+      "confirmed": true
+    },
+    "Bone_01.png": {
+      "x": 973,
+      "y": 2640,
+      "width": 248,
+      "height": 159,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bone",
       "confirmed": true
     },
     "Bone_01b.png": {
@@ -1410,6 +1378,16 @@
       "area": "Bone",
       "confirmed": true
     },
+    "Bone_East_15.png": {
+      "x": 1544,
+      "y": 2606,
+      "width": 125,
+      "height": 102,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bone",
+      "confirmed": true
+    },
     "Bone_East_15_bot #4264866.png": {
       "x": 2462,
       "y": 2644,
@@ -1640,56 +1618,6 @@
       "area": "Bone",
       "confirmed": true
     },
-    "_0000_Bone_East_18b_bot.png": {
-      "x": 3407,
-      "y": 2555,
-      "width": 68,
-      "height": 127,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "Bone",
-      "confirmed": true
-    },
-    "_0000_Bone_East_18b_bot_left.png": {
-      "x": 3351,
-      "y": 2644,
-      "width": 82,
-      "height": 37,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "Bone",
-      "confirmed": true
-    },
-    "_0001_Bone_East_18_right.png": {
-      "x": 3072,
-      "y": 2517,
-      "width": 151,
-      "height": 84,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "Bone",
-      "confirmed": true
-    },
-    "_0002_Bone_East_18b_right.png": {
-      "x": 3462,
-      "y": 2535,
-      "width": 197,
-      "height": 52,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "Bone",
-      "confirmed": true
-    },
-    "_0003_Bone_East_18b.png": {
-      "x": 3216,
-      "y": 2536,
-      "width": 276,
-      "height": 63,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "Bone",
-      "confirmed": true
-    },
     "Bonegrave.png": {
       "x": 331,
       "y": 2662,
@@ -1700,16 +1628,6 @@
       "area": "Bonegrave",
       "confirmed": true
     },
-    "Bonetown_top_left.png": {
-      "x": 572,
-      "y": 2634,
-      "width": 239,
-      "height": 112,
-      "confidence": 1.0,
-      "scale": 1.0,
-      "area": "Bonetown",
-      "confirmed": true
-    },
     "Bonetown #4265092.png": {
       "x": 564,
       "y": 2691,
@@ -1718,6 +1636,16 @@
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Bonetown #4265092",
+      "confirmed": true
+    },
+    "Bonetown_top_left.png": {
+      "x": 572,
+      "y": 2634,
+      "width": 239,
+      "height": 112,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bonetown",
       "confirmed": true
     },
     "Clover_01 #4264360.png": {
@@ -2170,6 +2098,16 @@
       "area": "Coral",
       "confirmed": true
     },
+    "Coral_30.png": {
+      "x": 424,
+      "y": 1774,
+      "width": 223,
+      "height": 61,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Coral",
+      "confirmed": true
+    },
     "Coral_32.png": {
       "x": 847,
       "y": 1790,
@@ -2241,20 +2179,30 @@
       "confirmed": true
     },
     "Coral_35_top.png": {
-      "x": 1497,
-      "y": 1761,
+      "x": 632,
+      "y": 1529,
       "width": 63,
       "height": 286,
-      "confidence": 0.4155,
-      "scale": 1.3,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Coral",
-      "confirmed": false
+      "confirmed": true
     },
     "Coral_35_top_secret #4265144.png": {
       "x": 650,
       "y": 1533,
       "width": 29,
       "height": 78,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Coral",
+      "confirmed": true
+    },
+    "Coral_36 #4265385.png": {
+      "x": 698,
+      "y": 1845,
+      "width": 32,
+      "height": 12,
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Coral",
@@ -2390,6 +2338,17 @@
       "area": "Coral",
       "confirmed": true
     },
+    "Cradle_01 #4264426.png": {
+      "x": 2056,
+      "y": 538,
+      "width": 137,
+      "height": 33,
+      "confidence": 0.8,
+      "scale": 1.0,
+      "area": "Cradle",
+      "confirmed": false,
+      "source": "ocr"
+    },
     "Cradle_01_Destroyed.png": {
       "x": 2005,
       "y": 760,
@@ -2399,6 +2358,17 @@
       "scale": 1.0,
       "area": "Cradle",
       "confirmed": true
+    },
+    "Cradle_03.png": {
+      "x": 1984,
+      "y": 599,
+      "width": 137,
+      "height": 184,
+      "confidence": 0.7778,
+      "scale": 1.0,
+      "area": "Cradle",
+      "confirmed": false,
+      "source": "ocr"
     },
     "Cradle_03_Destroyed.png": {
       "x": 2001,
@@ -2531,14 +2501,14 @@
       "confirmed": true
     },
     "Dock_01b.png": {
-      "x": 2849,
-      "y": 2533,
-      "width": 221,
-      "height": 54,
-      "confidence": 0.396,
-      "scale": 1.3,
+      "x": 2440,
+      "y": 2801,
+      "width": 170,
+      "height": 42,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Dock",
-      "confirmed": false
+      "confirmed": true
     },
     "Dock_01b_2.png": {
       "x": 1893,
@@ -2620,6 +2590,16 @@
       "area": "Dock",
       "confirmed": true
     },
+    "Dock_03.png": {
+      "x": 2547,
+      "y": 2784,
+      "width": 222,
+      "height": 75,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Dock",
+      "confirmed": true
+    },
     "Dock_03_top_left.png": {
       "x": 2968,
       "y": 2722,
@@ -2661,14 +2641,14 @@
       "confirmed": true
     },
     "Dock_03b_left.png": {
-      "x": 2713,
-      "y": 2906,
+      "x": 2549,
+      "y": 2790,
       "width": 22,
       "height": 48,
-      "confidence": 0.5636,
-      "scale": 1.3,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Dock",
-      "confirmed": false
+      "confirmed": true
     },
     "Dock_03c.png": {
       "x": 2584,
@@ -3090,6 +3070,16 @@
       "area": "Greymoor",
       "confirmed": true
     },
+    "Greymoor_05.png": {
+      "x": 2112,
+      "y": 2205,
+      "width": 185,
+      "height": 138,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Greymoor",
+      "confirmed": true
+    },
     "Greymoor_06 #4264542.png": {
       "x": 2096,
       "y": 2200,
@@ -3115,6 +3105,16 @@
       "y": 2085,
       "width": 53,
       "height": 108,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Greymoor",
+      "confirmed": true
+    },
+    "Greymoor_07.png": {
+      "x": 1985,
+      "y": 2193,
+      "width": 125,
+      "height": 166,
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Greymoor",
@@ -4591,14 +4591,14 @@
       "confirmed": true
     },
     "Shellwood_03.png": {
-      "x": 782,
-      "y": 2138,
+      "x": 1165,
+      "y": 2184,
       "width": 74,
       "height": 231,
-      "confidence": 0.4137,
-      "scale": 1.1,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Shellwood",
-      "confirmed": false
+      "confirmed": true
     },
     "Shellwood_04b #4264420.png": {
       "x": 896,
@@ -4621,14 +4621,14 @@
       "confirmed": true
     },
     "Shellwood_08.png": {
-      "x": 1049,
-      "y": 2591,
-      "width": 197,
-      "height": 45,
-      "confidence": 0.4846,
-      "scale": 1.3,
+      "x": 863,
+      "y": 2204,
+      "width": 152,
+      "height": 35,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Shellwood",
-      "confirmed": false
+      "confirmed": true
     },
     "Shellwood_08c.png": {
       "x": 858,
@@ -4701,14 +4701,14 @@
       "confirmed": true
     },
     "Shellwood_14.png": {
-      "x": 1049,
-      "y": 2593,
+      "x": 1178,
+      "y": 2228,
       "width": 255,
       "height": 42,
-      "confidence": 0.4718,
-      "scale": 1.2,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Shellwood",
-      "confirmed": false
+      "confirmed": true
     },
     "Shellwood_15.png": {
       "x": 1486,
@@ -4808,6 +4808,16 @@
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Shellwood",
+      "confirmed": true
+    },
+    "Slab_01.png": {
+      "x": 1247,
+      "y": 1380,
+      "width": 306,
+      "height": 52,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Slab",
       "confirmed": true
     },
     "Slab_02.png": {
@@ -5080,6 +5090,16 @@
       "area": "Slab",
       "confirmed": true
     },
+    "Slab_22.png": {
+      "x": 915,
+      "y": 1122,
+      "width": 416,
+      "height": 67,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Slab",
+      "confirmed": true
+    },
     "Slab_23.png": {
       "x": 1120,
       "y": 1347,
@@ -5131,14 +5151,14 @@
       "confirmed": false
     },
     "Song_01b #4265426.png": {
-      "x": 2103,
-      "y": 1580,
-      "width": 160,
-      "height": 28,
-      "confidence": 0.4484,
-      "scale": 0.8,
+      "x": 1390,
+      "y": 1532,
+      "width": 201,
+      "height": 36,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_03.png": {
       "x": 1397,
@@ -5180,15 +5200,21 @@
       "area": "Song",
       "confirmed": true
     },
+    "Song_07 #4264683": {
+      "labeled_x": 1800,
+      "labeled_y": 989,
+      "clean_x": 1777,
+      "clean_y": 1491
+    },
     "Song_07 #4264683.png": {
-      "x": 1516,
-      "y": 2221,
-      "width": 150,
-      "height": 36,
-      "confidence": 0.5346,
-      "scale": 1.3,
+      "x": 1720,
+      "y": 1477,
+      "width": 116,
+      "height": 28,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_09 #4264895.png": {
       "x": 1816,
@@ -5200,15 +5226,21 @@
       "area": "Song",
       "confirmed": true
     },
+    "Song_09_2": {
+      "labeled_x": 1867,
+      "labeled_y": 818,
+      "clean_x": 1848,
+      "clean_y": 1313
+    },
     "Song_09_2.png": {
-      "x": 2499,
-      "y": 1573,
-      "width": 16,
-      "height": 36,
-      "confidence": 0.4312,
-      "scale": 0.8,
+      "x": 1839,
+      "y": 1298,
+      "width": 20,
+      "height": 45,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_09b.png": {
       "x": 1818,
@@ -5221,24 +5253,30 @@
       "confirmed": true
     },
     "Song_09b_top.png": {
-      "x": 1664,
-      "y": 1892,
-      "width": 224,
-      "height": 34,
-      "confidence": 0.4943,
-      "scale": 1.1,
+      "x": 1783,
+      "y": 1358,
+      "width": 204,
+      "height": 31,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
+    },
+    "Song_10": {
+      "labeled_x": 1698,
+      "labeled_y": 943,
+      "clean_x": 1672,
+      "clean_y": 1444
     },
     "Song_10.png": {
-      "x": 1202,
-      "y": 1997,
-      "width": 109,
-      "height": 82,
-      "confidence": 0.3898,
-      "scale": 1.2,
+      "x": 1582,
+      "y": 1410,
+      "width": 91,
+      "height": 69,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_10_2.png": {
       "x": 1648,
@@ -5281,14 +5319,14 @@
       "confirmed": false
     },
     "Song_10_shortcut.png": {
-      "x": 2322,
-      "y": 1578,
-      "width": 19,
-      "height": 33,
-      "confidence": 0.4741,
-      "scale": 1.1,
+      "x": 1718,
+      "y": 1421,
+      "width": 18,
+      "height": 30,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_11.png": {
       "x": 1743,
@@ -5301,34 +5339,34 @@
       "confirmed": true
     },
     "Song_11_2.png": {
-      "x": 2412,
-      "y": 1569,
-      "width": 41,
-      "height": 159,
-      "confidence": 0.5052,
-      "scale": 1.1,
+      "x": 1742,
+      "y": 1346,
+      "width": 38,
+      "height": 145,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_11_3.png": {
-      "x": 1754,
-      "y": 1440,
+      "x": 1767,
+      "y": 1227,
       "width": 66,
       "height": 50,
-      "confidence": 0.3862,
-      "scale": 1.1,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_11_top #4264774.png": {
-      "x": 948,
-      "y": 799,
-      "width": 120,
-      "height": 260,
-      "confidence": 0.3801,
-      "scale": 1.2,
+      "x": 1713,
+      "y": 1208,
+      "width": 100,
+      "height": 217,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_12.png": {
       "x": 1589,
@@ -5341,14 +5379,14 @@
       "confirmed": true
     },
     "Song_13.png": {
-      "x": 1846,
-      "y": 1228,
-      "width": 176,
-      "height": 37,
-      "confidence": 0.497,
-      "scale": 1.2,
+      "x": 1610,
+      "y": 1392,
+      "width": 147,
+      "height": 31,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_14 #4265469.png": {
       "x": 1123,
@@ -5361,44 +5399,44 @@
       "confirmed": false
     },
     "Song_15.png": {
-      "x": 1931,
-      "y": 1458,
-      "width": 189,
-      "height": 41,
-      "confidence": 0.4846,
-      "scale": 1.3,
+      "x": 1621,
+      "y": 1302,
+      "width": 146,
+      "height": 32,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_15_top.png": {
-      "x": 1152,
-      "y": 1543,
+      "x": 1611,
+      "y": 1263,
       "width": 112,
       "height": 56,
-      "confidence": 0.3645,
-      "scale": 1.2,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_17.png": {
-      "x": 838,
-      "y": 2125,
-      "width": 240,
-      "height": 112,
-      "confidence": 0.4032,
-      "scale": 1.2,
+      "x": 1562,
+      "y": 1190,
+      "width": 200,
+      "height": 94,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_18.png": {
-      "x": 1673,
-      "y": 1784,
-      "width": 188,
-      "height": 35,
-      "confidence": 0.4143,
-      "scale": 1.1,
+      "x": 1854,
+      "y": 1404,
+      "width": 171,
+      "height": 32,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_18_2.png": {
       "x": 1926,
@@ -5415,10 +5453,10 @@
       "y": 1460,
       "width": 393,
       "height": 38,
-      "confidence": 0.3723,
-      "scale": 0.9,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_19_entrance.png": {
       "x": 1280,
@@ -5451,14 +5489,14 @@
       "confirmed": true
     },
     "Song_20_2.png": {
-      "x": 1603,
-      "y": 2313,
-      "width": 39,
-      "height": 41,
-      "confidence": 0.6089,
-      "scale": 1.3,
+      "x": 2233,
+      "y": 1476,
+      "width": 30,
+      "height": 32,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_20b #4265040.png": {
       "x": 2217,
@@ -5491,34 +5529,34 @@
       "confirmed": true
     },
     "Song_25b.png": {
-      "x": 2504,
-      "y": 1839,
-      "width": 48,
-      "height": 40,
-      "confidence": 0.4046,
-      "scale": 1.1,
+      "x": 2312,
+      "y": 1228,
+      "width": 44,
+      "height": 37,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_26.png": {
-      "x": 2732,
-      "y": 1165,
+      "x": 1538,
+      "y": 1322,
       "width": 55,
       "height": 31,
-      "confidence": 0.5445,
-      "scale": 0.9,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_28.png": {
-      "x": 2146,
-      "y": 1880,
-      "width": 54,
-      "height": 21,
-      "confidence": 0.4676,
-      "scale": 0.8,
+      "x": 1530,
+      "y": 1368,
+      "width": 68,
+      "height": 27,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_28_2.png": {
       "x": 1911,
@@ -5530,15 +5568,21 @@
       "area": "Song",
       "confirmed": false
     },
+    "Song_29": {
+      "labeled_x": 2186,
+      "labeled_y": 792,
+      "clean_x": 2180,
+      "clean_y": 1286
+    },
     "Song_29.png": {
-      "x": 1776,
-      "y": 1617,
-      "width": 107,
-      "height": 42,
-      "confidence": 0.5624,
-      "scale": 1.3,
+      "x": 2148,
+      "y": 1272,
+      "width": 83,
+      "height": 33,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
     },
     "Song_Enclave #4264749.png": {
       "x": 2434,
@@ -5580,15 +5624,27 @@
       "area": "Song",
       "confirmed": true
     },
+    "Song_Tower_Destroyed_Top": {
+      "labeled_x": 2067,
+      "labeled_y": 364,
+      "clean_x": 2058,
+      "clean_y": 842
+    },
     "Song_Tower_Destroyed_Top.png": {
-      "x": 2810,
-      "y": 1855,
+      "x": 2013,
+      "y": 890,
       "width": 85,
       "height": 41,
-      "confidence": 0.4089,
-      "scale": 1.3,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Song",
-      "confirmed": false
+      "confirmed": true
+    },
+    "Song_Tower_Destroyed_bot": {
+      "labeled_x": 2067,
+      "labeled_y": 404,
+      "clean_x": 2058,
+      "clean_y": 884
     },
     "Song_Tower_Destroyed_bot.png": {
       "x": 1420,
@@ -5950,6 +6006,22 @@
       "area": "Under",
       "confirmed": true
     },
+    "Under_17": {
+      "labeled_x": 2171,
+      "labeled_y": 1251,
+      "clean_x": 2163,
+      "clean_y": 1763
+    },
+    "Under_17.png": {
+      "x": 2022,
+      "y": 1723,
+      "width": 279,
+      "height": 84,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Under",
+      "confirmed": true
+    },
     "Under_17_2.png": {
       "x": 2193,
       "y": 1782,
@@ -5960,15 +6032,21 @@
       "area": "Under",
       "confirmed": true
     },
+    "Under_18": {
+      "labeled_x": 2165,
+      "labeled_y": 1314,
+      "clean_x": 2156,
+      "clean_y": 1828
+    },
     "Under_18.png": {
-      "x": 1806,
-      "y": 2371,
-      "width": 235,
-      "height": 100,
-      "confidence": 0.3707,
-      "scale": 1.3,
+      "x": 2062,
+      "y": 1790,
+      "width": 181,
+      "height": 77,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Under",
-      "confirmed": false
+      "confirmed": true
     },
     "Under_18_2.png": {
       "x": 2053,
@@ -5980,15 +6058,21 @@
       "area": "Under",
       "confirmed": true
     },
+    "Under_19": {
+      "labeled_x": 2181,
+      "labeled_y": 1391,
+      "clean_x": 2172,
+      "clean_y": 1908
+    },
     "Under_19.png": {
-      "x": 2529,
-      "y": 1945,
-      "width": 343,
-      "height": 44,
-      "confidence": 0.4366,
-      "scale": 1.2,
+      "x": 2026,
+      "y": 1892,
+      "width": 286,
+      "height": 37,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Under",
-      "confirmed": false
+      "confirmed": true
     },
     "Under_19b.png": {
       "x": 2065,
@@ -6058,6 +6142,16 @@
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Under",
+      "confirmed": true
+    },
+    "Ward_01 #4264512.png": {
+      "x": 1862,
+      "y": 1504,
+      "width": 121,
+      "height": 186,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Ward",
       "confirmed": true
     },
     "Ward_01_2 #4265023.png": {
@@ -6155,6 +6249,22 @@
       "y": 1602,
       "width": 55,
       "height": 16,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Ward",
+      "confirmed": true
+    },
+    "Ward_05": {
+      "labeled_x": 2090,
+      "labeled_y": 1060,
+      "clean_x": 2079,
+      "clean_y": 1565
+    },
+    "Ward_05.png": {
+      "x": 2063,
+      "y": 1560,
+      "width": 32,
+      "height": 8,
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Ward",
@@ -6320,6 +6430,17 @@
       "area": "Weave",
       "confirmed": true
     },
+    "Wisp_01.png": {
+      "x": 1894,
+      "y": 2132,
+      "width": 14,
+      "height": 32,
+      "confidence": 0.5714,
+      "scale": 1.0,
+      "area": "Wisp",
+      "confirmed": false,
+      "source": "ocr"
+    },
     "Wisp_02.png": {
       "x": 1788,
       "y": 2028,
@@ -6360,6 +6481,12 @@
       "area": "Wisp",
       "confirmed": true
     },
+    "Wisp_05": {
+      "labeled_x": 1987,
+      "labeled_y": 1435,
+      "clean_x": 1970,
+      "clean_y": 1954
+    },
     "Wisp_05 #4264671.png": {
       "x": 1936,
       "y": 1949,
@@ -6371,14 +6498,14 @@
       "confirmed": true
     },
     "Wisp_05.png": {
-      "x": 1579,
-      "y": 1672,
-      "width": 35,
-      "height": 41,
-      "confidence": 0.3991,
-      "scale": 1.3,
+      "x": 1958,
+      "y": 1937,
+      "width": 27,
+      "height": 32,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Wisp",
-      "confirmed": false
+      "confirmed": true
     },
     "Wisp_06.png": {
       "x": 1895,
@@ -6400,15 +6527,21 @@
       "area": "Wisp",
       "confirmed": true
     },
+    "Wisp_08": {
+      "labeled_x": 2210,
+      "labeled_y": 1489,
+      "clean_x": 2202,
+      "clean_y": 2010
+    },
     "Wisp_08.png": {
-      "x": 2786,
-      "y": 2457,
+      "x": 2177,
+      "y": 1879,
       "width": 59,
       "height": 257,
-      "confidence": 0.4495,
-      "scale": 1.3,
+      "confidence": 1.0,
+      "scale": 1.0,
       "area": "Wisp",
-      "confirmed": false
+      "confirmed": true
     },
     "Wisp_09.png": {
       "x": 1805,
@@ -6418,6 +6551,96 @@
       "confidence": 1.0,
       "scale": 1.0,
       "area": "Wisp",
+      "confirmed": true
+    },
+    "_0000_Bone_East_18b_bot.png": {
+      "x": 3407,
+      "y": 2555,
+      "width": 68,
+      "height": 127,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bone",
+      "confirmed": true
+    },
+    "_0000_Bone_East_18b_bot_left.png": {
+      "x": 3351,
+      "y": 2644,
+      "width": 82,
+      "height": 37,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bone",
+      "confirmed": true
+    },
+    "_0001_Bone_East_18_right.png": {
+      "x": 3072,
+      "y": 2517,
+      "width": 151,
+      "height": 84,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bone",
+      "confirmed": true
+    },
+    "_0002_Bone_East_18b_right.png": {
+      "x": 3462,
+      "y": 2535,
+      "width": 197,
+      "height": 52,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bone",
+      "confirmed": true
+    },
+    "_0003_Bone_East_18b.png": {
+      "x": 3216,
+      "y": 2536,
+      "width": 276,
+      "height": 63,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "Bone",
+      "confirmed": true
+    },
+    "__0000_Ward_05_right.png": {
+      "x": 2476,
+      "y": 2084,
+      "width": 105,
+      "height": 40,
+      "confidence": 0.5229,
+      "scale": 1.3,
+      "area": "0000",
+      "confirmed": false
+    },
+    "__0001_Ward_05.png": {
+      "x": 1965,
+      "y": 1549,
+      "width": 145,
+      "height": 35,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "0001",
+      "confirmed": true
+    },
+    "__0002_Ward_01_top_right.png": {
+      "x": 639,
+      "y": 1752,
+      "width": 27,
+      "height": 51,
+      "confidence": 0.56,
+      "scale": 0.9,
+      "area": "0002",
+      "confirmed": false
+    },
+    "__0003_Ward_04.png": {
+      "x": 1975,
+      "y": 1576,
+      "width": 59,
+      "height": 42,
+      "confidence": 1.0,
+      "scale": 1.0,
+      "area": "0003",
       "confirmed": true
     },
     "shellwood_25.png": {

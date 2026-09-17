@@ -800,12 +800,21 @@
 
         const STORAGE_KEY = 'pharloom_confirmed_tiles';
 
-        // Load confirmed tiles from localStorage
-        function loadConfirmedTiles() {
+        // Load confirmed tiles from localStorage or fall back to server file
+        async function loadConfirmedTiles() {
             try {
                 const stored = localStorage.getItem(STORAGE_KEY);
-                if (stored) {
+                if (stored && Object.keys(JSON.parse(stored)).length > 0) {
                     confirmedTiles = JSON.parse(stored);
+                } else {
+                    const res = await fetch('assets/img/fullmap/confirmed_tiles.json');
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.tiles) {
+                            confirmedTiles = data.tiles;
+                            saveConfirmedTiles();
+                        }
+                    }
                 }
             } catch (e) {
                 console.error('Error loading confirmed tiles:', e);
@@ -962,7 +971,7 @@
 
         // Load tile coordinates
         async function loadData() {
-            loadConfirmedTiles();
+            await loadConfirmedTiles();
 
             try {
                 const response = await fetch('assets/img/fullmap/tile_coordinates.json');
@@ -1239,7 +1248,7 @@
 
             Object.entries(filteredTiles)
                 .sort((a, b) => b[1].confidence - a[1].confidence)
-                .slice(0, 100)
+                .slice(0, 1000)
                 .forEach(([name, tile]) => {
                     const item = document.createElement('div');
                     item.className = 'tile-list-item';
