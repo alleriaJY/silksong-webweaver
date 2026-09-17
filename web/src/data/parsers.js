@@ -442,14 +442,196 @@ export function parseEquippedTools(playerData) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+// CRESTS PARSING
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Parse crests from playerData.ToolEquips.savedData
+ * Several internal save IDs (e.g. Hunter/Hunter_v2/Hunter_v3) collapse onto
+ * a single in-game crest - unlocked if ANY alias is unlocked.
+ */
+function getToolEquipsMap(playerData) {
+    const toolEquipsObj = getValue(playerData, 'ToolEquips');
+    const savedData = toolEquipsObj instanceof Map
+        ? (toolEquipsObj.get('savedData') || [])
+        : (toolEquipsObj?.savedData || []);
+
+    const map = new Map();
+    for (const entry of savedData) {
+        const name = entry instanceof Map ? entry.get('Name') : entry?.Name;
+        const data = entry instanceof Map ? entry.get('Data') : entry?.Data;
+        if (name) map.set(name, data);
+    }
+    return map;
+}
+
+function isCrestUnlocked(entryData) {
+    if (!entryData) return false;
+    return (entryData instanceof Map ? entryData.get('IsUnlocked') : entryData?.IsUnlocked) || false;
+}
+
+export function parseCrests(playerData) {
+    const equipsMap = getToolEquipsMap(playerData);
+    const currentCrestId = getValue(playerData, 'CurrentCrestID');
+
+    const crests = schemas.CRESTS_LIST.map(crestDef => {
+        const unlocked = crestDef.aliases.some(alias => isCrestUnlocked(equipsMap.get(alias)));
+        const isEquipped = crestDef.aliases.includes(currentCrestId);
+        return {
+            json: crestDef.json,
+            display: crestDef.display,
+            icon: crestDef.icon,
+            iconSteelSoul: crestDef.iconSteelSoul,
+            unlocked,
+            isEquipped,
+        };
+    });
+
+    const specialStates = schemas.SPECIAL_CREST_STATES_LIST.map(crestDef => {
+        const unlocked = crestDef.aliases.some(alias => isCrestUnlocked(equipsMap.get(alias)));
+        const isEquipped = crestDef.aliases.includes(currentCrestId);
+        return {
+            json: crestDef.json,
+            display: crestDef.display,
+            icon: crestDef.icon,
+            iconSteelSoul: crestDef.iconSteelSoul,
+            unlocked,
+            isEquipped,
+        };
+    });
+
+    const stats = {
+        total: crests.length,
+        unlocked: crests.filter(c => c.unlocked).length,
+    };
+
+    // Hunter is the starting crest and doesn't count toward the 6%
+    // completion contribution from crests (only the other 6 do)
+    const contributing = crests.filter(c => c.json !== 'Hunter');
+    const contributionStats = {
+        total: contributing.length,
+        unlocked: contributing.filter(c => c.unlocked).length,
+    };
+
+    // Resolve the currently-equipped crest's display info (falls back to raw ID if unknown)
+    const allDefs = [...crests, ...specialStates];
+    const equippedCrest = allDefs.find(c => c.isEquipped) || null;
+
+    // Currently-active special state (Cursed/Cloakless), if any - reported
+    // separately since these aren't part of the normal crest roster
+    const activeSpecialState = specialStates.find(s => s.isEquipped) || null;
+
+    return { crests, specialStates, stats, contributionStats, currentCrestId, equippedCrest, activeSpecialState };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SOURCE-CHECKLIST PARSING (Mask Shards, Spool Fragments, Silk Hearts,
+// Tool Pouch, Crafting Kit) - each item comes from one of several places in
+// the save: a simple playerData boolean, a quest completion record, a
+// sceneData world-pickup flag, or (for one Tool Pouch source) a flea-rescue
+// tracking array.
+// ═══════════════════════════════════════════════════════════════════════════
+
+function isQuestCompleted(playerData, questName) {
+    const qcdObj = getValue(playerData, 'QuestCompletionData');
+    const savedData = qcdObj instanceof Map
+        ? (qcdObj.get('savedData') || [])
+        : (qcdObj?.savedData || []);
+
+    for (const entry of savedData) {
+        const name = entry instanceof Map ? entry.get('Name') : entry?.Name;
+        if (name === questName) {
+            const data = entry instanceof Map ? entry.get('Data') : entry?.Data;
+            return (data instanceof Map ? data.get('IsCompleted') : data?.IsCompleted) || false;
+        }
+    }
+    return false;
+}
+
+function isScenePickupCollected(sceneData, sceneName, sceneId) {
+    const persistentBoolsObj = getValue(sceneData, 'persistentBools');
+    const serializedList = persistentBoolsObj instanceof Map
+        ? (persistentBoolsObj.get('serializedList') || [])
+        : (persistentBoolsObj?.serializedList || []);
+
+    for (const entry of serializedList) {
+        const id = entry instanceof Map ? entry.get('ID') : entry?.ID;
+        const scene = entry instanceof Map ? entry.get('SceneName') : entry?.SceneName;
+        if (id === sceneId && scene === sceneName) {
+            return (entry instanceof Map ? entry.get('Value') : entry?.Value) || false;
+        }
+    }
+    return false;
+}
+
+/**
+ * Best-effort check for the flea-rescue-order tracked Tool Pouch source.
+ * Exact completion threshold is unconfirmed - currently treats any recorded
+ * rescue (value !== -1) as progress. Flag for follow-up once confirmed.
+ */
+function getFleaProgress(playerData, flagName) {
+    const arr = getValue(playerData, flagName);
+    if (!Array.isArray(arr)) return { collected: false, count: 0 };
+    const count = arr.filter(v => v !== -1).length;
+    return { collected: count > 0, count };
+}
+
+/**
+ * Parse a list of "source" definitions (see MASK_SHARD_SOURCES etc. in
+ * silksongdata.js) against playerData/sceneData, returning each source's
+ * completed/missing state plus aggregate stats.
+ */
+export function parseSourceChecklist(playerData, sceneData, sourceList) {
+    const sources = sourceList.map(src => {
+        let collected = false;
+        let pending = false;
+        let progress = null;
+
+        switch (src.flagType) {
+            case 'bool':
+                collected = !!getValue(playerData, src.flag);
+                break;
+            case 'quest':
+                collected = isQuestCompleted(playerData, src.flag);
+                break;
+            case 'scene':
+                collected = isScenePickupCollected(sceneData, src.sceneName, src.sceneId);
+                break;
+            case 'flea': {
+                const result = getFleaProgress(playerData, src.flag);
+                collected = result.collected;
+                progress = result.count;
+                break;
+            }
+            case 'unknown':
+            default:
+                pending = true;
+                break;
+        }
+
+        return { name: src.name, flagType: src.flagType, collected, pending, progress };
+    });
+
+    const stats = {
+        total: sources.length,
+        collected: sources.filter(s => s.collected).length,
+        pending: sources.filter(s => s.pending).length,
+    };
+
+    return { sources, stats };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // MASTER PARSE FUNCTION
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Parse all data from raw playerData
+ * Parse all data from raw playerData (+ optional sceneData for world-pickup
+ * source tracking - Mask Shards and Spool Fragments need it, everything
+ * else only needs playerData)
  * Returns structured object for all categories
  */
-export function parseAllData(playerData) {
+export function parseAllData(playerData, sceneData) {
     if (!playerData) {
         return null;
     }
@@ -468,9 +650,21 @@ export function parseAllData(playerData) {
         abilities: parseAbilities(playerData),
         skills: parseSkills(playerData),
         equippedTools: parseEquippedTools(playerData),
+        crests: parseCrests(playerData),
+
+        // Source checklists (which mask shard/spool fragment/etc came from where)
+        maskShards: parseSourceChecklist(playerData, sceneData, schemas.MASK_SHARD_SOURCES),
+        spoolFragments: parseSourceChecklist(playerData, sceneData, schemas.SPOOL_FRAGMENT_SOURCES),
+        silkHearts: parseSourceChecklist(playerData, sceneData, schemas.SILK_HEART_SOURCES),
+        toolPouch: parseSourceChecklist(playerData, sceneData, schemas.TOOL_POUCH_SOURCES),
+        craftingKit: parseSourceChecklist(playerData, sceneData, schemas.CRAFTING_KIT_SOURCES),
+        otherUnlockables: parseSourceChecklist(playerData, sceneData, schemas.OTHER_UNLOCKABLE_SOURCES),
+        craftmetal: parseSourceChecklist(playerData, sceneData, schemas.CRAFTMETAL_SOURCES),
+        memoryLockets: parseSourceChecklist(playerData, sceneData, schemas.MEMORY_LOCKET_SOURCES),
 
         // Keep raw data for any custom access
         raw: playerData,
+        rawScene: sceneData,
     };
 }
 

@@ -452,8 +452,8 @@ async function analyzeFile() {
         const result = decrypt_and_parse(bytes);
 
         if (result.success) {
-            // Parse raw playerData using schema system
-            currentData = parseAllData(result.playerData);
+            // Parse raw playerData + sceneData using schema system
+            currentData = parseAllData(result.playerData, result.sceneData);
             displayStats(currentData);
             // Show reset button after successful analysis
             resetBtn.hidden = false;
@@ -570,27 +570,25 @@ function displayStats(data) {
     // Current Stats Tab - Equipment & Crest Display
     const crestId = getField('current', 'CurrentCrestID') || '';
     const isSteelSoul = getField('general', 'permadeathMode') || false;
-    setStat('crest', crestId || 'None');
+    const equippedCrest = data.crests?.equippedCrest;
+    setStat('crest', equippedCrest?.display || crestId || 'None');
 
-    // Update crest image
+    // Update crest image (resolved via parseCrests - handles internal-name
+    // aliases like Toolmaster/Spell -> Architect/Shaman correctly)
     const crestImage = document.getElementById('crest-image');
     if (crestImage && crestId) {
-        const crestMap = {
-            'Hunter': isSteelSoul ? 'Select_Game_Crest_Spools__0000_hunter_SS.png' : 'Select_Game_Crest_Spools__0000_hunter.png',
-            'Hunter_v2': isSteelSoul ? 'Select_Game_Crest_Spools__0003_hunter_v2_SS.png' : 'Select_Game_Crest_Spools__0003_hunter_v2.png',
-            'Hunter_v3': isSteelSoul ? 'Select_Game_Crest_Spools__0001_hunter_v3_SS.png' : 'Select_Game_Crest_Spools__0001_hunter_v3.png',
-            'Shaman': isSteelSoul ? 'Select_Game_Crest_Spools__0005_shaman_SS.png' : 'Select_Game_Crest_Spools__0005_shaman.png',
-            'Reaper': isSteelSoul ? 'Select_Game_Crest_Spools__0004_reaper_SS.png' : 'Select_Game_Crest_Spools__0004_reaper.png',
-            'Architect': isSteelSoul ? 'Select_Game_Crest_Spools__0006_architect_SS.png' : 'Select_Game_Crest_Spools__0006_architect.png',
-            'Warrior': isSteelSoul ? 'Select_Game_Crest_Spools__0007_warrior_SS.png' : 'Select_Game_Crest_Spools__0007_warrior.png',
-            'Wanderer': isSteelSoul ? 'Select_Game_Crest_Spools__0008_wanderer_SS.png' : 'Select_Game_Crest_Spools__0008_wanderer.png',
-            'Witch': isSteelSoul ? 'Select_Game_Crest_Spools__0009_witch_SS.png' : 'Select_Game_Crest_Spools__0009_witch.png',
-            'Cursed': isSteelSoul ? 'Select_Game_Crest_Spools__0002_cursed_SS.png' : 'Select_Game_Crest_Spools__0002_cursed.png',
-        };
-        const crestFile = crestMap[crestId] || crestMap['Hunter'];
+        const crestFile = equippedCrest?.icon
+            ? (isSteelSoul && equippedCrest.iconSteelSoul ? equippedCrest.iconSteelSoul : equippedCrest.icon)
+            : 'Select_Game_Crest_Spools__0000_hunter.png';
         crestImage.src = `assets/img/general/crests/${crestFile}`;
-        crestImage.alt = crestId;
+        crestImage.alt = equippedCrest?.display || crestId;
     }
+
+    // Special Crest State (Cursed/Cloakless), shown alongside Equipped Crest
+    // since these are event-driven states rather than part of the normal
+    // 7-crest roster
+    const activeSpecial = data.crests?.activeSpecialState;
+    setStat('specialCrestState', (activeSpecial && activeSpecial.json !== 'Cloakless') ? activeSpecial.display : 'None');
 
     // Current Stats Tab - Equipped Tools
     const equippedToolsRow = document.getElementById('equipped-tools-row');
@@ -900,6 +898,159 @@ function displayStats(data) {
             mapsCount.textContent = unlockedCount;
         }
     }
+
+    // Unlockables Tab - Crests grid
+    const crestsGrid = document.getElementById('crests-grid');
+    const crestsUnlockedCount = document.getElementById('crests-unlocked-count');
+    const crestsPercent = document.getElementById('crests-percent');
+    if (data.crests) {
+        const renderCrestItem = (grid, crest) => {
+            const item = document.createElement('div');
+            item.className = 'tool-item';
+
+            const img = document.createElement('img');
+            const iconFile = (isSteelSoul && crest.iconSteelSoul) ? crest.iconSteelSoul : crest.icon;
+            img.src = iconFile ? `assets/img/general/crests/${iconFile}` : '';
+            img.alt = crest.display;
+            img.title = `${crest.display} (${crest.unlocked ? 'Unlocked' : 'Locked'})`;
+            img.className = crest.unlocked ? 'unlocked' : 'locked';
+
+            const label = document.createElement('span');
+            label.textContent = crest.display;
+            label.title = crest.display;
+
+            item.appendChild(img);
+            item.appendChild(label);
+            grid.appendChild(item);
+        };
+
+        if (crestsGrid) {
+            crestsGrid.innerHTML = '';
+            data.crests.crests.forEach(c => renderCrestItem(crestsGrid, c));
+        }
+        if (crestsUnlockedCount) crestsUnlockedCount.textContent = data.crests.stats.unlocked;
+        if (crestsPercent) {
+            // Hunter is the starting crest and doesn't count toward completion -
+            // only the other 6 crests contribute (1% each, 6% max)
+            crestsPercent.textContent = `${data.crests.contributionStats.unlocked}%`;
+        }
+    }
+
+    // Generic renderer for source-checklist sections (Masks, Silk Spool,
+    // Silk Hearts, Crafting Kit, Tool Pouch, Craftmetal, Memory Locket,
+    // Other Unlockables). `icon` is either a shared filename (string) used
+    // for every row, or a function (source, index) => filename for
+    // per-item icons.
+    const renderSourceChecklist = (containerId, checklistResult, icon) => {
+        const container = document.getElementById(containerId);
+        if (!container || !checklistResult) return;
+        container.innerHTML = '';
+        checklistResult.sources.forEach((source, index) => {
+            const row = document.createElement('div');
+            const state = source.pending ? 'pending' : (source.collected ? 'collected' : 'missing');
+            row.className = `source-item ${state}`;
+
+            const left = document.createElement('div');
+            left.className = 'source-left';
+
+            const iconFile = typeof icon === 'function' ? icon(source, index) : icon;
+            if (iconFile) {
+                const img = document.createElement('img');
+                img.src = `assets/img/general/${iconFile}`;
+                img.alt = source.name;
+                img.className = 'source-icon';
+                left.appendChild(img);
+            }
+
+            const name = document.createElement('span');
+            name.className = 'source-name';
+            name.textContent = source.name;
+            left.appendChild(name);
+
+            const status = document.createElement('span');
+            status.className = 'source-status';
+            status.textContent = source.pending ? 'Pending' : (source.collected ? 'Collected' : 'Missing');
+
+            row.appendChild(left);
+            row.appendChild(status);
+            container.appendChild(row);
+        });
+        return checklistResult.stats;
+    };
+
+    // Small helper for the plain id="..." counter/percent badges used across
+    // the Unlockables/Collectables sections (distinct from the data-stat
+    // driven setStat helper above)
+    const setById = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+    };
+
+    // Masks (health) - mask count derived from maxHealth, shard sources from checklist.
+    // Each mask upgrade contributes 1% to overall completion (5% max), so the
+    // percent badge is just the literal mask count, not a unlocked/total ratio.
+    const maxHealthForMasks = getField('general', 'maxHealth') || 5;
+    const extraMasks = Math.max(0, Math.min(5, maxHealthForMasks - 5));
+    setById('masks-unlocked-count', extraMasks);
+    setById('masks-percent', `${extraMasks}%`);
+    const maskShardStats = renderSourceChecklist('mask-shards-checklist', data.maskShards, 'Inv_0030_inv_health_backboard_mask_2.png');
+    if (maskShardStats) setById('mask-shards-collected-count', maskShardStats.collected);
+
+    // Silk Spool - spool points derived from silkMax (base 9, 2 fragments = 1 point).
+    // Each point is worth 1% (9% max).
+    const silkMaxForSpool = getField('general', 'silkMax') || 9;
+    const spoolPoints = Math.max(0, Math.min(9, silkMaxForSpool - 9));
+    setById('silk-spool-unlocked-count', spoolPoints);
+    setById('silk-spool-percent', `${spoolPoints}%`);
+    const spoolStats = renderSourceChecklist('spool-fragments-checklist', data.spoolFragments, 'spool_upgrade_pickup.png');
+    if (spoolStats) setById('spool-fragments-collected-count', spoolStats.collected);
+
+    // Silk Hearts - each worth 1% (3% max)
+    const silkHeartsCount = getField('general', 'silkRegenMax') || 0;
+    setById('silk-hearts-unlocked-count', silkHeartsCount);
+    setById('silk-hearts-percent', `${silkHeartsCount}%`);
+    renderSourceChecklist('silk-hearts-checklist', data.silkHearts, 'general_silkheart.png');
+
+    // Crafting Kit - each upgrade worth 1% (4% max)
+    const craftingTier = getField('general', 'ToolKitUpgrades') || 0;
+    setById('crafting-unlocked-count', craftingTier);
+    setById('crafting-percent', `${craftingTier}%`);
+    renderSourceChecklist('crafting-kit-checklist', data.craftingKit, 'Hornet_Tool_Metal_Pouch.png');
+
+    // Tool Pouch - each upgrade worth 1% (4% max)
+    const poolTier = getField('general', 'ToolPouchUpgrades') || 0;
+    setById('pouch-unlocked-count', poolTier);
+    setById('pouch-percent', `${poolTier}%`);
+    renderSourceChecklist('tool-pouch-checklist', data.toolPouch, 'icon_tool_kit_upgrade.png');
+
+    // Needle - base level (level 1) doesn't count toward completion, only the
+    // 4 upgrade stages do (1% each, 4% max = nailUpgrades value directly)
+    const nailUpgradesForPercent = getField('general', 'nailUpgrades') || 0;
+    setById('needle-percent', `${nailUpgradesForPercent}%`);
+
+    // Other Unlockables - Everbloom + Sylphsong, 1% each (2% max).
+    // Each has its own icon (Everbloom = white flower, Sylphsong = Eva's heal).
+    const otherUnlockablesIcons = ['I_white_flower.png', 'Eva_heal_prompt.png'];
+    const otherUnlockablesStats = renderSourceChecklist(
+        'other-unlockables-checklist',
+        data.otherUnlockables,
+        (source, index) => otherUnlockablesIcons[index]
+    );
+    if (otherUnlockablesStats) {
+        setById('other-unlockables-count', otherUnlockablesStats.collected);
+        setById('other-unlockables-percent', `${otherUnlockablesStats.collected}%`);
+    }
+
+    // Completion summary - the game's own overall completion percentage
+    // (covers Tools, Bosses, Maps, etc. too, not just this tab's categories)
+    const overallCompletion = getField('general', 'completionPercentage');
+    setById('unlockables-completion-percent', overallCompletion !== undefined ? `${overallCompletion.toFixed(1)}%` : '0%');
+
+    // Collectables Tab - Memory Locket & Craftmetal
+    const memoryLocketStats = renderSourceChecklist('memory-lockets-checklist', data.memoryLockets, 'Charm_Notch.png');
+    if (memoryLocketStats) setById('memory-lockets-collected-count', memoryLocketStats.collected);
+    const craftmetalStats = renderSourceChecklist('craftmetal-checklist', data.craftmetal, 'Hornet_Tool_Metal.png');
+    if (craftmetalStats) setById('craftmetal-collected-count', craftmetalStats.collected);
 
     // Bosses Tab - Populate boss grid
     const bossesGrid = document.getElementById('bosses-grid');

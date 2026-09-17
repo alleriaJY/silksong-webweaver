@@ -763,6 +763,101 @@ header h1 {
     font-weight: 600;
 }
 
+.source-checklist {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+@media (max-width: 700px) {
+    .source-checklist {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 420px) {
+    .source-checklist {
+        grid-template-columns: 1fr;
+    }
+}
+
+.source-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.35rem;
+    padding: 0.6rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.source-item .source-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.source-item .source-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.source-item .source-name {
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    line-height: 1.25;
+}
+
+.source-item .source-status {
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 0;
+    font-size: 0.75rem;
+}
+
+.source-item.collected .source-status {
+    color: #4ade80;
+}
+
+.source-item.missing .source-status {
+    color: #f87171;
+}
+
+.source-item.pending .source-status {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Completion summary card (Unlockables tab) */
+.completion-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+}
+
+.completion-summary .completion-big-number {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    line-height: 1;
+}
+
+.completion-summary .completion-caption {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
 .stat-row {
     display: flex;
     justify-content: space-between;

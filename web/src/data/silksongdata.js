@@ -14,6 +14,8 @@ export const GENERAL_FIELDS_LIST = [
     { json: 'silkMax', display: 'Max Silk' },
     { json: 'silkRegenMax', display: 'Max Silk Hearts' },
     { json: 'nailUpgrades', display: 'Nail Upgrades' },
+    { json: 'ToolKitUpgrades', display: 'Crafting Kit Tier' },
+    { json: 'ToolPouchUpgrades', display: 'Tool Pouch Tier' },
 ];
 
 export const CURRENT_FIELDS_LIST = [
@@ -197,6 +199,226 @@ export const SKILLS_LIST = [
     { json: 'hasSilkCharge', display: 'Sharp Dart', icon: 'Art_Rune__0017_silk_dart.png' },
     { json: 'hasSilkBomb', display: 'Rune Rage', icon: 'Art_Rune__0005_silk_bomb.png' },
     { json: 'hasSilkBossNeedle', display: 'Pale Nails', icon: 'Art_Rune__0011_finger_blades.png' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CRESTS - playerData.ToolEquips.savedData array
+// Several internal save IDs collapse onto the same in-game crest (Hunter has
+// three internal tiers). Cursed/Cloakless are event-driven special states,
+// not part of the normal 7-crest roster, and are tracked separately.
+// ═══════════════════════════════════════════════════════════════════════════
+export const CRESTS_LIST = [
+    {
+        json: 'Hunter',
+        aliases: ['Hunter', 'Hunter_v2', 'Hunter_v3'],
+        display: 'Hunter',
+        icon: 'Select_Game_Crest_Spools__0000_hunter.png',
+        iconSteelSoul: 'Select_Game_Crest_Spools__0000_hunter_SS.png',
+    },
+    {
+        json: 'Reaper',
+        aliases: ['Reaper'],
+        display: 'Reaper',
+        icon: 'Select_Game_Crest_Spools__0004_reaper.png',
+        iconSteelSoul: 'Select_Game_Crest_Spools__0004_reaper_SS.png',
+    },
+    {
+        json: 'Wanderer',
+        aliases: ['Wanderer'],
+        display: 'Wanderer',
+        icon: 'Select_Game_Crest_Spools__0008_wanderer.png',
+        iconSteelSoul: 'Select_Game_Crest_Spools__0008_wanderer_SS.png',
+    },
+    {
+        json: 'Warrior',
+        aliases: ['Warrior'],
+        display: 'Beast',
+        icon: 'Select_Game_Crest_Spools__0007_warrior.png',
+        iconSteelSoul: 'Select_Game_Crest_Spools__0007_warrior_SS.png',
+    },
+    {
+        json: 'Witch',
+        aliases: ['Witch'],
+        display: 'Witch',
+        icon: 'Select_Game_Crest_Spools__0009_witch.png',
+        iconSteelSoul: 'Select_Game_Crest_Spools__0009_witch_SS.png',
+    },
+    {
+        json: 'Toolmaster',
+        aliases: ['Toolmaster'],
+        display: 'Architect',
+        icon: 'Select_Game_Crest_Spools__0006_architect.png',
+        iconSteelSoul: 'Select_Game_Crest_Spools__0006_architect_SS.png',
+    },
+    {
+        json: 'Spell',
+        aliases: ['Spell'],
+        display: 'Shaman',
+        icon: 'Select_Game_Crest_Spools__0005_shaman.png',
+        iconSteelSoul: 'Select_Game_Crest_Spools__0005_shaman_SS.png',
+    },
+];
+
+// Event-driven special crest states (not part of the normal 7-crest roster)
+export const SPECIAL_CREST_STATES_LIST = [
+    {
+        json: 'Cursed',
+        aliases: ['Cursed'],
+        display: 'Cursed',
+        icon: 'Select_Game_Crest_Spools__0002_cursed.png',
+        iconSteelSoul: 'Select_Game_Crest_Spools__0002_cursed_SS.png',
+    },
+    // Cloakless is also event-driven; ignored for now per project notes
+    { json: 'Cloakless', aliases: ['Cloakless'], display: 'Cloakless', icon: null, iconSteelSoul: null },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MASK SHARDS - 20 total, 4 shards = 1 mask, base 5 masks, max 10
+// flagType 'scene' reads sceneData.persistentBools (world pickups),
+// 'bool' reads a playerData boolean (purchases), 'quest' reads
+// playerData.QuestCompletionData (quest-reward shards)
+// ═══════════════════════════════════════════════════════════════════════════
+export const MASK_SHARD_SOURCES = [
+    // World pickups (14) - scene ID kept in the name since a couple of area
+    // attributions are unconfirmed (e.g. the "Coral_" prefix is shared by
+    // both Sands of Karak and Blasted Steps) and two pairs otherwise read
+    // as near-duplicates
+    { name: 'The Marrow - Lava Gauntlet reward (Bone_East_20)', flagType: 'scene', sceneName: 'Bone_East_20', sceneId: 'Heart Piece' },
+    { name: 'The Marrow - Lava Gauntlet arena (Bone_East_LavaChallenge)', flagType: 'scene', sceneName: 'Bone_East_LavaChallenge', sceneId: 'Heart Piece (1)' },
+    { name: 'Sands of Karak / Blasted Steps (Coral_19b)', flagType: 'scene', sceneName: 'Coral_19b', sceneId: 'Heart Piece' },
+    { name: 'Wormways (Crawl_02)', flagType: 'scene', sceneName: 'Crawl_02', sceneId: 'Heart Piece' },
+    { name: 'Deep Docks (Dock_08)', flagType: 'scene', sceneName: 'Dock_08', sceneId: 'Heart Piece' },
+    { name: 'Whispering Vaults (Library_05)', flagType: 'scene', sceneName: 'Library_05', sceneId: 'Heart Piece' },
+    { name: 'Mount Fay - Western (Peak_04c)', flagType: 'scene', sceneName: 'Peak_04c', sceneId: 'Heart Piece' },
+    { name: 'Mount Fay - Central (Peak_06)', flagType: 'scene', sceneName: 'Peak_06', sceneId: 'Heart Piece' },
+    { name: 'Blasted Steps area (Shadow_13)', flagType: 'scene', sceneName: 'Shadow_13', sceneId: 'Heart Piece' },
+    { name: 'Shellwood (Shellwood_14)', flagType: 'scene', sceneName: 'Shellwood_14', sceneId: 'Heart Piece' },
+    { name: 'The Slab (Slab_17)', flagType: 'scene', sceneName: 'Slab_17', sceneId: 'Heart Piece' },
+    { name: 'Choral Chambers (Song_09)', flagType: 'scene', sceneName: 'Song_09', sceneId: 'Heart Piece' },
+    { name: 'Weavenest Atla (Weave_05b)', flagType: 'scene', sceneName: 'Weave_05b', sceneId: 'Heart Piece' },
+    { name: 'Wisp Thicket (Wisp_07)', flagType: 'scene', sceneName: 'Wisp_07', sceneId: 'Heart Piece' },
+    // Purchases (2)
+    { name: 'Pebb (Bone Bottom, 300 Rosaries)', flagType: 'bool', flag: 'PurchasedBonebottomHeartPiece' },
+    { name: 'Jubilana (Songclave, 750 Rosaries)', flagType: 'bool', flag: 'MerchantEnclaveShellFragment' },
+    // Quest rewards (4)
+    { name: 'Sprintmaster Race (Pilgrim\'s Rest)', flagType: 'quest', flag: 'Sprintmaster Race' },
+    { name: 'Savage Beastfly (Far Fields)', flagType: 'quest', flag: 'Beastfly Hunt' },
+    { name: 'Gurr the Outcast (The Marrow)', flagType: 'quest', flag: 'Ant Trapper' },
+    { name: 'Destroy 12 Void Masses', flagType: 'quest', flag: 'Destroy Thread Cores' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SPOOL FRAGMENTS - 18 total, 2 fragments = 1 spool point, base 9 silk, max 18
+// ═══════════════════════════════════════════════════════════════════════════
+export const SPOOL_FRAGMENT_SOURCES = [
+    // World pickups (13)
+    { name: 'Memorium (Arborium_09)', flagType: 'scene', sceneName: 'Arborium_09', sceneId: 'Silk Spool' },
+    { name: 'Mosshome (Bone_11b)', flagType: 'scene', sceneName: 'Bone_11b', sceneId: 'Silk Spool' },
+    { name: 'The Marrow (Bone_East_13)', flagType: 'scene', sceneName: 'Bone_East_13', sceneId: 'Silk Spool' },
+    { name: 'Cogwork Core (Cog_07)', flagType: 'scene', sceneName: 'Cog_07', sceneId: 'Silk Spool' },
+    { name: 'Deep Docks (Dock_03c)', flagType: 'scene', sceneName: 'Dock_03c', sceneId: 'Silk Spool' },
+    { name: 'Greymoor (Greymoor_02)', flagType: 'scene', sceneName: 'Greymoor_02', sceneId: 'Silk Spool' },
+    { name: 'High Halls (Hang_03_top)', flagType: 'scene', sceneName: 'Hang_03_top', sceneId: 'Silk Spool' },
+    { name: 'Whispering Vaults (Library_11b)', flagType: 'scene', sceneName: 'Library_11b', sceneId: 'Silk Spool' },
+    { name: 'Mount Fay (Peak_01)', flagType: 'scene', sceneName: 'Peak_01', sceneId: 'Silk Spool' },
+    { name: 'Grand Gate (Song_19_entrance)', flagType: 'scene', sceneName: 'Song_19_entrance', sceneId: 'Silk Spool' },
+    { name: 'Underworks (Under_10)', flagType: 'scene', sceneName: 'Under_10', sceneId: 'Silk Spool' },
+    { name: 'Whiteward (Ward_01)', flagType: 'scene', sceneName: 'Ward_01', sceneId: 'Silk Spool' },
+    { name: 'Weavenest Atla (Weave_11)', flagType: 'scene', sceneName: 'Weave_11', sceneId: 'Silk Spool' },
+    // Purchases (3)
+    { name: 'Jubilana (Songclave, 500 Rosaries)', flagType: 'bool', flag: 'MerchantEnclaveSpoolPiece' },
+    { name: 'Frey (Bellhart, 270 Rosaries)', flagType: 'bool', flag: 'PurchasedBelltownSpoolSegment' },
+    { name: 'Grindle (Blasted Steps, 680 Rosaries)', flagType: 'bool', flag: 'purchasedGrindleSpoolPiece' },
+    // Quest rewards (2)
+    // pilgrimQuestSpoolCollected correlates with Sherma's multi-stage healing
+    // questline (shermaQuestActive/shermaHealerActive/shermaWoundedPilgrim) -
+    // matches the wiki's "Balm for the Wounded" reward at Whiteward
+    { name: "Sherma's Healing - Balm for the Wounded (Whiteward)", flagType: 'bool', flag: 'pilgrimQuestSpoolCollected' },
+    // tookGreymoor17Spool correlates 1:1 with completedGreymoor17Battle (both
+    // False in every sample save) - an arena/gauntlet challenge at Greymoor_17
+    { name: 'Greymoor Battle Challenge (Greymoor_17)', flagType: 'bool', flag: 'tookGreymoor17Spool' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SILK HEARTS - 3 total, each defeating a specific boss (silkRegenMax 0-3)
+// Note: CollectedHeartClover/Coral/Flower/Hunter are unrelated boss/lore flags
+// ═══════════════════════════════════════════════════════════════════════════
+export const SILK_HEART_SOURCES = [
+    { name: 'Bell Beast (The Marrow)', flagType: 'bool', flag: 'defeatedBellBeast' },
+    { name: 'The Unravelled (Whiteward)', flagType: 'bool', flag: 'wardBossDefeated' },
+    { name: 'Lace, 2nd encounter (The Cradle)', flagType: 'bool', flag: 'defeatedLaceTower' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TOOL POUCH - 4 upgrades total (ToolPouchUpgrades, 0-4)
+// ═══════════════════════════════════════════════════════════════════════════
+export const TOOL_POUCH_SOURCES = [
+    { name: 'Mort (Pilgrim\'s Rest, 220 Rosaries)', flagType: 'bool', flag: 'PurchasedPilgrimsRestToolPouch' },
+    { name: 'Loddie (The Marrow) - not yet confirmed', flagType: 'unknown', flag: null },
+    { name: 'Nuu, Journal quest (Halfway Home)', flagType: 'quest', flag: 'Journal' },
+    { name: 'Fleamaster Mooshka (Fleatopia)', flagType: 'flea', flag: 'FleasCollectedTargetOrder' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CRAFTING KIT - 4 upgrades total (ToolKitUpgrades, 0-4)
+// ═══════════════════════════════════════════════════════════════════════════
+export const CRAFTING_KIT_SOURCES = [
+    { name: 'Forge Daughter (Deep Docks, 180 Rosaries)', flagType: 'bool', flag: 'PurchasedForgeToolKit' },
+    { name: 'Creige, Crow Feathers quest (Halfway Home)', flagType: 'quest', flag: 'Crow Feathers' },
+    { name: 'Twelfth Architect (Underworks, 450 Rosaries)', flagType: 'bool', flag: 'PurchasedArchitectToolKit' },
+    { name: 'Grindle (Blasted Steps, 700 Rosaries)', flagType: 'bool', flag: 'purchasedGrindleToolKit' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// OTHER UNLOCKABLES - one-off 1%-completion items that don't fit the other
+// categories
+// ═══════════════════════════════════════════════════════════════════════════
+export const OTHER_UNLOCKABLE_SOURCES = [
+    { name: 'Everbloom (Complete the Red Memory)', flagType: 'bool', flag: 'CompletedRedMemory' },
+    { name: 'Sylphsong (Eva\'s Heal - 12 Memory Lockets + all Crests)', flagType: 'bool', flag: 'HasSeenEvaHeal' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CRAFTMETAL - 8 total, used to buy Crafting Kit upgrades
+// 7 sources confirmed via save + wiki cross-reference; 8th not yet located
+// ═══════════════════════════════════════════════════════════════════════════
+export const CRAFTMETAL_SOURCES = [
+    { name: 'Pebb (Bone Bottom, 60 Rosaries)', flagType: 'bool', flag: 'PurchasedBonebottomToolMetal' },
+    { name: 'Jubilana (Songclave, 180 Rosaries)', flagType: 'bool', flag: 'MerchantEnclaveToolMetal' },
+    { name: 'The Marrow (Bone_07)', flagType: 'scene', sceneName: 'Bone_07', sceneId: 'Collectable Item Pickup - Tool Metal' },
+    { name: 'Blasted Steps (Coral_32)', flagType: 'scene', sceneName: 'Coral_32', sceneId: 'Collectable Item Pickup - Tool Metal' },
+    { name: 'Wisp Thicket (Wisp_05)', flagType: 'scene', sceneName: 'Wisp_05', sceneId: 'Collectable Item Pickup - Tool Metal' },
+    { name: 'Putrified Ducts (Aqueduct_05)', flagType: 'scene', sceneName: 'Aqueduct_05', sceneId: 'Collectable Item Pickup - Tool Metal' },
+    { name: 'Deep Docks / Far Fields (Under_19b)', flagType: 'scene', sceneName: 'Under_19b', sceneId: 'Collectable Item Pickup - Tool Metal' },
+    { name: '8th location - not yet confirmed', flagType: 'unknown', flag: null },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MEMORY LOCKET - 20 total, used to expand Crest tool slots
+// Location names are from the wiki; only one candidate save flag has been
+// found so far, so all 20 are marked pending until confirmed
+// ═══════════════════════════════════════════════════════════════════════════
+export const MEMORY_LOCKET_SOURCES = [
+    { name: 'Bone Bottom - Volatile Flintbeetles wish reward', flagType: 'unknown', flag: null },
+    { name: 'The Marrow - arena battle', flagType: 'unknown', flag: null },
+    { name: 'Wormways - after Gromling', flagType: 'unknown', flag: null },
+    { name: 'Deep Docks - secret passage', flagType: 'unknown', flag: null },
+    { name: "Far Fields - Mort purchase (Pilgrim's Rest, 150 Rosaries)", flagType: 'unknown', flag: null },
+    { name: 'Far Fields - east of Skarrsinger Karmelita arena', flagType: 'unknown', flag: null },
+    { name: "Hunter's March - dead pilgrim", flagType: 'unknown', flag: null },
+    { name: 'Greymoor - near Creige (Faydown Cloak)', flagType: 'unknown', flag: null },
+    { name: 'Greymoor - backpack ledge', flagType: 'unknown', flag: null },
+    { name: 'Bellhart - Frey purchase (330 Rosaries, after Threadspun Town)', flagType: 'unknown', flag: null },
+    { name: 'Bellhart - Bellhome summit (Silk Soar)', flagType: 'unknown', flag: null },
+    { name: 'Blasted Steps - east of Shakra', flagType: 'unknown', flag: null },
+    { name: 'Underworks - west of Confession Booth bench', flagType: 'unknown', flag: null },
+    { name: 'Bilewater - after Muckmaggot path', flagType: 'unknown', flag: null },
+    { name: 'Bilewater - destroyed ceiling cocoon', flagType: 'unknown', flag: null },
+    { name: 'Whispering Vaults - near Giant Drapemite', flagType: 'unknown', flag: null },
+    { name: 'Choral Chambers - behind trapdoor breakable wall', flagType: 'unknown', flag: null },
+    { name: 'Memorium - from Ventrica Station', flagType: 'unknown', flag: null },
+    { name: 'The Slab - Shortcut Cave', flagType: 'unknown', flag: null },
+    { name: 'Sands of Karak - upper western platform', flagType: 'unknown', flag: null },
 ];
 
 export const MAPS_LIST = [

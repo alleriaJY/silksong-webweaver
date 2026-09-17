@@ -260,6 +260,10 @@
                                                 <span class="stat-label">Equipped Crest</span>
                                                 <span class="stat-value" data-stat="crest">-</span>
                                             </div>
+                                            <div class="stat-row">
+                                                <span class="stat-label">Special Crest State</span>
+                                                <span class="stat-value" data-stat="specialCrestState">None</span>
+                                            </div>
                                             <!-- Equipped Tools Row -->
                                             <div class="equipped-tools-section">
                                                 <span class="stat-visual-label">Equipped Tools:</span>
@@ -334,42 +338,56 @@
                                             equipment</p>
                                     </div>
                                     <div class="panel-content">
-                                        <!-- Masks Section (Placeholder) -->
+                                        <!-- Completion Summary Section -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">🏆 Completion</h4>
+                                            <div class="completion-summary">
+                                                <span class="completion-big-number" id="unlockables-completion-percent">0%</span>
+                                                <span class="completion-caption">Overall save completion percentage</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Masks Section -->
                                         <div class="stat-card full-width">
                                             <h4 class="section-header">🎭 Masks
                                                 <span class="unlocked-stats">
-                                                    (Unlocked: <strong id="masks-unlocked-count">0</strong>/?) - <strong
-                                                        id="masks-percent">0%</strong>
+                                                    (Unlocked: <strong id="masks-unlocked-count">0</strong>/5 extra) -
+                                                    <strong id="masks-percent">0%</strong>
                                                 </span>
                                             </h4>
-                                            <div class="placeholder-card compact">
-                                                <p>🚧 Coming soon</p>
+                                            <p class="panel-description">Mask Shards collected: <strong
+                                                    id="mask-shards-collected-count">0</strong>/20</p>
+                                            <div class="source-checklist" id="mask-shards-checklist">
+                                                <!-- Mask shard source rows populated by JS -->
                                             </div>
                                         </div>
 
-                                        <!-- Silk Spool Section (Placeholder) -->
+                                        <!-- Silk Spool Section -->
                                         <div class="stat-card full-width">
                                             <h4 class="section-header">🧵 Silk Spool
                                                 <span class="unlocked-stats">
-                                                    (Unlocked: <strong id="silk-spool-unlocked-count">0</strong>/?) -
+                                                    (Unlocked: <strong id="silk-spool-unlocked-count">0</strong>/9
+                                                    extra) -
                                                     <strong id="silk-spool-percent">0%</strong>
                                                 </span>
                                             </h4>
-                                            <div class="placeholder-card compact">
-                                                <p>🚧 Coming soon</p>
+                                            <p class="panel-description">Spool Fragments collected: <strong
+                                                    id="spool-fragments-collected-count">0</strong>/18</p>
+                                            <div class="source-checklist" id="spool-fragments-checklist">
+                                                <!-- Spool fragment source rows populated by JS -->
                                             </div>
                                         </div>
 
-                                        <!-- Silk Hearts Section (Placeholder) -->
+                                        <!-- Silk Hearts Section -->
                                         <div class="stat-card full-width">
                                             <h4 class="section-header">💜 Silk Hearts
                                                 <span class="unlocked-stats">
-                                                    (Unlocked: <strong id="silk-hearts-unlocked-count">0</strong>/?) -
+                                                    (Unlocked: <strong id="silk-hearts-unlocked-count">0</strong>/3) -
                                                     <strong id="silk-hearts-percent">0%</strong>
                                                 </span>
                                             </h4>
-                                            <div class="placeholder-card compact">
-                                                <p>🚧 Coming soon</p>
+                                            <div class="source-checklist" id="silk-hearts-checklist">
+                                                <!-- Silk heart source rows populated by JS -->
                                             </div>
                                         </div>
 
@@ -377,7 +395,8 @@
                                         <div class="stat-card full-width">
                                             <h4 class="section-header">🗡️ Needle
                                                 <span class="unlocked-stats">
-                                                    (Level: <strong id="unlockables-needle-level">1</strong>/5)
+                                                    (Level: <strong id="unlockables-needle-level">1</strong>/5) -
+                                                    <strong id="needle-percent">0%</strong>
                                                 </span>
                                             </h4>
                                             <div class="equipment-display centered">
@@ -394,16 +413,16 @@
                                             </div>
                                         </div>
 
-                                        <!-- Crests Section (Placeholder) -->
+                                        <!-- Crests Section -->
                                         <div class="stat-card full-width">
                                             <h4 class="section-header">🛡️ Crests
                                                 <span class="unlocked-stats">
-                                                    (Unlocked: <strong id="crests-unlocked-count">0</strong>/?) -
+                                                    (Unlocked: <strong id="crests-unlocked-count">0</strong>/7) -
                                                     <strong id="crests-percent">0%</strong>
                                                 </span>
                                             </h4>
-                                            <div class="placeholder-card compact">
-                                                <p>🚧 Coming soon</p>
+                                            <div class="tools-grid" id="crests-grid">
+                                                <!-- Crest icons will be populated by JS -->
                                             </div>
                                         </div>
 
@@ -440,16 +459,16 @@
                                             </div>
                                         </div>
 
-                                        <!-- Crafting Kit Section (Placeholder) -->
+                                        <!-- Crafting Kit Section -->
                                         <div class="stat-card full-width">
                                             <h4 class="section-header">🔨 Crafting Kit
                                                 <span class="unlocked-stats">
-                                                    (Unlocked: <strong id="crafting-unlocked-count">0</strong>/?) -
+                                                    (Unlocked: <strong id="crafting-unlocked-count">0</strong>/4) -
                                                     <strong id="crafting-percent">0</strong>
                                                 </span>
                                             </h4>
-                                            <div class="placeholder-card compact">
-                                                <p>🚧 Coming soon</p>
+                                            <div class="source-checklist" id="crafting-kit-checklist">
+                                                <!-- Crafting Kit source rows populated by JS -->
                                             </div>
                                         </div>
 
@@ -474,16 +493,29 @@
                                             </div>
                                         </div>
 
-                                        <!-- Tool Pouch Section (Placeholder) -->
+                                        <!-- Tool Pouch Section -->
                                         <div class="stat-card full-width">
                                             <h4 class="section-header">🎒 Tool Pouch
                                                 <span class="unlocked-stats">
-                                                    (Unlocked: <strong id="pouch-unlocked-count">0</strong>/?) - <strong
+                                                    (Unlocked: <strong id="pouch-unlocked-count">0</strong>/4) - <strong
                                                         id="pouch-percent">0</strong>
                                                 </span>
                                             </h4>
-                                            <div class="placeholder-card compact">
-                                                <p>🚧 Coming soon</p>
+                                            <div class="source-checklist" id="tool-pouch-checklist">
+                                                <!-- Tool Pouch source rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- Other Unlockables Section (Everbloom, Sylphsong) -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">✨ Other Unlockables
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="other-unlockables-count">0</strong>/2) -
+                                                    <strong id="other-unlockables-percent">0%</strong>
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="other-unlockables-checklist">
+                                                <!-- Everbloom / Sylphsong rows populated by JS -->
                                             </div>
                                         </div>
                                     </div>
@@ -537,15 +569,35 @@
                                     </div>
                                 </div>
 
-                                <!-- 7. Collectables Tab (Placeholder) -->
+                                <!-- 7. Collectables Tab -->
                                 <div class="tab-panel" id="panel-collectables">
                                     <div class="panel-header">
                                         <h3>Collectables</h3>
                                         <p class="panel-description">Items and collectables found</p>
                                     </div>
                                     <div class="panel-content">
-                                        <div class="placeholder-card">
-                                            <p>Collectable tracking coming soon!</p>
+                                        <!-- Memory Locket Section -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">🔒 Memory Locket
+                                                <span class="unlocked-stats">
+                                                    (Collected: <strong id="memory-lockets-collected-count">0</strong>/20)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="memory-lockets-checklist">
+                                                <!-- Memory Locket source rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- Craftmetal Section -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">⚙️ Craftmetal
+                                                <span class="unlocked-stats">
+                                                    (Collected: <strong id="craftmetal-collected-count">0</strong>/8)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="craftmetal-checklist">
+                                                <!-- Craftmetal source rows populated by JS -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
