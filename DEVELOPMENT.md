@@ -1,3 +1,5 @@
+> See [OPUS.md](OPUS.md) for the full technical reference and [ROADMAP.md](ROADMAP.md) for the plan.
+
 # Development Stuffs
 
 ## Quick Start

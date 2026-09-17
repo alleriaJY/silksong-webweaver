@@ -1,0 +1,484 @@
+# ROADMAP.md - Silksong Webweaver: Target Architecture and Phased Plan
+
+**Purpose:** A plan an AI agent can execute phase by phase without further input from the owner. Every phase states its goal, the debt items it retires (D-numbers from [OPUS.md section 12](OPUS.md#12-known-issues-and-technical-debt)), exact steps with file paths, acceptance criteria that can be checked mechanically, and the docs to update.
+
+**Prerequisite reading:** [OPUS.md](OPUS.md) in full.
+
+**Written:** 2026-09-18. Phases are ordered by dependency, not by size. Do not skip Phase 0 or Phase 1; every later phase assumes them.
+
+---
+
+## Table of Contents
+
+0. [How to Work This Roadmap](#0-how-to-work-this-roadmap)
+1. [Target Architecture](#1-target-architecture)
+2. [Phase 0 - Hygiene and Safety Net](#phase-0---hygiene-and-safety-net)
+3. [Phase 1 - Core Rework](#phase-1---core-rework)
+4. [Phase 2 - Parsing Coverage](#phase-2---parsing-coverage)
+5. [Phase 3 - Hero's Path and Map](#phase-3---heros-path-and-map)
+6. [Phase 4 - App Shell Consolidation](#phase-4---app-shell-consolidation)
+7. [Phase 5 - DLC Readiness](#phase-5---dlc-readiness)
+8. [Phase 6 - Stretch](#phase-6---stretch)
+9. [DLC Playbook](#dlc-playbook)
+- [Appendix A - Open Data Questions](#appendix-a---open-data-questions)
+- [Appendix B - Fixture Guidelines](#appendix-b---fixture-guidelines)
+- [Appendix C - Category Module Template](#appendix-c---category-module-template)
+
+---
+
+## 0. How to Work This Roadmap
+
+### Operating rules for an agent
+1. Work one phase at a time, in order. Inside a phase, steps are ordered; each step should leave `npm test` green.
+2. Before starting, run the verification block below and confirm it is green. If it is not, fix that first (it is Phase 0 work).
+3. Never commit `.dat` files, `savefiles/`, `output*.json`, or anything under `tools/__pycache__`.
+4. Never change the AES key, header or trailer constants in `wasm-crypto/src/lib.rs`.
+5. When a save flag is not known, keep `flagType: 'unknown'` and add the item to Appendix A. Do not guess.
+6. Update OPUS.md whenever a path, shape, or workflow changes. Update the "Last verified" date.
+7. Commit at the end of every step with a message that names the phase and step (`phase1-step3: registry for bosses`).
+8. If a step is impossible with the data on hand (for example a flag needs a save the repo does not have), finish the rest of the phase, mark the step "blocked: needs <save state>" in this file, and continue.
+
+### Verification block (run after every step)
+```bash
+cd web && npm test
+```
+```bash
+cargo test --manifest-path wasm-crypto/Cargo.toml && cargo fmt --check --manifest-path wasm-crypto/Cargo.toml && cargo clippy --manifest-path wasm-crypto/Cargo.toml -- -D warnings
+```
+Then serve `web/` (`npx --yes serve web -l 5175`), open `stats.html`, load a save from `savefiles/` and check the browser console is free of errors and that every tab renders.
+
+### Definition of done for a phase
+- All acceptance criteria listed for the phase are met.
+- Verification block is green.
+- OPUS.md reflects the new state; this file has the phase marked `DONE (date)` in its heading.
+
+---
+
+## 1. Target Architecture
+
+This section is the set of rework recommendations. Each rework names the debt it retires. Phase 1 implements the foundations; later phases build on them.
+
+### 1.1 Target module layout (`web/src/`)
+
+```
+web/src/
+├── app/
+│   ├── main.js              # bootstrap only: init wasm, wire upload, route pages, call registry
+│   ├── saveStore.js         # single in-memory save state + change events (shared by stats/timeline/map)
+│   ├── router.js            # sidebar pages + tabs from data-page / data-tab (no iframes)
+│   └── upload.js            # file input, drag-drop, landing hand-off
+├── core/
+│   ├── wasm.js              # loadWasm(), decryptSave(bytes) -> normalised plain-object save
+│   ├── normalize.js         # toPlain(): Map -> object deep conversion (defensive)
+│   ├── saveAccess.js        # savedDataByName(), questCompleted(), scenePickup(), flag()
+│   ├── icons.js             # iconUrl(kind, file) with encodeURIComponent
+│   ├── format.js            # formatPlayTime, formatNumber, formatPercent
+│   └── version.js           # parseGameVersion(), compareVersion()
+├── data/
+│   ├── packs/
+│   │   ├── index.js         # PACKS[], activePacks(save), mergedList(category, packs)
+│   │   ├── base/            # base-game content, one file per category
+│   │   │   ├── index.js     # { id:'base', detect: () => true, areas, tools, bosses, maps, ... }
+│   │   │   ├── tools.js  bosses.js  maps.js  crests.js  abilities.js  skills.js
+│   │   │   ├── fleas.js  unlockables.js  collectables.js  journal.js  quests.js  areas.js
+│   │   └── <dlc-id>/        # same shape; added when a DLC ships (see DLC Playbook)
+│   ├── categories/          # one module per UI category: parse + render + completion
+│   │   ├── index.js         # CATEGORIES registry (ordered)
+│   │   ├── general.js  current.js  tools.js  bosses.js  maps.js  fleas.js
+│   │   ├── crests.js  abilities.js  skills.js  unlockables.js  collectables.js  journal.js  misc.js
+│   ├── completion.js        # computeCompletion(parsed, packs) -> { total, byCategory }
+│   ├── index.js             # parseAllData(playerData, sceneData) kept for compatibility
+│   └── __fixtures__/        # minimal sanitised saves + expected values (Appendix B)
+├── ui/
+│   ├── renderers.js         # renderIconGrid, renderChecklist, renderStatFields, setCount
+│   └── modal.js             # tool-variants popup and upload modal
+├── timeline/                # Hero's Path as a module (Phase 4), replaces exploration_timeline.html
+├── map/                     # Map viewer as a module (Phase 4)
+└── styles.css
+```
+
+Old files `data/silksongdata.js` and `data/parsers.js` survive Phase 1 as thin re-export shims so existing tests keep passing, then are deleted in Phase 4.
+
+### 1.2 Normalise at the WASM boundary (retires D1, D5)
+
+**Rust:** serialise with `serde_wasm_bindgen::Serializer::json_compatible()` so objects arrive as plain JS objects, and return the whole decrypted JSON rather than two hand-picked roots.
+
+```rust
+// lib.rs - new API; keep decrypt_and_parse() as a thin wrapper for one release
+#[wasm_bindgen]
+pub fn decrypt_save(data: &[u8]) -> JsValue {
+    let result = match decrypt_save_file(data) {   // now returns the full serde_json::Value
+        Ok(save) => DecryptResult { success: true, error: None, save: Some(save) },
+        Err(e)   => DecryptResult { success: false, error: Some(e), save: None },
+    };
+    let ser = serde_wasm_bindgen::Serializer::json_compatible();
+    serde::Serialize::serialize(&result, &ser).unwrap_or(JsValue::NULL)
+}
+
+#[wasm_bindgen]
+pub fn decrypt_to_json(data: &[u8]) -> Result<String, JsValue> { /* plaintext JSON string, for exports and tools */ }
+```
+
+**JS:** `core/wasm.js` exposes `decryptSave(bytes)` which calls the new export, runs `toPlain()` defensively, and returns `{ playerData, sceneData, ...otherRoots, raw }`. All parsers then assume plain objects; every `instanceof Map` branch in `parsers.js` and `main.js` is deleted.
+
+Why: it removes the double code path, makes the unit tests represent production, and lets a DLC add a new top-level root without a Rust rebuild.
+
+### 1.3 Category registry (retires D2, part of D3)
+
+Each UI category is one module exporting `{ id, tab, title, parse(save, ctx), render(result, ctx), completion? }` (template in Appendix C). `categories/index.js` exports the ordered `CATEGORIES` array. Then:
+
+```javascript
+// data/index.js
+export function parseAllData(playerData, sceneData) {
+  const save = { playerData, sceneData };
+  const ctx = makeContext(save);                // packs, lists, helpers
+  const out = {};
+  for (const c of CATEGORIES) out[c.id] = c.parse(save, ctx);
+  out.raw = playerData; out.rawScene = sceneData; // compatibility
+  return out;
+}
+// app/main.js
+export function displayStats(parsed) {
+  const ctx = makeRenderContext(parsed);
+  for (const c of CATEGORIES) c.render(parsed[c.id], ctx);
+}
+```
+
+Why: adding a category becomes "add one module and one `<div class="tab-panel">`". The seven copy-pasted grid loops collapse into `renderIconGrid`.
+
+### 1.4 Content packs for DLC and versions (retires D4)
+
+A pack is a folder of per-category lists plus a `detect(save)` predicate. `packs/index.js` merges the lists of all active packs; every merged entry is stamped with `pack: '<id>'`.
+
+```javascript
+// packs/base/index.js
+export default {
+  id: 'base', label: 'Silksong', minVersion: '1.0.0',
+  detect: () => true,
+  areas, tools, bosses, maps, crests, abilities, skills, fleas, unlockables, collectables, journal, quests,
+};
+// packs/<dlc>/index.js
+export default {
+  id: 'dlc1', label: '<DLC name>', minVersion: '1.1.0',
+  detect: (save) => 'SomeDlcOnlyFlag' in save.playerData,   // presence probe beats version compare
+  bosses: [...], maps: [...], areas: [...], ...
+};
+// packs/index.js
+export const PACKS = [base /*, dlc1 */];
+export function activePacks(save) { return PACKS.filter(p => p.detect(save)); }
+export function mergedList(name, packs) { return packs.flatMap(p => (p[name] ?? []).map(e => ({ ...e, pack: p.id }))); }
+```
+
+Rules:
+- Every schema entry gets a stable `id` (kebab-case, never displayed) in addition to `json`. Icons, wiki links and fixtures reference the `id`, so a renamed save key does not ripple.
+- Totals (`28 maps`, `59 tools`) are never written in HTML. Counts come from `stats.total` of the merged list.
+- `detect` for a DLC uses a presence probe on a key that exists only in DLC saves (found by the unknown-keys tool, section 1.9). `minVersion` is informational.
+- `areas` (scene prefix, display name, colour) moves into packs so the timeline, map legend and gap tool stop hard-coding area lists.
+
+### 1.5 Schema hygiene (retires D3, D14, D15)
+
+Move every schema-like constant into the base pack:
+| Today | Target |
+|---|---|
+| `upgradeSets` in `parseTools()` | `packs/base/tools.js` export `TOOL_UPGRADE_SETS` |
+| `SKILL_ICON_MAP` in `parsers.js` | `packs/base/skills.js` entries gain `equipName` (`'Silk Spear'`) |
+| `CLOAK_TIERS`, `NEEDLE_DATA` in `main.js` | `packs/base/unlockables.js` |
+| `Silk Snare`/`Extractor` are "Others" | `TOOLS` entries gain `countsTowardTotal: false` |
+| per-checklist icons in `main.js` | `*_SOURCES` lists gain `icon` |
+| `HasAbyssMap` placeholder special case | `MAPS` entry gains `iconStyle: 'placeholder'` |
+| `FLEAS_LIST` mixed kinds | entries gain `kind: 'flea' | 'npc'` |
+| `CURRENT_FIELDS_LIST` duplicates | remove duplicated `maxHealth`/`silkMax` |
+
+### 1.6 Renderers and icon resolver (retires D2)
+
+`ui/renderers.js`:
+```javascript
+renderIconGrid(container, items, { iconKind, isOn: (i) => boolean, onClass = 'unlocked', offClass = 'locked', onClick })
+renderChecklist(container, sources, { iconKind })          // collected | missing | pending rows
+renderStatFields(root, fields)                             // data-stat spans
+setCount(id, value); setPercent(id, value, { maxed })
+```
+`core/icons.js`:
+```javascript
+export const ICON_DIRS = { tool: 'assets/img/tools', boss: 'assets/img/bosses', map: 'assets/img/maps',
+  ability: 'assets/img/general/ability', skill: 'assets/img/general/skills', crest: 'assets/img/general/crests',
+  nail: 'assets/img/general/nail', general: 'assets/img/general', journal: 'assets/img/journal' };
+export const iconUrl = (kind, file) => `${ICON_DIRS[kind]}/${encodeURIComponent(file)}`;
+```
+Every `img.src` goes through `iconUrl`. Missing icons get `onerror` fallback to a placeholder per kind.
+
+### 1.7 Completion model with an oracle (retires D10)
+
+`data/completion.js` computes `{ total, byCategory: [{ id, label, earned, max }] }` from parsed data using weights declared on category modules. The game's `playerData.completionPercentage` is the oracle: a fixture test asserts `|computed - oracle| <= 0.5` for every fixture. Until all categories are modelled the test asserts `computed <= oracle` and reports the gap, so coverage progress is visible.
+
+Weights to verify against fixtures (hypotheses from the current code, not facts): masks 5, spool 9, silk hearts 3, needle 4, crafting kit 4, tool pouch 4, crests 6 (Hunter excluded), abilities 6, skills 6, other unlockables 2, tools 1 each for tools with `countsTowardTotal`. Sum must reach 100 with the fixtures' oracle; adjust the hypotheses, not the oracle.
+
+### 1.8 Single page, shared state (retires D6, D7)
+
+Replace both iframes with modules that read the same `saveStore`. The landing page hand-off keeps the bytes in `sessionStorage` but encodes with a chunked loop (or stores the `ArrayBuffer` in IndexedDB), never `String.fromCharCode(...bytes)`.
+
+```javascript
+// app/saveStore.js
+const listeners = new Set();
+let state = { file: null, save: null, parsed: null, packs: [] };
+export const saveStore = {
+  get: () => state,
+  set(next) { state = { ...state, ...next }; listeners.forEach(l => l(state)); },
+  subscribe(l) { listeners.add(l); return () => listeners.delete(l); },
+};
+```
+Timeline and map subscribe; uploading once feeds every page.
+
+### 1.9 Test and tooling strategy (retires D11, D12, D16)
+
+- `web/src/data/__fixtures__/*.json`: small sanitised saves produced by `tools/make_fixture.py` (Appendix B). Each has a sibling `*.expected.json` with the oracle values (`completionPercentage`, counts).
+- Contract tests: every `json` key in every pack list must appear in at least one fixture (catches typos); every `icon` must exist on disk (vitest can `fs.existsSync` under `web/assets`).
+- Python: `tools/decrypt_save.py` (CLI decrypt to JSON), `tools/diff_saves.py` (flag discovery), `tools/unknown_keys.py` (keys present in a save but absent from all packs, grouped by prefix), with pytest tests under `tools/tests/`.
+- Map data: `tools/` is authoritative; `merge_all_tiles.py` writes **both** web copies so nothing is copied by hand.
+
+---
+
+## Phase 0 - Hygiene and Safety Net
+
+**Goal:** A clean, reproducible baseline before any refactor. **Retires:** D11, D12 (partly), D13, D14. **Depends on:** nothing.
+
+### Steps
+1. **Commit or stash the current work-in-progress** so the tree is clean. The uncommitted changes (sceneData in WASM, source checklists, crests, stats.html) are coherent and should be committed as `wip: unlockables checklists, crests, sceneData`.
+2. **Fix `.gitignore`** by appending:
+   ```
+   *.dat
+   /savefiles/
+   /output*.json
+   /outputdelete.json
+   /*.png
+   /*_report.txt
+   __pycache__/
+   *.pyc
+   ```
+   Then `git rm --cached user1.dat tools/__pycache__ -r`. Keep `web/pkg/` tracked (static hosting needs it).
+3. **Add `tools/decrypt_save.py`** (pycryptodome): read `.dat`, strip 25-byte header and 1-byte trailer, base64-decode, AES-256-ECB decrypt with the key from OPUS section 4, PKCS7-unpad, write JSON. CLI: `python tools/decrypt_save.py in.dat out.json`. Add `pycryptodome` to `requirements-dev.txt`.
+4. **Add `tools/diff_saves.py`**: `python tools/diff_saves.py a.json b.json` prints playerData keys whose value changed (grouped: bool flips, int changes, list length changes) and `sceneData.persistentBools/Ints` entries added or changed, keyed by `SceneName/ID`.
+5. **Add `tools/unknown_keys.py`**: loads a decrypted save and every `json`/`flag`/`sceneId` referenced in `web/src/data/**/*.js` (regex over the source is acceptable), prints unreferenced playerData keys grouped by prefix (`defeated`, `Has`, `SavedFlea_`, `Purchased`, `Collected`, `has`, `met`, other). This restores the deleted `analyze_unused_flags.py`.
+6. **Add `tools/tests/test_tools.py`** with pytest covering decrypt (round-trip on a synthetic encrypted blob built in the test with the same key), diff, and unknown-keys on tiny inline JSON. Add a `python-tests` job to `ci.yml` (`pip install -r requirements-dev.txt && pytest tools`).
+7. **Make `merge_all_tiles.py` copy** `confirmed_tiles.json` and `map_transform.json` from `tools/` to `web/assets/img/fullmap/` after merging, and document that the web copies are generated.
+8. **Remove the stray `console.log` in `updateNeedleDisplay`** and the duplicated `maxHealth`/`silkMax` in `CURRENT_FIELDS_LIST` (adjust `main.js` to read them from `general`).
+9. **Create fixtures** per Appendix B from `savefiles/0completelynew.json`, `savefiles/0steelsoul.json`, `savefiles/2aftermossmother.json`, and `output2.json` (late game). Add a first fixture test in `parsers.test.js` that `parseAllData(fixture.playerData, fixture.sceneData)` does not throw and that `bosses.stats.defeated`, `maps.stats.unlocked`, `tools.stats.unlocked` equal the values in `*.expected.json`.
+10. Update DEVELOPMENT.md to point at OPUS.md and delete duplicated content.
+
+### Acceptance criteria
+- `git status` shows no `.dat`, `savefiles/`, `output*.json`, or `__pycache__`.
+- `pytest tools` passes locally and in CI.
+- `python tools/decrypt_save.py savefiles/0completelynew.dat /tmp/x.json` produces JSON with `playerData` and `sceneData`.
+- Four fixtures exist under `web/src/data/__fixtures__/` and the fixture test passes.
+- Verification block green.
+
+---
+
+## Phase 1 - Core Rework
+
+**Goal:** Implement the target architecture (sections 1.2 to 1.7) with zero visible behaviour change, then prove it by converting the Fleas placeholder into a real tab in under 50 lines. **Retires:** D1, D2, D3, D4, D5, D8, D10, D15. **Depends on:** Phase 0.
+
+### Steps
+1. **WASM boundary.** Add `decrypt_save` and `decrypt_to_json` to `lib.rs` as in section 1.2; keep `decrypt_and_parse` delegating to the same internals. Rebuild `web/pkg`. Add a Rust test that `decrypt_save` on a synthetic blob (encrypt in-test with the `aes`/`ecb` crates) round-trips a JSON object with a nested object and array.
+2. **`core/normalize.js`** with `toPlain(value)` (recursive Map to object, arrays mapped). **`core/wasm.js`** with `loadWasm()` and `decryptSave(bytes)` returning `{ playerData, sceneData, roots: {...all}, }` as plain objects. Unit test `toPlain` on nested Maps.
+3. **`core/saveAccess.js`**: `flag(pd, key)`, `savedDataByName(container)` returning a `Map<name, Data>`, `questCompleted(pd, name)`, `scenePickup(sd, sceneName, id)`, `persistentInt(sd, sceneName, id)`. Port the private helpers from `parsers.js` here and delete their `instanceof Map` branches.
+4. **`core/icons.js`, `core/format.js`, `core/version.js`** as in section 1.6; move the three formatters out of `parsers.js` (re-export from the old location).
+5. **Packs.** Create `data/packs/base/*.js` by moving each list from `silksongdata.js`; add `id` to every entry (derive from `json`, kebab-case, then hand-fix collisions); move the constants listed in section 1.5. Create `packs/base/areas.js` from the area prefix lists currently hard-coded in `exploration_timeline.html` (`getAreaFromScene`) and `map_viewer.html` (legend colours). `data/packs/index.js` exports `PACKS`, `activePacks`, `mergedList`. Keep `silksongdata.js` as a shim that re-exports `mergedList('<name>', [base])` under the old names.
+6. **Renderers.** Create `ui/renderers.js`; replace the seven inline grid loops and the local `renderSourceChecklist` in `main.js` with calls. Behaviour must be pixel-identical (same class names, same tooltips).
+7. **Category modules.** For each existing category create `data/categories/<id>.js` (Appendix C), moving the parse code from `parsers.js` and the render code from `main.js`. Order in `categories/index.js`: general, current, unlockables (crests, masks, spool, hearts, needle, kit, pouch, other), bosses, fleas, maps, collectables, misc. `parseAllData` and `displayStats` become the loops in section 1.3. Old `parsers.js` becomes a shim re-exporting the category `parse` functions under the old names so `parsers.test.js` still passes.
+8. **Completion model.** `data/completion.js` per section 1.7 with the hypothesised weights; a fixture test that prints the per-fixture gap and asserts `computed <= oracle + 0.5`. Render the model's total next to the game's number on the Unlockables tab (label it "modelled") so discrepancies are visible in the UI.
+9. **Fleas tab (proof of the pattern).** `packs/base/fleas.js` entries get `kind` and `icon` (use the existing flea sprite if present under `assets/img`, otherwise a shared placeholder and note it in Appendix A). `categories/fleas.js` renders an icon grid plus `saved/total` counters into `panel-fleas`, replacing the placeholder card in `stats.html`.
+10. **Contract tests** (section 1.9): all icons exist on disk; every `json` key in packs appears in at least one fixture or is explicitly listed in an `ALLOW_MISSING` set with a comment; no duplicate `id` across packs.
+11. Delete every remaining `instanceof Map` in `web/src`. `grep -r "instanceof Map" web/src` must return nothing.
+
+### Acceptance criteria
+- `grep -rn "instanceof Map" web/src` is empty; `grep -rn "assets/img/" web/src --include=*.js` only matches `core/icons.js`.
+- `main.js` is under 250 lines; no category-specific rendering remains in it.
+- Loading each fixture save renders every tab with the same counts as before the refactor (record them in Phase 0 step 9 and compare).
+- Fleas tab shows saved/total from the fixture with correct `kind` split (27 fleas, 3 NPC-type entries shown in a separate "Others" row).
+- Completion test passes and the printed gap per fixture is recorded in this file under Phase 1 results.
+- Verification block green; OPUS.md sections 3, 6, 7, 8 rewritten to describe the registry/pack design.
+
+---
+
+## Phase 2 - Parsing Coverage
+
+**Goal:** Parse every remaining save section the README lists, using the Phase 1 pattern. **Retires:** D9. **Depends on:** Phase 1.
+
+Each step is one category module plus one pack file plus fixtures expectations. Order chosen so that each step is independently shippable.
+
+### Steps
+1. **Hunter's Journal.** `packs/base/journal.js`: one entry per enemy `{ id, json: '<internal Name in EnemyJournalKillData>', display, icon: '<file in assets/img/journal>', killsRequired }`. The 232 icon filenames follow `"<Display> - <Internal Name> #<id>.png"` (some are `"<Display> #<id>.png"`), so the mapping can be bootstrapped by a one-off script that parses the filenames; `killsRequired` must come from the wiki and is `null` until filled. `categories/journal.js` renders a grid with three states (`unseen`, `seen`, `complete`) and counters (seen/total, completed/total). Journal completion contributes to the game's %, so add its weight hypothesis to `completion.js` and re-check the oracle gap.
+2. **Collectables.** Extend `packs/base/collectables.js` with Relics (`Relics.savedData`: collected/deposited), Materium (`MateriumCollected.savedData`), Mementos (the eight booleans in TO-DO.txt plus `MementosDeposited`), and consumables (`Collectables.savedData` with `Amount`). `categories/collectables.js` gets sub-sections; Memory Lockets and Craftmetal move into it unchanged.
+3. **Quests.** `packs/base/quests.js` from `QuestCompletionData.savedData` names (47 in the sample; use `unknown_keys.py` and the wiki for display names and givers). Render accepted/completed with `CompletedCount` for repeatables. Wishes and quest boards are the same container.
+4. **Story timeline data.** Parse `StoryEvents` (`EventType`, `PlayTime`, `SceneName`) into a `story` category (no tab yet; consumed by Phase 3 timeline markers).
+5. **Benches and bellways.** Parse `scenesEncounteredBench`, `scenesEncounteredCocoon`, `hasPinBench`-style flags and the `*Bench*` booleans into a `travel` sub-section of Maps (count of benches rested at; bellways unlocked from `Bellway_*` scene flags in `persistentBools` if identifiable).
+6. **Resolve unknowns with the diff tool** for Tool Pouch (Loddie), Craftmetal 8th, and Memory Lockets. Method: OPUS section 11. Expected outcome for lockets: purchases map to `Purchased*Locket`/`*MemoryLocket*` booleans, world pickups to `persistentBools` with an ID containing `Locket`; grep `output2.json` and the fixtures for `Locket` (case-insensitive) first. Anything not resolvable from the saves on hand stays `unknown` and goes to Appendix A.
+7. **Update README to-do checkboxes** to match reality.
+
+### Acceptance criteria
+- Journal, Collectables, Quests tabs render from fixtures; counts match `*.expected.json` values added in this phase.
+- `python tools/unknown_keys.py output2.json` reports fewer than 150 unreferenced boolean keys (down from about 1000); the remainder are listed by prefix in Appendix A with a one-line reason each ("NPC dialogue state", "tutorial prompt seen").
+- Completion oracle gap per fixture is at most 1.0 or the remaining gap is explained in Phase 2 results.
+- Verification block green; OPUS section 5 and 6 updated with the new containers and lists.
+
+---
+
+## Phase 3 - Hero's Path and Map
+
+**Goal:** Finish map coverage and make the timeline and map viewer first-class. **Depends on:** Phase 1 (areas in packs), Phase 2 step 4 (story events).
+
+### Steps
+1. **Tile gap closure.** Run `python tools/analyze_tile_gaps.py` with the late-game fixture. For category C (matched, unconfirmed) and B, confirm/reject in `tile_overlay_viewer.html`. For category D (no PNG) list scenes in Appendix A; they need art the repo does not have. Re-run `merge_all_tiles.py`. Target: every scene in `scenesVisited` of the late-game fixture either maps to a confirmed tile or is listed as "no tile art".
+2. **Scene to tile mapping as data.** Move `normalizeSceneName`/`getTileBaseName`/`findMatchingTiles` from `exploration_timeline.html` into `web/src/map/sceneTiles.js` with unit tests (cases: `Bone_East_15_left.png`, `Abyss_02b #4265375.png`, `__0003_Ward_04.png`, `Song__02.png`). Generate `web/assets/img/fullmap/scene_tiles.json` (`scene -> [tile files]`) at merge time so the browser does no string matching.
+3. **Timeline module.** Port `exploration_timeline.html` into `web/src/timeline/` (module, no own WASM, reads `saveStore`). Keep the slider, play/pause, speed, revealed list. Add story-event markers from Phase 2 step 4 and a "mapped vs visited" toggle using `scenesMapped`.
+4. **Map viewer module.** Port `map_viewer.html` into `web/src/map/`; add the player's `placedMarkers` and `respawnScene` pin, area legend from the pack's `areas`. Re-enable the sidebar entry.
+5. **Dev viewer** stays a standalone page (`tile_overlay_viewer.html`) but reads `areas` colours from the pack via a small module import.
+6. **Mobile**: both map pages must be usable at 375 px width (pinch-zoom, drag). Verify with the browser at mobile size.
+
+### Acceptance criteria
+- `tile_gap_report.txt` category B and C are empty for the late-game fixture.
+- `sceneTiles.test.js` passes; the timeline reveals at least 95% of `scenesVisited` for the late-game fixture (log the number).
+- One upload feeds Statistics, Hero's Path and Map (no second upload).
+- Verification block green; OPUS section 9 updated.
+
+---
+
+## Phase 4 - App Shell Consolidation
+
+**Goal:** One page, one state, no iframes, no shims. **Retires:** D6, D7, remaining D13. **Depends on:** Phase 3.
+
+### Steps
+1. Replace the `sessionStorage` base64 hand-off with a chunked encoder (4096-byte chunks) or IndexedDB; add a test for a 400 KB `Uint8Array` round-trip.
+2. Fold `index.html` and `stats.html` into a single `index.html` with hash routes (`#stats`, `#timeline`, `#map`, `#dev`) handled by `app/router.js`. Keep `stats.html` as a redirect for old links.
+3. Delete `exploration_timeline.html`, `map_viewer.html`, the `silksongdata.js` and `parsers.js` shims; move the tests to the category modules.
+4. Error handling: a single `showError(kind, detail)` with distinct messages for wrong file type, decrypt failure (wrong game or corrupted), unsupported version (`version` older than the base pack's `minVersion`), and unknown pack (DLC save with no pack: warn, continue with base).
+5. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.
+6. Performance: lazy-load the tile PNGs only when the timeline or map page is first opened; measure first render with a fixture and record it here.
+
+### Acceptance criteria
+- `ls web/*.html` shows `index.html`, `stats.html` (redirect only), `tile_overlay_viewer.html`.
+- Lighthouse accessibility score at or above 90 on the stats page.
+- Verification block green; OPUS sections 2 and 3 rewritten.
+
+---
+
+## Phase 5 - DLC Readiness
+
+**Goal:** Everything needed to support a content expansion is in place before it ships. **Depends on:** Phase 1; better after Phase 4.
+
+### Steps
+1. **In-app unknown-keys panel** under a `?dev` route: lists playerData keys and `persistentBools` IDs not referenced by any active pack, grouped by prefix, with copy-to-clipboard. This is the browser twin of `tools/unknown_keys.py` and lets the owner explore a new save without Python.
+2. **Pack scaffold script** `tools/new_pack.py <id> "<label>" <minVersion>` that creates `web/src/data/packs/<id>/` with empty category files and registers it in `packs/index.js` (behind `detect: () => false` until a probe is set).
+3. **Version banner**: show `version` and the list of active packs in the General tab header.
+4. **Fixture policy** for packs: every pack must ship at least one fixture where `detect` is true and one where it is false; contract test enforces it.
+5. **Map extension path**: document in OPUS how a new area gets tiles (the OpenCV matcher is gone; the path is manual annotation via `scene_annotator.html` on an updated labeled map, then `merge_all_tiles.py`). If the owner wants automated matching again, restore the matcher from git history (`git log --all -- tools/map_tile_matcher.py`).
+6. Write the DLC Playbook section below into OPUS as the standing procedure.
+
+### Acceptance criteria
+- `python tools/new_pack.py demo "Demo" 9.9.9` followed by `npm test` passes with the demo pack present and detected false; removing it passes too.
+- Dev panel lists unknown keys for the late-game fixture.
+- Verification block green.
+
+---
+
+## Phase 6 - Stretch
+
+Not required for "complete"; pick by owner interest. Each is independent.
+
+- **Save comparison**: load two saves, diff every category (uses `saveStore` with two slots and the category `parse` outputs).
+- **Export**: JSON and CSV of parsed data; PNG snapshot of the map with revealed tiles.
+- **Shareable read-only link**: encode parsed summary (not the save) in the URL hash.
+- **Wiki links** per item via `id` (a `wiki` field per entry).
+- **Save editing**: out of scope; would require re-encryption in WASM and is a different product.
+
+---
+
+## DLC Playbook
+
+Run this when a DLC or major patch ships. Assumes Phases 0, 1 and 5 are done.
+
+1. Obtain a save from the new content (owner provides `.dat`). Decrypt: `python tools/decrypt_save.py dlc.dat savefiles/dlc.json`.
+2. `python tools/unknown_keys.py savefiles/dlc.json` (or the `?dev` panel). Pick one key that exists only in DLC saves as the pack's `detect` probe; confirm it is absent in every base fixture.
+3. `python tools/new_pack.py <id> "<label>" <version>` and set `detect`.
+4. Fill pack lists: bosses (`defeated*` keys), maps (`Has*Map`), tools (`Tools.savedData` names not in base), abilities/skills (`has*`), fleas, journal entries (`EnemyJournalKillData` names not in base), areas (new scene prefixes from `scenesVisited`), quests, unlockable sources (`diff_saves.py` between DLC saves).
+5. Add icons under the existing `assets/img/<kind>/` folders; the icon contract test tells you what is missing.
+6. Add a DLC fixture (Appendix B) with its oracle values. Update `completion.js` weights if the DLC changes the 100% breakdown; the oracle test will fail loudly if it does.
+7. Map: if the DLC adds areas, obtain the new labeled map, update `map_transform.json` via `scene_annotator.html`, place tiles manually, run `merge_all_tiles.py`.
+8. Update OPUS.md status snapshot and this file.
+
+Base-game saves must render identically before and after adding a pack; the contract test with `detect: false` fixtures guarantees it.
+
+---
+
+## Appendix A - Open Data Questions
+
+Items that cannot be resolved from the saves in `savefiles/` and `output2.json`. The owner can unblock each by producing a save immediately before and after the event and dropping the pair into `savefiles/`.
+
+| Item | Needed save states | Notes |
+|---|---|---|
+| Memory Locket sources (20) | before/after any single locket pickup or purchase | Then grep the diff for `Locket`; the naming should generalise to all 20. |
+| Tool Pouch from Loddie | before/after receiving it | |
+| Craftmetal 8th source | a 100% save | compare `Collectables`/`persistentBools` for `Tool Metal` IDs against the 7 known |
+| Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
+| Journal `killsRequired` | none (wiki) | data entry task |
+| Scenes without tile art (gap category D) | none | needs map art from the game's files |
+| Flea icon | none | asset needed for the Fleas grid |
+
+Add rows here whenever a step is blocked; remove them when resolved and note the resolving commit.
+
+---
+
+## Appendix B - Fixture Guidelines
+
+- Location: `web/src/data/__fixtures__/<name>.json` plus `<name>.expected.json`.
+- Produce with `python tools/make_fixture.py in.json out.json` (create in Phase 0 step 9): keeps `playerData` keys that are referenced by any pack list or are scalar and under 64 characters, keeps every `savedData` container referenced by packs, keeps `scenesVisited`/`scenesMapped`, keeps `sceneData.persistentBools/Ints` entries whose `ID` matches `Heart Piece|Silk Spool|Tool Metal|Locket`, drops everything else. Target size under 150 KB.
+- `*.expected.json` holds: `completionPercentage`, `version`, `permadeathMode`, and per-category counts (`bosses.defeated`, `maps.unlocked`, `tools.unlocked`, `fleas.saved`, `crests.unlocked`, `maskShards.collected`, `spoolFragments.collected`). Fill from the game UI or the pre-refactor app, never from the code under test.
+- Minimum set: `new-game`, `steel-soul`, `early-game` (after Moss Mother), `late-game` (the `output2.json` state). Add `dlc-*` per pack.
+- Fixtures are derived from the owner's saves; they are play-state only, but keep them minimal so they stay reviewable.
+
+---
+
+## Appendix C - Category Module Template
+
+```javascript
+// web/src/data/categories/bosses.js
+import { mergedList } from '../packs/index.js';
+import { flag } from '../../core/saveAccess.js';
+import { renderIconGrid, setCount } from '../../ui/renderers.js';
+
+export default {
+  id: 'bosses',
+  tab: 'bosses',                 // panel id: panel-bosses
+  title: 'Bosses',
+
+  // ctx.packs: active packs for this save; ctx.lists(name) = mergedList(name, ctx.packs)
+  parse(save, ctx) {
+    const items = ctx.lists('bosses').map(def => ({
+      ...def,
+      defeated: flag(save.playerData, def.json),
+    }));
+    return { items, stats: { total: items.length, defeated: items.filter(i => i.defeated).length } };
+  },
+
+  render(result, ctx) {
+    renderIconGrid(ctx.el('bosses-grid'), result.items, {
+      iconKind: 'boss',
+      isOn: i => i.defeated,
+      onClass: 'defeated',
+      offClass: 'not-defeated',
+      label: i => i.display,
+    });
+    setCount('bosses-count', result.stats.defeated);
+    setCount('bosses-total', result.stats.total);   // replaces the hard-coded "/36" in HTML
+  },
+
+  // optional: contribution to the completion model
+  completion: null,
+};
+```
+
+Contract for every module:
+- `parse` is pure: same input, same output; no DOM access; must not throw on an empty `playerData` (`{}`) or missing containers.
+- `render` touches only elements inside its own panel, obtained through `ctx.el(id)` which returns `null` safely when the panel is absent (so tests can call `render` with a stub context).
+- Each entry produced by `parse` keeps `id`, `display`, `pack` from the schema so the UI and tests can key on them.
