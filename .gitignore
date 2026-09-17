@@ -12,3 +12,19 @@ Cargo.lock
 
 # Save files and outputs (user data)
 output.json
+
+# Personal save files and decrypted dumps
+*.dat
+/savefiles/
+/output*.json
+
+# Generated reports and stray copies at repo root
+/*_report.txt
+/silksong_fullmap.png
+
+# Python
+__pycache__/
+*.pyc
+
+# Local editor/agent config
+/.claude/settings.local.json
