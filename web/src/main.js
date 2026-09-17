@@ -80,6 +80,61 @@ function setupFileUpload() {
 
     // Reset button
     resetBtn.addEventListener('click', resetStats);
+
+    // Global Window-Wide Seamless Drag and Drop
+    setupGlobalDragDrop();
+}
+
+/**
+ * Global window-wide seamless drag and drop handler
+ */
+function setupGlobalDragDrop() {
+    let overlay = document.getElementById('global-drop-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'global-drop-overlay';
+        overlay.className = 'global-drop-overlay';
+        overlay.innerHTML = `
+            <div class="global-drop-content">
+                <div class="global-drop-icon">📥</div>
+                <div class="global-drop-title">Drop Save File Anywhere</div>
+                <div class="global-drop-subtitle">Release your user1.dat file to decrypt & analyze instantly</div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+
+    let dragCounter = 0;
+
+    window.addEventListener('dragenter', (e) => {
+        e.preventDefault();
+        dragCounter++;
+        if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+            overlay.classList.add('active');
+        }
+    });
+
+    window.addEventListener('dragover', (e) => {
+        e.preventDefault();
+    });
+
+    window.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        dragCounter--;
+        if (dragCounter <= 0) {
+            dragCounter = 0;
+            overlay.classList.remove('active');
+        }
+    });
+
+    window.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dragCounter = 0;
+        overlay.classList.remove('active');
+        if (e.dataTransfer.files.length > 0) {
+            handleFileSelect(e.dataTransfer.files[0]);
+        }
+    });
 }
 
 /**
@@ -901,11 +956,38 @@ function hideError() {
     errorMessage.hidden = true;
 }
 
+// Check for pending dropped save file from landing page
+async function checkPendingSaveFile() {
+    try {
+        const stored = sessionStorage.getItem('pending_save_file');
+        if (stored) {
+            sessionStorage.removeItem('pending_save_file');
+            const parsed = JSON.parse(stored);
+            const binary = atob(parsed.data);
+            const bytes = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+            const file = new File([bytes], parsed.name, { type: 'application/octet-stream' });
+
+            let attempts = 0;
+            while (!wasmReady && attempts < 20) {
+                await new Promise(r => setTimeout(r, 100));
+                attempts++;
+            }
+            if (wasmReady) {
+                handleFileSelect(file);
+            }
+        }
+    } catch (e) { console.warn('Could not load pending save file:', e); }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     setupFileUpload();
     setupTabs();
     initWasm();
+    checkPendingSaveFile();
 
     // Set current year in footer
     const yearEl = document.getElementById('current-year');

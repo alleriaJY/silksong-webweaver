@@ -158,6 +158,59 @@
 
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Landing Page Seamless Drag and Drop
+        (function() {
+            let overlay = document.createElement('div');
+            overlay.className = 'global-drop-overlay';
+            overlay.innerHTML = `
+                <div class="global-drop-content">
+                    <div class="global-drop-icon">📥</div>
+                    <div class="global-drop-title">Drop user1.dat Save File</div>
+                    <div class="global-drop-subtitle">Release anywhere to open Statistics & Analysis</div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+
+            let dragCounter = 0;
+
+            window.addEventListener('dragenter', (e) => {
+                e.preventDefault();
+                dragCounter++;
+                if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+                    overlay.classList.add('active');
+                }
+            });
+
+            window.addEventListener('dragover', (e) => { e.preventDefault(); });
+
+            window.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                dragCounter--;
+                if (dragCounter <= 0) {
+                    dragCounter = 0;
+                    overlay.classList.remove('active');
+                }
+            });
+
+            window.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                dragCounter = 0;
+                overlay.classList.remove('active');
+                if (e.dataTransfer.files.length > 0) {
+                    const file = e.dataTransfer.files[0];
+                    if (file.name.endsWith('.dat')) {
+                        const buffer = await file.arrayBuffer();
+                        const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+                        sessionStorage.setItem('pending_save_file', JSON.stringify({
+                            name: file.name,
+                            data: base64
+                        }));
+                        window.location.href = 'stats.html';
+                    }
+                }
+            });
+        })();
     </script>
 </body>
 

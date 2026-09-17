@@ -35,6 +35,62 @@ body {
     line-height: 1.6;
 }
 
+/* Global Seamless Drop Zone Overlay */
+.global-drop-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 15, 35, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.global-drop-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.global-drop-content {
+    border: 3px dashed var(--primary-color);
+    border-radius: 24px;
+    padding: 3rem 4rem;
+    text-align: center;
+    background: rgba(26, 26, 46, 0.9);
+    box-shadow: 0 0 50px var(--primary-glow);
+    transform: scale(0.95);
+    transition: transform 0.25s ease;
+}
+
+.global-drop-overlay.active .global-drop-content {
+    transform: scale(1);
+}
+
+.global-drop-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.global-drop-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.global-drop-subtitle {
+    color: var(--secondary-color);
+    font-size: 1.05rem;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    APP LAYOUT - Sidebar + Main Content
    ═══════════════════════════════════════════════════════════════════════════ */
