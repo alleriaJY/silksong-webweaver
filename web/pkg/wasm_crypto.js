@@ -39,8 +39,8 @@ let WASM_VECTOR_LEN = 0;
 /**
  * Decrypt a Silksong save file
  *
- * Takes raw bytes from a .dat file and returns the raw playerData JSON
- * Parsing is handled by JavaScript using the schema system
+ * Takes raw bytes from a .dat file and returns the raw playerData and sceneData JSON.
+ * Parsing is handled by JavaScript using the schema system.
  * @param {Uint8Array} data
  * @returns {any}
  */
@@ -49,13 +49,6 @@ export function decrypt_and_parse(data) {
     const len0 = WASM_VECTOR_LEN;
     const ret = wasm.decrypt_and_parse(ptr0, len0);
     return ret;
-}
-
-/**
- * Initialize console error panic hook for better error messages
- */
-export function init() {
-    wasm.init();
 }
 
 const EXPECTED_RESPONSE_TYPES = new Set(['basic', 'cors', 'default']);

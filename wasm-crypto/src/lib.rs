@@ -23,32 +23,35 @@ pub struct DecryptResult {
     pub success: bool,
     pub error: Option<String>,
     pub player_data: Option<serde_json::Value>,
+    pub scene_data: Option<serde_json::Value>,
 }
 
 /// Decrypt a Silksong save file
 ///
-/// Takes raw bytes from a .dat file and returns the raw playerData JSON
-/// Parsing is handled by JavaScript using the schema system
+/// Takes raw bytes from a .dat file and returns the raw playerData and sceneData JSON.
+/// Parsing is handled by JavaScript using the schema system.
 #[wasm_bindgen]
 pub fn decrypt_and_parse(data: &[u8]) -> JsValue {
     let result = match decrypt_save_file(data) {
-        Ok(player_data) => DecryptResult {
+        Ok((player_data, scene_data)) => DecryptResult {
             success: true,
             error: None,
             player_data: Some(player_data),
+            scene_data: Some(scene_data),
         },
         Err(e) => DecryptResult {
             success: false,
             error: Some(e),
             player_data: None,
+            scene_data: None,
         },
     };
 
     serde_wasm_bindgen::to_value(&result).unwrap_or(JsValue::NULL)
 }
 
-/// Internal: Decrypt the save file and extract playerData
-fn decrypt_save_file(raw_bytes: &[u8]) -> Result<serde_json::Value, String> {
+/// Internal: Decrypt the save file and extract playerData + sceneData
+fn decrypt_save_file(raw_bytes: &[u8]) -> Result<(serde_json::Value, serde_json::Value), String> {
     // Validate minimum size
     if raw_bytes.len() <= HEADER_SIZE + 1 {
         return Err("Save file too small".to_string());
@@ -66,8 +69,8 @@ fn decrypt_save_file(raw_bytes: &[u8]) -> Result<serde_json::Value, String> {
     let json: serde_json::Value =
         serde_json::from_str(&json_str).map_err(|e| format!("Invalid JSON: {}", e))?;
 
-    // Return playerData
-    Ok(json["playerData"].clone())
+    // Return playerData and sceneData (world pickup states used for source-tracking checklists)
+    Ok((json["playerData"].clone(), json["sceneData"].clone()))
 }
 
 /// Internal: AES-256-ECB decryption
@@ -150,20 +153,24 @@ mod tests {
             success: true,
             error: None,
             player_data: Some(serde_json::json!({"test": "value"})),
+            scene_data: Some(serde_json::json!({"test": "value"})),
         };
         assert!(success_result.success);
         assert!(success_result.error.is_none());
         assert!(success_result.player_data.is_some());
+        assert!(success_result.scene_data.is_some());
 
         // Test error result
         let error_result = DecryptResult {
             success: false,
             error: Some("Test error".to_string()),
             player_data: None,
+            scene_data: None,
         };
         assert!(!error_result.success);
         assert_eq!(error_result.error, Some("Test error".to_string()));
         assert!(error_result.player_data.is_none());
+        assert!(error_result.scene_data.is_none());
     }
 
     /// Test that header size constant is correct

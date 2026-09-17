@@ -3,23 +3,17 @@
 
 /**
  * Decrypt a Silksong save file
- * 
- * Takes raw bytes from a .dat file and returns the raw playerData JSON
- * Parsing is handled by JavaScript using the schema system
+ *
+ * Takes raw bytes from a .dat file and returns the raw playerData and sceneData JSON.
+ * Parsing is handled by JavaScript using the schema system.
  */
 export function decrypt_and_parse(data: Uint8Array): any;
-
-/**
- * Initialize console error panic hook for better error messages
- */
-export function init(): void;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly decrypt_and_parse: (a: number, b: number) => any;
-  readonly init: () => void;
   readonly __wbindgen_externrefs: WebAssembly.Table;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_start: () => void;
