@@ -344,7 +344,6 @@ function updateNeedleDisplay(data) {
             nailUpgrades = parseInt(data.raw.get('nailUpgrades')) || 0;
         }
     }
-    console.log('Nail upgrades:', nailUpgrades);
 
     // Clamp to valid range (0-4)
     nailUpgrades = Math.max(0, Math.min(4, nailUpgrades));
@@ -541,9 +540,9 @@ function displayStats(data) {
 
     // Current Stats Tab - Health & Silk
     const health = getField('current', 'health') || 0;
-    const maxHealth = getField('current', 'maxHealth') || 0;
+    const maxHealth = getField('general', 'maxHealth') || 0;
     const silk = getField('current', 'silk') || 0;
-    const maxSilk = getField('current', 'silkMax') || 0;
+    const maxSilk = getField('general', 'silkMax') || 0;
     setStat('healthDisplay', `${health}/${maxHealth}`);
     setStat('silkDisplay', `${silk}/${maxSilk}`);
 

@@ -19,10 +19,9 @@ export const GENERAL_FIELDS_LIST = [
 ];
 
 export const CURRENT_FIELDS_LIST = [
+    // maxHealth / silkMax live in GENERAL_FIELDS_LIST; read them from there
     { json: 'health', display: 'Current Health' },
-    { json: 'maxHealth', display: 'Max Health' },
     { json: 'silk', display: 'Current Silk' },
-    { json: 'silkMax', display: 'Max Silk' },
     { json: 'geo', display: 'Rosaries' },
     { json: 'ShellShards', display: 'Shell Shards' },
     { json: 'CurrentCrestID', display: 'Equipped Crest' },
