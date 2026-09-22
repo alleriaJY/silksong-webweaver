@@ -1,7 +1,11 @@
 name: Deploy to GitHub Pages
 
+# Deploy only after the CI workflow has passed on main. A red test run never
+# publishes. Manual runs (workflow_dispatch) remain available for re-deploys.
 on:
-  push:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
 
@@ -13,9 +17,13 @@ concurrency:
 jobs:
   # Build job
   build:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Deploy exactly the commit CI tested, not whatever main is now
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
