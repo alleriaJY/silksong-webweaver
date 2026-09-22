@@ -1,0 +1,94 @@
+{
+  "_note": "oracle = from the save itself (ground truth); baseline = parser output snapshot (see scripts/snapshot-fixtures.mjs)",
+  "oracle": {
+    "version": "1.0.28561",
+    "completionPercentage": 100,
+    "permadeathMode": 0,
+    "maxHealth": 10,
+    "silkMax": 18,
+    "silkRegenMax": 3,
+    "nailUpgrades": 4,
+    "ToolKitUpgrades": 4,
+    "ToolPouchUpgrades": 4,
+    "scenesVisited": 842
+  },
+  "baseline": {
+    "tools": {
+      "unlocked": 51,
+      "total": 51
+    },
+    "bosses": {
+      "defeated": 36,
+      "total": 36
+    },
+    "maps": {
+      "unlocked": 28,
+      "total": 28
+    },
+    "fleas": {
+      "saved": 30,
+      "total": 30
+    },
+    "abilities": {
+      "unlocked": 6,
+      "total": 6
+    },
+    "skills": {
+      "unlocked": 6,
+      "total": 6
+    },
+    "crests": {
+      "unlocked": 7,
+      "total": 7
+    },
+    "equippedCrest": "Wanderer",
+    "equippedTools": [
+      "Parry",
+      "Dazzle Bind Upgraded",
+      "Longneedle",
+      "Compass",
+      "Sprintmaster",
+      "Magnetite Dice"
+    ],
+    "maskShards": {
+      "collected": 20,
+      "pending": 0,
+      "total": 20
+    },
+    "spoolFragments": {
+      "collected": 16,
+      "pending": 0,
+      "total": 18
+    },
+    "silkHearts": {
+      "collected": 3,
+      "pending": 0,
+      "total": 3
+    },
+    "toolPouch": {
+      "collected": 3,
+      "pending": 1,
+      "total": 4
+    },
+    "craftingKit": {
+      "collected": 4,
+      "pending": 0,
+      "total": 4
+    },
+    "otherUnlockables": {
+      "collected": 2,
+      "pending": 0,
+      "total": 2
+    },
+    "craftmetal": {
+      "collected": 7,
+      "pending": 1,
+      "total": 8
+    },
+    "memoryLockets": {
+      "collected": 0,
+      "pending": 20,
+      "total": 20
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "_note": "oracle = from the save itself (ground truth); baseline = parser output snapshot (see scripts/snapshot-fixtures.mjs)",
+  "oracle": {
+    "version": "1.0.29315",
+    "completionPercentage": 0,
+    "permadeathMode": 0,
+    "maxHealth": 5,
+    "silkMax": 9,
+    "silkRegenMax": 0,
+    "nailUpgrades": 0,
+    "ToolKitUpgrades": 0,
+    "ToolPouchUpgrades": 0,
+    "scenesVisited": 6
+  },
+  "baseline": {
+    "tools": {
+      "unlocked": 0,
+      "total": 51
+    },
+    "bosses": {
+      "defeated": 1,
+      "total": 36
+    },
+    "maps": {
+      "unlocked": 0,
+      "total": 28
+    },
+    "fleas": {
+      "saved": 0,
+      "total": 30
+    },
+    "abilities": {
+      "unlocked": 0,
+      "total": 6
+    },
+    "skills": {
+      "unlocked": 0,
+      "total": 6
+    },
+    "crests": {
+      "unlocked": 1,
+      "total": 7
+    },
+    "equippedCrest": "Hunter",
+    "equippedTools": [],
+    "maskShards": {
+      "collected": 0,
+      "pending": 0,
+      "total": 20
+    },
+    "spoolFragments": {
+      "collected": 0,
+      "pending": 0,
+      "total": 18
+    },
+    "silkHearts": {
+      "collected": 0,
+      "pending": 0,
+      "total": 3
+    },
+    "toolPouch": {
+      "collected": 0,
+      "pending": 1,
+      "total": 4
+    },
+    "craftingKit": {
+      "collected": 0,
+      "pending": 0,
+      "total": 4
+    },
+    "otherUnlockables": {
+      "collected": 0,
+      "pending": 0,
+      "total": 2
+    },
+    "craftmetal": {
+      "collected": 0,
+      "pending": 1,
+      "total": 8
+    },
+    "memoryLockets": {
+      "collected": 0,
+      "pending": 20,
+      "total": 20
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "_note": "oracle = from the save itself (ground truth); baseline = parser output snapshot (see scripts/snapshot-fixtures.mjs)",
+  "oracle": {
+    "version": "1.0.28561",
+    "completionPercentage": 72,
+    "permadeathMode": 0,
+    "maxHealth": 9,
+    "silkMax": 15,
+    "silkRegenMax": 2,
+    "nailUpgrades": 3,
+    "ToolKitUpgrades": 3,
+    "ToolPouchUpgrades": 4,
+    "scenesVisited": 686
+  },
+  "baseline": {
+    "tools": {
+      "unlocked": 36,
+      "total": 51
+    },
+    "bosses": {
+      "defeated": 24,
+      "total": 36
+    },
+    "maps": {
+      "unlocked": 25,
+      "total": 28
+    },
+    "fleas": {
+      "saved": 25,
+      "total": 30
+    },
+    "abilities": {
+      "unlocked": 5,
+      "total": 6
+    },
+    "skills": {
+      "unlocked": 5,
+      "total": 6
+    },
+    "crests": {
+      "unlocked": 5,
+      "total": 7
+    },
+    "equippedCrest": "Wanderer",
+    "equippedTools": [
+      "Thread Sphere",
+      "Straight Pin",
+      "Bell Bind",
+      "Quickbind",
+      "Musician Charm",
+      "Compass",
+      "Magnetite Dice"
+    ],
+    "maskShards": {
+      "collected": 16,
+      "pending": 0,
+      "total": 20
+    },
+    "spoolFragments": {
+      "collected": 10,
+      "pending": 0,
+      "total": 18
+    },
+    "silkHearts": {
+      "collected": 2,
+      "pending": 0,
+      "total": 3
+    },
+    "toolPouch": {
+      "collected": 3,
+      "pending": 1,
+      "total": 4
+    },
+    "craftingKit": {
+      "collected": 3,
+      "pending": 0,
+      "total": 4
+    },
+    "otherUnlockables": {
+      "collected": 0,
+      "pending": 0,
+      "total": 2
+    },
+    "craftmetal": {
+      "collected": 4,
+      "pending": 1,
+      "total": 8
+    },
+    "memoryLockets": {
+      "collected": 0,
+      "pending": 20,
+      "total": 20
+    }
+  }
+}
