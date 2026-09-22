@@ -1,55 +1,45 @@
-> See [OPUS.md](OPUS.md) for the full technical reference and [ROADMAP.md](ROADMAP.md) for the plan.
+# Development
 
-# Development Stuffs
+Full technical reference: [OPUS.md](OPUS.md). Plan and phases: [ROADMAP.md](ROADMAP.md).
 
-## Quick Start
+## Run locally
 
-### Web Version
-Visit the deployed site on GitHub Pages, or run/host locally:
+ES modules and WASM need http, not `file://`.
 
 ```bash
-# Navigate to web directory
-cd web
-
-# Start local server
-python3 -m http.server 8080
-
-# Open http://localhost:8080 in your browser
+npx --yes serve web -l 5175
 ```
 
-### Access from Other Devices
+To reach it from another device on your network, use `python -m http.server 8080 --bind 0.0.0.0` inside `web/` and open `http://<your-ip>:8080`.
+
+## Build WASM (only when `wasm-crypto/src/lib.rs` changes)
+
 ```bash
-# Find your IP address
-ipconfig getifaddr en0   # Returns something like 192.168.1.xxx
-
-# Start server bound to all interfaces
-cd web
-python3 -m http.server 8080 --bind 0.0.0.0
-
-# On other device, open: http://192.168.1.xxx:8080
+cd wasm-crypto && wasm-pack build --target web --out-dir ../web/pkg
 ```
 
-## Development
+## Tests
 
-### Building WASM Module
 ```bash
-# Install wasm-pack (first time only)
-brew install wasm-pack  # macOS
-# or: cargo install wasm-pack
-
-# Build WASM
-cd wasm-crypto
-wasm-pack build --target web --out-dir ../web/pkg
+cd web && npm ci && npm test
 ```
 
-### Running Tests
 ```bash
-cargo test
+cargo test --manifest-path wasm-crypto/Cargo.toml
 ```
 
-## 📋 Features Experimented + Done
+```bash
+pip install -r requirements-dev.txt && pytest tools
+```
 
-- ✅ Basic (but not full) parsing of save file.
-- ✅ Web UI with drag & drop upload (HTML/CSS/JS)
-- ✅ Runs entirely in browser (+ WASM from Rust)
-- ✅ GitHub Actions CI/CD
+## Save tools
+
+```bash
+python tools/decrypt_save.py savefiles/user1.dat savefiles/user1.json
+python tools/diff_saves.py before.dat after.dat
+python tools/unknown_keys.py savefiles/user1.dat --bools-only
+python tools/make_fixture.py savefiles/user1.dat web/src/data/__fixtures__/<name>.json
+cd web && node scripts/snapshot-fixtures.mjs
+```
+
+Personal saves belong in `savefiles/`, which is git-ignored. Only commit trimmed fixtures.

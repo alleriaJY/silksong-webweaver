@@ -29,6 +29,10 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
 - [ ] Phase 5: DLC readiness (pack scaffold, unknown-keys dev panel, version banner)
 - [ ] Stretch: save comparison, exports, shareable summary links
 
+## Assets
+
+Game sprites, icons and map art under `web/assets/img/` are the property of Team Cherry. They are used here for a free, non-commercial fan tool with no affiliation to Team Cherry, and will be removed on request. The code in this repository is covered by the license below; the game assets are not.
+
 ## 📄 License
 
 See [LICENSE](LICENSE) for details.
