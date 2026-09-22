@@ -12,7 +12,7 @@
 
 0. [How to Work This Roadmap](#0-how-to-work-this-roadmap)
 1. [Target Architecture](#1-target-architecture)
-2. [Phase 0 - Hygiene and Safety Net](#phase-0---hygiene-and-safety-net)
+2. [Phase 0 - Hygiene and Safety Net (DONE 2026-09-23)](#phase-0---hygiene-and-safety-net-done-2026-09-23)
 3. [Phase 1 - Core Rework](#phase-1---core-rework)
 4. [Phase 2 - Parsing Coverage](#phase-2---parsing-coverage)
 5. [Phase 3 - Hero's Path and Map](#phase-3---heros-path-and-map)
@@ -238,7 +238,7 @@ Timeline and map subscribe; uploading once feeds every page.
 
 ---
 
-## Phase 0 - Hygiene and Safety Net
+## Phase 0 - Hygiene and Safety Net (DONE 2026-09-23)
 
 **Goal:** A clean, reproducible baseline before any refactor. **Retires:** D11, D12 (partly), D13, D14. **Depends on:** nothing.
 
@@ -276,6 +276,15 @@ Timeline and map subscribe; uploading once feeds every page.
 - Four fixtures exist under `web/src/data/__fixtures__/` and the fixture test passes.
 - `deploy.yml` cannot run its build job when CI fails; `git ls-files '*.dat'` is empty; no UI string mentions `user1.dat` alone; README has an Assets section.
 - Verification block green.
+
+### Phase 0 results
+- Commits `phase0-steps3-6` through `phase0-steps10,14`. Step 1 and 2 were done earlier in commits `a09712e` to `9b54f26`.
+- Fixtures: `new-game`, `steel-soul`, `early-game`, `late-game` (72%), `complete` (100%, from `savefiles/user3.dat`). The largest is 171 KB (journal, quests and scene lists are needed by Phase 2), so the Appendix B size target is now 200 KB.
+- `savefiles/2aftermossmother.json` is a corrupted hand-made dump (55 keys missing, stray empty key). Always build fixtures and diffs from `.dat`.
+- Saves in `savefiles/` span game versions 1.0.28561, 1.0.28714, 1.0.28891 and 1.0.29315, with 1305 to 1315 playerData keys. Patch drift is real, which motivates the Phase 1 patch-drift contract test.
+- **Oracle finding:** the 100% save reports 16 of 18 spool fragments. The quest-reward flags `pilgrimQuestSpoolCollected` and `tookGreymoor17Spool` are false in a save with `silkMax` 18, so both schema entries are wrong. Pinned with `it.fails` in `fixtures.test.js`; Phase 2 step 6 fixes them.
+- `tools/unknown_keys.py output2.json` baseline: 1024 of 1312 playerData keys unreferenced.
+- Verification: vitest 541, pytest 13, cargo test 7, fmt and clippy clean. Save-location help and the current-field change verified in the browser.
 
 ---
 
@@ -319,7 +328,8 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 3. **Quests.** `packs/base/quests.js` from `QuestCompletionData.savedData` names (47 in the sample; use `unknown_keys.py` and the wiki for display names and givers). Render accepted/completed with `CompletedCount` for repeatables. Wishes and quest boards are the same container.
 4. **Story timeline data.** Parse `StoryEvents` (`EventType`, `PlayTime`, `SceneName`) into a `story` category (no tab yet; consumed by Phase 3 timeline markers).
 5. **Benches and bellways.** Parse `scenesEncounteredBench`, `scenesEncounteredCocoon`, `hasPinBench`-style flags and the `*Bench*` booleans into a `travel` sub-section of Maps (count of benches rested at; bellways unlocked from `Bellway_*` scene flags in `persistentBools` if identifiable).
-6. **Resolve unknowns with the diff tool** for Tool Pouch (Loddie), Craftmetal 8th, and Memory Lockets. Method: OPUS section 11. Expected outcome for lockets: purchases map to `Purchased*Locket`/`*MemoryLocket*` booleans, world pickups to `persistentBools` with an ID containing `Locket`; grep `output2.json` and the fixtures for `Locket` (case-insensitive) first. Anything not resolvable from the saves on hand stays `unknown` and goes to Appendix A.
+6. **Fix the two wrong spool fragment flags first** (see Phase 0 results): diff `savefiles/user2.dat` against `savefiles/user3.dat`, look for quest completions and booleans that correlate with the Sherma and Greymoor_17 rewards, then flip the `it.fails` in `fixtures.test.js` to `it` and re-run `node scripts/snapshot-fixtures.mjs`.
+   **Resolve unknowns with the diff tool** for Tool Pouch (Loddie), Craftmetal 8th, and Memory Lockets. Leads from the 100% save: purchase flags `PurchasedPilgrimsRestMemoryLocket`, `PurchasedBelltownMemoryLocket`, `purchasedGrindleMemoryLocket` (Grindle is missing from the current 20-entry list); world pickup `Shadow_27 / Breakable Hang Sack Memory Locket`; the item's internal collectable name is `Crest Socket Unlocker`. Other world lockets are likely generic `Collectable Item Pickup*` IDs, so match them by `SceneName` against the wiki rooms. Method: OPUS section 11. Expected outcome for lockets: purchases map to `Purchased*Locket`/`*MemoryLocket*` booleans, world pickups to `persistentBools` with an ID containing `Locket`; grep `output2.json` and the fixtures for `Locket` (case-insensitive) first. Anything not resolvable from the saves on hand stays `unknown` and goes to Appendix A.
 7. **Update README to-do checkboxes** to match reality.
 
 ### Acceptance criteria
@@ -359,9 +369,10 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 2. Fold `index.html` and `stats.html` into a single `index.html` with hash routes (`#stats`, `#timeline`, `#map`, `#dev`) handled by `app/router.js`. Keep `stats.html` as a redirect for old links.
 3. Delete `exploration_timeline.html`, `map_viewer.html`, the `silksongdata.js` and `parsers.js` shims; move the tests to the category modules.
 4. Error handling: a single `showError(kind, detail)` with distinct messages for wrong file type, decrypt failure (wrong game or corrupted), unsupported version (`version` older than the base pack's `minVersion`), and unknown pack (DLC save with no pack: warn, continue with base).
-5. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.
-6. Performance: lazy-load the tile PNGs only when the timeline or map page is first opened; measure first render with a fixture and record it here.
-7. **Tile weight.** Convert tile PNGs to WebP (lossless) at merge time, or pack them into per-area sprite atlases with an index JSON produced by `merge_all_tiles.py`. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.
+5. **Mobile layout bug:** at widths below about 460 px `.app-main` overflows horizontally (seen at 456 px on `stats.html`). Fix as part of this pass.
+6. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.
+7. Performance: lazy-load the tile PNGs only when the timeline or map page is first opened; measure first render with a fixture and record it here.
+8. **Tile weight.** Convert tile PNGs to WebP (lossless) at merge time, or pack them into per-area sprite atlases with an index JSON produced by `merge_all_tiles.py`. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.
 
 ### Acceptance criteria
 - `ls web/*.html` shows `index.html`, `stats.html` (redirect only), `tile_overlay_viewer.html`.
@@ -425,9 +436,10 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 
 | Item | Needed save states | Notes |
 |---|---|---|
-| Memory Locket sources (20) | before/after any single locket pickup or purchase | Then grep the diff for `Locket`; the naming should generalise to all 20. |
+| Memory Locket sources (20) | before/after a world locket pickup | Purchases already have flags (see Phase 2 step 6). World pickups need one bracketing save pair to learn the ID pattern. |
 | Tool Pouch from Loddie | before/after receiving it | |
-| Craftmetal 8th source | a 100% save | compare `Collectables`/`persistentBools` for `Tool Metal` IDs against the 7 known |
+| Craftmetal 8th source | none: `savefiles/user3.dat` is 100% | compare its `persistentBools` `Tool Metal` IDs and purchase flags against the 7 known |
+| Sherma / Greymoor_17 spool fragment flags | none: 100% save available | current flags are proven wrong; find the right ones with `diff_saves.py` |
 | Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
@@ -441,10 +453,10 @@ Add rows here whenever a step is blocked; remove them when resolved and note the
 
 ## Appendix B - Fixture Guidelines
 
-- Location: `web/src/data/__fixtures__/<name>.json` plus `<name>.expected.json`.
-- Produce with `python tools/make_fixture.py in.json out.json` (create in Phase 0 step 9): keeps `playerData` keys that are referenced by any pack list or are scalar and under 64 characters, keeps every `savedData` container referenced by packs, keeps `scenesVisited`/`scenesMapped`, keeps `sceneData.persistentBools/Ints` entries whose `ID` matches `Heart Piece|Silk Spool|Tool Metal|Locket`, drops everything else. Target size under 150 KB.
+- Location: `web/src/data/__fixtures__/<name>.json` plus `<name>.expected.json`. Generate expected files with `cd web && node scripts/snapshot-fixtures.mjs`; they hold `oracle` values read from the save and a `baseline` snapshot of parser output.
+- Produce with `python tools/make_fixture.py in.json out.json` (create in Phase 0 step 9): keeps `playerData` keys that are referenced by any pack list or are scalar and under 64 characters, keeps every `savedData` container referenced by packs, keeps `scenesVisited`/`scenesMapped`, keeps `sceneData.persistentBools/Ints` entries whose `ID` matches `Heart Piece|Silk Spool|Tool Metal|Locket`, drops everything else. Target size under 200 KB. Always build from the `.dat`, never from a hand-made `.json`.
 - `*.expected.json` holds: `completionPercentage`, `version`, `permadeathMode`, and per-category counts (`bosses.defeated`, `maps.unlocked`, `tools.unlocked`, `fleas.saved`, `crests.unlocked`, `maskShards.collected`, `spoolFragments.collected`). Fill from the game UI or the pre-refactor app, never from the code under test.
-- Minimum set: `new-game`, `steel-soul`, `early-game` (after Moss Mother), `late-game` (the `output2.json` state). Add `dlc-*` per pack.
+- Minimum set: `new-game`, `steel-soul`, `early-game` (after Moss Mother), `late-game` (72%), `complete` (100%). Add `dlc-*` per pack.
 - Fixtures are derived from the owner's saves; they are play-state only, but keep them minimal so they stay reviewable.
 
 ---
