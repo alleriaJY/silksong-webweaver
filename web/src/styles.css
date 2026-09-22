@@ -503,6 +503,37 @@ header h1 {
     font-size: 0.875rem;
 }
 
+.save-location-help {
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.save-location-help summary {
+    cursor: pointer;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.save-location-help dl {
+    margin: 0.5rem 0;
+}
+
+.save-location-help dt {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0.4rem;
+}
+
+.save-location-help dd {
+    margin: 0.15rem 0 0;
+    overflow-wrap: anywhere;
+}
+
+.save-location-help code {
+    font-size: 0.75rem;
+}
+
 /* Analyze Button */
 .analyze-btn {
     display: flex;

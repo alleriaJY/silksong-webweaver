@@ -98,7 +98,7 @@ function setupGlobalDragDrop() {
             <div class="global-drop-content">
                 <div class="global-drop-icon">📥</div>
                 <div class="global-drop-title">Drop Save File Anywhere</div>
-                <div class="global-drop-subtitle">Release your user1.dat file to decrypt & analyze instantly</div>
+                <div class="global-drop-subtitle">Release your save file (user1.dat to user4.dat) to decrypt &amp; analyze instantly</div>
             </div>
         `;
         document.body.appendChild(overlay);
