@@ -1,4 +1,4 @@
-# Development dependencies for Python tools testing
-# These are for local development only, not deployed to GitHub Pages
+# Development dependencies for Python tools (not deployed)
 
 pytest>=8.0.0
+pycryptodome>=3.20
