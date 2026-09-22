@@ -166,11 +166,13 @@ def main():
     with open(MASTER_COORDS_PATH, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)
 
-    # Sync confirmed_tiles.json to web assets folder for web app access
-    web_confirmed_path = ROOT / "web" / "assets" / "img" / "fullmap" / "confirmed_tiles.json"
-    if CONFIRMED_PATH.exists():
-        import shutil
-        shutil.copy(CONFIRMED_PATH, web_confirmed_path)
+    # tools/ is authoritative; the copies under web/assets/img/fullmap/ are
+    # generated here so the web viewers can fetch them. Never edit them by hand.
+    import shutil
+    web_fullmap = ROOT / "web" / "assets" / "img" / "fullmap"
+    for src in (CONFIRMED_PATH, ROOT / "tools" / "map_transform.json"):
+        if src.exists():
+            shutil.copy(src, web_fullmap / src.name)
 
     print(f"\nSuccessfully merged coordinates into {MASTER_COORDS_PATH}:")
     print(f"  Total mapped tiles: {len(merged_tiles)}")
