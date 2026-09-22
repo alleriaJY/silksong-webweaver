@@ -35,7 +35,7 @@
 4. Never change the AES key, header or trailer constants in `wasm-crypto/src/lib.rs`.
 5. When a save flag is not known, keep `flagType: 'unknown'` and add the item to Appendix A. Do not guess.
 6. Update OPUS.md whenever a path, shape, or workflow changes. Update the "Last verified" date.
-7. Commit at the end of every step with a message that names the phase and step (`phase1-step3: registry for bosses`).
+7. Commit at the end of every step with a message that names the phase and step (`phase1-step3: registry for bosses`). **Never `git push`** and never open PRs; the owner reviews and pushes.
 8. If a step is impossible with the data on hand (for example a flag needs a save the repo does not have), finish the rest of the phase, mark the step "blocked: needs <save state>" in this file, and continue.
 
 ### Verification block (run after every step)
@@ -264,12 +264,17 @@ Timeline and map subscribe; uploading once feeds every page.
 8. **Remove the stray `console.log` in `updateNeedleDisplay`** and the duplicated `maxHealth`/`silkMax` in `CURRENT_FIELDS_LIST` (adjust `main.js` to read them from `general`).
 9. **Create fixtures** per Appendix B from `savefiles/0completelynew.json`, `savefiles/0steelsoul.json`, `savefiles/2aftermossmother.json`, and `output2.json` (late game). Add a first fixture test in `parsers.test.js` that `parseAllData(fixture.playerData, fixture.sceneData)` does not throw and that `bosses.stats.defeated`, `maps.stats.unlocked`, `tools.stats.unlocked` equal the values in `*.expected.json`.
 10. Update DEVELOPMENT.md to point at OPUS.md and delete duplicated content.
+11. **Gate deploy on tests.** In `deploy.yml`, trigger on `workflow_run` of CI with `conclusion == 'success'` on `main` (or merge the test jobs into the deploy workflow and make `build` `needs:` them). A red test run must never publish.
+12. **Untrack the personal save.** `git rm --cached user1.dat`. It stays in history; rewriting history is the owner's decision and is out of scope.
+13. **Save-slot and save-location UX.** Replace every "user1.dat" string in the UI with generic wording ("your save file, e.g. user1.dat to user4.dat"). Add a collapsible "Where is my save?" note next to the upload area with the paths per platform: Windows `%USERPROFILE%\AppData\LocalLow\Team Cherry\Hollow Knight Silksong\<steam-id>\`, macOS `~/Library/Application Support/unity.Team-Cherry.Silksong/<steam-id>/`, Linux/Steam Deck `~/.config/unity3d/Team Cherry/Hollow Knight Silksong/<steam-id>/`. Mark the paths "verify" in OPUS until the owner confirms them on each platform.
+14. **Asset attribution.** Add an "Assets" section to README stating that game sprites, icons and map art are property of Team Cherry, used for a non-commercial fan tool, and will be removed on request. Whether to keep hosting them in the repo is an owner decision (Appendix A).
 
 ### Acceptance criteria
 - `git status` shows no `.dat`, `savefiles/`, `output*.json`, or `__pycache__`.
 - `pytest tools` passes locally and in CI.
 - `python tools/decrypt_save.py savefiles/0completelynew.dat /tmp/x.json` produces JSON with `playerData` and `sceneData`.
 - Four fixtures exist under `web/src/data/__fixtures__/` and the fixture test passes.
+- `deploy.yml` cannot run its build job when CI fails; `git ls-files '*.dat'` is empty; no UI string mentions `user1.dat` alone; README has an Assets section.
 - Verification block green.
 
 ---
@@ -289,7 +294,8 @@ Timeline and map subscribe; uploading once feeds every page.
 8. **Completion model.** `data/completion.js` per section 1.7 with the hypothesised weights; a fixture test that prints the per-fixture gap and asserts `computed <= oracle + 0.5`. Render the model's total next to the game's number on the Unlockables tab (label it "modelled") so discrepancies are visible in the UI.
 9. **Fleas tab (proof of the pattern).** `packs/base/fleas.js` entries get `kind` and `icon` (use the existing flea sprite if present under `assets/img`, otherwise a shared placeholder and note it in Appendix A). `categories/fleas.js` renders an icon grid plus `saved/total` counters into `panel-fleas`, replacing the placeholder card in `stats.html`.
 10. **Contract tests** (section 1.9): all icons exist on disk; every `json` key in packs appears in at least one fixture or is explicitly listed in an `ALLOW_MISSING` set with a comment; no duplicate `id` across packs.
-11. Delete every remaining `instanceof Map` in `web/src`. `grep -r "instanceof Map" web/src` must return nothing.
+11. **Patch-drift contract test.** For every fixture, assert that each `json` key referenced by an active pack is *present* in the save (value may be false). A key missing from a newer-version fixture means the game renamed or removed it; the test must fail with the key and fixture name rather than letting the item silently render as missing. Keys legitimately absent on early saves (lazy-created containers such as `Tools.savedData` entries) go in a per-list `optionalKeys` set with a comment.
+12. Delete every remaining `instanceof Map` in `web/src`. `grep -r "instanceof Map" web/src` must return nothing.
 
 ### Acceptance criteria
 - `grep -rn "instanceof Map" web/src` is empty; `grep -rn "assets/img/" web/src --include=*.js` only matches `core/icons.js`.
@@ -355,6 +361,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 4. Error handling: a single `showError(kind, detail)` with distinct messages for wrong file type, decrypt failure (wrong game or corrupted), unsupported version (`version` older than the base pack's `minVersion`), and unknown pack (DLC save with no pack: warn, continue with base).
 5. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.
 6. Performance: lazy-load the tile PNGs only when the timeline or map page is first opened; measure first render with a fixture and record it here.
+7. **Tile weight.** Convert tile PNGs to WebP (lossless) at merge time, or pack them into per-area sprite atlases with an index JSON produced by `merge_all_tiles.py`. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.
 
 ### Acceptance criteria
 - `ls web/*.html` shows `index.html`, `stats.html` (redirect only), `tile_overlay_viewer.html`.
@@ -390,6 +397,7 @@ Not required for "complete"; pick by owner interest. Each is independent.
 - **Export**: JSON and CSV of parsed data; PNG snapshot of the map with revealed tiles.
 - **Shareable read-only link**: encode parsed summary (not the save) in the URL hash.
 - **Wiki links** per item via `id` (a `wiki` field per entry).
+- **Localisation**: display names keyed by the Phase 1 `id` in `packs/<pack>/i18n/<lang>.json`, falling back to English.
 - **Save editing**: out of scope; would require re-encryption in WASM and is a different product.
 
 ---
@@ -424,6 +432,8 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
 | Flea icon | none | asset needed for the Fleas grid |
+| Keep hosting Team Cherry assets in the repo? | none (owner decision) | Alternatives: keep with attribution (default), or load from an external host. |
+| Save paths per platform | none (owner check) | Confirm the Phase 0 step 13 paths on each platform. |
 
 Add rows here whenever a step is blocked; remove them when resolved and note the resolving commit.
 
