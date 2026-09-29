@@ -5,7 +5,7 @@
  */
 
 import { loadWasm, decryptSave } from './core/wasm.js';
-import { parseAllData, formatPlayTime, formatNumber } from './data/index.js';
+import { parseAllData, formatPlayTime, formatNumber, CLOAK_TIERS, NEEDLE_TIERS } from './data/index.js';
 
 // State
 let wasmReady = false;
@@ -272,26 +272,6 @@ function showToolVariantsPopup(tool) {
 }
 
 /**
- * Cloak tier data
- */
-const CLOAK_TIERS = [
-    { name: 'Crimson Cloak', level: 'Base', icon: 'I_crimson_cloak.png' },
-    { name: "Drifter's Cloak", level: 'Tier 1', icon: 'I_spine_cloak.png' },
-    { name: 'Faydown Cloak', level: 'Tier 2', icon: 'I_spine_cloak_down.png' },
-];
-
-/**
- * Needle upgrade data
- */
-const NEEDLE_DATA = [
-    { name: 'Needle', level: 1, icon: 'Inv_0033_inv_nail_01.png' },
-    { name: 'Sharpened Needle', level: 2, icon: 'Inv_0033_inv_nail_02.png' },
-    { name: 'Shining Needle', level: 3, icon: 'Inv_0033_inv_nail_03.png' },
-    { name: 'Hivesteel Needle', level: 4, icon: 'Inv_0033_inv_nail_04.png' },
-    { name: 'Pale Steel Needle', level: 5, icon: 'Inv_0033_inv_nail_05.png' },
-];
-
-/**
  * Update cloak display based on ability unlocks
  */
 function updateCloakDisplay(data) {
@@ -300,20 +280,9 @@ function updateCloakDisplay(data) {
 
     if (!cloakIcon || !cloakName) return;
 
-    // Determine cloak tier based on abilities
-    let cloakTier = 0; // Default: Crimson Cloak
-    if (data.abilities && data.abilities.otherAbilities) {
-        const hasDrifters = data.abilities.otherAbilities.some(a => a.json === 'hasBrolly' && a.value);
-        const hasFaydown = data.abilities.otherAbilities.some(a => a.json === 'hasDoubleJump' && a.value);
-
-        if (hasFaydown) {
-            cloakTier = 2;
-        } else if (hasDrifters) {
-            cloakTier = 1;
-        }
-    }
-
-    const cloak = CLOAK_TIERS[cloakTier];
+    // Highest cloak tier whose required ability is unlocked (packs/base/abilities.js)
+    const unlocked = new Set((data.abilities?.otherAbilities || []).filter(a => a.value).map(a => a.json));
+    const cloak = [...CLOAK_TIERS].reverse().find(t => !t.requires || unlocked.has(t.requires));
     cloakIcon.src = `assets/img/general/ability/${cloak.icon}`;
     cloakIcon.alt = cloak.name;
     cloakName.textContent = cloak.name;
@@ -348,7 +317,7 @@ function updateNeedleDisplay(data) {
     // Clamp to valid range (0-4)
     nailUpgrades = Math.max(0, Math.min(4, nailUpgrades));
 
-    const needle = NEEDLE_DATA[nailUpgrades];
+    const needle = NEEDLE_TIERS[nailUpgrades];
 
     // Update Current Stats display (just icon and name)
     if (needleIcon && needleName) {

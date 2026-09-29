@@ -65,39 +65,8 @@ export function parseTools(playerData) {
         };
     });
 
-    // Define upgrade sets (tools that should be displayed as one with variants)
-    const upgradeSets = [
-        {
-            name: 'Curveclaw',
-            tools: ['Curve Claws', 'Curve Claws Upgraded'],
-            preferredUpgrade: 'Curve Claws Upgraded'
-        },
-        {
-            name: 'Silkshot',
-            tools: ['WebShot Forge', 'WebShot Architect', 'WebShot Weaver'],
-            preferredUpgrade: 'WebShot Weaver'
-        },
-        {
-            name: "Druid's Eye",
-            tools: ['Mosscreep Tool 1', 'Mosscreep Tool 2'],
-            preferredUpgrade: 'Mosscreep Tool 2'
-        },
-        {
-            name: 'Money Pouch',
-            tools: ['Dead Mans Purse', 'Shell Satchel'],
-            preferredUpgrade: 'Shell Satchel',
-            type: 'gameMode', // Special type for Classic/Steel Soul variants
-            variantLabels: {
-                'Dead Mans Purse': 'Classic Only',
-                'Shell Satchel': 'Steel Soul Only'
-            }
-        },
-        {
-            name: 'Claw Mirror',
-            tools: ['Dazzle Bind', 'Dazzle Bind Upgraded'], // Claw Mirror, Claw Mirrors
-            preferredUpgrade: 'Dazzle Bind Upgraded'
-        }
-    ];
+    // Tools shown as one tile with variants (packs/base/tools.js TOOL_UPGRADE_SETS)
+    const upgradeSets = schemas.TOOL_UPGRADE_SETS;
 
     // Process upgrade sets: filter tools and create variant info
     const filteredTools = [];
@@ -146,9 +115,10 @@ export function parseTools(playerData) {
     const otherTools = [];
     const regularTools = [];
 
+    // Tools marked countsTowardTotal: false (Snare Setter, Needle Phial) go to Others
+    const notCounted = new Set(schemas.TOOLS_LIST.filter(t => t.countsTowardTotal === false).map(t => t.json));
     for (const tool of filteredTools) {
-        // Move Snare Setter and Needle Phial to Others section
-        if (tool.json === 'Silk Snare' || tool.json === 'Extractor') {
+        if (notCounted.has(tool.json)) {
             tool.isOther = true;
             otherTools.push(tool);
         } else {
@@ -280,16 +250,11 @@ export function parseSkills(playerData) {
 // EQUIPPED TOOLS PARSING
 // ═══════════════════════════════════════════════════════════════════════════
 
-// Mapping from equipped tool names to skill icons (skills can be equipped)
-const SKILL_ICON_MAP = {
-    // Skills
-    'Silk Spear': { display: 'Silkspear', icon: 'Art_Rune__0002_silk_spear.png', isSkill: true },
-    'Thread Sphere': { display: 'Thread Storm', icon: 'Art_Rune__0008_silk_sphere.png', isSkill: true },
-    'Parry': { display: 'Cross Stitch', icon: 'Art_Rune__0014_cross_stitch.png', isSkill: true },
-    'Silk Dart': { display: 'Sharp Dart', icon: 'Art_Rune__0017_silk_dart.png', isSkill: true },
-    'Silk Bomb': { display: 'Rune Rage', icon: 'Art_Rune__0005_silk_bomb.png', isSkill: true },
-    'Finger Blades': { display: 'Pale Nails', icon: 'Art_Rune__0011_finger_blades.png', isSkill: true },
-};
+// Equipped-slot name -> skill display/icon (skills can sit in tool slots).
+// Built from SKILLS equipName in packs/base/skills.js.
+const SKILL_ICON_MAP = Object.fromEntries(
+    schemas.SKILLS_LIST.map(skill => [skill.equipName, { display: skill.display, icon: skill.icon, isSkill: true }]),
+);
 
 /**
  * Parse currently equipped tools from ToolEquips based on CurrentCrestID

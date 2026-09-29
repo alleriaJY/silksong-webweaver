@@ -1,0 +1,81 @@
+/**
+ * Tools: playerData.Tools.savedData, matched by Name.
+ * Entry: { id, json, display, category: Red|Blue|Yellow, icon, countsTowardTotal? }
+ * countsTowardTotal: false moves a tool to the "Others" row and out of the count.
+ */
+
+export const TOOLS = [
+    { id: 'straight-pin', json: 'Straight Pin', display: 'Straight Pin', category: 'Red', icon: 'T_straight_pin.png' },
+    { id: 'threefold-pin', json: 'Tri Pin', display: 'Threefold Pin', category: 'Red', icon: 'T_tri_pin.png' },
+    { id: 'sting-shard', json: 'Sting Shard', display: 'Sting Shard', category: 'Red', icon: 'T_sting_shard.png' },
+    { id: 'tacks', json: 'Tack', display: 'Tacks', category: 'Red', icon: 'T_tack.png' },
+    { id: 'longpin', json: 'Harpoon', display: 'Longpin', category: 'Red', icon: 'T_claw_javelin.png' },
+    { id: 'curveclaw', json: 'Curve Claws', display: 'Curveclaw', category: 'Red', icon: 'T_curve_claw.png' },
+    { id: 'curvesickle', json: 'Curve Claws Upgraded', display: 'Curvesickle', category: 'Red', icon: 'T_curve_claw_upgraded.png' },
+    { id: 'throwing-ring', json: 'Shakra Ring', display: 'Throwing Ring', category: 'Red', icon: 'T_shakra_ring.png' },
+    { id: 'pimpillo', json: 'Pimpilo', display: 'Pimpillo', category: 'Red', icon: 'T_pimpilo.png' },
+    { id: 'conchcutter', json: 'Conch Drill', display: 'Conchcutter', category: 'Red', icon: 'T_Conch_Drill_Shot.png' },
+    { id: 'silkshot-forge-daughter', json: 'WebShot Forge', display: 'Silkshot (Forge Daughter)', category: 'Red', icon: '_0002_T_web_shot_forge.png' },
+    { id: 'silkshot-twelfth-architect', json: 'WebShot Architect', display: 'Silkshot (Twelfth Architect)', category: 'Red', icon: '_0003_T_web_shot_architect.png' },
+    { id: 'silkshot-mount-fay', json: 'WebShot Weaver', display: 'Silkshot (Mount Fay)', category: 'Red', icon: '_0001_T_web_shot_forge_runes.png' },
+    { id: 'delvers-drill', json: 'Screw Attack', display: "Delver's Drill", category: 'Red', icon: 'T_Spine_head.png' },
+    { id: 'cogwork-wheel', json: 'Cogwork Saw', display: 'Cogwork Wheel', category: 'Red', icon: 'T_cogwork_saw.png' },
+    { id: 'cogfly', json: 'Cogwork Flier', display: 'Cogfly', category: 'Red', icon: 'T_cogwork_flier.png' },
+    { id: 'rosary-cannon', json: 'Rosary Cannon', display: 'Rosary Cannon', category: 'Red', icon: '_0004_T_rosary_cannon_loaded.png' },
+    { id: 'flintslate', json: 'Flintstone', display: 'Flintslate', category: 'Red', icon: 'Hornet_icon_0003_T_flintstone.png' },
+    { id: 'snare-setter', json: 'Silk Snare', display: 'Snare Setter', category: 'Red', icon: '_0004_T_snare_setter.png', countsTowardTotal: false },
+    { id: 'flea-brew', json: 'Flea Brew', display: 'Flea Brew', category: 'Red', icon: 'T_flea_brew.png' },
+    { id: 'plasmium-phial', json: 'Lifeblood Syringe', display: 'Plasmium Phial', category: 'Red', icon: 'T_syringe_lifeblood.png' },
+    { id: 'needle-phial', json: 'Extractor', display: 'Needle Phial', category: 'Red', icon: 'T_Extractor.png', countsTowardTotal: false },
+    { id: 'voltvessels', json: 'Lightning Rod', display: 'Voltvessels', category: 'Red', icon: '_0004_T_lightning__0001_1_venom.png' },
+    { id: 'druids-eye', json: 'Mosscreep Tool 1', display: "Druid's Eye", category: 'Blue', icon: 'T_mossmedal.png' },
+    { id: 'druids-eyes', json: 'Mosscreep Tool 2', display: "Druid's Eyes", category: 'Blue', icon: 'T_mossmedal_second.png' },
+    { id: 'magma-bell', json: 'Lava Charm', display: 'Magma Bell', category: 'Blue', icon: 'Hornet_T_lava_charm.png' },
+    { id: 'warding-bell', json: 'Bell Bind', display: 'Warding Bell', category: 'Blue', icon: 'Hornet_icon_0001_T_bell_shield.png' },
+    { id: 'pollip-pouch', json: 'Poison Pouch', display: 'Pollip Pouch', category: 'Blue', icon: 'T_poison_pouch.png' },
+    { id: 'fractured-mask', json: 'Fractured Mask', display: 'Fractured Mask', category: 'Blue', icon: 'Hornet_T_fractured_mask.png' },
+    { id: 'multibinder', json: 'Multibind', display: 'Multibinder', category: 'Blue', icon: 'T_multi_bind.png' },
+    { id: 'weavelight', json: 'White Ring', display: 'Weavelight', category: 'Blue', icon: 'T_icon_white_ring.png' },
+    { id: 'sawtooth-circlet', json: 'Brolly Spike', display: 'Sawtooth Circlet', category: 'Blue', icon: 'T_brolly_spike.png' },
+    { id: 'injector-band', json: 'Quickbind', display: 'Injector Band', category: 'Blue', icon: 'T_quick_bind.png' },
+    { id: 'spool-extender', json: 'Spool Extender', display: 'Spool Extender', category: 'Blue', icon: 'T_spool_bar_extender.png' },
+    { id: 'reserve-bind', json: 'Reserve Bind', display: 'Reserve Bind', category: 'Blue', icon: 'T_focus_spool.png' },
+    { id: 'claw-mirror', json: 'Dazzle Bind', display: 'Claw Mirror', category: 'Blue', icon: 'T_dazzle_bind.png' },
+    { id: 'claw-mirrors', json: 'Dazzle Bind Upgraded', display: 'Claw Mirrors', category: 'Blue', icon: 'T_dazzle_bind_upg.png' },
+    { id: 'memory-crystal', json: 'Revenge Crystal', display: 'Memory Crystal', category: 'Blue', icon: 'T_revenge_crystal.png' },
+    { id: 'snitch-pick', json: 'Thief Claw', display: 'Snitch Pick', category: 'Blue', icon: 'Thief_Claw.png' },
+    { id: 'volt-filament', json: 'Zap Imbuement', display: 'Volt Filament', category: 'Blue', icon: 'T_zap_imbuement.png' },
+    { id: 'quick-sling', json: 'Quick Sling', display: 'Quick Sling', category: 'Blue', icon: 'T_quick_sling.png' },
+    { id: 'wreath-of-purity', json: 'Maggot Charm', display: 'Wreath of Purity', category: 'Blue', icon: 'poultice_pouch_icon.png' },
+    { id: 'longclaw', json: 'Longneedle', display: 'Longclaw', category: 'Blue', icon: 'T_longneedle.png' },
+    { id: 'wispfire-lantern', json: 'Wisp Lantern', display: 'Wispfire Lantern', category: 'Blue', icon: 'T_wisp_lantern.png' },
+    { id: 'egg-of-flealia', json: 'Flea Charm', display: 'Egg of Flealia', category: 'Blue', icon: 'Flea_Egg.png' },
+    { id: 'pin-badge', json: 'Pinstress Tool', display: 'Pin Badge', category: 'Blue', icon: 'T_pinstress_tool.png' },
+    { id: 'compass', json: 'Compass', display: 'Compass', category: 'Yellow', icon: 'T_Compass.png' },
+    { id: 'shard-pendant', json: 'Bone Necklace', display: 'Shard Pendant', category: 'Yellow', icon: 'Hornet_Bone_Necklace.png' },
+    { id: 'magnetite-brooch', json: 'Rosary Magnet', display: 'Magnetite Brooch', category: 'Yellow', icon: 'T_rosary_magnet.png' },
+    { id: 'weighted-belt', json: 'Weighted Anklet', display: 'Weighted Belt', category: 'Yellow', icon: 'T_weighted_anklet.png' },
+    { id: 'barbed-bracelet', json: 'Barbed Wire', display: 'Barbed Bracelet', category: 'Yellow', icon: 'T_barbed_wire.png' },
+    { id: 'dead-bugs-purse', json: 'Dead Mans Purse', display: "Dead Bug's Purse", category: 'Yellow', icon: 'T_dead_purse.png' },
+    { id: 'shell-satchel', json: 'Shell Satchel', display: 'Shell Satchel', category: 'Yellow', icon: 'T_shell_satchel.png' },
+    { id: 'magnetite-dice', json: 'Magnetite Dice', display: 'Magnetite Dice', category: 'Yellow', icon: '_0006_I_magnetite_dice.png' },
+    { id: 'scuttlebrace', json: 'Scuttlebrace', display: 'Scuttlebrace', category: 'Yellow', icon: 'T_steel_spine.png' },
+    { id: 'ascendants-grip', json: 'Wallcling', display: "Ascendant's Grip", category: 'Yellow', icon: 'T_longneedle_old1.png' },
+    { id: 'spider-strings', json: 'Musician Charm', display: 'Spider Strings', category: 'Yellow', icon: 'T_attunement_charm.png' },
+    { id: 'silkspeed-anklets', json: 'Sprintmaster', display: 'Silkspeed Anklets', category: 'Yellow', icon: 'T_icon_sprintmaster.png' },
+    { id: 'thiefs-mark', json: 'Thief Charm', display: "Thief's Mark", category: 'Yellow', icon: 'Thief_Brooch.png' },
+];
+
+// Tools shown as one tile with variants (spoiler popup). The first tool is shown
+// when none is unlocked; preferredUpgrade wins when several are.
+// type: 'gameMode' marks Classic/Steel Soul exclusive variants.
+export const TOOL_UPGRADE_SETS = [
+    { id: 'curveclaw', name: 'Curveclaw', tools: ['Curve Claws', 'Curve Claws Upgraded'], preferredUpgrade: 'Curve Claws Upgraded' },
+    { id: 'silkshot', name: 'Silkshot', tools: ['WebShot Forge', 'WebShot Architect', 'WebShot Weaver'], preferredUpgrade: 'WebShot Weaver' },
+    { id: 'druids-eye', name: "Druid's Eye", tools: ['Mosscreep Tool 1', 'Mosscreep Tool 2'], preferredUpgrade: 'Mosscreep Tool 2' },
+    {
+        id: 'money-pouch', name: 'Money Pouch', tools: ['Dead Mans Purse', 'Shell Satchel'], preferredUpgrade: 'Shell Satchel',
+        type: 'gameMode', variantLabels: { 'Dead Mans Purse': 'Classic Only', 'Shell Satchel': 'Steel Soul Only' },
+    },
+    { id: 'claw-mirror', name: 'Claw Mirror', tools: ['Dazzle Bind', 'Dazzle Bind Upgraded'], preferredUpgrade: 'Dazzle Bind Upgraded' },
+];
