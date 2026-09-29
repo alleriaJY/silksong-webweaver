@@ -20,6 +20,12 @@ function passArray8ToWasm0(arg, malloc) {
     return ptr;
 }
 
+function takeFromExternrefTable0(idx) {
+    const value = wasm.__wbindgen_externrefs.get(idx);
+    wasm.__externref_table_dealloc(idx);
+    return value;
+}
+
 let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
 cachedTextDecoder.decode();
 const MAX_SAFARI_DECODE_BYTES = 2146435072;
@@ -37,10 +43,10 @@ function decodeText(ptr, len) {
 let WASM_VECTOR_LEN = 0;
 
 /**
- * Decrypt a Silksong save file
+ * Legacy API: returns only playerData and sceneData, as JS `Map`s.
  *
- * Takes raw bytes from a .dat file and returns the raw playerData and sceneData JSON.
- * Parsing is handled by JavaScript using the schema system.
+ * Kept for `exploration_timeline.html` until it moves onto `decrypt_save`
+ * (ROADMAP Phase 3). New code should call `decrypt_save`.
  * @param {Uint8Array} data
  * @returns {any}
  */
@@ -49,6 +55,48 @@ export function decrypt_and_parse(data) {
     const len0 = WASM_VECTOR_LEN;
     const ret = wasm.decrypt_and_parse(ptr0, len0);
     return ret;
+}
+
+/**
+ * Decrypt a Silksong save file and return every root of the save.
+ *
+ * Objects are serialised as plain JavaScript objects (not `Map`s), so the JS
+ * side needs no `instanceof Map` handling. New top-level roots (for example
+ * from a DLC) reach JS without a Rust change.
+ * @param {Uint8Array} data
+ * @returns {any}
+ */
+export function decrypt_save(data) {
+    const ptr0 = passArray8ToWasm0(data, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.decrypt_save(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Decrypt a Silksong save file to its plaintext JSON string (for exports and tools).
+ * @param {Uint8Array} data
+ * @returns {string}
+ */
+export function decrypt_to_json(data) {
+    let deferred3_0;
+    let deferred3_1;
+    try {
+        const ptr0 = passArray8ToWasm0(data, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.decrypt_to_json(ptr0, len0);
+        var ptr2 = ret[0];
+        var len2 = ret[1];
+        if (ret[3]) {
+            ptr2 = 0; len2 = 0;
+            throw takeFromExternrefTable0(ret[2]);
+        }
+        deferred3_0 = ptr2;
+        deferred3_1 = len2;
+        return getStringFromWasm0(ptr2, len2);
+    } finally {
+        wasm.__wbindgen_free(deferred3_0, deferred3_1, 1);
+    }
 }
 
 const EXPECTED_RESPONSE_TYPES = new Set(['basic', 'cors', 'default']);

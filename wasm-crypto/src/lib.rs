@@ -16,7 +16,7 @@ const ENCRYPTION_KEY: &[u8; 32] = b"UKu52ePUBwetZ9wNX88o54dnfKRu0T1l";
 /// Header size to skip in save files
 const HEADER_SIZE: usize = 25;
 
-/// Result returned to JavaScript with decrypted playerData
+/// Legacy result for `decrypt_and_parse` (objects arrive in JS as `Map`s)
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DecryptResult {
@@ -26,18 +26,55 @@ pub struct DecryptResult {
     pub scene_data: Option<serde_json::Value>,
 }
 
-/// Decrypt a Silksong save file
+/// Result for `decrypt_save`: the whole decrypted save, every root included
+#[derive(Serialize, Deserialize)]
+pub struct SaveResult {
+    pub success: bool,
+    pub error: Option<String>,
+    pub save: Option<serde_json::Value>,
+}
+
+/// Decrypt a Silksong save file and return every root of the save.
 ///
-/// Takes raw bytes from a .dat file and returns the raw playerData and sceneData JSON.
-/// Parsing is handled by JavaScript using the schema system.
+/// Objects are serialised as plain JavaScript objects (not `Map`s), so the JS
+/// side needs no `instanceof Map` handling. New top-level roots (for example
+/// from a DLC) reach JS without a Rust change.
+#[wasm_bindgen]
+pub fn decrypt_save(data: &[u8]) -> JsValue {
+    let result = match decrypt_save_file(data) {
+        Ok(save) => SaveResult {
+            success: true,
+            error: None,
+            save: Some(save),
+        },
+        Err(e) => SaveResult {
+            success: false,
+            error: Some(e),
+            save: None,
+        },
+    };
+    let serializer = serde_wasm_bindgen::Serializer::json_compatible();
+    result.serialize(&serializer).unwrap_or(JsValue::NULL)
+}
+
+/// Decrypt a Silksong save file to its plaintext JSON string (for exports and tools).
+#[wasm_bindgen]
+pub fn decrypt_to_json(data: &[u8]) -> Result<String, JsValue> {
+    decrypt_plaintext(data).map_err(|e| JsValue::from_str(&e))
+}
+
+/// Legacy API: returns only playerData and sceneData, as JS `Map`s.
+///
+/// Kept for `exploration_timeline.html` until it moves onto `decrypt_save`
+/// (ROADMAP Phase 3). New code should call `decrypt_save`.
 #[wasm_bindgen]
 pub fn decrypt_and_parse(data: &[u8]) -> JsValue {
     let result = match decrypt_save_file(data) {
-        Ok((player_data, scene_data)) => DecryptResult {
+        Ok(save) => DecryptResult {
             success: true,
             error: None,
-            player_data: Some(player_data),
-            scene_data: Some(scene_data),
+            player_data: Some(save["playerData"].clone()),
+            scene_data: Some(save["sceneData"].clone()),
         },
         Err(e) => DecryptResult {
             success: false,
@@ -50,8 +87,8 @@ pub fn decrypt_and_parse(data: &[u8]) -> JsValue {
     serde_wasm_bindgen::to_value(&result).unwrap_or(JsValue::NULL)
 }
 
-/// Internal: Decrypt the save file and extract playerData + sceneData
-fn decrypt_save_file(raw_bytes: &[u8]) -> Result<(serde_json::Value, serde_json::Value), String> {
+/// Internal: decrypt the save file to its plaintext JSON string
+fn decrypt_plaintext(raw_bytes: &[u8]) -> Result<String, String> {
     // Validate minimum size
     if raw_bytes.len() <= HEADER_SIZE + 1 {
         return Err("Save file too small".to_string());
@@ -60,17 +97,19 @@ fn decrypt_save_file(raw_bytes: &[u8]) -> Result<(serde_json::Value, serde_json:
     // Trim header and trailer
     let trimmed = &raw_bytes[HEADER_SIZE..raw_bytes.len().saturating_sub(1)];
 
-    // Decrypt
     let decrypted = decrypt_aes256_ecb(trimmed)?;
+    String::from_utf8(decrypted).map_err(|e| format!("Invalid UTF-8: {}", e))
+}
 
-    // Parse JSON
-    let json_str = String::from_utf8(decrypted).map_err(|e| format!("Invalid UTF-8: {}", e))?;
-
+/// Internal: decrypt and parse the whole save
+fn decrypt_save_file(raw_bytes: &[u8]) -> Result<serde_json::Value, String> {
+    let json_str = decrypt_plaintext(raw_bytes)?;
     let json: serde_json::Value =
         serde_json::from_str(&json_str).map_err(|e| format!("Invalid JSON: {}", e))?;
-
-    // Return playerData and sceneData (world pickup states used for source-tracking checklists)
-    Ok((json["playerData"].clone(), json["sceneData"].clone()))
+    if !json.is_object() {
+        return Err("Invalid save: top level is not an object".to_string());
+    }
+    Ok(json)
 }
 
 /// Internal: AES-256-ECB decryption
@@ -177,6 +216,52 @@ mod tests {
     #[test]
     fn test_header_size_constant() {
         assert_eq!(HEADER_SIZE, 25);
+    }
+
+    /// Encrypt JSON the way the game does, for round-trip tests
+    fn encrypt_for_test(json: &str) -> Vec<u8> {
+        use cipher::{block_padding::Pkcs7, BlockEncryptMut};
+        let plain = json.as_bytes();
+        let mut buf = vec![0u8; plain.len() + 16];
+        buf[..plain.len()].copy_from_slice(plain);
+        let cipher_bytes = ecb::Encryptor::<Aes256>::new(ENCRYPTION_KEY.into())
+            .encrypt_padded_mut::<Pkcs7>(&mut buf, plain.len())
+            .expect("buffer large enough");
+        let mut out = vec![0u8; HEADER_SIZE];
+        out.extend_from_slice(
+            base64::engine::general_purpose::STANDARD
+                .encode(cipher_bytes)
+                .as_bytes(),
+        );
+        out.push(0x0b);
+        out
+    }
+
+    /// The whole save round-trips, including nested objects, arrays and extra roots
+    #[test]
+    fn test_decrypt_save_round_trip() {
+        let save = serde_json::json!({
+            "playerData": {
+                "playTime": 12.5,
+                "Tools": { "savedData": [ { "Name": "Straight Pin", "Data": { "IsUnlocked": true } } ] },
+                "scenesVisited": ["Tut_01", "Tut_02"]
+            },
+            "sceneData": { "persistentBools": { "serializedList": [] } },
+            "dlcData": { "anything": 1 }
+        });
+        let blob = encrypt_for_test(&save.to_string());
+        assert_eq!(decrypt_save_file(&blob).unwrap(), save);
+        assert_eq!(
+            serde_json::from_str::<serde_json::Value>(&decrypt_plaintext(&blob).unwrap()).unwrap(),
+            save
+        );
+    }
+
+    /// A payload that decrypts but is not a JSON object is rejected
+    #[test]
+    fn test_decrypt_rejects_non_object() {
+        let blob = encrypt_for_test("[1,2,3]");
+        assert!(decrypt_save_file(&blob).is_err());
     }
 
     /// Test that encryption key has correct length for AES-256
