@@ -6,6 +6,8 @@
 
 import { loadWasm, decryptSave } from './core/wasm.js';
 import { parseAllData, formatPlayTime, formatNumber, CLOAK_TIERS, NEEDLE_TIERS } from './data/index.js';
+import { iconUrl } from './core/icons.js';
+import { renderIconGrid, renderChecklist, setText, setPercent } from './ui/renderers.js';
 
 // State
 let wasmReady = false;
@@ -230,7 +232,7 @@ function showToolVariantsPopup(tool) {
         variantItem.className = 'variant-item';
 
         const img = document.createElement('img');
-        img.src = `assets/img/tools/${variant.icon}`;
+        img.src = iconUrl('tool', variant.icon);
         img.alt = variant.display;
         img.className = variant.unlocked ? 'unlocked' : 'locked';
 
@@ -283,7 +285,7 @@ function updateCloakDisplay(data) {
     // Highest cloak tier whose required ability is unlocked (packs/base/abilities.js)
     const unlocked = new Set((data.abilities?.otherAbilities || []).filter(a => a.value).map(a => a.json));
     const cloak = [...CLOAK_TIERS].reverse().find(t => !t.requires || unlocked.has(t.requires));
-    cloakIcon.src = `assets/img/general/ability/${cloak.icon}`;
+    cloakIcon.src = iconUrl('ability', cloak.icon);
     cloakIcon.alt = cloak.name;
     cloakName.textContent = cloak.name;
 }
@@ -321,14 +323,14 @@ function updateNeedleDisplay(data) {
 
     // Update Current Stats display (just icon and name)
     if (needleIcon && needleName) {
-        needleIcon.src = `assets/img/general/nail/${needle.icon}`;
+        needleIcon.src = iconUrl('nail', needle.icon);
         needleIcon.alt = needle.name;
         needleName.textContent = needle.name;
     }
 
     // Update Unlockables display (with level)
     if (unlockablesNeedleIcon && unlockablesNeedleName && unlockablesNeedleLevel) {
-        unlockablesNeedleIcon.src = `assets/img/general/nail/${needle.icon}`;
+        unlockablesNeedleIcon.src = iconUrl('nail', needle.icon);
         unlockablesNeedleIcon.alt = needle.name;
         unlockablesNeedleName.textContent = needle.name;
         unlockablesNeedleLevel.textContent = needle.level;
@@ -475,7 +477,7 @@ function displayStats(data) {
         const healthCount = Math.min(Math.max(0, maxHealthVal), 10);
         for (let i = 0; i < healthCount; i++) {
             const img = document.createElement('img');
-            img.src = 'assets/img/general/general_hp.png';
+            img.src = iconUrl('general', 'general_hp.png');
             img.alt = 'Health';
             img.title = `Health ${i + 1}`;
             healthIconsContainer.appendChild(img);
@@ -491,7 +493,7 @@ function displayStats(data) {
         const silkCount = Math.min(Math.max(0, silkHeartsVal), 3);
         for (let i = 0; i < silkCount; i++) {
             const img = document.createElement('img');
-            img.src = 'assets/img/general/general_silkheart.png';
+            img.src = iconUrl('general', 'general_silkheart.png');
             img.alt = 'Silk Heart';
             img.title = `Silk Heart ${i + 1}`;
             silkHeartIconsContainer.appendChild(img);
@@ -542,7 +544,7 @@ function displayStats(data) {
         const crestFile = equippedCrest?.icon
             ? (isSteelSoul && equippedCrest.iconSteelSoul ? equippedCrest.iconSteelSoul : equippedCrest.icon)
             : 'Select_Game_Crest_Spools__0000_hunter.png';
-        crestImage.src = `assets/img/general/crests/${crestFile}`;
+        crestImage.src = iconUrl('crest', crestFile);
         crestImage.alt = equippedCrest?.display || crestId;
     }
 
@@ -552,61 +554,39 @@ function displayStats(data) {
     const activeSpecial = data.crests?.activeSpecialState;
     setStat('specialCrestState', (activeSpecial && activeSpecial.json !== 'Cloakless') ? activeSpecial.display : 'None');
 
-    // Current Stats Tab - Equipped Tools
+    // Current Stats Tab - Equipped Tools (main crest slots) and extra slots.
+    // Equipped entries may be tools or skills; iconPath says which folder.
+    const EQUIP_ICON_KIND = { tools: 'tool', 'general/skills': 'skill', 'general/ability': 'ability' };
+    const equippedIcon = t => iconUrl(EQUIP_ICON_KIND[t.iconPath || 'tools'], t.icon);
+    const emptyRow = text => `<span style="color: var(--text-secondary); font-size: 0.85rem;">${text}</span>`;
+
     const equippedToolsRow = document.getElementById('equipped-tools-row');
     if (equippedToolsRow && data.equippedTools) {
-        equippedToolsRow.innerHTML = '';
         const { equippedTools } = data.equippedTools;
-
         if (equippedTools.length === 0) {
-            equippedToolsRow.innerHTML = '<span style="color: var(--text-secondary); font-size: 0.85rem;">No tools equipped</span>';
+            equippedToolsRow.innerHTML = emptyRow('No tools equipped');
         } else {
-            for (const tool of equippedTools) {
-                const toolItem = document.createElement('div');
-                toolItem.className = 'equipped-tool-item';
-
-                const img = document.createElement('img');
-                img.src = `assets/img/${tool.iconPath || 'tools'}/${tool.icon}`;
-                img.alt = tool.display;
-                img.title = `${tool.display} (${tool.category || 'Tool'})`;
-
-                const label = document.createElement('span');
-                label.textContent = tool.display;
-                label.title = tool.display;
-
-                toolItem.appendChild(img);
-                toolItem.appendChild(label);
-                equippedToolsRow.appendChild(toolItem);
-            }
+            renderIconGrid(equippedToolsRow, equippedTools, {
+                itemClass: 'equipped-tool-item',
+                icon: equippedIcon,
+                title: t => `${t.display} (${t.category || 'Tool'})`,
+                imgClass: () => null,
+            });
         }
     }
 
-    // Current Stats Tab - Extra Tool Equips
     const extraToolsRow = document.getElementById('extra-tools-row');
     if (extraToolsRow && data.equippedTools) {
-        extraToolsRow.innerHTML = '';
         const { extraEquippedTools } = data.equippedTools;
-
         if (!extraEquippedTools || extraEquippedTools.length === 0) {
-            extraToolsRow.innerHTML = '<span style="color: var(--text-secondary); font-size: 0.85rem;">No extra slots</span>';
+            extraToolsRow.innerHTML = emptyRow('No extra slots');
         } else {
-            for (const tool of extraEquippedTools) {
-                const toolItem = document.createElement('div');
-                toolItem.className = 'equipped-tool-item';
-
-                const img = document.createElement('img');
-                img.src = `assets/img/${tool.iconPath || 'tools'}/${tool.icon}`;
-                img.alt = tool.display;
-                img.title = `${tool.display} (${tool.slotName || 'Extra'})`;
-
-                const label = document.createElement('span');
-                label.textContent = tool.display;
-                label.title = tool.display;
-
-                toolItem.appendChild(img);
-                toolItem.appendChild(label);
-                extraToolsRow.appendChild(toolItem);
-            }
+            renderIconGrid(extraToolsRow, extraEquippedTools, {
+                itemClass: 'equipped-tool-item',
+                icon: equippedIcon,
+                title: t => `${t.display} (${t.slotName || 'Extra'})`,
+                imgClass: () => null,
+            });
         }
     }
 
@@ -625,317 +605,100 @@ function displayStats(data) {
     setStat('respawnMarker', getField('misc', 'respawnMarkerName') || '-');
     setStat('respawnType', getField('misc', 'respawnType'));
 
-    // Abilities Tab - Populate abilities grid
+    // Abilities Tab - movement abilities (counted) and cloaks (not counted)
     const abilitiesGrid = document.getElementById('abilities-grid');
-    const otherAbilitiesGrid = document.getElementById('other-abilities-grid');
-    const abilitiesUnlockedCount = document.getElementById('abilities-unlocked-count');
-    const abilitiesPercent = document.getElementById('abilities-percent');
     if (abilitiesGrid && data.abilities) {
-        abilitiesGrid.innerHTML = '';
-        let unlockedCount = 0;
-        const total = data.abilities.abilities.length;
-
-        for (const ability of data.abilities.abilities) {
-            const abilityItem = document.createElement('div');
-            abilityItem.className = 'ability-item';
-            if (!ability.value) abilityItem.classList.add('locked');
-
-            const img = document.createElement('img');
-            img.src = `assets/img/general/ability/${ability.icon || 'swiftstep.png'}`;
-            img.alt = ability.display;
-            img.title = `${ability.display} (${ability.value ? 'Unlocked' : 'Locked'})`;
-            img.className = ability.value ? 'unlocked' : 'locked';
-
-            if (ability.value) unlockedCount++;
-
-            const label = document.createElement('span');
-            label.textContent = ability.display;
-            label.title = ability.display;
-
-            abilityItem.appendChild(img);
-            abilityItem.appendChild(label);
-            abilitiesGrid.appendChild(abilityItem);
-        }
-
-        if (abilitiesUnlockedCount) abilitiesUnlockedCount.textContent = unlockedCount;
-        if (abilitiesPercent) {
-            abilitiesPercent.textContent = `${unlockedCount}%`;
-            if (unlockedCount === total) {
-                abilitiesPercent.classList.add('maxed');
-            } else {
-                abilitiesPercent.classList.remove('maxed');
-            }
-        }
+        const list = data.abilities.abilities;
+        const unlockedCount = renderIconGrid(abilitiesGrid, list, {
+            itemClass: 'ability-item', lockItem: true, isOn: a => a.value,
+            icon: a => iconUrl('ability', a.icon || 'swiftstep.png'),
+        });
+        setText('abilities-unlocked-count', unlockedCount);
+        setPercent('abilities-percent', unlockedCount, unlockedCount === list.length);
+    }
+    if (data.abilities && data.abilities.otherAbilities) {
+        renderIconGrid(document.getElementById('other-abilities-grid'), data.abilities.otherAbilities, {
+            itemClass: 'ability-item', lockItem: true, isOn: a => a.value,
+            icon: a => iconUrl('ability', a.icon || 'drifterscloak.png'),
+        });
     }
 
-    // Other Abilities Grid (Drifter's Cloak) - Not counted in main stats
-    if (otherAbilitiesGrid && data.abilities && data.abilities.otherAbilities) {
-        otherAbilitiesGrid.innerHTML = '';
-
-        for (const ability of data.abilities.otherAbilities) {
-            const abilityItem = document.createElement('div');
-            abilityItem.className = 'ability-item';
-            if (!ability.value) abilityItem.classList.add('locked');
-
-            const img = document.createElement('img');
-            img.src = `assets/img/general/ability/${ability.icon || 'drifterscloak.png'}`;
-            img.alt = ability.display;
-            img.title = `${ability.display} (${ability.value ? 'Unlocked' : 'Locked'})`;
-            img.className = ability.value ? 'unlocked' : 'locked';
-
-            const label = document.createElement('span');
-            label.textContent = ability.display;
-            label.title = ability.display;
-
-            abilityItem.appendChild(img);
-            abilityItem.appendChild(label);
-            otherAbilitiesGrid.appendChild(abilityItem);
-        }
-    }
-
-    // Skills Tab - Populate skills grid
+    // Skills Tab
     const skillsGrid = document.getElementById('skills-grid');
-    const skillsUnlockedCount = document.getElementById('skills-unlocked-count');
-    const skillsPercent = document.getElementById('skills-percent');
     if (skillsGrid && data.skills) {
-        skillsGrid.innerHTML = '';
-        let unlockedCount = 0;
-        const total = data.skills.skills.length;
-
-        for (const skill of data.skills.skills) {
-            const skillItem = document.createElement('div');
-            skillItem.className = 'skill-item';
-            if (!skill.value) skillItem.classList.add('locked');
-
-            const img = document.createElement('img');
-            img.src = `assets/img/general/skills/${skill.icon || 'Art_Rune__0002_silk_spear.png'}`;
-            img.alt = skill.display;
-            img.title = `${skill.display} (${skill.value ? 'Unlocked' : 'Locked'})`;
-            img.className = skill.value ? 'unlocked' : 'locked';
-
-            if (skill.value) unlockedCount++;
-
-            const label = document.createElement('span');
-            label.textContent = skill.display;
-            label.title = skill.display;
-
-            skillItem.appendChild(img);
-            skillItem.appendChild(label);
-            skillsGrid.appendChild(skillItem);
-        }
-
-        if (skillsUnlockedCount) skillsUnlockedCount.textContent = unlockedCount;
-        if (skillsPercent) {
-            skillsPercent.textContent = `${unlockedCount}%`;
-            if (unlockedCount === total) {
-                skillsPercent.classList.add('maxed');
-            } else {
-                skillsPercent.classList.remove('maxed');
-            }
-        }
+        const list = data.skills.skills;
+        const unlockedCount = renderIconGrid(skillsGrid, list, {
+            itemClass: 'skill-item', lockItem: true, isOn: s => s.value,
+            icon: s => iconUrl('skill', s.icon || 'Art_Rune__0002_silk_spear.png'),
+        });
+        setText('skills-unlocked-count', unlockedCount);
+        setPercent('skills-percent', unlockedCount, unlockedCount === list.length);
     }
 
-    // Tools Tab - Populate tool grid
+    // Tools Tab - upgrade sets open a spoiler popup with their variants
+    const toolIcon = t => iconUrl('tool', t.icon || 'T_straight_pin.png');
     const toolsGrid = document.getElementById('tools-grid');
-    const toolsUnlockedCount = document.getElementById('tools-unlocked-count');
-    const toolsTotalCount = document.getElementById('tools-total-count');
-    const toolsPercent = document.getElementById('tools-percent');
     if (toolsGrid && data.tools) {
-        toolsGrid.innerHTML = '';
-        let unlockedCount = 0;
         const total = data.tools.stats.total;
-
-        for (const tool of data.tools.tools) {
-            const toolItem = document.createElement('div');
-            toolItem.className = 'tool-item';
-
-            // Add special class for upgrade sets
-            if (tool.isUpgradeSet) {
-                toolItem.classList.add('tool-upgrade-set');
-                toolItem.style.cursor = 'pointer';
-                toolItem.title = `Click to view ${tool.upgradeSetName} variants (Spoilers)`;
-            }
-
-            const img = document.createElement('img');
-            img.src = `assets/img/tools/${tool.icon || 'T_straight_pin.png'}`;
-            img.alt = tool.display;
-            img.title = `${tool.display} (${tool.unlocked ? 'Unlocked' : 'Locked'})`;
-            img.className = tool.unlocked ? 'unlocked' : 'locked';
-
-            if (tool.unlocked) unlockedCount++;
-
-            const label = document.createElement('span');
-            label.textContent = tool.display;
-            label.title = tool.display;
-
-            toolItem.appendChild(img);
-            toolItem.appendChild(label);
-
-            // Add click handler for upgrade sets
-            if (tool.isUpgradeSet) {
-                toolItem.addEventListener('click', () => showToolVariantsPopup(tool));
-            }
-
-            toolsGrid.appendChild(toolItem);
-        }
-
-        if (toolsUnlockedCount) toolsUnlockedCount.textContent = unlockedCount;
-        if (toolsTotalCount) toolsTotalCount.textContent = total;
-        if (toolsPercent) {
-            toolsPercent.textContent = `${unlockedCount}%`;
-            if (unlockedCount === total) {
-                toolsPercent.classList.add('maxed');
-            } else {
-                toolsPercent.classList.remove('maxed');
-            }
-        }
+        const unlockedCount = renderIconGrid(toolsGrid, data.tools.tools, {
+            itemClass: 'tool-item', isOn: t => t.unlocked, icon: toolIcon,
+            decorate: (el, t) => {
+                if (!t.isUpgradeSet) return;
+                el.classList.add('tool-upgrade-set');
+                el.style.cursor = 'pointer';
+                el.title = `Click to view ${t.upgradeSetName} variants (Spoilers)`;
+            },
+            onClick: t => { if (t.isUpgradeSet) showToolVariantsPopup(t); },
+        });
+        setText('tools-unlocked-count', unlockedCount);
+        setText('tools-total-count', total);
+        setPercent('tools-percent', unlockedCount, unlockedCount === total);
+    }
+    if (data.tools && data.tools.otherTools) {
+        renderIconGrid(document.getElementById('other-tools-grid'), data.tools.otherTools, {
+            itemClass: 'tool-item', isOn: t => t.unlocked, icon: toolIcon,
+        });
     }
 
-    // Other Tools Grid - Items not counted in total
-    const otherToolsGrid = document.getElementById('other-tools-grid');
-    if (otherToolsGrid && data.tools && data.tools.otherTools) {
-        otherToolsGrid.innerHTML = '';
-
-        for (const tool of data.tools.otherTools) {
-            const toolItem = document.createElement('div');
-            toolItem.className = 'tool-item';
-
-            const img = document.createElement('img');
-            img.src = `assets/img/tools/${tool.icon || 'T_straight_pin.png'}`;
-            img.alt = tool.display;
-            img.title = `${tool.display} (${tool.unlocked ? 'Unlocked' : 'Locked'})`;
-            img.className = tool.unlocked ? 'unlocked' : 'locked';
-
-            const label = document.createElement('span');
-            label.textContent = tool.display;
-            label.title = tool.display;
-
-            toolItem.appendChild(img);
-            toolItem.appendChild(label);
-            otherToolsGrid.appendChild(toolItem);
-        }
-    }
-
-    // Maps Tab - Populate map grid
+    // Maps Tab - placeholder icons (Abyss) are tinted by CSS and get a coloured label
     const mapsGrid = document.getElementById('maps-grid');
-    const mapsCount = document.getElementById('maps-count');
     if (mapsGrid && data.maps) {
-        mapsGrid.innerHTML = '';
-        let unlockedCount = 0;
-
-        for (const map of data.maps.maps) {
-            const mapItem = document.createElement('div');
-            mapItem.className = 'map-item';
-
-            const img = document.createElement('img');
-            img.src = `assets/img/maps/${map.icon || 'I_map.png'}`;
-            img.alt = map.display;
-            img.title = map.display;
-
-            // Special handling for placeholder icons (e.g., Abyss)
-            const isPlaceholder = map.json === 'HasAbyssMap';
-            if (isPlaceholder) {
-                img.className = map.value ? 'unlocked placeholder-icon' : 'locked placeholder-icon';
-            } else {
-                img.className = map.value ? 'unlocked' : 'locked';
-            }
-
-            if (map.value) unlockedCount++;
-
-            const label = document.createElement('span');
-            label.textContent = map.display;
-            label.title = map.display;
-
-            // Add special colored status for Abyss map (since icon is hard to see)
-            if (isPlaceholder) {
-                label.classList.add(map.value ? 'status-unlocked' : 'status-locked');
-            }
-
-            mapItem.appendChild(img);
-            mapItem.appendChild(label);
-            mapsGrid.appendChild(mapItem);
-        }
-
-        if (mapsCount) {
-            mapsCount.textContent = unlockedCount;
-        }
+        const placeholder = m => m.iconStyle === 'placeholder';
+        const unlockedCount = renderIconGrid(mapsGrid, data.maps.maps, {
+            itemClass: 'map-item', isOn: m => m.value,
+            icon: m => iconUrl('map', m.icon || 'I_map.png'),
+            title: m => m.display,
+            imgClass: (m, on) => `${on ? 'unlocked' : 'locked'}${placeholder(m) ? ' placeholder-icon' : ''}`,
+            labelClass: (m, on) => (placeholder(m) ? (on ? 'status-unlocked' : 'status-locked') : null),
+        });
+        setText('maps-count', unlockedCount);
     }
 
-    // Unlockables Tab - Crests grid
-    const crestsGrid = document.getElementById('crests-grid');
-    const crestsUnlockedCount = document.getElementById('crests-unlocked-count');
-    const crestsPercent = document.getElementById('crests-percent');
+    // Unlockables Tab - Crests grid (Steel Soul saves use the SS icon variants)
     if (data.crests) {
-        const renderCrestItem = (grid, crest) => {
-            const item = document.createElement('div');
-            item.className = 'tool-item';
-
-            const img = document.createElement('img');
-            const iconFile = (isSteelSoul && crest.iconSteelSoul) ? crest.iconSteelSoul : crest.icon;
-            img.src = iconFile ? `assets/img/general/crests/${iconFile}` : '';
-            img.alt = crest.display;
-            img.title = `${crest.display} (${crest.unlocked ? 'Unlocked' : 'Locked'})`;
-            img.className = crest.unlocked ? 'unlocked' : 'locked';
-
-            const label = document.createElement('span');
-            label.textContent = crest.display;
-            label.title = crest.display;
-
-            item.appendChild(img);
-            item.appendChild(label);
-            grid.appendChild(item);
-        };
-
-        if (crestsGrid) {
-            crestsGrid.innerHTML = '';
-            data.crests.crests.forEach(c => renderCrestItem(crestsGrid, c));
-        }
-        if (crestsUnlockedCount) crestsUnlockedCount.textContent = data.crests.stats.unlocked;
-        if (crestsPercent) {
-            // Hunter is the starting crest and doesn't count toward completion -
-            // only the other 6 crests contribute (1% each, 6% max)
-            crestsPercent.textContent = `${data.crests.contributionStats.unlocked}%`;
-        }
+        const crestsGrid = document.getElementById('crests-grid');
+        renderIconGrid(crestsGrid, data.crests.crests, {
+            itemClass: 'tool-item', isOn: c => c.unlocked,
+            icon: c => {
+                const file = (isSteelSoul && c.iconSteelSoul) ? c.iconSteelSoul : c.icon;
+                return file ? iconUrl('crest', file) : '';
+            },
+        });
+        setText('crests-unlocked-count', data.crests.stats.unlocked);
+        // Hunter is the starting crest and doesn't count toward completion -
+        // only the other 6 crests contribute (1% each, 6% max)
+        setText('crests-percent', `${data.crests.contributionStats.unlocked}%`);
     }
 
-    // Generic renderer for source-checklist sections (Masks, Silk Spool,
-    // Silk Hearts, Crafting Kit, Tool Pouch, Craftmetal, Memory Locket,
-    // Other Unlockables). `icon` is either a shared filename (string) used
-    // for every row, or a function (source, index) => filename for
-    // per-item icons.
+    // Source-checklist sections (Masks, Silk Spool, Silk Hearts, Crafting Kit,
+    // Tool Pouch, Craftmetal, Memory Locket, Other Unlockables). `icon` is a
+    // shared filename in assets/img/general or (source, index) => filename.
     const renderSourceChecklist = (containerId, checklistResult, icon) => {
         const container = document.getElementById(containerId);
         if (!container || !checklistResult) return;
-        container.innerHTML = '';
-        checklistResult.sources.forEach((source, index) => {
-            const row = document.createElement('div');
-            const state = source.pending ? 'pending' : (source.collected ? 'collected' : 'missing');
-            row.className = `source-item ${state}`;
-
-            const left = document.createElement('div');
-            left.className = 'source-left';
-
-            const iconFile = typeof icon === 'function' ? icon(source, index) : icon;
-            if (iconFile) {
-                const img = document.createElement('img');
-                img.src = `assets/img/general/${iconFile}`;
-                img.alt = source.name;
-                img.className = 'source-icon';
-                left.appendChild(img);
-            }
-
-            const name = document.createElement('span');
-            name.className = 'source-name';
-            name.textContent = source.name;
-            left.appendChild(name);
-
-            const status = document.createElement('span');
-            status.className = 'source-status';
-            status.textContent = source.pending ? 'Pending' : (source.collected ? 'Collected' : 'Missing');
-
-            row.appendChild(left);
-            row.appendChild(status);
-            container.appendChild(row);
+        renderChecklist(container, checklistResult.sources, (source, index) => {
+            const file = typeof icon === 'function' ? icon(source, index) : icon;
+            return file ? iconUrl('general', file) : null;
         });
         return checklistResult.stats;
     };
@@ -1014,39 +777,15 @@ function displayStats(data) {
     const craftmetalStats = renderSourceChecklist('craftmetal-checklist', data.craftmetal, 'Hornet_Tool_Metal.png');
     if (craftmetalStats) setById('craftmetal-collected-count', craftmetalStats.collected);
 
-    // Bosses Tab - Populate boss grid
+    // Bosses Tab
     const bossesGrid = document.getElementById('bosses-grid');
-    const bossesCount = document.getElementById('bosses-count');
     if (bossesGrid && data.bosses) {
-        bossesGrid.innerHTML = '';
-        let defeatedCount = 0;
-
-        for (const boss of data.bosses.bosses) {
-            const bossItem = document.createElement('div');
-            bossItem.className = 'boss-item';
-
-            const img = document.createElement('img');
-            // Encode the icon filename to handle special characters like #
-            const iconFile = boss.icon || 'bestiary_icon__0001_frame_empty.png';
-            img.src = `assets/img/bosses/${encodeURIComponent(iconFile)}`;
-            img.alt = boss.display;
-            img.title = boss.display;
-            img.className = boss.value ? 'defeated' : 'not-defeated';
-
-            if (boss.value) defeatedCount++;
-
-            const label = document.createElement('span');
-            label.textContent = boss.display;
-            label.title = boss.display;
-
-            bossItem.appendChild(img);
-            bossItem.appendChild(label);
-            bossesGrid.appendChild(bossItem);
-        }
-
-        if (bossesCount) {
-            bossesCount.textContent = defeatedCount;
-        }
+        const defeatedCount = renderIconGrid(bossesGrid, data.bosses.bosses, {
+            itemClass: 'boss-item', isOn: b => b.value, onClass: 'defeated', offClass: 'not-defeated',
+            icon: b => iconUrl('boss', b.icon || 'bestiary_icon__0001_frame_empty.png'),
+            title: b => b.display,
+        });
+        setText('bosses-count', defeatedCount);
     }
 
     // Switch to general tab and scroll to stats

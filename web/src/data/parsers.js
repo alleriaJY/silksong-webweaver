@@ -189,6 +189,7 @@ export function parseMaps(playerData) {
         json: item.json,
         display: item.display,
         icon: item.icon,
+        iconStyle: item.iconStyle,
         value: getValue(playerData, item.json) || false,
     }));
     const stats = {
