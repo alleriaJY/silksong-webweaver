@@ -6,6 +6,7 @@
  */
 
 import * as schemas from './silksongdata.js';
+import { flag, savedDataByName, savedDataEntries, questCompleted, scenePickup } from '../core/saveAccess.js';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // UTILITY FUNCTIONS
@@ -39,17 +40,8 @@ export function formatPercent(value) {
 // SIMPLE FIELD PARSING
 // ═══════════════════════════════════════════════════════════════════════════
 
-/**
- * Get value from data - handles both Map and Object
- * WASM returns Map objects, but we need to access them like objects
- */
-function getValue(data, key) {
-    if (!data) return undefined;
-    if (data instanceof Map) {
-        return data.get(key);
-    }
-    return data[key];
-}
+// Save data arrives as plain objects (core/wasm.js); `flag` reads a top-level key.
+const getValue = flag;
 
 /**
  * Parse simple fields from playerData based on a field list
@@ -76,29 +68,9 @@ export function parseSimpleFields(playerData, fieldList) {
  * Returns array of tool objects with unlock/seen/selected status
  */
 export function parseTools(playerData) {
-    const toolsObj = getValue(playerData, 'Tools');
-    // toolsObj may itself be a Map, so use getValue to access savedData
-    const toolsData = toolsObj instanceof Map
-        ? (toolsObj.get('savedData') || [])
-        : (toolsObj?.savedData || []);
-
-    // Build lookup map for faster access
-    const toolsMap = new Map();
-    for (const tool of toolsData) {
-        // Tool entries may also be Maps
-        const toolName = tool instanceof Map ? tool.get('Name') : tool?.Name;
-        if (toolName) {
-            toolsMap.set(toolName, tool);
-        }
-    }
-
-    // Helper to get tool data property (handles both Map and Object)
-    const getToolDataProp = (tool, prop) => {
-        if (!tool) return false;
-        const data = tool instanceof Map ? tool.get('Data') : tool?.Data;
-        if (!data) return false;
-        return data instanceof Map ? data.get(prop) : data?.[prop];
-    };
+    // Tool name -> Data ({ IsUnlocked, HasBeenSeen, HasBeenSelected })
+    const toolsMap = savedDataByName(getValue(playerData, 'Tools'));
+    const getToolDataProp = (data, prop) => data?.[prop] || false;
 
     // Parse each tool from schema
     const tools = schemas.TOOLS_LIST.map(toolDef => {
@@ -392,45 +364,20 @@ export function parseEquippedTools(playerData) {
     // Parse ToolEquips (main crest slots)
     const equippedTools = [];
     if (currentCrestId) {
-        const toolEquipsObj = getValue(playerData, 'ToolEquips');
-        const toolEquipsData = toolEquipsObj instanceof Map
-            ? (toolEquipsObj.get('savedData') || [])
-            : (toolEquipsObj?.savedData || []);
-
-        // Find the crest matching CurrentCrestID
-        let matchingCrest = null;
-        for (const crest of toolEquipsData) {
-            const crestName = crest instanceof Map ? crest.get('Name') : crest?.Name;
-            if (crestName === currentCrestId) {
-                matchingCrest = crest;
-                break;
-            }
-        }
-
-        if (matchingCrest) {
-            const crestData = matchingCrest instanceof Map ? matchingCrest.get('Data') : matchingCrest?.Data;
-            const slots = crestData instanceof Map ? (crestData.get('Slots') || []) : (crestData?.Slots || []);
-
-            for (const slot of slots) {
-                const toolName = slot instanceof Map ? slot.get('EquippedTool') : slot?.EquippedTool;
-                if (toolName && toolName !== '') {
-                    equippedTools.push(getToolInfo(toolName));
-                }
+        // The ToolEquips entry named after CurrentCrestID holds the loadout
+        const crestData = savedDataByName(getValue(playerData, 'ToolEquips')).get(currentCrestId);
+        for (const slot of crestData?.Slots || []) {
+            const toolName = slot?.EquippedTool;
+            if (toolName && toolName !== '') {
+                equippedTools.push(getToolInfo(toolName));
             }
         }
     }
 
     // Parse ExtraToolEquips
     const extraEquippedTools = [];
-    const extraToolEquipsObj = getValue(playerData, 'ExtraToolEquips');
-    const extraToolEquipsData = extraToolEquipsObj instanceof Map
-        ? (extraToolEquipsObj.get('savedData') || [])
-        : (extraToolEquipsObj?.savedData || []);
-
-    for (const entry of extraToolEquipsData) {
-        const entryData = entry instanceof Map ? entry.get('Data') : entry?.Data;
-        const toolName = entryData instanceof Map ? entryData.get('EquippedTool') : entryData?.EquippedTool;
-        const slotName = entry instanceof Map ? entry.get('Name') : entry?.Name;
+    for (const { name: slotName, data } of savedDataEntries(getValue(playerData, 'ExtraToolEquips'))) {
+        const toolName = data?.EquippedTool;
         if (toolName && toolName !== '') {
             const info = getToolInfo(toolName);
             info.slotName = slotName; // e.g., "Explore1", "Attack1"
@@ -451,23 +398,11 @@ export function parseEquippedTools(playerData) {
  * a single in-game crest - unlocked if ANY alias is unlocked.
  */
 function getToolEquipsMap(playerData) {
-    const toolEquipsObj = getValue(playerData, 'ToolEquips');
-    const savedData = toolEquipsObj instanceof Map
-        ? (toolEquipsObj.get('savedData') || [])
-        : (toolEquipsObj?.savedData || []);
-
-    const map = new Map();
-    for (const entry of savedData) {
-        const name = entry instanceof Map ? entry.get('Name') : entry?.Name;
-        const data = entry instanceof Map ? entry.get('Data') : entry?.Data;
-        if (name) map.set(name, data);
-    }
-    return map;
+    return savedDataByName(getValue(playerData, 'ToolEquips'));
 }
 
 function isCrestUnlocked(entryData) {
-    if (!entryData) return false;
-    return (entryData instanceof Map ? entryData.get('IsUnlocked') : entryData?.IsUnlocked) || false;
+    return entryData?.IsUnlocked || false;
 }
 
 export function parseCrests(playerData) {
@@ -532,37 +467,8 @@ export function parseCrests(playerData) {
 // tracking array.
 // ═══════════════════════════════════════════════════════════════════════════
 
-function isQuestCompleted(playerData, questName) {
-    const qcdObj = getValue(playerData, 'QuestCompletionData');
-    const savedData = qcdObj instanceof Map
-        ? (qcdObj.get('savedData') || [])
-        : (qcdObj?.savedData || []);
-
-    for (const entry of savedData) {
-        const name = entry instanceof Map ? entry.get('Name') : entry?.Name;
-        if (name === questName) {
-            const data = entry instanceof Map ? entry.get('Data') : entry?.Data;
-            return (data instanceof Map ? data.get('IsCompleted') : data?.IsCompleted) || false;
-        }
-    }
-    return false;
-}
-
-function isScenePickupCollected(sceneData, sceneName, sceneId) {
-    const persistentBoolsObj = getValue(sceneData, 'persistentBools');
-    const serializedList = persistentBoolsObj instanceof Map
-        ? (persistentBoolsObj.get('serializedList') || [])
-        : (persistentBoolsObj?.serializedList || []);
-
-    for (const entry of serializedList) {
-        const id = entry instanceof Map ? entry.get('ID') : entry?.ID;
-        const scene = entry instanceof Map ? entry.get('SceneName') : entry?.SceneName;
-        if (id === sceneId && scene === sceneName) {
-            return (entry instanceof Map ? entry.get('Value') : entry?.Value) || false;
-        }
-    }
-    return false;
-}
+const isQuestCompleted = questCompleted;
+const isScenePickupCollected = scenePickup;
 
 /**
  * Best-effort check for the flea-rescue-order tracked Tool Pouch source.

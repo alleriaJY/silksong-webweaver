@@ -15,6 +15,7 @@ import {
     parseAllData,
 } from './parsers.js';
 import { GENERAL_FIELDS_LIST, TOOLS_LIST, BOSSES_LIST, FLEAS_LIST, MAPS_LIST } from './silksongdata.js';
+import { toPlain } from '../core/normalize.js';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // UTILITY FUNCTION TESTS
@@ -123,7 +124,7 @@ describe('parseSimpleFields', () => {
         expect(result.missingField.value).toBeUndefined();
     });
 
-    it('should handle Map objects (WASM return type)', () => {
+    it('should handle Map-shaped WASM data once normalised with toPlain', () => {
         const mockMap = new Map([
             ['version', '2.0.0'],
             ['health', 5],
@@ -132,7 +133,7 @@ describe('parseSimpleFields', () => {
             { json: 'version', display: 'Game Version' },
             { json: 'health', display: 'Health' },
         ];
-        const result = parseSimpleFields(mockMap, fieldList);
+        const result = parseSimpleFields(toPlain(mockMap), fieldList);
 
         expect(result.version.value).toBe('2.0.0');
         expect(result.health.value).toBe(5);
@@ -183,7 +184,7 @@ describe('parseTools', () => {
         expect(result.stats.unlocked).toBeGreaterThanOrEqual(2);
     });
 
-    it('should handle Map-based tools data (WASM format)', () => {
+    it('should handle Map-shaped WASM tools data once normalised with toPlain', () => {
         const toolData = new Map([
             ['Name', 'Compass'],
             [
@@ -199,7 +200,7 @@ describe('parseTools', () => {
         const toolsMap = new Map([['savedData', savedData]]);
         const mockData = new Map([['Tools', toolsMap]]);
 
-        const result = parseTools(mockData);
+        const result = parseTools(toPlain(mockData));
 
         const compass = result.tools.find((t) => t.json === 'Compass');
         expect(compass.unlocked).toBe(true);
