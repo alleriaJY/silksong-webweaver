@@ -12,29 +12,8 @@ import { flag, savedDataByName, savedDataEntries, questCompleted, scenePickup } 
 // UTILITY FUNCTIONS
 // ═══════════════════════════════════════════════════════════════════════════
 
-/**
- * Format play time from seconds to "XXh XXm XXs"
- */
-export function formatPlayTime(seconds) {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(secs).padStart(2, '0')}s`;
-}
-
-/**
- * Format number with locale-specific separators
- */
-export function formatNumber(value) {
-    return (value || 0).toLocaleString();
-}
-
-/**
- * Format percentage
- */
-export function formatPercent(value) {
-    return `${(value || 0).toFixed(1)}%`;
-}
+// Formatters moved to core/format.js; re-exported for existing importers
+export { formatPlayTime, formatNumber, formatPercent } from '../core/format.js';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SIMPLE FIELD PARSING

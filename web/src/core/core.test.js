@@ -59,3 +59,32 @@ describe('core/wasm', () => {
         expect(pkg.init).toHaveBeenCalledTimes(2);
     });
 });
+
+describe('core/icons', async () => {
+    const { iconUrl, ICON_DIRS } = await import('./icons.js');
+
+    it('encodes filenames with spaces, # and &', () => {
+        expect(iconUrl('boss', 'Trobbio #4267244.png')).toBe('assets/img/bosses/Trobbio%20%234267244.png');
+        expect(iconUrl('boss', 'Forebrothers Signis & Gron.png')).toBe('assets/img/bosses/Forebrothers%20Signis%20%26%20Gron.png');
+        expect(iconUrl('tool', 'T_tack.png')).toBe('assets/img/tools/T_tack.png');
+    });
+
+    it('rejects unknown kinds and exposes every directory', () => {
+        expect(() => iconUrl('nope', 'x.png')).toThrow('Unknown icon kind');
+        expect(Object.keys(ICON_DIRS)).toEqual(expect.arrayContaining(['tool', 'boss', 'map', 'journal', 'crest']));
+    });
+});
+
+describe('core/version', async () => {
+    const { parseGameVersion, compareVersion, isAtLeast } = await import('./version.js');
+
+    it('parses and compares versions numerically', () => {
+        expect(parseGameVersion('1.0.28561')).toEqual([1, 0, 28561]);
+        expect(parseGameVersion(undefined)).toEqual([0, 0, 0]);
+        expect(compareVersion('1.0.29315', '1.0.28561')).toBeGreaterThan(0);
+        expect(compareVersion('1.1', '1.0.99999')).toBeGreaterThan(0);
+        expect(compareVersion('1.0', '1.0.0')).toBe(0);
+        expect(isAtLeast('1.0.28561', '1.0.0')).toBe(true);
+        expect(isAtLeast('0.9', '1.0.0')).toBe(false);
+    });
+});
