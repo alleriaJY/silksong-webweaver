@@ -4,7 +4,7 @@
  * Handles file upload, WASM-based decryption, tab navigation, and stats display
  */
 
-import init, { decrypt_and_parse } from '../pkg/wasm_crypto.js';
+import { loadWasm, decryptSave } from './core/wasm.js';
 import { parseAllData, formatPlayTime, formatNumber } from './data/index.js';
 
 // State
@@ -32,7 +32,7 @@ const tabNav = document.getElementById('tab-nav');
  */
 async function initWasm() {
     try {
-        await init();
+        await loadWasm();
         wasmReady = true;
         console.log('✓ WASM module initialized');
     } catch (error) {
@@ -447,18 +447,12 @@ async function analyzeFile() {
         const arrayBuffer = await selectedFile.arrayBuffer();
         const bytes = new Uint8Array(arrayBuffer);
 
-        // Decrypt using WASM
-        const result = decrypt_and_parse(bytes);
-
-        if (result.success) {
-            // Parse raw playerData + sceneData using schema system
-            currentData = parseAllData(result.playerData, result.sceneData);
-            displayStats(currentData);
-            // Show reset button after successful analysis
-            resetBtn.hidden = false;
-        } else {
-            throw new Error(result.error || 'Unknown error');
-        }
+        // Decrypt using WASM (plain objects, see core/wasm.js)
+        const save = decryptSave(bytes);
+        currentData = parseAllData(save.playerData, save.sceneData);
+        displayStats(currentData);
+        // Show reset button after successful analysis
+        resetBtn.hidden = false;
     } catch (error) {
         console.error('Analysis failed:', error);
         showError('Failed to analyze save file: ' + error.message);
