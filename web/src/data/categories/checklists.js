@@ -71,11 +71,15 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
  * @param {Function} [c.unlocked]  parsed => upgrades earned (drives unlockedId/percentId)
  * @param {string} [c.unlockedId]
  * @param {string} [c.percentId]   "N%": each upgrade is worth 1% of completion
+ * @param {object} [c.completion]  { label, max(result) } -> counts toward completion
  */
 function checklist(c) {
     return {
         id: c.id,
         parse: (save, ctx) => parseSourceChecklist(save.playerData, save.sceneData, ctx.lists(c.list)),
+        completion: c.completion
+            ? (result, parsed) => ({ label: c.completion.label, earned: c.unlocked(parsed, result), max: c.completion.max(result) })
+            : undefined,
         render(result, ctx) {
             const container = document.getElementById(c.container);
             renderChecklist(container, result.sources, s => (s.icon ? iconUrl('general', s.icon) : null));
@@ -96,28 +100,34 @@ export const CHECKLISTS = [
     checklist({
         id: 'maskShards', list: 'maskShardSources', container: 'mask-shards-checklist', collectedId: 'mask-shards-collected-count',
         unlocked: p => clamp((general(p, 'maxHealth') || 5) - 5, 0, 5), unlockedId: 'masks-unlocked-count', percentId: 'masks-percent',
+        completion: { label: 'Masks', max: () => 5 },
     }),
     // 2 fragments = 1 spool point; base 9 silk, 9 extra = 9%
     checklist({
         id: 'spoolFragments', list: 'spoolFragmentSources', container: 'spool-fragments-checklist', collectedId: 'spool-fragments-collected-count',
         unlocked: p => clamp((general(p, 'silkMax') || 9) - 9, 0, 9), unlockedId: 'silk-spool-unlocked-count', percentId: 'silk-spool-percent',
+        completion: { label: 'Silk Spool', max: () => 9 },
     }),
     checklist({
         id: 'silkHearts', list: 'silkHeartSources', container: 'silk-hearts-checklist',
         unlocked: p => general(p, 'silkRegenMax') || 0, unlockedId: 'silk-hearts-unlocked-count', percentId: 'silk-hearts-percent',
+        completion: { label: 'Silk Hearts', max: r => r.stats.total },
     }),
     checklist({
         id: 'toolPouch', list: 'toolPouchSources', container: 'tool-pouch-checklist',
         unlocked: p => general(p, 'ToolPouchUpgrades') || 0, unlockedId: 'pouch-unlocked-count', percentId: 'pouch-percent',
+        completion: { label: 'Tool Pouch', max: r => r.stats.total },
     }),
     checklist({
         id: 'craftingKit', list: 'craftingKitSources', container: 'crafting-kit-checklist',
         unlocked: p => general(p, 'ToolKitUpgrades') || 0, unlockedId: 'crafting-unlocked-count', percentId: 'crafting-percent',
+        completion: { label: 'Crafting Kit', max: r => r.stats.total },
     }),
     // Everbloom + Sylphsong, 1% each
     checklist({
         id: 'otherUnlockables', list: 'otherUnlockableSources', container: 'other-unlockables-checklist',
         unlocked: (p, r) => r.stats.collected, unlockedId: 'other-unlockables-count', percentId: 'other-unlockables-percent',
+        completion: { label: 'Other', max: r => r.stats.total },
     }),
     checklist({ id: 'craftmetal', list: 'craftmetalSources', container: 'craftmetal-checklist', collectedId: 'craftmetal-collected-count' }),
     checklist({ id: 'memoryLockets', list: 'memoryLocketSources', container: 'memory-lockets-checklist', collectedId: 'memory-lockets-collected-count' }),

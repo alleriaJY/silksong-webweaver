@@ -79,6 +79,8 @@ const toolIcon = t => iconUrl('tool', t.icon || 'T_straight_pin.png');
 export default {
     id: 'tools',
     parse: parseTools,
+    // 1% per counted tool; an upgrade set counts once
+    completion: r => ({ label: 'Tools', earned: r.stats.unlocked, max: r.stats.total }),
 
     render(result) {
         const total = result.stats.total;

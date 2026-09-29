@@ -89,3 +89,18 @@ describe('fixture complete (100% save) oracle gaps', () => {
         expect(parsed.spoolFragments.stats.collected).toBe((expected.oracle.silkMax - 9) * 2);
     });
 });
+
+describe.each(FIXTURES)('completion model on $name (oracle)', ({ expected, parsed }) => {
+    it('recomputes exactly the completion percentage the game stores', () => {
+        expect(parsed.completion.earned).toBe(expected.oracle.completionPercentage);
+        expect(parsed.completion.matchesGame).toBe(true);
+    });
+
+    it('breakdown adds up to a 100-point model', () => {
+        expect(parsed.completion.max).toBe(100);
+        expect(parsed.completion.byCategory.map(p => p.id)).toEqual([
+            'abilities', 'skills', 'tools', 'crests', 'needle',
+            'maskShards', 'spoolFragments', 'silkHearts', 'toolPouch', 'craftingKit', 'otherUnlockables',
+        ]);
+    });
+});

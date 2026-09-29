@@ -8,7 +8,8 @@ import { setText } from '../../ui/renderers.js';
 export function parseNeedle(save, ctx) {
     const raw = save.playerData?.nailUpgrades;
     const upgrades = Math.max(0, Math.min(4, parseInt(raw, 10) || 0));
-    return { upgrades, rawUpgrades: raw || 0, tier: ctx.lists('needleTiers')[upgrades] || null };
+    const tiers = ctx.lists('needleTiers');
+    return { upgrades, maxUpgrades: Math.max(0, tiers.length - 1), rawUpgrades: raw || 0, tier: tiers[upgrades] || null };
 }
 
 function setIcon(id, tier) {
@@ -22,6 +23,7 @@ function setIcon(id, tier) {
 export default {
     id: 'needle',
     parse: parseNeedle,
+    completion: r => ({ label: 'Needle', earned: r.upgrades, max: r.maxUpgrades }),
 
     render(result) {
         const { tier, upgrades } = result;

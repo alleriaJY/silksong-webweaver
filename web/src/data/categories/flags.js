@@ -50,9 +50,12 @@ function renderCountedGrid(prefix, items, opts) {
     setPercent(`${prefix}-percent`, on, on === items.length);
 }
 
+const counted = (label) => (r) => ({ label, earned: r.stats.unlocked, max: r.stats.total });
+
 export const abilities = {
     id: 'abilities',
     parse: parseAbilities,
+    completion: counted('Abilities'),
     render(result) {
         renderCountedGrid('abilities', result.abilities, {
             itemClass: 'ability-item', lockItem: true, isOn: a => a.value,
@@ -76,6 +79,7 @@ export const abilities = {
 export const skills = {
     id: 'skills',
     parse: parseSkills,
+    completion: counted('Skills'),
     render(result) {
         renderCountedGrid('skills', result.skills, {
             itemClass: 'skill-item', lockItem: true, isOn: s => s.value,

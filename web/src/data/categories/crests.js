@@ -41,6 +41,7 @@ const crestFile = (crest, steelSoul) => (steelSoul && crest.iconSteelSoul ? cres
 export default {
     id: 'crests',
     parse: parseCrests,
+    completion: r => ({ label: 'Crests', earned: r.contributionStats.unlocked, max: r.contributionStats.total }),
 
     render(result, ctx) {
         const steelSoul = ctx.isSteelSoul;

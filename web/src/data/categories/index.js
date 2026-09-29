@@ -1,6 +1,7 @@
 /**
  * Category registry: the ordered list of everything the stats page parses
- * and renders. Each category is { id, parse(save, ctx), render?(result, ctx) }
+ * and renders. Each category is { id, parse(save, ctx), render?(result, ctx),
+ * completion?(result, parsed) -> { label, earned, max } } (see data/completion.js)
  * (template: ROADMAP.md Appendix C).
  *
  *   parse ctx  { save, packs, lists(name) }      lists() = merged pack list
@@ -20,6 +21,7 @@ import fleas from './fleas.js';
 import needle from './needle.js';
 import { abilities, skills, maps, bosses } from './flags.js';
 import { CHECKLISTS } from './checklists.js';
+import { computeCompletion, renderCompletion } from '../completion.js';
 
 export const CATEGORIES = [
     general,
@@ -61,6 +63,7 @@ export function parseAllData(playerData, sceneData) {
     const ctx = makeContext(save);
     const parsed = {};
     for (const category of CATEGORIES) parsed[category.id] = category.parse(save, ctx);
+    parsed.completion = computeCompletion(parsed, CATEGORIES);
     parsed.packs = ctx.packs.map(p => p.id);
     parsed.raw = playerData;
     parsed.rawScene = sceneData;
@@ -73,4 +76,5 @@ export function renderAll(parsed) {
     for (const category of CATEGORIES) {
         if (category.render) category.render(parsed[category.id], ctx);
     }
+    renderCompletion(parsed.completion);
 }
