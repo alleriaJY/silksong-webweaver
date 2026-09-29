@@ -52,6 +52,20 @@ async function waitFor(check, ms = 2000) {
     }
 }
 
+/**
+ * happy-dom treats `el.textContent = 0` as empty; browsers render "0". Coerce
+ * numbers to strings like a browser so goldens match what users see.
+ */
+function patchNumericTextContent() {
+    let proto = HTMLElement.prototype;
+    let desc;
+    while (proto && !(desc = Object.getOwnPropertyDescriptor(proto, 'textContent'))) proto = Object.getPrototypeOf(proto);
+    if (!desc || desc.set.__patched) return;
+    const set = function (value) { desc.set.call(this, typeof value === 'number' ? String(value) : value); };
+    set.__patched = true;
+    Object.defineProperty(proto, 'textContent', { ...desc, set });
+}
+
 export function serialize(root) {
     const clone = root.cloneNode(true);
     for (const img of clone.querySelectorAll('img')) {
@@ -69,6 +83,7 @@ describe('stats page render (golden)', () => {
         vi.resetModules();
         loadBody();
         Element.prototype.scrollIntoView = () => {};
+        patchNumericTextContent();
     });
 
     it.each(FIXTURES)('%s renders identically to the golden file', async (name) => {
