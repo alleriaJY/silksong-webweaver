@@ -1,0 +1,1577 @@
+<h2>📊 Save File Statistics</h2>
+<!-- Tab Navigation -->
+<nav class="tab-nav" id="tab-nav">
+<button class="tab-btn active" data-tab="general">
+<span class="tab-text">GENERAL</span>
+</button>
+<button class="tab-btn" data-tab="current">
+<span class="tab-text">CURRENT STATS</span>
+</button>
+<button class="tab-btn" data-tab="unlockables">
+<span class="tab-text">UNLOCKABLES</span>
+</button>
+<button class="tab-btn" data-tab="bosses">
+<span class="tab-text">BOSSES</span>
+</button>
+<button class="tab-btn" data-tab="fleas">
+<span class="tab-text">FLEAS</span>
+</button>
+<button class="tab-btn" data-tab="maps">
+<span class="tab-text">MAPS</span>
+</button>
+<button class="tab-btn" data-tab="collectables">
+<span class="tab-text">COLLECTABLES</span>
+</button>
+<button class="tab-btn" data-tab="misc">
+<span class="tab-text">MISC</span>
+</button>
+</nav>
+<!-- Tab Panels -->
+<div class="tab-panels">
+<!-- 1. General Tab -->
+<div class="tab-panel active" id="panel-general">
+<div class="panel-header">
+<h3>General Information</h3>
+<p class="panel-description">Overview of your save file</p>
+</div>
+<div class="panel-content">
+<!-- Game Info Card -->
+<div class="stat-card">
+<h4>🎮 Game Info</h4>
+<div class="stat-row">
+<span class="stat-label">Game Version</span>
+<span class="stat-value" data-stat="version">1.0.29315</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Game Mode</span>
+<span class="stat-value" data-stat="permadeath">Classic</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Completion</span>
+<span class="stat-value highlight" data-stat="completion">0.0%</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Play Time</span>
+<span class="stat-value highlight" data-stat="playTime">00h 04m 39s</span>
+</div>
+</div>
+<!-- Max Unlocked Card -->
+<div class="stat-card">
+<h4>⬆️ Stats</h4>
+<div class="stat-row">
+<span class="stat-label">Max Health</span>
+<span class="stat-value" data-stat="maxHealth">5</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Max Silk</span>
+<span class="stat-value" data-stat="maxSilk">9</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Max Silk Hearts</span>
+<span class="stat-value" data-stat="silkHearts">
+</span>
+</div>
+</div>
+<!-- Stats Visual - Full Width -->
+<div class="stat-card full-width">
+<h4>❤️ Health &amp; Silk Visual</h4>
+<div class="stat-visual-row">
+<span class="stat-visual-label">Max Health:</span>
+<div class="icon-container" id="health-icons">
+<img src="assets/img/general/general_hp.png" alt="Health" title="Health 1">
+<img src="assets/img/general/general_hp.png" alt="Health" title="Health 2">
+<img src="assets/img/general/general_hp.png" alt="Health" title="Health 3">
+<img src="assets/img/general/general_hp.png" alt="Health" title="Health 4">
+<img src="assets/img/general/general_hp.png" alt="Health" title="Health 5">
+</div>
+</div>
+<div class="stat-visual-row">
+<span class="stat-visual-label">Silk Hearts:</span>
+<div class="icon-container" id="silkheart-icons">
+<span style="color: var(--text-secondary);">None</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Current Stats Tab -->
+<div class="tab-panel" id="panel-current">
+<div class="panel-header">
+<h3>Current Stats</h3>
+<p class="panel-description">Your current in-game status</p>
+</div>
+<div class="panel-content">
+<!-- Health & Silk Card -->
+<div class="stat-card">
+<h4>❤️ Health &amp; Silk</h4>
+<div class="stat-row">
+<span class="stat-label">Current Health</span>
+<span class="stat-value" data-stat="healthDisplay">1/5</span>
+</div>
+<div class="stat-bar" id="health-bar">
+<div class="stat-bar-fill health-fill" id="health-fill" style="width: 20%;">
+</div>
+</div>
+<div class="stat-row">
+<span class="stat-label">Current Silk</span>
+<span class="stat-value" data-stat="silkDisplay">7/9</span>
+</div>
+<div class="stat-bar" id="silk-bar">
+<div class="stat-bar-fill silk-fill" id="silk-fill" style="width: 77.77777777777779%;">
+</div>
+</div>
+</div>
+<!-- Currency Card -->
+<div class="stat-card">
+<h4>💰 Currency</h4>
+<div class="stat-row">
+<span class="stat-label">
+<img src="assets/img/general/general_rosaries.png" alt="Rosary" class="stat-icon"> Rosaries</span>
+<span class="stat-value highlight" data-stat="geo">0</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">
+<img src="assets/img/general/general_shard.png" alt="Shell Shard" class="stat-icon"> Shell Shards</span>
+<span class="stat-value" data-stat="shellShards">2</span>
+</div>
+</div>
+<!-- Cloak & Needle Card -->
+<div class="stat-card">
+<h4>🗡️ Cloak &amp; Needle</h4>
+<div class="equipment-columns">
+<div class="equipment-column" id="current-cloak-display">
+<img src="assets/img/general/ability/I_crimson_cloak.png" alt="Crimson Cloak" id="cloak-icon">
+<span id="cloak-name">Crimson Cloak</span>
+</div>
+<div class="equipment-column" id="current-needle-display">
+<img src="assets/img/general/nail/Inv_0033_inv_nail_01.png" alt="Needle" id="needle-icon">
+<span id="needle-name">Needle</span>
+</div>
+</div>
+</div>
+<!-- Equipment Card with Crest Image -->
+<div class="stat-card full-width">
+<h4>⚔️ Equipment</h4>
+<div class="crest-display">
+<img src="assets/img/general/crests/Select_Game_Crest_Spools__0000_hunter.png" alt="Hunter" id="crest-image" class="crest-image">
+</div>
+<div class="stat-row">
+<span class="stat-label">Equipped Crest</span>
+<span class="stat-value" data-stat="crest">Hunter</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Special Crest State</span>
+<span class="stat-value" data-stat="specialCrestState">None</span>
+</div>
+<!-- Equipped Tools Row -->
+<div class="equipped-tools-section">
+<span class="stat-visual-label">Equipped Tools:</span>
+<div class="equipped-tools-row" id="equipped-tools-row">
+<span style="color: var(--text-secondary); font-size: 0.85rem;">No tools equipped</span>
+</div>
+</div>
+<!-- Extra Tools Row -->
+<div class="equipped-tools-section">
+<span class="stat-visual-label">Extra Slots:</span>
+<div class="equipped-tools-row" id="extra-tools-row">
+<span style="color: var(--text-secondary); font-size: 0.85rem;">No extra slots</span>
+</div>
+</div>
+</div>
+<!-- Current Position Card -->
+<div class="stat-card">
+<h4>📍 Current Position</h4>
+<div class="stat-row">
+<span class="stat-label">Current Area</span>
+<span class="stat-value highlight" data-stat="currentArea">MOSSCAVE</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Map Zone</span>
+<span class="stat-value" data-stat="mapZone">18</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">At Bench</span>
+<span class="stat-value" data-stat="atBench">✗ No</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Misc Tab -->
+<div class="tab-panel" id="panel-misc">
+<div class="panel-header">
+<h3>Miscellaneous</h3>
+<p class="panel-description">Additional save file details</p>
+</div>
+<div class="panel-content">
+<!-- Respawn Info Card -->
+<div class="stat-card">
+<h4>🔄 Respawn Info</h4>
+<div class="stat-row">
+<span class="stat-label">Respawn Area</span>
+<span class="stat-value" data-stat="respawnScene">Bonetown</span>
+</div>
+<div class="stat-row">
+<span class="stat-label">Respawn Marker</span>
+<span class="stat-value" data-stat="respawnMarker">Death Respawn Marker Church</span>
+</div>
+</div>
+<!-- Save Info Card -->
+<div class="stat-card">
+<h4>📝 Save Info</h4>
+<div class="stat-row">
+<span class="stat-label">Respawn Type</span>
+<span class="stat-value" data-stat="respawnType">
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Unlockables Tab -->
+<div class="tab-panel" id="panel-unlockables">
+<div class="panel-header">
+<h3>Unlockables</h3>
+<p class="panel-description">Track your progression upgrades, abilities, and
+                                            equipment</p>
+</div>
+<div class="panel-content">
+<!-- Completion Summary Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🏆 Completion</h4>
+<div class="completion-summary">
+<span class="completion-big-number" id="unlockables-completion-percent">0.0%</span>
+<span class="completion-caption">Overall save completion percentage</span>
+</div>
+</div>
+<!-- Masks Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🎭 Masks
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="masks-unlocked-count">
+</strong>/5 extra) -
+                                                    <strong id="masks-percent">0%</strong>
+</span>
+</h4>
+<p class="panel-description">Mask Shards collected: <strong id="mask-shards-collected-count">
+</strong>/20</p>
+<div class="source-checklist" id="mask-shards-checklist">
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="The Marrow - Lava Gauntlet reward (Bone_East_20)" class="source-icon">
+<span class="source-name">The Marrow - Lava Gauntlet reward (Bone_East_20)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="The Marrow - Lava Gauntlet arena (Bone_East_LavaChallenge)" class="source-icon">
+<span class="source-name">The Marrow - Lava Gauntlet arena (Bone_East_LavaChallenge)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Sands of Karak / Blasted Steps (Coral_19b)" class="source-icon">
+<span class="source-name">Sands of Karak / Blasted Steps (Coral_19b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Wormways (Crawl_02)" class="source-icon">
+<span class="source-name">Wormways (Crawl_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Deep Docks (Dock_08)" class="source-icon">
+<span class="source-name">Deep Docks (Dock_08)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Whispering Vaults (Library_05)" class="source-icon">
+<span class="source-name">Whispering Vaults (Library_05)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Mount Fay - Western (Peak_04c)" class="source-icon">
+<span class="source-name">Mount Fay - Western (Peak_04c)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Mount Fay - Central (Peak_06)" class="source-icon">
+<span class="source-name">Mount Fay - Central (Peak_06)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Blasted Steps area (Shadow_13)" class="source-icon">
+<span class="source-name">Blasted Steps area (Shadow_13)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Shellwood (Shellwood_14)" class="source-icon">
+<span class="source-name">Shellwood (Shellwood_14)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="The Slab (Slab_17)" class="source-icon">
+<span class="source-name">The Slab (Slab_17)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Choral Chambers (Song_09)" class="source-icon">
+<span class="source-name">Choral Chambers (Song_09)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Weavenest Atla (Weave_05b)" class="source-icon">
+<span class="source-name">Weavenest Atla (Weave_05b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Wisp Thicket (Wisp_07)" class="source-icon">
+<span class="source-name">Wisp Thicket (Wisp_07)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Pebb (Bone Bottom, 300 Rosaries)" class="source-icon">
+<span class="source-name">Pebb (Bone Bottom, 300 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Jubilana (Songclave, 750 Rosaries)" class="source-icon">
+<span class="source-name">Jubilana (Songclave, 750 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Sprintmaster Race (Pilgrim's Rest)" class="source-icon">
+<span class="source-name">Sprintmaster Race (Pilgrim's Rest)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Savage Beastfly (Far Fields)" class="source-icon">
+<span class="source-name">Savage Beastfly (Far Fields)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Gurr the Outcast (The Marrow)" class="source-icon">
+<span class="source-name">Gurr the Outcast (The Marrow)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="Destroy 12 Void Masses" class="source-icon">
+<span class="source-name">Destroy 12 Void Masses</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Silk Spool Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🧵 Silk Spool
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="silk-spool-unlocked-count">
+</strong>/9
+                                                    extra) -
+                                                    <strong id="silk-spool-percent">0%</strong>
+</span>
+</h4>
+<p class="panel-description">Spool Fragments collected: <strong id="spool-fragments-collected-count">
+</strong>/18</p>
+<div class="source-checklist" id="spool-fragments-checklist">
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Memorium (Arborium_09)" class="source-icon">
+<span class="source-name">Memorium (Arborium_09)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Mosshome (Bone_11b)" class="source-icon">
+<span class="source-name">Mosshome (Bone_11b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="The Marrow (Bone_East_13)" class="source-icon">
+<span class="source-name">The Marrow (Bone_East_13)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Cogwork Core (Cog_07)" class="source-icon">
+<span class="source-name">Cogwork Core (Cog_07)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Deep Docks (Dock_03c)" class="source-icon">
+<span class="source-name">Deep Docks (Dock_03c)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Greymoor (Greymoor_02)" class="source-icon">
+<span class="source-name">Greymoor (Greymoor_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="High Halls (Hang_03_top)" class="source-icon">
+<span class="source-name">High Halls (Hang_03_top)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Whispering Vaults (Library_11b)" class="source-icon">
+<span class="source-name">Whispering Vaults (Library_11b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Mount Fay (Peak_01)" class="source-icon">
+<span class="source-name">Mount Fay (Peak_01)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Grand Gate (Song_19_entrance)" class="source-icon">
+<span class="source-name">Grand Gate (Song_19_entrance)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Underworks (Under_10)" class="source-icon">
+<span class="source-name">Underworks (Under_10)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Whiteward (Ward_01)" class="source-icon">
+<span class="source-name">Whiteward (Ward_01)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Weavenest Atla (Weave_11)" class="source-icon">
+<span class="source-name">Weavenest Atla (Weave_11)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Jubilana (Songclave, 500 Rosaries)" class="source-icon">
+<span class="source-name">Jubilana (Songclave, 500 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Frey (Bellhart, 270 Rosaries)" class="source-icon">
+<span class="source-name">Frey (Bellhart, 270 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Grindle (Blasted Steps, 680 Rosaries)" class="source-icon">
+<span class="source-name">Grindle (Blasted Steps, 680 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Sherma's Healing - Balm for the Wounded (Whiteward)" class="source-icon">
+<span class="source-name">Sherma's Healing - Balm for the Wounded (Whiteward)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/spool_upgrade_pickup.png" alt="Greymoor Battle Challenge (Greymoor_17)" class="source-icon">
+<span class="source-name">Greymoor Battle Challenge (Greymoor_17)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Silk Hearts Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">💜 Silk Hearts
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="silk-hearts-unlocked-count">
+</strong>/3) -
+                                                    <strong id="silk-hearts-percent">0%</strong>
+</span>
+</h4>
+<div class="source-checklist" id="silk-hearts-checklist">
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/general_silkheart.png" alt="Bell Beast (The Marrow)" class="source-icon">
+<span class="source-name">Bell Beast (The Marrow)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/general_silkheart.png" alt="The Unravelled (Whiteward)" class="source-icon">
+<span class="source-name">The Unravelled (Whiteward)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/general_silkheart.png" alt="Lace, 2nd encounter (The Cradle)" class="source-icon">
+<span class="source-name">Lace, 2nd encounter (The Cradle)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Needle Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🗡️ Needle
+                                                <span class="unlocked-stats">
+                                                    (Level: <strong id="unlockables-needle-level">1</strong>/5) -
+                                                    <strong id="needle-percent">0%</strong>
+</span>
+</h4>
+<div class="equipment-display centered">
+<div class="equipment-item large" id="unlockables-needle">
+<img src="assets/img/general/nail/Inv_0033_inv_nail_01.png" alt="Needle" id="unlockables-needle-icon">
+<div class="equipment-info">
+<span class="equipment-name" id="unlockables-needle-name">Needle</span>
+<span class="equipment-level" id="unlockables-needle-upgrades">0 Upgrades</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Crests Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🛡️ Crests
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="crests-unlocked-count">1</strong>/7) -
+                                                    <strong id="crests-percent">0%</strong>
+</span>
+</h4>
+<div class="tools-grid" id="crests-grid">
+<div class="tool-item">
+<img src="assets/img/general/crests/Select_Game_Crest_Spools__0000_hunter.png" alt="Hunter" title="Hunter (Unlocked)" class="unlocked">
+<span title="Hunter">Hunter</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/general/crests/Select_Game_Crest_Spools__0004_reaper.png" alt="Reaper" title="Reaper (Locked)" class="locked">
+<span title="Reaper">Reaper</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/general/crests/Select_Game_Crest_Spools__0008_wanderer.png" alt="Wanderer" title="Wanderer (Locked)" class="locked">
+<span title="Wanderer">Wanderer</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/general/crests/Select_Game_Crest_Spools__0007_warrior.png" alt="Beast" title="Beast (Locked)" class="locked">
+<span title="Beast">Beast</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/general/crests/Select_Game_Crest_Spools__0009_witch.png" alt="Witch" title="Witch (Locked)" class="locked">
+<span title="Witch">Witch</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/general/crests/Select_Game_Crest_Spools__0006_architect.png" alt="Architect" title="Architect (Locked)" class="locked">
+<span title="Architect">Architect</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/general/crests/Select_Game_Crest_Spools__0005_shaman.png" alt="Shaman" title="Shaman (Locked)" class="locked">
+<span title="Shaman">Shaman</span>
+</div>
+</div>
+</div>
+<!-- Abilities Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🦋 Abilities
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="abilities-unlocked-count">
+</strong>/6) -
+                                                    <strong id="abilities-percent" class="percent-value">0%</strong>
+</span>
+</h4>
+<div class="abilities-grid" id="abilities-grid">
+<div class="ability-item locked">
+<img src="assets/img/general/ability/swiftstep.png" alt="Swift Step" title="Swift Step (Locked)" class="locked">
+<span title="Swift Step">Swift Step</span>
+</div>
+<div class="ability-item locked">
+<img src="assets/img/general/ability/clinggrip.png" alt="Cling Grip" title="Cling Grip (Locked)" class="locked">
+<span title="Cling Grip">Cling Grip</span>
+</div>
+<div class="ability-item locked">
+<img src="assets/img/general/ability/needolin.png" alt="Needolin" title="Needolin (Locked)" class="locked">
+<span title="Needolin">Needolin</span>
+</div>
+<div class="ability-item locked">
+<img src="assets/img/general/ability/clawline.png" alt="Clawline" title="Clawline (Locked)" class="locked">
+<span title="Clawline">Clawline</span>
+</div>
+<div class="ability-item locked">
+<img src="assets/img/general/ability/needlestrike.png" alt="Needle Strike" title="Needle Strike (Locked)" class="locked">
+<span title="Needle Strike">Needle Strike</span>
+</div>
+<div class="ability-item locked">
+<img src="assets/img/general/ability/silksoar.png" alt="Silk Soar" title="Silk Soar (Locked)" class="locked">
+<span title="Silk Soar">Silk Soar</span>
+</div>
+</div>
+<!-- Separator for Others section -->
+<div class="tools-separator">
+<span>Others</span>
+</div>
+<div class="abilities-grid" id="other-abilities-grid">
+<div class="ability-item locked">
+<img src="assets/img/general/ability/drifterscloak.png" alt="Drifter's Cloak" title="Drifter's Cloak (Locked)" class="locked">
+<span title="Drifter's Cloak">Drifter's Cloak</span>
+</div>
+<div class="ability-item locked">
+<img src="assets/img/general/ability/faydown_cloak.png" alt="Faydown Cloak" title="Faydown Cloak (Locked)" class="locked">
+<span title="Faydown Cloak">Faydown Cloak</span>
+</div>
+</div>
+</div>
+<!-- Skills Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">⚔️ Skills
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="skills-unlocked-count">
+</strong>/6) -
+                                                    <strong id="skills-percent" class="percent-value">0%</strong>
+</span>
+</h4>
+<div class="skills-grid" id="skills-grid">
+<div class="skill-item locked">
+<img src="assets/img/general/skills/Art_Rune__0002_silk_spear.png" alt="Silkspear" title="Silkspear (Locked)" class="locked">
+<span title="Silkspear">Silkspear</span>
+</div>
+<div class="skill-item locked">
+<img src="assets/img/general/skills/Art_Rune__0014_cross_stitch.png" alt="Cross Stitch" title="Cross Stitch (Locked)" class="locked">
+<span title="Cross Stitch">Cross Stitch</span>
+</div>
+<div class="skill-item locked">
+<img src="assets/img/general/skills/Art_Rune__0008_silk_sphere.png" alt="Thread Storm" title="Thread Storm (Locked)" class="locked">
+<span title="Thread Storm">Thread Storm</span>
+</div>
+<div class="skill-item locked">
+<img src="assets/img/general/skills/Art_Rune__0017_silk_dart.png" alt="Sharp Dart" title="Sharp Dart (Locked)" class="locked">
+<span title="Sharp Dart">Sharp Dart</span>
+</div>
+<div class="skill-item locked">
+<img src="assets/img/general/skills/Art_Rune__0005_silk_bomb.png" alt="Rune Rage" title="Rune Rage (Locked)" class="locked">
+<span title="Rune Rage">Rune Rage</span>
+</div>
+<div class="skill-item locked">
+<img src="assets/img/general/skills/Art_Rune__0011_finger_blades.png" alt="Pale Nails" title="Pale Nails (Locked)" class="locked">
+<span title="Pale Nails">Pale Nails</span>
+</div>
+</div>
+</div>
+<!-- Crafting Kit Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🔨 Crafting Kit
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="crafting-unlocked-count">
+</strong>/4) -
+                                                    <strong id="crafting-percent">0%</strong>
+</span>
+</h4>
+<div class="source-checklist" id="crafting-kit-checklist">
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal_Pouch.png" alt="Forge Daughter (Deep Docks, 180 Rosaries)" class="source-icon">
+<span class="source-name">Forge Daughter (Deep Docks, 180 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal_Pouch.png" alt="Creige, Crow Feathers quest (Halfway Home)" class="source-icon">
+<span class="source-name">Creige, Crow Feathers quest (Halfway Home)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal_Pouch.png" alt="Twelfth Architect (Underworks, 450 Rosaries)" class="source-icon">
+<span class="source-name">Twelfth Architect (Underworks, 450 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal_Pouch.png" alt="Grindle (Blasted Steps, 700 Rosaries)" class="source-icon">
+<span class="source-name">Grindle (Blasted Steps, 700 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Tools Section (separate from Tool Pouch) -->
+<div class="stat-card full-width">
+<h4 class="section-header">🔧 Tools
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="tools-unlocked-count">
+</strong>/<span id="tools-total-count">51</span>) - <strong id="tools-percent" class="percent-value">0%</strong>
+</span>
+</h4>
+<div class="tools-grid" id="tools-grid">
+<div class="tool-item">
+<img src="assets/img/tools/T_straight_pin.png" alt="Straight Pin" title="Straight Pin (Locked)" class="locked">
+<span title="Straight Pin">Straight Pin</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_tri_pin.png" alt="Threefold Pin" title="Threefold Pin (Locked)" class="locked">
+<span title="Threefold Pin">Threefold Pin</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_sting_shard.png" alt="Sting Shard" title="Sting Shard (Locked)" class="locked">
+<span title="Sting Shard">Sting Shard</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_tack.png" alt="Tacks" title="Tacks (Locked)" class="locked">
+<span title="Tacks">Tacks</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_claw_javelin.png" alt="Longpin" title="Longpin (Locked)" class="locked">
+<span title="Longpin">Longpin</span>
+</div>
+<div class="tool-item tool-upgrade-set" style="cursor: pointer;" title="Click to view Curveclaw variants (Spoilers)">
+<img src="assets/img/tools/T_curve_claw.png" alt="Curveclaw" title="Curveclaw (Locked)" class="locked">
+<span title="Curveclaw">Curveclaw</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_shakra_ring.png" alt="Throwing Ring" title="Throwing Ring (Locked)" class="locked">
+<span title="Throwing Ring">Throwing Ring</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_pimpilo.png" alt="Pimpillo" title="Pimpillo (Locked)" class="locked">
+<span title="Pimpillo">Pimpillo</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_Conch_Drill_Shot.png" alt="Conchcutter" title="Conchcutter (Locked)" class="locked">
+<span title="Conchcutter">Conchcutter</span>
+</div>
+<div class="tool-item tool-upgrade-set" style="cursor: pointer;" title="Click to view Silkshot variants (Spoilers)">
+<img src="assets/img/tools/_0002_T_web_shot_forge.png" alt="Silkshot (Forge Daughter)" title="Silkshot (Forge Daughter) (Locked)" class="locked">
+<span title="Silkshot (Forge Daughter)">Silkshot (Forge Daughter)</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_Spine_head.png" alt="Delver's Drill" title="Delver's Drill (Locked)" class="locked">
+<span title="Delver's Drill">Delver's Drill</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_cogwork_saw.png" alt="Cogwork Wheel" title="Cogwork Wheel (Locked)" class="locked">
+<span title="Cogwork Wheel">Cogwork Wheel</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_cogwork_flier.png" alt="Cogfly" title="Cogfly (Locked)" class="locked">
+<span title="Cogfly">Cogfly</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/_0004_T_rosary_cannon_loaded.png" alt="Rosary Cannon" title="Rosary Cannon (Locked)" class="locked">
+<span title="Rosary Cannon">Rosary Cannon</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/Hornet_icon_0003_T_flintstone.png" alt="Flintslate" title="Flintslate (Locked)" class="locked">
+<span title="Flintslate">Flintslate</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_flea_brew.png" alt="Flea Brew" title="Flea Brew (Locked)" class="locked">
+<span title="Flea Brew">Flea Brew</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_syringe_lifeblood.png" alt="Plasmium Phial" title="Plasmium Phial (Locked)" class="locked">
+<span title="Plasmium Phial">Plasmium Phial</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/_0004_T_lightning__0001_1_venom.png" alt="Voltvessels" title="Voltvessels (Locked)" class="locked">
+<span title="Voltvessels">Voltvessels</span>
+</div>
+<div class="tool-item tool-upgrade-set" style="cursor: pointer;" title="Click to view Druid's Eye variants (Spoilers)">
+<img src="assets/img/tools/T_mossmedal.png" alt="Druid's Eye" title="Druid's Eye (Locked)" class="locked">
+<span title="Druid's Eye">Druid's Eye</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/Hornet_T_lava_charm.png" alt="Magma Bell" title="Magma Bell (Locked)" class="locked">
+<span title="Magma Bell">Magma Bell</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/Hornet_icon_0001_T_bell_shield.png" alt="Warding Bell" title="Warding Bell (Locked)" class="locked">
+<span title="Warding Bell">Warding Bell</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_poison_pouch.png" alt="Pollip Pouch" title="Pollip Pouch (Locked)" class="locked">
+<span title="Pollip Pouch">Pollip Pouch</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/Hornet_T_fractured_mask.png" alt="Fractured Mask" title="Fractured Mask (Locked)" class="locked">
+<span title="Fractured Mask">Fractured Mask</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_multi_bind.png" alt="Multibinder" title="Multibinder (Locked)" class="locked">
+<span title="Multibinder">Multibinder</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_icon_white_ring.png" alt="Weavelight" title="Weavelight (Locked)" class="locked">
+<span title="Weavelight">Weavelight</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_brolly_spike.png" alt="Sawtooth Circlet" title="Sawtooth Circlet (Locked)" class="locked">
+<span title="Sawtooth Circlet">Sawtooth Circlet</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_quick_bind.png" alt="Injector Band" title="Injector Band (Locked)" class="locked">
+<span title="Injector Band">Injector Band</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_spool_bar_extender.png" alt="Spool Extender" title="Spool Extender (Locked)" class="locked">
+<span title="Spool Extender">Spool Extender</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_focus_spool.png" alt="Reserve Bind" title="Reserve Bind (Locked)" class="locked">
+<span title="Reserve Bind">Reserve Bind</span>
+</div>
+<div class="tool-item tool-upgrade-set" style="cursor: pointer;" title="Click to view Claw Mirror variants (Spoilers)">
+<img src="assets/img/tools/T_dazzle_bind.png" alt="Claw Mirror" title="Claw Mirror (Locked)" class="locked">
+<span title="Claw Mirror">Claw Mirror</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_revenge_crystal.png" alt="Memory Crystal" title="Memory Crystal (Locked)" class="locked">
+<span title="Memory Crystal">Memory Crystal</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/Thief_Claw.png" alt="Snitch Pick" title="Snitch Pick (Locked)" class="locked">
+<span title="Snitch Pick">Snitch Pick</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_zap_imbuement.png" alt="Volt Filament" title="Volt Filament (Locked)" class="locked">
+<span title="Volt Filament">Volt Filament</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_quick_sling.png" alt="Quick Sling" title="Quick Sling (Locked)" class="locked">
+<span title="Quick Sling">Quick Sling</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/poultice_pouch_icon.png" alt="Wreath of Purity" title="Wreath of Purity (Locked)" class="locked">
+<span title="Wreath of Purity">Wreath of Purity</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_longneedle.png" alt="Longclaw" title="Longclaw (Locked)" class="locked">
+<span title="Longclaw">Longclaw</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_wisp_lantern.png" alt="Wispfire Lantern" title="Wispfire Lantern (Locked)" class="locked">
+<span title="Wispfire Lantern">Wispfire Lantern</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/Flea_Egg.png" alt="Egg of Flealia" title="Egg of Flealia (Locked)" class="locked">
+<span title="Egg of Flealia">Egg of Flealia</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_pinstress_tool.png" alt="Pin Badge" title="Pin Badge (Locked)" class="locked">
+<span title="Pin Badge">Pin Badge</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_Compass.png" alt="Compass" title="Compass (Locked)" class="locked">
+<span title="Compass">Compass</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/Hornet_Bone_Necklace.png" alt="Shard Pendant" title="Shard Pendant (Locked)" class="locked">
+<span title="Shard Pendant">Shard Pendant</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_rosary_magnet.png" alt="Magnetite Brooch" title="Magnetite Brooch (Locked)" class="locked">
+<span title="Magnetite Brooch">Magnetite Brooch</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_weighted_anklet.png" alt="Weighted Belt" title="Weighted Belt (Locked)" class="locked">
+<span title="Weighted Belt">Weighted Belt</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_barbed_wire.png" alt="Barbed Bracelet" title="Barbed Bracelet (Locked)" class="locked">
+<span title="Barbed Bracelet">Barbed Bracelet</span>
+</div>
+<div class="tool-item tool-upgrade-set" style="cursor: pointer;" title="Click to view Money Pouch variants (Spoilers)">
+<img src="assets/img/tools/T_dead_purse.png" alt="Dead Bug's Purse" title="Dead Bug's Purse (Locked)" class="locked">
+<span title="Dead Bug's Purse">Dead Bug's Purse</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/_0006_I_magnetite_dice.png" alt="Magnetite Dice" title="Magnetite Dice (Locked)" class="locked">
+<span title="Magnetite Dice">Magnetite Dice</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_steel_spine.png" alt="Scuttlebrace" title="Scuttlebrace (Locked)" class="locked">
+<span title="Scuttlebrace">Scuttlebrace</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_longneedle_old1.png" alt="Ascendant's Grip" title="Ascendant's Grip (Locked)" class="locked">
+<span title="Ascendant's Grip">Ascendant's Grip</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_attunement_charm.png" alt="Spider Strings" title="Spider Strings (Locked)" class="locked">
+<span title="Spider Strings">Spider Strings</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_icon_sprintmaster.png" alt="Silkspeed Anklets" title="Silkspeed Anklets (Locked)" class="locked">
+<span title="Silkspeed Anklets">Silkspeed Anklets</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/Thief_Brooch.png" alt="Thief's Mark" title="Thief's Mark (Locked)" class="locked">
+<span title="Thief's Mark">Thief's Mark</span>
+</div>
+</div>
+<!-- Separator for Others section -->
+<div class="tools-separator">
+<span>Others</span>
+</div>
+<div class="tools-grid" id="other-tools-grid">
+<div class="tool-item">
+<img src="assets/img/tools/_0004_T_snare_setter.png" alt="Snare Setter" title="Snare Setter (Locked)" class="locked">
+<span title="Snare Setter">Snare Setter</span>
+</div>
+<div class="tool-item">
+<img src="assets/img/tools/T_Extractor.png" alt="Needle Phial" title="Needle Phial (Locked)" class="locked">
+<span title="Needle Phial">Needle Phial</span>
+</div>
+</div>
+</div>
+<!-- Tool Pouch Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🎒 Tool Pouch
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="pouch-unlocked-count">
+</strong>/4) - <strong id="pouch-percent">0%</strong>
+</span>
+</h4>
+<div class="source-checklist" id="tool-pouch-checklist">
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/icon_tool_kit_upgrade.png" alt="Mort (Pilgrim's Rest, 220 Rosaries)" class="source-icon">
+<span class="source-name">Mort (Pilgrim's Rest, 220 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/icon_tool_kit_upgrade.png" alt="Loddie (The Marrow) - not yet confirmed" class="source-icon">
+<span class="source-name">Loddie (The Marrow) - not yet confirmed</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/icon_tool_kit_upgrade.png" alt="Nuu, Journal quest (Halfway Home)" class="source-icon">
+<span class="source-name">Nuu, Journal quest (Halfway Home)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/icon_tool_kit_upgrade.png" alt="Fleamaster Mooshka (Fleatopia)" class="source-icon">
+<span class="source-name">Fleamaster Mooshka (Fleatopia)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Other Unlockables Section (Everbloom, Sylphsong) -->
+<div class="stat-card full-width">
+<h4 class="section-header">✨ Other Unlockables
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="other-unlockables-count">
+</strong>/2) -
+                                                    <strong id="other-unlockables-percent">0%</strong>
+</span>
+</h4>
+<div class="source-checklist" id="other-unlockables-checklist">
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/I_white_flower.png" alt="Everbloom (Complete the Red Memory)" class="source-icon">
+<span class="source-name">Everbloom (Complete the Red Memory)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Eva_heal_prompt.png" alt="Sylphsong (Eva's Heal - 12 Memory Lockets + all Crests)" class="source-icon">
+<span class="source-name">Sylphsong (Eva's Heal - 12 Memory Lockets + all Crests)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Bosses Tab -->
+<div class="tab-panel" id="panel-bosses">
+<div class="panel-header">
+<h3>Bosses</h3>
+<p class="panel-description">Boss encounters defeated (<span id="bosses-count">1</span>/36)
+                                        </p>
+</div>
+<div class="panel-content">
+<div class="stat-card full-width">
+<h4>⚔️ Boss Encounters</h4>
+<div class="bosses-grid" id="bosses-grid">
+<div class="boss-item">
+<img src="assets/img/bosses/Moss Mother - Mossbone Mother.png" alt="Moss Mother" title="Moss Mother" class="defeated">
+<span title="Moss Mother">Moss Mother</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Bell Beast - Bone Beast.png" alt="Bell Beast" title="Bell Beast" class="not-defeated">
+<span title="Bell Beast">Bell Beast</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Lace.png" alt="Lace 1 (Deep Docks)" title="Lace 1 (Deep Docks)" class="not-defeated">
+<span title="Lace 1 (Deep Docks)">Lace 1 (Deep Docks)</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Fourth Chorus - Song Golem.png" alt="Fourth Chorus" title="Fourth Chorus" class="not-defeated">
+<span title="Fourth Chorus">Fourth Chorus</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Moorwing - Vampire Gnat.png" alt="Moorwing" title="Moorwing" class="not-defeated">
+<span title="Moorwing">Moorwing</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Sister Splinter - Splinter Queen.png" alt="Sister Splinter" title="Sister Splinter" class="not-defeated">
+<span title="Sister Splinter">Sister Splinter</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Skull Tyrant - Skull King.png" alt="Skull Tyrant 1" title="Skull Tyrant 1" class="not-defeated">
+<span title="Skull Tyrant 1">Skull Tyrant 1</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Skull Tyrant - Skull King.png" alt="Skull Tyrant 2" title="Skull Tyrant 2" class="not-defeated">
+<span title="Skull Tyrant 2">Skull Tyrant 2</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Great Conchfly - Coral Conch Driller Giant.png" alt="Great Conchflies" title="Great Conchflies" class="not-defeated">
+<span title="Great Conchflies">Great Conchflies</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Phantom.png" alt="Phantom" title="Phantom" class="not-defeated">
+<span title="Phantom">Phantom</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Last Judge.png" alt="The Last Judge" title="The Last Judge" class="not-defeated">
+<span title="The Last Judge">The Last Judge</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Savage Beastfly - Bone Flyer Giant.png" alt="Savage Beastfly 1" title="Savage Beastfly 1" class="not-defeated">
+<span title="Savage Beastfly 1">Savage Beastfly 1</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Savage Beastfly - Bone Flyer Giant.png" alt="Savage Beastfly 2" title="Savage Beastfly 2" class="not-defeated">
+<span title="Savage Beastfly 2">Savage Beastfly 2</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Cogwork Dancers - Clockwork Dancer.png" alt="Cogwork Dancers" title="Cogwork Dancers" class="not-defeated">
+<span title="Cogwork Dancers">Cogwork Dancers</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Trobbio #4267244.png" alt="Trobbio" title="Trobbio" class="not-defeated">
+<span title="Trobbio">Trobbio</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Second Sentinel - Song Knight.png" alt="Second Sentinel" title="Second Sentinel" class="not-defeated">
+<span title="Second Sentinel">Second Sentinel</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/First Sinner - First Weaver.png" alt="First Sinner" title="First Sinner" class="not-defeated">
+<span title="First Sinner">First Sinner</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Disgraced Chef Lugoli - Roachkeeper Chef.png" alt="Disgraced Chef Lugoli" title="Disgraced Chef Lugoli" class="not-defeated">
+<span title="Disgraced Chef Lugoli">Disgraced Chef Lugoli</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Broodmother - Slab Fly Broodmother.png" alt="Broodmother" title="Broodmother" class="not-defeated">
+<span title="Broodmother">Broodmother</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Father of the Flame - Wisp Pyre Effigy.png" alt="Father of the Flame" title="Father of the Flame" class="not-defeated">
+<span title="Father of the Flame">Father of the Flame</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Great Conchfly - Coral Conch Driller Giant.png" alt="Raging Conchfly" title="Raging Conchfly" class="not-defeated">
+<span title="Raging Conchfly">Raging Conchfly</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Forebrothers Signis &amp; Gron - Dock Guard Thrower.png" alt="Forebrothers Signis &amp; Gron" title="Forebrothers Signis &amp; Gron" class="not-defeated">
+<span title="Forebrothers Signis &amp; Gron">Forebrothers Signis &amp; Gron</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/The Unravelled - Conductor Boss.png" alt="The Unravelled" title="The Unravelled" class="not-defeated">
+<span title="The Unravelled">The Unravelled</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Groal the Great - Swamp Shaman.png" alt="Groal the Great" title="Groal the Great" class="not-defeated">
+<span title="Groal the Great">Groal the Great</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Voltvyrm - Zap Core Enemy.png" alt="Voltvyrm" title="Voltvyrm" class="not-defeated">
+<span title="Voltvyrm">Voltvyrm</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Lace #4267252.png" alt="Lace 2 (The Cradle)" title="Lace 2 (The Cradle)" class="not-defeated">
+<span title="Lace 2 (The Cradle)">Lace 2 (The Cradle)</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Lost Garmond - Garmond.png" alt="Lost Garmond" title="Lost Garmond" class="not-defeated">
+<span title="Lost Garmond">Lost Garmond</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Gurr the Outcast - Bone Hunter Trapper.png" alt="Gurr the Outcast" title="Gurr the Outcast" class="not-defeated">
+<span title="Gurr the Outcast">Gurr the Outcast</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Pinstress Boss.png" alt="Pinstress" title="Pinstress" class="not-defeated">
+<span title="Pinstress">Pinstress</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Tormented Trobbio.png" alt="Tormented Trobbio" title="Tormented Trobbio" class="not-defeated">
+<span title="Tormented Trobbio">Tormented Trobbio</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Palestag - Cloverstag White.png" alt="Palestag" title="Palestag" class="not-defeated">
+<span title="Palestag">Palestag</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Skarrsinger Karmelita - Hunter Queen.png" alt="Skarrsinger Karmelita" title="Skarrsinger Karmelita" class="not-defeated">
+<span title="Skarrsinger Karmelita">Skarrsinger Karmelita</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Crust King Khann - Coral King.png" alt="Crust King Khann" title="Crust King Khann" class="not-defeated">
+<span title="Crust King Khann">Crust King Khann</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Shrine Guardian Seth - Seth.png" alt="Seth" title="Seth" class="not-defeated">
+<span title="Seth">Seth</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Nyleth - Flower Queen.png" alt="Nyleth" title="Nyleth" class="not-defeated">
+<span title="Nyleth">Nyleth</span>
+</div>
+<div class="boss-item">
+<img src="assets/img/bosses/Clover Dancers - Clover Dancer.png" alt="Clover Dancers" title="Clover Dancers" class="not-defeated">
+<span title="Clover Dancers">Clover Dancers</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 6. Fleas Tab (Placeholder) -->
+<div class="tab-panel" id="panel-fleas">
+<div class="panel-header">
+<h3>Fleas</h3>
+<p class="panel-description">Flea encounters</p>
+</div>
+<div class="panel-content">
+<div class="placeholder-card">
+<p>Flea tracking coming soon!</p>
+</div>
+</div>
+</div>
+<!-- 7. Maps Tab -->
+<div class="tab-panel" id="panel-maps">
+<div class="panel-header">
+<h3>Maps</h3>
+<p class="panel-description">Collected area maps (<span id="maps-count">
+</span>/28)</p>
+</div>
+<div class="panel-content">
+<div class="stat-card full-width">
+<h4>🗺️ Area Maps</h4>
+<div class="maps-grid" id="maps-grid">
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0003_moss.png" alt="Moss Grotto" title="Moss Grotto" class="locked">
+<span title="Moss Grotto">Moss Grotto</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0008_sinners.png" alt="The Marrow" title="The Marrow" class="locked">
+<span title="The Marrow">The Marrow</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0006_docks.png" alt="Deep Docks" title="Deep Docks" class="locked">
+<span title="Deep Docks">Deep Docks</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0004_fields.png" alt="Far Fields" title="Far Fields" class="locked">
+<span title="Far Fields">Far Fields</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0001_greymoor.png" alt="Greymoor" title="Greymoor" class="locked">
+<span title="Greymoor">Greymoor</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0007_bellhart.png" alt="Bellhart" title="Bellhart" class="locked">
+<span title="Bellhart">Bellhart</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0002_shellwood.png" alt="Shellwood" title="Shellwood" class="locked">
+<span title="Shellwood">Shellwood</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0000_hunters_march.png" alt="Hunter's March" title="Hunter's March" class="locked">
+<span title="Hunter's March">Hunter's March</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0005_steps.png" alt="Blasted Steps" title="Blasted Steps" class="locked">
+<span title="Blasted Steps">Blasted Steps</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0008_generic_peak.png" alt="Mount Fay" title="Mount Fay" class="locked">
+<span title="Mount Fay">Mount Fay</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0008_slab.png" alt="The Slab" title="The Slab" class="locked">
+<span title="The Slab">The Slab</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0004_bilewater.png" alt="Bilewater" title="Bilewater" class="locked">
+<span title="Bilewater">Bilewater</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0008_crawl.png" alt="Putrified Ducts" title="Putrified Ducts" class="locked">
+<span title="Putrified Ducts">Putrified Ducts</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0008_coral_cave.png" alt="Sands of Karak" title="Sands of Karak" class="locked">
+<span title="Sands of Karak">Sands of Karak</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__weavehome.png" alt="Weavernest Atla" title="Weavernest Atla" class="locked">
+<span title="Weavernest Atla">Weavernest Atla</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0008_crawl.png" alt="Wormways" title="Wormways" class="locked">
+<span title="Wormways">Wormways</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0008_sinners.png" alt="Sinner's Road" title="Sinner's Road" class="locked">
+<span title="Sinner's Road">Sinner's Road</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0008_generic.png" alt="Citadel - Grand Gate" title="Citadel - Grand Gate" class="locked">
+<span title="Citadel - Grand Gate">Citadel - Grand Gate</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon_understore.png" alt="Citadel - Underworks" title="Citadel - Underworks" class="locked">
+<span title="Citadel - Underworks">Citadel - Underworks</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0012_cog.png" alt="Citadel - Cogwork Core" title="Citadel - Cogwork Core" class="locked">
+<span title="Citadel - Cogwork Core">Citadel - Cogwork Core</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0012_arborium.png" alt="Citadel - Memorium" title="Citadel - Memorium" class="locked">
+<span title="Citadel - Memorium">Citadel - Memorium</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0010_ward.png" alt="Citadel - Whiteward" title="Citadel - Whiteward" class="locked">
+<span title="Citadel - Whiteward">Citadel - Whiteward</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0009_library.png" alt="Citadel - Whispering Vault" title="Citadel - Whispering Vault" class="locked">
+<span title="Citadel - Whispering Vault">Citadel - Whispering Vault</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0012_halls_new.png" alt="Citadel - Choral Chambers" title="Citadel - Choral Chambers" class="locked">
+<span title="Citadel - Choral Chambers">Citadel - Choral Chambers</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0011_conductor.png" alt="Citadel - High Halls" title="Citadel - High Halls" class="locked">
+<span title="Citadel - High Halls">Citadel - High Halls</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0012_cradle.png" alt="The Cradle" title="The Cradle" class="locked">
+<span title="The Cradle">The Cradle</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/I_map_type_02.png" alt="The Abyss" title="The Abyss" class="locked placeholder-icon">
+<span title="The Abyss" class="status-locked">The Abyss</span>
+</div>
+<div class="map-item">
+<img src="assets/img/maps/Shop_map_icon__0003_clover.png" alt="Verdania" title="Verdania" class="locked">
+<span title="Verdania">Verdania</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 7. Collectables Tab -->
+<div class="tab-panel" id="panel-collectables">
+<div class="panel-header">
+<h3>Collectables</h3>
+<p class="panel-description">Items and collectables found</p>
+</div>
+<div class="panel-content">
+<!-- Memory Locket Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">🔒 Memory Locket
+                                                <span class="unlocked-stats">
+                                                    (Collected: <strong id="memory-lockets-collected-count">
+</strong>/20)
+                                                </span>
+</h4>
+<div class="source-checklist" id="memory-lockets-checklist">
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Bone Bottom - Volatile Flintbeetles wish reward" class="source-icon">
+<span class="source-name">Bone Bottom - Volatile Flintbeetles wish reward</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="The Marrow - arena battle" class="source-icon">
+<span class="source-name">The Marrow - arena battle</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Wormways - after Gromling" class="source-icon">
+<span class="source-name">Wormways - after Gromling</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Deep Docks - secret passage" class="source-icon">
+<span class="source-name">Deep Docks - secret passage</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Far Fields - Mort purchase (Pilgrim's Rest, 150 Rosaries)" class="source-icon">
+<span class="source-name">Far Fields - Mort purchase (Pilgrim's Rest, 150 Rosaries)</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Far Fields - east of Skarrsinger Karmelita arena" class="source-icon">
+<span class="source-name">Far Fields - east of Skarrsinger Karmelita arena</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Hunter's March - dead pilgrim" class="source-icon">
+<span class="source-name">Hunter's March - dead pilgrim</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Greymoor - near Creige (Faydown Cloak)" class="source-icon">
+<span class="source-name">Greymoor - near Creige (Faydown Cloak)</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Greymoor - backpack ledge" class="source-icon">
+<span class="source-name">Greymoor - backpack ledge</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Bellhart - Frey purchase (330 Rosaries, after Threadspun Town)" class="source-icon">
+<span class="source-name">Bellhart - Frey purchase (330 Rosaries, after Threadspun Town)</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Bellhart - Bellhome summit (Silk Soar)" class="source-icon">
+<span class="source-name">Bellhart - Bellhome summit (Silk Soar)</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Blasted Steps - east of Shakra" class="source-icon">
+<span class="source-name">Blasted Steps - east of Shakra</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Underworks - west of Confession Booth bench" class="source-icon">
+<span class="source-name">Underworks - west of Confession Booth bench</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Bilewater - after Muckmaggot path" class="source-icon">
+<span class="source-name">Bilewater - after Muckmaggot path</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Bilewater - destroyed ceiling cocoon" class="source-icon">
+<span class="source-name">Bilewater - destroyed ceiling cocoon</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Whispering Vaults - near Giant Drapemite" class="source-icon">
+<span class="source-name">Whispering Vaults - near Giant Drapemite</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Choral Chambers - behind trapdoor breakable wall" class="source-icon">
+<span class="source-name">Choral Chambers - behind trapdoor breakable wall</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Memorium - from Ventrica Station" class="source-icon">
+<span class="source-name">Memorium - from Ventrica Station</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="The Slab - Shortcut Cave" class="source-icon">
+<span class="source-name">The Slab - Shortcut Cave</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="Sands of Karak - upper western platform" class="source-icon">
+<span class="source-name">Sands of Karak - upper western platform</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+</div>
+</div>
+<!-- Craftmetal Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">⚙️ Craftmetal
+                                                <span class="unlocked-stats">
+                                                    (Collected: <strong id="craftmetal-collected-count">
+</strong>/8)
+                                                </span>
+</h4>
+<div class="source-checklist" id="craftmetal-checklist">
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal.png" alt="Pebb (Bone Bottom, 60 Rosaries)" class="source-icon">
+<span class="source-name">Pebb (Bone Bottom, 60 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal.png" alt="Jubilana (Songclave, 180 Rosaries)" class="source-icon">
+<span class="source-name">Jubilana (Songclave, 180 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal.png" alt="The Marrow (Bone_07)" class="source-icon">
+<span class="source-name">The Marrow (Bone_07)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal.png" alt="Blasted Steps (Coral_32)" class="source-icon">
+<span class="source-name">Blasted Steps (Coral_32)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal.png" alt="Wisp Thicket (Wisp_05)" class="source-icon">
+<span class="source-name">Wisp Thicket (Wisp_05)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal.png" alt="Putrified Ducts (Aqueduct_05)" class="source-icon">
+<span class="source-name">Putrified Ducts (Aqueduct_05)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal.png" alt="Deep Docks / Far Fields (Under_19b)" class="source-icon">
+<span class="source-name">Deep Docks / Far Fields (Under_19b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item pending">
+<div class="source-left">
+<img src="assets/img/general/Hornet_Tool_Metal.png" alt="8th location - not yet confirmed" class="source-icon">
+<span class="source-name">8th location - not yet confirmed</span>
+</div>
+<span class="source-status">Pending</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
