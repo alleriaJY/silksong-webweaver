@@ -14,7 +14,7 @@
 1. [Target Architecture](#1-target-architecture)
 2. [Phase 0 - Hygiene and Safety Net (DONE 2026-09-23)](#phase-0---hygiene-and-safety-net-done-2026-09-23)
 3. [Phase 1 - Core Rework (DONE 2026-09-30)](#phase-1---core-rework-done-2026-09-30)
-4. [Phase 2 - Parsing Coverage](#phase-2---parsing-coverage)
+4. [Phase 2 - Parsing Coverage (DONE 2026-09-30)](#phase-2---parsing-coverage-done-2026-09-30)
 5. [Phase 3 - Hero's Path and Map](#phase-3---heros-path-and-map)
 6. [Phase 4 - App Shell Consolidation](#phase-4---app-shell-consolidation)
 7. [Phase 5 - DLC Readiness](#phase-5---dlc-readiness)
@@ -326,7 +326,7 @@ Timeline and map subscribe; uploading once feeds every page.
 
 ---
 
-## Phase 2 - Parsing Coverage
+## Phase 2 - Parsing Coverage (DONE 2026-09-30)
 
 **Goal:** Parse every remaining save section the README lists, using the Phase 1 pattern. **Retires:** D9. **Depends on:** Phase 1.
 
@@ -347,6 +347,13 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 - `python tools/unknown_keys.py output2.json` reports fewer than 150 unreferenced boolean keys (down from about 1000); the remainder are listed by prefix in Appendix A with a one-line reason each ("NPC dialogue state", "tutorial prompt seen").
 - Completion oracle gap per fixture is at most 1.0 or the remaining gap is explained in Phase 2 results.
 - Verification block green; OPUS section 5 and 6 updated with the new containers and lists.
+
+### Phase 2 results
+- New tabs: Journal (235 enemies), Quests (74), Collectables gains relics, mementos, materium, inventory; Maps gains Bellway, Ventrica and map pins. StoryEvents parsed for Phase 3. All heading totals come from data (D4 closed).
+- Spool rewards fixed (inferred: quest `Save Sherma`, `silkFarmBattle1_complete`); fragments now equal `(silkMax - 9) * 2` on every fixture. 3 of 20 Memory Lockets mapped.
+- Unknown keys: 999 unreferenced booleans, 986 explained by `packs/base/untracked.js`, **13 unexplained** (OPUS D22 minibosses, 2 bench flags, 4 one-off room flags).
+- Completion oracle gap: 0 on every fixture (unchanged; the new data does not count).
+- Findings: materium presence = recorded; journal `HasBeenSeen` is a new-entry marker; quest `CompletedCount` is progress; benches cannot be counted.
 
 ---
 
@@ -449,7 +456,9 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 | Memory Locket sources (20) | before/after a world locket pickup | Purchases already have flags (see Phase 2 step 6). World pickups need one bracketing save pair to learn the ID pattern. |
 | Tool Pouch from Loddie | before/after receiving it | |
 | Craftmetal 8th source | none: `savefiles/user3.dat` is 100% | compare its `persistentBools` `Tool Metal` IDs and purchase flags against the 7 known |
-| Sherma / Greymoor_17 spool fragment flags | none: 100% save available | current flags are proven wrong; find the right ones with `diff_saves.py` |
+| Sherma / Greymoor spool reward flags (inferred) | before/after either reward | confirm quest `Save Sherma` and `silkFarmBattle1_complete` |
+| Minibosses (OPUS D22) | none | display names and icons for the 7 defeat flags |
+| Leads | none | `PurchasedBelltownToolPouch` (Loddie?), `CollectedToolMetal` (8th craftmetal?), `purchasedGrindleMemoryLocket` (21st locket?) |
 | Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
