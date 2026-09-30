@@ -2,12 +2,17 @@
 List save keys that no schema in web/src/data references yet.
 
 Usage:
-    python tools/unknown_keys.py <save.(dat|json)> [--bools-only]
+    python tools/unknown_keys.py <save.(dat|json)> [--bools-only] [--all]
 
 A key counts as "referenced" when it appears as a quoted string literal in any
 non-test .js file under web/src/data (schema lists, parsers, packs). Output is
 grouped by naming prefix so related flags (defeated*, Has*Map, Purchased*...)
 sit together. Replaces the deleted analyze_unused_flags.py.
+
+Unreferenced keys that match a pattern in web/src/data/packs/*/untracked.js
+are "explained" (deliberately not shown, with a reason); only the count per
+pattern is printed. The remaining "unexplained" keys are listed in full: that
+is where new content and missed items show up. --all lists explained keys too.
 """
 
 import re
@@ -24,6 +29,8 @@ PREFIXES = [
     "Completed", "shop", "Merchant", "encountered", "unlocked", "Unlocked", "got", "opened",
 ]
 STRING_LITERAL = re.compile(r"""(['"`])((?:\\.|(?!\1).)*)\1""")
+# { id: 'x', pattern: '...' } entries in untracked.js (JS single-quoted strings)
+UNTRACKED_ENTRY = re.compile(r"id: '([^']+)',\s*pattern: '((?:\\.|[^'\\])*)'")
 
 
 def referenced_strings(data_dir: Path = WEB_DATA_DIR) -> set:
@@ -34,6 +41,28 @@ def referenced_strings(data_dir: Path = WEB_DATA_DIR) -> set:
         for match in STRING_LITERAL.finditer(path.read_text(encoding="utf-8")):
             refs.add(match.group(2))
     return refs
+
+
+def js_unescape(text: str) -> str:
+    """Undo JS string escaping for a single-quoted literal (\\\\ -> \\, \\' -> ')."""
+    return re.sub(r"\\(.)", lambda m: m.group(1), text)
+
+
+def untracked_patterns(data_dir: Path = WEB_DATA_DIR) -> list:
+    """[(id, compiled regex)] from every pack's untracked.js, in file order."""
+    patterns = []
+    for path in sorted(data_dir.glob("packs/*/untracked.js")):
+        for pid, raw in UNTRACKED_ENTRY.findall(path.read_text(encoding="utf-8")):
+            patterns.append((pid, re.compile(js_unescape(raw))))
+    return patterns
+
+
+def explain(key: str, patterns: list):
+    """Id of the first untracked pattern matching key, or None."""
+    for pid, rx in patterns:
+        if rx.search(key):
+            return pid
+    return None
 
 
 def group_of(key: str) -> str:
@@ -56,6 +85,23 @@ def unknown_keys(save: dict, refs: set, bools_only=False) -> dict:
     return dict(groups)
 
 
+def split_explained(groups: dict, patterns: list):
+    """Move pattern-matched keys out of groups; returns (unexplained groups, {pattern id: keys})."""
+    explained = defaultdict(list)
+    remaining = {}
+    for group, items in groups.items():
+        keep = []
+        for key, value in items:
+            pid = explain(key, patterns)
+            if pid:
+                explained[pid].append((key, value))
+            else:
+                keep.append((key, value))
+        if keep:
+            remaining[group] = keep
+    return remaining, dict(explained)
+
+
 def main(argv=None) -> int:
     argv = sys.argv[1:] if argv is None else argv
     paths = [a for a in argv if not a.startswith("--")]
@@ -66,9 +112,18 @@ def main(argv=None) -> int:
     refs = referenced_strings()
     groups = unknown_keys(save, refs, "--bools-only" in argv)
     total = sum(len(v) for v in groups.values())
+    groups, explained = split_explained(groups, untracked_patterns())
+    unexplained = sum(len(v) for v in groups.values())
     pd = player_data(save)
     print(f"{paths[0]}: {total} of {len(pd)} playerData keys unreferenced "
-          f"({len(refs)} string literals scanned in {WEB_DATA_DIR.relative_to(WEB_DATA_DIR.parents[2])})\n")
+          f"({len(refs)} string literals scanned in {WEB_DATA_DIR.relative_to(WEB_DATA_DIR.parents[2])})")
+    print(f"  explained by untracked.js: {total - unexplained}   UNEXPLAINED: {unexplained}\n")
+    for pid in sorted(explained, key=lambda k: (-len(explained[k]), k)):
+        print(f"  [{pid}] {len(explained[pid])}")
+        if "--all" in argv:
+            for key, _ in sorted(explained[pid]):
+                print(f"      {key}")
+    print()
     for group in sorted(groups, key=lambda g: (-len(groups[g]), g)):
         items = sorted(groups[group])
         print(f"== {group} ({len(items)})")

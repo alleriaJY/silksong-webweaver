@@ -46,3 +46,16 @@ describe('pack registry', () => {
         }
     });
 });
+
+describe('untracked patterns', () => {
+    it('compile as JavaScript regexes and have unique ids and a reason', async () => {
+        const { UNTRACKED } = await import('./base/untracked.js');
+        expect(new Set(UNTRACKED.map(u => u.id)).size).toBe(UNTRACKED.length);
+        for (const u of UNTRACKED) {
+            expect(() => new RegExp(u.pattern), u.id).not.toThrow();
+            expect(u.reason.length, u.id).toBeGreaterThan(5);
+        }
+        const rx = new RegExp(UNTRACKED.find(u => u.id === 'keys-items').pattern);
+        expect(rx.test('CollectedDustCageKey')).toBe(true);
+    });
+});

@@ -128,3 +128,27 @@ def test_make_fixture_trims_world_state():
     assert [e["ID"] for e in bools] == ["Heart Piece"]
     assert "geoRocks" not in fixture["sceneData"]
     assert fixture["_fixture"]["source"] == "user1.dat"
+
+
+def test_untracked_patterns_explain_unreferenced_keys(tmp_path):
+    packs = tmp_path / "packs" / "base"
+    packs.mkdir(parents=True)
+    (packs / "untracked.js").write_text(
+        "export const UNTRACKED = [\n"
+        "    { id: 'npc-met', pattern: '^(Met|met)[A-Z]', reason: 'x' },\n"
+        "    {\n        id: 'multi-line',\n        pattern: '^visited\\\\w+',\n        reason: 'y',\n    },\n"
+        "];\n", encoding="utf-8")
+    patterns = unknown_keys.untracked_patterns(tmp_path)
+    assert [pid for pid, _ in patterns] == ["npc-met", "multi-line"]
+    assert unknown_keys.explain("MetSherma", patterns) == "npc-met"
+    assert unknown_keys.explain("visitedAbyss", patterns) == "multi-line"
+    assert unknown_keys.explain("defeatedGreyWarrior", patterns) is None
+    groups = {"(other)": [("MetSherma", True), ("defeatedGreyWarrior", True)]}
+    remaining, explained = unknown_keys.split_explained(groups, patterns)
+    assert remaining == {"(other)": [("defeatedGreyWarrior", True)]}
+    assert explained == {"npc-met": [("MetSherma", True)]}
+
+
+def test_real_untracked_file_loads():
+    ids = [pid for pid, _ in unknown_keys.untracked_patterns()]
+    assert "npc-state" in ids and "world-state" in ids and len(ids) == len(set(ids))
