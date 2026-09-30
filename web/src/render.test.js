@@ -19,7 +19,9 @@ import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const FIXTURE_DIR = join(HERE, 'data', '__fixtures__');
-const STATS_HTML = readFileSync(join(HERE, '..', 'stats.html'), 'utf-8');
+// Normalise line endings: Windows checkouts (core.autocrlf) give CRLF, and the
+// carriage returns would leak into multi-line text nodes in the goldens.
+const STATS_HTML = readFileSync(join(HERE, '..', 'stats.html'), 'utf-8').replace(/\r\n/g, '\n');
 
 const wasm = vi.hoisted(() => ({ current: null }));
 vi.mock('../pkg/wasm_crypto.js', () => ({
