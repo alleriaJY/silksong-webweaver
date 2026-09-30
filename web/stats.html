@@ -123,6 +123,9 @@
                                 <button class="tab-btn" data-tab="bosses">
                                     <span class="tab-text">BOSSES</span>
                                 </button>
+                                <button class="tab-btn" data-tab="journal">
+                                    <span class="tab-text">JOURNAL</span>
+                                </button>
                                 <button class="tab-btn" data-tab="fleas">
                                     <span class="tab-text">FLEAS</span>
                                 </button>
@@ -556,7 +559,25 @@
                                     </div>
                                 </div>
 
-                                <!-- 6. Fleas Tab (Placeholder) -->
+                                <!-- Hunter's Journal Tab -->
+                                <div class="tab-panel" id="panel-journal">
+                                    <div class="panel-header">
+                                        <h3>Hunter's Journal</h3>
+                                        <p class="panel-description">Enemies encountered (<span
+                                                id="journal-encountered-count">0</span>/<span id="journal-total-count">0</span>),
+                                            <span id="journal-kills-count">0</span> kills in total</p>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="stat-card full-width">
+                                            <h4>📖 Entries</h4>
+                                            <div class="journal-grid" id="journal-grid">
+                                                <!-- Journal entries populated by JS -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 6. Fleas Tab -->
                                 <div class="tab-panel" id="panel-fleas">
                                     <div class="panel-header">
                                         <h3>Fleas</h3>

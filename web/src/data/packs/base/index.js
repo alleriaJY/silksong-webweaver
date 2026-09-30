@@ -17,6 +17,7 @@ import {
 } from './unlockables.js';
 import { CRAFTMETAL_SOURCES, MEMORY_LOCKET_SOURCES } from './collectables.js';
 import { AREAS } from './areas.js';
+import { JOURNAL } from './journal.js';
 
 export default {
     id: 'base',
@@ -48,5 +49,6 @@ export default {
         craftmetalSources: CRAFTMETAL_SOURCES,
         memoryLocketSources: MEMORY_LOCKET_SOURCES,
         areas: AREAS,
+        journal: JOURNAL,
     },
 };

@@ -3,7 +3,7 @@
  * abilities (plus cloak tier), skills, maps, bosses.
  */
 import { parseIconFlags } from './common.js';
-import { iconUrl } from '../../core/icons.js';
+import { iconUrl, placeholderIconUrl } from '../../core/icons.js';
 import { renderIconGrid, setText, setPercent } from '../../ui/renderers.js';
 
 export function parseAbilities(save, ctx) {
@@ -115,7 +115,7 @@ export const bosses = {
         if (!grid) return;
         const on = renderIconGrid(grid, result.bosses, {
             itemClass: 'boss-item', isOn: b => b.value, onClass: 'defeated', offClass: 'not-defeated',
-            icon: b => iconUrl('boss', b.icon || 'bestiary_icon__0001_frame_empty.png'),
+            icon: b => (b.icon ? iconUrl('boss', b.icon) : placeholderIconUrl()),
             title: b => b.display,
         });
         setText('bosses-count', on);

@@ -13,7 +13,15 @@ export const ICON_DIRS = Object.freeze({
     skill: 'assets/img/general/skills',
     crest: 'assets/img/general/crests',
     nail: 'assets/img/general/nail',
+    root: 'assets/img',
 });
+
+/** Generic stand-in for an item whose icon is not in the assets yet. */
+export const PLACEHOLDER_ICON = { kind: 'root', file: 'knight_icon.png' };
+
+export function placeholderIconUrl() {
+    return iconUrl(PLACEHOLDER_ICON.kind, PLACEHOLDER_ICON.file);
+}
 
 export function iconUrl(kind, file) {
     const dir = ICON_DIRS[kind];

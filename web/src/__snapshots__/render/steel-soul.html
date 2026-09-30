@@ -13,6 +13,9 @@
 <button class="tab-btn" data-tab="bosses">
 <span class="tab-text">BOSSES</span>
 </button>
+<button class="tab-btn" data-tab="journal">
+<span class="tab-text">JOURNAL</span>
+</button>
 <button class="tab-btn" data-tab="fleas">
 <span class="tab-text">FLEAS</span>
 </button>
@@ -1222,7 +1225,962 @@
 </div>
 </div>
 </div>
-<!-- 6. Fleas Tab (Placeholder) -->
+<!-- Hunter's Journal Tab -->
+<div class="tab-panel" id="panel-journal">
+<div class="panel-header">
+<h3>Hunter's Journal</h3>
+<p class="panel-description">Enemies encountered (<span id="journal-encountered-count">0</span>/<span id="journal-total-count">235</span>),
+                                            <span id="journal-kills-count">0</span> kills in total</p>
+</div>
+<div class="panel-content">
+<div class="stat-card full-width">
+<h4>📖 Entries</h4>
+<div class="journal-grid" id="journal-grid">
+<div class="journal-item">
+<img src="assets/img/journal/Aknid - Aspid Collector #4267219.png" alt="Aknid" title="Aknid: not encountered" class="locked">
+<span title="Aknid">Aknid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Alita - Coral Hunter #4267124.png" alt="Alita" title="Alita: not encountered" class="locked">
+<span title="Alita">Alita</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Barnak - Swamp Barnacle #4266933.png" alt="Barnak" title="Barnak: not encountered" class="locked">
+<span title="Barnak">Barnak</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Beastfly - Bone Flyer #4267155.png" alt="Beastfly" title="Beastfly: not encountered" class="locked">
+<span title="Beastfly">Beastfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Bell Beast - Bone Beast #4266856.png" alt="Bell Beast" title="Bell Beast: not encountered" class="locked">
+<span title="Bell Beast">Bell Beast</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Bell Eater - Giant Centipede #4267217.png" alt="Bell Eater" title="Bell Eater: not encountered" class="locked">
+<span title="Bell Eater">Bell Eater</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Bloatroach - Bloat Roach #4267166.png" alt="Bloatroach" title="Bloatroach: not encountered" class="locked">
+<span title="Bloatroach">Bloatroach</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Broodmother - Slab Fly Broodmother #4266942.png" alt="Broodmother" title="Broodmother: not encountered" class="locked">
+<span title="Broodmother">Broodmother</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Brushflit - Fields Flock Flyers #4267294.png" alt="Brushflit" title="Brushflit: not encountered" class="locked">
+<span title="Brushflit">Brushflit</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Burning Bug - Farmer Wisp #4267034.png" alt="Burning Bug" title="Burning Bug: not encountered" class="locked">
+<span title="Burning Bug">Burning Bug</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Caranid - Bone Circler #4266876.png" alt="Caranid" title="Caranid: not encountered" class="locked">
+<span title="Caranid">Caranid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Choir Bellbearer - Pilgrim 03 Song #4267057.png" alt="Choir Bellbearer" title="Choir Bellbearer: not encountered" class="locked">
+<span title="Choir Bellbearer">Choir Bellbearer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Choir Clapper - Song Heavy Sentry #4266859.png" alt="Choir Clapper" title="Choir Clapper: not encountered" class="locked">
+<span title="Choir Clapper">Choir Clapper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Choir Elder - Pilgrim Stomper Song #4267283.png" alt="Choir Elder" title="Choir Elder: not encountered" class="locked">
+<span title="Choir Elder">Choir Elder</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Choir Flyer - Pilgrim 04 Song #4267314.png" alt="Choir Flyer" title="Choir Flyer: not encountered" class="locked">
+<span title="Choir Flyer">Choir Flyer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Choir Hornhead - Pilgrim 02 Song #4267082.png" alt="Choir Hornhead" title="Choir Hornhead: not encountered" class="locked">
+<span title="Choir Hornhead">Choir Hornhead</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Choir Pouncer - Pilgrim 01 Song #4266878.png" alt="Choir Pouncer" title="Choir Pouncer: not encountered" class="locked">
+<span title="Choir Pouncer">Choir Pouncer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Choristor - Song Pilgrim 03 #4266977.png" alt="Choristor" title="Choristor: not encountered" class="locked">
+<span title="Choristor">Choristor</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Clawmaiden - Song Handmaiden #4267069.png" alt="Clawmaiden" title="Clawmaiden: not encountered" class="locked">
+<span title="Clawmaiden">Clawmaiden</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Clover Dancers - Clover Dancer #4267109.png" alt="Clover Dancers" title="Clover Dancers: not encountered" class="locked">
+<span title="Clover Dancers">Clover Dancers</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cloverstag - Cloverstag #4267234.png" alt="Cloverstag" title="Cloverstag: not encountered" class="locked">
+<span title="Cloverstag">Cloverstag</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cogwork Choirbug - Song Automaton 01 #4267074.png" alt="Cogwork Choirbug" title="Cogwork Choirbug: not encountered" class="locked">
+<span title="Cogwork Choirbug">Cogwork Choirbug</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cogwork Clapper - Song Automaton Ball #4266895.png" alt="Cogwork Clapper" title="Cogwork Clapper: not encountered" class="locked">
+<span title="Cogwork Clapper">Cogwork Clapper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cogwork Cleanser - Song Automaton 02 #4267150.png" alt="Cogwork Cleanser" title="Cogwork Cleanser: not encountered" class="locked">
+<span title="Cogwork Cleanser">Cogwork Cleanser</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cogwork Crawler - Song Automaton Goomba #4267028.png" alt="Cogwork Crawler" title="Cogwork Crawler: not encountered" class="locked">
+<span title="Cogwork Crawler">Cogwork Crawler</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cogwork Dancers - Clockwork Dancer #4267321.png" alt="Cogwork Dancers" title="Cogwork Dancers: not encountered" class="locked">
+<span title="Cogwork Dancers">Cogwork Dancers</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cogwork Defender - Song Automaton Shield #4267218.png" alt="Cogwork Defender" title="Cogwork Defender: not encountered" class="locked">
+<span title="Cogwork Defender">Cogwork Defender</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cogwork Underfly - Understore Automaton #4266974.png" alt="Cogwork Underfly" title="Cogwork Underfly: not encountered" class="locked">
+<span title="Cogwork Underfly">Cogwork Underfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cogworker - Song Automaton Fly #4266929.png" alt="Cogworker" title="Cogworker: not encountered" class="locked">
+<span title="Cogworker">Cogworker</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Conchfly - Coral Conch Driller #4267164.png" alt="Conchfly" title="Conchfly: not encountered" class="locked">
+<span title="Conchfly">Conchfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Coral Furm - Coral Spike Goomba #4266986.png" alt="Coral Furm" title="Coral Furm: not encountered" class="locked">
+<span title="Coral Furm">Coral Furm</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Corrcrust Karaka - Coral Bubble Brute #4267020.png" alt="Corrcrust Karaka" title="Corrcrust Karaka: not encountered" class="locked">
+<span title="Corrcrust Karaka">Corrcrust Karaka</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Covetous Pilgrim - Rosary Pilgrim #4266887.png" alt="Covetous Pilgrim" title="Covetous Pilgrim: not encountered" class="locked">
+<span title="Covetous Pilgrim">Covetous Pilgrim</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Craggler - Roof Crab #4267181.png" alt="Craggler" title="Craggler: not encountered" class="locked">
+<span title="Craggler">Craggler</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Cragglite - Small Crab #4266941.png" alt="Cragglite" title="Cragglite: not encountered" class="locked">
+<span title="Cragglite">Cragglite</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Craw - Crow #4267116.png" alt="Craw" title="Craw: not encountered" class="locked">
+<span title="Craw">Craw</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Craw Juror - Crowman Juror Tiny #4266952.png" alt="Craw Juror" title="Craw Juror: not encountered" class="locked">
+<span title="Craw Juror">Craw Juror</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Crawfather #4267260.png" alt="Crawfather" title="Crawfather: not encountered" class="locked">
+<span title="Crawfather">Crawfather</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Crust King Khann - Coral King #4267201.png" alt="Crust King Khann" title="Crust King Khann: not encountered" class="locked">
+<span title="Crust King Khann">Crust King Khann</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Crustcrag - Coral Goomba Large #4267288.png" alt="Crustcrag" title="Crustcrag: not encountered" class="locked">
+<span title="Crustcrag">Crustcrag</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Crustcrawler - Coral Goombas #4267226.png" alt="Crustcrawler" title="Crustcrawler: not encountered" class="locked">
+<span title="Crustcrawler">Crustcrawler</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Deep Diver - Dock Charger #4267102.png" alt="Deep Diver" title="Deep Diver: not encountered" class="locked">
+<span title="Deep Diver">Deep Diver</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Disgraced Chef Lugoli - Roachkeeper Chef #4266971.png" alt="Disgraced Chef Lugoli" title="Disgraced Chef Lugoli: not encountered" class="locked">
+<span title="Disgraced Chef Lugoli">Disgraced Chef Lugoli</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Drapefly - Citadel Bat #4266860.png" alt="Drapefly" title="Drapefly: not encountered" class="locked">
+<span title="Drapefly">Drapefly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Drapelord - Citadel Bat Large #4267153.png" alt="Drapelord" title="Drapelord: not encountered" class="locked">
+<span title="Drapelord">Drapelord</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Drapemite - Mite Heavy #4267174.png" alt="Drapemite" title="Drapemite: not encountered" class="locked">
+<span title="Drapemite">Drapemite</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Dreg Catcher - Farmer Catcher #4267320.png" alt="Dreg Catcher" title="Dreg Catcher: not encountered" class="locked">
+<span title="Dreg Catcher">Dreg Catcher</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Dreg Husk - Song Threaded Husk #4267167.png" alt="Dreg Husk" title="Dreg Husk: not encountered" class="locked">
+<span title="Dreg Husk">Dreg Husk</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Dregwheel - Song Threaded Husk Spin #4267306.png" alt="Dregwheel" title="Dregwheel: not encountered" class="locked">
+<span title="Dregwheel">Dregwheel</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Driftlin - Peaks Drifter #4267356.png" alt="Driftlin" title="Driftlin: not encountered" class="locked">
+<span title="Driftlin">Driftlin</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Driznarga - Coral Conch Shooter Heavy #4267078.png" alt="Driznarga" title="Driznarga: not encountered" class="locked">
+<span title="Driznarga">Driznarga</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Driznit - Coral Conch Shooter #4267013.png" alt="Driznit" title="Driznit: not encountered" class="locked">
+<span title="Driznit">Driznit</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Ductsucker - Swamp Ductsucker #4267008.png" alt="Ductsucker" title="Ductsucker: not encountered" class="locked">
+<span title="Ductsucker">Ductsucker</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Elder Pilgrim - Pilgrim 05 #4267009.png" alt="Elder Pilgrim" title="Elder Pilgrim: not encountered" class="locked">
+<span title="Elder Pilgrim">Elder Pilgrim</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Envoy - Song Pilgrim 01 #4267324.png" alt="Envoy" title="Envoy: not encountered" class="locked">
+<span title="Envoy">Envoy</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Escalion - Grasshopper Fly #4266963.png" alt="Escalion" title="Escalion: not encountered" class="locked">
+<span title="Escalion">Escalion</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Father of the Flame - Wisp Pyre Effigy #4267131.png" alt="Father of the Flame" title="Father of the Flame: not encountered" class="locked">
+<span title="Father of the Flame">Father of the Flame</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Fertid - Fields Goomba #4266883.png" alt="Fertid" title="Fertid: not encountered" class="locked">
+<span title="Fertid">Fertid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/First Sinner - First Weaver #4266910.png" alt="First Sinner" title="First Sinner: not encountered" class="locked">
+<span title="First Sinner">First Sinner</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Flapping Fertid - Fields Flyer #4267152.png" alt="Flapping Fertid" title="Flapping Fertid: not encountered" class="locked">
+<span title="Flapping Fertid">Flapping Fertid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Flintbeetle - Rock Roller #4267108.png" alt="Flintbeetle" title="Flintbeetle: not encountered" class="locked">
+<span title="Flintbeetle">Flintbeetle</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Flintflame Flyer - Dock Bomber #4266909.png" alt="Flintflame Flyer" title="Flintflame Flyer: not encountered" class="locked">
+<span title="Flintflame Flyer">Flintflame Flyer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Flintstone Flyer - Dock Flyer #4267143.png" alt="Flintstone Flyer" title="Flintstone Flyer: not encountered" class="locked">
+<span title="Flintstone Flyer">Flintstone Flyer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Fluttermite - Mitefly #4266951.png" alt="Fluttermite" title="Fluttermite: not encountered" class="locked">
+<span title="Fluttermite">Fluttermite</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Forebrothers Signis &amp; Gron - Dock Guard Thrower #4267289.png" alt="Forebrothers Signis &amp; Gron" title="Forebrothers Signis &amp; Gron: not encountered" class="locked">
+<span title="Forebrothers Signis &amp; Gron">Forebrothers Signis &amp; Gron</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Fourth Chorus - Song Golem #4266912.png" alt="Fourth Chorus" title="Fourth Chorus: not encountered" class="locked">
+<span title="Fourth Chorus">Fourth Chorus</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Freshfly - Slab Fly Small Fresh #4267130.png" alt="Freshfly" title="Freshfly: not encountered" class="locked">
+<span title="Freshfly">Freshfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Furm - Bell Goomba #4267146.png" alt="Furm" title="Furm: not encountered" class="locked">
+<span title="Furm">Furm</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Gahlia - Bloom Puncher #4267239.png" alt="Gahlia" title="Gahlia: not encountered" class="locked">
+<span title="Gahlia">Gahlia</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Gargant Gloom - Gloom Beast #4267136.png" alt="Gargant Gloom" title="Gargant Gloom: not encountered" class="locked">
+<span title="Gargant Gloom">Gargant Gloom</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Garpid - Centipede_Trap #4267022.png" alt="Garpid" title="Garpid: not encountered" class="locked">
+<span title="Garpid">Garpid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Giant Drapemite - Understore Mite Giant #4267056.png" alt="Giant Drapemite" title="Giant Drapemite: not encountered" class="locked">
+<span title="Giant Drapemite">Giant Drapemite</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Gloomsac - Gloomfly #4267084.png" alt="Gloomsac" title="Gloomsac: not encountered" class="locked">
+<span title="Gloomsac">Gloomsac</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Grand Mother Silk - Silk Boss #4266984.png" alt="Grand Mother Silk" title="Grand Mother Silk: not encountered" class="locked">
+<span title="Grand Mother Silk">Grand Mother Silk</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Grand Reed - Song Reed Grand #4267120.png" alt="Grand Reed" title="Grand Reed: not encountered" class="locked">
+<span title="Grand Reed">Grand Reed</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Great Conchfly - Coral Conch Driller Giant #4267185.png" alt="Great Conchfly" title="Great Conchfly: not encountered" class="locked">
+<span title="Great Conchfly">Great Conchfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Groal the Great - Swamp Shaman #4267139.png" alt="Groal the Great" title="Groal the Great: not encountered" class="locked">
+<span title="Groal the Great">Groal the Great</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Grom - Bone Worm #4266926.png" alt="Grom" title="Grom: not encountered" class="locked">
+<span title="Grom">Grom</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Gromling - Crypt Worm #4266930.png" alt="Gromling" title="Gromling: not encountered" class="locked">
+<span title="Gromling">Gromling</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Guardfly - Slab Fly Mid #4267193.png" alt="Guardfly" title="Guardfly: not encountered" class="locked">
+<span title="Guardfly">Guardfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Gurr the Outcast - Bone Hunter Trapper #4267097.png" alt="Gurr the Outcast" title="Gurr the Outcast: not encountered" class="locked">
+<span title="Gurr the Outcast">Gurr the Outcast</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Hardbone Elder - Bone Hopper Giant #4267292.png" alt="Hardbone Elder" title="Hardbone Elder: not encountered" class="locked">
+<span title="Hardbone Elder">Hardbone Elder</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Hardbone Hopper - Bone Hopper #4266989.png" alt="Hardbone Hopper" title="Hardbone Hopper: not encountered" class="locked">
+<span title="Hardbone Hopper">Hardbone Hopper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Hoker - Spine Floater #4267093.png" alt="Hoker" title="Hoker: not encountered" class="locked">
+<span title="Hoker">Hoker</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Huge Flea - Giant Flea #4267157.png" alt="Huge Flea" title="Huge Flea: not encountered" class="locked">
+<span title="Huge Flea">Huge Flea</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Imoba - Spike Lazy Flyer #4267310.png" alt="Imoba" title="Imoba: not encountered" class="locked">
+<span title="Imoba">Imoba</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Judge - Coral Judge #4267104.png" alt="Judge" title="Judge: not encountered" class="locked">
+<span title="Judge">Judge</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Kai - Coral Swimmer Fat #4267076.png" alt="Kai" title="Kai: not encountered" class="locked">
+<span title="Kai">Kai</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Kakri - Coral Flyer #4267092.png" alt="Kakri" title="Kakri: not encountered" class="locked">
+<span title="Kakri">Kakri</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Karak Gor - Coral Brawler #4267247.png" alt="Karak Gor" title="Karak Gor: not encountered" class="locked">
+<span title="Karak Gor">Karak Gor</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Karaka - Coral Warrior #4267144.png" alt="Karaka" title="Karaka: not encountered" class="locked">
+<span title="Karaka">Karaka</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Kilik - Bone Crawler #4267231.png" alt="Kilik" title="Kilik: not encountered" class="locked">
+<span title="Kilik">Kilik</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Kindanir - Grasshopper Child #4267103.png" alt="Kindanir" title="Kindanir: not encountered" class="locked">
+<span title="Kindanir">Kindanir</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Lace #4267252.png" alt="Lace" title="Lace: not encountered" class="locked">
+<span title="Lace">Lace</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Lampbearer - Lightbearer #4266866.png" alt="Lampbearer" title="Lampbearer: not encountered" class="locked">
+<span title="Lampbearer">Lampbearer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Last Claw - Bone Hunter Chief #4266997.png" alt="Last Claw" title="Last Claw: not encountered" class="locked">
+<span title="Last Claw">Last Claw</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Last Judge #4266877.png" alt="Last Judge" title="Last Judge: not encountered" class="locked">
+<span title="Last Judge">Last Judge</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Lavalarga - Tar Slug Huge #4267081.png" alt="Lavalarga" title="Lavalarga: not encountered" class="locked">
+<span title="Lavalarga">Lavalarga</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Lavalug - Tar Slug #4267241.png" alt="Lavalug" title="Lavalug: not encountered" class="locked">
+<span title="Lavalug">Lavalug</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Leaf Glider - Lilypad Fly #4267278.png" alt="Leaf Glider" title="Leaf Glider: not encountered" class="locked">
+<span title="Leaf Glider">Leaf Glider</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Leaf Roller - Grass Goomba #4267274.png" alt="Leaf Roller" title="Leaf Roller: not encountered" class="locked">
+<span title="Leaf Roller">Leaf Roller</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/knight_icon.png" alt="Lifeblood Fly" title="Lifeblood Fly: not encountered" class="locked">
+<span title="Lifeblood Fly">Lifeblood Fly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Lost Garmond - Garmond #4267350.png" alt="Lost Garmond" title="Lost Garmond: not encountered" class="locked">
+<span title="Lost Garmond">Lost Garmond</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/knight_icon.png" alt="Lost Lace" title="Lost Lace: not encountered" class="locked">
+<span title="Lost Lace">Lost Lace</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Maestro - Song Pilgrim Maestro #4267204.png" alt="Maestro" title="Maestro: not encountered" class="locked">
+<span title="Maestro">Maestro</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Marrowmaw - Bone Thumper #4267210.png" alt="Marrowmaw" title="Marrowmaw: not encountered" class="locked">
+<span title="Marrowmaw">Marrowmaw</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Massive Mossgrub - MossBone Crawler Fat #4266867.png" alt="Massive Mossgrub" title="Massive Mossgrub: not encountered" class="locked">
+<span title="Massive Mossgrub">Massive Mossgrub</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mawling - Bone Roller #4266918.png" alt="Mawling" title="Mawling: not encountered" class="locked">
+<span title="Mawling">Mawling</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Memoria - Arborium Keeper #4266967.png" alt="Memoria" title="Memoria: not encountered" class="locked">
+<span title="Memoria">Memoria</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Minister - Song Administrator #4266976.png" alt="Minister" title="Minister: not encountered" class="locked">
+<span title="Minister">Minister</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Miremite - Swamp Goomba #4267071.png" alt="Miremite" title="Miremite: not encountered" class="locked">
+<span title="Miremite">Miremite</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mite #4267230.png" alt="Mite" title="Mite: not encountered" class="locked">
+<span title="Mite">Mite</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mitemother - Gnat Giant #4267229.png" alt="Mitemother" title="Mitemother: not encountered" class="locked">
+<span title="Mitemother">Mitemother</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mnemonid - Crystal Drifter #4267129.png" alt="Mnemonid" title="Mnemonid: not encountered" class="locked">
+<span title="Mnemonid">Mnemonid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mnemonord - Crystal Drifter Giant #4266919.png" alt="Mnemonord" title="Mnemonord: not encountered" class="locked">
+<span title="Mnemonord">Mnemonord</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Moorwing - Vampire Gnat #4267224.png" alt="Moorwing" title="Moorwing: not encountered" class="locked">
+<span title="Moorwing">Moorwing</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mortician - Song Creeper #4266927.png" alt="Mortician" title="Mortician: not encountered" class="locked">
+<span title="Mortician">Mortician</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Moss Mother - Mossbone Mother #4267313.png" alt="Moss Mother" title="Moss Mother: not encountered" class="locked">
+<span title="Moss Mother">Moss Mother</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mossgrub - MossBone Crawler #4267158.png" alt="Mossgrub" title="Mossgrub: not encountered" class="locked">
+<span title="Mossgrub">Mossgrub</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mossmir - MossBone Fly #4266903.png" alt="Mossmir" title="Mossmir: not encountered" class="locked">
+<span title="Mossmir">Mossmir</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Mothleaf Lagnia - Swamp Drifter #4267100.png" alt="Mothleaf Lagnia" title="Mothleaf Lagnia: not encountered" class="locked">
+<span title="Mothleaf Lagnia">Mothleaf Lagnia</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Muckmaggot - Maggots #4267059.png" alt="Muckmaggot" title="Muckmaggot: not encountered" class="locked">
+<span title="Muckmaggot">Muckmaggot</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Muckroach - Dustroach #4267063.png" alt="Muckroach" title="Muckroach: not encountered" class="locked">
+<span title="Muckroach">Muckroach</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Nuphar - Lilypad Trap #4267042.png" alt="Nuphar" title="Nuphar: not encountered" class="locked">
+<span title="Nuphar">Nuphar</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Nyleth - Flower Queen #4267354.png" alt="Nyleth" title="Nyleth: not encountered" class="locked">
+<span title="Nyleth">Nyleth</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Overgrown Pilgrim - Pilgrim Moss Spitter #4266946.png" alt="Overgrown Pilgrim" title="Overgrown Pilgrim: not encountered" class="locked">
+<span title="Overgrown Pilgrim">Overgrown Pilgrim</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Palestag - Cloverstag White #4267105.png" alt="Palestag" title="Palestag: not encountered" class="locked">
+<span title="Palestag">Palestag</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pendra - Hornet Dragonfly #4267186.png" alt="Pendra" title="Pendra: not encountered" class="locked">
+<span title="Pendra">Pendra</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pendragor - Dragonfly Large #4267054.png" alt="Pendragor" title="Pendragor: not encountered" class="locked">
+<span title="Pendragor">Pendragor</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Penitent - Slab Prisoner Leaper New #4267317.png" alt="Penitent" title="Penitent: not encountered" class="locked">
+<span title="Penitent">Penitent</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Phacia - Flower Drifter #4266968.png" alt="Phacia" title="Phacia: not encountered" class="locked">
+<span title="Phacia">Phacia</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Phantom #4267162.png" alt="Phantom" title="Phantom: not encountered" class="locked">
+<span title="Phantom">Phantom</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pharlid - Blade Spider #4267251.png" alt="Pharlid" title="Pharlid: not encountered" class="locked">
+<span title="Pharlid">Pharlid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pharlid  Diver - Blade Spider Hang #4267338.png" alt="Pharlid  Diver" title="Pharlid  Diver: not encountered" class="locked">
+<span title="Pharlid  Diver">Pharlid  Diver</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pilgrim Bellbearer - Pilgrim Bell Thrower #4267068.png" alt="Pilgrim Bellbearer" title="Pilgrim Bellbearer: not encountered" class="locked">
+<span title="Pilgrim Bellbearer">Pilgrim Bellbearer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pilgrim Groveller - Pilgrim 03 #4266861.png" alt="Pilgrim Groveller" title="Pilgrim Groveller: not encountered" class="locked">
+<span title="Pilgrim Groveller">Pilgrim Groveller</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pilgrim Guide - Pilgrim StaffWeilder #4267307.png" alt="Pilgrim Guide" title="Pilgrim Guide: not encountered" class="locked">
+<span title="Pilgrim Guide">Pilgrim Guide</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pilgrim Hiker #4266923.png" alt="Pilgrim Hiker" title="Pilgrim Hiker: not encountered" class="locked">
+<span title="Pilgrim Hiker">Pilgrim Hiker</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pilgrim Hornfly - Pilgrim 04 #4266899.png" alt="Pilgrim Hornfly" title="Pilgrim Hornfly: not encountered" class="locked">
+<span title="Pilgrim Hornfly">Pilgrim Hornfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pilgrim Hulk - Pilgrim 02 #4267332.png" alt="Pilgrim Hulk" title="Pilgrim Hulk: not encountered" class="locked">
+<span title="Pilgrim Hulk">Pilgrim Hulk</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pilgrim Pouncer - Pilgrim 01 #4267122.png" alt="Pilgrim Pouncer" title="Pilgrim Pouncer: not encountered" class="locked">
+<span title="Pilgrim Pouncer">Pilgrim Pouncer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pinstress Boss #4267030.png" alt="Pinstress Boss" title="Pinstress Boss: not encountered" class="locked">
+<span title="Pinstress Boss">Pinstress Boss</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Plasmid - Bone Worm BlueBlood #4266872.png" alt="Plasmid" title="Plasmid: not encountered" class="locked">
+<span title="Plasmid">Plasmid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Plasmidas - Bone Worm BlueTurret #4267276.png" alt="Plasmidas" title="Plasmidas: not encountered" class="locked">
+<span title="Plasmidas">Plasmidas</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Plasmified Zango - Blue Assistant #4266965.png" alt="Plasmified Zango" title="Plasmified Zango: not encountered" class="locked">
+<span title="Plasmified Zango">Plasmified Zango</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pokenabbin - Coral Conch Stabber #4267127.png" alt="Pokenabbin" title="Pokenabbin: not encountered" class="locked">
+<span title="Pokenabbin">Pokenabbin</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pollenica - Bloom Shooter #4267178.png" alt="Pollenica" title="Pollenica: not encountered" class="locked">
+<span title="Pollenica">Pollenica</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pond Skipper - Pond Skater #4267236.png" alt="Pond Skipper" title="Pond Skipper: not encountered" class="locked">
+<span title="Pond Skipper">Pond Skipper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Pondcatcher - Pilgrim Fisher #4266944.png" alt="Pondcatcher" title="Pondcatcher: not encountered" class="locked">
+<span title="Pondcatcher">Pondcatcher</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Puny Penitent - Slab Prisoner Fly New #4267161.png" alt="Puny Penitent" title="Puny Penitent: not encountered" class="locked">
+<span title="Puny Penitent">Puny Penitent</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Reed - Song Reed #4267007.png" alt="Reed" title="Reed: not encountered" class="locked">
+<span title="Reed">Reed</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Rhinogrund - Rhino #4267198.png" alt="Rhinogrund" title="Rhinogrund: not encountered" class="locked">
+<span title="Rhinogrund">Rhinogrund</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Roachcatcher - Roachfeeder Short #4267345.png" alt="Roachcatcher" title="Roachcatcher: not encountered" class="locked">
+<span title="Roachcatcher">Roachcatcher</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Roachfeeder - Roachfeeder Tall #4267154.png" alt="Roachfeeder" title="Roachfeeder: not encountered" class="locked">
+<span title="Roachfeeder">Roachfeeder</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Roachkeeper #4267094.png" alt="Roachkeeper" title="Roachkeeper: not encountered" class="locked">
+<span title="Roachkeeper">Roachkeeper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Roachserver - Roachkeeper Chef Tiny #4267325.png" alt="Roachserver" title="Roachserver: not encountered" class="locked">
+<span title="Roachserver">Roachserver</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Sandcarver - Sand Centipede #4267296.png" alt="Sandcarver" title="Sandcarver: not encountered" class="locked">
+<span title="Sandcarver">Sandcarver</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Savage Beastfly - Bone Flyer Giant #4266890.png" alt="Savage Beastfly" title="Savage Beastfly: not encountered" class="locked">
+<span title="Savage Beastfly">Savage Beastfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Scabfly - Slab Fly Small #4266955.png" alt="Scabfly" title="Scabfly: not encountered" class="locked">
+<span title="Scabfly">Scabfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Scrollreader - Scrollkeeper #4267151.png" alt="Scrollreader" title="Scrollreader: not encountered" class="locked">
+<span title="Scrollreader">Scrollreader</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Second Sentinel - Song Knight #4266882.png" alt="Second Sentinel" title="Second Sentinel: not encountered" class="locked">
+<span title="Second Sentinel">Second Sentinel</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Servitor Boran - Weaver Servitor Large #4267207.png" alt="Servitor Boran" title="Servitor Boran: not encountered" class="locked">
+<span title="Servitor Boran">Servitor Boran</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Servitor Ignim - Weaver Servitor #4266935.png" alt="Servitor Ignim" title="Servitor Ignim: not encountered" class="locked">
+<span title="Servitor Ignim">Servitor Ignim</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Shadow Charger - Abyss Crawler Large #4267341.png" alt="Shadow Charger" title="Shadow Charger: not encountered" class="locked">
+<span title="Shadow Charger">Shadow Charger</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Shadow Creeper - Abyss Crawler #4267287.png" alt="Shadow Creeper" title="Shadow Creeper: not encountered" class="locked">
+<span title="Shadow Creeper">Shadow Creeper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Shakra #4267195.png" alt="Shakra" title="Shakra: not encountered" class="locked">
+<span title="Shakra">Shakra</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="Shardillard" title="Shardillard: not encountered" class="locked">
+<span title="Shardillard">Shardillard</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Shellwood Gnat #4266879.png" alt="Shellwood Gnat" title="Shellwood Gnat: not encountered" class="locked">
+<span title="Shellwood Gnat">Shellwood Gnat</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Shrine Guardian Seth - Seth #4267346.png" alt="Shrine Guardian Seth" title="Shrine Guardian Seth: not encountered" class="locked">
+<span title="Shrine Guardian Seth">Shrine Guardian Seth</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Silk Snipper - Farmer Scissors #4267197.png" alt="Silk Snipper" title="Silk Snipper: not encountered" class="locked">
+<span title="Silk Snipper">Silk Snipper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Sister Splinter - Splinter Queen #4267090.png" alt="Sister Splinter" title="Sister Splinter: not encountered" class="locked">
+<span title="Sister Splinter">Sister Splinter</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skarr Scout - Bone Hunter Child #4267265.png" alt="Skarr Scout" title="Skarr Scout: not encountered" class="locked">
+<span title="Skarr Scout">Skarr Scout</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skarr Stalker - Bone Hunter #4267125.png" alt="Skarr Stalker" title="Skarr Stalker: not encountered" class="locked">
+<span title="Skarr Stalker">Skarr Stalker</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skarrgard - Bone Hunter Throw #4266949.png" alt="Skarrgard" title="Skarrgard: not encountered" class="locked">
+<span title="Skarrgard">Skarrgard</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skarrlid - Bone Hunter Tiny #4266983.png" alt="Skarrlid" title="Skarrlid: not encountered" class="locked">
+<span title="Skarrlid">Skarrlid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skarrsinger Karmelita - Hunter Queen #4266960.png" alt="Skarrsinger Karmelita" title="Skarrsinger Karmelita: not encountered" class="locked">
+<span title="Skarrsinger Karmelita">Skarrsinger Karmelita</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skarrwing - Bone Hunter Buzzer #4266932.png" alt="Skarrwing" title="Skarrwing: not encountered" class="locked">
+<span title="Skarrwing">Skarrwing</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skrill - Surface Scuttler #4267233.png" alt="Skrill" title="Skrill: not encountered" class="locked">
+<span title="Skrill">Skrill</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skull Brute - Bone Goomba Large #4267337.png" alt="Skull Brute" title="Skull Brute: not encountered" class="locked">
+<span title="Skull Brute">Skull Brute</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skull Scuttler - Bone Goomba #4267240.png" alt="Skull Scuttler" title="Skull Scuttler: not encountered" class="locked">
+<span title="Skull Scuttler">Skull Scuttler</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skull Tyrant - Skull King #4267291.png" alt="Skull Tyrant" title="Skull Tyrant: not encountered" class="locked">
+<span title="Skull Tyrant">Skull Tyrant</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Skullwing - Bone Goomba Bounce Fly #4267300.png" alt="Skullwing" title="Skullwing: not encountered" class="locked">
+<span title="Skullwing">Skullwing</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Slubberlug - Dustroach Pollywog #4267269.png" alt="Slubberlug" title="Slubberlug: not encountered" class="locked">
+<span title="Slubberlug">Slubberlug</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Smelt Shoveller - Dock Worker #4267311.png" alt="Smelt Shoveller" title="Smelt Shoveller: not encountered" class="locked">
+<span title="Smelt Shoveller">Smelt Shoveller</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Smokerock Sifter - Shield Dock Worker #4266996.png" alt="Smokerock Sifter" title="Smokerock Sifter: not encountered" class="locked">
+<span title="Smokerock Sifter">Smokerock Sifter</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Snitchfly - Rosary Thief #4267159.png" alt="Snitchfly" title="Snitchfly: not encountered" class="locked">
+<span title="Snitchfly">Snitchfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/knight_icon.png" alt="Song Automaton Fly Spike" title="Song Automaton Fly Spike: not encountered" class="locked">
+<span title="Song Automaton Fly Spike">Song Automaton Fly Spike</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Spear Skarr - Bone Hunter Fly #4267308.png" alt="Spear Skarr" title="Spear Skarr: not encountered" class="locked">
+<span title="Spear Skarr">Spear Skarr</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Spinebeak Kai - Poke Swimmer #4266897.png" alt="Spinebeak Kai" title="Spinebeak Kai: not encountered" class="locked">
+<span title="Spinebeak Kai">Spinebeak Kai</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Spit Squit - Swamp Mosquito Skinny #4267039.png" alt="Spit Squit" title="Spit Squit: not encountered" class="locked">
+<span title="Spit Squit">Spit Squit</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Splinter - Stick Insect #4267160.png" alt="Splinter" title="Splinter: not encountered" class="locked">
+<span title="Splinter">Splinter</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Splinterbark - Stick Insect Flyer #4267029.png" alt="Splinterbark" title="Splinterbark: not encountered" class="locked">
+<span title="Splinterbark">Splinterbark</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Splinterhorn - Stick Insect Charger #4267322.png" alt="Splinterhorn" title="Splinterhorn: not encountered" class="locked">
+<span title="Splinterhorn">Splinterhorn</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Squatcraw - Crowman Dagger #4266922.png" alt="Squatcraw" title="Squatcraw: not encountered" class="locked">
+<span title="Squatcraw">Squatcraw</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Squatcraw Juror - Crowman Dagger Juror #4267091.png" alt="Squatcraw Juror" title="Squatcraw Juror: not encountered" class="locked">
+<span title="Squatcraw Juror">Squatcraw Juror</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Squirrm - Coral Judge Child #4266931.png" alt="Squirrm" title="Squirrm: not encountered" class="locked">
+<span title="Squirrm">Squirrm</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Steelspine Kai - Spike Swimmer #4267023.png" alt="Steelspine Kai" title="Steelspine Kai: not encountered" class="locked">
+<span title="Steelspine Kai">Steelspine Kai</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Stilkin - Swamp Muckman #4267328.png" alt="Stilkin" title="Stilkin: not encountered" class="locked">
+<span title="Stilkin">Stilkin</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Stilkin Trapper - Swamp Muckman Tall #4267304.png" alt="Stilkin Trapper" title="Stilkin Trapper: not encountered" class="locked">
+<span title="Stilkin Trapper">Stilkin Trapper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Surgeon - Song Pilgrim 02 #4267257.png" alt="Surgeon" title="Surgeon: not encountered" class="locked">
+<span title="Surgeon">Surgeon</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Swamp Squit - Swamp Mosquito #4267148.png" alt="Swamp Squit" title="Swamp Squit: not encountered" class="locked">
+<span title="Swamp Squit">Swamp Squit</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Tallcraw - Crowman #4267049.png" alt="Tallcraw" title="Tallcraw: not encountered" class="locked">
+<span title="Tallcraw">Tallcraw</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Tallcraw Juror - Crowman Juror #4267297.png" alt="Tallcraw Juror" title="Tallcraw Juror: not encountered" class="locked">
+<span title="Tallcraw Juror">Tallcraw Juror</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Tarmite - Bone Spitter #4267333.png" alt="Tarmite" title="Tarmite: not encountered" class="locked">
+<span title="Tarmite">Tarmite</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/The Unravelled - Conductor Boss #4267194.png" alt="The Unravelled" title="The Unravelled: not encountered" class="locked">
+<span title="The Unravelled">The Unravelled</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Thread Raker - Farmer Centipede #4267284.png" alt="Thread Raker" title="Thread Raker: not encountered" class="locked">
+<span title="Thread Raker">Thread Raker</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Tormented Trobbio #4266979.png" alt="Tormented Trobbio" title="Tormented Trobbio: not encountered" class="locked">
+<span title="Tormented Trobbio">Tormented Trobbio</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Trobbio #4267244.png" alt="Trobbio" title="Trobbio: not encountered" class="locked">
+<span title="Trobbio">Trobbio</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Undercrank - Understore Heavy #4267326.png" alt="Undercrank" title="Undercrank: not encountered" class="locked">
+<span title="Undercrank">Undercrank</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Underloft - Understore Thrower #4267279.png" alt="Underloft" title="Underloft: not encountered" class="locked">
+<span title="Underloft">Underloft</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Underpoke - Understore Poker #4267275.png" alt="Underpoke" title="Underpoke: not encountered" class="locked">
+<span title="Underpoke">Underpoke</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Underscrub - Pilgrim 03 Understore #4267331.png" alt="Underscrub" title="Underscrub: not encountered" class="locked">
+<span title="Underscrub">Underscrub</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/knight_icon.png" alt="Understore Automaton EX" title="Understore Automaton EX: not encountered" class="locked">
+<span title="Understore Automaton EX">Understore Automaton EX</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Undersweep - Pilgrim Staff Understore #4267250.png" alt="Undersweep" title="Undersweep: not encountered" class="locked">
+<span title="Undersweep">Undersweep</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Underworker - Understore Small #4267087.png" alt="Underworker" title="Underworker: not encountered" class="locked">
+<span title="Underworker">Underworker</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Vaultborn - Song Scholar Acolyte #4267096.png" alt="Vaultborn" title="Vaultborn: not encountered" class="locked">
+<span title="Vaultborn">Vaultborn</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Vaultkeeper - Scholar #4267173.png" alt="Vaultkeeper" title="Vaultkeeper: not encountered" class="locked">
+<span title="Vaultkeeper">Vaultkeeper</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Verdanir - Grasshopper Slasher #4267349.png" alt="Verdanir" title="Verdanir: not encountered" class="locked">
+<span title="Verdanir">Verdanir</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Vicious Caranid - Bone Circler Vicious #4267336.png" alt="Vicious Caranid" title="Vicious Caranid: not encountered" class="locked">
+<span title="Vicious Caranid">Vicious Caranid</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="Void Mass" title="Void Mass: not encountered" class="locked">
+<span title="Void Mass">Void Mass</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/knight_icon.png" alt="Void Tendrils" title="Void Tendrils: not encountered" class="locked">
+<span title="Void Tendrils">Void Tendrils</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Voltvyrm - Zap Core Enemy #4267202.png" alt="Voltvyrm" title="Voltvyrm: not encountered" class="locked">
+<span title="Voltvyrm">Voltvyrm</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Wardenfly - Slab Fly Large #4267003.png" alt="Wardenfly" title="Wardenfly: not encountered" class="locked">
+<span title="Wardenfly">Wardenfly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Watcher at the Edge - Coral Warrior Grey #4267135.png" alt="Watcher at the Edge" title="Watcher at the Edge: not encountered" class="locked">
+<span title="Watcher at the Edge">Watcher at the Edge</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/White Palace Fly #4266911.png" alt="White Palace Fly" title="White Palace Fly: not encountered" class="locked">
+<span title="White Palace Fly">White Palace Fly</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Widow - Spinner Boss #4267339.png" alt="Widow" title="Widow: not encountered" class="locked">
+<span title="Widow">Widow</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Winged Furm - Bell Fly #4267040.png" alt="Winged Furm" title="Winged Furm: not encountered" class="locked">
+<span title="Winged Furm">Winged Furm</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Winged Pilgrim - Pilgrim Fly #4266875.png" alt="Winged Pilgrim" title="Winged Pilgrim: not encountered" class="locked">
+<span title="Winged Pilgrim">Winged Pilgrim</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Winged Pilgrim Bellbearer - Pilgrim Bellthrower Fly #4267163.png" alt="Winged Pilgrim Bellbearer" title="Winged Pilgrim Bellbearer: not encountered" class="locked">
+<span title="Winged Pilgrim Bellbearer">Winged Pilgrim Bellbearer</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Wisp #4267141.png" alt="Wisp" title="Wisp: not encountered" class="locked">
+<span title="Wisp">Wisp</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Wood Wasp - Shellwood Wasp #4267295.png" alt="Wood Wasp" title="Wood Wasp: not encountered" class="locked">
+<span title="Wood Wasp">Wood Wasp</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Wraith #4267255.png" alt="Wraith" title="Wraith: not encountered" class="locked">
+<span title="Wraith">Wraith</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Yago - Coral Flyer Throw #4267261.png" alt="Yago" title="Yago: not encountered" class="locked">
+<span title="Yago">Yago</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Yuma - Coral Swimmer Small #4267262.png" alt="Yuma" title="Yuma: not encountered" class="locked">
+<span title="Yuma">Yuma</span>
+</div>
+<div class="journal-item">
+<img src="assets/img/journal/Yumama - Coral Big Jellyfish #4267050.png" alt="Yumama" title="Yumama: not encountered" class="locked">
+<span title="Yumama">Yumama</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 6. Fleas Tab -->
 <div class="tab-panel" id="panel-fleas">
 <div class="panel-header">
 <h3>Fleas</h3>

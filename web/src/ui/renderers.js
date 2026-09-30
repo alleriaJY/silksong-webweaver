@@ -20,6 +20,7 @@
  * @param {Function} [o.title]            item => <img> title; default "Display (Unlocked|Locked)"
  * @param {Function} [o.label]            item => label text; default item.display
  * @param {Function} [o.labelClass]       item => extra class for the label, or null
+ * @param {Function} [o.detail]           item => small second line under the label ('' = none)
  * @param {Function} [o.decorate]         (itemEl, item) => void, before the img is added
  * @param {Function} [o.onClick]          item => void
  * @returns {number} how many items are on
@@ -58,6 +59,13 @@ export function renderIconGrid(container, items, o) {
 
         el.appendChild(img);
         el.appendChild(span);
+        const detail = o.detail ? o.detail(item) : '';
+        if (detail) {
+            const small = document.createElement('small');
+            small.className = 'grid-detail';
+            small.textContent = detail;
+            el.appendChild(small);
+        }
         if (o.onClick) el.addEventListener('click', () => o.onClick(item));
         container.appendChild(el);
     }

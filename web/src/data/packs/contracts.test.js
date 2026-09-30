@@ -32,6 +32,7 @@ const ICON_KIND = {
     tools: 'tool', bosses: 'boss', maps: 'map',
     abilities: 'ability', otherAbilities: 'ability', cloakTiers: 'ability',
     skills: 'skill', crests: 'crest', specialCrestStates: 'crest', needleTiers: 'nail',
+    journal: 'journal',
 };
 const iconKindOf = name => ICON_KIND[name] ?? (name.endsWith('Sources') ? 'general' : null);
 
@@ -110,6 +111,10 @@ describe('pack contracts', () => {
         const problems = [];
         for (const t of mergedList('tools')) {
             if (!NEVER_IN_FIXTURES[t.json] && !inSomeFixture('Tools', t.json)) problems.push(`tool ${t.json}`);
+        }
+        const journalNames = new Set(FIXTURES.flatMap(f => (f.save.playerData.EnemyJournalKillData?.list || []).map(e => e.Name)));
+        for (const j of mergedList('journal')) {
+            if (!journalNames.has(j.json)) problems.push(`journal ${j.json}`);
         }
         for (const s of mergedList('skills')) {
             if (!inSomeFixture('Tools', s.equipName)) problems.push(`skill equipName ${s.equipName}`);

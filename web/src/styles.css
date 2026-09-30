@@ -1225,6 +1225,47 @@ header h1 {
 }
 
 /* Bosses Grid - similar to Maps Grid */
+.journal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.journal-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: center;
+}
+
+.journal-item img {
+    height: 56px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+}
+
+.journal-item img.locked {
+    filter: grayscale(100%) brightness(0.4);
+    opacity: 0.5;
+}
+
+.journal-item span {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.grid-detail {
+    font-size: 0.6rem;
+    color: var(--accent-color);
+}
+
 .bosses-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
