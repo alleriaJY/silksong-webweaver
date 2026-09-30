@@ -20,6 +20,7 @@ import {
 } from './collectables.js';
 import { AREAS } from './areas.js';
 import { JOURNAL } from './journal.js';
+import { QUESTS } from './quests.js';
 
 export default {
     id: 'base',
@@ -52,6 +53,7 @@ export default {
         memoryLocketSources: MEMORY_LOCKET_SOURCES,
         areas: AREAS,
         journal: JOURNAL,
+        quests: QUESTS,
         relics: RELICS,
         materium: MATERIUM,
         mementos: MEMENTOS,

@@ -126,6 +126,9 @@
                                 <button class="tab-btn" data-tab="journal">
                                     <span class="tab-text">JOURNAL</span>
                                 </button>
+                                <button class="tab-btn" data-tab="quests">
+                                    <span class="tab-text">QUESTS</span>
+                                </button>
                                 <button class="tab-btn" data-tab="fleas">
                                     <span class="tab-text">FLEAS</span>
                                 </button>
@@ -572,6 +575,24 @@
                                             <h4>📖 Entries</h4>
                                             <div class="journal-grid" id="journal-grid">
                                                 <!-- Journal entries populated by JS -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quests Tab -->
+                                <div class="tab-panel" id="panel-quests">
+                                    <div class="panel-header">
+                                        <h3>Quests &amp; Wishes</h3>
+                                        <p class="panel-description">Completed <span id="quests-completed-count">0</span>,
+                                            in progress <span id="quests-active-count">0</span>, of <span
+                                                id="quests-total-count">0</span> known</p>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">📜 Quests</h4>
+                                            <div class="source-checklist" id="quests-checklist">
+                                                <!-- Quest rows populated by JS -->
                                             </div>
                                         </div>
                                     </div>

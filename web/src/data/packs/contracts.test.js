@@ -117,7 +117,7 @@ describe('pack contracts', () => {
         for (const j of mergedList('journal')) {
             if (!journalNames.has(j.json)) problems.push(`journal ${j.json}`);
         }
-        for (const [list, container] of [['relics', 'Relics'], ['materium', 'MateriumCollected'], ['inventoryItems', 'Collectables']]) {
+        for (const [list, container] of [['relics', 'Relics'], ['materium', 'MateriumCollected'], ['inventoryItems', 'Collectables'], ['quests', 'QuestCompletionData']]) {
             for (const e of mergedList(list)) if (!inSomeFixture(container, e.json)) problems.push(`${list} ${e.json}`);
         }
         for (const s of mergedList('skills')) {
