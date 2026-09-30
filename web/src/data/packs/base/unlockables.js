@@ -31,7 +31,13 @@ export const MASK_SHARD_SOURCES = [
 ];
 
 // 18 fragments, 2 = 1 spool point; base 9 silk, max 18.
-// KNOWN BUG (OPUS D17): the Sherma and Greymoor_17 quest flags are wrong.
+// The two reward fragments (Sherma, Greymoor battle) are INFERRED, not diffed:
+// pilgrimQuestSpoolCollected / tookGreymoor17Spool are false in the 100% save,
+// so they were wrong. The 72% save has 12 fragments (silkMax 15) but only 10
+// world/shop sources, so both rewards were earned by then. Quest 'Save Sherma'
+// and silkFarmBattle1_complete are the only matches for the two events that
+// are true in both late saves and false in every zero-fragment save
+// (ROADMAP Appendix A: confirm with a save pair bracketing either reward).
 export const SPOOL_FRAGMENT_SOURCES = [
     { id: 'arborium-09-silk-spool', name: 'Memorium (Arborium_09)', flagType: 'scene', sceneName: 'Arborium_09', sceneId: 'Silk Spool', icon: 'spool_upgrade_pickup.png' },
     { id: 'bone-11b-silk-spool', name: 'Mosshome (Bone_11b)', flagType: 'scene', sceneName: 'Bone_11b', sceneId: 'Silk Spool', icon: 'spool_upgrade_pickup.png' },
@@ -49,8 +55,8 @@ export const SPOOL_FRAGMENT_SOURCES = [
     { id: 'merchant-enclave-spool-piece', name: 'Jubilana (Songclave, 500 Rosaries)', flagType: 'bool', flag: 'MerchantEnclaveSpoolPiece', icon: 'spool_upgrade_pickup.png' },
     { id: 'purchased-belltown-spool-segment', name: 'Frey (Bellhart, 270 Rosaries)', flagType: 'bool', flag: 'PurchasedBelltownSpoolSegment', icon: 'spool_upgrade_pickup.png' },
     { id: 'purchased-grindle-spool-piece', name: 'Grindle (Blasted Steps, 680 Rosaries)', flagType: 'bool', flag: 'purchasedGrindleSpoolPiece', icon: 'spool_upgrade_pickup.png' },
-    { id: 'pilgrim-quest-spool-collected', name: "Sherma's Healing - Balm for the Wounded (Whiteward)", flagType: 'bool', flag: 'pilgrimQuestSpoolCollected', icon: 'spool_upgrade_pickup.png' },
-    { id: 'took-greymoor17-spool', name: 'Greymoor Battle Challenge (Greymoor_17)', flagType: 'bool', flag: 'tookGreymoor17Spool', icon: 'spool_upgrade_pickup.png' },
+    { id: 'pilgrim-quest-spool-collected', name: 'Sherma - "Save Sherma" quest reward', flagType: 'quest', flag: 'Save Sherma', icon: 'spool_upgrade_pickup.png' },
+    { id: 'took-greymoor17-spool', name: 'Greymoor - silk farm battle reward', flagType: 'bool', flag: 'silkFarmBattle1_complete', icon: 'spool_upgrade_pickup.png' },
 ];
 
 // 3 silk hearts (silkRegenMax 0-3), one per boss

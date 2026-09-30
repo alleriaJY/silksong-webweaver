@@ -81,10 +81,8 @@ describe('fixture complete (100% save) oracle gaps', () => {
         expect(parsed.crests.stats.unlocked).toBe(parsed.crests.stats.total);
     });
 
-    // KNOWN BUG (ROADMAP Appendix A): silkMax is 18 so all 18 fragments are
-    // collected, but pilgrimQuestSpoolCollected and tookGreymoor17Spool are
-    // false in this save - those two schema flags are wrong.
-    it.fails('spool fragments collected are consistent with silkMax', () => {
+    // Was it.fails until Phase 2 replaced the two wrong reward flags (OPUS D17)
+    it('spool fragments collected are consistent with silkMax', () => {
         const { parsed, expected } = complete;
         expect(parsed.spoolFragments.stats.collected).toBe((expected.oracle.silkMax - 9) * 2);
     });
@@ -111,5 +109,11 @@ describe('fleas', () => {
         const kinds = parsed.fleas.fleas.reduce((acc, f) => ({ ...acc, [f.kind]: (acc[f.kind] || 0) + 1 }), {});
         expect(kinds).toEqual({ flea: 27, special: 3 });
         expect(parsed.fleas.stats).toEqual({ total: 30, saved: 30 });
+    });
+});
+
+describe.each(FIXTURES)('spool fragments on $name (oracle)', ({ expected, parsed }) => {
+    it('collected fragments match silkMax (2 fragments = 1 point, base 9)', () => {
+        expect(parsed.spoolFragments.stats.collected).toBe((expected.oracle.silkMax - 9) * 2);
     });
 });
