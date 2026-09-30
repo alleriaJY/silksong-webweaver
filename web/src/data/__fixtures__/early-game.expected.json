@@ -82,6 +82,45 @@
       "collected": 0,
       "pending": 17,
       "total": 20
-    }
+    },
+    "journal": {
+      "total": 235,
+      "encountered": 2,
+      "kills": 3
+    },
+    "quests": {
+      "total": 74,
+      "completed": 0,
+      "active": 1
+    },
+    "relics": {
+      "total": 19,
+      "collected": 0,
+      "deposited": 0
+    },
+    "materium": {
+      "total": 37,
+      "collected": 0
+    },
+    "mementos": {
+      "total": 8,
+      "obtained": 0
+    },
+    "inventoryKinds": 2,
+    "travel": {
+      "bellway": {
+        "total": 10,
+        "unlocked": 0
+      },
+      "ventrica": {
+        "total": 6,
+        "unlocked": 0
+      },
+      "pin": {
+        "total": 3,
+        "unlocked": 0
+      }
+    },
+    "storyEvents": 0
   }
 }

@@ -38,6 +38,14 @@ export function baselineCounts(parsed) {
         otherUnlockables: checklist(parsed.otherUnlockables),
         craftmetal: checklist(parsed.craftmetal),
         memoryLockets: checklist(parsed.memoryLockets),
+        journal: parsed.journal.stats,
+        quests: parsed.quests.stats,
+        relics: parsed.collection.stats.relics,
+        materium: parsed.collection.stats.materium,
+        mementos: parsed.collection.stats.mementos,
+        inventoryKinds: parsed.collection.stats.inventory.kinds,
+        travel: parsed.travel.stats,
+        storyEvents: parsed.story.stats.total,
     };
 }
 
