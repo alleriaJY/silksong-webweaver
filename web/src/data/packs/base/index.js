@@ -15,7 +15,9 @@ import {
     MASK_SHARD_SOURCES, SPOOL_FRAGMENT_SOURCES, SILK_HEART_SOURCES, TOOL_POUCH_SOURCES,
     CRAFTING_KIT_SOURCES, OTHER_UNLOCKABLE_SOURCES, NEEDLE_TIERS,
 } from './unlockables.js';
-import { CRAFTMETAL_SOURCES, MEMORY_LOCKET_SOURCES } from './collectables.js';
+import {
+    CRAFTMETAL_SOURCES, MEMORY_LOCKET_SOURCES, RELICS, MATERIUM, MEMENTOS, INVENTORY_ITEMS,
+} from './collectables.js';
 import { AREAS } from './areas.js';
 import { JOURNAL } from './journal.js';
 
@@ -50,5 +52,9 @@ export default {
         memoryLocketSources: MEMORY_LOCKET_SOURCES,
         areas: AREAS,
         journal: JOURNAL,
+        relics: RELICS,
+        materium: MATERIUM,
+        mementos: MEMENTOS,
+        inventoryItems: INVENTORY_ITEMS,
     },
 };

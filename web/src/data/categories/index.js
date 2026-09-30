@@ -20,6 +20,7 @@ import crests from './crests.js';
 import fleas from './fleas.js';
 import needle from './needle.js';
 import journal from './journal.js';
+import collection from './collection.js';
 import { abilities, skills, maps, bosses } from './flags.js';
 import { CHECKLISTS } from './checklists.js';
 import { computeCompletion, renderCompletion } from '../completion.js';
@@ -37,6 +38,7 @@ export const CATEGORIES = [
     ...CHECKLISTS,
     bosses,
     journal,
+    collection,
     fleas,
     maps,
 ];

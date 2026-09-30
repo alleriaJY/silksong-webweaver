@@ -1225,6 +1225,26 @@ header h1 {
 }
 
 /* Bosses Grid - similar to Maps Grid */
+.inventory-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.4rem 1rem;
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.inventory-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.2rem 0;
+}
+
+.inventory-row strong {
+    color: var(--text-primary);
+}
+
 .journal-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));

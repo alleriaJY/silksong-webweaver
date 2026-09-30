@@ -94,6 +94,7 @@ describe('pack contracts', () => {
             ...listNames().filter(n => n.endsWith('Sources')).flatMap(n => mergedList(n))
                 .filter(s => s.flagType === 'bool' || s.flagType === 'flea').map(s => s.flag),
             ...mergedList('cloakTiers').map(t => t.requires).filter(Boolean),
+            ...mergedList('mementos').map(m => m.flag).filter(Boolean),
         ]);
         for (const key of keys) {
             if (OPTIONAL_TOP_KEYS[key]) continue;
@@ -115,6 +116,9 @@ describe('pack contracts', () => {
         const journalNames = new Set(FIXTURES.flatMap(f => (f.save.playerData.EnemyJournalKillData?.list || []).map(e => e.Name)));
         for (const j of mergedList('journal')) {
             if (!journalNames.has(j.json)) problems.push(`journal ${j.json}`);
+        }
+        for (const [list, container] of [['relics', 'Relics'], ['materium', 'MateriumCollected'], ['inventoryItems', 'Collectables']]) {
+            for (const e of mergedList(list)) if (!inSomeFixture(container, e.json)) problems.push(`${list} ${e.json}`);
         }
         for (const s of mergedList('skills')) {
             if (!inSomeFixture('Tools', s.equipName)) problems.push(`skill equipName ${s.equipName}`);
