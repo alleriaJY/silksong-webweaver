@@ -117,3 +117,13 @@ describe.each(FIXTURES)('spool fragments on $name (oracle)', ({ expected, parsed
         expect(parsed.spoolFragments.stats.collected).toBe((expected.oracle.silkMax - 9) * 2);
     });
 });
+
+describe('story events', () => {
+    it('are parsed in play-time order with the area prefix', () => {
+        const { parsed, fixture } = FIXTURES.find(f => f.name === 'complete');
+        const { events, stats } = parsed.story;
+        expect(stats.total).toBe(fixture.playerData.StoryEvents.length);
+        expect(events.every((e, i) => i === 0 || events[i - 1].playTime <= e.playTime)).toBe(true);
+        expect(events[0]).toEqual(expect.objectContaining({ scene: expect.any(String), area: expect.any(String), type: expect.any(Number) }));
+    });
+});
