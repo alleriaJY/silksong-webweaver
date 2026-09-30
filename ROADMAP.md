@@ -13,7 +13,7 @@
 0. [How to Work This Roadmap](#0-how-to-work-this-roadmap)
 1. [Target Architecture](#1-target-architecture)
 2. [Phase 0 - Hygiene and Safety Net (DONE 2026-09-23)](#phase-0---hygiene-and-safety-net-done-2026-09-23)
-3. [Phase 1 - Core Rework](#phase-1---core-rework)
+3. [Phase 1 - Core Rework (DONE 2026-09-30)](#phase-1---core-rework-done-2026-09-30)
 4. [Phase 2 - Parsing Coverage](#phase-2---parsing-coverage)
 5. [Phase 3 - Hero's Path and Map](#phase-3---heros-path-and-map)
 6. [Phase 4 - App Shell Consolidation](#phase-4---app-shell-consolidation)
@@ -283,12 +283,12 @@ Timeline and map subscribe; uploading once feeds every page.
 - `savefiles/2aftermossmother.json` is a corrupted hand-made dump (55 keys missing, stray empty key). Always build fixtures and diffs from `.dat`.
 - Saves in `savefiles/` span game versions 1.0.28561, 1.0.28714, 1.0.28891 and 1.0.29315, with 1305 to 1315 playerData keys. Patch drift is real, which motivates the Phase 1 patch-drift contract test.
 - **Oracle finding:** the 100% save reports 16 of 18 spool fragments. The quest-reward flags `pilgrimQuestSpoolCollected` and `tookGreymoor17Spool` are false in a save with `silkMax` 18, so both schema entries are wrong. Pinned with `it.fails` in `fixtures.test.js`; Phase 2 step 6 fixes them.
-- `tools/unknown_keys.py output2.json` baseline: 1024 of 1312 playerData keys unreferenced.
+- `tools/unknown_keys.py output2.json --bools-only` baseline: 1024 unreferenced **boolean** keys (1164 of 1312 keys of any type without the flag).
 - Verification: vitest 541, pytest 13, cargo test 7, fmt and clippy clean. Save-location help and the current-field change verified in the browser.
 
 ---
 
-## Phase 1 - Core Rework
+## Phase 1 - Core Rework (DONE 2026-09-30)
 
 **Goal:** Implement the target architecture (sections 1.2 to 1.7) with zero visible behaviour change, then prove it by converting the Fleas placeholder into a real tab in under 50 lines. **Retires:** D1, D2, D3, D4, D5, D8, D10, D15. **Depends on:** Phase 0.
 
@@ -304,15 +304,25 @@ Timeline and map subscribe; uploading once feeds every page.
 9. **Fleas tab (proof of the pattern).** `packs/base/fleas.js` entries get `kind` and `icon` (use the existing flea sprite if present under `assets/img`, otherwise a shared placeholder and note it in Appendix A). `categories/fleas.js` renders an icon grid plus `saved/total` counters into `panel-fleas`, replacing the placeholder card in `stats.html`.
 10. **Contract tests** (section 1.9): all icons exist on disk; every `json` key in packs appears in at least one fixture or is explicitly listed in an `ALLOW_MISSING` set with a comment; no duplicate `id` across packs.
 11. **Patch-drift contract test.** For every fixture, assert that each `json` key referenced by an active pack is *present* in the save (value may be false). A key missing from a newer-version fixture means the game renamed or removed it; the test must fail with the key and fixture name rather than letting the item silently render as missing. Keys legitimately absent on early saves (lazy-created containers such as `Tools.savedData` entries) go in a per-list `optionalKeys` set with a comment.
-12. Delete every remaining `instanceof Map` in `web/src`. `grep -r "instanceof Map" web/src` must return nothing.
+12. Delete every remaining `instanceof Map` in `web/src`. The only one allowed is the boundary converter `core/normalize.js`.
 
 ### Acceptance criteria
-- `grep -rn "instanceof Map" web/src` is empty; `grep -rn "assets/img/" web/src --include=*.js` only matches `core/icons.js`.
+- `grep -rn "instanceof Map" web/src` matches only `core/normalize.js`; `grep -rn "assets/img/" web/src --include=*.js` only matches `core/icons.js`.
 - `main.js` is under 250 lines; no category-specific rendering remains in it.
 - Loading each fixture save renders every tab with the same counts as before the refactor (record them in Phase 0 step 9 and compare).
 - Fleas tab shows saved/total from the fixture with correct `kind` split (27 fleas, 3 NPC-type entries shown in a separate "Others" row).
 - Completion test passes and the printed gap per fixture is recorded in this file under Phase 1 results.
 - Verification block green; OPUS.md sections 3, 6, 7, 8 rewritten to describe the registry/pack design.
+
+### Phase 1 results
+- Commits `phase1-step0` to `phase1-steps10-11`, plus `fix: equipped Sharp Dart and Pale Nails...`. Every step left the golden render test (`src/render.test.js`, added as step 0 before any refactor) unchanged except the two intentional visual additions (completion breakdown, Fleas tab). After each step the live page in Chrome, with the real WASM and the real 100% and Steel Soul saves, was compared with the goldens: zero differences.
+- `main.js` 1108 -> 173 lines. `instanceof Map` remains only in `core/normalize.js`; `assets/img/` only in `core/icons.js`.
+- **Completion model: gap 0 on every fixture**, and on 4 more saves (3%, 6%, 8%, 0%) across versions 1.0.28561 to 1.0.29315. Breakdown in OPUS section 8. Bosses, maps, fleas and the journal do not count.
+- Fleas tab: 27 scattered + 3 special fleas, all counted (the special ones are fleas recruited through events, so they are shown as their own section rather than "Others").
+- Found and fixed: equipped Sharp Dart and Pale Nails rendered as unknown tools; the slot names are `Silk Charge` and `Silk Boss Needle` (OPUS D21).
+- Found, not fixable with the saves on hand: `FleasCollectedTargetOrder` exists only in 1.0.28561 saves (OPUS D20, Appendix A).
+- Deviation: `app/`, `core/`, `ui/` exist as planned, but `main.js` stays at `src/main.js` (no need to move it until Phase 4 merges the pages).
+- Tests: 611 JS, 13 Python, 9 Rust.
 
 ---
 
@@ -323,7 +333,7 @@ Timeline and map subscribe; uploading once feeds every page.
 Each step is one category module plus one pack file plus fixtures expectations. Order chosen so that each step is independently shippable.
 
 ### Steps
-1. **Hunter's Journal.** `packs/base/journal.js`: one entry per enemy `{ id, json: '<internal Name in EnemyJournalKillData>', display, icon: '<file in assets/img/journal>', killsRequired }`. The 232 icon filenames follow `"<Display> - <Internal Name> #<id>.png"` (some are `"<Display> #<id>.png"`), so the mapping can be bootstrapped by a one-off script that parses the filenames; `killsRequired` must come from the wiki and is `null` until filled. `categories/journal.js` renders a grid with three states (`unseen`, `seen`, `complete`) and counters (seen/total, completed/total). Journal completion contributes to the game's %, so add its weight hypothesis to `completion.js` and re-check the oracle gap.
+1. **Hunter's Journal.** `packs/base/journal.js`: one entry per enemy `{ id, json: '<internal Name in EnemyJournalKillData>', display, icon: '<file in assets/img/journal>', killsRequired }`. The 232 icon filenames follow `"<Display> - <Internal Name> #<id>.png"` (some are `"<Display> #<id>.png"`), so the mapping can be bootstrapped by a one-off script that parses the filenames; `killsRequired` must come from the wiki and is `null` until filled. `categories/journal.js` renders a grid with three states (`unseen`, `seen`, `complete`) and counters (seen/total, completed/total). The journal does **not** count toward the game's % (the Phase 1 model is exact without it), so it gets no `completion()` hook.
 2. **Collectables.** Extend `packs/base/collectables.js` with Relics (`Relics.savedData`: collected/deposited), Materium (`MateriumCollected.savedData`), Mementos (the eight booleans in TO-DO.txt plus `MementosDeposited`), and consumables (`Collectables.savedData` with `Amount`). `categories/collectables.js` gets sub-sections; Memory Lockets and Craftmetal move into it unchanged.
 3. **Quests.** `packs/base/quests.js` from `QuestCompletionData.savedData` names (47 in the sample; use `unknown_keys.py` and the wiki for display names and givers). Render accepted/completed with `CompletedCount` for repeatables. Wishes and quest boards are the same container.
 4. **Story timeline data.** Parse `StoryEvents` (`EventType`, `PlayTime`, `SceneName`) into a `story` category (no tab yet; consumed by Phase 3 timeline markers).
@@ -443,7 +453,8 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 | Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
-| Flea icon | none | asset needed for the Fleas grid |
+| Flea icon | none | asset needed for the Fleas tab (the Huge Flea portrait stands in) |
+| `FleasCollectedTargetOrder` on newer versions (OPUS D20) | a 1.0.28714+ save after rescuing at least one flea | tells whether the key is created lazily or was removed by a patch; the Fleamaster Tool Pouch source depends on it |
 | Keep hosting Team Cherry assets in the repo? | none (owner decision) | Alternatives: keep with attribution (default), or load from an external host. |
 | Save paths per platform | none (owner check) | Confirm the Phase 0 step 13 paths on each platform. |
 
