@@ -37,3 +37,16 @@ describe('category registry contract (ROADMAP Appendix C)', () => {
         expect(parseAllData(null)).toBeNull();
     });
 });
+
+describe('equipped loadout', () => {
+    it('resolves every skill by the name the save uses in tool slots', () => {
+        const slots = ['Silk Spear', 'Parry', 'Thread Sphere', 'Silk Charge', 'Silk Bomb', 'Silk Boss Needle'];
+        const playerData = {
+            CurrentCrestID: 'Hunter',
+            ToolEquips: { savedData: [{ Name: 'Hunter', Data: { Slots: slots.map(EquippedTool => ({ EquippedTool })) } }] },
+        };
+        const { equippedTools } = parseAllData(playerData, {}).equippedTools;
+        expect(equippedTools.map(t => t.display)).toEqual(['Silkspear', 'Cross Stitch', 'Thread Storm', 'Sharp Dart', 'Rune Rage', 'Pale Nails']);
+        expect(equippedTools.every(t => t.category === 'Skill' && t.iconKind === 'skill')).toBe(true);
+    });
+});
