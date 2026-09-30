@@ -104,6 +104,7 @@ export const maps = {
             labelClass: (m, isOn) => (placeholder(m) ? (isOn ? 'status-unlocked' : 'status-locked') : null),
         });
         setText('maps-count', on);
+        setText('maps-total-count', result.stats.total);
     },
 };
 

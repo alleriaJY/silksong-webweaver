@@ -639,13 +639,43 @@
                                     <div class="panel-header">
                                         <h3>Maps</h3>
                                         <p class="panel-description">Collected area maps (<span
-                                                id="maps-count">0</span>/28)</p>
+                                                id="maps-count">0</span>/<span id="maps-total-count">0</span>)</p>
                                     </div>
                                     <div class="panel-content">
                                         <div class="stat-card full-width">
                                             <h4>🗺️ Area Maps</h4>
                                             <div class="maps-grid" id="maps-grid">
                                                 <!-- Map icons will be populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- Travel: Bellway -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">🔔 Bellway Stations
+                                                <span class="unlocked-stats">(<strong id="bellway-count">0</strong>/<span id="bellway-total">0</span>)</span>
+                                            </h4>
+                                            <div class="source-checklist" id="bellway-checklist">
+                                                <!-- rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- Travel: Ventrica -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">🚇 Ventrica Tubes
+                                                <span class="unlocked-stats">(<strong id="ventrica-count">0</strong>/<span id="ventrica-total">0</span>)</span>
+                                            </h4>
+                                            <div class="source-checklist" id="ventrica-checklist">
+                                                <!-- rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- Travel: map pins -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">📍 Map Pins
+                                                <span class="unlocked-stats">(<strong id="map-pins-count">0</strong>/<span id="map-pins-total">0</span>)</span>
+                                            </h4>
+                                            <div class="source-checklist" id="map-pins-checklist">
+                                                <!-- rows populated by JS -->
                                             </div>
                                         </div>
                                     </div>

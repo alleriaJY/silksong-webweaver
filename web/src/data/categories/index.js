@@ -23,6 +23,7 @@ import journal from './journal.js';
 import collection from './collection.js';
 import quests from './quests.js';
 import story from './story.js';
+import travel from './travel.js';
 import { abilities, skills, maps, bosses } from './flags.js';
 import { CHECKLISTS } from './checklists.js';
 import { computeCompletion, renderCompletion } from '../completion.js';
@@ -45,6 +46,7 @@ export const CATEGORIES = [
     story,
     fleas,
     maps,
+    travel,
 ];
 
 /** Parse context for a save; `packs` defaults to the packs that detect it. */

@@ -10,7 +10,7 @@ import { FLEAS } from './fleas.js';
 import { ABILITIES, OTHER_ABILITIES, CLOAK_TIERS } from './abilities.js';
 import { SKILLS } from './skills.js';
 import { CRESTS, SPECIAL_CREST_STATES } from './crests.js';
-import { MAPS } from './maps.js';
+import { MAPS, TRAVEL } from './maps.js';
 import {
     MASK_SHARD_SOURCES, SPOOL_FRAGMENT_SOURCES, SILK_HEART_SOURCES, TOOL_POUCH_SOURCES,
     CRAFTING_KIT_SOURCES, OTHER_UNLOCKABLE_SOURCES, NEEDLE_TIERS,
@@ -42,6 +42,7 @@ export default {
         crests: CRESTS,
         specialCrestStates: SPECIAL_CREST_STATES,
         maps: MAPS,
+        travel: TRAVEL,
         maskShardSources: MASK_SHARD_SOURCES,
         spoolFragmentSources: SPOOL_FRAGMENT_SOURCES,
         silkHeartSources: SILK_HEART_SOURCES,

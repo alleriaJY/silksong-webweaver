@@ -34,3 +34,31 @@ export const MAPS = [
     { id: 'the-abyss', json: 'HasAbyssMap', display: 'The Abyss', icon: 'I_map_type_02.png', iconStyle: 'placeholder' },
     { id: 'verdania', json: 'HasCloverMap', display: 'Verdania', icon: 'Shop_map_icon__0003_clover.png' },
 ];
+
+// Travel network: playerData booleans. kind 'bellway' = Bellway station,
+// 'ventrica' = Ventrica tube stop, 'pin' = map pin set sold by the mapper.
+// Display names use a confirmed area name where one exists (areas.js) and the
+// internal name otherwise; confirm the rest against the game (Appendix A).
+// scenesEncounteredBench is empty even in the 100% save, so benches rested at
+// cannot be counted from the save.
+export const TRAVEL = [
+    { id: 'bellway-aqueduct', json: 'UnlockedAqueductStation', display: 'Putrified Ducts', kind: 'bellway' },
+    { id: 'bellway-belltown', json: 'UnlockedBelltownStation', display: 'Bellhart', kind: 'bellway' },
+    { id: 'bellway-boneforest-east', json: 'UnlockedBoneforestEastStation', display: 'The Marrow (Boneforest East)', kind: 'bellway' },
+    { id: 'bellway-city', json: 'UnlockedCityStation', display: 'City', kind: 'bellway' },
+    { id: 'bellway-coral-tower', json: 'UnlockedCoralTowerStation', display: 'Coral Tower', kind: 'bellway' },
+    { id: 'bellway-docks', json: 'UnlockedDocksStation', display: 'Deep Docks', kind: 'bellway' },
+    { id: 'bellway-greymoor', json: 'UnlockedGreymoorStation', display: 'Greymoor', kind: 'bellway' },
+    { id: 'bellway-peak', json: 'UnlockedPeakStation', display: 'Mount Fay', kind: 'bellway' },
+    { id: 'bellway-shadow', json: 'UnlockedShadowStation', display: 'Shadow', kind: 'bellway' },
+    { id: 'bellway-shellwood', json: 'UnlockedShellwoodStation', display: 'Shellwood', kind: 'bellway' },
+    { id: 'ventrica-arborium', json: 'UnlockedArboriumTube', display: 'Memorium', kind: 'ventrica' },
+    { id: 'ventrica-city-bellway', json: 'UnlockedCityBellwayTube', display: 'City Bellway', kind: 'ventrica' },
+    { id: 'ventrica-enclave', json: 'UnlockedEnclaveTube', display: 'Enclave', kind: 'ventrica' },
+    { id: 'ventrica-hang', json: 'UnlockedHangTube', display: 'High Halls', kind: 'ventrica' },
+    { id: 'ventrica-song', json: 'UnlockedSongTube', display: 'Song', kind: 'ventrica' },
+    { id: 'ventrica-under', json: 'UnlockedUnderTube', display: 'Underworks', kind: 'ventrica' },
+    { id: 'pin-bench', json: 'hasPinBench', display: 'Bench pins', kind: 'pin' },
+    { id: 'pin-stag', json: 'hasPinStag', display: 'Bellway pins', kind: 'pin' },
+    { id: 'pin-tube', json: 'hasPinTube', display: 'Ventrica pins', kind: 'pin' },
+];
