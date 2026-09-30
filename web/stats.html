@@ -560,11 +560,34 @@
                                 <div class="tab-panel" id="panel-fleas">
                                     <div class="panel-header">
                                         <h3>Fleas</h3>
-                                        <p class="panel-description">Flea encounters</p>
+                                        <p class="panel-description">Fleas rescued for Fleatopia (<span
+                                                id="fleas-saved-count">0</span>/<span id="fleas-total-count">0</span>)</p>
                                     </div>
                                     <div class="panel-content">
-                                        <div class="placeholder-card">
-                                            <p>Flea tracking coming soon!</p>
+                                        <!-- Scattered fleas (SavedFlea_<scene>) -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">🪲 Scattered Fleas
+                                                <span class="unlocked-stats">
+                                                    (Saved: <strong id="fleas-scattered-count">0</strong>/<span
+                                                        id="fleas-scattered-total">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="fleas-checklist">
+                                                <!-- Flea rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- Named fleas recruited through events -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">⭐ Special Fleas
+                                                <span class="unlocked-stats">
+                                                    (Saved: <strong id="fleas-special-count">0</strong>/<span
+                                                        id="fleas-special-total">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="special-fleas-checklist">
+                                                <!-- Special flea rows populated by JS -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

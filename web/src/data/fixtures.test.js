@@ -104,3 +104,12 @@ describe.each(FIXTURES)('completion model on $name (oracle)', ({ expected, parse
         ]);
     });
 });
+
+describe('fleas', () => {
+    it('splits 27 scattered and 3 special fleas, all counted', () => {
+        const { parsed } = FIXTURES.find(f => f.name === 'complete');
+        const kinds = parsed.fleas.fleas.reduce((acc, f) => ({ ...acc, [f.kind]: (acc[f.kind] || 0) + 1 }), {});
+        expect(kinds).toEqual({ flea: 27, special: 3 });
+        expect(parsed.fleas.stats).toEqual({ total: 30, saved: 30 });
+    });
+});
