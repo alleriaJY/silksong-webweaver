@@ -47,6 +47,7 @@ function renderCountedGrid(prefix, items, opts) {
     if (!grid) return;
     const on = renderIconGrid(grid, items, opts);
     setText(`${prefix}-unlocked-count`, on);
+    setText(`${prefix}-total`, items.length);
     setPercent(`${prefix}-percent`, on, on === items.length);
 }
 
@@ -120,5 +121,6 @@ export const bosses = {
             title: b => b.display,
         });
         setText('bosses-count', on);
+        setText('bosses-total', result.stats.total);
     },
 };

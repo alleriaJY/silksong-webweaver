@@ -65,6 +65,7 @@ export default {
             icon: c => (crestFile(c, steelSoul) ? iconUrl('crest', crestFile(c, steelSoul)) : ''),
         });
         setText('crests-unlocked-count', result.stats.unlocked);
+        setText('crests-total', result.stats.total);
         setText('crests-percent', `${result.contributionStats.unlocked}%`);
     },
 };

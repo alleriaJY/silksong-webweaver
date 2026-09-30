@@ -9,7 +9,7 @@ export function parseNeedle(save, ctx) {
     const raw = save.playerData?.nailUpgrades;
     const upgrades = Math.max(0, Math.min(4, parseInt(raw, 10) || 0));
     const tiers = ctx.lists('needleTiers');
-    return { upgrades, maxUpgrades: Math.max(0, tiers.length - 1), rawUpgrades: raw || 0, tier: tiers[upgrades] || null };
+    return { upgrades, maxUpgrades: Math.max(0, tiers.length - 1), levels: tiers.length, rawUpgrades: raw || 0, tier: tiers[upgrades] || null };
 }
 
 function setIcon(id, tier) {
@@ -37,6 +37,7 @@ export default {
             setIcon('unlockables-needle-icon', tier);
             setText('unlockables-needle-name', tier.name);
             setText('unlockables-needle-level', tier.level);
+            setText('needle-level-total', result.levels);
         }
         setText('unlockables-needle-upgrades', `${upgrades} Upgrade${upgrades !== 1 ? 's' : ''}`);
         setText('needle-percent', `${result.rawUpgrades}%`);
