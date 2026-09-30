@@ -15,15 +15,18 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
 ### Completed
 - [x] Web UI with drag-and-drop upload (landing page + stats page)
 - [x] WASM-based decryption (Rust, AES-256-ECB)
-- [x] GitHub Pages deployment with CI (Rust fmt/clippy/test, JS vitest)
+- [x] GitHub Pages deployment with CI (Rust, JS and Python tests); deploys only after CI passes
 - [x] Hero's Path exploration timeline over the Pharloom map
 - [x] Tile confirmation pipeline (629 of 669 tiles confirmed)
 - [x] Parsing: general stats, current state, tools (with upgrade sets), abilities, skills, crests, equipped loadout, bosses, maps, masks, silk spools, silk hearts, needle, crafting kit, tool pouch, craftmetal, other unlockables
+- [x] Completion breakdown that recomputes the game's own percentage exactly
+- [x] Hunter's Journal, Fleas, Quests, relics, mementos, materium, inventory, Bellway and Ventrica travel
+- [x] Phase 0: save tools (decrypt, diff, unknown keys, fixtures), repo hygiene
+- [x] Phase 1: core rework (content packs, category modules, renderers, contract and golden tests)
+- [x] Phase 2: parsing coverage; every save flag is either shown or classified with a reason
 
 ### In progress / planned (see ROADMAP.md for the phase each belongs to)
-- [ ] Phase 0: repo hygiene, Python decrypt/diff/unknown-keys tools, test fixtures
-- [ ] Phase 1: core rework (plain-object WASM boundary, category registry, content packs, renderers, completion model), Fleas tab
-- [ ] Phase 2: Hunter's Journal, Collectables (relics, materium, mementos, consumables), Quests, story events, benches; resolve Memory Locket flags
+- [ ] Some Memory Locket sources, Loddie's tool pouch and the 8th craftmetal (need specific saves)
 - [ ] Phase 3: close tile gaps, timeline and map viewer as modules sharing one upload
 - [ ] Phase 4: single-page app shell, no iframes, accessibility and performance pass
 - [ ] Phase 5: DLC readiness (pack scaffold, unknown-keys dev panel, version banner)
