@@ -1,0 +1,17 @@
+{
+    "version": "0.0.1",
+    "configurations": [
+        {
+            "name": "web-static",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": ["--yes", "serve", "web", "-l", "5175"],
+            "port": 5175
+        },
+        {
+            "name": "web-static-alt",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": ["--yes", "serve", "web", "-l", "5176"],
+            "port": 5176
+        }
+    ]
+}
