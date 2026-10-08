@@ -10,6 +10,7 @@ import { loadWasm, decryptSave } from './core/wasm.js';
 import { parseAllData, renderAll } from './data/categories/index.js';
 import { setupGlobalDragDrop, takePendingSaveFile } from './app/upload.js';
 import { setupTabs, switchTab } from './app/tabs.js';
+import { showBuildInfo } from './app/buildInfo.js';
 
 // State
 let wasmReady = false;
@@ -167,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupTabs(tabNav);
     initWasm();
     openPendingSaveFile();
+    showBuildInfo();
 
     const yearEl = document.getElementById('current-year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();

@@ -153,9 +153,14 @@
                 <a href="https://github.com/alleriaJY/silksong-webweaver" target="_blank">GitHub</a>
             </p>
             <p style="margin-top: 0.5rem; opacity: 0.7;">Powered by Rust + WebAssembly</p>
+            <p class="footer-note footer-build" data-build>Build dev</p>
         </footer>
     </div>
 
+    <script type="module">
+        import { showBuildInfo } from './src/app/buildInfo.js';
+        showBuildInfo();
+    </script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
 

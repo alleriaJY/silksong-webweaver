@@ -1607,6 +1607,11 @@ footer a:hover {
     opacity: 0.7;
 }
 
+.footer-build {
+    margin-top: 0.25rem;
+    font-family: monospace;
+}
+
 /* Tool Variants Modal */
 .tool-modal {
     display: none;
