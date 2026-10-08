@@ -11,6 +11,8 @@ import { parseAllData, renderAll } from './data/categories/index.js';
 import { setupGlobalDragDrop, takePendingSaveFile } from './app/upload.js';
 import { setupTabs, switchTab } from './app/tabs.js';
 import { showBuildInfo } from './app/buildInfo.js';
+import { saveStore } from './app/saveStore.js';
+import { mountTimeline } from './timeline/timeline.js';
 
 // State
 let wasmReady = false;
@@ -90,6 +92,7 @@ function resetStats() {
     resetBtn.hidden = true;
     fileInput.value = '';
     hideError();
+    saveStore.reset();
 }
 
 async function handleFileSelect(file) {
@@ -119,6 +122,7 @@ async function analyzeFile() {
     loading.hidden = false;
     statsSection.hidden = true;
     hideError();
+    saveStore.set({ status: 'loading', fileName: selectedFile.name, error: null });
 
     try {
         const bytes = new Uint8Array(await selectedFile.arrayBuffer());
@@ -126,9 +130,11 @@ async function analyzeFile() {
         currentData = parseAllData(save.playerData, save.sceneData);
         displayStats(currentData);
         resetBtn.hidden = false;
+        saveStore.set({ status: 'ready', save, parsed: currentData });
     } catch (error) {
         console.error('Analysis failed:', error);
         showError('Failed to analyze save file: ' + error.message);
+        saveStore.set({ status: 'error', save: null, parsed: null, error: error.message });
     } finally {
         loading.hidden = true;
     }
@@ -169,6 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initWasm();
     openPendingSaveFile();
     showBuildInfo();
+
+    // Hero's Path reads the shared save; it builds its map the first time it is shown
+    const timelineRoot = document.getElementById('timeline-root');
+    if (timelineRoot) {
+        const timeline = mountTimeline(timelineRoot, saveStore, { onUpload: showUploadModal });
+        window.addEventListener('app:page', (e) => (e.detail === 'timeline' ? timeline.show() : timeline.hide()));
+        if (document.getElementById('page-timeline')?.classList.contains('active')) timeline.show();
+    }
 
     const yearEl = document.getElementById('current-year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();

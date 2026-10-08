@@ -8,6 +8,7 @@
     <title>Silksong Webweaver</title>
     <link rel="icon" href="assets/img/silksong_logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="src/timeline/timeline.css">
 </head>
 
 <body>
@@ -55,41 +56,6 @@
                             </button>
                         </div>
                     </header>
-
-                    <!-- Upload Modal -->
-                    <div class="upload-modal" id="upload-modal" hidden>
-                        <div class="upload-modal-backdrop" id="upload-modal-backdrop"></div>
-                        <div class="upload-modal-content">
-                            <div class="upload-modal-header">
-                                <h2>Upload Save File</h2>
-                                <button class="upload-modal-close" id="upload-modal-close">&times;</button>
-                            </div>
-                            <div class="upload-area" id="upload-area">
-                                <input type="file" id="file-input" accept=".dat" hidden>
-                                <label for="file-input" class="upload-label">
-                                    <div class="upload-icon">📁</div>
-                                    <span class="upload-text">Drop your .dat file here or click to browse</span>
-                                    <span class="file-name" id="file-name"></span>
-                                </label>
-                            </div>
-                            <p class="upload-hint">Your save file is processed entirely in your browser. Nothing is
-                                uploaded to any server.</p>
-                            <details class="save-location-help">
-                                <summary>Where is my save file?</summary>
-                                <p>Each slot is its own file, <code>user1.dat</code> to <code>user4.dat</code>, usually in:</p>
-                                <dl>
-                                    <dt>Windows</dt>
-                                    <dd><code>%USERPROFILE%\AppData\LocalLow\Team Cherry\Hollow Knight Silksong\&lt;id&gt;\</code></dd>
-                                    <dt>macOS</dt>
-                                    <dd><code>~/Library/Application Support/unity.Team-Cherry.Silksong/&lt;id&gt;/</code></dd>
-                                    <dt>Linux / Steam Deck</dt>
-                                    <dd><code>~/.config/unity3d/Team Cherry/Hollow Knight Silksong/&lt;id&gt;/</code></dd>
-                                </dl>
-                                <p><code>&lt;id&gt;</code> is a numeric folder named after your platform account.
-                                    Paths can differ by store or launcher.</p>
-                            </details>
-                        </div>
-                    </div>
 
                     <main>
 
@@ -771,7 +737,7 @@
 
             <!-- Timeline Page -->
             <div class="app-page" id="page-timeline">
-                <iframe src="exploration_timeline.html" class="map-viewer-iframe" title="Exploration Timeline"></iframe>
+                <div id="timeline-root"></div>
             </div>
             <!-- End Timeline Page -->
 
@@ -790,6 +756,41 @@
         <!-- End app-main -->
     </div>
     <!-- End app-layout -->
+
+    <!-- Upload modal: outside the pages so every page (Statistics, Hero's Path) can open it -->
+    <div class="upload-modal" id="upload-modal" hidden>
+        <div class="upload-modal-backdrop" id="upload-modal-backdrop"></div>
+        <div class="upload-modal-content">
+            <div class="upload-modal-header">
+                <h2>Upload Save File</h2>
+                <button class="upload-modal-close" id="upload-modal-close">&times;</button>
+            </div>
+            <div class="upload-area" id="upload-area">
+                <input type="file" id="file-input" accept=".dat" hidden>
+                <label for="file-input" class="upload-label">
+                    <div class="upload-icon">📁</div>
+                    <span class="upload-text">Drop your .dat file here or click to browse</span>
+                    <span class="file-name" id="file-name"></span>
+                </label>
+            </div>
+            <p class="upload-hint">Your save file is processed entirely in your browser. Nothing is
+                uploaded to any server.</p>
+            <details class="save-location-help">
+                <summary>Where is my save file?</summary>
+                <p>Each slot is its own file, <code>user1.dat</code> to <code>user4.dat</code>, usually in:</p>
+                <dl>
+                    <dt>Windows</dt>
+                    <dd><code>%USERPROFILE%\AppData\LocalLow\Team Cherry\Hollow Knight Silksong\&lt;id&gt;\</code></dd>
+                    <dt>macOS</dt>
+                    <dd><code>~/Library/Application Support/unity.Team-Cherry.Silksong/&lt;id&gt;/</code></dd>
+                    <dt>Linux / Steam Deck</dt>
+                    <dd><code>~/.config/unity3d/Team Cherry/Hollow Knight Silksong/&lt;id&gt;/</code></dd>
+                </dl>
+                <p><code>&lt;id&gt;</code> is a numeric folder named after your platform account.
+                    Paths can differ by store or launcher.</p>
+            </details>
+        </div>
+    </div>
 
     <script type="module" src="src/main.js"></script>
 
@@ -811,6 +812,7 @@
 
             if (navItem) navItem.classList.add('active');
             if (page) page.classList.add('active');
+            window.dispatchEvent(new CustomEvent('app:page', { detail: pageId }));
         }
 
         // Check for hash on page load
