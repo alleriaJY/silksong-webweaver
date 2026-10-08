@@ -234,7 +234,7 @@ Timeline and map subscribe; uploading once feeds every page.
 - `web/src/data/__fixtures__/*.json`: small sanitised saves produced by `tools/make_fixture.py` (Appendix B). Each has a sibling `*.expected.json` with the oracle values (`completionPercentage`, counts).
 - Contract tests: every `json` key in every pack list must appear in at least one fixture (catches typos); every `icon` must exist on disk (vitest can `fs.existsSync` under `web/assets`).
 - Python: `tools/decrypt_save.py` (CLI decrypt to JSON), `tools/diff_saves.py` (flag discovery), `tools/unknown_keys.py` (keys present in a save but absent from all packs, grouped by prefix), with pytest tests under `tools/tests/`.
-- Map data: `tools/` is authoritative; `merge_all_tiles.py` writes **both** web copies so nothing is copied by hand.
+- Map data: `tools/tilefit/` is authoritative; `run_all.py` publishes the reviewed `tile_coordinates.json` and `scene_tiles.json` to `web/assets/img/fullmap/` so nothing is copied by hand.
 
 ---
 
@@ -362,16 +362,16 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 **Goal:** Finish map coverage and make the timeline and map viewer first-class. **Depends on:** Phase 1 (areas in packs), Phase 2 step 4 (story events).
 
 ### Steps
-1. **Tile gap closure.** Run `python tools/analyze_tile_gaps.py` with the late-game fixture. For category C (matched, unconfirmed) and B, confirm/reject in `tile_overlay_viewer.html`. For category D (no PNG) list scenes in Appendix A; they need art the repo does not have. Re-run `merge_all_tiles.py`. Target: every scene in `scenesVisited` of the late-game fixture either maps to a confirmed tile or is listed as "no tile art".
-2. **Scene to tile mapping as data.** Move `normalizeSceneName`/`getTileBaseName`/`findMatchingTiles` from `exploration_timeline.html` into `web/src/map/sceneTiles.js` with unit tests (cases: `Bone_East_15_left.png`, `Abyss_02b #4265375.png`, `__0003_Ward_04.png`, `Song__02.png`). Generate `web/assets/img/fullmap/scene_tiles.json` (`scene -> [tile files]`) at merge time so the browser does no string matching.
+1. **Tile gap closure.** DONE with `tools/tilefit`: every sprite is reviewed (`review.json`: 739 positioned, 92 removed) and the reviewed set is what the pages read. Coverage of map room pixels 98.4%; the remaining rooms (interiors, challenge rooms) are not drawn on the world map.
+2. **Scene to tile mapping as data.** DONE: `tools/tilefit/scene_tiles.py` writes `scene_tiles.json` (aliases, hash/prefix/case-insensitive names, pieces by longest known scene) and the timeline looks scenes up there. Remaining: move the lookup into `web/src/map/sceneTiles.js` with the timeline port (step 3).
 3. **Timeline module.** Port `exploration_timeline.html` into `web/src/timeline/` (module, no own WASM, reads `saveStore`). Keep the slider, play/pause, speed, revealed list. Add story-event markers from Phase 2 step 4 and a "mapped vs visited" toggle using `scenesMapped`.
 4. **Map viewer module.** Port `map_viewer.html` into `web/src/map/`; add the player's `placedMarkers` and `respawnScene` pin, area legend from the pack's `areas`. Re-enable the sidebar entry.
-5. **Dev viewer** stays a standalone page (`tile_overlay_viewer.html`) but reads `areas` colours from the pack via a small module import.
+5. **Dev viewer** is `tilefit_viewer.html` (review with `tools/tilefit/review_server.py`); it reads `areas` colours from the pack via a small module import.
 6. **Mobile**: both map pages must be usable at 375 px width (pinch-zoom, drag). Verify with the browser at mobile size.
 
 ### Acceptance criteria
-- `tile_gap_report.txt` category B and C are empty for the late-game fixture.
-- `sceneTiles.test.js` passes; the timeline reveals at least 95% of `scenesVisited` for the late-game fixture (log the number).
+- Every sprite has a verdict in `tools/tilefit/review.json` or `confirmed_locks.json` (met).
+- Scene lookup tests pass; the timeline lights the scenes `scene_tiles.json` covers (72% save: 557 of 686, 100% save: 658 of 842; the rest are not on the world map).
 - One upload feeds Statistics, Hero's Path and Map (no second upload).
 - Verification block green; OPUS section 9 updated.
 
@@ -389,10 +389,10 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 5. **Mobile layout bug:** at widths below about 460 px `.app-main` overflows horizontally (seen at 456 px on `stats.html`). Fix as part of this pass.
 6. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.
 7. Performance: lazy-load the tile PNGs only when the timeline or map page is first opened; measure first render with a fixture and record it here.
-8. **Tile weight.** Convert tile PNGs to WebP (lossless) at merge time, or pack them into per-area sprite atlases with an index JSON produced by `merge_all_tiles.py`. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.
+8. **Tile weight.** Convert tile PNGs to WebP (lossless) when tilefit publishes, or pack them into per-area sprite atlases with an index JSON produced there. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.
 
 ### Acceptance criteria
-- `ls web/*.html` shows `index.html`, `stats.html` (redirect only), `tile_overlay_viewer.html`.
+- `ls web/*.html` shows `index.html`, `stats.html` (redirect only), `tilefit_viewer.html`.
 - Lighthouse accessibility score at or above 90 on the stats page.
 - Verification block green; OPUS sections 2 and 3 rewritten.
 
@@ -407,7 +407,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 2. **Pack scaffold script** `tools/new_pack.py <id> "<label>" <minVersion>` that creates `web/src/data/packs/<id>/` with empty category files and registers it in `packs/index.js` (behind `detect: () => false` until a probe is set).
 3. **Version banner**: show `version` and the list of active packs in the General tab header.
 4. **Fixture policy** for packs: every pack must ship at least one fixture where `detect` is true and one where it is false; contract test enforces it.
-5. **Map extension path**: document in OPUS how a new area gets tiles (the OpenCV matcher is gone; the path is manual annotation via `scene_annotator.html` on an updated labeled map, then `merge_all_tiles.py`). If the owner wants automated matching again, restore the matcher from git history (`git log --all -- tools/map_tile_matcher.py`).
+5. **Map extension path**: a new area gets tiles by running `tools/tilefit/run_all.py` on the new sprites and map, then reviewing them in `tilefit_viewer.html`; see `tools/tilefit/README.md`.
 6. Write the DLC Playbook section below into OPUS as the standing procedure.
 
 ### Acceptance criteria
@@ -440,7 +440,7 @@ Run this when a DLC or major patch ships. Assumes Phases 0, 1 and 5 are done.
 4. Fill pack lists: bosses (`defeated*` keys), maps (`Has*Map`), tools (`Tools.savedData` names not in base), abilities/skills (`has*`), fleas, journal entries (`EnemyJournalKillData` names not in base), areas (new scene prefixes from `scenesVisited`), quests, unlockable sources (`diff_saves.py` between DLC saves).
 5. Add icons under the existing `assets/img/<kind>/` folders; the icon contract test tells you what is missing.
 6. Add a DLC fixture (Appendix B) with its oracle values. Update `completion.js` weights if the DLC changes the 100% breakdown; the oracle test will fail loudly if it does.
-7. Map: if the DLC adds areas, obtain the new labeled map, update `map_transform.json` via `scene_annotator.html`, place tiles manually, run `merge_all_tiles.py`.
+7. Map: if the DLC adds areas, obtain the new clean and labeled maps, update `tools/map_transform.json`, run `tools/tilefit/run_all.py` (drop `--skip-candidates`) and review the new sprites in `tilefit_viewer.html`.
 8. Update OPUS.md status snapshot and this file.
 
 Base-game saves must render identically before and after adding a pack; the contract test with `detect: false` fixtures guarantees it.

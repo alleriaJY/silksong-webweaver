@@ -1,9 +1,10 @@
 # tilefit: automatic tile placement
 
 Places every room sprite in `web/assets/img/fullmap/*.png` on the clean Pharloom map
-(`full_pharloom_clean.webp`, 4096 x 4096). It runs next to the older manual pipeline
-(`tools/confirmed_tiles.json` -> `merge_all_tiles.py` -> `tile_coordinates.json`) and
-does not modify any of those files.
+(`full_pharloom_clean.webp`, 4096 x 4096) and publishes the reviewed
+`web/assets/img/fullmap/tile_coordinates.json` and `scene_tiles.json` that the timeline and
+map viewer read. It replaced the older manual pipeline (`merge_all_tiles.py`); the old
+human confirmations in `tools/confirmed_tiles.json` live on as locks.
 
 ```bash
 pip install opencv-python numpy easyocr   # easyocr only for the OCR stage

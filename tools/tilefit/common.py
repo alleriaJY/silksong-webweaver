@@ -24,7 +24,7 @@ OUT_DIR = Path(__file__).resolve().parent / "out"
 GLOBAL_SCALE = 0.767
 
 # Files in FULLMAP_DIR that are whole maps, not room sprites.
-NOT_TILES = {"full_dont_use_pharloom.png", "pharloom_covered.png", "silksong_fullmap.png"}
+NOT_TILES = {"silksong_fullmap.png"}   # the labeled community map used for OCR
 
 
 def tile_files():

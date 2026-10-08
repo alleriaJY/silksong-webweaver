@@ -63,7 +63,7 @@ def main():
     cand = json.loads((OUT_DIR / "candidates.json").read_text())
     conf = json.loads((ROOT / "tools" / "confirmed_tiles.json").read_text())["tiles"]
     chosen = json.loads(open(args.fit).read())["tiles"] if args.fit else {}
-    labeled = cv2.imread(str(ROOT / "silksong_fullmap.png")) if args.labeled else None
+    labeled = cv2.imread(str(FULLMAP_DIR / "silksong_fullmap.png")) if args.labeled else None
     to_lab = np.array(json.loads((ROOT / "tools" / "map_transform.json").read_text())["clean_to_labeled"])
     rows = []
     for name in args.tiles:
