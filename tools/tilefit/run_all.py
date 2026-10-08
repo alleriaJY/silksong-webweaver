@@ -17,7 +17,7 @@ their own scale that scale (out/tile_coordinates.json in place).
 The reviewed tile_coordinates.json and scene_tiles.json are also copied to
 web/assets/img/fullmap/, where the timeline and map viewer read them.
 
-Outputs go to tools/tilefit/out/ and are copied to web/assets/img/fullmap/tilefit/.
+Outputs go to tools/tilefit/out/ and are copied to tools/tilefit/published/ (for the review page).
 tools/confirmed_tiles.json is never modified.
 
 Usage: python tools/tilefit/run_all.py [--ocr] [--skip-candidates]
@@ -29,7 +29,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from common import FULLMAP_DIR, OUT_DIR
+from common import FULLMAP_DIR, OUT_DIR, PUBLISHED_DIR
 
 HERE = Path(__file__).resolve().parent
 PUBLISH = ["tile_fit.json", "uncovered.json", "uncovered.png", "labels.json", "tile_coordinates.json", "scene_tiles.json"]
@@ -57,7 +57,7 @@ def main():
     run("lock_confirmed.py")
     run("scene_tiles.py")
 
-    dest = FULLMAP_DIR / "tilefit"
+    dest = PUBLISHED_DIR
     dest.mkdir(exist_ok=True)
     for name in PUBLISH:
         shutil.copy2(OUT_DIR / name, dest / name)

@@ -18,6 +18,9 @@ ROOT = Path(__file__).resolve().parents[2]
 FULLMAP_DIR = ROOT / "web" / "assets" / "img" / "fullmap"
 CLEAN_MAP = FULLMAP_DIR / "full_pharloom_clean.webp"
 OUT_DIR = Path(__file__).resolve().parent / "out"
+# Committed copies of the review outputs, read by the review page (viewer.html via
+# review_server.py). Not under web/, so they are never deployed.
+PUBLISHED_DIR = Path(__file__).resolve().parent / "published"
 
 # Measured on confirmed tiles: NCC peaks at 0.765-0.770 for every tile size,
 # including tiles the old matcher had placed at 0.9/1.1/1.3.

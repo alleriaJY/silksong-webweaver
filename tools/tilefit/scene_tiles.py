@@ -18,7 +18,7 @@ Usage:  python tools/tilefit/scene_tiles.py
 import json
 from pathlib import Path
 
-from common import FULLMAP_DIR, OUT_DIR, ROOT, base_name
+from common import OUT_DIR, PUBLISHED_DIR, ROOT, base_name
 
 HERE = Path(__file__).resolve().parent
 FIXTURES = ROOT / "web" / "src" / "data" / "__fixtures__"
@@ -75,7 +75,7 @@ def main():
     # the run's fresh output, else the published copy (when run on its own after a fresh clone)
     path = OUT_DIR / "tile_coordinates.json"
     if not path.exists():
-        path = FULLMAP_DIR / "tilefit" / "tile_coordinates.json"
+        path = PUBLISHED_DIR / "tile_coordinates.json"
     coords = json.loads(path.read_text())["tiles"]
     scenes = known_scenes()
     aliases = load_aliases()

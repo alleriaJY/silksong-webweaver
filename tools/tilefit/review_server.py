@@ -19,8 +19,9 @@ import threading
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import unquote
 
-from common import ROOT, tile_files
+from common import PUBLISHED_DIR, ROOT, tile_files
 
 HERE = Path(__file__).resolve().parent
 REVIEW = HERE / "review.json"
@@ -77,13 +78,20 @@ def save(name, entry):
 
 
 VIEWER = HERE / "viewer.html"
+PUBLISHED_URL = "/assets/img/fullmap/tilefit/"   # where viewer.html asks for the outputs
 
 
 class Handler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         # the review page lives with the tools; everything else comes from web/
-        if path.split("?")[0] in ("/", "/tilefit_viewer.html"):
+        clean = unquote(path.split("?")[0])
+        if clean in ("/", "/tilefit_viewer.html"):
             return str(VIEWER)
+        if clean.startswith(PUBLISHED_URL):               # review outputs, kept out of web/
+            rel = Path(clean[len(PUBLISHED_URL):])
+            if ".." in rel.parts:
+                return str(PUBLISHED_DIR / "__invalid__")
+            return str(PUBLISHED_DIR / rel)
         return super().translate_path(path)
 
     def _json(self, code, obj):

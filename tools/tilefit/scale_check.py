@@ -15,7 +15,7 @@ from multiprocessing import Pool
 import cv2
 import numpy as np
 
-from common import FULLMAP_DIR, GLOBAL_SCALE, OUT_DIR, MapStats, load_map_value, load_tile, ncc
+from common import GLOBAL_SCALE, OUT_DIR, PUBLISHED_DIR, MapStats, load_map_value, load_tile, ncc
 
 SCALES = np.round(np.arange(0.70, 0.8401, 0.005), 3)
 SLACK = 6        # px the centre may shift while the scale changes
@@ -79,7 +79,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 2))
     args = ap.parse_args()
-    coords = json.loads((FULLMAP_DIR / "tilefit" / "tile_coordinates.json").read_text())["tiles"]
+    coords = json.loads((PUBLISHED_DIR / "tile_coordinates.json").read_text())["tiles"]
     with Pool(args.workers, initializer=_init) as pool:
         res = dict(pool.imap_unordered(process, sorted(coords.items()), chunksize=4))
     (OUT_DIR / "scale_check.json").write_text(json.dumps(dict(sorted(res.items())), indent=1), encoding="utf-8")

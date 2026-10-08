@@ -48,7 +48,7 @@ non-overlapping alternative. Committed pixels then remove slots for the next rou
 
 ## Stages
 
-| Script | Output (`out/`, published to `web/assets/img/fullmap/tilefit/`) |
+| Script | Output (`out/`, published to `tools/tilefit/published/`) |
 |---|---|
 | `match_candidates.py` | `candidates.json`: top NCC peaks per tile |
 | `ocr_labels.py` | `labels.json`: scene labels in clean-map coordinates |

@@ -15,7 +15,7 @@ Policy, per tile:
   5. instances.json: extra placements of a sprite the map draws more than once,
      keyed '<sprite>@<scene>' with "sprite" and "scene" fields, confirmed
 
-Output: out/tile_coordinates.json (published to web/assets/img/fullmap/tilefit/)
+Output: out/tile_coordinates.json (published to tools/tilefit/published/ and web/assets/img/fullmap/)
 Usage:  python tools/tilefit/merge.py
 """
 
