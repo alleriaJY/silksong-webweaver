@@ -122,3 +122,28 @@
     .timeline .tl-side { width: 100%; max-height: 30vh; border-left: 0; border-top: 2px solid #333; }
     .timeline .tl-scene { width: 100%; }
 }
+
+/* Story event markers under the slider */
+.timeline .tl-track { flex: 1; min-width: 160px; position: relative; padding-bottom: 10px; }
+.timeline .tl-track .tl-slider { width: 100%; min-width: 0; }
+.timeline .tl-marks { position: absolute; left: 9px; right: 9px; bottom: 0; height: 8px; }
+.timeline .tl-mark {
+    position: absolute; top: 0; width: 4px; height: 8px; margin-left: -2px; padding: 0;
+    border: none; border-radius: 1px; cursor: pointer; opacity: 0.85;
+}
+.timeline .tl-mark:hover { opacity: 1; transform: scaleY(1.5); }
+
+/* Story event pins on the map: counter-scaled so they keep one size on screen */
+.timeline .tl-pin {
+    position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px;
+    border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7);
+    transform: scale(calc(1 / var(--zoom, 1)));
+    pointer-events: none;
+}
+
+.timeline .tl-events-title { margin-top: 18px; }
+.timeline .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 8px; font-size: 0.75rem; color: #888; }
+.timeline .tl-legend span, .timeline .tl-event span:first-child { display: inline-flex; align-items: center; gap: 5px; }
+.timeline .tl-legend i, .timeline .tl-event i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.timeline .tl-event { width: 100%; border: none; color: #fff; font: inherit; text-align: left; cursor: pointer; }
+.timeline .tl-event:hover { background: #3a3a5e; }

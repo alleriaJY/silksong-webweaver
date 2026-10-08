@@ -1,6 +1,6 @@
 /**
  * Hero's Path: replays scenesVisited over the Pharloom map, lighting the tiles
- * each scene draws. Reads the save from the shared saveStore, so the save
+ * each scene draws, with the save's story events as markers. Reads the save from the shared saveStore, so the save
  * uploaded on any page drives it; it never decrypts on its own.
  *
  *   const timeline = mountTimeline(root, saveStore, { onUpload });
@@ -9,6 +9,7 @@
  */
 import { FULLMAP, areaOf, litTiles, loadMapData, spriteOf, tilesForScene } from '../map/sceneTiles.js';
 import { mergedList } from '../data/packs/index.js';
+import { EVENT_COLORS, formatPlayTime, placeEvents } from './story.js';
 
 const PLAY_DURATION_MS = 30000;   // a whole save plays in 30 s
 const RECENT = 10;                // scenes listed in "Recently revealed"
@@ -21,13 +22,17 @@ const TEMPLATE = `
         <div class="tl-stats">
             <div>Revealed tiles: <span data-ref="revealed">0</span></div>
             <div>Mapped tiles: <span data-ref="total">0</span></div>
+            <div>Story events: <span data-ref="events">0</span></div>
         </div>
     </div>
     <div class="tl-controls">
         <button class="tl-step" data-act="start" title="Go to start (Home)">⏮</button>
         <button class="tl-step" data-act="prev" title="Previous scene (←)">⏪</button>
         <button class="tl-step tl-play" data-act="play" title="Play / pause (Space)">▶</button>
-        <input type="range" class="tl-slider" data-ref="slider" min="0" max="0" value="0" aria-label="Timeline position">
+        <div class="tl-track">
+            <input type="range" class="tl-slider" data-ref="slider" min="0" max="0" value="0" aria-label="Timeline position">
+            <div class="tl-marks" data-ref="marks"></div>
+        </div>
         <button class="tl-step" data-act="next" title="Next scene (→)">⏩</button>
         <button class="tl-step" data-act="end" title="Go to end (End)">⏭</button>
         <div class="tl-position"><span class="tl-current" data-ref="pos">0</span> / <span data-ref="count">0</span></div>
@@ -39,6 +44,7 @@ const TEMPLATE = `
                 <img class="tl-fullmap" alt="Pharloom map" draggable="false">
                 <div class="tl-dark"></div>
                 <div data-ref="tiles"></div>
+                <div data-ref="pins"></div>
             </div>
             <div class="tl-zoom">
                 <button class="tl-zoom-btn" data-act="zoom-in" title="Zoom in">+</button>
@@ -54,6 +60,9 @@ const TEMPLATE = `
         <aside class="tl-side">
             <h2>Recently revealed</h2>
             <div class="tl-recent" data-ref="recent"><p class="tl-muted">No scenes yet</p></div>
+            <h2 class="tl-events-title">Story events</h2>
+            <div class="tl-legend" data-ref="legend"></div>
+            <div class="tl-recent" data-ref="event-list"><p class="tl-muted">None yet</p></div>
             <p class="tl-muted tl-keys">Keys: ← → step · Space play · Home / End</p>
         </aside>
     </div>`;
@@ -67,6 +76,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     let map = null, mapLoading = null;     // published map data, loaded on first show
     let overlays = {};                      // tile name -> element
     let scenes = [];
+    let events = [];                        // story events placed on the timeline
+    let pins = [];                          // [{ event, el }]
     let lookup = () => [];
     let position = 0;
     let active = false, fitted = false;
@@ -100,6 +111,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
                     if (!cache.has(scene)) cache.set(scene, tilesForScene(scene, map.sceneTiles, map.tiles));
                     return cache.get(scene);
                 };
+                buildPins();
             }).catch(err => {
                 mapLoading = null;
                 ref('empty-text').textContent = 'Could not load the map data: ' + err.message;
@@ -125,6 +137,10 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         root.querySelector('[data-act="upload"]').hidden = s.status === 'loading';
         ref('slider').max = scenes.length;
         ref('count').textContent = scenes.length;
+        events = placeEvents(s.status === 'ready' ? (s.parsed?.story?.events || []) : [], scenes);
+        ref('events').textContent = events.length;
+        renderMarks();
+        if (map) buildPins();
         if (map) seek(scenes.length);        // a fresh save opens on the full journey
         else position = scenes.length;
     }
@@ -148,7 +164,86 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             tag.textContent = ` [${area.display || area.prefix}]`;
             sceneEl.appendChild(tag);
         }
+        for (const { event, el } of pins) el.hidden = event.index > position;
         renderRecent();
+        renderEvents();
+    }
+
+    // ------------------------------------------------------------ story events
+    function renderMarks() {
+        const marks = ref('marks');
+        marks.replaceChildren();
+        for (const e of events) {
+            const m = document.createElement('button');
+            m.className = 'tl-mark';
+            m.style.left = `${scenes.length ? (100 * e.index) / scenes.length : 0}%`;
+            m.style.background = EVENT_COLORS[e.type] || '#ccc';
+            m.title = `Story event (type ${e.type}) · ${e.scene} · ${formatPlayTime(e.playTime)}`;
+            m.addEventListener('click', () => { stop(); seek(e.index); });
+            marks.appendChild(m);
+        }
+        const legend = ref('legend');
+        legend.replaceChildren();
+        const types = [...new Set(events.map(e => e.type))].sort();
+        for (const t of types) {
+            const item = document.createElement('span');
+            const dot = document.createElement('i');
+            dot.style.background = EVENT_COLORS[t] || '#ccc';
+            item.append(dot, `type ${t}`);
+            legend.appendChild(item);
+        }
+        if (types.length) legend.append(' (meaning not yet known)');
+    }
+
+    function buildPins() {
+        const layer = ref('pins');
+        layer.replaceChildren();
+        pins = [];
+        for (const event of events) {
+            const names = lookup(event.scene);
+            if (!names.length) continue;
+            // centre of the scene's tiles
+            const boxes = names.map(n => map.tiles[n]);
+            const x0 = Math.min(...boxes.map(b => b.x)), x1 = Math.max(...boxes.map(b => b.x + b.width));
+            const y0 = Math.min(...boxes.map(b => b.y)), y1 = Math.max(...boxes.map(b => b.y + b.height));
+            const el = document.createElement('div');
+            el.className = 'tl-pin';
+            el.style.left = `${(x0 + x1) / 2}px`;
+            el.style.top = `${(y0 + y1) / 2}px`;
+            el.style.background = EVENT_COLORS[event.type] || '#ccc';
+            el.title = `Story event (type ${event.type}) · ${event.scene} · ${formatPlayTime(event.playTime)}`;
+            el.hidden = true;
+            layer.appendChild(el);
+            pins.push({ event, el });
+        }
+    }
+
+    function renderEvents() {
+        const list = ref('event-list');
+        list.replaceChildren();
+        for (let i = events.length - 1; i >= 0; i--) {
+            const e = events[i];
+            if (e.index > position) continue;
+            const row = document.createElement('button');
+            row.className = 'tl-recent-item tl-event';
+            const dot = document.createElement('i');
+            dot.style.background = EVENT_COLORS[e.type] || '#ccc';
+            const name = document.createElement('span');
+            name.append(dot, e.scene);
+            const time = document.createElement('span');
+            time.className = 'tl-muted';
+            time.textContent = formatPlayTime(e.playTime);
+            row.append(name, time);
+            row.title = `Type ${e.type} · reached at scene ${e.index} of ${scenes.length}`;
+            row.addEventListener('click', () => { stop(); seek(e.index); });
+            list.appendChild(row);
+        }
+        if (!list.children.length) {
+            const p = document.createElement('p');
+            p.className = 'tl-muted';
+            p.textContent = events.length ? 'None reached yet' : 'This save has no story events';
+            list.appendChild(p);
+        }
     }
 
     function renderRecent() {
@@ -196,7 +291,9 @@ export function mountTimeline(root, store, { onUpload } = {}) {
 
     // ------------------------------------------------------------ pan / zoom
     function applyView() {
-        ref('world').style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.scale})`;
+        const world = ref('world');
+        world.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.scale})`;
+        world.style.setProperty('--zoom', view.scale);   // pins stay the same size on screen
     }
     function fit() {
         if (!map) return;
