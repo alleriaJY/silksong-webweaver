@@ -26,12 +26,6 @@ const STATS_HTML = readFileSync(join(HERE, '..', 'stats.html'), 'utf-8').replace
 const wasm = vi.hoisted(() => ({ current: null }));
 vi.mock('../pkg/wasm_crypto.js', () => ({
     default: vi.fn(async () => {}),
-    // legacy export (Map-shaped in production; plain objects here)
-    decrypt_and_parse: vi.fn(() => ({
-        success: true, error: null,
-        playerData: wasm.current.playerData, sceneData: wasm.current.sceneData,
-    })),
-    // Phase 1 export
     decrypt_save: vi.fn(() => ({ success: true, error: null, save: wasm.current })),
 }));
 

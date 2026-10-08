@@ -2,14 +2,6 @@
 /* eslint-disable */
 
 /**
- * Legacy API: returns only playerData and sceneData, as JS `Map`s.
- *
- * Kept for `exploration_timeline.html` until it moves onto `decrypt_save`
- * (ROADMAP Phase 3). New code should call `decrypt_save`.
- */
-export function decrypt_and_parse(data: Uint8Array): any;
-
-/**
  * Decrypt a Silksong save file and return every root of the save.
  *
  * Objects are serialised as plain JavaScript objects (not `Map`s), so the JS
@@ -27,7 +19,6 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly decrypt_and_parse: (a: number, b: number) => any;
   readonly decrypt_save: (a: number, b: number) => any;
   readonly decrypt_to_json: (a: number, b: number) => [number, number, number, number];
   readonly __wbindgen_externrefs: WebAssembly.Table;

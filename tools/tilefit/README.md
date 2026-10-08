@@ -108,8 +108,8 @@ Every tile has a verdict as of this commit: 739 positioned, 92 removed, so the p
   sprite-to-scene mapping independent of file names.
 - **Most "no tile PNG" scenes are naming, not missing art.** Only about 2% of the map's
   room pixels are uncovered.
-- **Timeline matching bug.** `exploration_timeline.html#getTileBaseName` strips
-  `_mid/_right/...` from tile names but compares against unstripped scene names, so
-  `Arborium_11_mid` never matches `Arborium_11_mid.png`. Also accepting the exact full
+- **Timeline matching bug (fixed by scene_tiles.json).** The old timeline page's `getTileBaseName`
+  stripped `_mid/_right/...` from tile names but compared them with unstripped scene names, so
+  `Arborium_11_mid` never matched `Arborium_11_mid.png`. Also accepting the exact full
   name raises revealed scenes for the sample save from 416 to 532 of 686 (new
   coordinates), or 393 to 482 (old coordinates).

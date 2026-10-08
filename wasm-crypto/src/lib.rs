@@ -16,16 +16,6 @@ const ENCRYPTION_KEY: &[u8; 32] = b"UKu52ePUBwetZ9wNX88o54dnfKRu0T1l";
 /// Header size to skip in save files
 const HEADER_SIZE: usize = 25;
 
-/// Legacy result for `decrypt_and_parse` (objects arrive in JS as `Map`s)
-#[derive(Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct DecryptResult {
-    pub success: bool,
-    pub error: Option<String>,
-    pub player_data: Option<serde_json::Value>,
-    pub scene_data: Option<serde_json::Value>,
-}
-
 /// Result for `decrypt_save`: the whole decrypted save, every root included
 #[derive(Serialize, Deserialize)]
 pub struct SaveResult {
@@ -61,30 +51,6 @@ pub fn decrypt_save(data: &[u8]) -> JsValue {
 #[wasm_bindgen]
 pub fn decrypt_to_json(data: &[u8]) -> Result<String, JsValue> {
     decrypt_plaintext(data).map_err(|e| JsValue::from_str(&e))
-}
-
-/// Legacy API: returns only playerData and sceneData, as JS `Map`s.
-///
-/// Kept for `exploration_timeline.html` until it moves onto `decrypt_save`
-/// (ROADMAP Phase 3). New code should call `decrypt_save`.
-#[wasm_bindgen]
-pub fn decrypt_and_parse(data: &[u8]) -> JsValue {
-    let result = match decrypt_save_file(data) {
-        Ok(save) => DecryptResult {
-            success: true,
-            error: None,
-            player_data: Some(save["playerData"].clone()),
-            scene_data: Some(save["sceneData"].clone()),
-        },
-        Err(e) => DecryptResult {
-            success: false,
-            error: Some(e),
-            player_data: None,
-            scene_data: None,
-        },
-    };
-
-    serde_wasm_bindgen::to_value(&result).unwrap_or(JsValue::NULL)
 }
 
 /// Internal: decrypt the save file to its plaintext JSON string
@@ -182,34 +148,6 @@ mod tests {
 
         let result = decrypt_save_file(&data);
         assert!(result.is_err());
-    }
-
-    /// Test DecryptResult serialization structure
-    #[test]
-    fn test_decrypt_result_structure() {
-        // Test success result
-        let success_result = DecryptResult {
-            success: true,
-            error: None,
-            player_data: Some(serde_json::json!({"test": "value"})),
-            scene_data: Some(serde_json::json!({"test": "value"})),
-        };
-        assert!(success_result.success);
-        assert!(success_result.error.is_none());
-        assert!(success_result.player_data.is_some());
-        assert!(success_result.scene_data.is_some());
-
-        // Test error result
-        let error_result = DecryptResult {
-            success: false,
-            error: Some("Test error".to_string()),
-            player_data: None,
-            scene_data: None,
-        };
-        assert!(!error_result.success);
-        assert_eq!(error_result.error, Some("Test error".to_string()));
-        assert!(error_result.player_data.is_none());
-        assert!(error_result.scene_data.is_none());
     }
 
     /// Test that header size constant is correct

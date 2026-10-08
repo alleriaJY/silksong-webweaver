@@ -43,21 +43,6 @@ function decodeText(ptr, len) {
 let WASM_VECTOR_LEN = 0;
 
 /**
- * Legacy API: returns only playerData and sceneData, as JS `Map`s.
- *
- * Kept for `exploration_timeline.html` until it moves onto `decrypt_save`
- * (ROADMAP Phase 3). New code should call `decrypt_save`.
- * @param {Uint8Array} data
- * @returns {any}
- */
-export function decrypt_and_parse(data) {
-    const ptr0 = passArray8ToWasm0(data, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.decrypt_and_parse(ptr0, len0);
-    return ret;
-}
-
-/**
  * Decrypt a Silksong save file and return every root of the save.
  *
  * Objects are serialised as plain JavaScript objects (not `Map`s), so the JS
