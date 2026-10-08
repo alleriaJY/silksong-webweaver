@@ -8,9 +8,13 @@ Merges tile coordinates from all sources in strict priority order:
   Priority 4: tile_coordinates.json (original OpenCV template matcher fallback)
 
 Saves the merged master file to web/assets/img/fullmap/tile_coordinates.json.
+
+Superseded: tools/tilefit now publishes the reviewed coordinates to that file. This
+script refuses to overwrite them unless run with --force.
 """
 
 import json
+import sys
 from pathlib import Path
 from datetime import datetime
 
@@ -22,6 +26,11 @@ MASTER_COORDS_PATH = ROOT / "web" / "assets" / "img" / "fullmap" / "tile_coordin
 
 
 def main():
+    if MASTER_COORDS_PATH.exists() and "--force" not in sys.argv:
+        meta = json.loads(MASTER_COORDS_PATH.read_text(encoding="utf-8")).get("metadata", {})
+        if meta.get("generator") == "tools/tilefit/merge.py":
+            sys.exit(f"{MASTER_COORDS_PATH} holds the reviewed tilefit coordinates; "
+                     "run tools/tilefit/run_all.py instead (or pass --force to overwrite them).")
     print("=" * 60)
     print("PHASE 6: FINAL TILE COORDINATE MERGE")
     print("=" * 60)

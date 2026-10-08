@@ -8,20 +8,23 @@
     "sources": {
       "review": 739
     },
-    "generated_at": "2026-10-08 23:34:03",
-    "generator": "tools/tilefit/merge.py"
+    "generated_at": "2026-10-09 00:11:49",
+    "generator": "tools/tilefit/merge.py",
+    "scale_refined": 239
   },
   "tiles": {
     "Abyss_01.png": {
       "x": 1743,
-      "y": 3282,
+      "y": 3281,
       "width": 58,
-      "height": 174,
-      "confidence": 0.887,
+      "height": 175,
+      "confidence": 0.9339,
       "scale": 0.767,
       "area": "Abyss",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.77
     },
     "Abyss_02.png": {
       "x": 2094,
@@ -48,13 +51,15 @@
     "Abyss_02b_top.png": {
       "x": 1968,
       "y": 3245,
-      "width": 64,
-      "height": 26,
-      "confidence": 0.862,
+      "width": 63,
+      "height": 24,
+      "confidence": 0.9257,
       "scale": 0.767,
       "area": "Abyss",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.715
     },
     "Abyss_03.png": {
       "x": 2351,
@@ -168,14 +173,16 @@
     },
     "Abyss_09 #4265114.png": {
       "x": 1999,
-      "y": 3120,
+      "y": 3121,
       "width": 71,
-      "height": 39,
-      "confidence": 0.899,
+      "height": 38,
+      "confidence": 0.9592,
       "scale": 0.767,
       "area": "Abyss",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.74
     },
     "Abyss_09_connection.png": {
       "x": 2023,
@@ -189,26 +196,30 @@
       "source": "review"
     },
     "Abyss_09_top.png": {
-      "x": 2003,
+      "x": 2004,
       "y": 2972,
-      "width": 47,
+      "width": 46,
       "height": 113,
-      "confidence": 0.891,
+      "confidence": 0.9584,
       "scale": 0.767,
       "area": "Abyss",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.77
     },
     "Abyss_11.png": {
-      "x": 1994,
+      "x": 1995,
       "y": 3168,
-      "width": 34,
-      "height": 77,
-      "confidence": 0.887,
+      "width": 33,
+      "height": 76,
+      "confidence": 0.9597,
       "scale": 0.767,
       "area": "Abyss",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Abyss_12 #4265172.png": {
       "x": 1968,
@@ -223,14 +234,16 @@
     },
     "Abyss_13.png": {
       "x": 2028,
-      "y": 3159,
-      "width": 324,
-      "height": 45,
-      "confidence": 0.892,
+      "y": 3160,
+      "width": 325,
+      "height": 44,
+      "confidence": 0.926,
       "scale": 0.767,
       "area": "Abyss",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Ant_02.png": {
       "x": 1719,
@@ -310,26 +323,30 @@
       "source": "review"
     },
     "Ant_05c_top_right.png": {
-      "x": 2536,
+      "x": 2537,
       "y": 2474,
-      "width": 32,
-      "height": 31,
-      "confidence": 0.858,
+      "width": 31,
+      "height": 30,
+      "confidence": 0.9469,
       "scale": 0.767,
       "area": "Ant",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.74,
+      "scale_y": 0.74
     },
     "Ant_09.png": {
-      "x": 2570,
-      "y": 2450,
-      "width": 217,
-      "height": 61,
-      "confidence": 0.846,
+      "x": 2568,
+      "y": 2451,
+      "width": 219,
+      "height": 60,
+      "confidence": 0.9624,
       "scale": 0.767,
       "area": "Ant",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.755
     },
     "Ant_14.png": {
       "x": 2429,
@@ -420,15 +437,17 @@
       "source": "review"
     },
     "Aqueduct_01 #4264982.png": {
-      "x": 2720,
+      "x": 2721,
       "y": 1166,
-      "width": 328,
-      "height": 51,
-      "confidence": 0.887,
+      "width": 327,
+      "height": 50,
+      "confidence": 0.9605,
       "scale": 0.767,
       "area": "Aqueduct",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Aqueduct_02 #4264737.png": {
       "x": 3048,
@@ -522,23 +541,27 @@
       "x": 3179,
       "y": 1234,
       "width": 170,
-      "height": 37,
-      "confidence": 0.864,
+      "height": 36,
+      "confidence": 0.9087,
       "scale": 0.767,
       "area": "Aqueduct",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Aqueduct_06_left.png": {
-      "x": 3165,
+      "x": 3166,
       "y": 1250,
-      "width": 31,
-      "height": 18,
-      "confidence": 0.88,
+      "width": 29,
+      "height": 17,
+      "confidence": 0.9512,
       "scale": 0.767,
       "area": "Aqueduct",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.705,
+      "scale_y": 0.72
     },
     "Aqueduct_06_top.png": {
       "x": 3167,
@@ -553,36 +576,42 @@
     },
     "Aqueduct_07 #4265271.png": {
       "x": 3009,
-      "y": 1252,
+      "y": 1253,
       "width": 38,
-      "height": 17,
-      "confidence": 0.786,
+      "height": 16,
+      "confidence": 0.9183,
       "scale": 0.767,
       "area": "Aqueduct",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.705
     },
     "Aqueduct_07_top.png": {
       "x": 3010,
       "y": 1222,
-      "width": 38,
+      "width": 39,
       "height": 38,
-      "confidence": 0.902,
+      "confidence": 0.9573,
       "scale": 0.767,
       "area": "Aqueduct",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.79,
+      "scale_y": 0.75
     },
     "Aqueduct_08.png": {
-      "x": 3090,
+      "x": 3089,
       "y": 1243,
-      "width": 72,
-      "height": 28,
-      "confidence": 0.859,
+      "width": 75,
+      "height": 27,
+      "confidence": 0.941,
       "scale": 0.767,
       "area": "Aqueduct",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.795,
+      "scale_y": 0.745
     },
     "Arborium_01 #4264362.png": {
       "x": 2209,
@@ -598,24 +627,28 @@
     "Arborium_01_bot_left.png": {
       "x": 2208,
       "y": 1196,
-      "width": 12,
+      "width": 13,
       "height": 26,
-      "confidence": 0.821,
+      "confidence": 0.8628,
       "scale": 0.767,
       "area": "Arborium",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.785,
+      "scale_y": 0.77
     },
     "Arborium_01_top.png": {
       "x": 2210,
       "y": 1033,
-      "width": 37,
-      "height": 25,
-      "confidence": 0.884,
+      "width": 36,
+      "height": 26,
+      "confidence": 0.9347,
       "scale": 0.767,
       "area": "Arborium",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.74,
+      "scale_y": 0.775
     },
     "Arborium_01_top2.png": {
       "x": 2208,
@@ -642,13 +675,15 @@
     "Arborium_03.png": {
       "x": 2413,
       "y": 1106,
-      "width": 38,
-      "height": 111,
-      "confidence": 0.874,
+      "width": 39,
+      "height": 112,
+      "confidence": 0.9152,
       "scale": 0.767,
       "area": "Arborium",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.775
     },
     "Arborium_03_top.png": {
       "x": 2413,
@@ -673,15 +708,17 @@
       "source": "review"
     },
     "Arborium_05 #4264780.png": {
-      "x": 2250,
+      "x": 2249,
       "y": 1115,
-      "width": 163,
-      "height": 31,
-      "confidence": 0.853,
+      "width": 164,
+      "height": 30,
+      "confidence": 0.9607,
       "scale": 0.767,
       "area": "Arborium",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Arborium_06 #4265158.png": {
       "x": 2247,
@@ -784,14 +821,16 @@
     },
     "Arborium_tube.png": {
       "x": 2173,
-      "y": 1054,
+      "y": 1053,
       "width": 35,
-      "height": 28,
-      "confidence": 0.885,
+      "height": 29,
+      "confidence": 0.9369,
       "scale": 0.767,
       "area": "Arborium",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.775
     },
     "Aspid_01.png": {
       "x": 765,
@@ -817,14 +856,16 @@
     },
     "Aspid_01_base_02.png": {
       "x": 791,
-      "y": 2628,
+      "y": 2632,
       "width": 66,
-      "height": 8,
-      "confidence": 0.81,
+      "height": 7,
+      "confidence": 0.8932,
       "scale": 0.767,
       "area": "Aspid",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.725
     },
     "Aspid_01_mid.png": {
       "x": 770,
@@ -841,12 +882,14 @@
       "x": 582,
       "y": 2578,
       "width": 183,
-      "height": 23,
-      "confidence": 0.84,
+      "height": 22,
+      "confidence": 0.8967,
       "scale": 0.767,
       "area": "Aspid",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.72
     },
     "Aspid_xx.png": {
       "x": 582,
@@ -895,13 +938,15 @@
     "Belltown.png": {
       "x": 1690,
       "y": 2314,
-      "width": 118,
-      "height": 70,
-      "confidence": 0.905,
+      "width": 119,
+      "height": 69,
+      "confidence": 0.9506,
       "scale": 0.767,
       "area": "Belltown",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.755
     },
     "Belltown_04.png": {
       "x": 1670,
@@ -915,15 +960,17 @@
       "source": "review"
     },
     "Belltown_06 #4265371.png": {
-      "x": 1809,
-      "y": 2350,
-      "width": 115,
-      "height": 31,
-      "confidence": 0.858,
+      "x": 1808,
+      "y": 2351,
+      "width": 116,
+      "height": 30,
+      "confidence": 0.955,
       "scale": 0.767,
       "area": "Belltown",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Belltown_06_fisher.png": {
       "x": 1810,
@@ -959,15 +1006,17 @@
       "source": "review"
     },
     "Belltown_08 #4265402.png": {
-      "x": 1677,
+      "x": 1678,
       "y": 1993,
-      "width": 118,
+      "width": 117,
       "height": 68,
-      "confidence": 0.927,
+      "confidence": 0.9583,
       "scale": 0.767,
       "area": "Belltown",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Belltown_Room_Shellwood.png": {
       "x": 1604,
@@ -1047,48 +1096,56 @@
       "source": "review"
     },
     "Bellway_02_left.png": {
-      "x": 1982,
+      "x": 1983,
       "y": 2781,
-      "width": 35,
-      "height": 17,
-      "confidence": 0.838,
+      "width": 32,
+      "height": 16,
+      "confidence": 0.8935,
       "scale": 0.767,
       "area": "Bellway",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.705,
+      "scale_y": 0.705
     },
     "Bellway_03.png": {
-      "x": 2837,
+      "x": 2838,
       "y": 2712,
-      "width": 127,
-      "height": 37,
-      "confidence": 0.792,
+      "width": 126,
+      "height": 36,
+      "confidence": 0.9415,
       "scale": 0.767,
       "area": "Bellway",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.74
     },
     "Bellway_03_b.png": {
-      "x": 2957,
-      "y": 2677,
-      "width": 71,
-      "height": 58,
-      "confidence": 0.815,
+      "x": 2958,
+      "y": 2678,
+      "width": 70,
+      "height": 57,
+      "confidence": 0.9391,
       "scale": 0.767,
       "area": "Bellway",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Bellway_03_c.png": {
-      "x": 2951,
-      "y": 2707,
-      "width": 78,
-      "height": 41,
-      "confidence": 0.825,
+      "x": 2950,
+      "y": 2708,
+      "width": 80,
+      "height": 40,
+      "confidence": 0.8947,
       "scale": 0.767,
       "area": "Bellway",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.78,
+      "scale_y": 0.735
     },
     "Bellway_04.png": {
       "x": 2278,
@@ -1103,36 +1160,42 @@
     },
     "Bellway_04_bot_left.png": {
       "x": 2286,
-      "y": 2308,
-      "width": 54,
-      "height": 28,
-      "confidence": 0.894,
+      "y": 2309,
+      "width": 56,
+      "height": 27,
+      "confidence": 0.933,
       "scale": 0.767,
       "area": "Bellway",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.785,
+      "scale_y": 0.745
     },
     "Bellway_Aqueduct #4264577.png": {
       "x": 3087,
       "y": 1164,
       "width": 77,
-      "height": 39,
-      "confidence": 0.845,
+      "height": 38,
+      "confidence": 0.9312,
       "scale": 0.767,
       "area": "Bellway",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Bellway_Aqueduct_top.png": {
       "x": 3105,
-      "y": 1121,
-      "width": 62,
-      "height": 59,
-      "confidence": 0.886,
+      "y": 1122,
+      "width": 61,
+      "height": 57,
+      "confidence": 0.9404,
       "scale": 0.767,
       "area": "Bellway",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.735
     },
     "Bellway_City.png": {
       "x": 2281,
@@ -1157,15 +1220,17 @@
       "source": "review"
     },
     "Bellway_Coral #4264674.png": {
-      "x": 681,
+      "x": 680,
       "y": 1894,
-      "width": 110,
+      "width": 112,
       "height": 38,
-      "confidence": 0.898,
+      "confidence": 0.9328,
       "scale": 0.767,
       "area": "Bellway",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.75
     },
     "Bellway_Peak_02.png": {
       "x": 267,
@@ -1212,15 +1277,17 @@
       "source": "review"
     },
     "Bone_01c_bot.png": {
-      "x": 1199,
-      "y": 2723,
-      "width": 101,
-      "height": 31,
-      "confidence": 0.888,
+      "x": 1198,
+      "y": 2724,
+      "width": 102,
+      "height": 30,
+      "confidence": 0.9691,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Bone_01c_top.png": {
       "x": 1188,
@@ -1245,15 +1312,17 @@
       "source": "review"
     },
     "Bone_03 #4264964.png": {
-      "x": 1320,
+      "x": 1321,
       "y": 2591,
-      "width": 64,
-      "height": 110,
-      "confidence": 0.818,
+      "width": 63,
+      "height": 109,
+      "confidence": 0.9262,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Bone_03_top #4265191.png": {
       "x": 1319,
@@ -1278,15 +1347,17 @@
       "source": "review"
     },
     "Bone_05.png": {
-      "x": 1024,
-      "y": 2558,
-      "width": 173,
-      "height": 34,
-      "confidence": 0.905,
+      "x": 1023,
+      "y": 2559,
+      "width": 175,
+      "height": 33,
+      "confidence": 0.9663,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.74
     },
     "Bone_05_right.png": {
       "x": 1162,
@@ -1356,14 +1427,16 @@
     },
     "Bone_08 #4265445.png": {
       "x": 1674,
-      "y": 2575,
-      "width": 48,
-      "height": 123,
-      "confidence": 0.865,
+      "y": 2574,
+      "width": 47,
+      "height": 124,
+      "confidence": 0.9597,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.77
     },
     "Bone_09.png": {
       "x": 1673,
@@ -1380,12 +1453,14 @@
       "x": 1382,
       "y": 2618,
       "width": 123,
-      "height": 82,
-      "confidence": 0.871,
+      "height": 83,
+      "confidence": 0.911,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.775
     },
     "Bone_10_left.png": {
       "x": 1378,
@@ -1412,13 +1487,15 @@
     "Bone_11b.png": {
       "x": 960,
       "y": 2628,
-      "width": 74,
-      "height": 27,
-      "confidence": 0.857,
+      "width": 75,
+      "height": 26,
+      "confidence": 0.9299,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.73
     },
     "Bone_14 #4265374.png": {
       "x": 1385,
@@ -1454,15 +1531,17 @@
       "source": "review"
     },
     "Bone_18.png": {
-      "x": 1363,
-      "y": 2502,
-      "width": 48,
-      "height": 25,
-      "confidence": 0.89,
+      "x": 1364,
+      "y": 2503,
+      "width": 47,
+      "height": 24,
+      "confidence": 0.9308,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Bone_18_top.png": {
       "x": 1367,
@@ -1478,13 +1557,15 @@
     "Bone_19.png": {
       "x": 1487,
       "y": 2502,
-      "width": 166,
-      "height": 35,
-      "confidence": 0.885,
+      "width": 167,
+      "height": 34,
+      "confidence": 0.9282,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.745
     },
     "Bone_East_01 #4264695.png": {
       "x": 2074,
@@ -1522,13 +1603,15 @@
     "Bone_East_03 #4265359.png": {
       "x": 2127,
       "y": 2681,
-      "width": 230,
-      "height": 48,
-      "confidence": 0.904,
+      "width": 231,
+      "height": 47,
+      "confidence": 0.937,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.755
     },
     "Bone_East_03_right_clean.png": {
       "x": 2317,
@@ -1597,15 +1680,17 @@
       "source": "review"
     },
     "Bone_East_07_bot.png": {
-      "x": 2787,
-      "y": 2683,
-      "width": 51,
-      "height": 166,
-      "confidence": 0.87,
+      "x": 2786,
+      "y": 2682,
+      "width": 52,
+      "height": 167,
+      "confidence": 0.9275,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Bone_East_07_top.png": {
       "x": 2786,
@@ -1621,24 +1706,28 @@
     "Bone_East_08.png": {
       "x": 2837,
       "y": 2788,
-      "width": 53,
-      "height": 50,
-      "confidence": 0.819,
+      "width": 54,
+      "height": 52,
+      "confidence": 0.8704,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.78,
+      "scale_y": 0.795
     },
     "Bone_East_08_right.png": {
       "x": 2839,
       "y": 2790,
-      "width": 189,
+      "width": 190,
       "height": 61,
-      "confidence": 0.933,
+      "confidence": 0.9633,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.76
     },
     "Bone_East_09.png": {
       "x": 3029,
@@ -1652,26 +1741,30 @@
       "source": "review"
     },
     "Bone_East_09b.png": {
-      "x": 3028,
-      "y": 2618,
-      "width": 117,
-      "height": 135,
-      "confidence": 0.86,
+      "x": 3027,
+      "y": 2617,
+      "width": 119,
+      "height": 136,
+      "confidence": 0.8924,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.775
     },
     "Bone_East_10 #4265220.png": {
       "x": 2838,
       "y": 2578,
-      "width": 157,
-      "height": 44,
-      "confidence": 0.823,
+      "width": 158,
+      "height": 43,
+      "confidence": 0.9207,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.75
     },
     "Bone_East_10_Church.png": {
       "x": 2988,
@@ -1696,15 +1789,17 @@
       "source": "review"
     },
     "Bone_East_10_top_right.png": {
-      "x": 2966,
+      "x": 2967,
       "y": 2577,
       "width": 25,
-      "height": 19,
-      "confidence": 0.762,
+      "height": 20,
+      "confidence": 0.907,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.78,
+      "scale_y": 0.78
     },
     "Bone_East_11 #4264462.png": {
       "x": 2789,
@@ -1719,25 +1814,29 @@
     },
     "Bone_East_11_connection.png": {
       "x": 2788,
-      "y": 2444,
-      "width": 51,
-      "height": 35,
-      "confidence": 0.803,
+      "y": 2445,
+      "width": 50,
+      "height": 34,
+      "confidence": 0.8562,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.745
     },
     "Bone_East_11_top.png": {
-      "x": 2787,
-      "y": 2267,
-      "width": 50,
-      "height": 333,
-      "confidence": 0.757,
+      "x": 2788,
+      "y": 2266,
+      "width": 49,
+      "height": 328,
+      "confidence": 0.8094,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Bone_East_12.png": {
       "x": 2128,
@@ -1762,15 +1861,17 @@
       "source": "review"
     },
     "Bone_East_14.png": {
-      "x": 3155,
-      "y": 2771,
-      "width": 180,
-      "height": 100,
-      "confidence": 0.869,
+      "x": 3154,
+      "y": 2770,
+      "width": 181,
+      "height": 101,
+      "confidence": 0.9392,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Bone_East_14_2.png": {
       "x": 3145,
@@ -1795,15 +1896,17 @@
       "source": "review"
     },
     "Bone_East_14b_lava_room.png": {
-      "x": 3335,
+      "x": 3336,
       "y": 2806,
-      "width": 80,
+      "width": 79,
       "height": 47,
-      "confidence": 0.897,
+      "confidence": 0.9348,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.765
     },
     "Bone_East_15.png": {
       "x": 2464,
@@ -1820,23 +1923,27 @@
       "x": 2464,
       "y": 2645,
       "width": 96,
-      "height": 90,
-      "confidence": 0.873,
+      "height": 89,
+      "confidence": 0.9203,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.76
     },
     "Bone_East_15_left.png": {
-      "x": 2425,
-      "y": 2642,
-      "width": 89,
-      "height": 34,
-      "confidence": 0.907,
+      "x": 2424,
+      "y": 2643,
+      "width": 90,
+      "height": 33,
+      "confidence": 0.9509,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.74
     },
     "Bone_East_15_top_right.png": {
       "x": 2497,
@@ -1872,15 +1979,17 @@
       "source": "review"
     },
     "Bone_East_17_top.png": {
-      "x": 2638,
+      "x": 2637,
       "y": 2602,
-      "width": 95,
-      "height": 27,
-      "confidence": 0.877,
+      "width": 96,
+      "height": 26,
+      "confidence": 0.9395,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.73
     },
     "Bone_East_17b.png": {
       "x": 2640,
@@ -1939,25 +2048,29 @@
     },
     "Bone_East_24.png": {
       "x": 2838,
-      "y": 2428,
-      "width": 333,
-      "height": 91,
-      "confidence": 0.794,
+      "y": 2429,
+      "width": 334,
+      "height": 90,
+      "confidence": 0.9077,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.76
     },
     "Bone_East_25.png": {
-      "x": 3236,
+      "x": 3235,
       "y": 2450,
-      "width": 94,
+      "width": 95,
       "height": 28,
-      "confidence": 0.941,
+      "confidence": 0.9804,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Bone_East_25_right.png": {
       "x": 3324,
@@ -1974,12 +2087,14 @@
       "x": 3177,
       "y": 2480,
       "width": 269,
-      "height": 61,
-      "confidence": 0.87,
+      "height": 60,
+      "confidence": 0.9691,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Bone_East_27.png": {
       "x": 3171,
@@ -2016,25 +2131,29 @@
     },
     "Bone_East_Weavehome_Basement.png": {
       "x": 3592,
-      "y": 2857,
+      "y": 2858,
       "width": 152,
-      "height": 48,
-      "confidence": 0.894,
+      "height": 47,
+      "confidence": 0.9769,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.755
     },
     "Bone_Steel_Servant.png": {
       "x": 178,
-      "y": 2753,
+      "y": 2754,
       "width": 171,
-      "height": 48,
-      "confidence": 0.88,
+      "height": 47,
+      "confidence": 0.962,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Bone_Tramway.png": {
       "x": 1534,
@@ -2060,14 +2179,16 @@
     },
     "Bone_Tramway_left.png": {
       "x": 1506,
-      "y": 2726,
+      "y": 2727,
       "width": 51,
-      "height": 35,
-      "confidence": 0.831,
+      "height": 34,
+      "confidence": 0.9375,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Bonegrave.png": {
       "x": 337,
@@ -2105,13 +2226,15 @@
     "Bonetown_top_right.png": {
       "x": 762,
       "y": 2636,
-      "width": 245,
+      "width": 246,
       "height": 91,
-      "confidence": 0.872,
+      "confidence": 0.9107,
       "scale": 0.767,
       "area": "Bonetown",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Clover_01 #4264360.png": {
       "x": 3280,
@@ -2171,35 +2294,41 @@
     "Clover_05c.png": {
       "x": 3487,
       "y": 2069,
-      "width": 40,
-      "height": 173,
-      "confidence": 0.88,
+      "width": 39,
+      "height": 172,
+      "confidence": 0.9535,
       "scale": 0.767,
       "area": "Clover",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.765
     },
     "Clover_06.png": {
       "x": 3312,
-      "y": 2024,
+      "y": 2025,
       "width": 334,
-      "height": 37,
-      "confidence": 0.85,
+      "height": 36,
+      "confidence": 0.9554,
       "scale": 0.767,
       "area": "Clover",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.74
     },
     "Clover_10.png": {
       "x": 3527,
       "y": 2097,
       "width": 252,
-      "height": 62,
-      "confidence": 0.842,
+      "height": 61,
+      "confidence": 0.901,
       "scale": 0.767,
       "area": "Clover",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.75
     },
     "Clover_10_top.png": {
       "x": 3652,
@@ -2257,15 +2386,17 @@
       "source": "review"
     },
     "Clover_18.png": {
-      "x": 3822,
-      "y": 2108,
+      "x": 3821,
+      "y": 2110,
       "width": 74,
-      "height": 97,
-      "confidence": 0.897,
+      "height": 95,
+      "confidence": 0.9311,
       "scale": 0.767,
       "area": "Clover",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.755
     },
     "Clover_18_right.png": {
       "x": 3860,
@@ -2282,23 +2413,27 @@
       "x": 3526,
       "y": 2060,
       "width": 120,
-      "height": 28,
-      "confidence": 0.866,
+      "height": 29,
+      "confidence": 0.9393,
       "scale": 0.767,
       "area": "Clover",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.775
     },
     "Clover_20 #4264805.png": {
-      "x": 3527,
+      "x": 3526,
       "y": 2178,
-      "width": 252,
-      "height": 71,
-      "confidence": 0.9,
+      "width": 253,
+      "height": 70,
+      "confidence": 0.9768,
       "scale": 0.767,
       "area": "Clover",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.76
     },
     "Clover_20_after.png": {
       "x": 3527,
@@ -2356,15 +2491,17 @@
       "source": "review"
     },
     "Cog_06.png": {
-      "x": 2099,
-      "y": 1313,
-      "width": 119,
-      "height": 31,
-      "confidence": 0.847,
+      "x": 2101,
+      "y": 1314,
+      "width": 116,
+      "height": 30,
+      "confidence": 0.9292,
       "scale": 0.767,
       "area": "Cog",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.75
     },
     "Cog_07 #4265256.png": {
       "x": 2101,
@@ -2379,14 +2516,16 @@
     },
     "Cog_07b.png": {
       "x": 2115,
-      "y": 1388,
+      "y": 1389,
       "width": 47,
-      "height": 38,
-      "confidence": 0.894,
+      "height": 37,
+      "confidence": 0.9428,
       "scale": 0.767,
       "area": "Cog",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.735
     },
     "Cog_08.png": {
       "x": 2014,
@@ -2424,24 +2563,28 @@
     "Cog_09 #4264410.png": {
       "x": 2015,
       "y": 932,
-      "width": 84,
+      "width": 83,
       "height": 76,
-      "confidence": 0.755,
+      "confidence": 0.7879,
       "scale": 0.767,
       "area": "Cog",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Cog_09_Destroyed.png": {
-      "x": 2014,
+      "x": 2015,
       "y": 902,
-      "width": 84,
+      "width": 83,
       "height": 104,
-      "confidence": 0.853,
+      "confidence": 0.8932,
       "scale": 0.767,
       "area": "Cog",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Cog_09_Destroyed_bot_right.png": {
       "x": 2068,
@@ -2457,13 +2600,15 @@
     "Cog_10.png": {
       "x": 1941,
       "y": 1285,
-      "width": 71,
-      "height": 31,
-      "confidence": 0.882,
+      "width": 70,
+      "height": 32,
+      "confidence": 0.9382,
       "scale": 0.767,
       "area": "Cog",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.77
     },
     "Cog_10_Destroyed.png": {
       "x": 2109,
@@ -2499,37 +2644,43 @@
       "source": "review"
     },
     "Cog_Dancers_top.png": {
-      "x": 2011,
+      "x": 2014,
       "y": 1207,
-      "width": 97,
-      "height": 38,
-      "confidence": 0.704,
+      "width": 93,
+      "height": 39,
+      "confidence": 0.7474,
       "scale": 0.767,
       "area": "Cog",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.735,
+      "scale_y": 0.775
     },
     "Coral_02.png": {
       "x": 498,
       "y": 2079,
       "width": 278,
-      "height": 102,
-      "confidence": 0.873,
+      "height": 101,
+      "confidence": 0.912,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.76
     },
     "Coral_03 #4264958.png": {
       "x": 776,
       "y": 1908,
-      "width": 77,
-      "height": 271,
-      "confidence": 0.837,
+      "width": 76,
+      "height": 272,
+      "confidence": 0.9629,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.77
     },
     "Coral_10.png": {
       "x": 1133,
@@ -2554,37 +2705,43 @@
       "source": "review"
     },
     "Coral_12.png": {
-      "x": 853,
-      "y": 2017,
-      "width": 111,
-      "height": 91,
-      "confidence": 0.854,
+      "x": 852,
+      "y": 2018,
+      "width": 112,
+      "height": 90,
+      "confidence": 0.9386,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.76
     },
     "Coral_19 #4264852.png": {
       "x": 653,
-      "y": 2179,
-      "width": 222,
-      "height": 64,
-      "confidence": 0.893,
+      "y": 2180,
+      "width": 221,
+      "height": 63,
+      "confidence": 0.9527,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Coral_19_base2.png": {
       "x": 786,
-      "y": 2192,
-      "width": 67,
-      "height": 51,
-      "confidence": 0.41,
+      "y": 2187,
+      "width": 65,
+      "height": 49,
+      "confidence": 0.7604,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.725
     },
     "Coral_19_left.png": {
       "x": 352,
@@ -2620,26 +2777,30 @@
       "source": "review"
     },
     "Coral_23_secret #4265289.png": {
-      "x": 350,
+      "x": 351,
       "y": 1745,
-      "width": 30,
+      "width": 29,
       "height": 57,
-      "confidence": 0.897,
+      "confidence": 0.9525,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.735,
+      "scale_y": 0.765
     },
     "Coral_24.png": {
       "x": 684,
-      "y": 1686,
+      "y": 1687,
       "width": 232,
-      "height": 71,
-      "confidence": 0.925,
+      "height": 70,
+      "confidence": 0.963,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Coral_25 #4265187.png": {
       "x": 227,
@@ -2719,15 +2880,17 @@
       "source": "review"
     },
     "Coral_34.png": {
-      "x": 376,
-      "y": 1991,
-      "width": 93,
-      "height": 51,
-      "confidence": 0.846,
+      "x": 370,
+      "y": 1990,
+      "width": 100,
+      "height": 53,
+      "confidence": 0.8789,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.825,
+      "scale_y": 0.785
     },
     "Coral_34_2.png": {
       "x": 469,
@@ -2752,15 +2915,17 @@
       "source": "review"
     },
     "Coral_34_top.png": {
-      "x": 243,
+      "x": 244,
       "y": 1940,
-      "width": 123,
-      "height": 64,
-      "confidence": 0.891,
+      "width": 122,
+      "height": 63,
+      "confidence": 0.9329,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Coral_35.png": {
       "x": 646,
@@ -2819,14 +2984,16 @@
     },
     "Coral_35_top_break_base_bottom.png": {
       "x": 658,
-      "y": 1753,
-      "width": 17,
-      "height": 9,
-      "confidence": 0.695,
+      "y": 1754,
+      "width": 16,
+      "height": 8,
+      "confidence": 0.7885,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.705,
+      "scale_y": 0.705
     },
     "Coral_35_top_secret #4265144.png": {
       "x": 650,
@@ -2840,15 +3007,17 @@
       "source": "review"
     },
     "Coral_36 #4265385.png": {
-      "x": 705,
+      "x": 703,
       "y": 1857,
-      "width": 25,
-      "height": 9,
-      "confidence": 0.547,
+      "width": 27,
+      "height": 10,
+      "confidence": 0.6025,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.83,
+      "scale_y": 0.83
     },
     "Coral_36.png": {
       "x": 684,
@@ -2884,15 +3053,17 @@
       "source": "review"
     },
     "Coral_37_right_cap.png": {
-      "x": 987,
-      "y": 2059,
-      "width": 14,
-      "height": 17,
-      "confidence": 0.79,
+      "x": 986,
+      "y": 2058,
+      "width": 15,
+      "height": 18,
+      "confidence": 0.8562,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.81,
+      "scale_y": 0.81
     },
     "Coral_38.png": {
       "x": 954,
@@ -2907,36 +3078,42 @@
     },
     "Coral_38_bot.png": {
       "x": 971,
-      "y": 1712,
+      "y": 1715,
       "width": 72,
-      "height": 81,
-      "confidence": 0.887,
+      "height": 77,
+      "confidence": 0.9335,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.73
     },
     "Coral_39.png": {
-      "x": 218,
-      "y": 1699,
+      "x": 217,
+      "y": 1698,
       "width": 135,
-      "height": 74,
-      "confidence": 0.933,
+      "height": 75,
+      "confidence": 0.9671,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.77
     },
     "Coral_40 #4265216.png": {
       "x": 577,
-      "y": 1713,
-      "width": 69,
-      "height": 26,
-      "confidence": 0.907,
+      "y": 1714,
+      "width": 70,
+      "height": 25,
+      "confidence": 0.9391,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.725
     },
     "Coral_41.png": {
       "x": 458,
@@ -2961,37 +3138,43 @@
       "source": "review"
     },
     "Coral_42_top.png": {
-      "x": 584,
+      "x": 585,
       "y": 1836,
-      "width": 58,
+      "width": 57,
       "height": 29,
-      "confidence": 0.884,
+      "confidence": 0.9383,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Coral_43.png": {
-      "x": 500,
+      "x": 499,
       "y": 1924,
-      "width": 146,
-      "height": 23,
-      "confidence": 0.868,
+      "width": 147,
+      "height": 22,
+      "confidence": 0.959,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.72
     },
     "Coral_44.png": {
       "x": 684,
       "y": 1605,
       "width": 232,
-      "height": 67,
-      "confidence": 0.919,
+      "height": 68,
+      "confidence": 0.9555,
       "scale": 0.767,
       "area": "Coral",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.77
     },
     "Coral_Judge_Arena.png": {
       "x": 1062,
@@ -3029,46 +3212,54 @@
     "Crawl_02_bottom.png": {
       "x": 542,
       "y": 2571,
-      "width": 40,
+      "width": 39,
       "height": 55,
-      "confidence": 0.885,
+      "confidence": 0.9445,
       "scale": 0.767,
       "area": "Crawl",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.76
     },
     "Crawl_02_top.png": {
       "x": 542,
       "y": 2431,
-      "width": 40,
+      "width": 39,
       "height": 150,
-      "confidence": 0.843,
+      "confidence": 0.914,
       "scale": 0.767,
       "area": "Crawl",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.77
     },
     "Crawl_03.png": {
-      "x": 310,
-      "y": 2472,
-      "width": 237,
-      "height": 99,
-      "confidence": 0.882,
+      "x": 309,
+      "y": 2473,
+      "width": 238,
+      "height": 98,
+      "confidence": 0.931,
       "scale": 0.767,
       "area": "Crawl",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.76
     },
     "Crawl_03b.png": {
       "x": 366,
-      "y": 2571,
-      "width": 175,
-      "height": 28,
-      "confidence": 0.916,
+      "y": 2572,
+      "width": 176,
+      "height": 27,
+      "confidence": 0.9487,
       "scale": 0.767,
       "area": "Crawl",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Crawl_04 #4264981.png": {
       "x": 579,
@@ -3083,36 +3274,42 @@
     },
     "Crawl_05.png": {
       "x": 28,
-      "y": 2528,
-      "width": 293,
-      "height": 36,
-      "confidence": 0.857,
+      "y": 2529,
+      "width": 292,
+      "height": 35,
+      "confidence": 0.9439,
       "scale": 0.767,
       "area": "Crawl",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.735
     },
     "Crawl_07.png": {
       "x": 432,
       "y": 2599,
-      "width": 106,
-      "height": 64,
-      "confidence": 0.872,
+      "width": 105,
+      "height": 65,
+      "confidence": 0.9485,
       "scale": 0.767,
       "area": "Crawl",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.77
     },
     "Crawl_08.png": {
-      "x": 422,
+      "x": 423,
       "y": 2442,
-      "width": 97,
-      "height": 31,
-      "confidence": 0.887,
+      "width": 96,
+      "height": 30,
+      "confidence": 0.9578,
       "scale": 0.767,
       "area": "Crawl",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Crawl_09.png": {
       "x": 290,
@@ -3148,15 +3345,17 @@
       "source": "review"
     },
     "Dock_01 #4265393.png": {
-      "x": 2023,
+      "x": 2024,
       "y": 2646,
-      "width": 51,
+      "width": 50,
       "height": 107,
-      "confidence": 0.897,
+      "confidence": 0.9609,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.77
     },
     "Dock_01b.png": {
       "x": 1893,
@@ -3171,14 +3370,16 @@
     },
     "Dock_01b_2.png": {
       "x": 1893,
-      "y": 2712,
+      "y": 2713,
       "width": 69,
-      "height": 25,
-      "confidence": 0.864,
+      "height": 24,
+      "confidence": 0.9167,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.735
     },
     "Dock_02.png": {
       "x": 2299,
@@ -3248,14 +3449,16 @@
     },
     "Dock_02b_top.png": {
       "x": 2456,
-      "y": 2796,
+      "y": 2797,
       "width": 115,
-      "height": 64,
-      "confidence": 0.84,
+      "height": 63,
+      "confidence": 0.8883,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Dock_03.png": {
       "x": 2571,
@@ -3269,15 +3472,17 @@
       "source": "review"
     },
     "Dock_03_top_left.png": {
-      "x": 2731,
-      "y": 2803,
-      "width": 12,
-      "height": 20,
-      "confidence": 0.831,
+      "x": 2732,
+      "y": 2804,
+      "width": 11,
+      "height": 19,
+      "confidence": 0.904,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.715,
+      "scale_y": 0.715
     },
     "Dock_03b.png": {
       "x": 2571,
@@ -3314,25 +3519,29 @@
     },
     "Dock_03b_left.png": {
       "x": 2577,
-      "y": 2913,
-      "width": 13,
-      "height": 28,
-      "confidence": 0.746,
+      "y": 2911,
+      "width": 14,
+      "height": 31,
+      "confidence": 0.8454,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.825,
+      "scale_y": 0.825
     },
     "Dock_03c.png": {
       "x": 2584,
       "y": 2847,
-      "width": 121,
-      "height": 36,
-      "confidence": 0.892,
+      "width": 122,
+      "height": 37,
+      "confidence": 0.9231,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.78
     },
     "Dock_04 #4265335.png": {
       "x": 2078,
@@ -3434,15 +3643,17 @@
       "source": "review"
     },
     "Dock_12_top.png": {
-      "x": 2403,
-      "y": 2969,
-      "width": 38,
-      "height": 47,
-      "confidence": 0.828,
+      "x": 2402,
+      "y": 2970,
+      "width": 39,
+      "height": 45,
+      "confidence": 0.9065,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.73
     },
     "Dock_13.png": {
       "x": 2125,
@@ -3467,26 +3678,30 @@
       "source": "review"
     },
     "Dock_15.png": {
-      "x": 2163,
-      "y": 2925,
-      "width": 35,
-      "height": 104,
-      "confidence": 0.817,
+      "x": 2164,
+      "y": 2926,
+      "width": 34,
+      "height": 103,
+      "confidence": 0.9367,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.73,
+      "scale_y": 0.76
     },
     "Dock_15_secret.png": {
       "x": 2164,
-      "y": 2973,
-      "width": 19,
-      "height": 25,
-      "confidence": 0.879,
+      "y": 2974,
+      "width": 18,
+      "height": 23,
+      "confidence": 0.9171,
       "scale": 0.767,
       "area": "Dock",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.705,
+      "scale_y": 0.705
     },
     "Dock_16.png": {
       "x": 1903,
@@ -3522,26 +3737,30 @@
       "source": "review"
     },
     "Dust_03.png": {
-      "x": 2713,
-      "y": 2095,
-      "width": 171,
-      "height": 48,
-      "confidence": 0.889,
+      "x": 2712,
+      "y": 2096,
+      "width": 172,
+      "height": 47,
+      "confidence": 0.9718,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.755
     },
     "Dust_03_2.png": {
       "x": 2853,
       "y": 2143,
-      "width": 37,
+      "width": 36,
       "height": 42,
-      "confidence": 0.891,
+      "confidence": 0.9424,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Dust_04 #4264559.png": {
       "x": 2712,
@@ -3566,15 +3785,17 @@
       "source": "review"
     },
     "Dust_05_b.png": {
-      "x": 2486,
+      "x": 2488,
       "y": 1947,
-      "width": 45,
-      "height": 21,
-      "confidence": 0.84,
+      "width": 42,
+      "height": 20,
+      "confidence": 0.9696,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.705,
+      "scale_y": 0.725
     },
     "Dust_06 #4264675.png": {
       "x": 2927,
@@ -3634,57 +3855,67 @@
     "Dust_09_top.png": {
       "x": 2612,
       "y": 1615,
-      "width": 16,
+      "width": 17,
       "height": 216,
-      "confidence": 0.582,
+      "confidence": 0.6994,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.79,
+      "scale_y": 0.77
     },
     "Dust_09_top_2.png": {
-      "x": 2485,
-      "y": 1823,
-      "width": 191,
-      "height": 43,
-      "confidence": 0.873,
+      "x": 2484,
+      "y": 1824,
+      "width": 192,
+      "height": 42,
+      "confidence": 0.9499,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.745
     },
     "Dust_09_top_understore.png": {
       "x": 2612,
       "y": 1698,
-      "width": 16,
-      "height": 216,
-      "confidence": 0.54,
+      "width": 17,
+      "height": 215,
+      "confidence": 0.7709,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.79,
+      "scale_y": 0.765
     },
     "Dust_10 #4264781.png": {
       "x": 2592,
       "y": 2022,
       "width": 67,
-      "height": 44,
-      "confidence": 0.867,
+      "height": 43,
+      "confidence": 0.9336,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.75
     },
     "Dust_10b.png": {
       "x": 2481,
-      "y": 2007,
-      "width": 149,
-      "height": 91,
-      "confidence": 0.864,
+      "y": 2006,
+      "width": 148,
+      "height": 92,
+      "confidence": 0.9353,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.77
     },
     "Dust_11 #4264971.png": {
       "x": 2975,
@@ -3720,15 +3951,17 @@
       "source": "review"
     },
     "Dust_12 #4264651.png": {
-      "x": 2974,
+      "x": 2975,
       "y": 1999,
-      "width": 48,
-      "height": 24,
-      "confidence": 0.912,
+      "width": 47,
+      "height": 23,
+      "confidence": 0.9468,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Dust_Chef.png": {
       "x": 2834,
@@ -3744,13 +3977,15 @@
     "Dust_Chef_b.png": {
       "x": 2861,
       "y": 1999,
-      "width": 54,
+      "width": 53,
       "height": 35,
-      "confidence": 0.893,
+      "confidence": 0.9335,
       "scale": 0.767,
       "area": "Dust",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Dust_Maze_08_completed.png": {
       "x": 2376,
@@ -3764,37 +3999,43 @@
       "source": "review"
     },
     "Enclave_bridge_left.png": {
-      "x": 2469,
+      "x": 2468,
       "y": 1217,
-      "width": 126,
-      "height": 80,
-      "confidence": 0.734,
+      "width": 127,
+      "height": 79,
+      "confidence": 0.8046,
       "scale": 0.767,
       "area": "Enclave",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.755
     },
     "Greymoor_01 #4264709.png": {
-      "x": 2718,
-      "y": 2226,
+      "x": 2719,
+      "y": 2225,
       "width": 168,
-      "height": 42,
-      "confidence": 0.865,
+      "height": 43,
+      "confidence": 0.9065,
       "scale": 0.767,
       "area": "Greymoor",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.775
     },
     "Greymoor_01_top.png": {
       "x": 2719,
       "y": 2199,
       "width": 168,
-      "height": 56,
-      "confidence": 0.87,
+      "height": 55,
+      "confidence": 0.9459,
       "scale": 0.767,
       "area": "Greymoor",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.75
     },
     "Greymoor_02 #4265429.png": {
       "x": 2887,
@@ -3809,14 +4050,16 @@
     },
     "Greymoor_02_mid #4265221.png": {
       "x": 2914,
-      "y": 2213,
+      "y": 2214,
       "width": 84,
-      "height": 42,
-      "confidence": 0.851,
+      "height": 40,
+      "confidence": 0.8892,
       "scale": 0.767,
       "area": "Greymoor",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.735
     },
     "Greymoor_02_top.png": {
       "x": 2887,
@@ -3942,13 +4185,15 @@
     "Greymoor_06_top.png": {
       "x": 2096,
       "y": 2086,
-      "width": 51,
-      "height": 104,
-      "confidence": 0.654,
+      "width": 52,
+      "height": 102,
+      "confidence": 0.775,
       "scale": 0.767,
       "area": "Greymoor",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.75
     },
     "Greymoor_06_top_left.png": {
       "x": 2100,
@@ -3984,26 +4229,30 @@
       "source": "review"
     },
     "Greymoor_08.png": {
-      "x": 1924,
-      "y": 2337,
-      "width": 175,
-      "height": 51,
-      "confidence": 0.891,
+      "x": 1923,
+      "y": 2338,
+      "width": 176,
+      "height": 50,
+      "confidence": 0.9558,
       "scale": 0.767,
       "area": "Greymoor",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.75
     },
     "Greymoor_10.png": {
       "x": 2148,
       "y": 2186,
       "width": 142,
-      "height": 28,
-      "confidence": 0.921,
+      "height": 29,
+      "confidence": 0.9677,
       "scale": 0.767,
       "area": "Greymoor",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.775
     },
     "Greymoor_11.png": {
       "x": 2148,
@@ -4072,15 +4321,17 @@
       "source": "review"
     },
     "Greymoor_15_mid #4264318.png": {
-      "x": 3011,
-      "y": 2244,
-      "width": 94,
-      "height": 51,
-      "confidence": 0.883,
+      "x": 3012,
+      "y": 2245,
+      "width": 93,
+      "height": 50,
+      "confidence": 0.9328,
       "scale": 0.767,
       "area": "Greymoor",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Greymoor_15_top.png": {
       "x": 2998,
@@ -4105,15 +4356,17 @@
       "source": "review"
     },
     "Greymoor_15b_2.png": {
-      "x": 3106,
-      "y": 2121,
-      "width": 166,
-      "height": 140,
-      "confidence": 0.877,
+      "x": 3105,
+      "y": 2120,
+      "width": 167,
+      "height": 141,
+      "confidence": 0.9418,
       "scale": 0.767,
       "area": "Greymoor",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Greymoor_15b_bot_right.png": {
       "x": 3241,
@@ -4228,13 +4481,15 @@
     "Hang_03.png": {
       "x": 1725,
       "y": 1030,
-      "width": 44,
+      "width": 45,
       "height": 133,
-      "confidence": 0.89,
+      "confidence": 0.9512,
       "scale": 0.767,
       "area": "Hang",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Hang_03_top.png": {
       "x": 1727,
@@ -4260,25 +4515,29 @@
     },
     "Hang_06.png": {
       "x": 1813,
-      "y": 1190,
+      "y": 1189,
       "width": 116,
-      "height": 40,
-      "confidence": 0.907,
+      "height": 41,
+      "confidence": 0.9634,
       "scale": 0.767,
       "area": "Hang",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.78
     },
     "Hang_06b.png": {
       "x": 1929,
-      "y": 1199,
+      "y": 1200,
       "width": 68,
-      "height": 28,
-      "confidence": 0.89,
+      "height": 27,
+      "confidence": 0.9472,
       "scale": 0.767,
       "area": "Hang",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Hang_07 #4264464.png": {
       "x": 1818,
@@ -4317,12 +4576,14 @@
       "x": 1816,
       "y": 1063,
       "width": 69,
-      "height": 48,
-      "confidence": 0.897,
+      "height": 47,
+      "confidence": 0.9633,
       "scale": 0.767,
       "area": "Hang",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Hang_10.png": {
       "x": 1764,
@@ -4359,14 +4620,16 @@
     },
     "Hang_15.png": {
       "x": 1693,
-      "y": 1137,
+      "y": 1138,
       "width": 32,
-      "height": 21,
-      "confidence": 0.927,
+      "height": 20,
+      "confidence": 0.958,
       "scale": 0.767,
       "area": "Hang",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.75
     },
     "Hang_16.png": {
       "x": 1829,
@@ -4380,26 +4643,30 @@
       "source": "review"
     },
     "Hang_right_top.png": {
-      "x": 1916,
+      "x": 1917,
       "y": 1054,
-      "width": 53,
+      "width": 52,
       "height": 91,
-      "confidence": 0.903,
+      "confidence": 0.9484,
       "scale": 0.767,
       "area": "Hang",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.77
     },
     "Hang_song_knight_left.png": {
-      "x": 1923,
-      "y": 1167,
-      "width": 61,
-      "height": 24,
-      "confidence": 0.916,
+      "x": 1924,
+      "y": 1168,
+      "width": 60,
+      "height": 23,
+      "confidence": 0.9601,
       "scale": 0.767,
       "area": "Hang",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Library_01.png": {
       "x": 2435,
@@ -4435,15 +4702,17 @@
       "source": "review"
     },
     "Library_02_top.png": {
-      "x": 2281,
-      "y": 1262,
-      "width": 158,
-      "height": 21,
-      "confidence": 0.886,
+      "x": 2280,
+      "y": 1263,
+      "width": 160,
+      "height": 20,
+      "confidence": 0.9481,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.725
     },
     "Library_03.png": {
       "x": 2333,
@@ -4490,48 +4759,56 @@
       "source": "review"
     },
     "Library_04.png": {
-      "x": 2514,
+      "x": 2513,
       "y": 1313,
-      "width": 87,
-      "height": 154,
-      "confidence": 0.827,
+      "width": 88,
+      "height": 155,
+      "confidence": 0.8832,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Library_04_bot.png": {
       "x": 2513,
-      "y": 1521,
-      "width": 87,
-      "height": 57,
-      "confidence": 0.909,
+      "y": 1523,
+      "width": 88,
+      "height": 55,
+      "confidence": 0.9583,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Library_04_center.png": {
       "x": 2513,
-      "y": 1399,
-      "width": 87,
-      "height": 145,
-      "confidence": 0.84,
+      "y": 1400,
+      "width": 88,
+      "height": 144,
+      "confidence": 0.8991,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.76
     },
     "Library_04_top.png": {
       "x": 2516,
       "y": 1290,
       "width": 77,
-      "height": 35,
-      "confidence": 0.909,
+      "height": 34,
+      "confidence": 0.9424,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.73
     },
     "Library_04_top_enclave.png": {
       "x": 2533,
@@ -4559,12 +4836,14 @@
       "x": 2604,
       "y": 1450,
       "width": 49,
-      "height": 54,
-      "confidence": 0.907,
+      "height": 55,
+      "confidence": 0.9543,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Library_05_3.png": {
       "x": 2601,
@@ -4625,12 +4904,14 @@
       "x": 2722,
       "y": 1366,
       "width": 25,
-      "height": 31,
-      "confidence": 0.891,
+      "height": 30,
+      "confidence": 0.9308,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.745
     },
     "Library_09.png": {
       "x": 2595,
@@ -4644,15 +4925,17 @@
       "source": "review"
     },
     "Library_09_mid.png": {
-      "x": 2595,
-      "y": 1264,
-      "width": 205,
-      "height": 87,
-      "confidence": 0.725,
+      "x": 2594,
+      "y": 1261,
+      "width": 206,
+      "height": 92,
+      "confidence": 0.7567,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.805
     },
     "Library_09_top.png": {
       "x": 2595,
@@ -4680,12 +4963,14 @@
       "x": 2698,
       "y": 1529,
       "width": 79,
-      "height": 29,
-      "confidence": 0.853,
+      "height": 28,
+      "confidence": 0.9427,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.74
     },
     "Library_11.png": {
       "x": 2418,
@@ -4699,15 +4984,17 @@
       "source": "review"
     },
     "Library_11_2.png": {
-      "x": 2423,
-      "y": 1535,
-      "width": 53,
-      "height": 125,
-      "confidence": 0.863,
+      "x": 2424,
+      "y": 1534,
+      "width": 52,
+      "height": 126,
+      "confidence": 0.9639,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.77
     },
     "Library_11_bot.png": {
       "x": 2423,
@@ -4721,15 +5008,17 @@
       "source": "review"
     },
     "Library_11b.png": {
-      "x": 2278,
+      "x": 2279,
       "y": 1717,
-      "width": 142,
-      "height": 104,
-      "confidence": 0.888,
+      "width": 140,
+      "height": 103,
+      "confidence": 0.9519,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.76
     },
     "Library_11b_bot.png": {
       "x": 2308,
@@ -4776,15 +5065,17 @@
       "source": "review"
     },
     "Library_12_shortcut.png": {
-      "x": 2496,
+      "x": 2497,
       "y": 1650,
-      "width": 28,
+      "width": 27,
       "height": 23,
-      "confidence": 0.845,
+      "confidence": 0.8908,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.72,
+      "scale_y": 0.755
     },
     "Library_12b.png": {
       "x": 2642,
@@ -4799,25 +5090,29 @@
     },
     "Library_13 #4264883.png": {
       "x": 2281,
-      "y": 1485,
+      "y": 1484,
       "width": 120,
-      "height": 35,
-      "confidence": 0.893,
+      "height": 36,
+      "confidence": 0.9247,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.775
     },
     "Library_13_right.png": {
       "x": 2371,
       "y": 1461,
-      "width": 52,
-      "height": 61,
-      "confidence": 0.836,
+      "width": 53,
+      "height": 60,
+      "confidence": 0.8981,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.755
     },
     "Library_13b.png": {
       "x": 2423,
@@ -4855,13 +5150,15 @@
     "Library_16.png": {
       "x": 2466,
       "y": 1501,
-      "width": 48,
-      "height": 28,
-      "confidence": 0.864,
+      "width": 47,
+      "height": 27,
+      "confidence": 0.9361,
       "scale": 0.767,
       "area": "Library",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Mosstown_01.png": {
       "x": 865,
@@ -4876,14 +5173,16 @@
     },
     "Mosstown_02.png": {
       "x": 865,
-      "y": 2501,
+      "y": 2500,
       "width": 210,
-      "height": 54,
-      "confidence": 0.871,
+      "height": 55,
+      "confidence": 0.9359,
       "scale": 0.767,
       "area": "Mosstown",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.77
     },
     "Mosstown_02_left.png": {
       "x": 827,
@@ -4954,24 +5253,28 @@
     "Peak_01_right_mid.png": {
       "x": 936,
       "y": 1339,
-      "width": 23,
+      "width": 24,
       "height": 72,
-      "confidence": 0.869,
+      "confidence": 0.932,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.785,
+      "scale_y": 0.765
     },
     "Peak_01_right_top #4265232.png": {
-      "x": 938,
+      "x": 937,
       "y": 1230,
-      "width": 21,
+      "width": 23,
       "height": 106,
-      "confidence": 0.667,
+      "confidence": 0.7903,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.805,
+      "scale_y": 0.765
     },
     "Peak_01_top #4265182.png": {
       "x": 832,
@@ -5009,13 +5312,15 @@
     "Peak_02_top #4264516.png": {
       "x": 695,
       "y": 1240,
-      "width": 137,
-      "height": 74,
-      "confidence": 0.893,
+      "width": 136,
+      "height": 73,
+      "confidence": 0.9617,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.75
     },
     "Peak_03.png": {
       "x": 857,
@@ -5041,14 +5346,16 @@
     },
     "Peak_04.png": {
       "x": 272,
-      "y": 1349,
-      "width": 285,
-      "height": 43,
-      "confidence": 0.86,
+      "y": 1350,
+      "width": 284,
+      "height": 42,
+      "confidence": 0.9494,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.745
     },
     "Peak_04b.png": {
       "x": 233,
@@ -5065,12 +5372,14 @@
       "x": 152,
       "y": 1348,
       "width": 81,
-      "height": 61,
-      "confidence": 0.915,
+      "height": 60,
+      "confidence": 0.9498,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Peak_04d.png": {
       "x": 556,
@@ -5095,15 +5404,17 @@
       "source": "review"
     },
     "Peak_05_top.png": {
-      "x": 365,
-      "y": 1121,
-      "width": 95,
-      "height": 70,
-      "confidence": 0.894,
+      "x": 366,
+      "y": 1122,
+      "width": 94,
+      "height": 68,
+      "confidence": 0.9379,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.745
     },
     "Peak_05c.png": {
       "x": 442,
@@ -5128,48 +5439,56 @@
       "source": "review"
     },
     "Peak_05d.png": {
-      "x": 319,
+      "x": 320,
       "y": 939,
-      "width": 91,
+      "width": 90,
       "height": 109,
-      "confidence": 0.904,
+      "confidence": 0.9614,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Peak_05e.png": {
-      "x": 552,
-      "y": 1239,
-      "width": 144,
-      "height": 35,
-      "confidence": 0.878,
+      "x": 551,
+      "y": 1240,
+      "width": 145,
+      "height": 34,
+      "confidence": 0.9345,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.735
     },
     "Peak_05e_top.png": {
-      "x": 564,
+      "x": 563,
       "y": 1194,
-      "width": 131,
-      "height": 56,
-      "confidence": 0.918,
+      "width": 133,
+      "height": 55,
+      "confidence": 0.9696,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.75
     },
     "Peak_06.png": {
-      "x": 695,
+      "x": 696,
       "y": 1177,
-      "width": 61,
-      "height": 44,
-      "confidence": 0.897,
+      "width": 60,
+      "height": 43,
+      "confidence": 0.985,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Peak_07_bench_cave.png": {
       "x": 829,
@@ -5207,13 +5526,15 @@
     "Peak_08b_2.png": {
       "x": 864,
       "y": 899,
-      "width": 40,
+      "width": 39,
       "height": 35,
-      "confidence": 0.901,
+      "confidence": 0.9412,
       "scale": 0.767,
       "area": "Peak",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Peak_10.png": {
       "x": 586,
@@ -5251,24 +5572,28 @@
     "Shadow_01.png": {
       "x": 2967,
       "y": 1396,
-      "width": 88,
-      "height": 173,
-      "confidence": 0.874,
+      "width": 89,
+      "height": 174,
+      "confidence": 0.925,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Shadow_01_top.png": {
-      "x": 2967,
+      "x": 2968,
       "y": 1340,
-      "width": 88,
-      "height": 100,
-      "confidence": 0.894,
+      "width": 87,
+      "height": 99,
+      "confidence": 0.9366,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Shadow_02.png": {
       "x": 2967,
@@ -5339,13 +5664,15 @@
     "Shadow_08_left.png": {
       "x": 3365,
       "y": 1512,
-      "width": 55,
-      "height": 47,
-      "confidence": 0.833,
+      "width": 54,
+      "height": 46,
+      "confidence": 0.9287,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.75
     },
     "Shadow_09.png": {
       "x": 3248,
@@ -5359,26 +5686,30 @@
       "source": "review"
     },
     "Shadow_09_right.png": {
-      "x": 3308,
-      "y": 1906,
-      "width": 125,
-      "height": 34,
-      "confidence": 0.838,
+      "x": 3307,
+      "y": 1907,
+      "width": 126,
+      "height": 33,
+      "confidence": 0.9273,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Shadow_10.png": {
-      "x": 3210,
-      "y": 1411,
-      "width": 265,
-      "height": 79,
-      "confidence": 0.839,
+      "x": 3211,
+      "y": 1410,
+      "width": 264,
+      "height": 80,
+      "confidence": 0.9006,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.775
     },
     "Shadow_10_right.png": {
       "x": 3440,
@@ -5392,15 +5723,17 @@
       "source": "review"
     },
     "Shadow_10_top.png": {
-      "x": 3301,
+      "x": 3302,
       "y": 1430,
-      "width": 73,
-      "height": 31,
-      "confidence": 0.832,
+      "width": 72,
+      "height": 32,
+      "confidence": 0.9114,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.77
     },
     "Shadow_11.png": {
       "x": 3092,
@@ -5414,15 +5747,17 @@
       "source": "review"
     },
     "Shadow_11_top.png": {
-      "x": 3096,
+      "x": 3097,
       "y": 1558,
-      "width": 41,
-      "height": 73,
-      "confidence": 0.917,
+      "width": 40,
+      "height": 72,
+      "confidence": 0.9595,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Shadow_12.png": {
       "x": 3203,
@@ -5436,15 +5771,17 @@
       "source": "review"
     },
     "Shadow_13.png": {
-      "x": 3141,
+      "x": 3140,
       "y": 1582,
-      "width": 356,
+      "width": 357,
       "height": 75,
-      "confidence": 0.945,
+      "confidence": 0.9769,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Shadow_14.png": {
       "x": 2926,
@@ -5459,14 +5796,16 @@
     },
     "Shadow_16.png": {
       "x": 3055,
-      "y": 1447,
+      "y": 1448,
       "width": 155,
-      "height": 64,
-      "confidence": 0.903,
+      "height": 63,
+      "confidence": 0.9462,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Shadow_18.png": {
       "x": 3056,
@@ -5480,26 +5819,30 @@
       "source": "review"
     },
     "Shadow_18_top.png": {
-      "x": 3142,
+      "x": 3143,
       "y": 1353,
-      "width": 53,
-      "height": 34,
-      "confidence": 0.877,
+      "width": 52,
+      "height": 33,
+      "confidence": 0.9409,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.75
     },
     "Shadow_19.png": {
       "x": 3475,
       "y": 1357,
-      "width": 110,
-      "height": 124,
-      "confidence": 0.87,
+      "width": 109,
+      "height": 125,
+      "confidence": 0.9241,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.77
     },
     "Shadow_20_right.png": {
       "x": 2748,
@@ -5513,26 +5856,30 @@
       "source": "review"
     },
     "Shadow_20_right_mid.png": {
-      "x": 2820,
+      "x": 2821,
       "y": 1746,
-      "width": 58,
-      "height": 27,
-      "confidence": 0.859,
+      "width": 57,
+      "height": 26,
+      "confidence": 0.9211,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.755
     },
     "Shadow_21.png": {
       "x": 3048,
       "y": 1765,
       "width": 145,
-      "height": 34,
-      "confidence": 0.866,
+      "height": 33,
+      "confidence": 0.9537,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.74
     },
     "Shadow_22.png": {
       "x": 2799,
@@ -5548,13 +5895,15 @@
     "Shadow_24.png": {
       "x": 3529,
       "y": 1353,
-      "width": 255,
-      "height": 40,
-      "confidence": 0.907,
+      "width": 256,
+      "height": 39,
+      "confidence": 0.9449,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.745
     },
     "Shadow_25.png": {
       "x": 3585,
@@ -5591,25 +5940,29 @@
     },
     "Shadow_27 #4264578.png": {
       "x": 3097,
-      "y": 1526,
-      "width": 263,
-      "height": 34,
-      "confidence": 0.887,
+      "y": 1527,
+      "width": 264,
+      "height": 33,
+      "confidence": 0.9485,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Shadow_27_right.png": {
       "x": 3351,
-      "y": 1539,
+      "y": 1540,
       "width": 14,
-      "height": 21,
-      "confidence": 0.776,
+      "height": 20,
+      "confidence": 0.8751,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.75
     },
     "Shadow_28.png": {
       "x": 3189,
@@ -5634,15 +5987,17 @@
       "source": "review"
     },
     "Shadow_Top_Bench_Under.png": {
-      "x": 2929,
-      "y": 1439,
-      "width": 64,
-      "height": 64,
-      "confidence": 0.868,
+      "x": 2930,
+      "y": 1438,
+      "width": 62,
+      "height": 65,
+      "confidence": 0.951,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.77
     },
     "Shadow_Weavehome.png": {
       "x": 3422,
@@ -5669,13 +6024,15 @@
     "Shadow_xx.png": {
       "x": 2812,
       "y": 1791,
-      "width": 155,
-      "height": 44,
-      "confidence": 0.875,
+      "width": 156,
+      "height": 45,
+      "confidence": 0.9325,
       "scale": 0.767,
       "area": "Shadow",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Shadow_xx_mandrake.png": {
       "x": 2779,
@@ -5714,12 +6071,14 @@
       "x": 1436,
       "y": 2265,
       "width": 170,
-      "height": 120,
-      "confidence": 0.891,
+      "height": 119,
+      "confidence": 0.9336,
       "scale": 0.767,
       "area": "Shellwood",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.76
     },
     "Shellwood_01b #4265488.png": {
       "x": 1436,
@@ -5767,25 +6126,29 @@
     },
     "Shellwood_04c.png": {
       "x": 902,
-      "y": 2233,
-      "width": 35,
-      "height": 103,
-      "confidence": 0.778,
+      "y": 2234,
+      "width": 34,
+      "height": 102,
+      "confidence": 0.9557,
       "scale": 0.767,
       "area": "Shellwood",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Shellwood_08.png": {
-      "x": 874,
+      "x": 875,
       "y": 2207,
       "width": 117,
-      "height": 27,
-      "confidence": 0.827,
+      "height": 26,
+      "confidence": 0.9449,
       "scale": 0.767,
       "area": "Shellwood",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.73
     },
     "Shellwood_08c.png": {
       "x": 860,
@@ -5845,13 +6208,15 @@
     "Shellwood_13 #4264316.png": {
       "x": 1498,
       "y": 2137,
-      "width": 171,
-      "height": 65,
-      "confidence": 0.858,
+      "width": 172,
+      "height": 66,
+      "confidence": 0.9399,
       "scale": 0.767,
       "area": "Shellwood",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.775
     },
     "Shellwood_13b.png": {
       "x": 1581,
@@ -5899,25 +6264,29 @@
     },
     "Shellwood_18.png": {
       "x": 1322,
-      "y": 2132,
+      "y": 2133,
       "width": 176,
-      "height": 34,
-      "confidence": 0.889,
+      "height": 33,
+      "confidence": 0.9649,
       "scale": 0.767,
       "area": "Shellwood",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.74
     },
     "Shellwood_19.png": {
-      "x": 1033,
+      "x": 1032,
       "y": 2207,
-      "width": 144,
-      "height": 33,
-      "confidence": 0.841,
+      "width": 145,
+      "height": 32,
+      "confidence": 0.9497,
       "scale": 0.767,
       "area": "Shellwood",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.735
     },
     "Shellwood_20.png": {
       "x": 1322,
@@ -5932,25 +6301,29 @@
     },
     "Shellwood_22.png": {
       "x": 1056,
-      "y": 1967,
+      "y": 1966,
       "width": 146,
-      "height": 28,
-      "confidence": 0.857,
+      "height": 29,
+      "confidence": 0.9311,
       "scale": 0.767,
       "area": "Shellwood",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.775
     },
     "Shellwood_22_left.png": {
       "x": 972,
-      "y": 1957,
-      "width": 98,
-      "height": 38,
-      "confidence": 0.882,
+      "y": 1958,
+      "width": 99,
+      "height": 37,
+      "confidence": 0.9128,
       "scale": 0.767,
       "area": "Shellwood",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.735
     },
     "Shellwood_26.png": {
       "x": 1322,
@@ -6020,14 +6393,16 @@
     },
     "Slab_03_centre_shaft.png": {
       "x": 1086,
-      "y": 1365,
+      "y": 1364,
       "width": 40,
-      "height": 57,
-      "confidence": 0.845,
+      "height": 59,
+      "confidence": 0.8799,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.795
     },
     "Slab_03b.png": {
       "x": 1086,
@@ -6063,26 +6438,30 @@
       "source": "review"
     },
     "Slab_04.png": {
-      "x": 961,
-      "y": 1382,
-      "width": 124,
-      "height": 41,
-      "confidence": 0.907,
+      "x": 962,
+      "y": 1381,
+      "width": 123,
+      "height": 42,
+      "confidence": 0.9501,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.785
     },
     "Slab_05.png": {
       "x": 977,
       "y": 1423,
-      "width": 110,
-      "height": 51,
-      "confidence": 0.88,
+      "width": 109,
+      "height": 50,
+      "confidence": 0.9568,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.76,
+      "scale_y": 0.76
     },
     "Slab_06.png": {
       "x": 959,
@@ -6118,15 +6497,17 @@
       "source": "review"
     },
     "Slab_08_top.png": {
-      "x": 1136,
+      "x": 1137,
       "y": 1426,
-      "width": 26,
-      "height": 25,
-      "confidence": 0.803,
+      "width": 25,
+      "height": 24,
+      "confidence": 0.867,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.725,
+      "scale_y": 0.725
     },
     "Slab_10c.png": {
       "x": 1180,
@@ -6142,13 +6523,15 @@
     "Slab_12.png": {
       "x": 1127,
       "y": 1546,
-      "width": 133,
-      "height": 19,
-      "confidence": 0.801,
+      "width": 122,
+      "height": 18,
+      "confidence": 0.9023,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.705,
+      "scale_y": 0.705
     },
     "Slab_13.png": {
       "x": 959,
@@ -6164,13 +6547,15 @@
     "Slab_13_2 #4265214.png": {
       "x": 997,
       "y": 1348,
-      "width": 87,
-      "height": 25,
-      "confidence": 0.888,
+      "width": 88,
+      "height": 26,
+      "confidence": 0.9219,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.775
     },
     "Slab_14 #4264804.png": {
       "x": 1035,
@@ -6250,26 +6635,30 @@
       "source": "review"
     },
     "Slab_16_right #4265338.png": {
-      "x": 1049,
+      "x": 1044,
       "y": 1235,
-      "width": 42,
-      "height": 18,
-      "confidence": 0.632,
+      "width": 40,
+      "height": 19,
+      "confidence": 0.8918,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.735,
+      "scale_y": 0.775
     },
     "Slab_17.png": {
       "x": 1126,
       "y": 1170,
-      "width": 91,
-      "height": 94,
-      "confidence": 0.874,
+      "width": 90,
+      "height": 95,
+      "confidence": 0.9072,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.77
     },
     "Slab_18.png": {
       "x": 1126,
@@ -6284,14 +6673,16 @@
     },
     "Slab_19b.png": {
       "x": 1127,
-      "y": 1482,
+      "y": 1483,
       "width": 41,
-      "height": 25,
-      "confidence": 0.799,
+      "height": 24,
+      "confidence": 0.8981,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Slab_19b_top.png": {
       "x": 1131,
@@ -6316,15 +6707,17 @@
       "source": "review"
     },
     "Slab_20_right.png": {
-      "x": 1120,
+      "x": 1119,
       "y": 1320,
-      "width": 123,
-      "height": 23,
-      "confidence": 0.897,
+      "width": 124,
+      "height": 22,
+      "confidence": 0.9465,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.72
     },
     "Slab_21.png": {
       "x": 1249,
@@ -6341,12 +6734,14 @@
       "x": 1249,
       "y": 1232,
       "width": 15,
-      "height": 29,
-      "confidence": 0.841,
+      "height": 28,
+      "confidence": 0.8846,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.73,
+      "scale_y": 0.73
     },
     "Slab_22.png": {
       "x": 957,
@@ -6360,26 +6755,30 @@
       "source": "review"
     },
     "Slab_23.png": {
-      "x": 1118,
+      "x": 1126,
       "y": 1349,
-      "width": 77,
+      "width": 74,
       "height": 24,
-      "confidence": 0.688,
+      "confidence": 0.8398,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.735,
+      "scale_y": 0.76
     },
     "Slab_23_2.png": {
       "x": 1128,
-      "y": 1361,
-      "width": 53,
-      "height": 21,
-      "confidence": 0.877,
+      "y": 1360,
+      "width": 52,
+      "height": 23,
+      "confidence": 0.9492,
       "scale": 0.767,
       "area": "Slab",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.805
     },
     "Slab_23_right #4265189.png": {
       "x": 1181,
@@ -6439,24 +6838,28 @@
     "Song_01b_2.png": {
       "x": 1420,
       "y": 1541,
-      "width": 41,
+      "width": 39,
       "height": 23,
-      "confidence": 0.881,
+      "confidence": 0.9322,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.73,
+      "scale_y": 0.755
     },
     "Song_03.png": {
       "x": 1399,
-      "y": 1485,
+      "y": 1486,
       "width": 189,
-      "height": 51,
-      "confidence": 0.869,
+      "height": 50,
+      "confidence": 0.9375,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.75
     },
     "Song_03_top.png": {
       "x": 1423,
@@ -6527,13 +6930,15 @@
     "Song_09 #4264895.png": {
       "x": 1818,
       "y": 1262,
-      "width": 61,
+      "width": 60,
       "height": 106,
-      "confidence": 0.873,
+      "confidence": 0.9414,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Song_09_2.png": {
       "x": 1866,
@@ -6635,48 +7040,56 @@
       "source": "review"
     },
     "Song_11_2.png": {
-      "x": 1777,
-      "y": 1271,
-      "width": 29,
-      "height": 111,
-      "confidence": 0.831,
+      "x": 1776,
+      "y": 1270,
+      "width": 30,
+      "height": 112,
+      "confidence": 0.9182,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.78,
+      "scale_y": 0.77
     },
     "Song_11_3.png": {
       "x": 1773,
       "y": 1236,
-      "width": 46,
-      "height": 35,
-      "confidence": 0.865,
+      "width": 45,
+      "height": 36,
+      "confidence": 0.9273,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.775
     },
     "Song_11_top #4264774.png": {
       "x": 1743,
-      "y": 1250,
+      "y": 1249,
       "width": 77,
-      "height": 166,
-      "confidence": 0.902,
+      "height": 167,
+      "confidence": 0.9404,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Song_11_top_cap.png": {
-      "x": 1741,
-      "y": 1420,
-      "width": 8,
-      "height": 19,
-      "confidence": 0.787,
+      "x": 1740,
+      "y": 1419,
+      "width": 9,
+      "height": 21,
+      "confidence": 0.821,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.825,
+      "scale_y": 0.825
     },
     "Song_12.png": {
       "x": 1589,
@@ -6691,36 +7104,42 @@
     },
     "Song_13.png": {
       "x": 1630,
-      "y": 1395,
+      "y": 1396,
       "width": 113,
-      "height": 24,
-      "confidence": 0.9,
+      "height": 23,
+      "confidence": 0.9455,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.73
     },
     "Song_14 #4265469.png": {
-      "x": 1631,
-      "y": 1351,
-      "width": 94,
-      "height": 24,
-      "confidence": 0.847,
+      "x": 1630,
+      "y": 1352,
+      "width": 95,
+      "height": 23,
+      "confidence": 0.9411,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.73
     },
     "Song_15.png": {
       "x": 1631,
-      "y": 1304,
-      "width": 112,
-      "height": 25,
-      "confidence": 0.815,
+      "y": 1305,
+      "width": 113,
+      "height": 24,
+      "confidence": 0.9435,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.735
     },
     "Song_15_top.png": {
       "x": 1630,
@@ -6823,25 +7242,29 @@
     },
     "Song_20b #4265040.png": {
       "x": 2217,
-      "y": 1260,
+      "y": 1259,
       "width": 64,
-      "height": 104,
-      "confidence": 0.917,
+      "height": 105,
+      "confidence": 0.9484,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Song_24.png": {
       "x": 2142,
       "y": 1526,
-      "width": 75,
-      "height": 51,
-      "confidence": 0.892,
+      "width": 76,
+      "height": 50,
+      "confidence": 0.9388,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.775,
+      "scale_y": 0.75
     },
     "Song_25.png": {
       "x": 2108,
@@ -6978,13 +7401,15 @@
     "Song__02.png": {
       "x": 1589,
       "y": 1524,
-      "width": 230,
-      "height": 40,
-      "confidence": 0.892,
+      "width": 231,
+      "height": 39,
+      "confidence": 0.9411,
       "scale": 0.767,
       "area": "Song",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.745
     },
     "Tube_Hub.png": {
       "x": 2136,
@@ -6999,14 +7424,16 @@
     },
     "Tube_Hub_Destroyed.png": {
       "x": 2111,
-      "y": 813,
+      "y": 812,
       "width": 142,
-      "height": 87,
-      "confidence": 0.916,
+      "height": 88,
+      "confidence": 0.9549,
       "scale": 0.767,
       "area": "Tube",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "Tube_Hub_Shortcut.png": {
       "x": 2123,
@@ -7020,15 +7447,17 @@
       "source": "review"
     },
     "Tut_01.png": {
-      "x": 769,
-      "y": 2763,
-      "width": 84,
-      "height": 149,
-      "confidence": 0.873,
+      "x": 770,
+      "y": 2764,
+      "width": 83,
+      "height": 148,
+      "confidence": 0.9333,
       "scale": 0.767,
       "area": "Tut",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Tut_01_left_room.png": {
       "x": 770,
@@ -7054,14 +7483,16 @@
     },
     "Tut_01b.png": {
       "x": 849,
-      "y": 2786,
-      "width": 120,
-      "height": 90,
-      "confidence": 0.885,
+      "y": 2787,
+      "width": 121,
+      "height": 89,
+      "confidence": 0.9447,
       "scale": 0.767,
       "area": "Tut",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.76
     },
     "Tut_02.png": {
       "x": 591,
@@ -7078,12 +7509,14 @@
       "x": 615,
       "y": 2756,
       "width": 155,
-      "height": 41,
-      "confidence": 0.852,
+      "height": 40,
+      "confidence": 0.9643,
       "scale": 0.767,
       "area": "Tut",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.75
     },
     "Under_01.png": {
       "x": 1370,
@@ -7164,14 +7597,16 @@
     },
     "Under_03 #4264769.png": {
       "x": 1555,
-      "y": 1834,
-      "width": 117,
-      "height": 25,
-      "confidence": 0.863,
+      "y": 1835,
+      "width": 118,
+      "height": 24,
+      "confidence": 0.9154,
       "scale": 0.767,
       "area": "Under",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.735
     },
     "Under_03_2.png": {
       "x": 1590,
@@ -7196,15 +7631,17 @@
       "source": "review"
     },
     "Under_03c.png": {
-      "x": 1672,
+      "x": 1673,
       "y": 1820,
-      "width": 38,
+      "width": 37,
       "height": 79,
-      "confidence": 0.899,
+      "confidence": 0.9702,
       "scale": 0.767,
       "area": "Under",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Under_03d.png": {
       "x": 1716,
@@ -7262,15 +7699,17 @@
       "source": "review"
     },
     "Under_06 #4265118.png": {
-      "x": 1673,
-      "y": 1778,
-      "width": 185,
-      "height": 32,
-      "confidence": 0.882,
+      "x": 1672,
+      "y": 1779,
+      "width": 186,
+      "height": 31,
+      "confidence": 0.9295,
       "scale": 0.767,
       "area": "Under",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.73
     },
     "Under_07 #4265394.png": {
       "x": 1555,
@@ -7284,15 +7723,17 @@
       "source": "review"
     },
     "Under_07b.png": {
-      "x": 1570,
-      "y": 1648,
-      "width": 98,
-      "height": 27,
-      "confidence": 0.86,
+      "x": 1569,
+      "y": 1649,
+      "width": 99,
+      "height": 26,
+      "confidence": 0.9183,
       "scale": 0.767,
       "area": "Under",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.73
     },
     "Under_07b_bot.png": {
       "x": 1614,
@@ -7460,26 +7901,30 @@
       "source": "review"
     },
     "Under_17.png": {
-      "x": 2066,
-      "y": 1736,
-      "width": 214,
-      "height": 64,
-      "confidence": 0.848,
+      "x": 2065,
+      "y": 1737,
+      "width": 215,
+      "height": 63,
+      "confidence": 0.8885,
       "scale": 0.767,
       "area": "Under",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.745
     },
     "Under_17_2.png": {
-      "x": 2192,
-      "y": 1782,
-      "width": 51,
-      "height": 18,
-      "confidence": 0.869,
+      "x": 2193,
+      "y": 1781,
+      "width": 50,
+      "height": 20,
+      "confidence": 0.9022,
       "scale": 0.767,
       "area": "Under",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.815
     },
     "Under_17_top.png": {
       "x": 2084,
@@ -7614,15 +8059,17 @@
       "source": "review"
     },
     "Ward_01_2 #4265023.png": {
-      "x": 1884,
-      "y": 1599,
-      "width": 47,
-      "height": 15,
-      "confidence": 0.871,
+      "x": 1886,
+      "y": 1600,
+      "width": 44,
+      "height": 14,
+      "confidence": 0.9519,
       "scale": 0.767,
       "area": "Ward",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.715,
+      "scale_y": 0.715
     },
     "Ward_01_3 #4265165.png": {
       "x": 1929,
@@ -7647,26 +8094,30 @@
       "source": "review"
     },
     "Ward_02_2.png": {
-      "x": 1735,
-      "y": 1650,
-      "width": 40,
-      "height": 68,
-      "confidence": 0.855,
+      "x": 1736,
+      "y": 1649,
+      "width": 39,
+      "height": 69,
+      "confidence": 0.9112,
       "scale": 0.767,
       "area": "Ward",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.77
     },
     "Ward_02_2_post_boss.png": {
-      "x": 1735,
+      "x": 1736,
       "y": 1655,
-      "width": 40,
+      "width": 39,
       "height": 63,
-      "confidence": 0.785,
+      "confidence": 0.8369,
       "scale": 0.767,
       "area": "Ward",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.765
     },
     "Ward_02_3.png": {
       "x": 1768,
@@ -7716,45 +8167,53 @@
       "x": 2185,
       "y": 1606,
       "width": 38,
-      "height": 12,
-      "confidence": 0.864,
+      "height": 11,
+      "confidence": 0.927,
       "scale": 0.767,
       "area": "Ward",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.75,
+      "scale_y": 0.75
     },
     "Ward_06.png": {
       "x": 2237,
-      "y": 1668,
-      "width": 27,
-      "height": 68,
-      "confidence": 0.841,
+      "y": 1667,
+      "width": 26,
+      "height": 70,
+      "confidence": 0.9581,
       "scale": 0.767,
       "area": "Ward",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.73,
+      "scale_y": 0.785
     },
     "Ward_07.png": {
       "x": 2118,
       "y": 1580,
       "width": 167,
-      "height": 26,
-      "confidence": 0.903,
+      "height": 25,
+      "confidence": 0.9341,
       "scale": 0.767,
       "area": "Ward",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.725
     },
     "Ward_08.png": {
-      "x": 2233,
-      "y": 1584,
-      "width": 51,
-      "height": 19,
-      "confidence": 0.897,
+      "x": 2232,
+      "y": 1585,
+      "width": 52,
+      "height": 18,
+      "confidence": 0.9285,
       "scale": 0.767,
       "area": "Ward",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.73
     },
     "Weave_02 #4264491.png": {
       "x": 1078,
@@ -7779,15 +8238,17 @@
       "source": "review"
     },
     "Weave_03_left.png": {
-      "x": 643,
+      "x": 644,
       "y": 2914,
-      "width": 130,
-      "height": 43,
-      "confidence": 0.875,
+      "width": 129,
+      "height": 42,
+      "confidence": 0.9074,
       "scale": 0.767,
       "area": "Weave",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.745
     },
     "Weave_03_mid.png": {
       "x": 728,
@@ -7802,25 +8263,29 @@
     },
     "Weave_04.png": {
       "x": 938,
-      "y": 2820,
+      "y": 2821,
       "width": 140,
-      "height": 25,
-      "confidence": 0.802,
+      "height": 24,
+      "confidence": 0.9697,
       "scale": 0.767,
       "area": "Weave",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.735
     },
     "Weave_05b.png": {
       "x": 1263,
-      "y": 2840,
+      "y": 2841,
       "width": 150,
-      "height": 58,
-      "confidence": 0.878,
+      "height": 57,
+      "confidence": 0.9601,
       "scale": 0.767,
       "area": "Weave",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "Weave_07.png": {
       "x": 1006,
@@ -7857,14 +8322,16 @@
     },
     "Weave_08_bot.png": {
       "x": 1233,
-      "y": 2853,
+      "y": 2854,
       "width": 31,
-      "height": 35,
-      "confidence": 0.83,
+      "height": 34,
+      "confidence": 0.9436,
       "scale": 0.767,
       "area": "Weave",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.745
     },
     "Weave_10 #4265198.png": {
       "x": 1127,
@@ -7945,14 +8412,16 @@
     },
     "Wisp_03_2.png": {
       "x": 2009,
-      "y": 2147,
-      "width": 89,
-      "height": 47,
-      "confidence": 0.863,
+      "y": 2149,
+      "width": 84,
+      "height": 44,
+      "confidence": 0.9658,
       "scale": 0.767,
       "area": "Wisp",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.72,
+      "scale_y": 0.72
     },
     "Wisp_04 #4264331.png": {
       "x": 2099,
@@ -7966,26 +8435,30 @@
       "source": "review"
     },
     "Wisp_05 #4264671.png": {
-      "x": 1935,
-      "y": 1948,
-      "width": 67,
-      "height": 89,
-      "confidence": 0.668,
+      "x": 1936,
+      "y": 1949,
+      "width": 66,
+      "height": 86,
+      "confidence": 0.9377,
       "scale": 0.767,
       "area": "Wisp",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.755,
+      "scale_y": 0.74
     },
     "Wisp_06.png": {
-      "x": 1897,
+      "x": 1898,
       "y": 2128,
-      "width": 43,
-      "height": 26,
-      "confidence": 0.846,
+      "width": 42,
+      "height": 25,
+      "confidence": 0.9366,
       "scale": 0.767,
       "area": "Wisp",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.745,
+      "scale_y": 0.745
     },
     "Wisp_07.png": {
       "x": 2224,
@@ -8021,15 +8494,17 @@
       "source": "review"
     },
     "_0000_Bone_East_18b_bot.png": {
-      "x": 3414,
+      "x": 3413,
       "y": 2570,
-      "width": 58,
+      "width": 59,
       "height": 109,
-      "confidence": 0.884,
+      "confidence": 0.9497,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.77,
+      "scale_y": 0.77
     },
     "_0000_Bone_East_18b_bot_left.png": {
       "x": 3356,
@@ -8065,15 +8540,17 @@
       "source": "review"
     },
     "_0003_Bone_East_18b.png": {
-      "x": 3220,
+      "x": 3221,
       "y": 2536,
-      "width": 265,
-      "height": 61,
-      "confidence": 0.863,
+      "width": 264,
+      "height": 60,
+      "confidence": 0.9477,
       "scale": 0.767,
       "area": "Bone",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.765,
+      "scale_y": 0.765
     },
     "__0000_Ward_05_right.png": {
       "x": 2087,
@@ -8100,13 +8577,15 @@
     "__0002_Ward_01_top_right.png": {
       "x": 1957,
       "y": 1561,
-      "width": 23,
+      "width": 22,
       "height": 44,
-      "confidence": 0.863,
+      "confidence": 0.9331,
       "scale": 0.767,
       "area": "Ward",
       "confirmed": true,
-      "source": "review"
+      "source": "review",
+      "scale_x": 0.72,
+      "scale_y": 0.765
     },
     "__0003_Ward_04.png": {
       "x": 1980,

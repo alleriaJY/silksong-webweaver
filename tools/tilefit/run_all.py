@@ -11,9 +11,14 @@ Run the whole tilefit pipeline and publish its outputs for web/tilefit_viewer.ht
                           become locks for the next run; the rest are listed as disputed
   7. scene_tiles.py       scene_tiles.json: scene -> reviewed sprites (names, aliases, pieces)
 
+merge.py is followed by refine_scale.py, which gives tiles that clearly match better at
+their own scale that scale (out/tile_coordinates.json in place).
+
+The reviewed tile_coordinates.json and scene_tiles.json are also copied to
+web/assets/img/fullmap/, where the timeline and map viewer read them.
+
 Outputs go to tools/tilefit/out/ and are copied to web/assets/img/fullmap/tilefit/.
-Nothing in tools/confirmed_tiles.json or web/assets/img/fullmap/tile_coordinates.json
-is modified.
+tools/confirmed_tiles.json is never modified.
 
 Usage: python tools/tilefit/run_all.py [--ocr] [--skip-candidates]
 """
@@ -48,6 +53,7 @@ def main():
     run("solve.py")
     run("coverage.py")
     run("merge.py")
+    run("refine_scale.py")
     run("lock_confirmed.py")
     run("scene_tiles.py")
 
@@ -56,6 +62,8 @@ def main():
     for name in PUBLISH:
         shutil.copy2(OUT_DIR / name, dest / name)
     shutil.copy2(HERE / "confirmed_locks.json", dest / "confirmed_locks.json")
+    for name in ("tile_coordinates.json", "scene_tiles.json"):   # what the pages read
+        shutil.copy2(OUT_DIR / name, FULLMAP_DIR / name)
     print(f"\npublished {', '.join(PUBLISH)} to {dest}")
 
 

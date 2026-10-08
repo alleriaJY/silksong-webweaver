@@ -628,6 +628,8 @@
 
         // Scene to tiles mapping cache
         let sceneTileMapping = {};
+        // scene -> sprites, built by tools/tilefit/scene_tiles.py (aliases, pieces, case)
+        let sceneTiles = {};
 
         // Playback state
         let isPlaying = false;
@@ -661,9 +663,13 @@
                 // Initialize WASM first
                 await initWasm();
 
-                // Load tile coordinates
-                const response = await fetch('assets/img/fullmap/tile_coordinates.json');
+                // Load tile coordinates and the scene -> tiles map
+                const [response, scenesResponse] = await Promise.all([
+                    fetch('assets/img/fullmap/tile_coordinates.json'),
+                    fetch('assets/img/fullmap/scene_tiles.json'),
+                ]);
                 tileData = await response.json();
+                if (scenesResponse.ok) sceneTiles = (await scenesResponse.json()).scenes || {};
 
                 // Get confirmed tiles only
                 confirmedTiles = {};
@@ -726,36 +732,16 @@
         }
 
         function findMatchingTiles(sceneName) {
-            const tiles = [];
-
-            for (const tileName of Object.keys(confirmedTiles)) {
-                const tileBase = getTileBaseName(tileName);
-
-                // Exact 1:1 matching - scene name must match tile base name exactly
-                if (sceneName === tileBase) {
-                    tiles.push(tileName);
-                }
-            }
-
-            return tiles;
-        }
-
-        function normalizeSceneName(sceneName) {
-            // Remove common suffixes
-            let normalized = sceneName.replace(/(_top|_bot|_left|_right|_mid|_\d+|_secret|_shortcut|_2|_3|_4)$/g, '');
-            // Remove trailing numbers
-            normalized = normalized.replace(/_\d+$/, '');
-            return normalized;
+            // Known scenes: the precomputed map. A scene it has never seen (a new
+            // patch or DLC) falls back to a tile with exactly the scene's name.
+            const known = sceneTiles[sceneName];
+            if (known) return known.filter(name => confirmedTiles[name]);
+            return Object.keys(confirmedTiles).filter(name => getTileBaseName(name) === sceneName);
         }
 
         function getTileBaseName(tileName) {
-            // Remove .png
-            let name = tileName.replace('.png', '');
-            // Remove hash suffixes
-            name = name.replace(/\s*#\d+$/, '');
-            // Remove variant suffixes
-            name = name.replace(/(_top|_bot|_left|_right|_mid|_base|_connection|_bell.*|_bench)$/, '');
-            return name;
+            // 'Abyss_02b #4265375.png' -> 'Abyss_02b', '__0003_Ward_04.png' -> 'Ward_04'
+            return tileName.replace(/\.png$/, '').replace(/\s*#\d+$/, '').replace(/^_+\d{4}_/, '');
         }
 
         function getAreaFromScene(sceneName) {

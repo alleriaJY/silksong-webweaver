@@ -35,18 +35,23 @@ def template(tile, sx, sy):
     return tr[..., :3].max(axis=2).astype(np.float32) * alpha, (alpha > 0.25).astype(np.float32)
 
 
-def best_at(tile, cx, cy, sx, sy):
+def best_at(tile, cx, cy, sx, sy, stats=None, with_pos=False):
+    """Best NCC of the tile scaled by (sx, sy) whose centre is within SLACK px of
+    (cx, cy); with_pos also returns that placement's top-left and size."""
+    stats = stats or _V
     value, mask = template(tile, sx, sy)
     h, w = value.shape
+    fail = (-1.0, 0, 0, w, h) if with_pos else -1.0
     if mask.sum() < 16:
-        return -1.0
+        return fail
     x0, y0 = int(round(cx - w / 2)) - SLACK, int(round(cy - h / 2)) - SLACK
     x1, y1 = x0 + w + 2 * SLACK, y0 + h + 2 * SLACK
-    if x0 < 0 or y0 < 0 or y1 > _V.i.shape[0] or x1 > _V.i.shape[1]:
-        return -1.0
+    if x0 < 0 or y0 < 0 or y1 > stats.i.shape[0] or x1 > stats.i.shape[1]:
+        return fail
     sub = MapStats.__new__(MapStats)
-    sub.i, sub.i2 = _V.i[y0:y1, x0:x1], _V.i2[y0:y1, x0:x1]
-    return float(ncc(sub, value, mask).max())
+    sub.i, sub.i2 = stats.i[y0:y1, x0:x1], stats.i2[y0:y1, x0:x1]
+    _, best, _, (bx, by) = cv2.minMaxLoc(ncc(sub, value, mask))
+    return (float(best), x0 + bx, y0 + by, w, h) if with_pos else float(best)
 
 
 def process(item):
