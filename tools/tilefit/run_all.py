@@ -1,5 +1,5 @@
 """
-Run the whole tilefit pipeline and publish its outputs for web/tilefit_viewer.html.
+Run the whole tilefit pipeline and publish its outputs (read by the review page, viewer.html).
 
   1. match_candidates.py  shape NCC of every tile over the clean map (~2 min)
   2. ocr_labels.py        read scene labels on silksong_fullmap.png (~10 min, skipped

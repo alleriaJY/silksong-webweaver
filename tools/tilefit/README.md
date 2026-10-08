@@ -18,7 +18,7 @@ Then review in the viewer through the review server, which saves every verdict t
 python tools/tilefit/review_server.py   # http://localhost:5177/tilefit_viewer.html
 ```
 
-`web/tilefit_viewer.html` also opens read-only from any static server.
+The review page is `tools/tilefit/viewer.html`; it is not part of the website.
 
 ## Idea
 

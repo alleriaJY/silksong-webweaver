@@ -1,6 +1,8 @@
 """
-Local server for reviewing tilefit placements: serves web/ like the static server
-and lets web/tilefit_viewer.html save verdicts straight into tools/tilefit/review.json.
+Local server for reviewing tilefit placements: serves the review page
+(tools/tilefit/viewer.html, not part of the website) at /tilefit_viewer.html and the
+map assets from web/, and lets the page save verdicts straight into
+tools/tilefit/review.json.
 
   GET  /api/review              -> {"tiles": {...}} current review.json entries
   POST /api/review              -> body {"name": "<tile.png>", "entry": {...} | null}
@@ -74,7 +76,16 @@ def save(name, entry):
         return data
 
 
+VIEWER = HERE / "viewer.html"
+
+
 class Handler(SimpleHTTPRequestHandler):
+    def translate_path(self, path):
+        # the review page lives with the tools; everything else comes from web/
+        if path.split("?")[0] in ("/", "/tilefit_viewer.html"):
+            return str(VIEWER)
+        return super().translate_path(path)
+
     def _json(self, code, obj):
         body = json.dumps(obj).encode()
         self.send_response(code)

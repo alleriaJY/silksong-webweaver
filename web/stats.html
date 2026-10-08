@@ -746,12 +746,6 @@
                 <iframe src="map_viewer.html" class="map-viewer-iframe" title="Pharloom Map Viewer"></iframe>
             </div> -->
             <!-- End Map Viewer Page -->
-
-            <!-- Map Viewer Dev Page (for tile confirmation) -->
-            <div class="app-page" id="page-map-viewer-dev">
-                <iframe src="tilefit_viewer.html" class="map-viewer-iframe" title="Tile review (dev)"></iframe>
-            </div>
-            <!-- End Map Viewer Dev Page -->
         </div>
         <!-- End app-main -->
     </div>
@@ -796,12 +790,6 @@
 
     <!-- Sidebar Navigation Script -->
     <script>
-        // Show dev nav item only if ?dev in URL
-        if (window.location.search.includes('dev')) {
-            const devNavItem = document.querySelector('[data-page="map-viewer-dev"]');
-            if (devNavItem) devNavItem.style.display = 'flex';
-        }
-
         // Handle hash-based navigation (from landing page)
         function navigateToPage(pageId) {
             document.querySelectorAll('.sidebar-nav-item').forEach(nav => nav.classList.remove('active'));
