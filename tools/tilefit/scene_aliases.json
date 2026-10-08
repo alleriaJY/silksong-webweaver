@@ -1,0 +1,25 @@
+{
+ "_doc": "Sprites whose file name is not the scene (room) they draw, mapped to that scene. Sprite names come from the game's map art, so they are aliased here instead of renamed. Evidence: the OCR label of the scene sits on or next to the reviewed sprite and the scene has no other tile.",
+ "aliases": {
+  "Bellway_Coral #4264674.png": "Bellway_08",
+  "Bone_Tramway.png": "Bone_16",
+  "Bone_Tramway_02.png": "Bone_16",
+  "Bone_Tramway_left.png": "Bone_16",
+  "Crawl_xx.png": "Crawl_06",
+  "Aspid_xx.png": "Crawl_01",
+  "Dock_01b.png": "Dock_08",
+  "Dock_01b_2.png": "Dock_08",
+  "Hang_right_top.png": "Hang_14",
+  "Hang_song_knight_left.png": "Hang_17b",
+  "Peak_03_top.png": "Peak_07",
+  "Peak_04b.png": "Bellway_Peak",
+  "Shadow_Top_Bench #4264566.png": "Shadow_15",
+  "Shadow_Top_Bench_Under.png": "Shadow_15",
+  "Shellwood_09.png": "Shellgrave",
+  "Song_18b.png": "Song_27",
+  "Song_25b.png": "Cradle_01",
+  "Song_Tower #4264821.png": "Song_Tower_01",
+  "Song__02.png": "Song_02",
+  "Under_X.png": "Under_23"
+ }
+}

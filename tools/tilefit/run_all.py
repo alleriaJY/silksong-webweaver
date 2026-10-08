@@ -9,6 +9,7 @@ Run the whole tilefit pipeline and publish its outputs for web/tilefit_viewer.ht
   5. merge.py             tile_coordinates.json (old schema): fit + old confirmations
   6. lock_confirmed.py    confirmed_locks.json: old confirmations the fit agrees with
                           become locks for the next run; the rest are listed as disputed
+  7. scene_tiles.py       scene_tiles.json: scene -> reviewed sprites (names, aliases, pieces)
 
 Outputs go to tools/tilefit/out/ and are copied to web/assets/img/fullmap/tilefit/.
 Nothing in tools/confirmed_tiles.json or web/assets/img/fullmap/tile_coordinates.json
@@ -26,7 +27,7 @@ from pathlib import Path
 from common import FULLMAP_DIR, OUT_DIR
 
 HERE = Path(__file__).resolve().parent
-PUBLISH = ["tile_fit.json", "uncovered.json", "uncovered.png", "labels.json", "tile_coordinates.json"]
+PUBLISH = ["tile_fit.json", "uncovered.json", "uncovered.png", "labels.json", "tile_coordinates.json", "scene_tiles.json"]
 
 
 def run(script):
@@ -48,6 +49,7 @@ def main():
     run("coverage.py")
     run("merge.py")
     run("lock_confirmed.py")
+    run("scene_tiles.py")
 
     dest = FULLMAP_DIR / "tilefit"
     dest.mkdir(exist_ok=True)

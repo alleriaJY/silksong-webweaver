@@ -1,0 +1,2061 @@
+{
+ "scenes": {
+  "Abyss_01": [
+   "Abyss_01.png"
+  ],
+  "Abyss_02": [
+   "Abyss_02.png"
+  ],
+  "Abyss_02b": [
+   "Abyss_02b #4265375.png"
+  ],
+  "Abyss_02b_top": [
+   "Abyss_02b_top.png"
+  ],
+  "Abyss_03": [
+   "Abyss_03.png",
+   "Abyss_03_bell_repaired.png"
+  ],
+  "Abyss_03_top": [
+   "Abyss_03_top.png"
+  ],
+  "Abyss_04": [
+   "Abyss_04.png"
+  ],
+  "Abyss_04_right": [
+   "Abyss_04_right.png"
+  ],
+  "Abyss_05": [
+   "Abyss_05.png"
+  ],
+  "Abyss_05_top": [
+   "Abyss_05_top.png"
+  ],
+  "Abyss_06": [
+   "Abyss_06 #4264812.png"
+  ],
+  "Abyss_07": [
+   "Abyss_07 #4265178.png"
+  ],
+  "Abyss_08": [
+   "Abyss_08.png"
+  ],
+  "Abyss_09": [
+   "Abyss_09 #4265114.png",
+   "Abyss_09_connection.png"
+  ],
+  "Abyss_09_top": [
+   "Abyss_09_top.png"
+  ],
+  "Abyss_11": [
+   "Abyss_11.png"
+  ],
+  "Abyss_12": [
+   "Abyss_12 #4265172.png"
+  ],
+  "Abyss_13": [
+   "Abyss_13.png"
+  ],
+  "Ant_02": [
+   "Ant_02.png"
+  ],
+  "Ant_03": [
+   "Ant_03.png"
+  ],
+  "Ant_04": [
+   "Ant_04 #4265148.png"
+  ],
+  "Ant_04_left": [
+   "Ant_04_left.png"
+  ],
+  "Ant_04_mid": [
+   "Ant_04_mid #4265219.png"
+  ],
+  "Ant_05b": [
+   "Ant_05b.png"
+  ],
+  "Ant_05c": [
+   "Ant_05c.png"
+  ],
+  "Ant_05c_top_right": [
+   "Ant_05c_top_right.png"
+  ],
+  "Ant_09": [
+   "Ant_09.png"
+  ],
+  "Ant_14": [
+   "Ant_14.png"
+  ],
+  "Ant_17": [
+   "Ant_17.png"
+  ],
+  "Ant_20": [
+   "Ant_20.png"
+  ],
+  "Ant_20_top": [
+   "Ant_20_top #4264918.png"
+  ],
+  "Ant_21": [
+   "Ant_21.png"
+  ],
+  "Ant_Merchant": [
+   "Ant_Merchant.png",
+   "Ant_Merchant_b.png"
+  ],
+  "Ant_Merchant_left": [
+   "Ant_Merchant_left.png"
+  ],
+  "Aqueduct_01": [
+   "Aqueduct_01 #4264982.png"
+  ],
+  "Aqueduct_02": [
+   "Aqueduct_02 #4264737.png"
+  ],
+  "Aqueduct_02_right": [
+   "Aqueduct_02_right.png"
+  ],
+  "Aqueduct_03": [
+   "Aqueduct_03.png"
+  ],
+  "Aqueduct_04": [
+   "Aqueduct_04.png"
+  ],
+  "Aqueduct_04_bottom": [
+   "Aqueduct_04_bottom.png"
+  ],
+  "Aqueduct_04_right": [
+   "Aqueduct_04_right.png"
+  ],
+  "Aqueduct_05": [
+   "Aqueduct_05.png"
+  ],
+  "Aqueduct_05_top": [
+   "Aqueduct_05_top.png"
+  ],
+  "Aqueduct_06": [
+   "Aqueduct_06.png"
+  ],
+  "Aqueduct_06_left": [
+   "Aqueduct_06_left.png"
+  ],
+  "Aqueduct_06_top": [
+   "Aqueduct_06_top.png"
+  ],
+  "Aqueduct_07": [
+   "Aqueduct_07 #4265271.png"
+  ],
+  "Aqueduct_07_top": [
+   "Aqueduct_07_top.png"
+  ],
+  "Aqueduct_08": [
+   "Aqueduct_08.png"
+  ],
+  "Arborium_01": [
+   "Arborium_01 #4264362.png",
+   "Arborium_01_top2.png"
+  ],
+  "Arborium_01_bot_left": [
+   "Arborium_01_bot_left.png"
+  ],
+  "Arborium_01_top": [
+   "Arborium_01_top.png"
+  ],
+  "Arborium_02": [
+   "Arborium_02 #4264606.png"
+  ],
+  "Arborium_03": [
+   "Arborium_03.png"
+  ],
+  "Arborium_03_top": [
+   "Arborium_03_top.png"
+  ],
+  "Arborium_04": [
+   "Arborium_04.png"
+  ],
+  "Arborium_05": [
+   "Arborium_05 #4264780.png"
+  ],
+  "Arborium_06": [
+   "Arborium_06 #4265158.png"
+  ],
+  "Arborium_07": [
+   "Arborium_07.png"
+  ],
+  "Arborium_07b": [
+   "Arborium_07b.png"
+  ],
+  "Arborium_08": [
+   "Arborium_08.png"
+  ],
+  "Arborium_09": [
+   "Arborium_09.png"
+  ],
+  "Arborium_10": [
+   "Arborium_10.png"
+  ],
+  "Arborium_11": [
+   "Arborium_11.png"
+  ],
+  "Arborium_11_mid": [
+   "Arborium_11_mid.png"
+  ],
+  "Arborium_11_right": [
+   "Arborium_11_right.png"
+  ],
+  "Arborium_Tube": [
+   "Arborium_tube.png"
+  ],
+  "Aspid_01": [
+   "Aspid_01.png",
+   "Aspid_01_base.png",
+   "Aspid_01_base_02.png"
+  ],
+  "Aspid_01_mid": [
+   "Aspid_01_mid.png"
+  ],
+  "Bellshrine": [
+   "Bellshrine #4264913.png",
+   "Bellshrine_short.png"
+  ],
+  "Bellshrine_Coral": [
+   "Bellshrine_Coral.png"
+  ],
+  "Belltown": [
+   "Belltown.png"
+  ],
+  "Belltown_04": [
+   "Belltown_04.png"
+  ],
+  "Belltown_06": [
+   "Belltown_06 #4265371.png",
+   "Belltown_06_fisher.png"
+  ],
+  "Belltown_06_top": [
+   "Belltown_06_top.png"
+  ],
+  "Belltown_07": [
+   "Belltown_07.png"
+  ],
+  "Belltown_08": [
+   "Belltown_08 #4265402.png"
+  ],
+  "Belltown_Room_shellwood": [
+   "Belltown_Room_Shellwood.png"
+  ],
+  "Belltown_Shrine": [
+   "Belltown_Shrine.png"
+  ],
+  "Belltown_basement": [
+   "Belltown_basement.png",
+   "Belltown_basement_03b.png"
+  ],
+  "Belltown_basement_03": [
+   "Belltown_basement_03.png"
+  ],
+  "Belltown_basement_03_2": [
+   "Belltown_basement_03_2.png"
+  ],
+  "Bellway_02": [
+   "Bellway_02.png"
+  ],
+  "Bellway_02_left": [
+   "Bellway_02_left.png"
+  ],
+  "Bellway_03": [
+   "Bellway_03.png"
+  ],
+  "Bellway_03_b": [
+   "Bellway_03_b.png"
+  ],
+  "Bellway_03_c": [
+   "Bellway_03_c.png"
+  ],
+  "Bellway_04": [
+   "Bellway_04.png"
+  ],
+  "Bellway_04_bot_left": [
+   "Bellway_04_bot_left.png"
+  ],
+  "Bellway_08": [
+   "Bellway_Coral #4264674.png"
+  ],
+  "Bellway_Aqueduct": [
+   "Bellway_Aqueduct #4264577.png"
+  ],
+  "Bellway_Aqueduct_top": [
+   "Bellway_Aqueduct_top.png"
+  ],
+  "Bellway_City": [
+   "Bellway_City.png"
+  ],
+  "Bellway_City_b": [
+   "Bellway_City_b.png"
+  ],
+  "Bellway_Peak": [
+   "Peak_04b.png"
+  ],
+  "Bellway_Peak_02": [
+   "Bellway_Peak_02.png"
+  ],
+  "Bellway_Shadow": [
+   "Bellway_Shadow #4264661.png"
+  ],
+  "Bone_01": [
+   "Bone_01.png"
+  ],
+  "Bone_01b": [
+   "Bone_01b.png"
+  ],
+  "Bone_01c_bot": [
+   "Bone_01c_bot.png"
+  ],
+  "Bone_01c_top": [
+   "Bone_01c_top.png"
+  ],
+  "Bone_02": [
+   "Bone_02 #4264999.png"
+  ],
+  "Bone_03": [
+   "Bone_03 #4264964.png"
+  ],
+  "Bone_03_top": [
+   "Bone_03_top #4265191.png"
+  ],
+  "Bone_04": [
+   "Bone_04.png"
+  ],
+  "Bone_05": [
+   "Bone_05.png"
+  ],
+  "Bone_05_right": [
+   "Bone_05_right.png",
+   "Bone_05_right_short.png"
+  ],
+  "Bone_05b_right": [
+   "Bone_05b_right.png"
+  ],
+  "Bone_06": [
+   "Bone_06.png"
+  ],
+  "Bone_07": [
+   "Bone_07 #4264719.png"
+  ],
+  "Bone_07_bot_left": [
+   "Bone_07_bot_left.png"
+  ],
+  "Bone_08": [
+   "Bone_08 #4265445.png"
+  ],
+  "Bone_09": [
+   "Bone_09.png"
+  ],
+  "Bone_10": [
+   "Bone_10.png"
+  ],
+  "Bone_10_left": [
+   "Bone_10_left.png"
+  ],
+  "Bone_11": [
+   "Bone_11.png"
+  ],
+  "Bone_11b": [
+   "Bone_11b.png"
+  ],
+  "Bone_14": [
+   "Bone_14 #4265374.png"
+  ],
+  "Bone_15": [
+   "Bone_15.png"
+  ],
+  "Bone_16": [
+   "Bone_Tramway.png",
+   "Bone_Tramway_02.png",
+   "Bone_Tramway_left.png"
+  ],
+  "Bone_17": [
+   "Bone_17.png"
+  ],
+  "Bone_18": [
+   "Bone_18.png"
+  ],
+  "Bone_18_top": [
+   "Bone_18_top.png"
+  ],
+  "Bone_19": [
+   "Bone_19.png"
+  ],
+  "Bone_East_01": [
+   "Bone_East_01 #4264695.png"
+  ],
+  "Bone_East_02": [
+   "Bone_East_02 #4265098.png"
+  ],
+  "Bone_East_02b": [
+   "Bone_East_02b.png"
+  ],
+  "Bone_East_03": [
+   "Bone_East_03 #4265359.png"
+  ],
+  "Bone_East_03_right": [
+   "Bone_East_03_right_clean.png"
+  ],
+  "Bone_East_04": [
+   "Bone_East_04.png"
+  ],
+  "Bone_East_04_bot": [
+   "Bone_East_04_bot.png"
+  ],
+  "Bone_East_04b": [
+   "Bone_East_04b.png"
+  ],
+  "Bone_East_04c": [
+   "Bone_East_04c.png"
+  ],
+  "Bone_East_05": [
+   "Bone_East_05.png"
+  ],
+  "Bone_East_07_bot": [
+   "Bone_East_07_bot.png"
+  ],
+  "Bone_East_07_top": [
+   "Bone_East_07_top.png"
+  ],
+  "Bone_East_08": [
+   "Bone_East_08.png"
+  ],
+  "Bone_East_08_right": [
+   "Bone_East_08_right.png"
+  ],
+  "Bone_East_09": [
+   "Bone_East_09.png"
+  ],
+  "Bone_East_09b": [
+   "Bone_East_09b.png"
+  ],
+  "Bone_East_10": [
+   "Bone_East_10 #4265220.png"
+  ],
+  "Bone_East_10_Church": [
+   "Bone_East_10_Church.png"
+  ],
+  "Bone_East_10_Gate": [
+   "Bone_East_10_gate.png"
+  ],
+  "Bone_East_10_top_right": [
+   "Bone_East_10_top_right.png"
+  ],
+  "Bone_East_11": [
+   "Bone_East_11 #4264462.png"
+  ],
+  "Bone_East_11_connection": [
+   "Bone_East_11_connection.png"
+  ],
+  "Bone_East_11_top": [
+   "Bone_East_11_top.png"
+  ],
+  "Bone_East_12": [
+   "Bone_East_12.png"
+  ],
+  "Bone_East_13": [
+   "Bone_East_13 #4265157.png"
+  ],
+  "Bone_East_14": [
+   "Bone_East_14.png",
+   "Bone_East_14_2.png"
+  ],
+  "Bone_East_14b": [
+   "Bone_East_14b.png"
+  ],
+  "Bone_East_14b_lava_room": [
+   "Bone_East_14b_lava_room.png"
+  ],
+  "Bone_East_15": [
+   "Bone_East_15.png"
+  ],
+  "Bone_East_15_bot": [
+   "Bone_East_15_bot #4264866.png"
+  ],
+  "Bone_East_15_left": [
+   "Bone_East_15_left.png"
+  ],
+  "Bone_East_15_top_right": [
+   "Bone_East_15_top_right.png"
+  ],
+  "Bone_East_16": [
+   "Bone_East_16.png"
+  ],
+  "Bone_East_17": [
+   "Bone_East_17.png"
+  ],
+  "Bone_East_17_top": [
+   "Bone_East_17_top.png"
+  ],
+  "Bone_East_17b": [
+   "Bone_East_17b.png"
+  ],
+  "Bone_East_18": [
+   "Bone_East_18.png",
+   "_0001_Bone_East_18_right.png"
+  ],
+  "Bone_East_18b": [
+   "_0003_Bone_East_18b.png"
+  ],
+  "Bone_East_18b_bot": [
+   "_0000_Bone_East_18b_bot.png"
+  ],
+  "Bone_East_18b_bot_left": [
+   "_0000_Bone_East_18b_bot_left.png"
+  ],
+  "Bone_East_18b_right": [
+   "_0002_Bone_East_18b_right.png"
+  ],
+  "Bone_East_20": [
+   "Bone_East_20.png"
+  ],
+  "Bone_East_21": [
+   "Bone_East_21.png"
+  ],
+  "Bone_East_22": [
+   "Bone_East_22 #4264603.png"
+  ],
+  "Bone_East_24": [
+   "Bone_East_24.png"
+  ],
+  "Bone_East_25": [
+   "Bone_East_25.png"
+  ],
+  "Bone_East_25_right": [
+   "Bone_East_25_right.png"
+  ],
+  "Bone_East_26": [
+   "Bone_East_26.png"
+  ],
+  "Bone_East_27": [
+   "Bone_East_27.png"
+  ],
+  "Bone_East_27_top": [
+   "Bone_East_27_top.png"
+  ],
+  "Bone_East_Weavehome": [
+   "Bone_East_Weavehome.png",
+   "Bone_East_Weavehome_Basement.png"
+  ],
+  "Bonegrave": [
+   "Bonegrave.png"
+  ],
+  "Bonetown": [
+   "Bonetown #4265092.png"
+  ],
+  "Bonetown_top_left": [
+   "Bonetown_top_left.png"
+  ],
+  "Bonetown_top_right": [
+   "Bonetown_top_right.png"
+  ],
+  "Clover_01": [
+   "Clover_01 #4264360.png"
+  ],
+  "Clover_02c": [
+   "Clover_02c.png"
+  ],
+  "Clover_02c_bot_right": [
+   "Clover_02c_bot_right.png",
+   "Clover_02c_bot_right_after.png"
+  ],
+  "Clover_03": [
+   "Clover_03.png"
+  ],
+  "Clover_05c": [
+   "Clover_05c.png"
+  ],
+  "Clover_06": [
+   "Clover_06.png"
+  ],
+  "Clover_10": [
+   "Clover_10.png",
+   "Clover_10_top.png"
+  ],
+  "Clover_11": [
+   "Clover_11.png"
+  ],
+  "Clover_16": [
+   "Clover_16.png"
+  ],
+  "Clover_16_left": [
+   "Clover_16_left.png"
+  ],
+  "Clover_16_right": [
+   "Clover_16_right.png"
+  ],
+  "Clover_18": [
+   "Clover_18.png"
+  ],
+  "Clover_18_right": [
+   "Clover_18_right.png"
+  ],
+  "Clover_19": [
+   "Clover_19.png"
+  ],
+  "Clover_20": [
+   "Clover_20 #4264805.png",
+   "Clover_20_after.png"
+  ],
+  "Clover_21": [
+   "Clover_21.png"
+  ],
+  "Cog_04": [
+   "Cog_04 #4264705.png"
+  ],
+  "Cog_05": [
+   "Cog_05.png"
+  ],
+  "Cog_05_left": [
+   "Cog_05_left.png"
+  ],
+  "Cog_06": [
+   "Cog_06.png"
+  ],
+  "Cog_07": [
+   "Cog_07 #4265256.png"
+  ],
+  "Cog_07b": [
+   "Cog_07b.png"
+  ],
+  "Cog_08": [
+   "Cog_08.png",
+   "Cog_08_destroyed.png"
+  ],
+  "Cog_08_top": [
+   "Cog_08_top #4264614.png"
+  ],
+  "Cog_09": [
+   "Cog_09 #4264410.png"
+  ],
+  "Cog_09_Destroyed": [
+   "Cog_09_Destroyed.png"
+  ],
+  "Cog_09_Destroyed_bot_right": [
+   "Cog_09_Destroyed_bot_right.png"
+  ],
+  "Cog_10": [
+   "Cog_10.png"
+  ],
+  "Cog_10_Destroyed": [
+   "Cog_10_Destroyed.png"
+  ],
+  "Cog_Dancers": [
+   "Cog_Dancers #4265168.png"
+  ],
+  "Cog_Dancers_Destroyed": [
+   "Cog_Dancers_Destroyed.png"
+  ],
+  "Cog_Dancers_Top": [
+   "Cog_Dancers_top.png"
+  ],
+  "Coral_02": [
+   "Coral_02.png"
+  ],
+  "Coral_03": [
+   "Coral_03 #4264958.png"
+  ],
+  "Coral_10": [
+   "Coral_10.png"
+  ],
+  "Coral_11": [
+   "Coral_11.png"
+  ],
+  "Coral_12": [
+   "Coral_12.png"
+  ],
+  "Coral_19": [
+   "Coral_19 #4264852.png",
+   "Coral_19_base2.png"
+  ],
+  "Coral_19_left": [
+   "Coral_19_left.png"
+  ],
+  "Coral_19b": [
+   "Coral_19b.png"
+  ],
+  "Coral_23": [
+   "Coral_23 #4264796.png"
+  ],
+  "Coral_23_secret": [
+   "Coral_23_secret #4265289.png"
+  ],
+  "Coral_24": [
+   "Coral_24.png"
+  ],
+  "Coral_25": [
+   "Coral_25 #4265187.png"
+  ],
+  "Coral_26": [
+   "Coral_26.png"
+  ],
+  "Coral_27": [
+   "Coral_27.png"
+  ],
+  "Coral_28": [
+   "Coral_28.png",
+   "Coral_28_top_left.png"
+  ],
+  "Coral_32": [
+   "Coral_32.png"
+  ],
+  "Coral_33": [
+   "Coral_33.png"
+  ],
+  "Coral_34": [
+   "Coral_34.png",
+   "Coral_34_2.png"
+  ],
+  "Coral_34_mid": [
+   "Coral_34_mid.png"
+  ],
+  "Coral_34_top": [
+   "Coral_34_top.png"
+  ],
+  "Coral_35": [
+   "Coral_35.png",
+   "Coral_35_secret2.png",
+   "Coral_35_top.png",
+   "Coral_35_top_secret #4265144.png"
+  ],
+  "Coral_35_secret": [
+   "Coral_35_secret.png"
+  ],
+  "Coral_35_top_break_base": [
+   "Coral_35_top_break_base.png"
+  ],
+  "Coral_35_top_break_base_bottom": [
+   "Coral_35_top_break_base_bottom.png"
+  ],
+  "Coral_36": [
+   "Coral_36 #4265385.png",
+   "Coral_36.png"
+  ],
+  "Coral_37": [
+   "Coral_37.png",
+   "Coral_37_right.png",
+   "Coral_37_right_cap.png"
+  ],
+  "Coral_38": [
+   "Coral_38.png"
+  ],
+  "Coral_38_bot": [
+   "Coral_38_bot.png"
+  ],
+  "Coral_39": [
+   "Coral_39.png"
+  ],
+  "Coral_40": [
+   "Coral_40 #4265216.png"
+  ],
+  "Coral_41": [
+   "Coral_41.png"
+  ],
+  "Coral_42": [
+   "Coral_42.png"
+  ],
+  "Coral_42_top": [
+   "Coral_42_top.png"
+  ],
+  "Coral_43": [
+   "Coral_43.png"
+  ],
+  "Coral_44": [
+   "Coral_44.png"
+  ],
+  "Coral_Judge_Arena": [
+   "Coral_Judge_Arena.png"
+  ],
+  "Cradle_01": [
+   "Song_25b.png"
+  ],
+  "Cradle_01_Destroyed": [
+   "Cradle_01_Destroyed.png"
+  ],
+  "Cradle_03_Destroyed": [
+   "Cradle_03_Destroyed.png"
+  ],
+  "Crawl_01": [
+   "Aspid_xx.png"
+  ],
+  "Crawl_02": [
+   "Crawl_02_bottom.png"
+  ],
+  "Crawl_02_top": [
+   "Crawl_02_top.png"
+  ],
+  "Crawl_03": [
+   "Crawl_03.png"
+  ],
+  "Crawl_03b": [
+   "Crawl_03b.png"
+  ],
+  "Crawl_04": [
+   "Crawl_04 #4264981.png"
+  ],
+  "Crawl_05": [
+   "Crawl_05.png"
+  ],
+  "Crawl_06": [
+   "Crawl_xx.png"
+  ],
+  "Crawl_07": [
+   "Crawl_07.png"
+  ],
+  "Crawl_08": [
+   "Crawl_08.png"
+  ],
+  "Crawl_09": [
+   "Crawl_09.png"
+  ],
+  "Crawl_10": [
+   "Crawl_10.png"
+  ],
+  "Dock_01": [
+   "Dock_01 #4265393.png"
+  ],
+  "Dock_02": [
+   "Dock_02.png"
+  ],
+  "Dock_02_bot": [
+   "Dock_02_bot.png"
+  ],
+  "Dock_02_bot_left": [
+   "Dock_02_bot_left.png"
+  ],
+  "Dock_02_shortcut": [
+   "Dock_02_shortcut.png"
+  ],
+  "Dock_02b_bot": [
+   "Dock_02b_bot.png"
+  ],
+  "Dock_02b_gate": [
+   "Dock_02b_gate.png"
+  ],
+  "Dock_02b_top": [
+   "Dock_02b_top.png"
+  ],
+  "Dock_03": [
+   "Dock_03.png",
+   "Dock_03_top_left.png"
+  ],
+  "Dock_03b": [
+   "Dock_03b.png",
+   "Dock_03b_3.png"
+  ],
+  "Dock_03b_2": [
+   "Dock_03b_2.png"
+  ],
+  "Dock_03b_left": [
+   "Dock_03b_left.png"
+  ],
+  "Dock_03c": [
+   "Dock_03c.png"
+  ],
+  "Dock_04": [
+   "Dock_04 #4265335.png"
+  ],
+  "Dock_04_sauna_exit": [
+   "Dock_04_sauna_exit.png"
+  ],
+  "Dock_05": [
+   "Dock_05 #4265160.png"
+  ],
+  "Dock_06_Church": [
+   "Dock_06_Church #4265197.png",
+   "Dock_06_Church_bot.png"
+  ],
+  "Dock_08": [
+   "Dock_01b.png",
+   "Dock_01b_2.png"
+  ],
+  "Dock_09": [
+   "Dock_09.png"
+  ],
+  "Dock_10": [
+   "Dock_10.png"
+  ],
+  "Dock_11": [
+   "Dock_11.png"
+  ],
+  "Dock_12": [
+   "Dock_12.png"
+  ],
+  "Dock_12_top": [
+   "Dock_12_top.png"
+  ],
+  "Dock_14": [
+   "Dock_14.png"
+  ],
+  "Dock_15": [
+   "Dock_15.png",
+   "Dock_15_secret.png"
+  ],
+  "Dock_16": [
+   "Dock_16.png"
+  ],
+  "Dust_01": [
+   "Dust_01.png"
+  ],
+  "Dust_02": [
+   "Dust_02 #4264445.png"
+  ],
+  "Dust_03": [
+   "Dust_03.png",
+   "Dust_03_2.png"
+  ],
+  "Dust_04": [
+   "Dust_04 #4264559.png"
+  ],
+  "Dust_05": [
+   "Dust_05.png",
+   "Dust_05_b.png"
+  ],
+  "Dust_06": [
+   "Dust_06 #4264675.png"
+  ],
+  "Dust_06_right": [
+   "Dust_06_right.png"
+  ],
+  "Dust_06_top": [
+   "Dust_06_top.png"
+  ],
+  "Dust_09": [
+   "Dust_09.png",
+   "Dust_09_top.png",
+   "Dust_09_top_understore.png"
+  ],
+  "Dust_09_right": [
+   "Dust_09_right.png"
+  ],
+  "Dust_09_top_2": [
+   "Dust_09_top_2.png"
+  ],
+  "Dust_10": [
+   "Dust_10 #4264781.png"
+  ],
+  "Dust_10b": [
+   "Dust_10b.png"
+  ],
+  "Dust_11": [
+   "Dust_11 #4264971.png",
+   "Dust_11_bot.png"
+  ],
+  "Dust_11_right": [
+   "Dust_11_right.png"
+  ],
+  "Dust_12": [
+   "Dust_12 #4264651.png"
+  ],
+  "Dust_Chef": [
+   "Dust_Chef.png",
+   "Dust_Chef_b.png"
+  ],
+  "Dust_Maze_08_completed": [
+   "Dust_Maze_08_completed.png"
+  ],
+  "Greymoor_01": [
+   "Greymoor_01 #4264709.png"
+  ],
+  "Greymoor_01_top": [
+   "Greymoor_01_top.png"
+  ],
+  "Greymoor_02": [
+   "Greymoor_02 #4265429.png"
+  ],
+  "Greymoor_02_mid": [
+   "Greymoor_02_mid #4265221.png"
+  ],
+  "Greymoor_02_top": [
+   "Greymoor_02_top.png",
+   "Greymoor_02_top_right.png"
+  ],
+  "Greymoor_03": [
+   "Greymoor_03.png"
+  ],
+  "Greymoor_03_mid_right": [
+   "Greymoor_03_mid_right.png"
+  ],
+  "Greymoor_03_top": [
+   "Greymoor_03_top.png"
+  ],
+  "Greymoor_04": [
+   "Greymoor_04.png",
+   "Greymoor_04_bot #4265050.png"
+  ],
+  "Greymoor_04_top": [
+   "Greymoor_04_top.png"
+  ],
+  "Greymoor_05": [
+   "Greymoor_05.png"
+  ],
+  "Greymoor_06": [
+   "Greymoor_06 #4264542.png"
+  ],
+  "Greymoor_06_mid_top": [
+   "Greymoor_06_mid_top.png"
+  ],
+  "Greymoor_06_top": [
+   "Greymoor_06_top.png",
+   "Greymoor_06_top_left2.png"
+  ],
+  "Greymoor_06_top_left": [
+   "Greymoor_06_top_left.png"
+  ],
+  "Greymoor_07": [
+   "Greymoor_07.png"
+  ],
+  "Greymoor_08": [
+   "Greymoor_08.png"
+  ],
+  "Greymoor_10": [
+   "Greymoor_10.png"
+  ],
+  "Greymoor_11": [
+   "Greymoor_11.png"
+  ],
+  "Greymoor_11_top": [
+   "Greymoor_11_top.png"
+  ],
+  "Greymoor_12": [
+   "Greymoor_12.png"
+  ],
+  "Greymoor_13": [
+   "Greymoor_13.png",
+   "Greymoor_13_2.png"
+  ],
+  "Greymoor_15": [
+   "Greymoor_15.png"
+  ],
+  "Greymoor_15_mid": [
+   "Greymoor_15_mid #4264318.png"
+  ],
+  "Greymoor_15_top": [
+   "Greymoor_15_top.png"
+  ],
+  "Greymoor_15b": [
+   "Greymoor_15b.png"
+  ],
+  "Greymoor_15b_2": [
+   "Greymoor_15b_2.png"
+  ],
+  "Greymoor_15b_bot_right": [
+   "Greymoor_15b_bot_right.png"
+  ],
+  "Greymoor_16": [
+   "Greymoor_16.png"
+  ],
+  "Greymoor_20b": [
+   "Greymoor_20b #4264417.png"
+  ],
+  "Greymoor_22": [
+   "Greymoor_22.png"
+  ],
+  "Greymoor_24": [
+   "Greymoor_24.png"
+  ],
+  "Hang_01": [
+   "Hang_01.png"
+  ],
+  "Hang_01_2": [
+   "Hang_01_2.png"
+  ],
+  "Hang_02": [
+   "Hang_02 #4264698.png"
+  ],
+  "Hang_03": [
+   "Hang_03.png"
+  ],
+  "Hang_03_top": [
+   "Hang_03_top.png"
+  ],
+  "Hang_04": [
+   "Hang_04.png"
+  ],
+  "Hang_06": [
+   "Hang_06.png"
+  ],
+  "Hang_06b": [
+   "Hang_06b.png"
+  ],
+  "Hang_07": [
+   "Hang_07 #4264464.png"
+  ],
+  "Hang_08": [
+   "Hang_08 #4264820.png"
+  ],
+  "Hang_08_bot_right": [
+   "Hang_08_bot_right.png"
+  ],
+  "Hang_09": [
+   "Hang_09.png"
+  ],
+  "Hang_10": [
+   "Hang_10.png"
+  ],
+  "Hang_12": [
+   "Hang_12.png"
+  ],
+  "Hang_13": [
+   "Hang_13.png"
+  ],
+  "Hang_14": [
+   "Hang_right_top.png"
+  ],
+  "Hang_15": [
+   "Hang_15.png"
+  ],
+  "Hang_16": [
+   "Hang_16.png"
+  ],
+  "Hang_17b": [
+   "Hang_song_knight_left.png"
+  ],
+  "Library_01": [
+   "Library_01.png"
+  ],
+  "Library_01_bot": [
+   "Library_01_bot.png"
+  ],
+  "Library_02": [
+   "Library_02.png"
+  ],
+  "Library_02_top": [
+   "Library_02_top.png"
+  ],
+  "Library_03": [
+   "Library_03.png"
+  ],
+  "Library_03_left": [
+   "Library_03_left.png"
+  ],
+  "Library_03_top": [
+   "Library_03_top.png"
+  ],
+  "Library_03_tunnel": [
+   "Library_03_tunnel.png"
+  ],
+  "Library_04": [
+   "Library_04.png",
+   "Library_04_bot.png"
+  ],
+  "Library_04_center": [
+   "Library_04_center.png"
+  ],
+  "Library_04_top": [
+   "Library_04_top.png"
+  ],
+  "Library_04_top_enclave": [
+   "Library_04_top_enclave.png"
+  ],
+  "Library_05": [
+   "Library_05.png"
+  ],
+  "Library_05_2": [
+   "Library_05_2.png"
+  ],
+  "Library_05_3": [
+   "Library_05_3.png"
+  ],
+  "Library_06": [
+   "Library_06.png"
+  ],
+  "Library_06_top_right": [
+   "Library_06_top_right.png"
+  ],
+  "Library_07": [
+   "Library_07.png"
+  ],
+  "Library_08": [
+   "Library_08.png"
+  ],
+  "Library_08_right": [
+   "Library_08_right.png"
+  ],
+  "Library_09": [
+   "Library_09.png"
+  ],
+  "Library_09_mid": [
+   "Library_09_mid.png"
+  ],
+  "Library_09_top": [
+   "Library_09_top.png"
+  ],
+  "Library_10": [
+   "Library_10.png"
+  ],
+  "Library_10_top": [
+   "Library_10_top.png"
+  ],
+  "Library_11": [
+   "Library_11.png"
+  ],
+  "Library_11_2": [
+   "Library_11_2.png"
+  ],
+  "Library_11_bot": [
+   "Library_11_bot.png"
+  ],
+  "Library_11b": [
+   "Library_11b.png"
+  ],
+  "Library_11b_bot": [
+   "Library_11b_bot.png"
+  ],
+  "Library_12": [
+   "Library_12.png"
+  ],
+  "Library_12_2": [
+   "Library_12_2.png"
+  ],
+  "Library_12_3": [
+   "Library_12_3.png"
+  ],
+  "Library_12_shortcut": [
+   "Library_12_shortcut.png"
+  ],
+  "Library_12b": [
+   "Library_12b.png"
+  ],
+  "Library_13": [
+   "Library_13 #4264883.png"
+  ],
+  "Library_13_right": [
+   "Library_13_right.png"
+  ],
+  "Library_13b": [
+   "Library_13b.png"
+  ],
+  "Library_14": [
+   "Library_14.png"
+  ],
+  "Library_16": [
+   "Library_16.png"
+  ],
+  "Mosstown_01": [
+   "Mosstown_01.png"
+  ],
+  "Mosstown_02": [
+   "Mosstown_02.png"
+  ],
+  "Mosstown_02_left": [
+   "Mosstown_02_left.png"
+  ],
+  "Mosstown_02c": [
+   "Mosstown_02c.png"
+  ],
+  "Mosstown_03": [
+   "Mosstown_03.png"
+  ],
+  "Mosstown_03_bot": [
+   "Mosstown_03_bot.png"
+  ],
+  "Mosstown_03_top": [
+   "Mosstown_03_top.png"
+  ],
+  "Peak_01": [
+   "Peak_01.png"
+  ],
+  "Peak_01_right_mid": [
+   "Peak_01_right_mid.png"
+  ],
+  "Peak_01_right_top": [
+   "Peak_01_right_top #4265232.png"
+  ],
+  "Peak_01_top": [
+   "Peak_01_top #4265182.png"
+  ],
+  "Peak_02": [
+   "Peak_02 #4265080.png"
+  ],
+  "Peak_02_mid": [
+   "Peak_02_mid.png"
+  ],
+  "Peak_02_top": [
+   "Peak_02_top #4264516.png"
+  ],
+  "Peak_04": [
+   "Peak_04.png"
+  ],
+  "Peak_04c": [
+   "Peak_04c.png"
+  ],
+  "Peak_04d": [
+   "Peak_04d.png"
+  ],
+  "Peak_05": [
+   "Peak_05.png"
+  ],
+  "Peak_05_top": [
+   "Peak_05_top.png"
+  ],
+  "Peak_05c": [
+   "Peak_05c.png"
+  ],
+  "Peak_05c_top": [
+   "Peak_05c_top.png"
+  ],
+  "Peak_05d": [
+   "Peak_05d.png"
+  ],
+  "Peak_05e": [
+   "Peak_05e.png"
+  ],
+  "Peak_05e_top": [
+   "Peak_05e_top.png"
+  ],
+  "Peak_06": [
+   "Peak_06.png"
+  ],
+  "Peak_07": [
+   "Peak_03_top.png"
+  ],
+  "Peak_07_bench": [
+   "Peak_07_bench_cave.png"
+  ],
+  "Peak_08": [
+   "Peak_08.png"
+  ],
+  "Peak_08b": [
+   "Peak_08b.png",
+   "Peak_08b_2.png"
+  ],
+  "Peak_10": [
+   "Peak_10.png"
+  ],
+  "Room_Forge": [
+   "Room_Forge #4264306.png"
+  ],
+  "Room_Forge_right": [
+   "Room_Forge_right.png"
+  ],
+  "Shadow_01": [
+   "Shadow_01.png"
+  ],
+  "Shadow_01_top": [
+   "Shadow_01_top.png"
+  ],
+  "Shadow_02": [
+   "Shadow_02.png"
+  ],
+  "Shadow_04": [
+   "Shadow_04 #4264563.png",
+   "Shadow_04_b.png"
+  ],
+  "Shadow_04b": [
+   "Shadow_04b.png"
+  ],
+  "Shadow_05": [
+   "Shadow_05.png"
+  ],
+  "Shadow_08": [
+   "Shadow_08.png"
+  ],
+  "Shadow_08_left": [
+   "Shadow_08_left.png"
+  ],
+  "Shadow_09": [
+   "Shadow_09.png"
+  ],
+  "Shadow_09_right": [
+   "Shadow_09_right.png"
+  ],
+  "Shadow_10": [
+   "Shadow_10.png"
+  ],
+  "Shadow_10_right": [
+   "Shadow_10_right.png"
+  ],
+  "Shadow_10_top": [
+   "Shadow_10_top.png"
+  ],
+  "Shadow_11": [
+   "Shadow_11.png"
+  ],
+  "Shadow_11_top": [
+   "Shadow_11_top.png"
+  ],
+  "Shadow_12": [
+   "Shadow_12.png"
+  ],
+  "Shadow_13": [
+   "Shadow_13.png"
+  ],
+  "Shadow_14": [
+   "Shadow_14.png"
+  ],
+  "Shadow_15": [
+   "Shadow_Top_Bench #4264566.png",
+   "Shadow_Top_Bench_Under.png"
+  ],
+  "Shadow_16": [
+   "Shadow_16.png"
+  ],
+  "Shadow_18": [
+   "Shadow_18.png"
+  ],
+  "Shadow_18_top": [
+   "Shadow_18_top.png"
+  ],
+  "Shadow_19": [
+   "Shadow_19.png"
+  ],
+  "Shadow_20_right": [
+   "Shadow_20_right.png",
+   "Shadow_20_right_mid.png"
+  ],
+  "Shadow_21": [
+   "Shadow_21.png"
+  ],
+  "Shadow_22": [
+   "Shadow_22.png"
+  ],
+  "Shadow_24": [
+   "Shadow_24.png"
+  ],
+  "Shadow_25": [
+   "Shadow_25.png"
+  ],
+  "Shadow_26": [
+   "Shadow_26.png",
+   "Shadow_26_new.png"
+  ],
+  "Shadow_27": [
+   "Shadow_27 #4264578.png"
+  ],
+  "Shadow_27_right": [
+   "Shadow_27_right.png"
+  ],
+  "Shadow_28": [
+   "Shadow_28.png"
+  ],
+  "Shadow_Weavehome": [
+   "Shadow_Weavehome.png"
+  ],
+  "Shadow_Weavehome_right": [
+   "Shadow_Weavehome_right.png"
+  ],
+  "Shellgrave": [
+   "Shellwood_09.png"
+  ],
+  "Shellwood_01": [
+   "Shellwood_01.png"
+  ],
+  "Shellwood_01b": [
+   "Shellwood_01b #4265488.png"
+  ],
+  "Shellwood_02": [
+   "Shellwood_02.png"
+  ],
+  "Shellwood_03": [
+   "Shellwood_03.png"
+  ],
+  "Shellwood_04b": [
+   "Shellwood_04b #4264420.png"
+  ],
+  "Shellwood_04c": [
+   "Shellwood_04c.png"
+  ],
+  "Shellwood_08": [
+   "Shellwood_08.png"
+  ],
+  "Shellwood_08c": [
+   "Shellwood_08c.png"
+  ],
+  "Shellwood_10": [
+   "Shellwood_10 #4265326.png"
+  ],
+  "Shellwood_10_top": [
+   "Shellwood_10_top.png"
+  ],
+  "Shellwood_11": [
+   "Shellwood_11.png"
+  ],
+  "Shellwood_13": [
+   "Shellwood_13 #4264316.png"
+  ],
+  "Shellwood_13b": [
+   "Shellwood_13b.png"
+  ],
+  "Shellwood_14": [
+   "Shellwood_14.png"
+  ],
+  "Shellwood_15": [
+   "Shellwood_15.png"
+  ],
+  "Shellwood_16": [
+   "Shellwood_16 #4264545.png"
+  ],
+  "Shellwood_18": [
+   "Shellwood_18.png"
+  ],
+  "Shellwood_19": [
+   "Shellwood_19.png"
+  ],
+  "Shellwood_20": [
+   "Shellwood_20.png"
+  ],
+  "Shellwood_22": [
+   "Shellwood_22.png"
+  ],
+  "Shellwood_22_left": [
+   "Shellwood_22_left.png"
+  ],
+  "Shellwood_25": [
+   "shellwood_25.png"
+  ],
+  "Shellwood_25_right": [
+   "shellwood_25_right.png"
+  ],
+  "Shellwood_26": [
+   "Shellwood_26.png"
+  ],
+  "Shellwood_Witch": [
+   "Shellwood_Witch.png"
+  ],
+  "Slab_01": [
+   "Slab_01.png"
+  ],
+  "Slab_02": [
+   "Slab_02.png"
+  ],
+  "Slab_03": [
+   "Slab_03.png",
+   "Slab_03_centre_shaft.png"
+  ],
+  "Slab_03b": [
+   "Slab_03b.png",
+   "Slab_03b_basement.png",
+   "Slab_03b_basement_shortcut.png"
+  ],
+  "Slab_04": [
+   "Slab_04.png"
+  ],
+  "Slab_05": [
+   "Slab_05.png"
+  ],
+  "Slab_06": [
+   "Slab_06.png"
+  ],
+  "Slab_07": [
+   "Slab_07.png"
+  ],
+  "Slab_08": [
+   "Slab_08.png"
+  ],
+  "Slab_08_top": [
+   "Slab_08_top.png"
+  ],
+  "Slab_10c": [
+   "Slab_10c.png"
+  ],
+  "Slab_12": [
+   "Slab_12.png"
+  ],
+  "Slab_13": [
+   "Slab_13.png"
+  ],
+  "Slab_13_2": [
+   "Slab_13_2 #4265214.png"
+  ],
+  "Slab_14": [
+   "Slab_14 #4264804.png"
+  ],
+  "Slab_14_left": [
+   "Slab_14_left.png"
+  ],
+  "Slab_15": [
+   "Slab_15.png"
+  ],
+  "Slab_15_left": [
+   "Slab_15_left.png"
+  ],
+  "Slab_16": [
+   "Slab_16.png",
+   "Slab_16_right #4265338.png"
+  ],
+  "Slab_16_b": [
+   "Slab_16_b #4264988.png"
+  ],
+  "Slab_16_mid": [
+   "Slab_16_mid #4264892.png"
+  ],
+  "Slab_17": [
+   "Slab_17.png"
+  ],
+  "Slab_18": [
+   "Slab_18.png"
+  ],
+  "Slab_19b": [
+   "Slab_19b.png"
+  ],
+  "Slab_19b_top": [
+   "Slab_19b_top.png"
+  ],
+  "Slab_20": [
+   "Slab_20 #4264378.png"
+  ],
+  "Slab_20_right": [
+   "Slab_20_right.png"
+  ],
+  "Slab_21": [
+   "Slab_21.png"
+  ],
+  "Slab_21_left": [
+   "Slab_21_left.png"
+  ],
+  "Slab_22": [
+   "Slab_22.png"
+  ],
+  "Slab_23": [
+   "Slab_23.png",
+   "Slab_23_2.png"
+  ],
+  "Slab_23_right": [
+   "Slab_23_right #4265189.png"
+  ],
+  "Song_01": [
+   "Song_01.png",
+   "Song_01_2.png"
+  ],
+  "Song_01_secret": [
+   "Song_01_secret.png"
+  ],
+  "Song_01b": [
+   "Song_01b #4265426.png",
+   "Song_01b_2.png"
+  ],
+  "Song_02": [
+   "Song__02.png"
+  ],
+  "Song_03": [
+   "Song_03.png"
+  ],
+  "Song_03_top": [
+   "Song_03_top.png"
+  ],
+  "Song_04": [
+   "Song_04.png"
+  ],
+  "Song_04_top": [
+   "Song_04_top.png"
+  ],
+  "Song_05": [
+   "Song_05 #4265380.png"
+  ],
+  "Song_05_right": [
+   "Song_05_right.png"
+  ],
+  "Song_07": [
+   "Song_07 #4264683.png"
+  ],
+  "Song_09": [
+   "Song_09 #4264895.png"
+  ],
+  "Song_09_2": [
+   "Song_09_2.png"
+  ],
+  "Song_09b": [
+   "Song_09b.png"
+  ],
+  "Song_09b_top": [
+   "Song_09b_top.png"
+  ],
+  "Song_10": [
+   "Song_10.png",
+   "Song_10_2.png",
+   "Song_10_pipes_broken.png"
+  ],
+  "Song_10_right": [
+   "Song_10_right.png"
+  ],
+  "Song_10_shortcut": [
+   "Song_10_shortcut.png"
+  ],
+  "Song_11": [
+   "Song_11.png"
+  ],
+  "Song_11_2": [
+   "Song_11_2.png"
+  ],
+  "Song_11_3": [
+   "Song_11_3.png"
+  ],
+  "Song_11_top": [
+   "Song_11_top #4264774.png",
+   "Song_11_top_cap.png"
+  ],
+  "Song_12": [
+   "Song_12.png"
+  ],
+  "Song_13": [
+   "Song_13.png"
+  ],
+  "Song_14": [
+   "Song_14 #4265469.png"
+  ],
+  "Song_15": [
+   "Song_15.png"
+  ],
+  "Song_15_top": [
+   "Song_15_top.png"
+  ],
+  "Song_17": [
+   "Song_17.png"
+  ],
+  "Song_18": [
+   "Song_18.png"
+  ],
+  "Song_18_2": [
+   "Song_18_2.png"
+  ],
+  "Song_18_3": [
+   "Song_18_3.png"
+  ],
+  "Song_19_entrance": [
+   "Song_19_entrance.png"
+  ],
+  "Song_19_entrance_top": [
+   "Song_19_entrance_top.png"
+  ],
+  "Song_20": [
+   "Song_20.png"
+  ],
+  "Song_20b": [
+   "Song_20b #4265040.png"
+  ],
+  "Song_24": [
+   "Song_24.png"
+  ],
+  "Song_25": [
+   "Song_25.png"
+  ],
+  "Song_26": [
+   "Song_26.png"
+  ],
+  "Song_27": [
+   "Song_18b.png"
+  ],
+  "Song_28": [
+   "Song_28.png",
+   "Song_28_2.png"
+  ],
+  "Song_29": [
+   "Song_29.png"
+  ],
+  "Song_Enclave": [
+   "Song_Enclave #4264749.png"
+  ],
+  "Song_Enclave_Tube": [
+   "Song_Enclave_Tube #4265238.png"
+  ],
+  "Song_Tower_01": [
+   "Song_Tower #4264821.png"
+  ],
+  "Song_Tower_Destroyed": [
+   "Song_Tower_Destroyed.png"
+  ],
+  "Song_Tower_Destroyed_Top": [
+   "Song_Tower_Destroyed_Top.png"
+  ],
+  "Song_Tower_Destroyed_bot": [
+   "Song_Tower_Destroyed_bot.png"
+  ],
+  "Tube_Hub": [
+   "Tube_Hub.png"
+  ],
+  "Tube_Hub_Destroyed": [
+   "Tube_Hub_Destroyed.png"
+  ],
+  "Tube_Hub_Shortcut": [
+   "Tube_Hub_Shortcut.png"
+  ],
+  "Tut_01": [
+   "Tut_01.png",
+   "Tut_01_left_room.png"
+  ],
+  "Tut_01_top": [
+   "Tut_01_top.png"
+  ],
+  "Tut_01b": [
+   "Tut_01b.png"
+  ],
+  "Tut_02": [
+   "Tut_02.png"
+  ],
+  "Tut_03": [
+   "Tut_03.png"
+  ],
+  "Under_01": [
+   "Under_01.png"
+  ],
+  "Under_01_bot": [
+   "Under_01_bot.png"
+  ],
+  "Under_01_top_right": [
+   "Under_01_top_right.png"
+  ],
+  "Under_01b": [
+   "Under_01b.png"
+  ],
+  "Under_02": [
+   "Under_02.png"
+  ],
+  "Under_02_bot": [
+   "Under_02_bot.png"
+  ],
+  "Under_02_top": [
+   "Under_02_top.png"
+  ],
+  "Under_03": [
+   "Under_03 #4264769.png",
+   "Under_03_x.png"
+  ],
+  "Under_03_2": [
+   "Under_03_2.png"
+  ],
+  "Under_03c": [
+   "Under_03c.png"
+  ],
+  "Under_04": [
+   "Under_04 #4264703.png"
+  ],
+  "Under_05": [
+   "Under_05.png"
+  ],
+  "Under_05_2": [
+   "Under_05_2.png"
+  ],
+  "Under_06": [
+   "Under_06 #4265118.png"
+  ],
+  "Under_07": [
+   "Under_07 #4265394.png"
+  ],
+  "Under_07b": [
+   "Under_07b.png"
+  ],
+  "Under_07b_bot": [
+   "Under_07b_bot.png"
+  ],
+  "Under_07c": [
+   "Under_07c.png"
+  ],
+  "Under_08": [
+   "Under_08.png"
+  ],
+  "Under_08_b": [
+   "Under_08_b.png"
+  ],
+  "Under_10": [
+   "Under_10.png"
+  ],
+  "Under_11": [
+   "Under_11.png"
+  ],
+  "Under_12": [
+   "Under_12 #4265005.png"
+  ],
+  "Under_13": [
+   "Under_13.png"
+  ],
+  "Under_13_bot": [
+   "Under_13_bot.png"
+  ],
+  "Under_13_left": [
+   "Under_13_left #4265185.png"
+  ],
+  "Under_13_right_mid": [
+   "Under_13_right_mid.png"
+  ],
+  "Under_14": [
+   "Under_14 #4264546.png",
+   "Under_14_right.png"
+  ],
+  "Under_16": [
+   "Under_16 #4264399.png"
+  ],
+  "Under_16_b": [
+   "Under_16_b.png"
+  ],
+  "Under_17": [
+   "Under_17.png"
+  ],
+  "Under_17_2": [
+   "Under_17_2.png"
+  ],
+  "Under_17_top": [
+   "Under_17_top.png"
+  ],
+  "Under_18": [
+   "Under_18.png"
+  ],
+  "Under_18_2": [
+   "Under_18_2.png"
+  ],
+  "Under_19": [
+   "Under_19.png"
+  ],
+  "Under_19b": [
+   "Under_19b.png"
+  ],
+  "Under_19c": [
+   "Under_19c.png"
+  ],
+  "Under_21": [
+   "Under_21.png"
+  ],
+  "Under_22": [
+   "Under_22 #4265126.png"
+  ],
+  "Under_23": [
+   "Under_X.png"
+  ],
+  "Under_27": [
+   "Under_27.png"
+  ],
+  "Under_27_bot": [
+   "Under_27_bot.png"
+  ],
+  "Ward_01": [
+   "Ward_01 #4264512.png"
+  ],
+  "Ward_01_2": [
+   "Ward_01_2 #4265023.png"
+  ],
+  "Ward_01_3": [
+   "Ward_01_3 #4265165.png"
+  ],
+  "Ward_01_top_right": [
+   "__0002_Ward_01_top_right.png"
+  ],
+  "Ward_02": [
+   "Ward_02.png"
+  ],
+  "Ward_02_2": [
+   "Ward_02_2.png",
+   "Ward_02_2_post_boss.png"
+  ],
+  "Ward_02_3": [
+   "Ward_02_3.png"
+  ],
+  "Ward_02b": [
+   "Ward_02b.png"
+  ],
+  "Ward_03": [
+   "Ward_03 #4264589.png"
+  ],
+  "Ward_03_2": [
+   "Ward_03_2.png"
+  ],
+  "Ward_03_top": [
+   "Ward_03_top.png"
+  ],
+  "Ward_04": [
+   "__0003_Ward_04.png"
+  ],
+  "Ward_05": [
+   "__0001_Ward_05.png"
+  ],
+  "Ward_05_right": [
+   "__0000_Ward_05_right.png"
+  ],
+  "Ward_06": [
+   "Ward_06.png"
+  ],
+  "Ward_07": [
+   "Ward_07.png"
+  ],
+  "Weave_02": [
+   "Weave_02 #4264491.png"
+  ],
+  "Weave_03": [
+   "Weave_03.png"
+  ],
+  "Weave_03_left": [
+   "Weave_03_left.png"
+  ],
+  "Weave_03_mid": [
+   "Weave_03_mid.png"
+  ],
+  "Weave_04": [
+   "Weave_04.png"
+  ],
+  "Weave_05b": [
+   "Weave_05b.png"
+  ],
+  "Weave_07": [
+   "Weave_07.png"
+  ],
+  "Weave_07_left": [
+   "Weave_07_left.png"
+  ],
+  "Weave_08": [
+   "Weave_08.png",
+   "Weave_08_bot.png"
+  ],
+  "Weave_10": [
+   "Weave_10 #4265198.png"
+  ],
+  "Weave_11": [
+   "Weave_11.png"
+  ],
+  "Weave_12": [
+   "Weave_12 #4264598.png"
+  ],
+  "Weave_13": [
+   "Weave_13.png"
+  ],
+  "Weave_14": [
+   "Weave_14.png"
+  ],
+  "Wisp_02": [
+   "Wisp_02.png"
+  ],
+  "Wisp_03": [
+   "Wisp_03.png"
+  ],
+  "Wisp_03_2": [
+   "Wisp_03_2.png"
+  ],
+  "Wisp_04": [
+   "Wisp_04 #4264331.png"
+  ],
+  "Wisp_05": [
+   "Wisp_05 #4264671.png"
+  ],
+  "Wisp_06": [
+   "Wisp_06.png"
+  ],
+  "Wisp_07": [
+   "Wisp_07.png"
+  ],
+  "Wisp_08": [
+   "Wisp_08.png"
+  ],
+  "Wisp_09": [
+   "Wisp_09.png"
+  ]
+ },
+ "unassigned": [
+  "Aspid_07.png",
+  "Bone_Steel_Servant.png",
+  "Dock_13.png",
+  "Enclave_bridge_left.png",
+  "Greymoor_17_2.png",
+  "Greymoor_17_bot.png",
+  "Library_15.png",
+  "Peak_03.png",
+  "Shadow_xx.png",
+  "Shadow_xx_mandrake.png",
+  "Shadow_xx_mandrake_left.png",
+  "Shadow_xx_mandrake_upper.png",
+  "Shellwood_26b.png",
+  "Under_03d.png",
+  "Under_03d_join.png",
+  "Ward_08.png"
+ ]
+}

@@ -54,6 +54,8 @@ non-overlapping alternative. Committed pixels then remove slots for the next rou
 | `solve.py` | `tile_fit.json` (+ `fit_report.txt`): position and status per tile |
 | `coverage.py` | `uncovered.json/png`: map rooms no tile covers; `labels_inside` per tile |
 | `merge.py` | `tile_coordinates.json` in the **old schema**: fit plus old confirmations |
+| `scene_tiles.py` | `scene_tiles.json`: scene -> reviewed sprites, by `scene_aliases.json`, exact name, case-insensitive name, then the longest known scene the sprite name starts with (`Bone_East_15_left` -> `Bone_East_15`) |
+| `scale_check.py` | `scale_check.json`: best uniform and x/y scale per reviewed tile (diagnostic) |
 | `lock_confirmed.py` | `confirmed_locks.json` (next to the scripts): old confirmations the fit agrees with become locks; the rest are listed as `disputed` |
 | `contact_sheet.py` | Diagnostic image: tile, old spot, chosen spot, labeled-map crop |
 

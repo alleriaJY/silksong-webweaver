@@ -76,3 +76,25 @@ def test_review_file_is_well_formed():
         if e["verdict"] == "search":
             x0, y0, x1, y1 = e["box"]
             assert x0 <= x1 and y0 <= y1, name
+
+
+def test_scene_of_rules():
+    from scene_tiles import scene_of
+    scenes = {"Abyss_02b", "Ward_04", "Shellwood_25", "Bone_East_15", "Arborium_11_mid", "Arborium_11", "Dock_08"}
+    aliases = {"Dock_01b.png": "Dock_08"}
+    assert scene_of("Abyss_02b #4265375.png", scenes, aliases) == "Abyss_02b"       # hash suffix
+    assert scene_of("__0003_Ward_04.png", scenes, aliases) == "Ward_04"             # export prefix
+    assert scene_of("shellwood_25.png", scenes, aliases) == "Shellwood_25"          # case
+    assert scene_of("Bone_East_15_left.png", scenes, aliases) == "Bone_East_15"     # piece
+    assert scene_of("Arborium_11_mid.png", scenes, aliases) == "Arborium_11_mid"    # exact beats prefix
+    assert scene_of("Dock_01b.png", scenes, aliases) == "Dock_08"                   # alias
+    assert scene_of("Nowhere_01.png", scenes, aliases) is None
+
+
+def test_scene_aliases_point_at_real_sprites_and_scenes():
+    from common import tile_files
+    from scene_tiles import known_scenes, load_aliases
+    tiles, scenes = set(tile_files()), known_scenes()
+    for sprite, scene in load_aliases().items():
+        assert sprite in tiles, sprite
+        assert scene in scenes, f"{sprite} -> {scene}"
