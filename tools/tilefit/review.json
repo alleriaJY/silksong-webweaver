@@ -1,0 +1,1175 @@
+{
+ "_doc": "Owner review of tilefit placements, applied by solve.py on every run. remove: never placed or published. lock: fixed top-left x,y (clean-map px). search: placed at the best match whose top-left lies inside box [x0, y0, x1, y1].",
+ "tiles": {
+  "Abyss_02b_top.png": {
+   "verdict": "lock",
+   "x": 1968,
+   "y": 3245,
+   "from": "viewer"
+  },
+  "Abyss_03_bell_repaired.png": {
+   "verdict": "lock",
+   "x": 2406,
+   "y": 2994,
+   "from": "viewer"
+  },
+  "Abyss_04.png": {
+   "verdict": "lock",
+   "x": 1795,
+   "y": 3329,
+   "from": "viewer"
+  },
+  "Abyss_05_left.png": {
+   "verdict": "remove"
+  },
+  "Abyss_12_top.png": {
+   "verdict": "remove"
+  },
+  "Ant_17.png": {
+   "verdict": "lock",
+   "x": 2351,
+   "y": 2502,
+   "from": "viewer"
+  },
+  "Ant_Merchant.png": {
+   "verdict": "lock",
+   "x": 2314,
+   "y": 2472,
+   "from": "viewer"
+  },
+  "Aqueduct_02_right.png": {
+   "verdict": "lock",
+   "x": 3076,
+   "y": 1173,
+   "from": "viewer"
+  },
+  "Aqueduct_04_bottom.png": {
+   "verdict": "lock",
+   "x": 2992,
+   "y": 1317,
+   "from": "viewer"
+  },
+  "Aqueduct_04_right.png": {
+   "verdict": "lock",
+   "x": 3015,
+   "y": 1299,
+   "from": "viewer"
+  },
+  "Aqueduct_06_left.png": {
+   "verdict": "lock",
+   "x": 3165,
+   "y": 1250,
+   "from": "runner-up"
+  },
+  "Aqueduct_07 #4265271.png": {
+   "verdict": "lock",
+   "x": 3009,
+   "y": 1252,
+   "from": "viewer"
+  },
+  "Arborium_01_bot_left.png": {
+   "verdict": "lock",
+   "x": 2208,
+   "y": 1196,
+   "from": "fit"
+  },
+  "Arborium_05 #4264780.png": {
+   "verdict": "lock",
+   "x": 2250,
+   "y": 1115,
+   "from": "viewer"
+  },
+  "Arborium_11.png": {
+   "verdict": "lock",
+   "x": 2451,
+   "y": 1194,
+   "from": "viewer"
+  },
+  "Arborium_11_mid.png": {
+   "verdict": "lock",
+   "x": 2472,
+   "y": 1165,
+   "from": "viewer"
+  },
+  "Arborium_11_right.png": {
+   "verdict": "lock",
+   "x": 2492,
+   "y": 1158,
+   "from": "viewer"
+  },
+  "Aspid_01_base_02.png": {
+   "verdict": "lock",
+   "x": 791,
+   "y": 2628,
+   "from": "fit"
+  },
+  "Aspid_07.png": {
+   "verdict": "lock",
+   "x": 582,
+   "y": 2578,
+   "from": "viewer"
+  },
+  "Aspid_12.png": {
+   "verdict": "remove",
+   "note": "near-copy of Crawl_02_bottom; no Aspid_12 scene in any save"
+  },
+  "Aspid_12_2.png": {
+   "verdict": "remove"
+  },
+  "Bellshrine #4264913.png": {
+   "verdict": "lock",
+   "x": 986,
+   "y": 2206,
+   "from": "fit"
+  },
+  "Bellshrine_short.png": {
+   "verdict": "lock",
+   "x": 2328,
+   "y": 2747,
+   "from": "fit"
+  },
+  "Belltown_04_top.png": {
+   "verdict": "remove"
+  },
+  "Belltown_08.png": {
+   "verdict": "remove"
+  },
+  "Belltown_basement.png": {
+   "verdict": "lock",
+   "x": 3133,
+   "y": 2433,
+   "from": "runner-up"
+  },
+  "Belltown_basement_03.png": {
+   "verdict": "lock",
+   "x": 1743,
+   "y": 2419,
+   "from": "fit"
+  },
+  "Belltown_basement_03b.png": {
+   "verdict": "lock",
+   "x": 1707,
+   "y": 2568,
+   "from": "viewer"
+  },
+  "Bellway_02_left.png": {
+   "verdict": "lock",
+   "x": 1982,
+   "y": 2781,
+   "from": "viewer"
+  },
+  "Bellway_03_c.png": {
+   "verdict": "lock",
+   "x": 2951,
+   "y": 2707,
+   "from": "viewer"
+  },
+  "Bellway_04.png": {
+   "verdict": "lock",
+   "x": 2278,
+   "y": 2299,
+   "from": "viewer"
+  },
+  "Bellway_04_bot_left.png": {
+   "verdict": "lock",
+   "x": 2286,
+   "y": 2308,
+   "from": "viewer"
+  },
+  "Bellway_City_b.png": {
+   "verdict": "lock",
+   "x": 2346,
+   "y": 1534,
+   "from": "viewer"
+  },
+  "Bone_01.png": {
+   "verdict": "lock",
+   "x": 1008,
+   "y": 2632,
+   "from": "viewer"
+  },
+  "Bone_01_2.png": {
+   "verdict": "remove"
+  },
+  "Bone_01c.png": {
+   "verdict": "remove"
+  },
+  "Bone_05b.png": {
+   "verdict": "remove"
+  },
+  "Bone_05b_right.png": {
+   "verdict": "lock",
+   "x": 1049,
+   "y": 2553,
+   "from": "viewer"
+  },
+  "Bone_07_bot_left.png": {
+   "verdict": "lock",
+   "x": 1564,
+   "y": 2588,
+   "from": "viewer"
+  },
+  "Bone_10_left.png": {
+   "verdict": "lock",
+   "x": 1378,
+   "y": 2656,
+   "from": "viewer"
+  },
+  "Bone_17.png": {
+   "verdict": "lock",
+   "x": 1282,
+   "y": 2642,
+   "from": "viewer"
+  },
+  "Bone_East_04_bot.png": {
+   "verdict": "lock",
+   "x": 2374,
+   "y": 2662,
+   "from": "viewer"
+  },
+  "Bone_East_07.png": {
+   "verdict": "remove"
+  },
+  "Bone_East_07_bot.png": {
+   "verdict": "lock",
+   "x": 2787,
+   "y": 2683,
+   "from": "viewer"
+  },
+  "Bone_East_10_gate.png": {
+   "verdict": "lock",
+   "x": 2980,
+   "y": 2593,
+   "from": "viewer"
+  },
+  "Bone_East_10_top_right.png": {
+   "verdict": "lock",
+   "x": 2966,
+   "y": 2577,
+   "from": "viewer"
+  },
+  "Bone_East_11_connection.png": {
+   "verdict": "lock",
+   "x": 2788,
+   "y": 2444,
+   "from": "viewer"
+  },
+  "Bone_East_11_top_greymoor.png": {
+   "verdict": "remove"
+  },
+  "Bone_East_14_2.png": {
+   "verdict": "lock",
+   "x": 3145,
+   "y": 2849,
+   "from": "viewer"
+  },
+  "Bone_East_15.png": {
+   "verdict": "lock",
+   "x": 2464,
+   "y": 2645,
+   "from": "viewer"
+  },
+  "Bone_East_15_mid.png": {
+   "verdict": "remove"
+  },
+  "Bone_East_18_right.png": {
+   "verdict": "remove"
+  },
+  "Bonegrave_Gate.png": {
+   "verdict": "remove"
+  },
+  "Bonegrave_top_one_way.png": {
+   "verdict": "remove"
+  },
+  "Bonetown_top_right.png": {
+   "verdict": "lock",
+   "x": 762,
+   "y": 2636,
+   "from": "viewer"
+  },
+  "Clover_01_top.png": {
+   "verdict": "remove"
+  },
+  "Clover_01b.png": {
+   "verdict": "remove"
+  },
+  "Clover_02c_standard.png": {
+   "verdict": "remove"
+  },
+  "Clover_11.png": {
+   "verdict": "lock",
+   "x": 3587,
+   "y": 2103,
+   "from": "viewer"
+  },
+  "Clover_16_left.png": {
+   "verdict": "lock",
+   "x": 3323,
+   "y": 2074,
+   "from": "viewer"
+  },
+  "Clover_16_right.png": {
+   "verdict": "lock",
+   "x": 3425,
+   "y": 2078,
+   "from": "viewer"
+  },
+  "Clover_20_after.png": {
+   "verdict": "lock",
+   "x": 3527,
+   "y": 2178,
+   "from": "viewer"
+  },
+  "Cog_02.png": {
+   "verdict": "remove"
+  },
+  "Cog_05_left.png": {
+   "verdict": "lock",
+   "x": 1881,
+   "y": 1305,
+   "from": "viewer"
+  },
+  "Cog_07b.png": {
+   "verdict": "lock",
+   "x": 2115,
+   "y": 1388,
+   "from": "viewer"
+  },
+  "Cog_08.png": {
+   "verdict": "lock",
+   "x": 2014,
+   "y": 1156,
+   "from": "viewer"
+  },
+  "Cog_08_top #4264614.png": {
+   "verdict": "lock",
+   "x": 2014,
+   "y": 1007,
+   "from": "fit"
+  },
+  "Cog_09_Destroyed_bot_right.png": {
+   "verdict": "lock",
+   "x": 2068,
+   "y": 980,
+   "from": "viewer"
+  },
+  "Coral_19_base.png": {
+   "verdict": "remove"
+  },
+  "Coral_23_secret #4265289.png": {
+   "verdict": "lock",
+   "x": 350,
+   "y": 1745,
+   "from": "viewer"
+  },
+  "Coral_23_secret.png": {
+   "verdict": "remove"
+  },
+  "Coral_28_top_right.png": {
+   "verdict": "remove"
+  },
+  "Coral_29_join.png": {
+   "verdict": "remove"
+  },
+  "Coral_29_left.png": {
+   "verdict": "remove"
+  },
+  "Coral_29_left_empty.png": {
+   "verdict": "remove"
+  },
+  "Coral_29_right.png": {
+   "verdict": "remove"
+  },
+  "Coral_30.png": {
+   "verdict": "remove"
+  },
+  "Coral_34_2.png": {
+   "verdict": "lock",
+   "x": 469,
+   "y": 2022,
+   "from": "viewer"
+  },
+  "Coral_35_secret.png": {
+   "verdict": "lock",
+   "x": 670,
+   "y": 1832,
+   "from": "viewer"
+  },
+  "Coral_35_secret2.png": {
+   "verdict": "lock",
+   "x": 669,
+   "y": 1907,
+   "from": "viewer"
+  },
+  "Coral_35_top_break_base.png": {
+   "verdict": "lock",
+   "x": 657,
+   "y": 1751,
+   "from": "viewer"
+  },
+  "Coral_35_top_break_base_bottom.png": {
+   "verdict": "lock",
+   "x": 658,
+   "y": 1753,
+   "from": "viewer"
+  },
+  "Coral_35_top_secret.png": {
+   "verdict": "remove"
+  },
+  "Coral_37_right_cap.png": {
+   "verdict": "lock",
+   "x": 987,
+   "y": 2059,
+   "from": "viewer"
+  },
+  "Cradle_01 #4264426.png": {
+   "verdict": "remove"
+  },
+  "Cradle_02.png": {
+   "verdict": "remove"
+  },
+  "Cradle_02_left.png": {
+   "verdict": "remove"
+  },
+  "Cradle_02b.png": {
+   "verdict": "remove"
+  },
+  "Cradle_02c.png": {
+   "verdict": "remove"
+  },
+  "Cradle_03.png": {
+   "verdict": "remove"
+  },
+  "Cradle_04 #4264449.png": {
+   "verdict": "remove"
+  },
+  "Cradle_04.png": {
+   "verdict": "remove"
+  },
+  "Crawl_01 #4265226.png": {
+   "verdict": "remove"
+  },
+  "Crawl_02_bottom.png": {
+   "verdict": "lock",
+   "x": 542,
+   "y": 2571,
+   "from": "fit",
+   "note": "100% save visits Crawl_02 and Crawl_02_top (stacked right above); no Aspid_12 scene in any save"
+  },
+  "Crawl_08.png": {
+   "verdict": "lock",
+   "x": 422,
+   "y": 2442,
+   "from": "viewer"
+  },
+  "Crawl_xx.png": {
+   "verdict": "lock",
+   "x": 572,
+   "y": 2532,
+   "from": "viewer"
+  },
+  "Crawl_xx_bot.png": {
+   "verdict": "remove"
+  },
+  "Dock_01b.png": {
+   "verdict": "lock",
+   "x": 1893,
+   "y": 2721,
+   "from": "viewer"
+  },
+  "Dock_02_empty.png": {
+   "verdict": "remove"
+  },
+  "Dock_02_shortcut.png": {
+   "verdict": "lock",
+   "x": 2304,
+   "y": 2859,
+   "from": "viewer"
+  },
+  "Dock_02b.png": {
+   "verdict": "remove"
+  },
+  "Dock_02b_gate.png": {
+   "verdict": "lock",
+   "x": 2513,
+   "y": 2853,
+   "from": "fit"
+  },
+  "Dock_03_2.png": {
+   "verdict": "remove"
+  },
+  "Dock_03_top_left.png": {
+   "verdict": "lock",
+   "x": 2731,
+   "y": 2803,
+   "from": "viewer"
+  },
+  "Dock_03b_2.png": {
+   "verdict": "lock",
+   "x": 2746,
+   "y": 2787,
+   "from": "viewer"
+  },
+  "Dock_03b_left.png": {
+   "verdict": "lock",
+   "x": 2577,
+   "y": 2913,
+   "from": "viewer"
+  },
+  "Dock_04_sauna_exit.png": {
+   "verdict": "lock",
+   "x": 2100,
+   "y": 2940,
+   "from": "fit"
+  },
+  "Dock_05 #4265160.png": {
+   "verdict": "lock",
+   "x": 2127,
+   "y": 2725,
+   "from": "viewer"
+  },
+  "Dock_12_top.png": {
+   "verdict": "lock",
+   "x": 2403,
+   "y": 2969,
+   "from": "viewer"
+  },
+  "Dock_14.png": {
+   "verdict": "lock",
+   "x": 2199,
+   "y": 2956,
+   "from": "viewer"
+  },
+  "Dock_15_secret.png": {
+   "verdict": "lock",
+   "x": 2164,
+   "y": 2973,
+   "from": "viewer"
+  },
+  "Dust_06_right.png": {
+   "verdict": "lock",
+   "x": 2963,
+   "y": 1954,
+   "from": "viewer"
+  },
+  "Dust_09_right.png": {
+   "verdict": "lock",
+   "x": 2683,
+   "y": 1869,
+   "from": "viewer"
+  },
+  "Dust_09_top.png": {
+   "verdict": "lock",
+   "x": 2612,
+   "y": 1615,
+   "from": "fit",
+   "note": "right place, but the room on the map is shorter than the sprite"
+  },
+  "Dust_09_top_understore.png": {
+   "verdict": "lock",
+   "x": 2612,
+   "y": 1698,
+   "from": "fit",
+   "note": "right place, but the room on the map is shorter than the sprite"
+  },
+  "Dust_11_empty.png": {
+   "verdict": "remove"
+  },
+  "Enclave_bridge_left.png": {
+   "verdict": "lock",
+   "x": 2469,
+   "y": 1217,
+   "from": "fit"
+  },
+  "Enclave_bridge_right.png": {
+   "verdict": "remove"
+  },
+  "Greymoor_01_top.png": {
+   "verdict": "lock",
+   "x": 2719,
+   "y": 2199,
+   "from": "viewer"
+  },
+  "Greymoor_02 #4265429.png": {
+   "verdict": "lock",
+   "x": 2887,
+   "y": 2237,
+   "from": "viewer"
+  },
+  "Greymoor_02_top_right.png": {
+   "verdict": "lock",
+   "x": 2971,
+   "y": 2105,
+   "from": "fit"
+  },
+  "Greymoor_03_mid_right.png": {
+   "verdict": "lock",
+   "x": 2472,
+   "y": 2175,
+   "from": "fit"
+  },
+  "Greymoor_06_top.png": {
+   "verdict": "lock",
+   "x": 2096,
+   "y": 2086,
+   "from": "fit"
+  },
+  "Greymoor_06_top_left.png": {
+   "verdict": "lock",
+   "x": 2100,
+   "y": 2085,
+   "from": "viewer"
+  },
+  "Greymoor_06_top_left2.png": {
+   "verdict": "lock",
+   "x": 2112,
+   "y": 2134,
+   "from": "viewer"
+  },
+  "Greymoor_14.png": {
+   "verdict": "remove"
+  },
+  "Greymoor_15b_bot_right.png": {
+   "verdict": "lock",
+   "x": 3241,
+   "y": 2240,
+   "from": "viewer"
+  },
+  "Greymoor_17.png": {
+   "verdict": "remove"
+  },
+  "Hang_08_bot_right.png": {
+   "verdict": "lock",
+   "x": 1908,
+   "y": 1167,
+   "from": "viewer"
+  },
+  "Hang_08_song_knight_right.png": {
+   "verdict": "remove"
+  },
+  "Hang_16_2.png": {
+   "verdict": "remove"
+  },
+  "Library_02_3.png": {
+   "verdict": "remove"
+  },
+  "Library_03_3.png": {
+   "verdict": "remove"
+  },
+  "Library_03_tunnel.png": {
+   "verdict": "lock",
+   "x": 2314,
+   "y": 1367,
+   "from": "viewer"
+  },
+  "Library_04_one_way_patch.png": {
+   "verdict": "remove"
+  },
+  "Library_04_top_enclave.png": {
+   "verdict": "lock",
+   "x": 2533,
+   "y": 1284,
+   "from": "runner-up"
+  },
+  "Library_05.png": {
+   "verdict": "lock",
+   "x": 2601,
+   "y": 1498,
+   "from": "viewer"
+  },
+  "Library_06_top_right.png": {
+   "verdict": "lock",
+   "x": 2720,
+   "y": 1423,
+   "from": "viewer"
+  },
+  "Library_09_mid.png": {
+   "verdict": "lock",
+   "x": 2595,
+   "y": 1264,
+   "from": "viewer"
+  },
+  "Library_11_blank.png": {
+   "verdict": "remove"
+  },
+  "Library_12_4.png": {
+   "verdict": "remove"
+  },
+  "Library_12_shortcut.png": {
+   "verdict": "lock",
+   "x": 2496,
+   "y": 1650,
+   "from": "viewer"
+  },
+  "Mosstown_02_left.png": {
+   "verdict": "lock",
+   "x": 827,
+   "y": 2532,
+   "from": "viewer"
+  },
+  "Mosstown_03_extra.png": {
+   "verdict": "remove"
+  },
+  "Mosstown_03_join.png": {
+   "verdict": "remove"
+  },
+  "Mosstown_03_join_left.png": {
+   "verdict": "remove"
+  },
+  "Peak_01_right_top #4265232.png": {
+   "verdict": "lock",
+   "x": 938,
+   "y": 1230,
+   "from": "fit"
+  },
+  "Peak_05c_2.png": {
+   "verdict": "remove"
+  },
+  "Peak_06_top.png": {
+   "verdict": "remove"
+  },
+  "Peak_07_bench_cave.png": {
+   "verdict": "lock",
+   "x": 829,
+   "y": 1186,
+   "from": "viewer"
+  },
+  "Peak_15.png": {
+   "verdict": "remove"
+  },
+  "Peak_16.png": {
+   "verdict": "remove"
+  },
+  "Shadow_04 #4264914.png": {
+   "verdict": "remove"
+  },
+  "Shadow_04_b.png": {
+   "verdict": "lock",
+   "x": 2712,
+   "y": 1871,
+   "from": "viewer"
+  },
+  "Shadow_11.png": {
+   "verdict": "lock",
+   "x": 3092,
+   "y": 1616,
+   "from": "viewer"
+  },
+  "Shadow_17.png": {
+   "verdict": "remove"
+  },
+  "Shadow_20_right_mid.png": {
+   "verdict": "lock",
+   "x": 2820,
+   "y": 1746,
+   "from": "viewer"
+  },
+  "Shadow_27_right.png": {
+   "verdict": "lock",
+   "x": 3351,
+   "y": 1539,
+   "from": "viewer"
+  },
+  "Shadow_left_tunnel.png": {
+   "verdict": "remove"
+  },
+  "Shadow_xx_mandrake.png": {
+   "verdict": "lock",
+   "x": 2779,
+   "y": 1750,
+   "from": "viewer"
+  },
+  "Shadow_xx_mandrake_left.png": {
+   "verdict": "lock",
+   "x": 2648,
+   "y": 1735,
+   "from": "viewer"
+  },
+  "Shadow_xx_mandrake_upper.png": {
+   "verdict": "lock",
+   "x": 2684,
+   "y": 1704,
+   "from": "viewer"
+  },
+  "Shellwood_09_top.png": {
+   "verdict": "remove"
+  },
+  "Shellwood_11b.png": {
+   "verdict": "remove"
+  },
+  "Shellwood_16 #4264545.png": {
+   "verdict": "lock",
+   "x": 1228,
+   "y": 2347,
+   "from": "viewer"
+  },
+  "Shellwood_22_right.png": {
+   "verdict": "remove"
+  },
+  "Slab_03b_basement.png": {
+   "verdict": "lock",
+   "x": 1086,
+   "y": 1498,
+   "from": "viewer"
+  },
+  "Slab_03b_basement_shortcut.png": {
+   "verdict": "lock",
+   "x": 1049,
+   "y": 1518,
+   "from": "viewer"
+  },
+  "Slab_07_ascent.png": {
+   "verdict": "remove"
+  },
+  "Slab_07_top_left.png": {
+   "verdict": "remove"
+  },
+  "Slab_07b.png": {
+   "verdict": "remove"
+  },
+  "Slab_10.png": {
+   "verdict": "remove"
+  },
+  "Slab_13_2 #4265214.png": {
+   "verdict": "lock",
+   "x": 997,
+   "y": 1348,
+   "from": "viewer"
+  },
+  "Slab_13_3.png": {
+   "verdict": "remove"
+  },
+  "Slab_16_c.png": {
+   "verdict": "remove"
+  },
+  "Slab_16_right #4265338.png": {
+   "verdict": "lock",
+   "x": 1049,
+   "y": 1235,
+   "from": "viewer"
+  },
+  "Slab_20_right.png": {
+   "verdict": "lock",
+   "x": 1120,
+   "y": 1320,
+   "from": "viewer"
+  },
+  "Slab_21_left.png": {
+   "verdict": "lock",
+   "x": 1249,
+   "y": 1232,
+   "from": "viewer"
+  },
+  "Slab_23.png": {
+   "verdict": "lock",
+   "x": 1118,
+   "y": 1349,
+   "from": "runner-up"
+  },
+  "Slab_23_2.png": {
+   "verdict": "lock",
+   "x": 1128,
+   "y": 1361,
+   "from": "viewer"
+  },
+  "Song_01_bot.png": {
+   "verdict": "remove"
+  },
+  "Song_01_secret.png": {
+   "verdict": "lock",
+   "x": 1455,
+   "y": 1592,
+   "from": "viewer"
+  },
+  "Song_01b_2.png": {
+   "verdict": "lock",
+   "x": 1420,
+   "y": 1541,
+   "from": "viewer"
+  },
+  "Song_01c_door.png": {
+   "verdict": "remove"
+  },
+  "Song_03_top.png": {
+   "verdict": "lock",
+   "x": 1423,
+   "y": 1486,
+   "from": "viewer"
+  },
+  "Song_05_right.png": {
+   "verdict": "lock",
+   "x": 1869,
+   "y": 1480,
+   "from": "viewer"
+  },
+  "Song_09_2.png": {
+   "verdict": "lock",
+   "x": 1866,
+   "y": 1296,
+   "from": "viewer"
+  },
+  "Song_10_3.png": {
+   "verdict": "remove"
+  },
+  "Song_10_4.png": {
+   "verdict": "remove"
+  },
+  "Song_10_pipes.png": {
+   "verdict": "remove"
+  },
+  "Song_10_pipes_broken.png": {
+   "verdict": "lock",
+   "x": 1596,
+   "y": 1470,
+   "from": "viewer"
+  },
+  "Song_10_right.png": {
+   "verdict": "lock",
+   "x": 1711,
+   "y": 1422,
+   "from": "viewer"
+  },
+  "Song_10_shortcut.png": {
+   "verdict": "lock",
+   "x": 1731,
+   "y": 1421,
+   "from": "runner-up"
+  },
+  "Song_11_2.png": {
+   "verdict": "lock",
+   "x": 1777,
+   "y": 1271,
+   "from": "viewer"
+  },
+  "Song_11_top_cap.png": {
+   "verdict": "lock",
+   "x": 1741,
+   "y": 1420,
+   "from": "fit"
+  },
+  "Song_14 #4265469.png": {
+   "verdict": "lock",
+   "x": 1631,
+   "y": 1351,
+   "from": "viewer"
+  },
+  "Song_18_3.png": {
+   "verdict": "lock",
+   "x": 1958,
+   "y": 1464,
+   "from": "fit"
+  },
+  "Song_20_2.png": {
+   "verdict": "remove"
+  },
+  "Song_25b.png": {
+   "verdict": "lock",
+   "x": 2052,
+   "y": 762,
+   "from": "viewer"
+  },
+  "Song_28_2.png": {
+   "verdict": "lock",
+   "x": 1527,
+   "y": 1368,
+   "from": "viewer"
+  },
+  "Song_Tower #4264821.png": {
+   "verdict": "lock",
+   "x": 2019,
+   "y": 821,
+   "from": "fit"
+  },
+  "Song_Tower_Destroyed_Top.png": {
+   "verdict": "lock",
+   "x": 2021,
+   "y": 811,
+   "from": "viewer"
+  },
+  "Song_Tower_Destroyed_bot.png": {
+   "verdict": "lock",
+   "x": 2022,
+   "y": 889,
+   "from": "viewer"
+  },
+  "Tube_Hub_2 #4264441.png": {
+   "verdict": "remove"
+  },
+  "Tube_Hub_Shortcut.png": {
+   "verdict": "lock",
+   "x": 2123,
+   "y": 851,
+   "from": "viewer"
+  },
+  "Tube_Hub_b.png": {
+   "verdict": "remove"
+  },
+  "Tube_Hub_top.png": {
+   "verdict": "remove"
+  },
+  "Tut_01_top #4265460.png": {
+   "verdict": "remove"
+  },
+  "Tut_01_top.png": {
+   "verdict": "search",
+   "box": [
+    817,
+    2744,
+    823,
+    2765
+   ],
+   "note": "same x, higher: between Bonetown #4265092 and Tut_01"
+  },
+  "Tut_01_top_rough.png": {
+   "verdict": "remove"
+  },
+  "Under_01_bot.png": {
+   "verdict": "lock",
+   "x": 1372,
+   "y": 1830,
+   "from": "viewer"
+  },
+  "Under_01_top_right.png": {
+   "verdict": "lock",
+   "x": 1383,
+   "y": 1776,
+   "from": "viewer"
+  },
+  "Under_02.png": {
+   "verdict": "lock",
+   "x": 1499,
+   "y": 1819,
+   "from": "viewer"
+  },
+  "Under_03_x.png": {
+   "verdict": "lock",
+   "x": 1585,
+   "y": 1881,
+   "from": "viewer"
+  },
+  "Under_03d_join.png": {
+   "verdict": "lock",
+   "x": 1775,
+   "y": 1856,
+   "from": "viewer"
+  },
+  "Under_07b_bot.png": {
+   "verdict": "lock",
+   "x": 1614,
+   "y": 1666,
+   "from": "viewer"
+  },
+  "Under_13.png": {
+   "verdict": "lock",
+   "x": 2002,
+   "y": 1762,
+   "from": "viewer"
+  },
+  "Under_13_bot.png": {
+   "verdict": "lock",
+   "x": 2001,
+   "y": 1886,
+   "from": "viewer"
+  },
+  "Under_17_top.png": {
+   "verdict": "lock",
+   "x": 2084,
+   "y": 1736,
+   "from": "viewer"
+  },
+  "Under_18.png": {
+   "verdict": "lock",
+   "x": 2110,
+   "y": 1801,
+   "from": "fit"
+  },
+  "Under_18_2.png": {
+   "verdict": "lock",
+   "x": 2065,
+   "y": 1801,
+   "from": "fit"
+  },
+  "Ward_05.png": {
+   "verdict": "remove"
+  },
+  "Ward_07.png": {
+   "verdict": "lock",
+   "x": 2118,
+   "y": 1580,
+   "from": "fit"
+  },
+  "Ward_08.png": {
+   "verdict": "search",
+   "box": [
+    2191,
+    1572,
+    2238,
+    1595
+   ],
+   "note": "right part inside Ward_07"
+  },
+  "Weave_07_left.png": {
+   "verdict": "lock",
+   "x": 999,
+   "y": 2917,
+   "from": "viewer"
+  },
+  "Weave_11_top.png": {
+   "verdict": "remove"
+  },
+  "Weave_14.png": {
+   "verdict": "lock",
+   "x": 1019,
+   "y": 2846,
+   "from": "viewer"
+  },
+  "Wisp_01.png": {
+   "verdict": "remove"
+  },
+  "Wisp_01b.png": {
+   "verdict": "remove"
+  },
+  "Wisp_01b_2.png": {
+   "verdict": "remove"
+  },
+  "Wisp_02 #4265414.png": {
+   "verdict": "remove"
+  },
+  "Wisp_04.png": {
+   "verdict": "remove"
+  },
+  "Wisp_05 #4264671.png": {
+   "verdict": "lock",
+   "x": 1935,
+   "y": 1948,
+   "from": "fit"
+  },
+  "Wisp_05.png": {
+   "verdict": "remove"
+  },
+  "Wisp_06_secret.png": {
+   "verdict": "remove"
+  },
+  "__0000_Ward_05_right.png": {
+   "verdict": "lock",
+   "x": 2087,
+   "y": 1557,
+   "from": "viewer"
+  },
+  "__0002_Ward_01_top_right.png": {
+   "verdict": "lock",
+   "x": 1957,
+   "y": 1561,
+   "from": "viewer"
+  },
+  "__0003_Ward_01_mid_right.png": {
+   "verdict": "remove"
+  },
+  "shellwood_25_right.png": {
+   "verdict": "lock",
+   "x": 1511,
+   "y": 2390,
+   "from": "viewer"
+  }
+ }
+}

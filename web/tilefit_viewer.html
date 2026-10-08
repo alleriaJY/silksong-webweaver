@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tilefit Review</title>
+<!-- Dev tool: review the automatic tile fit (tools/tilefit) against the old
+     tile_coordinates.json. Read-only; does not change any existing data. -->
+<style>
+    :root {
+        --bg: #1a1a2e; --panel: #16213e; --line: #2c3a63; --text: #eee; --muted: #9aa3b8;
+        --accent: #e94560; --placed: #4ade80; --weak: #fbbf24; --ambiguous: #fb923c;
+        --detached: #f472b6; --reviewed: #67e8f9; --unmatched: #f87171; --old: #38bdf8; --runner: #c084fc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text);
+           height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+    header { background: linear-gradient(135deg, #16213e 0%, #0f3460 100%); border-bottom: 2px solid var(--accent);
+             padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+    header h1 { font-size: 1.1rem; color: var(--accent); margin-right: 8px; }
+    header label { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+    .counts { font-size: 0.8rem; color: var(--muted); margin-left: auto; }
+    main { flex: 1; display: flex; min-height: 0; }
+    #viewport { flex: 1; position: relative; overflow: hidden; background: #000; cursor: grab; touch-action: none; }
+    #viewport.dragging { cursor: grabbing; }
+    #world { position: absolute; left: 0; top: 0; width: 4096px; height: 4096px; transform-origin: 0 0; }
+    #world > img.map { position: absolute; left: 0; top: 0; width: 4096px; height: 4096px; user-select: none; pointer-events: none; }
+    #uncovered { position: absolute; left: 0; top: 0; width: 4096px; height: 4096px; pointer-events: none; image-rendering: pixelated; }
+    .tile { position: absolute; }
+    .tile img { width: 100%; height: 100%; display: block; opacity: 0.8; mix-blend-mode: screen; pointer-events: none; }
+    .tile .box { position: absolute; inset: 0; border: 1px solid var(--c); pointer-events: none; }
+    .tile.selected .box { border-width: 3px; box-shadow: 0 0 0 2px #fff; }
+    .tile.hover .box { border-width: 2px; background: rgba(255, 255, 255, 0.12); }
+    .tile .name { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 8px; color: #fff;
+                  white-space: nowrap; pointer-events: none; text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000; display: none; }
+    .show-names .tile .name { display: block; }
+    #tip { position: fixed; z-index: 10; pointer-events: none; background: rgba(10, 14, 30, 0.92); border: 1px solid var(--line);
+           border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; white-space: nowrap; }
+    #tip .k { color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .actions button { padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; background: #22305a; color: var(--text);
+                      font-size: 0.75rem; cursor: pointer; }
+    .actions button:hover:not(:disabled) { background: #2f4278; }
+    .actions button:disabled { opacity: 0.4; cursor: default; }
+    .actions button.on { background: var(--accent); border-color: var(--accent); }
+    .verdict { margin-top: 6px; padding: 4px 6px; border-radius: 4px; background: #0f1a33; }
+    #viewport.moving { cursor: move; }
+    .tile.selected.moving-tile .box { border-style: dashed; }
+    #toast { position: fixed; left: 12px; bottom: 12px; z-index: 11; background: rgba(10, 14, 30, 0.95); border: 1px solid var(--line);
+             border-radius: 6px; padding: 6px 10px; font-size: 0.8rem; pointer-events: none; }
+    #progress { font-size: 0.8rem; color: var(--reviewed); }
+    .compare { display: flex; gap: 6px; margin-top: 6px; }
+    .compare figure { flex: 1; min-width: 0; text-align: center; }
+    .compare figcaption { font-size: 0.7rem; color: var(--muted); }
+    .compare img, .compare canvas { width: 100%; height: 110px; object-fit: contain; background: #000; image-rendering: pixelated; }
+    .hide-imgs .tile img { display: none; }
+    .old { position: absolute; border: 1px dashed var(--old); pointer-events: none; }
+    .ghost { position: absolute; border: 2px dotted var(--runner); pointer-events: none; }
+    .label { position: absolute; font-size: 9px; color: #ff6b81; white-space: nowrap; transform: translate(-50%, -50%);
+             pointer-events: none; text-shadow: 0 0 2px #000, 0 0 2px #000; }
+    svg#links { position: absolute; left: 0; top: 0; width: 4096px; height: 4096px; pointer-events: none; overflow: visible; }
+    aside { width: 340px; background: var(--panel); border-left: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+    aside .search { padding: 8px; border-bottom: 1px solid var(--line); display: flex; gap: 6px; }
+    aside input, aside select { flex: 1; padding: 6px 8px; border: 1px solid #444; border-radius: 6px; background: #2a2a4e; color: #fff; min-width: 0; }
+    #detail { padding: 10px; border-bottom: 1px solid var(--line); font-size: 0.8rem; line-height: 1.5; min-height: 80px; }
+    #detail h2 { font-size: 0.9rem; margin-bottom: 4px; word-break: break-all; }
+    #detail .k { color: var(--muted); }
+    #list { overflow-y: auto; flex: 1; font-size: 0.8rem; }
+    #list .group { padding: 6px 10px; background: #0f1a33; color: var(--muted); position: sticky; top: 0; font-weight: 600; }
+    #list .row { padding: 4px 10px; cursor: pointer; display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid #1f2a4a; }
+    #list .row:hover, #list .row.selected { background: #243258; }
+    #list .row span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .hint { font-size: 0.75rem; color: var(--muted); padding: 6px 10px; }
+    @media (max-width: 760px) {
+        main { flex-direction: column; }
+        aside { width: 100%; height: 45vh; border-left: 0; border-top: 1px solid var(--line); }
+        .counts { margin-left: 0; width: 100%; }
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Tilefit Review</h1>
+    <label><input type="checkbox" data-layer="reviewed" checked><span class="swatch" style="background:var(--reviewed)"></span>reviewed</label>
+    <label><input type="checkbox" data-layer="placed" checked><span class="swatch" style="background:var(--placed)"></span>placed</label>
+    <label><input type="checkbox" data-layer="weak" checked><span class="swatch" style="background:var(--weak)"></span>weak</label>
+    <label><input type="checkbox" data-layer="ambiguous" checked><span class="swatch" style="background:var(--ambiguous)"></span>ambiguous</label>
+    <label><input type="checkbox" data-layer="detached" checked><span class="swatch" style="background:var(--detached)"></span>detached</label>
+    <label><input type="checkbox" data-layer="unmatched"><span class="swatch" style="background:var(--unmatched)"></span>unmatched</label>
+    <label><input type="checkbox" id="showImgs" checked>tile images</label>
+    <label><input type="checkbox" id="showOld"><span class="swatch" style="background:var(--old)"></span>old positions (moved only)</label>
+    <label><input type="checkbox" id="showUncovered" checked><span class="swatch" style="background:#f00"></span>uncovered</label>
+    <label><input type="checkbox" id="showLabels">OCR labels</label>
+    <label><input type="checkbox" id="showNames">tile names</label>
+    <span class="counts" id="counts">loading…</span>
+    <span id="progress"></span>
+</header>
+<main>
+    <div id="viewport">
+        <div id="world">
+            <img class="map" src="assets/img/fullmap/full_pharloom_clean.webp" alt="Pharloom map">
+            <div id="tiles"></div>
+            <img id="uncovered" alt="">
+            <div id="olds"></div>
+            <svg id="links"></svg>
+            <div id="labels"></div>
+            <div id="ghost" class="ghost" hidden></div>
+        </div>
+    </div>
+    <aside>
+        <div class="search">
+            <input id="q" type="search" placeholder="Search tile…">
+            <select id="filter">
+                <option value="all">All</option>
+                <option value="attention" selected>Needs attention</option>
+                <option value="moved">Moved vs old</option>
+                <option value="placed">Placed</option>
+                <option value="reviewed">Reviewed / removed</option>
+                <option value="disputed">Disputed old confirmations</option>
+                <option value="uncovered">Uncovered regions</option>
+            </select>
+        </div>
+        <div id="detail"><span class="hint">Hover a box to see its name; click to select (click again to cycle overlapping boxes). Wheel/pinch to zoom, drag to pan.<br>
+            Review keys: C correct · R runner-up · X remove · M move (drag / arrows, Shift = 10 px) · U clear · N next unreviewed.</span></div>
+        <div id="list"></div>
+    </aside>
+</main>
+<div id="tip" hidden></div>
+<div id="toast" hidden></div>
+<script>
+(() => {
+    const BASE = 'assets/img/fullmap/';
+    const FIT = BASE + 'tilefit/';
+    const COLORS = { unmatched: 'var(--unmatched)', reviewed: 'var(--reviewed)', placed: 'var(--placed)', weak: 'var(--weak)', ambiguous: 'var(--ambiguous)', detached: 'var(--detached)' };
+    const ORDER = ['unmatched', 'detached', 'ambiguous', 'weak', 'too_small', 'placed', 'reviewed', 'removed'];
+    const state = { fit: {}, old: {}, disputed: {}, review: {}, locks: {}, orig: {}, api: false, moveMode: false, uncovered: [], labels: [], els: {}, selected: null,
+                    zoom: 0.25, x: 0, y: 0 };
+
+    const $ = id => document.getElementById(id);
+    const viewport = $('viewport'), world = $('world');
+
+    async function getJSON(url, fallback) {
+        try { const r = await fetch(url); return r.ok ? await r.json() : fallback; } catch { return fallback; }
+    }
+
+    function moved(name) {
+        const e = state.fit[name], o = state.old[name];
+        if (!o || e.x === undefined) return null;
+        const d = Math.hypot(o.x + o.width / 2 - e.x - e.width / 2, o.y + o.height / 2 - e.y - e.height / 2);
+        return d;
+    }
+
+    function applyView() { world.style.transform = `translate(${state.x}px, ${state.y}px) scale(${state.zoom})`; }
+
+    let userMoved = false;
+    function fitView() {
+        const w = viewport.clientWidth || window.innerWidth, h = viewport.clientHeight || window.innerHeight;
+        centerOn(2048, 2048, Math.max(0.05, Math.min(w, h) / 3600));
+    }
+    window.addEventListener('resize', () => { if (!userMoved) fitView(); });
+
+    function centerOn(x, y, zoom) {
+        state.zoom = zoom ?? Math.max(state.zoom, 1.2);
+        state.x = viewport.clientWidth / 2 - x * state.zoom;
+        state.y = viewport.clientHeight / 2 - y * state.zoom;
+        applyView();
+    }
+
+    function renderTiles() {
+        const frag = document.createDocumentFragment();
+        for (const [name, e] of Object.entries(state.fit)) {
+            if (e.x === undefined || !COLORS[e.status]) continue;
+            const div = document.createElement('div');
+            div.className = 'tile';
+            div.dataset.status = e.status;
+            Object.assign(div.style, { left: e.x + 'px', top: e.y + 'px', width: e.width + 'px', height: e.height + 'px' });
+            div.style.setProperty('--c', COLORS[e.status]);
+            const img = document.createElement('img');
+            img.loading = 'lazy';
+            img.src = BASE + encodeURIComponent(name);
+            img.alt = '';
+            const box = document.createElement('div');
+            box.className = 'box';
+            const label = document.createElement('span');
+            label.className = 'name';
+            label.textContent = name.replace(/\.png$/, '');
+            div.append(img, box, label);
+            state.els[name] = div;
+            frag.appendChild(div);
+        }
+        $('tiles').appendChild(frag);
+    }
+
+    function renderOld() {
+        const olds = $('olds'), svg = $('links');
+        olds.innerHTML = ''; svg.innerHTML = '';
+        if (!$('showOld').checked) return;
+        let lines = '';
+        for (const name of Object.keys(state.fit)) {
+            const d = moved(name);
+            if (d === null || d < 25) continue;
+            const e = state.fit[name], o = state.old[name];
+            const b = document.createElement('div');
+            b.className = 'old';
+            Object.assign(b.style, { left: o.x + 'px', top: o.y + 'px', width: o.width + 'px', height: o.height + 'px' });
+            olds.appendChild(b);
+            lines += `<line x1="${o.x + o.width / 2}" y1="${o.y + o.height / 2}" x2="${e.x + e.width / 2}" y2="${e.y + e.height / 2}" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.7"/>`;
+        }
+        svg.innerHTML = lines;
+    }
+
+    function renderLabels() {
+        const box = $('labels');
+        box.innerHTML = '';
+        if (!$('showLabels').checked) return;
+        const frag = document.createDocumentFragment();
+        for (const l of state.labels) {
+            if (!l.name || l.match < 0.8) continue;
+            const s = document.createElement('div');
+            s.className = 'label';
+            s.style.left = l.x + 'px'; s.style.top = l.y + 'px';
+            s.textContent = l.name;
+            frag.appendChild(s);
+        }
+        box.appendChild(frag);
+    }
+
+    function applyLayerToggles() {
+        const on = new Set([...document.querySelectorAll('[data-layer]')].filter(c => c.checked).map(c => c.dataset.layer));
+        for (const el of Object.values(state.els)) el.hidden = !on.has(el.dataset.status);
+        world.classList.toggle('hide-imgs', !$('showImgs').checked);
+        world.classList.toggle('show-names', $('showNames').checked);
+        $('uncovered').hidden = !$('showUncovered').checked;
+    }
+
+    function fmt(v) { return v === undefined || v === null ? '–' : (typeof v === 'number' ? +v.toFixed(3) : v); }
+
+    function select(name, center = true) {
+        if (state.selected && state.els[state.selected]) state.els[state.selected].classList.remove('selected');
+        state.selected = name;
+        const e = state.fit[name];
+        const el = state.els[name];
+        if (el) { el.classList.add('selected'); el.hidden = false; }
+        const ghost = $('ghost');
+        ghost.hidden = true;
+        if (e.runner_xy) {
+            Object.assign(ghost.style, { left: e.runner_xy[0] + 'px', top: e.runner_xy[1] + 'px', width: e.width + 'px', height: e.height + 'px' });
+            ghost.hidden = false;
+        }
+        const d = moved(name), o = state.old[name];
+        $('detail').innerHTML = `
+            <h2>${name}</h2>
+            <div><span class="k">status</span> ${e.status}${e.variant ? ' (alternate state)' : ''} · <span class="k">round</span> ${fmt(e.round)}</div>
+            <div><span class="k">ncc</span> ${fmt(e.ncc)} · <span class="k">score</span> ${fmt(e.score)} · <span class="k">runner-up</span> ${fmt(e.runner_up)}${e.void !== undefined && e.void !== null ? ` · <span class="k">on void</span> ${Math.round(e.void * 100)}%` : ''}</div>
+            <div><span class="k">at</span> ${e.x ?? '–'}, ${e.y ?? '–'} · ${e.width}×${e.height} <span class="k">(native ${e.native_width}×${e.native_height})</span></div>
+            <div><span class="k">old</span> ${o ? `${o.x}, ${o.y} ${o.width}×${o.height}${o.confirmed ? ' confirmed' : ''}` : 'not in tile_coordinates.json'}${d !== null ? ` · <span class="k">moved</span> ${Math.round(d)}px` : ''}</div>
+            ${e.note ? `<div><span class="k">note</span> ${e.note}</div>` : ''}
+            <div><span class="k">labels inside</span> ${(e.labels_inside || []).join(', ') || '–'}</div>
+            <div class="k" style="margin-top:4px">dotted purple = runner-up position${o ? ', dashed blue = old (toggle)' : ''}</div>
+            <div class="verdict"><span class="k">verdict</span> ${verdictLabel(name)}</div>
+            <div class="actions">
+                <button data-act="ok" ${state.api && e.x !== undefined ? '' : 'disabled'}>✓ Correct (C)</button>
+                <button data-act="runner" ${state.api && e.runner_xy ? '' : 'disabled'}>⇄ Runner-up (R)</button>
+                <button data-act="remove" ${state.api ? '' : 'disabled'}>✕ Remove (X)</button>
+                <button data-act="move" class="${state.moveMode ? 'on' : ''}" ${state.api && e.x !== undefined ? '' : 'disabled'}>✥ Move (M)</button>
+                <button data-act="clear" ${state.api && state.review[name] ? '' : 'disabled'}>↺ Clear (U)</button>
+                <button data-act="next">Next ▸ (N)</button>
+            </div>
+            ${state.api ? '' : '<div class="k" style="margin-top:4px">Read-only. To save verdicts run: python tools/tilefit/review_server.py</div>'}
+            <div class="compare">
+                <figure><img src="${BASE + encodeURIComponent(name)}" alt="tile ${name}"><figcaption>tile sprite</figcaption></figure>
+                ${e.x !== undefined ? '<figure><canvas id="crop-at"></canvas><figcaption>map at placed spot</figcaption></figure>' : ''}
+                ${e.runner_xy ? '<figure><canvas id="crop-runner"></canvas><figcaption>map at runner-up</figcaption></figure>' : ''}
+            </div>`;
+        if (e.x !== undefined) drawCrop($('crop-at'), e.x, e.y, e.width, e.height);
+        if (e.runner_xy) drawCrop($('crop-runner'), e.runner_xy[0], e.runner_xy[1], e.width, e.height);
+        document.querySelectorAll('#list .row').forEach(r => r.classList.toggle('selected', r.dataset.name === name));
+        for (const el of Object.values(state.els)) el.classList.remove('moving-tile');
+        if (el && state.moveMode) el.classList.add('moving-tile');
+        if (center && e.x !== undefined) centerOn(e.x + e.width / 2, e.y + e.height / 2);
+    }
+
+    // ---------------------------------------------------------------- review
+    // Verdicts go to tools/tilefit/review.json through review_server.py; solve.py
+    // applies them on the next run. Old confirmations the fit agreed with arrive
+    // as locks in confirmed_locks.json; a review.json entry always wins.
+    function verdictOf(name) { return state.review[name] || state.locks[name] || null; }
+    function verdictLabel(name) {
+        const v = verdictOf(name);
+        if (!v) return 'none yet';
+        const src = state.review[name] ? '' : ' (old confirmation)';
+        if (v.verdict === 'remove') return 'removed' + src;
+        if (v.verdict === 'search') return `search inside [${v.box.join(', ')}]` + src;
+        return `locked at ${v.x}, ${v.y}${v.from ? ` · ${v.from}` : ''}` + src;
+    }
+    let toastTimer = null;
+    function flash(msg) {
+        const t = $('toast');
+        t.textContent = msg; t.hidden = false;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => { t.hidden = true; }, 2200);
+    }
+    function updateProgress() {
+        const names = Object.keys(state.fit).filter(n => state.orig[n].status !== 'too_small');
+        const done = names.filter(n => verdictOf(n)).length;
+        $('progress').textContent = `reviewed ${done} / ${names.length}` + (state.api ? '' : ' (read-only)');
+    }
+    function placeEl(name) {
+        const e = state.fit[name], el = state.els[name];
+        if (!el) return;
+        el.dataset.status = e.status;
+        el.style.setProperty('--c', COLORS[e.status] || 'transparent');
+        Object.assign(el.style, { left: e.x + 'px', top: e.y + 'px' });
+        applyLayerToggles();
+    }
+    function applyVerdict(name) {
+        const v = state.review[name], e = state.fit[name], o = state.orig[name];
+        Object.assign(e, o);
+        if (v?.verdict === 'remove') e.status = 'removed';
+        else if (v?.verdict === 'lock') Object.assign(e, { x: v.x, y: v.y, status: 'reviewed' });
+        else if (!v && ['reviewed', 'removed'].includes(o.status) && !state.locks[name])
+            Object.assign(e, { status: 'ambiguous', note: 'verdict cleared; the next run re-fits it' });
+        placeEl(name);
+    }
+    async function persist(name, entry) {
+        const r = await fetch('/api/review', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+                                                body: JSON.stringify({ name, entry }) }).catch(() => null);
+        if (!r || !r.ok) { flash('Save failed: ' + (r ? (await r.json()).error : 'review server not reachable')); return false; }
+        if (entry) state.review[name] = entry; else delete state.review[name];
+        applyVerdict(name);
+        updateProgress();
+        return true;
+    }
+    async function act(kind) {
+        const name = state.selected;
+        if (kind === 'next') return nextUnreviewed();
+        if (!name || !state.api) return;
+        const e = state.fit[name];
+        let ok = false;
+        if (kind === 'ok' && e.x !== undefined) ok = await persist(name, { verdict: 'lock', x: e.x, y: e.y, from: 'viewer' });
+        else if (kind === 'runner' && e.runner_xy) ok = await persist(name, { verdict: 'lock', x: e.runner_xy[0], y: e.runner_xy[1], from: 'runner-up' });
+        else if (kind === 'remove') ok = await persist(name, { verdict: 'remove' });
+        else if (kind === 'clear' && state.review[name]) {
+            ok = await persist(name, null);
+            if (ok && state.locks[name]) flash('Cleared; still locked by its old confirmation (X to remove, M to move)');
+        } else if (kind === 'move' && e.x !== undefined) {
+            state.moveMode = !state.moveMode;
+            viewport.classList.toggle('moving', state.moveMode);
+            flash(state.moveMode ? 'Move: drag the selected tile or use arrow keys (Shift = 10 px). M or Esc to stop.' : 'Move off');
+        }
+        if (ok) flash({ ok: '✓ Locked here', runner: '⇄ Locked at runner-up', remove: '✕ Removed', clear: '↺ Verdict cleared' }[kind]);
+        select(name, false);
+        renderList();
+    }
+    function nextUnreviewed() {
+        const names = [...document.querySelectorAll('#list .row')].map(r => r.dataset.name).filter(Boolean);
+        const start = names.indexOf(state.selected);
+        for (let i = 1; i <= names.length; i++) {
+            const n = names[(start + i) % names.length];
+            if (!verdictOf(n) && state.fit[n].status !== 'too_small') { userMoved = true; return select(n); }
+        }
+        flash('Every tile in this list has a verdict');
+    }
+    let nudgeTimer = null;
+    function moveSelected(dx, dy, commitNow) {
+        const name = state.selected, e = state.fit[name];
+        e.x = Math.round(e.x + dx); e.y = Math.round(e.y + dy);
+        placeEl(name);
+        clearTimeout(nudgeTimer);
+        const commit = async () => {
+            if (await persist(name, { verdict: 'lock', x: e.x, y: e.y, from: 'moved' })) { flash(`✥ Locked at ${e.x}, ${e.y}`); select(name, false); renderList(); }
+        };
+        if (commitNow) commit(); else nudgeTimer = setTimeout(commit, 500);
+    }
+    $('detail').addEventListener('click', ev => { const b = ev.target.closest('button[data-act]'); if (b && !b.disabled) act(b.dataset.act); });
+    document.addEventListener('keydown', ev => {
+        if ((ev.target instanceof Element && ev.target.closest('input, select, textarea')) || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+        const k = ev.key.toLowerCase();
+        if (state.moveMode && state.selected && ev.key.startsWith('Arrow')) {
+            ev.preventDefault();
+            const step = ev.shiftKey ? 10 : 1;
+            const d = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[ev.key];
+            return moveSelected(d[0], d[1], false);
+        }
+        if (ev.key === 'Escape' && state.moveMode) return act('move');
+        const map = { c: 'ok', r: 'runner', x: 'remove', u: 'clear', m: 'move', n: 'next' };
+        if (map[k]) { ev.preventDefault(); act(map[k]); }
+    });
+
+    function selectRegion(r) {
+        $('ghost').hidden = false;
+        Object.assign($('ghost').style, { left: r.x + 'px', top: r.y + 'px', width: r.width + 'px', height: r.height + 'px' });
+        $('detail').innerHTML = `<h2>Uncovered region</h2>
+            <div><span class="k">at</span> ${r.x}, ${r.y} · ${r.width}×${r.height} · ${r.area}px</div>
+            <div><span class="k">labels nearby</span> ${r.labels.join(', ') || '–'}</div>
+            <div class="k" style="margin-top:4px">Map pixels no placed tile covers: a room with no sprite PNG, or a tile still missing.</div>`;
+        centerOn(r.x + r.width / 2, r.y + r.height / 2);
+    }
+
+    const mapImg = world.querySelector('img.map');
+    function drawCrop(canvas, x, y, w, h) {
+        if (!canvas) return;
+        const pad = Math.round(Math.max(w, h) * 0.15);
+        canvas.width = w + 2 * pad; canvas.height = h + 2 * pad;
+        const ctx = canvas.getContext('2d');
+        const draw = () => {
+            ctx.drawImage(mapImg, x - pad, y - pad, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#fff'; ctx.setLineDash([3, 2]); ctx.strokeRect(pad + 0.5, pad + 0.5, w, h);
+        };
+        if (mapImg.complete) draw(); else mapImg.addEventListener('load', draw, { once: true });
+    }
+
+    // Hit-testing in map coordinates: tile divs never see pointer events (the
+    // viewport captures them for panning), so find boxes under the cursor here.
+    function toWorld(cx, cy) {
+        const r = viewport.getBoundingClientRect();
+        return [(cx - r.left - state.x) / state.zoom, (cy - r.top - state.y) / state.zoom];
+    }
+    function tilesAt(cx, cy) {
+        const [wx, wy] = toWorld(cx, cy);
+        const hits = [];
+        for (const [name, el] of Object.entries(state.els)) {
+            if (el.hidden) continue;
+            const e = state.fit[name];
+            if (wx >= e.x && wx <= e.x + e.width && wy >= e.y && wy <= e.y + e.height) hits.push(name);
+        }
+        const area = n => state.fit[n].width * state.fit[n].height;
+        return hits.sort((a, b) => area(a) - area(b) || a.localeCompare(b));   // smallest first
+    }
+    let hovered = null;
+    function setHover(name, cx, cy, count) {
+        if (hovered !== name) {
+            if (hovered && state.els[hovered]) state.els[hovered].classList.remove('hover');
+            hovered = name;
+            if (name) state.els[name].classList.add('hover');
+        }
+        const tip = $('tip');
+        if (!name) { tip.hidden = true; return; }
+        const e = state.fit[name];
+        tip.innerHTML = `${name.replace(/\.png$/, '')} <span class="k">· ${e.status} · ncc ${fmt(e.ncc)}${count > 1 ? ` · ${count} boxes here, click to cycle` : ''}</span>`;
+        tip.hidden = false;
+        tip.style.left = Math.min(cx + 14, window.innerWidth - tip.offsetWidth - 8) + 'px';
+        tip.style.top = (cy + 14) + 'px';
+    }
+    let cycle = { key: '', i: 0 };
+    function clickAt(cx, cy) {
+        const hits = tilesAt(cx, cy);
+        if (!hits.length) return;
+        const key = hits.join('|');
+        cycle = key === cycle.key ? { key, i: (cycle.i + 1) % hits.length } : { key, i: 0 };
+        select(hits[cycle.i], false);
+        setHover(hits[cycle.i], cx, cy, hits.length);
+    }
+
+    function renderList() {
+        const q = $('q').value.trim().toLowerCase();
+        const mode = $('filter').value;
+        const list = $('list');
+        list.innerHTML = '';
+        if (mode === 'uncovered') {
+            const g = document.createElement('div');
+            g.className = 'group'; g.textContent = `Uncovered regions (${state.uncovered.length})`;
+            list.appendChild(g);
+            state.uncovered.forEach(r => {
+                const label = r.labels.join(', ') || `${r.x},${r.y}`;
+                if (q && !label.toLowerCase().includes(q)) return;
+                const row = document.createElement('div');
+                row.className = 'row';
+                row.innerHTML = `<span>${label}</span><span>${r.area}px</span>`;
+                row.onclick = () => selectRegion(r);
+                list.appendChild(row);
+            });
+            return;
+        }
+        const groups = {};
+        for (const [name, e] of Object.entries(state.fit)) {
+            if (q && !name.toLowerCase().includes(q)) continue;
+            const d = moved(name);
+            if (mode === 'attention' && ['placed', 'reviewed', 'removed'].includes(e.status)) continue;
+            if (mode === 'moved' && !(d !== null && d >= 25)) continue;
+            if (mode === 'placed' && e.status !== 'placed') continue;
+            if (mode === 'reviewed' && !['reviewed', 'removed'].includes(e.status)) continue;
+            if (mode === 'disputed' && !state.disputed[name]) continue;
+            (groups[e.status] ||= []).push([name, e, d]);
+        }
+        for (const status of ORDER) {
+            const rows = groups[status];
+            if (!rows) continue;
+            const g = document.createElement('div');
+            g.className = 'group'; g.textContent = `${status} (${rows.length})`;
+            list.appendChild(g);
+            rows.sort((a, b) => mode === 'moved' ? b[2] - a[2] : a[0].localeCompare(b[0]));
+            for (const [name, e, d] of rows) {
+                const row = document.createElement('div');
+                row.className = 'row';
+                row.dataset.name = name;
+                const right = mode === 'moved' ? `${Math.round(d)}px` : mode === 'disputed' ? `${state.disputed[name].gap_px ?? '–'}px` : fmt(e.ncc);
+                const v = verdictOf(name);
+                const mark = v ? (v.verdict === 'remove' ? '✕ ' : '✓ ') : '';
+                row.innerHTML = `<span>${mark}${name.replace(/\.png$/, '')}</span><span>${right}</span>`;
+                row.onclick = () => select(name);
+                list.appendChild(row);
+            }
+        }
+    }
+
+    // pan / zoom (mouse, wheel, touch pinch)
+    const pointers = new Map();
+    let last = null, pinch = null, downAt = null, dragged = false, tileDrag = null;
+    viewport.addEventListener('pointerdown', ev => {
+        if (state.moveMode && state.selected && tilesAt(ev.clientX, ev.clientY).includes(state.selected)) {
+            const e = state.fit[state.selected];
+            tileDrag = { at: toWorld(ev.clientX, ev.clientY), x0: e.x, y0: e.y };
+        }
+        viewport.setPointerCapture(ev.pointerId);
+        pointers.set(ev.pointerId, [ev.clientX, ev.clientY]);
+        last = [ev.clientX, ev.clientY];
+        downAt = [ev.clientX, ev.clientY];
+        dragged = pointers.size > 1;
+        viewport.classList.add('dragging');
+        userMoved = true;
+    });
+    viewport.addEventListener('pointermove', ev => {
+        if (!pointers.has(ev.pointerId)) {
+            const hits = tilesAt(ev.clientX, ev.clientY);
+            setHover(hits[0] ?? null, ev.clientX, ev.clientY, hits.length);
+            return;
+        }
+        if (downAt && Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 4) dragged = true;
+        setHover(null);
+        if (tileDrag) {
+            const [wx, wy] = toWorld(ev.clientX, ev.clientY);
+            const e = state.fit[state.selected];
+            e.x = Math.round(tileDrag.x0 + wx - tileDrag.at[0]);
+            e.y = Math.round(tileDrag.y0 + wy - tileDrag.at[1]);
+            placeEl(state.selected);
+            return;
+        }
+        pointers.set(ev.pointerId, [ev.clientX, ev.clientY]);
+        if (pointers.size === 2) {
+            const [a, b] = [...pointers.values()];
+            const dist = Math.hypot(a[0] - b[0], a[1] - b[1]);
+            const mid = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+            if (pinch) zoomAt(mid[0], mid[1], dist / pinch);
+            pinch = dist;
+            return;
+        }
+        state.x += ev.clientX - last[0];
+        state.y += ev.clientY - last[1];
+        last = [ev.clientX, ev.clientY];
+        applyView();
+    });
+    const up = ev => { pointers.delete(ev.pointerId); pinch = null; if (!pointers.size) viewport.classList.remove('dragging');
+                       else last = [...pointers.values()][0]; };
+    viewport.addEventListener('pointerup', ev => {
+        const wasClick = !dragged && pointers.size === 1;
+        up(ev);
+        if (tileDrag) {
+            const moved = dragged;
+            tileDrag = null;
+            if (moved) return moveSelected(0, 0, true);
+        }
+        if (wasClick) clickAt(ev.clientX, ev.clientY);
+    });
+    viewport.addEventListener('pointerleave', () => setHover(null));
+    viewport.addEventListener('pointercancel', up);
+    function zoomAt(cx, cy, factor) {
+        const r = viewport.getBoundingClientRect();
+        const px = cx - r.left, py = cy - r.top;
+        const z = Math.min(8, Math.max(0.1, state.zoom * factor));
+        state.x = px - (px - state.x) * (z / state.zoom);
+        state.y = py - (py - state.y) * (z / state.zoom);
+        state.zoom = z;
+        applyView();
+    }
+    viewport.addEventListener('wheel', ev => { ev.preventDefault(); userMoved = true; zoomAt(ev.clientX, ev.clientY, ev.deltaY < 0 ? 1.15 : 1 / 1.15); }, { passive: false });
+
+    document.querySelectorAll('header input').forEach(c => c.addEventListener('change', () => {
+        applyLayerToggles(); renderOld(); renderLabels();
+    }));
+    window.addEventListener('hashchange', () => {
+        const t = new URLSearchParams(location.hash.slice(1)).get('tile');
+        if (t && state.fit[t]) { userMoved = true; select(t); }
+    });
+    $('q').addEventListener('input', renderList);
+    $('filter').addEventListener('change', renderList);
+
+    (async () => {
+        const [fit, old, uncovered, labels, locks] = await Promise.all([
+            getJSON(FIT + 'tile_fit.json', null),
+            getJSON(BASE + 'tile_coordinates.json', { tiles: {} }),
+            getJSON(FIT + 'uncovered.json', []),
+            getJSON(FIT + 'labels.json', []),
+            getJSON(FIT + 'confirmed_locks.json', { disputed: {} }),
+        ]);
+        state.disputed = locks.disputed || {};
+        state.locks = locks.tiles || {};
+        const review = await getJSON('/api/review', null);
+        state.api = !!(review && review.tiles);
+        state.review = state.api ? review.tiles : {};
+        if (!fit) { $('counts').textContent = 'tile_fit.json not found: run python tools/tilefit/run_all.py'; return; }
+        state.fit = fit.tiles; state.old = old.tiles || {}; state.uncovered = uncovered; state.labels = labels;
+        $('uncovered').src = FIT + 'uncovered.png';
+        const c = fit.metadata.counts || {};
+        const cov = fit.metadata.coverage;
+        const movedCount = Object.keys(state.fit).filter(n => (moved(n) ?? 0) >= 25).length;
+        $('counts').textContent = Object.entries(c).map(([k, v]) => `${k} ${v}`).join(' · ')
+            + (cov ? ` · coverage ${(100 * cov.covered_px / cov.room_px).toFixed(1)}%` : '')
+            + ` · moved vs old ${movedCount}`;
+        for (const [n, e] of Object.entries(state.fit)) state.orig[n] = { ...e };
+        renderTiles();
+        for (const n of Object.keys(state.review)) if (state.fit[n]) applyVerdict(n);
+        applyLayerToggles(); renderList(); updateProgress();
+        // ?tile=X.png or #tile=X.png (some static servers drop the query on redirect)
+        const sel = new URLSearchParams(location.search).get('tile') || new URLSearchParams(location.hash.slice(1)).get('tile');
+        requestAnimationFrame(() => {
+            if (sel && state.fit[sel]) { userMoved = true; select(sel); } else if (!userMoved) fitView();
+        });
+    })();
+})();
+</script>
+</body>
+</html>

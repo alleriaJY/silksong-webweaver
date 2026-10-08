@@ -12,6 +12,12 @@
             "runtimeExecutable": "npx",
             "runtimeArgs": ["--yes", "serve", "web", "-l", "5176"],
             "port": 5176
+        },
+        {
+            "name": "tilefit-review",
+            "runtimeExecutable": "python",
+            "runtimeArgs": ["tools/tilefit/review_server.py", "--port", "5177"],
+            "port": 5177
         }
     ]
 }

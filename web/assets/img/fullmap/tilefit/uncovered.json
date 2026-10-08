@@ -1,0 +1,260 @@
+[
+ {
+  "x": 1537,
+  "y": 1288,
+  "width": 51,
+  "height": 21,
+  "area": 921,
+  "labels": [
+   "Song_08",
+   "Song_26",
+   "Song_29"
+  ]
+ },
+ {
+  "x": 2882,
+  "y": 2222,
+  "width": 40,
+  "height": 26,
+  "area": 819,
+  "labels": [
+   "Greymoor_02"
+  ]
+ },
+ {
+  "x": 1286,
+  "y": 2566,
+  "width": 31,
+  "height": 24,
+  "area": 625,
+  "labels": [
+   "Bellshrine",
+   "Bone_03"
+  ]
+ },
+ {
+  "x": 1369,
+  "y": 1906,
+  "width": 14,
+  "height": 38,
+  "area": 467,
+  "labels": [
+   "Under_01"
+  ]
+ },
+ {
+  "x": 2087,
+  "y": 2514,
+  "width": 36,
+  "height": 18,
+  "area": 362,
+  "labels": []
+ },
+ {
+  "x": 1026,
+  "y": 2556,
+  "width": 33,
+  "height": 12,
+  "area": 359,
+  "labels": []
+ },
+ {
+  "x": 2746,
+  "y": 2827,
+  "width": 39,
+  "height": 12,
+  "area": 351,
+  "labels": [
+   "Dock_16"
+  ]
+ },
+ {
+  "x": 680,
+  "y": 1150,
+  "width": 29,
+  "height": 19,
+  "area": 311,
+  "labels": [
+   "Peak_06"
+  ]
+ },
+ {
+  "x": 2007,
+  "y": 2513,
+  "width": 31,
+  "height": 19,
+  "area": 309,
+  "labels": [
+   "Ant_04_left"
+  ]
+ },
+ {
+  "x": 1681,
+  "y": 1072,
+  "width": 26,
+  "height": 18,
+  "area": 210,
+  "labels": [
+   "Hang_16"
+  ]
+ },
+ {
+  "x": 571,
+  "y": 1433,
+  "width": 19,
+  "height": 17,
+  "area": 207,
+  "labels": []
+ },
+ {
+  "x": 1005,
+  "y": 2960,
+  "width": 21,
+  "height": 17,
+  "area": 191,
+  "labels": [
+   "Weave_07"
+  ]
+ },
+ {
+  "x": 433,
+  "y": 1744,
+  "width": 19,
+  "height": 19,
+  "area": 189,
+  "labels": []
+ },
+ {
+  "x": 625,
+  "y": 1432,
+  "width": 19,
+  "height": 18,
+  "area": 180,
+  "labels": []
+ },
+ {
+  "x": 409,
+  "y": 1744,
+  "width": 15,
+  "height": 18,
+  "area": 177,
+  "labels": []
+ },
+ {
+  "x": 2160,
+  "y": 2013,
+  "width": 23,
+  "height": 18,
+  "area": 176,
+  "labels": [
+   "Wisp_09"
+  ]
+ },
+ {
+  "x": 1991,
+  "y": 2514,
+  "width": 15,
+  "height": 18,
+  "area": 176,
+  "labels": [
+   "Ant_04_left"
+  ]
+ },
+ {
+  "x": 2500,
+  "y": 1582,
+  "width": 18,
+  "height": 18,
+  "area": 172,
+  "labels": []
+ },
+ {
+  "x": 2032,
+  "y": 2014,
+  "width": 20,
+  "height": 17,
+  "area": 172,
+  "labels": []
+ },
+ {
+  "x": 2051,
+  "y": 2514,
+  "width": 14,
+  "height": 17,
+  "area": 169,
+  "labels": [
+   "Ant_04_left"
+  ]
+ },
+ {
+  "x": 527,
+  "y": 1744,
+  "width": 13,
+  "height": 18,
+  "area": 163,
+  "labels": []
+ },
+ {
+  "x": 1624,
+  "y": 1072,
+  "width": 15,
+  "height": 18,
+  "area": 161,
+  "labels": []
+ },
+ {
+  "x": 493,
+  "y": 1744,
+  "width": 13,
+  "height": 18,
+  "area": 161,
+  "labels": []
+ },
+ {
+  "x": 2048,
+  "y": 2839,
+  "width": 18,
+  "height": 18,
+  "area": 160,
+  "labels": [
+   "Bellway_02",
+   "Dock_04"
+  ]
+ },
+ {
+  "x": 1084,
+  "y": 2960,
+  "width": 14,
+  "height": 17,
+  "area": 153,
+  "labels": []
+ },
+ {
+  "x": 2113,
+  "y": 1227,
+  "width": 15,
+  "height": 13,
+  "area": 152,
+  "labels": [
+   "Cog_Dancers"
+  ]
+ },
+ {
+  "x": 2125,
+  "y": 2514,
+  "width": 12,
+  "height": 18,
+  "area": 152,
+  "labels": []
+ },
+ {
+  "x": 1971,
+  "y": 872,
+  "width": 14,
+  "height": 19,
+  "area": 150,
+  "labels": [
+   "Memory_Silk_Heart_LaceTower"
+  ]
+ }
+]
