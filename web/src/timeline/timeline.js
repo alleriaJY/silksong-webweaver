@@ -1,6 +1,7 @@
 /**
  * Hero's Path: replays scenesVisited over the Pharloom map, lighting the tiles
- * each scene draws, with the save's story events as markers. Reads the save from the shared saveStore, so the save
+ * each scene draws, with the save's story events as markers. "In-game map"
+ * limits it to scenes the save's own map shows (scenesMapped). Reads the save from the shared saveStore, so the save
  * uploaded on any page drives it; it never decrypts on its own.
  *
  *   const timeline = mountTimeline(root, saveStore, { onUpload });
@@ -23,6 +24,10 @@ const TEMPLATE = `
             <div>Revealed tiles: <span data-ref="revealed">0</span></div>
             <div>Mapped tiles: <span data-ref="total">0</span></div>
             <div>Story events: <span data-ref="events">0</span></div>
+        </div>
+        <div class="tl-mode" role="group" aria-label="Which rooms to show">
+            <button class="on" data-act="mode-visited" title="Every room you have entered">Visited</button>
+            <button data-act="mode-mapped" title="Only rooms your in-game map shows">In-game map</button>
         </div>
     </div>
     <div class="tl-controls">
@@ -77,6 +82,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     let overlays = {};                      // tile name -> element
     let scenes = [];
     let events = [];                        // story events placed on the timeline
+    let mapped = new Set();                 // scenesMapped
+    let mode = 'visited';                   // 'visited' | 'mapped'
     let pins = [];                          // [{ event, el }]
     let lookup = () => [];
     let position = 0;
@@ -137,6 +144,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         root.querySelector('[data-act="upload"]').hidden = s.status === 'loading';
         ref('slider').max = scenes.length;
         ref('count').textContent = scenes.length;
+        const pd = s.status === 'ready' ? s.save?.playerData : null;
+        mapped = new Set(pd?.scenesMapped || []);
         events = placeEvents(s.status === 'ready' ? (s.parsed?.story?.events || []) : [], scenes);
         ref('events').textContent = events.length;
         renderMarks();
@@ -150,7 +159,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         position = Math.max(0, Math.min(scenes.length, pos));
         ref('slider').value = position;
         if (!map) return;
-        const lit = litTiles(scenes, position, lookup);
+        const show = mode === 'mapped' ? (scene => (mapped.has(scene) ? lookup(scene) : [])) : lookup;
+        const lit = litTiles(scenes, position, show);
         for (const [name, el] of Object.entries(overlays)) el.classList.toggle('revealed', lit.has(name));
         ref('pos').textContent = position;
         ref('revealed').textContent = lit.size;
@@ -244,6 +254,13 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             p.textContent = events.length ? 'None reached yet' : 'This save has no story events';
             list.appendChild(p);
         }
+    }
+
+    function setMode(next) {
+        mode = next;
+        root.querySelector('[data-act="mode-visited"]').classList.toggle('on', mode === 'visited');
+        root.querySelector('[data-act="mode-mapped"]').classList.toggle('on', mode === 'mapped');
+        seek(position);
     }
 
     function renderRecent() {
@@ -366,6 +383,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         'zoom-out': () => zoomCentre(1 / 1.2),
         'zoom-reset': fit,
         upload: () => onUpload?.(),
+        'mode-visited': () => setMode('visited'),
+        'mode-mapped': () => setMode('mapped'),
     };
     root.addEventListener('click', e => {
         const btn = e.target.closest('[data-act]');

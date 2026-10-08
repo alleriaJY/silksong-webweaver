@@ -123,6 +123,11 @@
     .timeline .tl-scene { width: 100%; }
 }
 
+/* Visited / in-game map toggle */
+.timeline .tl-mode { display: inline-flex; margin-left: auto; border: 1px solid #3a3a5e; border-radius: 6px; overflow: hidden; }
+.timeline .tl-mode button { padding: 5px 12px; border: none; background: #2a2a4e; color: #ccc; font-size: 0.8rem; cursor: pointer; }
+.timeline .tl-mode button.on { background: #e94560; color: #fff; }
+
 /* Story event markers under the slider */
 .timeline .tl-track { flex: 1; min-width: 160px; position: relative; padding-bottom: 10px; }
 .timeline .tl-track .tl-slider { width: 100%; min-width: 0; }
