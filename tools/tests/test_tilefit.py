@@ -98,3 +98,23 @@ def test_scene_aliases_point_at_real_sprites_and_scenes():
     for sprite, scene in load_aliases().items():
         assert sprite in tiles, sprite
         assert scene in scenes, f"{sprite} -> {scene}"
+
+
+def test_instances_name_real_sprites_and_scenes():
+    import json
+    from common import tile_files
+    from scene_tiles import known_scenes
+    path = Path(__file__).resolve().parents[1] / "tilefit" / "instances.json"
+    tiles, scenes = set(tile_files()), known_scenes()
+    for key, inst in json.loads(path.read_text(encoding="utf-8"))["instances"].items():
+        assert key == f"{inst['sprite']}@{inst['scene']}", key
+        assert inst["sprite"] in tiles, key
+        assert inst["scene"] in scenes, key
+        assert isinstance(inst["x"], int) and isinstance(inst["y"], int), key
+
+
+def test_build_uses_an_instance_scene():
+    from scene_tiles import build
+    coords = {"Bellshrine #1.png": {}, "Bellshrine #1.png@Bellshrine": {"sprite": "Bellshrine #1.png", "scene": "Bellshrine"}}
+    out = build(coords, {"Bellshrine", "Bellshrine_03"}, {"Bellshrine #1.png": "Bellshrine_03"})
+    assert out["scenes"] == {"Bellshrine": ["Bellshrine #1.png@Bellshrine"], "Bellshrine_03": ["Bellshrine #1.png"]}

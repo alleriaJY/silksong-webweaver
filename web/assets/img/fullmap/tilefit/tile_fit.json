@@ -5,8 +5,8 @@
   "fullmap_height": 4096,
   "scale": 0.767,
   "counts": {
-   "reviewed": 739,
-   "removed": 92
+   "reviewed": 738,
+   "removed": 93
   },
   "weights": {
    "tint": 0.15,
@@ -17,8 +17,8 @@
   },
   "coverage": {
    "room_px": 2772144,
-   "covered_px": 2728862,
-   "uncovered_regions": 28
+   "covered_px": 2730307,
+   "uncovered_regions": 26
   }
  },
  "tiles": {
@@ -2211,26 +2211,12 @@
    ]
   },
   "Belltown_basement.png": {
-   "status": "reviewed",
+   "status": "removed",
    "area": "Belltown",
    "variant": false,
    "native_width": 130,
    "native_height": 47,
-   "scale": 0.767,
-   "x": 3133,
-   "y": 2433,
-   "width": 100,
-   "height": 36,
-   "score": 0.2048,
-   "ncc": 0.3263,
-   "runner_up": -1.0,
-   "runner_xy": [
-    0,
-    0
-   ],
-   "void": 0.088,
-   "round": 0,
-   "labels_inside": []
+   "scale": 0.767
   },
   "Belltown_basement_03.png": {
    "status": "reviewed",

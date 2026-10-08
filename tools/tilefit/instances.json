@@ -1,0 +1,19 @@
+{
+ "_doc": "Extra placements of a sprite the map draws more than once (shared shapes such as bellshrines). Each key becomes its own entry in tile_coordinates.json with a 'sprite' field naming the image and a 'scene' it lights; x, y are the top-left at the global scale in clean-map px.",
+ "instances": {
+  "Bellshrine #4264913.png@Bellshrine": {
+   "sprite": "Bellshrine #4264913.png",
+   "scene": "Bellshrine",
+   "x": 1275,
+   "y": 2564,
+   "note": "owner: right of Bone_05_right; sprite NCC 0.867 on an uncovered room next to the map's Bellshrine label"
+  },
+  "Bellshrine #4264913.png@Bellshrine_02": {
+   "sprite": "Bellshrine #4264913.png",
+   "scene": "Bellshrine_02",
+   "x": 2877,
+   "y": 2221,
+   "note": "owner: left of Greymoor_02_mid; sprite NCC 0.796 on an uncovered room there"
+  }
+ }
+}

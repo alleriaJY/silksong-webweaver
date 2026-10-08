@@ -3,14 +3,15 @@
     "fullmap": "full_pharloom_clean.webp",
     "fullmap_width": 4096,
     "fullmap_height": 4096,
-    "total_tiles": 739,
-    "confirmed_count": 739,
+    "total_tiles": 740,
+    "confirmed_count": 740,
     "sources": {
-      "review": 739
+      "review": 738,
+      "instance": 2
     },
-    "generated_at": "2026-10-09 00:11:49",
+    "generated_at": "2026-10-09 00:34:21",
     "generator": "tools/tilefit/merge.py",
-    "scale_refined": 239
+    "scale_refined": 241
   },
   "tiles": {
     "Abyss_01.png": {
@@ -1035,17 +1036,6 @@
       "width": 119,
       "height": 38,
       "confidence": 0.942,
-      "scale": 0.767,
-      "area": "Belltown",
-      "confirmed": true,
-      "source": "review"
-    },
-    "Belltown_basement.png": {
-      "x": 3133,
-      "y": 2433,
-      "width": 100,
-      "height": 36,
-      "confidence": 0.326,
       "scale": 0.767,
       "area": "Belltown",
       "confirmed": true,
@@ -8619,6 +8609,36 @@
       "area": "Shellwood",
       "confirmed": true,
       "source": "review"
+    },
+    "Bellshrine #4264913.png@Bellshrine": {
+      "x": 1275,
+      "y": 2565,
+      "width": 53,
+      "height": 27,
+      "confidence": 0.9398,
+      "scale": 0.767,
+      "area": "Bellshrine",
+      "confirmed": true,
+      "source": "instance",
+      "sprite": "Bellshrine #4264913.png",
+      "scene": "Bellshrine",
+      "scale_x": 0.775,
+      "scale_y": 0.72
+    },
+    "Bellshrine #4264913.png@Bellshrine_02": {
+      "x": 2876,
+      "y": 2220,
+      "width": 54,
+      "height": 30,
+      "confidence": 0.9346,
+      "scale": 0.767,
+      "area": "Bellshrine",
+      "confirmed": true,
+      "source": "instance",
+      "sprite": "Bellshrine #4264913.png",
+      "scene": "Bellshrine_02",
+      "scale_x": 0.8,
+      "scale_y": 0.8
     }
   }
 }

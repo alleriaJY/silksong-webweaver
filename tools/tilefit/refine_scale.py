@@ -36,7 +36,7 @@ def _init():
 
 def refine(item):
     name, t = item
-    tile = load_tile(name)
+    tile = load_tile(t.get("sprite", name))   # instances name their sprite
     cx, cy = t["x"] + t["width"] / 2, t["y"] + t["height"] / 2
     base = best_at(tile, cx, cy, GLOBAL_SCALE, GLOBAL_SCALE, _V, with_pos=True)
     uni = [best_at(tile, cx, cy, s, s, _V) for s in SCALES]

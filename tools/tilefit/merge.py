@@ -12,6 +12,8 @@ Policy, per tile:
                                                  (the human broke a tie the matcher can't)
   3. else new fit weak / ambiguous / detached -> new fit, confirmed=false (review)
   4. unmatched / too_small                    -> left out
+  5. instances.json: extra placements of a sprite the map draws more than once,
+     keyed '<sprite>@<scene>' with "sprite" and "scene" fields, confirmed
 
 Output: out/tile_coordinates.json (published to web/assets/img/fullmap/tilefit/)
 Usage:  python tools/tilefit/merge.py
@@ -20,6 +22,7 @@ Usage:  python tools/tilefit/merge.py
 import json
 from collections import Counter
 from datetime import datetime
+from pathlib import Path
 
 import cv2
 
@@ -72,6 +75,16 @@ def main():
         tiles[name] = {"x": int(x), "y": int(y), "width": int(w), "height": int(h),
                        "confidence": round(float(score), 3), "scale": GLOBAL_SCALE,
                        "area": area_of(name), "confirmed": confirmed, "source": src}
+
+    inst_path = Path(__file__).resolve().parent / "instances.json"
+    instances = json.loads(inst_path.read_text(encoding="utf-8"))["instances"] if inst_path.exists() else {}
+    for key, inst in sorted(instances.items()):
+        value, _ = tile_template(load_tile(inst["sprite"]))
+        h, w = value.shape
+        source["instance"] += 1
+        tiles[key] = {"x": int(inst["x"]), "y": int(inst["y"]), "width": w, "height": h,
+                      "confidence": 1.0, "scale": GLOBAL_SCALE, "area": area_of(inst["sprite"]),
+                      "confirmed": True, "source": "instance", "sprite": inst["sprite"], "scene": inst["scene"]}
 
     meta = {"fullmap": "full_pharloom_clean.webp", "fullmap_width": 4096, "fullmap_height": 4096,
             "total_tiles": len(tiles), "confirmed_count": sum(t["confirmed"] for t in tiles.values()),

@@ -135,10 +135,8 @@
    "verdict": "remove"
   },
   "Belltown_basement.png": {
-   "verdict": "lock",
-   "x": 3133,
-   "y": 2433,
-   "from": "runner-up"
+   "verdict": "remove",
+   "note": "owner: misplaced far east; the room is drawn by Belltown_basement_03b.png"
   },
   "Belltown_basement_03.png": {
    "verdict": "lock",

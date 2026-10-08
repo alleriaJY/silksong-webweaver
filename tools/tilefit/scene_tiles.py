@@ -8,6 +8,7 @@ A sprite belongs to the first of:
   3. its name, ignoring case       'shellwood_25.png' -> 'Shellwood_25'
   4. the longest known scene its name starts with, cut at '_'
                                    'Bone_East_15_left.png' -> 'Bone_East_15'
+Instances (a sprite drawn again for another scene, from instances.json) carry their scene.
 Known scenes are every scenesVisited / scenesMapped entry in the fixture saves.
 
 Output: out/scene_tiles.json  { "scenes": {scene: [sprite, ...]}, "unassigned": [sprite, ...] }
@@ -57,11 +58,12 @@ def scene_of(sprite, scenes, aliases, lower=None):
     return None
 
 
-def build(sprites, scenes, aliases):
+def build(coords, scenes, aliases):
+    """coords: tile_coordinates entries by key (a sprite file, or '<sprite>@<scene>' for an instance)."""
     lower = {s.lower(): s for s in scenes}
     out, unassigned = {}, []
-    for sprite in sorted(sprites):
-        scene = scene_of(sprite, scenes, aliases, lower)
+    for sprite in sorted(coords):
+        scene = coords[sprite].get("scene") or scene_of(sprite, scenes, aliases, lower)
         if scene is None:
             unassigned.append(sprite)
         else:
@@ -80,7 +82,7 @@ def main():
     missing = sorted(set(aliases) - set(coords))
     if missing:
         print(f"note: aliased sprites not in the reviewed set (removed?): {missing}")
-    result = build(coords.keys(), scenes, aliases)
+    result = build(coords, scenes, aliases)
     OUT_DIR.mkdir(exist_ok=True)
     (OUT_DIR / "scene_tiles.json").write_text(json.dumps(result, indent=1), encoding="utf-8")
     print(f"scene_tiles.json: {len(result['scenes'])} of {len(scenes)} known scenes have a tile; "

@@ -666,7 +666,7 @@
 
             // Load preview image
             const previewImg = document.getElementById('tile-preview-img');
-            previewImg.src = `assets/img/fullmap/${encodeURIComponent(name)}`;
+            previewImg.src = `assets/img/fullmap/${encodeURIComponent(confirmedTiles[name]?.sprite || name)}`;
             previewImg.onerror = () => { previewImg.style.display = 'none'; };
             previewImg.onload = () => { previewImg.style.display = 'block'; };
 

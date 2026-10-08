@@ -1,6 +1,9 @@
 {
  "_doc": "Sprites whose file name is not the scene (room) they draw, mapped to that scene. Sprite names come from the game's map art, so they are aliased here instead of renamed. Evidence: the OCR label of the scene sits on or next to the reviewed sprite and the scene has no other tile.",
  "aliases": {
+  "Bellshrine #4264913.png": "Bellshrine_03",
+  "Bellshrine_short.png": "Bellshrine_05",
+  "Belltown_basement_03b.png": "Belltown_basement",
   "Bellway_Coral #4264674.png": "Bellway_08",
   "Bone_Tramway.png": "Bone_16",
   "Bone_Tramway_02.png": "Bone_16",

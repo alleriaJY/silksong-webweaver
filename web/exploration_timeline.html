@@ -711,7 +711,7 @@
 
                 // Create image element for the tile
                 const img = document.createElement('img');
-                img.src = `assets/img/fullmap/${encodeURIComponent(name)}`;
+                img.src = `assets/img/fullmap/${encodeURIComponent(tile.sprite || name)}`;   // instances name their sprite
                 img.alt = name;
                 img.onerror = () => { img.style.display = 'none'; };
                 overlay.appendChild(img);

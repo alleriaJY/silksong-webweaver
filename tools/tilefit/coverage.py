@@ -11,6 +11,7 @@ Usage:  python tools/tilefit/coverage.py
 """
 
 import json
+from pathlib import Path
 
 import cv2
 import numpy as np
@@ -42,6 +43,12 @@ def main():
         inside = [l["name"] for l in labels
                   if e["x"] - 10 <= l["x"] <= e["x"] + w + 10 and e["y"] - 10 <= l["y"] <= e["y"] + h + 10]
         e["labels_inside"] = sorted(set(inside))
+    inst_path = Path(__file__).resolve().parent / "instances.json"   # a sprite drawn again elsewhere
+    for inst in (json.loads(inst_path.read_text(encoding="utf-8"))["instances"].values() if inst_path.exists() else []):
+        _, mask = tile_template(load_tile(inst["sprite"]))
+        m = (mask > 0).astype(np.uint8)
+        h, w = m.shape
+        covered[inst["y"]:inst["y"] + h, inst["x"]:inst["x"] + w] |= m
     covered = cv2.dilate(covered, np.ones((5, 5), np.uint8))
 
     gap = room & (1 - covered)
