@@ -6,6 +6,8 @@
 
 /**
  * Render an icon grid: one `div.<itemClass>` per item with an <img> and a label.
+ * The grid is a list for screen readers; each item is named by its title
+ * ("Display (Unlocked)"), so the state is not conveyed by greyscale alone.
  *
  * @param {Element|null} container  grid element (no-op when null)
  * @param {object[]} items
@@ -23,6 +25,7 @@
  * @param {Function} [o.detail]           item => small second line under the label ('' = none)
  * @param {Function} [o.decorate]         (itemEl, item) => void, before the img is added
  * @param {Function} [o.onClick]          item => void
+ * @param {Function} [o.clickable]        item => boolean: which items get onClick (default all)
  * @returns {number} how many items are on
  */
 export function renderIconGrid(container, items, o) {
@@ -32,6 +35,7 @@ export function renderIconGrid(container, items, o) {
     const offClass = o.offClass ?? 'locked';
     const label = o.label || (item => item.display);
     container.innerHTML = '';
+    container.setAttribute('role', 'list');
     let onCount = 0;
 
     for (const item of items) {
@@ -40,13 +44,16 @@ export function renderIconGrid(container, items, o) {
 
         const el = document.createElement('div');
         el.className = o.itemClass;
+        el.setAttribute('role', 'listitem');
         if (o.lockItem && !on) el.classList.add('locked');
         if (o.decorate) o.decorate(el, item);
 
+        const title = o.title ? o.title(item) : `${item.display} (${on ? 'Unlocked' : 'Locked'})`;
+        el.setAttribute('aria-label', title);
         const img = document.createElement('img');
         img.src = o.icon(item);
-        img.alt = item.display;
-        img.title = o.title ? o.title(item) : `${item.display} (${on ? 'Unlocked' : 'Locked'})`;
+        img.alt = '';   // the item's aria-label names it
+        img.title = title;
         const imgClass = o.imgClass ? o.imgClass(item, on) : (on ? onClass : offClass);
         if (imgClass) img.className = imgClass;
 
@@ -66,7 +73,17 @@ export function renderIconGrid(container, items, o) {
             small.textContent = detail;
             el.appendChild(small);
         }
-        if (o.onClick) el.addEventListener('click', () => o.onClick(item));
+        if (o.onClick && (!o.clickable || o.clickable(item))) {
+            // Opens a dialog: reachable and usable from the keyboard
+            el.tabIndex = 0;
+            el.setAttribute('aria-haspopup', 'dialog');
+            el.addEventListener('click', () => o.onClick(item));
+            el.addEventListener('keydown', (e) => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                e.preventDefault();
+                o.onClick(item);
+            });
+        }
         container.appendChild(el);
     }
     return onCount;
@@ -82,10 +99,12 @@ export function renderIconGrid(container, items, o) {
 export function renderChecklist(container, sources, iconSrc) {
     if (!container) return;
     container.innerHTML = '';
+    container.setAttribute('role', 'list');
     sources.forEach((source, index) => {
         const row = document.createElement('div');
         const state = source.pending ? 'pending' : (source.collected ? 'collected' : 'missing');
         row.className = `source-item ${state}`;
+        row.setAttribute('role', 'listitem');
 
         const left = document.createElement('div');
         left.className = 'source-left';
@@ -94,7 +113,7 @@ export function renderChecklist(container, sources, iconSrc) {
         if (src) {
             const img = document.createElement('img');
             img.src = src;
-            img.alt = source.name;
+            img.alt = '';   // the row's name text follows
             img.className = 'source-icon';
             left.appendChild(img);
         }

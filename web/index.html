@@ -15,19 +15,23 @@
     <!-- App Layout with Sidebar -->
     <div class="app-layout">
         <!-- Sidebar Navigation -->
-        <nav class="app-sidebar">
+        <nav class="app-sidebar" aria-label="Main">
             <a class="sidebar-header" href="#home" title="Home">
                 <img src="assets/img/silksong_logo.ico" alt="Silksong Logo" class="sidebar-logo">
                 <span class="sidebar-title">Webweaver</span>
             </a>
             <ul class="sidebar-nav-list">
-                <li class="sidebar-nav-item" data-page="stats">
-                    <span class="sidebar-icon">📊</span>
-                    <span class="sidebar-label">Statistics</span>
+                <li>
+                    <a class="sidebar-nav-item" href="#stats" data-page="stats">
+                        <span class="sidebar-icon" aria-hidden="true">📊</span>
+                        <span class="sidebar-label">Statistics</span>
+                    </a>
                 </li>
-                <li class="sidebar-nav-item" data-page="timeline">
-                    <span class="sidebar-icon">🗺️</span>
-                    <span class="sidebar-label">Hero's Path</span>
+                <li>
+                    <a class="sidebar-nav-item" href="#timeline" data-page="timeline">
+                        <span class="sidebar-icon" aria-hidden="true">🗺️</span>
+                        <span class="sidebar-label">Hero's Path</span>
+                    </a>
                 </li>
             </ul>
             <div class="sidebar-footer">
@@ -38,7 +42,7 @@
         </nav>
 
         <!-- Main Content Area -->
-        <div class="app-main">
+        <main class="app-main">
             <!-- Home Page (#home) -->
             <div class="app-page" id="page-home">
                 <div class="landing-container">
@@ -95,7 +99,7 @@
                         </div>
                     </header>
 
-                    <main>
+                    <div class="stats-body">
 
                         <!-- Loading Indicator -->
                         <div class="loading" id="loading" hidden>
@@ -118,38 +122,38 @@
                             <h2>📊 Save File Statistics</h2>
 
                             <!-- Tab Navigation -->
-                            <nav class="tab-nav" id="tab-nav">
-                                <button class="tab-btn active" data-tab="general">
+                            <nav class="tab-nav" id="tab-nav" role="tablist" aria-label="Statistics sections">
+                                <button class="tab-btn active" data-tab="general" role="tab" id="tab-general" aria-controls="panel-general" aria-selected="true" tabindex="0">
                                     <span class="tab-text">GENERAL</span>
                                 </button>
-                                <button class="tab-btn" data-tab="current">
+                                <button class="tab-btn" data-tab="current" role="tab" id="tab-current" aria-controls="panel-current" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">CURRENT STATS</span>
                                 </button>
-                                <button class="tab-btn" data-tab="unlockables">
+                                <button class="tab-btn" data-tab="unlockables" role="tab" id="tab-unlockables" aria-controls="panel-unlockables" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">UNLOCKABLES</span>
                                 </button>
-                                <button class="tab-btn" data-tab="bosses">
+                                <button class="tab-btn" data-tab="bosses" role="tab" id="tab-bosses" aria-controls="panel-bosses" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">BOSSES</span>
                                 </button>
-                                <button class="tab-btn" data-tab="journal">
+                                <button class="tab-btn" data-tab="journal" role="tab" id="tab-journal" aria-controls="panel-journal" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">JOURNAL</span>
                                 </button>
-                                <button class="tab-btn" data-tab="quests">
+                                <button class="tab-btn" data-tab="quests" role="tab" id="tab-quests" aria-controls="panel-quests" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">QUESTS</span>
                                 </button>
-                                <button class="tab-btn" data-tab="fleas">
+                                <button class="tab-btn" data-tab="fleas" role="tab" id="tab-fleas" aria-controls="panel-fleas" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">FLEAS</span>
                                 </button>
-                                <button class="tab-btn" data-tab="maps">
+                                <button class="tab-btn" data-tab="maps" role="tab" id="tab-maps" aria-controls="panel-maps" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">MAPS</span>
                                 </button>
-                                <button class="tab-btn" data-tab="collectables">
+                                <button class="tab-btn" data-tab="collectables" role="tab" id="tab-collectables" aria-controls="panel-collectables" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">COLLECTABLES</span>
                                 </button>
-                                <button class="tab-btn" data-tab="key-items">
+                                <button class="tab-btn" data-tab="key-items" role="tab" id="tab-key-items" aria-controls="panel-key-items" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">KEY ITEMS</span>
                                 </button>
-                                <button class="tab-btn" data-tab="misc">
+                                <button class="tab-btn" data-tab="misc" role="tab" id="tab-misc" aria-controls="panel-misc" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">MISC</span>
                                 </button>
                             </nav>
@@ -158,7 +162,7 @@
                             <div class="tab-panels">
 
                                 <!-- 1. General Tab -->
-                                <div class="tab-panel active" id="panel-general">
+                                <div class="tab-panel active" id="panel-general" role="tabpanel" aria-labelledby="tab-general" tabindex="0">
                                     <div class="panel-header">
                                         <h3>General Information</h3>
                                         <p class="panel-description">Overview of your save file</p>
@@ -222,7 +226,7 @@
                                 </div>
 
                                 <!-- 2. Current Stats Tab -->
-                                <div class="tab-panel" id="panel-current">
+                                <div class="tab-panel" id="panel-current" role="tabpanel" aria-labelledby="tab-current" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Current Stats</h3>
                                         <p class="panel-description">Your current in-game status</p>
@@ -314,7 +318,7 @@
                                 </div>
 
                                 <!-- 3. Misc Tab -->
-                                <div class="tab-panel" id="panel-misc">
+                                <div class="tab-panel" id="panel-misc" role="tabpanel" aria-labelledby="tab-misc" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Miscellaneous</h3>
                                         <p class="panel-description">Additional save file details</p>
@@ -362,7 +366,7 @@
                                 </div>
 
                                 <!-- 4. Unlockables Tab -->
-                                <div class="tab-panel" id="panel-unlockables">
+                                <div class="tab-panel" id="panel-unlockables" role="tabpanel" aria-labelledby="tab-unlockables" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Unlockables</h3>
                                         <p class="panel-description">Track your progression upgrades, abilities, and
@@ -556,7 +560,7 @@
                                 </div>
 
                                 <!-- 5. Bosses Tab -->
-                                <div class="tab-panel" id="panel-bosses">
+                                <div class="tab-panel" id="panel-bosses" role="tabpanel" aria-labelledby="tab-bosses" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Bosses</h3>
                                         <p class="panel-description">Boss encounters defeated (<span
@@ -574,7 +578,7 @@
                                 </div>
 
                                 <!-- Hunter's Journal Tab -->
-                                <div class="tab-panel" id="panel-journal">
+                                <div class="tab-panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Hunter's Journal</h3>
                                         <p class="panel-description">Enemies encountered (<span
@@ -592,7 +596,7 @@
                                 </div>
 
                                 <!-- Quests Tab -->
-                                <div class="tab-panel" id="panel-quests">
+                                <div class="tab-panel" id="panel-quests" role="tabpanel" aria-labelledby="tab-quests" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Quests &amp; Wishes</h3>
                                         <p class="panel-description">Completed <span id="quests-completed-count">0</span>,
@@ -610,7 +614,7 @@
                                 </div>
 
                                 <!-- 6. Fleas Tab -->
-                                <div class="tab-panel" id="panel-fleas">
+                                <div class="tab-panel" id="panel-fleas" role="tabpanel" aria-labelledby="tab-fleas" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Fleas</h3>
                                         <p class="panel-description">Fleas rescued for Fleatopia (<span
@@ -646,7 +650,7 @@
                                 </div>
 
                                 <!-- 7. Maps Tab -->
-                                <div class="tab-panel" id="panel-maps">
+                                <div class="tab-panel" id="panel-maps" role="tabpanel" aria-labelledby="tab-maps" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Maps</h3>
                                         <p class="panel-description">Collected area maps (<span
@@ -693,7 +697,7 @@
                                 </div>
 
                                 <!-- 7. Collectables Tab -->
-                                <div class="tab-panel" id="panel-collectables">
+                                <div class="tab-panel" id="panel-collectables" role="tabpanel" aria-labelledby="tab-collectables" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Collectables</h3>
                                         <p class="panel-description">Items and collectables found</p>
@@ -766,7 +770,7 @@
                                 </div>
 
                                 <!-- 8. Key Items Tab -->
-                                <div class="tab-panel" id="panel-key-items">
+                                <div class="tab-panel" id="panel-key-items" role="tabpanel" aria-labelledby="tab-key-items" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Key Items</h3>
                                         <p class="panel-description">Keys and story items that open the way forward</p>
@@ -785,7 +789,7 @@
 
                             </div>
                         </section>
-                    </main>
+                    </div>
 
                     <footer>
                         <p>Silksong Webweaver &copy; <span data-year></span> |
@@ -803,22 +807,22 @@
                 <div id="timeline-root"></div>
             </div>
             <!-- End Timeline Page -->
-        </div>
+        </main>
         <!-- End app-main -->
     </div>
     <!-- End app-layout -->
 
     <!-- Upload modal: outside the pages so every page can open it -->
-    <div class="upload-modal" id="upload-modal" hidden>
+    <div class="upload-modal" id="upload-modal" role="dialog" aria-modal="true" aria-labelledby="upload-modal-title" hidden>
         <div class="upload-modal-backdrop" id="upload-modal-backdrop"></div>
         <div class="upload-modal-content">
             <div class="upload-modal-header">
-                <h2>Upload Save File</h2>
-                <button class="upload-modal-close" id="upload-modal-close">&times;</button>
+                <h2 id="upload-modal-title">Upload Save File</h2>
+                <button class="upload-modal-close" id="upload-modal-close" aria-label="Close">&times;</button>
             </div>
             <div class="upload-area" id="upload-area">
                 <input type="file" id="file-input" accept=".dat" hidden>
-                <label for="file-input" class="upload-label">
+                <label for="file-input" class="upload-label" id="upload-label" tabindex="0" role="button">
                     <div class="upload-icon">📁</div>
                     <span class="upload-text">Drop your .dat file here or click to browse</span>
                     <span class="file-name" id="file-name"></span>

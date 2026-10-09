@@ -17,6 +17,7 @@ export function setupGlobalDragDrop(onFile) {
         overlay = document.createElement('div');
         overlay.id = 'global-drop-overlay';
         overlay.className = 'global-drop-overlay';
+        overlay.setAttribute('aria-hidden', 'true');
         overlay.innerHTML = OVERLAY_HTML;
         document.body.appendChild(overlay);
     }

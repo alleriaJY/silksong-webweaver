@@ -92,7 +92,8 @@ export default {
                 el.style.cursor = 'pointer';
                 el.title = `Click to view ${t.upgradeSetName} variants (Spoilers)`;
             },
-            onClick: t => { if (t.isUpgradeSet) showToolVariantsPopup(t); },
+            clickable: t => t.isUpgradeSet,
+            onClick: showToolVariantsPopup,
         });
         if (document.getElementById('tools-grid')) {
             setText('tools-unlocked-count', unlocked);

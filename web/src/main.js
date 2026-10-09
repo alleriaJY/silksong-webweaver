@@ -54,6 +54,13 @@ function setupFileUpload() {
     uploadBtn.addEventListener('click', showUploadModal);
     uploadModalClose.addEventListener('click', hideUploadModal);
     uploadModalBackdrop.addEventListener('click', hideUploadModal);
+    uploadModal.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideUploadModal(); });
+    // The file input is hidden; its label acts as the button from the keyboard
+    document.getElementById('upload-label')?.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        fileInput.click();
+    });
 
     // Picking a file analyses it straight away
     fileInput.addEventListener('change', (e) => {
@@ -78,13 +85,19 @@ function setupFileUpload() {
     setupGlobalDragDrop(handleFileSelect);
 }
 
+let uploadReturnFocus = null;
+
 function showUploadModal() {
+    uploadReturnFocus = document.activeElement;
     uploadModal.hidden = false;
     hideError();
+    document.getElementById('upload-label')?.focus();
 }
 
 function hideUploadModal() {
+    if (uploadModal.hidden) return;
     uploadModal.hidden = true;
+    uploadReturnFocus?.focus?.();
 }
 
 /** Back to the empty state. */

@@ -2040,9 +2040,24 @@ footer a:hover {
     font-size: 0.9rem;
 }
 
-a.sidebar-header {
+a.sidebar-header,
+a.sidebar-nav-item {
     color: inherit;
     text-decoration: none;
+}
+
+.sidebar-nav-item.active {
+    color: white;
+}
+
+/* Keyboard focus is always visible */
+:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+.tab-panel:focus-visible {
+    outline-offset: -2px;
 }
 
 @media (max-width: 768px) {

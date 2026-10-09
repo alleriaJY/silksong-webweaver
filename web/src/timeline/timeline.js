@@ -31,15 +31,15 @@ const TEMPLATE = `
         </div>
     </div>
     <div class="tl-controls">
-        <button class="tl-step" data-act="start" title="Go to start (Home)">⏮</button>
-        <button class="tl-step" data-act="prev" title="Previous scene (←)">⏪</button>
-        <button class="tl-step tl-play" data-act="play" title="Play / pause (Space)">▶</button>
+        <button class="tl-step" data-act="start" title="Go to start (Home)" aria-label="Go to start">⏮</button>
+        <button class="tl-step" data-act="prev" title="Previous scene (←)" aria-label="Previous scene">⏪</button>
+        <button class="tl-step tl-play" data-act="play" title="Play / pause (Space)" aria-label="Play / pause">▶</button>
         <div class="tl-track">
             <input type="range" class="tl-slider" data-ref="slider" min="0" max="0" value="0" aria-label="Timeline position">
             <div class="tl-marks" data-ref="marks"></div>
         </div>
-        <button class="tl-step" data-act="next" title="Next scene (→)">⏩</button>
-        <button class="tl-step" data-act="end" title="Go to end (End)">⏭</button>
+        <button class="tl-step" data-act="next" title="Next scene (→)" aria-label="Next scene">⏩</button>
+        <button class="tl-step" data-act="end" title="Go to end (End)" aria-label="Go to end">⏭</button>
         <div class="tl-position"><span class="tl-current" data-ref="pos">0</span> / <span data-ref="count">0</span></div>
         <div class="tl-scene" data-ref="scene">No scene selected</div>
     </div>
@@ -52,9 +52,9 @@ const TEMPLATE = `
                 <div data-ref="pins"></div>
             </div>
             <div class="tl-zoom">
-                <button class="tl-zoom-btn" data-act="zoom-in" title="Zoom in">+</button>
-                <button class="tl-zoom-btn" data-act="zoom-out" title="Zoom out">−</button>
-                <button class="tl-zoom-btn" data-act="zoom-reset" title="Fit map">⌂</button>
+                <button class="tl-zoom-btn" data-act="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+                <button class="tl-zoom-btn" data-act="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+                <button class="tl-zoom-btn" data-act="zoom-reset" title="Fit map" aria-label="Fit map">⌂</button>
             </div>
             <div class="tl-empty" data-ref="empty">
                 <h2>Hero's Path</h2>
@@ -393,6 +393,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     ref('slider').addEventListener('input', e => { stop(); seek(Number(e.target.value)); });
     document.addEventListener('keydown', e => {
         if (!active || !scenes.length || e.target.closest?.('input:not([type="range"]), select, textarea')) return;
+        if (e.key === ' ' && e.target.closest?.('button, a, [role="button"], summary')) return;   // Space presses the focused control
         const keys = { ArrowLeft: 'prev', ArrowRight: 'next', Home: 'start', End: 'end', ' ': 'play' };
         if (keys[e.key]) {
             e.preventDefault();

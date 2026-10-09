@@ -4,6 +4,8 @@
  */
 import { iconUrl } from '../core/icons.js';
 
+let returnFocus = null;
+
 function ensureModal() {
     let modal = document.getElementById('tool-variants-modal');
     if (modal) return modal;
@@ -11,11 +13,14 @@ function ensureModal() {
     modal = document.createElement('div');
     modal.id = 'tool-variants-modal';
     modal.className = 'tool-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'tool-modal-title');
     modal.innerHTML = `
         <div class="tool-modal-content">
             <div class="tool-modal-header">
                 <h3 id="tool-modal-title"></h3>
-                <button class="tool-modal-close">&times;</button>
+                <button class="tool-modal-close" aria-label="Close">&times;</button>
             </div>
             <div class="tool-modal-body">
                 <div class="spoiler-warning">
@@ -30,9 +35,13 @@ function ensureModal() {
     `;
     document.body.appendChild(modal);
 
-    const close = () => { modal.style.display = 'none'; };
+    const close = () => {
+        modal.style.display = 'none';
+        returnFocus?.focus();   // back to the tile that opened it
+    };
     modal.querySelector('.tool-modal-close').addEventListener('click', close);
     modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    modal.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
     modal.querySelector('.reveal-spoiler-btn').addEventListener('click', (e) => {
         e.target.parentElement.style.display = 'none';
         modal.querySelector('.variants-container').style.display = 'block';
@@ -80,5 +89,7 @@ export function showToolVariantsPopup(tool) {
         grid.appendChild(item);
     }
 
+    returnFocus = document.activeElement;
     modal.style.display = 'flex';
+    modal.querySelector('.tool-modal-close').focus();
 }

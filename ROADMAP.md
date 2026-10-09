@@ -387,13 +387,13 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 3. DONE 2026-10-10: `silksongdata.js`, `parsers.js` and `data/index.js` deleted; their tests moved to `core/format.test.js`, `data/categories/parse.test.js` and `data/packs/lists.test.js` (same 658 tests). `exploration_timeline.html` and `map_viewer.html` were already gone.
 4. Error handling DONE 2026-10-09: `app/errors.js` (`describeProblem`, `checkSave`) and `main.js#showError(kind, detail)`. Kinds: wasm-load, file-type, decrypt (wrong game or damaged), not-silksong (no playerData), unsupported-version (older than the oldest pack `minVersion`), parse (our bug), and unknown-content: a warning, with stats still shown, when the journal, quests, relics, materium or inventory hold names no pack lists (how a patch or DLC without a pack shows up).
 5. **Mobile layout** DONE 2026-10-09 (D18, D23): at 768 px and below the sidebar becomes a 52 px top bar; `.app-main` has `min-width: 0`; card grids use `minmax(min(280px, 100%), 1fr)`; the 11-tab bar is one row that scrolls sideways (fits without scrolling from about 1250 px) and scrolls the active tab into view. Checked with no horizontal overflow on every tab at 375, 600, 768, 1024, 1280 and 1440 px.
-6. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.
+6. Accessibility pass DONE 2026-10-10: one `<main>`; sidebar items are links (`aria-current`); the tab bar follows the ARIA tabs pattern (roving tabindex, Left/Right/Home/End); icon grids and checklists are lists whose items are named with their state; upgrade-set tool tiles open their dialog with Enter/Space; both dialogs have `role="dialog"`, close on Esc and return focus; the upload picker opens from the keyboard; icon-only timeline buttons have labels; `:focus-visible` ring; Hero's Path text colours raised to 4.5:1. axe-core 4.10 reports no violations on Home, Statistics (every tab, empty and loaded) and Hero's Path at 1280 px.
 7. Performance: lazy-load the tile PNGs only when the timeline or map page is first opened; measure first render with a fixture and record it here.
 8. **Tile weight.** Convert tile PNGs to WebP (lossless) when tilefit publishes, or pack them into per-area sprite atlases with an index JSON produced there. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.
 
 ### Acceptance criteria
 - `ls web/*.html` shows `index.html` and `stats.html` (redirect only).
-- Lighthouse accessibility score at or above 90 on the stats page.
+- Lighthouse accessibility score at or above 90 on the stats page. (Checked with axe-core instead, which Lighthouse's accessibility audit is built on: no violations.)
 - Verification block green; OPUS sections 2 and 3 rewritten.
 
 ---
