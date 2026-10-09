@@ -37,7 +37,7 @@ const ICON_KIND = {
 const iconKindOf = name => ICON_KIND[name] ?? (name.endsWith('Sources') ? 'general' : null);
 
 /** Lists whose `json` is a top-level playerData key. */
-const TOP_LEVEL_LISTS = ['generalFields', 'currentFields', 'miscFields', 'bosses', 'fleas', 'abilities', 'otherAbilities', 'skills', 'maps', 'travel'];
+const TOP_LEVEL_LISTS = ['generalFields', 'currentFields', 'miscFields', 'bosses', 'fleas', 'abilities', 'otherAbilities', 'skills', 'maps', 'travel', 'keyItems'];
 
 /** Top-level keys allowed to be absent from some saves. */
 const OPTIONAL_TOP_KEYS = {

@@ -104,6 +104,9 @@
                                 <button class="tab-btn" data-tab="collectables">
                                     <span class="tab-text">COLLECTABLES</span>
                                 </button>
+                                <button class="tab-btn" data-tab="key-items">
+                                    <span class="tab-text">KEY ITEMS</span>
+                                </button>
                                 <button class="tab-btn" data-tab="misc">
                                     <span class="tab-text">MISC</span>
                                 </button>
@@ -715,6 +718,24 @@
                                             </h4>
                                             <div class="inventory-list" id="inventory-list">
                                                 <!-- inventory rows populated by JS -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 8. Key Items Tab -->
+                                <div class="tab-panel" id="panel-key-items">
+                                    <div class="panel-header">
+                                        <h3>Key Items</h3>
+                                        <p class="panel-description">Keys and story items that open the way forward</p>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">🗝️ Key Items
+                                                <span class="unlocked-stats">(Obtained: <strong id="key-items-obtained-count">0</strong>/<span id="key-items-total-count">0</span>)</span>
+                                            </h4>
+                                            <div class="source-checklist" id="key-items-checklist">
+                                                <!-- rows populated by JS -->
                                             </div>
                                         </div>
                                     </div>

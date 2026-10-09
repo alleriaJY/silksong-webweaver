@@ -21,6 +21,7 @@ import {
 import { AREAS } from './areas.js';
 import { JOURNAL } from './journal.js';
 import { QUESTS } from './quests.js';
+import { KEY_ITEMS } from './keyItems.js';
 
 export default {
     id: 'base',
@@ -59,5 +60,6 @@ export default {
         materium: MATERIUM,
         mementos: MEMENTOS,
         inventoryItems: INVENTORY_ITEMS,
+        keyItems: KEY_ITEMS,
     },
 };

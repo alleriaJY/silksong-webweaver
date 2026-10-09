@@ -21,6 +21,7 @@ import fleas from './fleas.js';
 import needle from './needle.js';
 import journal from './journal.js';
 import collection from './collection.js';
+import keyItems from './keyItems.js';
 import quests from './quests.js';
 import story from './story.js';
 import travel from './travel.js';
@@ -42,6 +43,7 @@ export const CATEGORIES = [
     bosses,
     journal,
     collection,
+    keyItems,
     quests,
     story,
     fleas,
