@@ -367,7 +367,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 3. **Timeline module.** DONE: `web/src/timeline/` reads `saveStore`, with story markers and the visited / in-game map toggle. Port `exploration_timeline.html` into `web/src/timeline/` (module, no own WASM, reads `saveStore`). Keep the slider, play/pause, speed, revealed list. Add story-event markers from Phase 2 step 4 and a "mapped vs visited" toggle using `scenesMapped`.
 4. ~~**Map viewer module.**~~ Dropped 2026-10-09; `map_viewer.html` deleted. If wanted later, a `respawnScene` pin can go on Hero's Path.
 5. **Dev viewer** DONE: `tools/tilefit/viewer.html` via `tools/tilefit/review_server.py` (not deployed).
-6. **Mobile**: Hero's Path must be usable at 375 px width (pinch-zoom, drag, controls not overflowing). Verify with the browser at mobile size.
+6. **Mobile** DONE 2026-10-09: at 375 px Hero's Path fits the screen under the top bar (no page scroll), drag and pinch-zoom work (pointer events), story pins shrink to 8 px.
 
 ### Acceptance criteria
 - Every sprite has a verdict in `tools/tilefit/review.json` or `confirmed_locks.json` (met).
@@ -386,7 +386,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 2. Fold `index.html` and `stats.html` into a single `index.html` with hash routes (`#stats`, `#timeline`, `#map`, `#dev`) handled by `app/router.js`. Keep `stats.html` as a redirect for old links.
 3. Delete the `silksongdata.js` and `parsers.js` shims; move the tests to the category modules. (`exploration_timeline.html` and `map_viewer.html` are already gone.)
 4. Error handling: a single `showError(kind, detail)` with distinct messages for wrong file type, decrypt failure (wrong game or corrupted), unsupported version (`version` older than the base pack's `minVersion`), and unknown pack (DLC save with no pack: warn, continue with base).
-5. **Mobile layout bug:** at widths below about 460 px `.app-main` overflows horizontally (seen at 456 px on `stats.html`). Fix as part of this pass.
+5. **Mobile layout** DONE 2026-10-09 (D18, D23): at 768 px and below the sidebar becomes a 52 px top bar; `.app-main` has `min-width: 0`; card grids use `minmax(min(280px, 100%), 1fr)`; the 11-tab bar is one row that scrolls sideways (fits without scrolling from about 1250 px) and scrolls the active tab into view. Checked with no horizontal overflow on every tab at 375, 600, 768, 1024, 1280 and 1440 px.
 6. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.
 7. Performance: lazy-load the tile PNGs only when the timeline or map page is first opened; measure first render with a fixture and record it here.
 8. **Tile weight.** Convert tile PNGs to WebP (lossless) when tilefit publishes, or pack them into per-area sprite atlases with an index JSON produced there. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.

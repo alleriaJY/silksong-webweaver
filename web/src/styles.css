@@ -19,6 +19,7 @@
     --health-color: #ef4444;
     --silk-color: #06b6d4;
     --sidebar-width: 200px;
+    --topbar-height: 0px;   /* height the top bar takes on narrow screens */
 }
 
 * {
@@ -207,17 +208,75 @@ body {
 /* Main Content Area */
 .app-main {
     flex: 1;
+    min-width: 0;   /* let wide children (the tab bar) scroll instead of widening the page */
     margin-left: var(--sidebar-width);
-    min-height: 100vh;
+    min-height: calc(100vh - var(--topbar-height));
 }
 
 .app-page {
     display: none;
-    min-height: 100vh;
+    min-height: calc(100vh - var(--topbar-height));
 }
 
 .app-page.active {
     display: block;
+}
+
+/* Narrow screens: the sidebar becomes a top bar */
+@media (max-width: 768px) {
+    :root {
+        --topbar-height: 52px;
+    }
+
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .app-sidebar {
+        position: sticky;
+        width: 100%;
+        height: var(--topbar-height);
+        flex-direction: row;
+        align-items: center;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-header {
+        padding: 8px 12px;
+        border-bottom: none;
+    }
+
+    .sidebar-logo {
+        width: 28px;
+        height: 28px;
+    }
+
+    .sidebar-nav-list {
+        display: flex;
+        gap: 4px;
+        padding: 6px;
+    }
+
+    .sidebar-nav-item {
+        margin-bottom: 0;
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .app-main {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar-title {
+        display: none;
+    }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -628,10 +687,13 @@ header h1 {
 }
 
 /* Tab Navigation */
+/* One row; scrolls sideways when the tabs do not fit (never wraps or stacks) */
 .tab-nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    gap: 0.25rem;
     margin-bottom: 1.5rem;
     padding: 0.5rem;
     background: var(--bg-card);
@@ -640,14 +702,14 @@ header h1 {
 }
 
 .tab-btn {
-    flex: 1;
-    min-width: 120px;
+    flex: 1 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.7rem 0.6rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
     font-weight: 500;
     color: var(--text-secondary);
     background: transparent;
@@ -709,7 +771,7 @@ header h1 {
 
 .panel-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 1.5rem;
 }
 
@@ -1788,16 +1850,22 @@ footer a:hover {
         font-size: 1.8rem;
     }
 
-    .tab-nav {
-        flex-direction: column;
+    .tab-panel {
+        padding: 1rem;
     }
 
-    .tab-btn {
-        min-width: auto;
+    .stats-header {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
     }
 
-    .tab-text {
-        display: inline;
+    .stats-title {
+        font-size: 1.4rem;
+    }
+
+    .header-btn {
+        padding: 0.55rem 0.9rem;
     }
 
     .panel-content {
@@ -1812,7 +1880,7 @@ footer a:hover {
 
 @media (max-width: 480px) {
     .tab-btn {
-        padding: 0.6rem 0.75rem;
+        padding: 0.55rem 0.65rem;
         font-size: 0.8rem;
     }
 

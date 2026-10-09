@@ -5,7 +5,10 @@
 
 export function switchTab(tabNav, tabId) {
     for (const btn of tabNav.querySelectorAll('.tab-btn')) {
-        btn.classList.toggle('active', btn.dataset.tab === tabId);
+        const active = btn.dataset.tab === tabId;
+        btn.classList.toggle('active', active);
+        // The tab bar scrolls sideways on narrow screens; keep the active tab visible
+        if (active) btn.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
     }
     for (const panel of document.querySelectorAll('.tab-panel')) {
         panel.classList.toggle('active', panel.id === `panel-${tabId}`);

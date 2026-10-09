@@ -27,7 +27,7 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
 
 ### In progress / planned (see ROADMAP.md for the phase each belongs to)
 - [ ] Some Memory Locket sources, Loddie's tool pouch and the 8th craftmetal (need specific saves)
-- [ ] Phase 3: close tile gaps, Hero's Path in the app on the shared upload (mobile check left)
+- [x] Phase 3: tile gaps closed, Hero's Path in the app on the shared upload, usable on phones
 - [ ] Phase 4: single-page app shell, no iframes, accessibility and performance pass
 - [ ] Phase 5: DLC readiness (pack scaffold, unknown-keys dev panel, version banner)
 - [ ] Stretch: save comparison, exports, shareable summary links

@@ -3,7 +3,8 @@
 .timeline {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - var(--topbar-height, 0px));
+    height: calc(100dvh - var(--topbar-height, 0px));
     background: #1a1a2e;
     color: #fff;
     overflow: hidden;
@@ -152,3 +153,8 @@
 .timeline .tl-legend i, .timeline .tl-event i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 .timeline .tl-event { width: 100%; border: none; color: #fff; font: inherit; text-align: left; cursor: pointer; }
 .timeline .tl-event:hover { background: #3a3a5e; }
+
+/* Phones: smaller story pins so they do not cover the map at fit zoom */
+@media (max-width: 760px) {
+    .timeline .tl-pin { width: 8px; height: 8px; margin: -4px 0 0 -4px; border-width: 1.5px; }
+}
