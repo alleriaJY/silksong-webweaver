@@ -379,10 +379,10 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ## Phase 4 - App Shell Consolidation
 
-**Goal:** One page, one state, no iframes, no shims. **Retires:** D6, remaining D13 (D7 was retired in Phase 3). **Depends on:** Phase 3.
+**Goal:** One page, one state, no iframes, no shims. **Retires:** remaining D13 (D6 retired by step 1, D7 in Phase 3). **Depends on:** Phase 3.
 
 ### Steps
-1. Replace the `sessionStorage` base64 hand-off with a chunked encoder (4096-byte chunks) or IndexedDB; add a test for a 400 KB `Uint8Array` round-trip.
+1. DONE 2026-10-09: the `sessionStorage` base64 hand-off uses a chunked encoder (32 KB chunks, `app/upload.js#bytesToBase64`) and the landing page reuses `setupGlobalDragDrop`; `app/upload.test.js` round-trips a 400 KB save.
 2. Fold `index.html` and `stats.html` into a single `index.html` with hash routes (`#stats`, `#timeline`, `#map`, `#dev`) handled by `app/router.js`. Keep `stats.html` as a redirect for old links.
 3. Delete the `silksongdata.js` and `parsers.js` shims; move the tests to the category modules. (`exploration_timeline.html` and `map_viewer.html` are already gone.)
 4. Error handling: a single `showError(kind, detail)` with distinct messages for wrong file type, decrypt failure (wrong game or corrupted), unsupported version (`version` older than the base pack's `minVersion`), and unknown pack (DLC save with no pack: warn, continue with base).

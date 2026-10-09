@@ -49,6 +49,43 @@ export function setupGlobalDragDrop(onFile) {
 
 export const PENDING_SAVE_KEY = 'pending_save_file';
 
+// String.fromCharCode(...bytes) passes one argument per byte, which overflows
+// the engine's argument limit on a late-game save (~400 KB); go in chunks.
+const CHUNK = 0x8000;
+
+/** Uint8Array -> base64, safe for any size. */
+export function bytesToBase64(bytes) {
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += CHUNK) {
+        binary += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK));
+    }
+    return btoa(binary);
+}
+
+/** base64 -> Uint8Array. */
+export function base64ToBytes(base64) {
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return bytes;
+}
+
+/**
+ * Hand a save from the landing page to the stats page. Returns false when it
+ * could not be stored (storage blocked or full); the stats page then simply
+ * opens without it.
+ */
+export async function storePendingSaveFile(file) {
+    try {
+        const data = bytesToBase64(new Uint8Array(await file.arrayBuffer()));
+        sessionStorage.setItem(PENDING_SAVE_KEY, JSON.stringify({ name: file.name, data }));
+        return true;
+    } catch (e) {
+        console.warn('Could not hand over the save file:', e);
+        return false;
+    }
+}
+
 /** Take (and clear) a save handed over by the landing page, as a File, or null. */
 export function takePendingSaveFile() {
     try {
@@ -56,10 +93,7 @@ export function takePendingSaveFile() {
         if (!stored) return null;
         sessionStorage.removeItem(PENDING_SAVE_KEY);
         const { name, data } = JSON.parse(stored);
-        const binary = atob(data);
-        const bytes = new Uint8Array(binary.length);
-        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-        return new File([bytes], name, { type: 'application/octet-stream' });
+        return new File([base64ToBytes(data)], name, { type: 'application/octet-stream' });
     } catch (e) {
         console.warn('Could not load pending save file:', e);
         return null;
