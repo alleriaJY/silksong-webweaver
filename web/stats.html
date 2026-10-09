@@ -66,9 +66,13 @@
                         </div>
 
                         <!-- Error Display -->
-                        <div class="error-message" id="error-message" hidden>
+                        <div class="error-message" id="error-message" role="alert" hidden>
                             <span class="error-icon">⚠️</span>
-                            <span id="error-text"></span>
+                            <div class="error-body">
+                                <strong id="error-text"></strong>
+                                <span class="error-hint" id="error-hint"></span>
+                                <small class="error-detail" id="error-detail"></small>
+                            </div>
                         </div>
 
                         <!-- Stats Section with Tabs -->

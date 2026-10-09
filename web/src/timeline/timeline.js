@@ -138,7 +138,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         empty.hidden = scenes.length > 0;
         ref('empty-text').textContent = {
             loading: 'Decrypting your save…',
-            error: `Could not read that save: ${s.error || 'unknown error'}`,
+            error: `${s.error || 'Could not read that save.'} See Statistics for details.`,
             ready: 'This save has no visited scenes yet.',
         }[s.status] || 'Upload a save to replay your journey across Pharloom.';
         root.querySelector('[data-act="upload"]').hidden = s.status === 'loading';

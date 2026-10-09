@@ -663,6 +663,35 @@ header h1 {
     display: none;
 }
 
+.error-message.warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: var(--warning-color);
+    color: var(--warning-color);
+}
+
+.error-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.error-hint {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.error-detail {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    overflow-wrap: anywhere;
+}
+
+.error-hint:empty,
+.error-detail:empty {
+    display: none;
+}
+
 /* Stats Section */
 .stats-section {
     animation: fadeIn 0.5s ease;

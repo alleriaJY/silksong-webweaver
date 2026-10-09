@@ -6,13 +6,14 @@
  * in data/categories/<id>.js, never here.
  */
 
-import { loadWasm, decryptSave } from './core/wasm.js';
+import { loadWasm, decryptSave, SaveDecryptError } from './core/wasm.js';
 import { parseAllData, renderAll } from './data/categories/index.js';
 import { setupGlobalDragDrop, takePendingSaveFile } from './app/upload.js';
 import { setupTabs, switchTab } from './app/tabs.js';
 import { showBuildInfo } from './app/buildInfo.js';
 import { saveStore } from './app/saveStore.js';
 import { mountTimeline } from './timeline/timeline.js';
+import { checkSave, describeProblem } from './app/errors.js';
 
 // State
 let wasmReady = false;
@@ -31,6 +32,8 @@ const fileName = document.getElementById('file-name');
 const loading = document.getElementById('loading');
 const errorMessage = document.getElementById('error-message');
 const errorText = document.getElementById('error-text');
+const errorHint = document.getElementById('error-hint');
+const errorDetail = document.getElementById('error-detail');
 const statsSection = document.getElementById('stats-section');
 const tabNav = document.getElementById('tab-nav');
 
@@ -41,7 +44,7 @@ async function initWasm() {
         console.log('✓ WASM module initialized');
     } catch (error) {
         console.error('Failed to initialize WASM:', error);
-        showError('Failed to initialize decryption module. Please refresh the page.');
+        showError('wasm-load', error.message);
     }
 }
 
@@ -98,7 +101,7 @@ function resetStats() {
 async function handleFileSelect(file) {
     hideError();
     if (!file.name.endsWith('.dat')) {
-        showError('Please upload a .dat save file');
+        showError('file-type', `Got "${file.name}".`);
         return;
     }
     selectedFile = file;
@@ -109,12 +112,9 @@ async function handleFileSelect(file) {
 }
 
 async function analyzeFile() {
-    if (!selectedFile) {
-        showError('Please select a save file first');
-        return;
-    }
+    if (!selectedFile) return;
     if (!wasmReady) {
-        showError('Decryption module not ready. Please wait or refresh the page.');
+        showError('wasm-load', 'Still loading; try again in a moment.');
         return;
     }
 
@@ -124,17 +124,26 @@ async function analyzeFile() {
     hideError();
     saveStore.set({ status: 'loading', fileName: selectedFile.name, error: null });
 
+    // Each stage reports its own kind of problem (app/errors.js)
+    let stage = 'decrypt';
     try {
         const bytes = new Uint8Array(await selectedFile.arrayBuffer());
         const save = decryptSave(bytes);
+        const blocking = checkSave(save);
+        if (blocking) {
+            fail(blocking.kind, blocking.detail);
+            return;
+        }
+        stage = 'parse';
         currentData = parseAllData(save.playerData, save.sceneData);
         displayStats(currentData);
         resetBtn.hidden = false;
         saveStore.set({ status: 'ready', save, parsed: currentData });
+        const warning = checkSave(save, currentData);
+        if (warning) showError(warning.kind, warning.detail);
     } catch (error) {
         console.error('Analysis failed:', error);
-        showError('Failed to analyze save file: ' + error.message);
-        saveStore.set({ status: 'error', save: null, parsed: null, error: error.message });
+        fail(error instanceof SaveDecryptError || stage === 'decrypt' ? 'decrypt' : 'parse', error.message);
     } finally {
         loading.hidden = true;
     }
@@ -147,9 +156,21 @@ function displayStats(data) {
     statsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function showError(message) {
-    errorText.textContent = message;
+/** Show a problem from app/errors.js; warnings use the amber style. */
+function showError(kind, detail = '') {
+    const { title, hint, severity } = describeProblem(kind, detail);
+    errorText.textContent = title;
+    errorHint.textContent = hint;
+    errorDetail.textContent = detail;
+    errorMessage.classList.toggle('warning', severity === 'warning');
     errorMessage.hidden = false;
+}
+
+/** A save that cannot be shown: report it here and to the other pages. */
+function fail(kind, detail) {
+    showError(kind, detail);
+    statsSection.hidden = true;
+    saveStore.set({ status: 'error', save: null, parsed: null, error: describeProblem(kind).title });
 }
 
 function hideError() {
