@@ -1,6 +1,7 @@
 /**
- * Current tab: health and silk bars, currencies, position. Crest, loadout,
- * cloak and needle on the same tab are rendered by their own categories.
+ * Current tab: health and silk bars, currencies. Crest, loadout,
+ * cloak and needle on the same tab are rendered by their own categories;
+ * the position fields render into the Current Position card on the Misc tab.
  */
 import { parseSimpleFields, field } from './common.js';
 import { formatNumber } from '../../core/format.js';

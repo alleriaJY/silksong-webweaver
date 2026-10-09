@@ -1,4 +1,4 @@
-/** Misc tab: respawn info. */
+/** Misc tab: respawn info (Current Position on this tab is filled by current.js). */
 import { parseSimpleFields, field } from './common.js';
 import { setStat } from '../../ui/renderers.js';
 
