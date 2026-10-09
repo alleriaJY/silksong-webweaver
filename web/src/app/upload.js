@@ -1,7 +1,5 @@
 /**
- * Upload plumbing shared by the stats page: the window-wide drop overlay and
- * the landing-page hand-off (index.html stores a dropped save in
- * sessionStorage and redirects here).
+ * Window-wide drop overlay: a save dropped anywhere on the app opens it.
  */
 
 const OVERLAY_HTML = `
@@ -45,57 +43,4 @@ export function setupGlobalDragDrop(onFile) {
         overlay.classList.remove('active');
         if (e.dataTransfer.files.length > 0) onFile(e.dataTransfer.files[0]);
     });
-}
-
-export const PENDING_SAVE_KEY = 'pending_save_file';
-
-// String.fromCharCode(...bytes) passes one argument per byte, which overflows
-// the engine's argument limit on a late-game save (~400 KB); go in chunks.
-const CHUNK = 0x8000;
-
-/** Uint8Array -> base64, safe for any size. */
-export function bytesToBase64(bytes) {
-    let binary = '';
-    for (let i = 0; i < bytes.length; i += CHUNK) {
-        binary += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK));
-    }
-    return btoa(binary);
-}
-
-/** base64 -> Uint8Array. */
-export function base64ToBytes(base64) {
-    const binary = atob(base64);
-    const bytes = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-    return bytes;
-}
-
-/**
- * Hand a save from the landing page to the stats page. Returns false when it
- * could not be stored (storage blocked or full); the stats page then simply
- * opens without it.
- */
-export async function storePendingSaveFile(file) {
-    try {
-        const data = bytesToBase64(new Uint8Array(await file.arrayBuffer()));
-        sessionStorage.setItem(PENDING_SAVE_KEY, JSON.stringify({ name: file.name, data }));
-        return true;
-    } catch (e) {
-        console.warn('Could not hand over the save file:', e);
-        return false;
-    }
-}
-
-/** Take (and clear) a save handed over by the landing page, as a File, or null. */
-export function takePendingSaveFile() {
-    try {
-        const stored = sessionStorage.getItem(PENDING_SAVE_KEY);
-        if (!stored) return null;
-        sessionStorage.removeItem(PENDING_SAVE_KEY);
-        const { name, data } = JSON.parse(stored);
-        return new File([base64ToBytes(data)], name, { type: 'application/octet-stream' });
-    } catch (e) {
-        console.warn('Could not load pending save file:', e);
-        return null;
-    }
 }

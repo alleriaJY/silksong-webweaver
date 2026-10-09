@@ -1,24 +1,26 @@
 /**
- * Silksong Webweaver - stats page bootstrap.
+ * Silksong Webweaver - app bootstrap (index.html).
  *
- * Wires the upload UI, decrypts with WASM (core/wasm.js), parses every
- * category (data/categories) and renders them. Category-specific code lives
- * in data/categories/<id>.js, never here.
+ * Wires the hash router (app/router.js), the upload UI, decrypts with WASM
+ * (core/wasm.js), parses every category (data/categories) and renders them.
+ * Category-specific code lives in data/categories/<id>.js, never here.
  */
 
 import { loadWasm, decryptSave, SaveDecryptError } from './core/wasm.js';
 import { parseAllData, renderAll } from './data/categories/index.js';
-import { setupGlobalDragDrop, takePendingSaveFile } from './app/upload.js';
+import { setupGlobalDragDrop } from './app/upload.js';
 import { setupTabs, switchTab } from './app/tabs.js';
 import { showBuildInfo } from './app/buildInfo.js';
 import { saveStore } from './app/saveStore.js';
 import { mountTimeline } from './timeline/timeline.js';
 import { checkSave, describeProblem } from './app/errors.js';
+import { startRouter } from './app/router.js';
 
 // State
 let wasmReady = false;
 let selectedFile = null;
 let currentData = null; // last parsed save
+let router = null;
 
 // DOM Elements
 const uploadBtn = document.getElementById('upload-btn');
@@ -104,6 +106,8 @@ async function handleFileSelect(file) {
         showError('file-type', `Got "${file.name}".`);
         return;
     }
+    // A save opened from Home goes to Statistics, where its result (or error) shows
+    if (router?.current === 'home') router.go('stats');
     selectedFile = file;
     fileName.textContent = file.name;
     uploadArea.classList.add('has-file');
@@ -177,24 +181,10 @@ function hideError() {
     errorMessage.hidden = true;
 }
 
-/** Analyse a save dropped on the landing page, once WASM is ready. */
-async function openPendingSaveFile() {
-    const file = takePendingSaveFile();
-    if (!file) return;
-    try {
-        await loadWasm();
-    } catch {
-        return; // initWasm already reported the failure
-    }
-    wasmReady = true;
-    handleFileSelect(file);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     setupFileUpload();
     setupTabs(tabNav);
     initWasm();
-    openPendingSaveFile();
     showBuildInfo();
 
     // Hero's Path reads the shared save; it builds its map the first time it is shown
@@ -202,9 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (timelineRoot) {
         const timeline = mountTimeline(timelineRoot, saveStore, { onUpload: showUploadModal });
         window.addEventListener('app:page', (e) => (e.detail === 'timeline' ? timeline.show() : timeline.hide()));
-        if (document.getElementById('page-timeline')?.classList.contains('active')) timeline.show();
     }
+    router = startRouter();   // after the listeners: it announces the first page
 
-    const yearEl = document.getElementById('current-year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    for (const el of document.querySelectorAll('[data-year]')) el.textContent = new Date().getFullYear();
 });

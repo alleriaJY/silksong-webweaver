@@ -1917,3 +1917,159 @@ footer a:hover {
         font-size: 1rem;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HOME PAGE (#home)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.landing-container {
+    min-height: calc(100vh - var(--topbar-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1e1e3f 50%, #0d0d1a 100%);
+}
+
+.landing-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.landing-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 30px var(--primary-glow));
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.landing-title {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.landing-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+.landing-routes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 700px;
+    width: 100%;
+}
+
+.route-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-panel) 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.route-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px var(--primary-glow);
+}
+
+.route-icon {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.route-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.route-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.route-card.statistics .route-icon {
+    color: var(--primary-color);
+}
+
+.route-card.heros-path .route-icon {
+    color: var(--secondary-color);
+}
+
+.landing-footer {
+    margin-top: 4rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.landing-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.landing-footer a:hover {
+    color: var(--secondary-color);
+}
+
+.landing-hint {
+    margin-top: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+a.sidebar-header {
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .landing-container {
+        justify-content: flex-start;
+        padding: 1.5rem 1rem;
+    }
+
+    .landing-header {
+        margin-bottom: 2rem;
+    }
+
+    .landing-logo {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 1rem;
+    }
+
+    .landing-title {
+        font-size: 2rem;
+    }
+
+    .route-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .route-icon {
+        font-size: 2.5rem;
+    }
+}

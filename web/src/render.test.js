@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 /**
- * Render regression test: drives the real stats page (stats.html markup +
+ * Render regression test: drives the real stats page (index.html markup +
  * src/main.js) through the upload flow for every fixture, with the WASM module
  * mocked to return the fixture, and compares the rendered #stats-section with
  * committed golden files in __snapshots__/render/.
@@ -21,7 +21,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const FIXTURE_DIR = join(HERE, 'data', '__fixtures__');
 // Normalise line endings: Windows checkouts (core.autocrlf) give CRLF, and the
 // carriage returns would leak into multi-line text nodes in the goldens.
-const STATS_HTML = readFileSync(join(HERE, '..', 'stats.html'), 'utf-8').replace(/\r\n/g, '\n');
+const STATS_HTML = readFileSync(join(HERE, '..', 'index.html'), 'utf-8').replace(/\r\n/g, '\n');
 
 const wasm = vi.hoisted(() => ({ current: null }));
 vi.mock('../pkg/wasm_crypto.js', () => ({
