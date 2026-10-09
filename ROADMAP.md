@@ -92,8 +92,8 @@ web/src/
 ├── ui/
 │   ├── renderers.js         # renderIconGrid, renderChecklist, renderStatFields, setCount
 │   └── modal.js             # tool-variants popup and upload modal
-├── timeline/                # Hero's Path as a module (Phase 4), replaces exploration_timeline.html
-├── map/                     # Map viewer as a module (Phase 4)
+├── timeline/                # Hero's Path as a module, replaces exploration_timeline.html (done in Phase 3)
+├── map/                     # map data + scene -> tile lookup shared by map pages (sceneTiles.js)
 └── styles.css
 ```
 
@@ -359,32 +359,32 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ## Phase 3 - Hero's Path and Map
 
-**Goal:** Finish map coverage and make the timeline and map viewer first-class. **Depends on:** Phase 1 (areas in packs), Phase 2 step 4 (story events).
+**Goal:** Finish map coverage and make Hero's Path first-class. The standalone map viewer was dropped on 2026-10-09 (owner decision): Hero's Path covers the map, and placed markers would need an unknown in-game-units to map-pixels transform. **Depends on:** Phase 1 (areas in packs), Phase 2 step 4 (story events).
 
 ### Steps
 1. **Tile gap closure.** DONE with `tools/tilefit`: every sprite is reviewed (`review.json`: 739 positioned, 92 removed) and the reviewed set is what the pages read. Coverage of map room pixels 98.4%; the remaining rooms (interiors, challenge rooms) are not drawn on the world map.
-2. **Scene to tile mapping as data.** DONE: `tools/tilefit/scene_tiles.py` writes `scene_tiles.json` (aliases, hash/prefix/case-insensitive names, pieces by longest known scene) and the timeline looks scenes up there. Remaining: move the lookup into `web/src/map/sceneTiles.js` with the timeline port (step 3).
-3. **Timeline module.** Port `exploration_timeline.html` into `web/src/timeline/` (module, no own WASM, reads `saveStore`). Keep the slider, play/pause, speed, revealed list. Add story-event markers from Phase 2 step 4 and a "mapped vs visited" toggle using `scenesMapped`.
-4. **Map viewer module.** Port `map_viewer.html` into `web/src/map/`; add the player's `placedMarkers` and `respawnScene` pin, area legend from the pack's `areas`. Re-enable the sidebar entry.
-5. **Dev viewer** is `tilefit_viewer.html` (review with `tools/tilefit/review_server.py`); it reads `areas` colours from the pack via a small module import.
-6. **Mobile**: both map pages must be usable at 375 px width (pinch-zoom, drag). Verify with the browser at mobile size.
+2. **Scene to tile mapping as data.** DONE: `tools/tilefit/scene_tiles.py` writes `scene_tiles.json` (aliases, hash/prefix/case-insensitive names, pieces by longest known scene) and the timeline looks scenes up there. The lookup lives in `web/src/map/sceneTiles.js`.
+3. **Timeline module.** DONE: `web/src/timeline/` reads `saveStore`, with story markers and the visited / in-game map toggle. Port `exploration_timeline.html` into `web/src/timeline/` (module, no own WASM, reads `saveStore`). Keep the slider, play/pause, speed, revealed list. Add story-event markers from Phase 2 step 4 and a "mapped vs visited" toggle using `scenesMapped`.
+4. ~~**Map viewer module.**~~ Dropped 2026-10-09; `map_viewer.html` deleted. If wanted later, a `respawnScene` pin can go on Hero's Path.
+5. **Dev viewer** DONE: `tools/tilefit/viewer.html` via `tools/tilefit/review_server.py` (not deployed).
+6. **Mobile**: Hero's Path must be usable at 375 px width (pinch-zoom, drag, controls not overflowing). Verify with the browser at mobile size.
 
 ### Acceptance criteria
 - Every sprite has a verdict in `tools/tilefit/review.json` or `confirmed_locks.json` (met).
 - Scene lookup tests pass; the timeline lights the scenes `scene_tiles.json` covers (72% save: 557 of 686, 100% save: 658 of 842; the rest are not on the world map).
-- One upload feeds Statistics, Hero's Path and Map (no second upload).
+- One upload feeds Statistics and Hero's Path (no second upload) (met).
 - Verification block green; OPUS section 9 updated.
 
 ---
 
 ## Phase 4 - App Shell Consolidation
 
-**Goal:** One page, one state, no iframes, no shims. **Retires:** D6, D7, remaining D13. **Depends on:** Phase 3.
+**Goal:** One page, one state, no iframes, no shims. **Retires:** D6, remaining D13 (D7 was retired in Phase 3). **Depends on:** Phase 3.
 
 ### Steps
 1. Replace the `sessionStorage` base64 hand-off with a chunked encoder (4096-byte chunks) or IndexedDB; add a test for a 400 KB `Uint8Array` round-trip.
 2. Fold `index.html` and `stats.html` into a single `index.html` with hash routes (`#stats`, `#timeline`, `#map`, `#dev`) handled by `app/router.js`. Keep `stats.html` as a redirect for old links.
-3. Delete `exploration_timeline.html`, `map_viewer.html`, the `silksongdata.js` and `parsers.js` shims; move the tests to the category modules.
+3. Delete the `silksongdata.js` and `parsers.js` shims; move the tests to the category modules. (`exploration_timeline.html` and `map_viewer.html` are already gone.)
 4. Error handling: a single `showError(kind, detail)` with distinct messages for wrong file type, decrypt failure (wrong game or corrupted), unsupported version (`version` older than the base pack's `minVersion`), and unknown pack (DLC save with no pack: warn, continue with base).
 5. **Mobile layout bug:** at widths below about 460 px `.app-main` overflows horizontally (seen at 456 px on `stats.html`). Fix as part of this pass.
 6. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.
@@ -392,7 +392,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 8. **Tile weight.** Convert tile PNGs to WebP (lossless) when tilefit publishes, or pack them into per-area sprite atlases with an index JSON produced there. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.
 
 ### Acceptance criteria
-- `ls web/*.html` shows `index.html`, `stats.html` (redirect only), `tilefit_viewer.html`.
+- `ls web/*.html` shows `index.html` and `stats.html` (redirect only).
 - Lighthouse accessibility score at or above 90 on the stats page.
 - Verification block green; OPUS sections 2 and 3 rewritten.
 

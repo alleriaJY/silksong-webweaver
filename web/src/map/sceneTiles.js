@@ -1,5 +1,5 @@
 /**
- * Map data for Hero's Path and the map viewer: reviewed tile positions
+ * Map data for Hero's Path: reviewed tile positions
  * (tile_coordinates.json) and which tiles each scene lights (scene_tiles.json),
  * both published by tools/tilefit. The browser looks scenes up; it never
  * matches file names except for scenes the map data has never seen.

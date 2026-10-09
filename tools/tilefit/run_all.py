@@ -15,7 +15,7 @@ merge.py is followed by refine_scale.py, which gives tiles that clearly match be
 their own scale that scale (out/tile_coordinates.json in place).
 
 The reviewed tile_coordinates.json and scene_tiles.json are also copied to
-web/assets/img/fullmap/, where the timeline and map viewer read them.
+web/assets/img/fullmap/, where Hero's Path reads them.
 
 Outputs go to tools/tilefit/out/ and are copied to tools/tilefit/published/ (for the review page).
 tools/confirmed_tiles.json is never modified.

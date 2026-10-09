@@ -2,7 +2,7 @@
  * Map areas, keyed by the first segment of a scene / tile name
  * ("Bone_East_20" -> "Bone", "Coral_19b" -> "Coral").
  *
- * color:   legend and overlay colour (was hard-coded in map_viewer.html).
+ * color:   area colour for map overlays and legends.
  * display: in-game area name, only where an existing schema entry confirms it.
  *          null means "not confirmed yet"; UIs fall back to the prefix.
  *          Some prefixes span several in-game areas (Song = Grand Gate and
