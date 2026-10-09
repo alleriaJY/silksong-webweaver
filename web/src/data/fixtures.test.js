@@ -12,7 +12,7 @@ import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseAllData } from './parsers.js';
+import { parseAllData } from './categories/index.js';
 import { baselineCounts } from '../../scripts/snapshot-fixtures.mjs';
 
 const FIXTURE_DIR = join(dirname(fileURLToPath(import.meta.url)), '__fixtures__');

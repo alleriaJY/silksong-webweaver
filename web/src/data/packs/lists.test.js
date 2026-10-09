@@ -1,12 +1,22 @@
 /**
- * Schema Validation Tests for Silksong Data Definitions
+ * Structure tests for the merged pack lists
  * 
  * These tests ensure that all schema lists are properly structured
  * and contain the required fields for each item type.
  */
 
 import { describe, it, expect } from 'vitest';
-import * as schemas from './silksongdata.js';
+import { mergedList } from './index.js';
+
+// Merged lists under the names these tests were written with
+const schemas = {
+    BOSSES_LIST: mergedList('bosses'),
+    CURRENT_FIELDS_LIST: mergedList('currentFields'),
+    FLEAS_LIST: mergedList('fleas'),
+    GENERAL_FIELDS_LIST: mergedList('generalFields'),
+    MAPS_LIST: mergedList('maps'),
+    TOOLS_LIST: mergedList('tools'),
+};
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA STRUCTURE TESTS
@@ -175,7 +185,7 @@ describe('No Duplicate JSON Keys', () => {
 
 describe('Expected Item Counts', () => {
     it('TOOLS_LIST should have approximately 59 tools', () => {
-        // Based on OPUS.md and silksongdata.js, there should be ~59 tools
+        // The base pack lists ~59 tools
         expect(schemas.TOOLS_LIST.length).toBeGreaterThanOrEqual(50);
         expect(schemas.TOOLS_LIST.length).toBeLessThanOrEqual(70);
     });

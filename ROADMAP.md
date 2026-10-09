@@ -97,7 +97,7 @@ web/src/
 └── styles.css
 ```
 
-Old files `data/silksongdata.js` and `data/parsers.js` survive Phase 1 as thin re-export shims so existing tests keep passing, then are deleted in Phase 4.
+Old files `data/silksongdata.js` and `data/parsers.js` survived Phase 1 as thin re-export shims so existing tests kept passing; they were deleted in Phase 4 (2026-10-10).
 
 ### 1.2 Normalise at the WASM boundary (retires D1, D5)
 
@@ -384,7 +384,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 ### Steps
 1. DONE 2026-10-09: the `sessionStorage` base64 hand-off uses a chunked encoder (32 KB chunks, `app/upload.js#bytesToBase64`) and the landing page reuses `setupGlobalDragDrop`; `app/upload.test.js` round-trips a 400 KB save.
 2. Fold `index.html` and `stats.html` into a single `index.html` with hash routes (`#stats`, `#timeline`, `#map`, `#dev`) handled by `app/router.js`. Keep `stats.html` as a redirect for old links.
-3. Delete the `silksongdata.js` and `parsers.js` shims; move the tests to the category modules. (`exploration_timeline.html` and `map_viewer.html` are already gone.)
+3. DONE 2026-10-10: `silksongdata.js`, `parsers.js` and `data/index.js` deleted; their tests moved to `core/format.test.js`, `data/categories/parse.test.js` and `data/packs/lists.test.js` (same 658 tests). `exploration_timeline.html` and `map_viewer.html` were already gone.
 4. Error handling DONE 2026-10-09: `app/errors.js` (`describeProblem`, `checkSave`) and `main.js#showError(kind, detail)`. Kinds: wasm-load, file-type, decrypt (wrong game or damaged), not-silksong (no playerData), unsupported-version (older than the oldest pack `minVersion`), parse (our bug), and unknown-content: a warning, with stats still shown, when the journal, quests, relics, materium or inventory hold names no pack lists (how a patch or DLC without a pack shows up).
 5. **Mobile layout** DONE 2026-10-09 (D18, D23): at 768 px and below the sidebar becomes a 52 px top bar; `.app-main` has `min-width: 0`; card grids use `minmax(min(280px, 100%), 1fr)`; the 11-tab bar is one row that scrolls sideways (fits without scrolling from about 1250 px) and scrolls the active tab into view. Checked with no horizontal overflow on every tab at 375, 600, 768, 1024, 1280 and 1440 px.
 6. Accessibility pass: grids are lists with `role="list"`, icons have `alt`, tabs have `role="tab"`/`aria-selected`, keyboard navigation for tabs.

@@ -14,7 +14,7 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseAllData } from '../src/data/parsers.js';
+import { parseAllData } from '../src/data/categories/index.js';
 
 const FIXTURE_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data', '__fixtures__');
 
