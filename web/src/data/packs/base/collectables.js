@@ -115,16 +115,23 @@ export const MATERIUM = [
 ];
 
 // Mementos: held as a Collectables item or deposited (MementosDeposited), or a
-// playerData flag for the two with no item name in any save. Display names
-// follow the owner's TO-DO notes; Hero's = 'Memento Garmond' and Hearts =
-// 'Hunter Heart' are by elimination (the other six match by name).
+// playerData flag for the two with no item name in any save. Hero's =
+// 'Memento Garmond' by elimination (the other six match by name).
+// Hearts Memento: the story needs only three of the four hearts; the fourth
+// becomes the memento. `allFlags` all set = obtained, and `depositItems` are
+// the heart items that can land in MementosDeposited (holding one is not
+// enough, since every heart is a Collectables item).
 export const MEMENTOS = [
     { id: 'heros-memento', display: "Hero's Memento (Garmond)", item: 'Memento Garmond' },
     { id: 'craw-memento', display: 'Craw Memento', item: 'Crowman Memento', flag: 'PickedUpCrowMemento' },
     { id: 'gray-memento', display: 'Gray Memento', item: 'Grey Memento', flag: 'CollectedMementoGrey' },
     { id: 'surface-memento', display: 'Surface Memento', item: 'Memento Surface' },
     { id: 'hunter-memento', display: 'Hunter Memento', item: 'Hunter Memento', flag: 'nuuMementoAwarded' },
-    { id: 'hearts-memento', display: 'Hearts Memento (Hunter Heart)', item: 'Hunter Heart' },
+    {
+        id: 'hearts-memento', display: 'Hearts Memento (all four hearts)',
+        allFlags: ['CollectedHeartFlower', 'CollectedHeartCoral', 'CollectedHeartHunter', 'CollectedHeartClover'],
+        depositItems: ['Flower Heart', 'Coral Heart', 'Hunter Heart', 'Clover Heart'],
+    },
     { id: 'sprintmaster-memento', display: 'Sprintmaster Memento', flag: 'CollectedMementoSprintmaster' },
     { id: 'guardian-memento', display: 'Guardian Memento (Flea Games)', flag: 'FleaGamesMementoGiven' },
 ];

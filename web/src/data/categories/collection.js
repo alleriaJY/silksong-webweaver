@@ -31,8 +31,8 @@ export function parseCollection(save, ctx) {
     }));
     const mementos = ctx.lists('mementos').map(def => {
         const held = def.item ? (items.get(def.item)?.Amount || 0) > 0 : false;
-        const isDeposited = def.item ? !!deposited.get(def.item)?.IsDeposited : false;
-        const flagged = def.flag ? !!pd[def.flag] : false;
+        const isDeposited = [def.item, ...(def.depositItems || [])].some(name => name && !!deposited.get(name)?.IsDeposited);
+        const flagged = (def.flag ? !!pd[def.flag] : false) || (!!def.allFlags && def.allFlags.every(f => !!pd[f]));
         return { id: def.id, display: def.display, obtained: held || isDeposited || flagged, deposited: isDeposited };
     });
     const itemDefs = ctx.lists('inventoryItems');

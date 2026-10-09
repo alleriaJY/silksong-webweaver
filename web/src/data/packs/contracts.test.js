@@ -95,6 +95,7 @@ describe('pack contracts', () => {
                 .filter(s => s.flagType === 'bool' || s.flagType === 'flea').map(s => s.flag),
             ...mergedList('cloakTiers').map(t => t.requires).filter(Boolean),
             ...mergedList('mementos').map(m => m.flag).filter(Boolean),
+            ...mergedList('mementos').flatMap(m => m.allFlags || []),
         ]);
         for (const key of keys) {
             if (OPTIONAL_TOP_KEYS[key]) continue;
