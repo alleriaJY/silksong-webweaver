@@ -18,6 +18,7 @@ import { saveStore } from './app/saveStore.js';
 import { mountTimeline } from './timeline/timeline.js';
 import { checkSave, describeProblem } from './app/errors.js';
 import { startRouter } from './app/router.js';
+import { showScene } from './app/scene.js';
 
 // State
 let wasmReady = false;
@@ -229,6 +230,7 @@ function hideError() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    showScene();
     setupFileUpload();
     setupTabs(tabNav);
     showPlaceholder();

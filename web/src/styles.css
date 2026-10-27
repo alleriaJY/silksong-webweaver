@@ -22,7 +22,7 @@
     --health-color: #c9483f;
     --silk-color: #e8e1d3;
     --icon-glow: rgba(212, 179, 106, 0.3);
-    /* Background scene behind the app, e.g. url('../assets/img/scene.webp'); none = plain black */
+    /* Background scene behind the app; app/scene.js sets it (none = plain black) */
     --scene: none;
     --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
     --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
