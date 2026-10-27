@@ -1,26 +1,29 @@
 /* Silksong Webweaver - Styles */
 
 :root {
-    /* Pharloom: near-black ground, ivory text, a crimson silk thread, old gold */
+    /* Black ground, ivory text, a crimson silk thread, old gold */
+    color-scheme: dark;   /* native scrollbars and controls match */
     --primary-color: #b23a35;   /* crimson thread: fills, rules, the active tab */
     --primary-dark: #8f2b27;
     --primary-text: #e27a68;    /* crimson for text on the dark panels (4.5:1 or better) */
     --secondary-color: #d4b36a; /* old gold: focus ring, link hover */
     --accent-color: #d4b36a;
-    --bg-dark: #0a0908;
-    --bg-panel: #100f0e;
-    --bg-card: #161413;
-    --bg-card-hover: #1e1b19;
-    --text-primary: #ece3d1;
-    --text-secondary: #a99d8a;
-    --border-color: #2a2622;
-    --border-strong: #463f38;
+    --bg-dark: #000000;
+    --bg-panel: #0a0a0a;
+    --bg-card: #121212;
+    --bg-card-hover: #1b1b1b;
+    --text-primary: #ece8e1;
+    --text-secondary: #a8a39b;
+    --border-color: #262626;
+    --border-strong: #404040;
     --success-color: #93b97a;
     --error-color: #e27a68;
     --warning-color: #d9a441;
     --health-color: #c9483f;
     --silk-color: #e8e1d3;
     --icon-glow: rgba(212, 179, 106, 0.3);
+    /* Background scene behind the app, e.g. url('../assets/img/scene.webp'); none = plain black */
+    --scene: none;
     --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
     --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
     --radius: 6px;
@@ -42,6 +45,15 @@ body {
     line-height: 1.6;
 }
 
+/* The scene sits behind everything, darkened so text keeps its contrast */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)), var(--scene) center / cover no-repeat;
+}
+
 h1, h2, h3, h4, .sidebar-title, .completion-big-number {
     font-family: var(--font-display);
     font-weight: 600;
@@ -55,7 +67,7 @@ h1, h2, h3, h4, .sidebar-title, .completion-big-number {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(10, 9, 8, 0.92);
+    background: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 9999;
@@ -701,6 +713,7 @@ header h1 {
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
     gap: 0;
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
