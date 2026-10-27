@@ -13,7 +13,7 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
 ## Status
 
 ### Completed
-- [x] Web UI with drag-and-drop upload: one page with Home, Statistics and Hero's Path
+- [x] Web UI with drag-and-drop upload: one page with Statistics and Hero's Path
 - [x] WASM-based decryption (Rust, AES-256-ECB)
 - [x] GitHub Pages deployment with CI (Rust, JS and Python tests); deploys only after CI passes
 - [x] Hero's Path exploration timeline over the Pharloom map

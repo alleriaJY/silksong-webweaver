@@ -31,15 +31,15 @@ const TEMPLATE = `
         </div>
     </div>
     <div class="tl-controls">
-        <button class="tl-step" data-act="start" title="Go to start (Home)" aria-label="Go to start">⏮</button>
-        <button class="tl-step" data-act="prev" title="Previous scene (←)" aria-label="Previous scene">⏪</button>
-        <button class="tl-step tl-play" data-act="play" title="Play / pause (Space)" aria-label="Play / pause">▶</button>
+        <button class="tl-step" data-act="start" title="Go to start (Home)" aria-label="Go to start">⏮\uFE0E</button>
+        <button class="tl-step" data-act="prev" title="Previous scene (←)" aria-label="Previous scene">⏪\uFE0E</button>
+        <button class="tl-step tl-play" data-act="play" title="Play / pause (Space)" aria-label="Play / pause">▶\uFE0E</button>
         <div class="tl-track">
             <input type="range" class="tl-slider" data-ref="slider" min="0" max="0" value="0" aria-label="Timeline position">
             <div class="tl-marks" data-ref="marks"></div>
         </div>
-        <button class="tl-step" data-act="next" title="Next scene (→)" aria-label="Next scene">⏩</button>
-        <button class="tl-step" data-act="end" title="Go to end (End)" aria-label="Go to end">⏭</button>
+        <button class="tl-step" data-act="next" title="Next scene (→)" aria-label="Next scene">⏩\uFE0E</button>
+        <button class="tl-step" data-act="end" title="Go to end (End)" aria-label="Go to end">⏭\uFE0E</button>
         <div class="tl-position"><span class="tl-current" data-ref="pos">0</span> / <span data-ref="count">0</span></div>
         <div class="tl-scene" data-ref="scene">No scene selected</div>
     </div>
@@ -58,8 +58,8 @@ const TEMPLATE = `
             </div>
             <div class="tl-empty" data-ref="empty">
                 <h2>Hero's Path</h2>
-                <p data-ref="empty-text">Upload a save to replay your journey across Pharloom.</p>
-                <button class="tl-upload" data-act="upload">Upload save</button>
+                <p data-ref="empty-text">Open a save to replay your journey across Pharloom.</p>
+                <button class="tl-upload" data-act="upload">Open a save</button>
             </div>
         </div>
         <aside class="tl-side">
@@ -138,7 +138,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             loading: 'Decrypting your save…',
             error: `${s.error || 'Could not read that save.'} See Statistics for details.`,
             ready: 'This save has no visited scenes yet.',
-        }[s.status] || 'Upload a save to replay your journey across Pharloom.';
+        }[s.status] || 'Open a save to replay your journey across Pharloom.';
         root.querySelector('[data-act="upload"]').hidden = s.status === 'loading';
         ref('slider').max = scenes.length;
         ref('count').textContent = scenes.length;
@@ -299,7 +299,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         if (!scenes.length) return;
         if (position >= scenes.length) seek(0);
         const btn = root.querySelector('[data-act="play"]');
-        btn.textContent = '⏸';
+        btn.textContent = '⏸\uFE0E';
         btn.classList.add('playing');
         timer = setInterval(() => {
             if (position >= scenes.length) return stop();
@@ -311,7 +311,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         clearInterval(timer);
         timer = null;
         const btn = root.querySelector('[data-act="play"]');
-        btn.textContent = '▶';
+        btn.textContent = '▶\uFE0E';
         btn.classList.remove('playing');
     }
 

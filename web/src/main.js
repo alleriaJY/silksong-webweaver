@@ -3,6 +3,9 @@
  *
  * Wires the hash router (app/router.js), the upload UI, decrypts with WASM
  * (core/wasm.js), parses every category (data/categories) and renders them.
+ * Before a save is loaded (and after Clear or a failed load) the stats page
+ * shows its real layout as a placeholder: values read N/A and item lists are
+ * blurred, so nothing is spoiled.
  * Category-specific code lives in data/categories/<id>.js, never here.
  */
 
@@ -20,7 +23,6 @@ import { startRouter } from './app/router.js';
 let wasmReady = false;
 let selectedFile = null;
 let currentData = null; // last parsed save
-let router = null;
 
 // DOM Elements
 const uploadBtn = document.getElementById('upload-btn');
@@ -38,6 +40,14 @@ const errorHint = document.getElementById('error-hint');
 const errorDetail = document.getElementById('error-detail');
 const statsSection = document.getElementById('stats-section');
 const tabNav = document.getElementById('tab-nav');
+const emptyBanner = document.getElementById('empty-banner');
+
+// Item lists and visuals that are blurred while no save is loaded
+const PLACEHOLDER_BLUR = '[role="list"], .source-checklist, .inventory-list, .icon-container, '
+    + '.equipped-tools-row, .equipment-columns, .completion-breakdown, .stat-bar';
+// Values that read N/A while no save is loaded, and counts that read a dash ("Unlocked: –/6")
+const PLACEHOLDER_VALUES = '.stat-value, .percent-value, .completion-big-number, #completion-modelled strong';
+const PLACEHOLDER_COUNTS = '.unlocked-stats strong, .panel-description strong';
 
 async function initWasm() {
     try {
@@ -52,6 +62,7 @@ async function initWasm() {
 
 function setupFileUpload() {
     uploadBtn.addEventListener('click', showUploadModal);
+    document.getElementById('empty-upload-btn')?.addEventListener('click', showUploadModal);
     uploadModalClose.addEventListener('click', hideUploadModal);
     uploadModalBackdrop.addEventListener('click', hideUploadModal);
     uploadModal.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideUploadModal(); });
@@ -106,11 +117,35 @@ function resetStats() {
     currentData = null;
     fileName.textContent = '';
     uploadArea.classList.remove('has-file');
-    statsSection.hidden = true;
     resetBtn.hidden = true;
     fileInput.value = '';
     hideError();
+    showPlaceholder();
     saveStore.reset();
+}
+
+/** The stats page with no save: the real layout, N/A values, blurred lists. */
+function showPlaceholder() {
+    renderAll(parseAllData({}, {}));
+    switchTab(tabNav, 'general');
+    for (const el of statsSection.querySelectorAll(PLACEHOLDER_VALUES)) el.textContent = 'N/A';
+    for (const el of statsSection.querySelectorAll(PLACEHOLDER_COUNTS)) el.textContent = '–';
+    for (const el of statsSection.querySelectorAll(PLACEHOLDER_BLUR)) {
+        el.classList.add('is-placeholder');
+        el.inert = true;   // blurred names stay out of reach of keyboard and screen readers
+    }
+    statsSection.classList.add('is-empty');
+    emptyBanner.hidden = false;
+    statsSection.hidden = false;
+}
+
+function clearPlaceholder() {
+    for (const el of statsSection.querySelectorAll('.is-placeholder')) {
+        el.classList.remove('is-placeholder');
+        el.inert = false;
+    }
+    statsSection.classList.remove('is-empty');
+    emptyBanner.hidden = true;
 }
 
 async function handleFileSelect(file) {
@@ -119,8 +154,6 @@ async function handleFileSelect(file) {
         showError('file-type', `Got "${file.name}".`);
         return;
     }
-    // A save opened from Home goes to Statistics, where its result (or error) shows
-    if (router?.current === 'home') router.go('stats');
     selectedFile = file;
     fileName.textContent = file.name;
     uploadArea.classList.add('has-file');
@@ -167,6 +200,7 @@ async function analyzeFile() {
 }
 
 function displayStats(data) {
+    clearPlaceholder();
     statsSection.hidden = false;
     renderAll(data);
     switchTab(tabNav, 'general');
@@ -186,7 +220,7 @@ function showError(kind, detail = '') {
 /** A save that cannot be shown: report it here and to the other pages. */
 function fail(kind, detail) {
     showError(kind, detail);
-    statsSection.hidden = true;
+    showPlaceholder();
     saveStore.set({ status: 'error', save: null, parsed: null, error: describeProblem(kind).title });
 }
 
@@ -197,6 +231,7 @@ function hideError() {
 document.addEventListener('DOMContentLoaded', () => {
     setupFileUpload();
     setupTabs(tabNav);
+    showPlaceholder();
     initWasm();
     showBuildInfo();
 
@@ -206,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const timeline = mountTimeline(timelineRoot, saveStore, { onUpload: showUploadModal });
         window.addEventListener('app:page', (e) => (e.detail === 'timeline' ? timeline.show() : timeline.hide()));
     }
-    router = startRouter();   // after the listeners: it announces the first page
+    startRouter();   // after the listeners: it announces the first page
 
     for (const el of document.querySelectorAll('[data-year]')) el.textContent = new Date().getFullYear();
 });

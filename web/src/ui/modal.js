@@ -24,8 +24,8 @@ function ensureModal() {
             </div>
             <div class="tool-modal-body">
                 <div class="spoiler-warning">
-                    <p>⚠️ This section contains spoilers about tool variations</p>
-                    <button class="reveal-spoiler-btn">Click to Reveal Variants</button>
+                    <p>Spoilers ahead: this lists every version of the tool.</p>
+                    <button class="reveal-spoiler-btn">Show variants</button>
                 </div>
                 <div class="variants-container" style="display: none;">
                     <div id="variants-grid"></div>

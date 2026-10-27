@@ -4,9 +4,8 @@
 
 const OVERLAY_HTML = `
     <div class="global-drop-content">
-        <div class="global-drop-icon">📥</div>
-        <div class="global-drop-title">Drop Save File Anywhere</div>
-        <div class="global-drop-subtitle">Release your save file (user1.dat to user4.dat) to decrypt &amp; analyze instantly</div>
+        <div class="global-drop-title">Let go to open this save</div>
+        <div class="global-drop-subtitle">user1.dat to user4.dat · read in your browser, never uploaded</div>
     </div>
 `;
 

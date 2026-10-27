@@ -1,5 +1,5 @@
 /**
- * Hash routes for the one-page app: #home, #stats, #timeline. Pages are
+ * Hash routes for the one-page app: #stats, #timeline. Pages are
  * id="page-<route>", sidebar items data-page="<route>"; never hard-code page
  * ids elsewhere. Every change fires `app:page` (detail = route) on window.
  *
@@ -7,10 +7,10 @@
  *   router.go('stats');
  */
 
-export const ROUTES = ['home', 'stats', 'timeline'];
-export const DEFAULT_ROUTE = 'home';
+export const ROUTES = ['stats', 'timeline'];
+export const DEFAULT_ROUTE = 'stats';
 
-/** '#timeline' -> 'timeline'; unknown or empty -> the default route. */
+/** '#timeline' -> 'timeline'; unknown or empty (and the old '#home') -> the default route. */
 export function routeFromHash(hash) {
     const route = String(hash || '').replace(/^#\/?/, '');
     return ROUTES.includes(route) ? route : DEFAULT_ROUTE;
