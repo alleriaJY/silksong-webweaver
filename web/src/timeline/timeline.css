@@ -63,7 +63,7 @@
 .timeline .tl-step {
     width: 36px; height: 36px;
     border: none; border-radius: 6px;
-    background: #2d2620; color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
+    background: #1e1b19; color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
     transition: background 0.2s;
 }
 .timeline .tl-step:hover { background: var(--tl-accent-bg); }
@@ -74,7 +74,7 @@
 .timeline .tl-scene {
     width: 300px; flex-shrink: 0;
     padding: 6px 12px; border-radius: 4px;
-    background: #2d2620; font-size: 0.85rem; text-align: center;
+    background: #1e1b19; font-size: 0.85rem; text-align: center;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .timeline .tl-area { color: var(--success-color); }
@@ -83,7 +83,7 @@
 .timeline .tl-body { flex: 1; display: flex; min-height: 0; }
 .timeline .tl-map {
     flex: 1; position: relative; overflow: hidden;
-    background: #0d0b09; cursor: grab; touch-action: none;
+    background: #050404; cursor: grab; touch-action: none;
 }
 .timeline .tl-map.dragging { cursor: grabbing; }
 .timeline .tl-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
@@ -96,7 +96,7 @@
 .timeline .tl-zoom { position: absolute; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 5px; }
 .timeline .tl-zoom-btn {
     width: 40px; height: 40px; border: none; border-radius: 50%;
-    background: #2d2620; color: var(--text-primary); font-size: 1.2rem; cursor: pointer;
+    background: #1e1b19; color: var(--text-primary); font-size: 1.2rem; cursor: pointer;
 }
 .timeline .tl-zoom-btn:hover { background: var(--tl-accent-bg); }
 
@@ -119,7 +119,7 @@
 .timeline .tl-recent { font-size: 0.8rem; }
 .timeline .tl-recent-item {
     display: flex; justify-content: space-between; gap: 8px;
-    margin-bottom: 2px; padding: 4px 8px; border-radius: 3px; background: #2d2620;
+    margin-bottom: 2px; padding: 4px 8px; border-radius: 3px; background: #1e1b19;
 }
 .timeline .tl-keys { margin-top: 12px; font-size: 0.75rem; }
 
@@ -131,7 +131,7 @@
 
 /* Visited / in-game map toggle */
 .timeline .tl-mode { display: inline-flex; margin-left: auto; border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
-.timeline .tl-mode button { padding: 5px 12px; border: none; background: #2d2620; color: #d5cbb8; font-size: 0.8rem; cursor: pointer; }
+.timeline .tl-mode button { padding: 5px 12px; border: none; background: #1e1b19; color: #d5cbb8; font-size: 0.8rem; cursor: pointer; }
 .timeline .tl-mode button.on { background: var(--tl-accent-bg); color: var(--text-primary); }
 
 /* Story event markers under the slider */
