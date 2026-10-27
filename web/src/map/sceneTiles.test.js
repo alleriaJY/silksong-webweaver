@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { areaOf, litTiles, spriteOf, tileBaseName, tilesForScene } from './sceneTiles.js';
+import { areaOf, litTiles, spriteFile, spriteOf, tileBaseName, tilesForScene } from './sceneTiles.js';
 import { AREAS } from '../data/packs/base/areas.js';
 
 const fullmap = new URL('../../assets/img/fullmap/', import.meta.url);
@@ -45,6 +45,10 @@ describe('spriteOf and areaOf', () => {
         expect(spriteOf('X.png@Room', { sprite: 'X.png' })).toBe('X.png');
         expect(spriteOf('X.png', {})).toBe('X.png');
     });
+    it('tiles load the published WebP of their sprite', () => {
+        expect(spriteFile('X.png@Room', { sprite: 'X.png' })).toBe('X.webp');
+        expect(spriteFile('Abyss_02b #4265375.png', {})).toBe('Abyss_02b #4265375.webp');
+    });
     it('picks the longest matching area prefix', () => {
         const areas = [{ prefix: 'Bone' }, { prefix: 'Bonetown' }, { prefix: 'Bone_East' }];
         expect(areaOf('Bone_East_15', areas).prefix).toBe('Bone_East');
@@ -62,6 +66,13 @@ describe('published map data', () => {
         for (const [scene, names] of Object.entries(scenes)) {
             for (const name of names) expect(coords[name], `${scene} -> ${name}`).toBeDefined();
         }
+    });
+    it('every confirmed tile has its published WebP', () => {
+        const missing = Object.entries(coords)
+            .filter(([, t]) => t.confirmed === true)
+            .map(([name, t]) => spriteFile(name, t))
+            .filter(file => !existsSync(fileURLToPath(fullmap) + file));   // names hold '#'
+        expect(missing, 'run python tools/tilefit/publish_tiles.py').toEqual([]);
     });
     it('every pack area prefix is a plain name', () => {
         for (const a of AREAS) expect(a.prefix).toMatch(/^[A-Za-z_]+$/);

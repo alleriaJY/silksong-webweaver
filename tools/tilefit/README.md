@@ -1,13 +1,14 @@
 # tilefit: automatic tile placement
 
-Places every room sprite in `web/assets/img/fullmap/*.png` on the clean Pharloom map
-(`full_pharloom_clean.webp`, 4096 x 4096) and publishes the reviewed
+Places every room sprite in `tools/tilefit/sprites/*.png` on the clean Pharloom map
+(`web/assets/img/fullmap/full_pharloom_clean.webp`, 4096 x 4096) and publishes the reviewed
 `web/assets/img/fullmap/tile_coordinates.json` and `scene_tiles.json` that Hero's Path
-reads. It replaced the older manual pipeline (`merge_all_tiles.py`); the old
+reads, plus a lossless WebP copy of every confirmed sprite (`publish_tiles.py`). The PNG
+sources and the labeled community map (`sprites/silksong_fullmap.png`) are not deployed. It replaced the older manual pipeline (`merge_all_tiles.py`); the old
 human confirmations in `tools/confirmed_tiles.json` live on as locks.
 
 ```bash
-pip install opencv-python numpy easyocr   # easyocr only for the OCR stage
+pip install opencv-python numpy easyocr pillow   # easyocr only for the OCR stage
 python tools/tilefit/run_all.py --skip-candidates   # ~15 min; drop the flag for a full redo
 ```
 
@@ -59,6 +60,7 @@ non-overlapping alternative. Committed pixels then remove slots for the next rou
 | `scale_check.py` | `scale_check.json`: best uniform and x/y scale per reviewed tile (diagnostic) |
 | `lock_confirmed.py` | `confirmed_locks.json` (next to the scripts): old confirmations the fit agrees with become locks; the rest are listed as `disputed` |
 | `contact_sheet.py` | Diagnostic image: tile, old spot, chosen spot, labeled-map crop |
+| `publish_tiles.py` | `web/assets/img/fullmap/<sprite>.webp`: lossless WebP of every confirmed sprite; drops copies no tile uses (Pillow only) |
 
 Statuses in `tile_fit.json`:
 - `placed`: unique, confident.

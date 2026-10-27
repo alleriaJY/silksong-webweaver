@@ -8,7 +8,7 @@
  *   timeline.show();   // when its page becomes visible
  *   timeline.hide();
  */
-import { FULLMAP, areaOf, litTiles, loadMapData, spriteOf, tilesForScene } from '../map/sceneTiles.js';
+import { FULLMAP, areaOf, litTiles, loadMapData, spriteFile, tilesForScene } from '../map/sceneTiles.js';
 import { mergedList } from '../data/packs/index.js';
 import { EVENT_COLORS, formatPlayTime, placeEvents } from './story.js';
 
@@ -104,10 +104,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
                     const el = document.createElement('div');
                     el.className = 'tl-tile';
                     Object.assign(el.style, { left: tile.x + 'px', top: tile.y + 'px', width: tile.width + 'px', height: tile.height + 'px' });
-                    const sprite = document.createElement('img');
-                    sprite.alt = '';
-                    sprite.src = FULLMAP + encodeURIComponent(spriteOf(name, tile));
-                    el.appendChild(sprite);
+                    // the image is fetched when the tile is first revealed (see seek)
+                    el.dataset.src = FULLMAP + encodeURIComponent(spriteFile(name, tile));
                     frag.appendChild(el);
                     overlays[name] = el;
                 }
@@ -161,7 +159,18 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         if (!map) return;
         const show = mode === 'mapped' ? (scene => (mapped.has(scene) ? lookup(scene) : [])) : lookup;
         const lit = litTiles(scenes, position, show);
-        for (const [name, el] of Object.entries(overlays)) el.classList.toggle('revealed', lit.has(name));
+        for (const [name, el] of Object.entries(overlays)) {
+            const on = lit.has(name);
+            if (on && el.dataset.src) {
+                const sprite = document.createElement('img');
+                sprite.alt = '';
+                sprite.decoding = 'async';
+                sprite.src = el.dataset.src;
+                el.appendChild(sprite);
+                delete el.dataset.src;
+            }
+            el.classList.toggle('revealed', on);
+        }
         ref('pos').textContent = position;
         ref('revealed').textContent = lit.size;
         const scene = scenes[position - 1];

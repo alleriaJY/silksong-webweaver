@@ -1,7 +1,7 @@
 """
 Local server for reviewing tilefit placements: serves the review page
-(tools/tilefit/viewer.html, not part of the website) at /tilefit_viewer.html and the
-map assets from web/, and lets the page save verdicts straight into
+(tools/tilefit/viewer.html, not part of the website) at /tilefit_viewer.html, the
+source sprites from tools/tilefit/sprites/ and the other map assets from web/, and lets the page save verdicts straight into
 tools/tilefit/review.json.
 
   GET  /api/review              -> {"tiles": {...}} current review.json entries
@@ -21,7 +21,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote
 
-from common import PUBLISHED_DIR, ROOT, tile_files
+from common import PUBLISHED_DIR, ROOT, SPRITES_DIR, tile_files
 
 HERE = Path(__file__).resolve().parent
 REVIEW = HERE / "review.json"
@@ -79,6 +79,7 @@ def save(name, entry):
 
 VIEWER = HERE / "viewer.html"
 PUBLISHED_URL = "/assets/img/fullmap/tilefit/"   # where viewer.html asks for the outputs
+SPRITES_URL = "/assets/img/fullmap/"               # viewer.html asks for <tile>.png here
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -92,6 +93,10 @@ class Handler(SimpleHTTPRequestHandler):
             if ".." in rel.parts:
                 return str(PUBLISHED_DIR / "__invalid__")
             return str(PUBLISHED_DIR / rel)
+        if clean.startswith(SPRITES_URL) and clean.endswith(".png"):   # source sprites, kept out of web/
+            rel = Path(clean[len(SPRITES_URL):])
+            if len(rel.parts) == 1:
+                return str(SPRITES_DIR / rel)
         return super().translate_path(path)
 
     def _json(self, code, obj):

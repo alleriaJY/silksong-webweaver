@@ -1,6 +1,6 @@
 """
 Stage 2: read the red scene-name labels on the community-labeled map
-(web/assets/img/fullmap/silksong_fullmap.png) and map them to clean-map pixels.
+(tools/tilefit/sprites/silksong_fullmap.png) and map them to clean-map pixels.
 
 Text is isolated with a soft "redness" channel (R - max(G, B)) so thin
 anti-aliased letters survive, OCR'd in overlapping chunks with easyocr, then
@@ -21,9 +21,9 @@ import re
 import cv2
 import numpy as np
 
-from common import FULLMAP_DIR, OUT_DIR, ROOT, base_name, tile_files
+from common import OUT_DIR, ROOT, SPRITES_DIR, base_name, tile_files
 
-LABELED = FULLMAP_DIR / "silksong_fullmap.png"
+LABELED = SPRITES_DIR / "silksong_fullmap.png"
 TRANSFORM = ROOT / "tools" / "map_transform.json"
 CHUNK, OVERLAP, UPSCALE = 700, 120, 2.5
 

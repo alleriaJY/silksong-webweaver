@@ -15,7 +15,8 @@ merge.py is followed by refine_scale.py, which gives tiles that clearly match be
 their own scale that scale (out/tile_coordinates.json in place).
 
 The reviewed tile_coordinates.json and scene_tiles.json are also copied to
-web/assets/img/fullmap/, where Hero's Path reads them.
+web/assets/img/fullmap/, where Hero's Path reads them, and publish_tiles.py writes
+lossless WebP copies of the confirmed sprites (tools/tilefit/sprites/*.png) there.
 
 Outputs go to tools/tilefit/out/ and are copied to tools/tilefit/published/ (for the review page).
 tools/confirmed_tiles.json is never modified.
@@ -64,6 +65,7 @@ def main():
     shutil.copy2(HERE / "confirmed_locks.json", dest / "confirmed_locks.json")
     for name in ("tile_coordinates.json", "scene_tiles.json"):   # what the pages read
         shutil.copy2(OUT_DIR / name, FULLMAP_DIR / name)
+    run("publish_tiles.py")
     print(f"\npublished {', '.join(PUBLISH)} to {dest}")
 
 

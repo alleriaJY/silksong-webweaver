@@ -16,7 +16,7 @@
 3. [Phase 1 - Core Rework (DONE 2026-09-30)](#phase-1---core-rework-done-2026-09-30)
 4. [Phase 2 - Parsing Coverage (DONE 2026-09-30)](#phase-2---parsing-coverage-done-2026-09-30)
 5. [Phase 3 - Hero's Path and Map](#phase-3---heros-path-and-map)
-6. [Phase 4 - App Shell Consolidation](#phase-4---app-shell-consolidation)
+6. [Phase 4 - App Shell Consolidation (DONE 2026-10-28)](#phase-4---app-shell-consolidation-done-2026-10-28)
 7. [Phase 5 - DLC Readiness](#phase-5---dlc-readiness)
 8. [Phase 6 - Stretch](#phase-6---stretch)
 9. [DLC Playbook](#dlc-playbook)
@@ -377,7 +377,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ---
 
-## Phase 4 - App Shell Consolidation
+## Phase 4 - App Shell Consolidation (DONE 2026-10-28)
 
 **Goal:** One page, one state, no iframes, no shims. **Retires:** remaining D13 (D6 retired by step 1, D7 in Phase 3). **Depends on:** Phase 3.
 
@@ -388,8 +388,8 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 4. Error handling DONE 2026-10-09: `app/errors.js` (`describeProblem`, `checkSave`) and `main.js#showError(kind, detail)`. Kinds: wasm-load, file-type, decrypt (wrong game or damaged), not-silksong (no playerData), unsupported-version (older than the oldest pack `minVersion`), parse (our bug), and unknown-content: a warning, with stats still shown, when the journal, quests, relics, materium or inventory hold names no pack lists (how a patch or DLC without a pack shows up).
 5. **Mobile layout** DONE 2026-10-09 (D18, D23): at 768 px and below the sidebar becomes a 52 px top bar; `.app-main` has `min-width: 0`; card grids use `minmax(min(280px, 100%), 1fr)`; the 11-tab bar is one row that scrolls sideways (fits without scrolling from about 1250 px) and scrolls the active tab into view. Checked with no horizontal overflow on every tab at 375, 600, 768, 1024, 1280 and 1440 px.
 6. Accessibility pass DONE 2026-10-10: one `<main>`; sidebar items are links (`aria-current`); the tab bar follows the ARIA tabs pattern (roving tabindex, Left/Right/Home/End); icon grids and checklists are lists whose items are named with their state; upgrade-set tool tiles open their dialog with Enter/Space; both dialogs have `role="dialog"`, close on Esc and return focus; the upload picker opens from the keyboard; icon-only timeline buttons have labels; `:focus-visible` ring; Hero's Path text colours raised to 4.5:1. axe-core 4.10 reports no violations on Home, Statistics (every tab, empty and loaded) and Hero's Path at 1280 px.
-7. Performance: lazy-load the tile PNGs only when the timeline or map page is first opened; measure first render with a fixture and record it here.
-8. **Tile weight.** Convert tile PNGs to WebP (lossless) when tilefit publishes, or pack them into per-area sprite atlases with an index JSON produced there. Keep the source PNGs in `tools/` if the atlas route is chosen. Record total bytes before and after; target at least 50% reduction.
+7. Performance DONE 2026-10-28: map data loads the first time Hero's Path is shown (Statistics makes no `fullmap/` request), and each tile's image is fetched the first time the tile is revealed. Measured on a local static server: Statistics page load 64 requests / 292 KB, save to rendered stats about 1.05 s (100% save, `savefiles/user3.dat`); Hero's Path, early-game save (`1belowmossmother.dat`): 9 map requests, 440 KB, drawn in 0.38 s; 100% save: 725 requests, 1.46 MB (map, JSON and 724 lit tiles), drawn in 0.70 s. Before, opening Hero's Path fetched all 738 tile PNGs (2.09 MB) whatever the save.
+8. Tile weight DONE 2026-10-28: lossless WebP. `tools/tilefit/publish_tiles.py` (run by `run_all.py`) writes one WebP per confirmed sprite to `web/assets/img/fullmap/` and drops unused ones; the source PNGs and the labeled map moved to `tools/tilefit/sprites/` and are no longer deployed. Deployed tile bytes: 2.21 MB of PNG (831 files, 93 of them unused) -> 1.08 MB of WebP (738 files), 51% smaller; with the 2.83 MB labeled map no longer shipped, `fullmap/` sprites went from 5.04 MB to 1.08 MB. Atlases were not needed to reach the target.
 
 ### Acceptance criteria
 - `ls web/*.html` shows `index.html` and `stats.html` (redirect only).
@@ -407,7 +407,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 2. **Pack scaffold script** `tools/new_pack.py <id> "<label>" <minVersion>` that creates `web/src/data/packs/<id>/` with empty category files and registers it in `packs/index.js` (behind `detect: () => false` until a probe is set).
 3. **Version banner**: show `version` and the list of active packs in the General tab header.
 4. **Fixture policy** for packs: every pack must ship at least one fixture where `detect` is true and one where it is false; contract test enforces it.
-5. **Map extension path**: a new area gets tiles by running `tools/tilefit/run_all.py` on the new sprites and map, then reviewing them in `tilefit_viewer.html`; see `tools/tilefit/README.md`.
+5. **Map extension path**: a new area gets tiles by adding its sprites to `tools/tilefit/sprites/` and running `tools/tilefit/run_all.py` on them and the map, then reviewing them in `tilefit_viewer.html`; see `tools/tilefit/README.md`.
 6. Write the DLC Playbook section below into OPUS as the standing procedure.
 
 ### Acceptance criteria
@@ -440,7 +440,7 @@ Run this when a DLC or major patch ships. Assumes Phases 0, 1 and 5 are done.
 4. Fill pack lists: bosses (`defeated*` keys), maps (`Has*Map`), tools (`Tools.savedData` names not in base), abilities/skills (`has*`), fleas, journal entries (`EnemyJournalKillData` names not in base), areas (new scene prefixes from `scenesVisited`), quests, unlockable sources (`diff_saves.py` between DLC saves).
 5. Add icons under the existing `assets/img/<kind>/` folders; the icon contract test tells you what is missing.
 6. Add a DLC fixture (Appendix B) with its oracle values. Update `completion.js` weights if the DLC changes the 100% breakdown; the oracle test will fail loudly if it does.
-7. Map: if the DLC adds areas, obtain the new clean and labeled maps, update `tools/map_transform.json`, run `tools/tilefit/run_all.py` (drop `--skip-candidates`) and review the new sprites in `tilefit_viewer.html`.
+7. Map: if the DLC adds areas, obtain the new clean and labeled maps, update `tools/map_transform.json`, add the new sprites to `tools/tilefit/sprites/`, run `tools/tilefit/run_all.py` (drop `--skip-candidates`) and review the new sprites in `tilefit_viewer.html`.
 8. Update OPUS.md status snapshot and this file.
 
 Base-game saves must render identically before and after adding a pack; the contract test with `detect: false` fixtures guarantees it.

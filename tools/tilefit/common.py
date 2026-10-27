@@ -15,7 +15,11 @@ import cv2
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
+# What Hero's Path reads: the clean map, the published JSON and WebP copies of the
+# reviewed sprites (publish_tiles.py).
 FULLMAP_DIR = ROOT / "web" / "assets" / "img" / "fullmap"
+# Source sprites (PNG) and the labeled community map. Kept out of web/: never deployed.
+SPRITES_DIR = Path(__file__).resolve().parent / "sprites"
 CLEAN_MAP = FULLMAP_DIR / "full_pharloom_clean.webp"
 OUT_DIR = Path(__file__).resolve().parent / "out"
 # Committed copies of the review outputs, read by the review page (viewer.html via
@@ -26,13 +30,13 @@ PUBLISHED_DIR = Path(__file__).resolve().parent / "published"
 # including tiles the old matcher had placed at 0.9/1.1/1.3.
 GLOBAL_SCALE = 0.767
 
-# Files in FULLMAP_DIR that are whole maps, not room sprites.
+# Files in SPRITES_DIR that are whole maps, not room sprites.
 NOT_TILES = {"silksong_fullmap.png"}   # the labeled community map used for OCR
 
 
 def tile_files():
     return sorted(
-        p.name for p in FULLMAP_DIR.glob("*.png") if p.name not in NOT_TILES
+        p.name for p in SPRITES_DIR.glob("*.png") if p.name not in NOT_TILES
     )
 
 
@@ -55,7 +59,7 @@ def load_map_value():
 
 
 def load_tile(filename):
-    t = cv2.imread(str(FULLMAP_DIR / filename), cv2.IMREAD_UNCHANGED)
+    t = cv2.imread(str(SPRITES_DIR / filename), cv2.IMREAD_UNCHANGED)
     if t.ndim == 2:
         t = cv2.cvtColor(t, cv2.COLOR_GRAY2BGRA)
     elif t.shape[2] == 3:

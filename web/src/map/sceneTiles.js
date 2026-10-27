@@ -1,7 +1,7 @@
 /**
  * Map data for Hero's Path: reviewed tile positions
- * (tile_coordinates.json) and which tiles each scene lights (scene_tiles.json),
- * both published by tools/tilefit. The browser looks scenes up; it never
+ * (tile_coordinates.json), which tiles each scene lights (scene_tiles.json) and
+ * a lossless WebP of each tile's sprite, all published by tools/tilefit. The browser looks scenes up; it never
  * matches file names except for scenes the map data has never seen.
  */
 
@@ -15,6 +15,11 @@ export function tileBaseName(tileName) {
 /** Image file of a tile entry; instances ('<sprite>@<scene>') name their sprite. */
 export function spriteOf(name, tile) {
     return tile?.sprite || name;
+}
+
+/** Published image of a tile: 'X.png@Room' with sprite 'X.png' -> 'X.webp'. */
+export function spriteFile(name, tile) {
+    return spriteOf(name, tile).replace(/\.png$/, '') + '.webp';
 }
 
 /**
