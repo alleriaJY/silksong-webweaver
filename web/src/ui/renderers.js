@@ -5,6 +5,24 @@
  */
 
 /**
+ * Icons in grids and checklists are not fetched until their tab is shown:
+ * the URL waits in data-src and app/tabs.js#switchTab calls loadDeferredImages
+ * on the panel it opens. (loading="lazy" is not enough: Chrome still fetched
+ * hidden panels' icons while the page was starting.)
+ */
+export function deferSrc(img, url) {
+    img.dataset.src = url;
+}
+
+/** Give every deferred image under `root` its real src. */
+export function loadDeferredImages(root) {
+    for (const img of root.querySelectorAll('img[data-src]')) {
+        img.src = img.dataset.src;
+        delete img.dataset.src;
+    }
+}
+
+/**
  * Render an icon grid: one `div.<itemClass>` per item with an <img> and a label.
  * The grid is a list for screen readers; each item is named by its title
  * ("Display (Unlocked)"), so the state is not conveyed by greyscale alone.
@@ -51,7 +69,7 @@ export function renderIconGrid(container, items, o) {
         const title = o.title ? o.title(item) : `${item.display} (${on ? 'Unlocked' : 'Locked'})`;
         el.setAttribute('aria-label', title);
         const img = document.createElement('img');
-        img.src = o.icon(item);
+        deferSrc(img, o.icon(item));
         img.alt = '';   // the item's aria-label names it
         img.title = title;
         const imgClass = o.imgClass ? o.imgClass(item, on) : (on ? onClass : offClass);
@@ -112,7 +130,7 @@ export function renderChecklist(container, sources, iconSrc) {
         const src = iconSrc ? iconSrc(source, index) : null;
         if (src) {
             const img = document.createElement('img');
-            img.src = src;
+            deferSrc(img, src);
             img.alt = '';   // the row's name text follows
             img.className = 'source-icon';
             left.appendChild(img);

@@ -4,7 +4,10 @@
  *
  * ARIA tabs pattern: the active tab has aria-selected="true" and is the only
  * one in the Tab order; Left/Right/Home/End move between tabs.
+ *
+ * A panel's icons are fetched the first time it is shown (ui/renderers.js#deferSrc).
  */
+import { loadDeferredImages } from '../ui/renderers.js';
 
 export function switchTab(tabNav, tabId) {
     for (const btn of tabNav.querySelectorAll('.tab-btn')) {
@@ -16,7 +19,9 @@ export function switchTab(tabNav, tabId) {
         if (active) btn.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
     }
     for (const panel of document.querySelectorAll('.tab-panel')) {
-        panel.classList.toggle('active', panel.id === `panel-${tabId}`);
+        const active = panel.id === `panel-${tabId}`;
+        panel.classList.toggle('active', active);
+        if (active) loadDeferredImages(panel);
     }
 }
 

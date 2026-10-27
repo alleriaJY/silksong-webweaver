@@ -65,10 +65,13 @@ function patchNumericTextContent() {
 export function serialize(root) {
     const clone = root.cloneNode(true);
     for (const img of clone.querySelectorAll('img')) {
-        const src = img.getAttribute('src');
-        if (src) img.setAttribute('src', decodeURIComponent(src));
+        for (const attr of ['src', 'data-src']) {
+            const value = img.getAttribute(attr);
+            if (value) img.setAttribute(attr, decodeURIComponent(value));
+        }
     }
-    return clone.innerHTML
+    // Icons of tabs not yet shown wait in data-src (ui/renderers.js#deferSrc); they are the same picture
+    return clone.innerHTML.replace(/<img data-src="/g, '<img src="')
         .replace(/>\s*</g, '>\n<')
         .replace(/[ \t]+\n/g, '\n')
         .trim() + '\n';
