@@ -7,11 +7,14 @@
  *          areas (Coral = Blasted Steps and Sands of Karak, Song = Choral
  *          Chambers and Grand Gate); the name is the area most of their rooms
  *          belong to in the silksong-completionist tracker data (MIT).
+ *          Memory_* rooms are the memory sequences (crests, silk hearts);
+ *          Abandoned_town is taken to be the Surface town above The Cradle.
  * Entry: { id, prefix, display, color }
  */
 
 export const AREAS = [
     { id: 'abyss', prefix: 'Abyss', display: 'The Abyss', color: '#9c27b0' },
+    { id: 'abandoned-town', prefix: 'Abandoned_town', display: 'The Surface', color: '#b0bec5' },
     { id: 'ant', prefix: 'Ant', display: "Hunter's March", color: '#ff5722' },
     { id: 'aqueduct', prefix: 'Aqueduct', display: 'Putrified Ducts', color: '#00bcd4' },
     { id: 'arborium', prefix: 'Arborium', display: 'Memorium', color: '#8bc34a' },
@@ -36,12 +39,16 @@ export const AREAS = [
     { id: 'hang', prefix: 'Hang', display: 'High Halls', color: '#f06292' },
     { id: 'library', prefix: 'Library', display: 'Whispering Vaults', color: '#ba68c8' },
     { id: 'mosstown', prefix: 'Mosstown', display: 'Moss Grotto', color: '#81c784' },
+    { id: 'last-dive', prefix: 'Last_Dive', display: 'The Abyss', color: '#9c27b0' },
+    { id: 'memory', prefix: 'Memory', display: 'Memory', color: '#f8bbd0' },
     { id: 'organ', prefix: 'Organ', display: 'Exhaust Organ', color: '#8d6e63' },
     { id: 'peak', prefix: 'Peak', display: 'Mount Fay', color: '#4dd0e1' },
     { id: 'room', prefix: 'Room', display: 'Interior', color: '#ffab91' },
     { id: 'shadow', prefix: 'Shadow', display: 'Bilewater', color: '#5c6bc0' },
+    { id: 'shellgrave', prefix: 'Shellgrave', display: 'Shellwood', color: '#aed581' },
     { id: 'shellwood', prefix: 'Shellwood', display: 'Shellwood', color: '#aed581' },
     { id: 'slab', prefix: 'Slab', display: 'The Slab', color: '#90a4ae' },
+    { id: 'sprintmaster', prefix: 'Sprintmaster_Cave', display: 'Far Fields', color: '#bdb76b' },
     { id: 'song', prefix: 'Song', display: 'Choral Chambers', color: '#ce93d8' },
     { id: 'song-enclave', prefix: 'Song_Enclave', display: 'Songclave', color: '#ce93d8' },
     { id: 'tube', prefix: 'Tube', display: 'Ventrica', color: '#4db6ac' },

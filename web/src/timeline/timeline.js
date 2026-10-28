@@ -78,7 +78,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     const ref = name => root.querySelector(`[data-ref="${name}"]`);
     const areas = mergedList('areas');
     // Players know areas, not room codes; the code stays in the tooltip
-    const place = scene => areaName(scene, areas) || 'Unmapped room';
+    const place = scene => areaName(scene, areas) || 'Unknown area';
 
     let map = null, mapLoading = null;     // published map data, loaded on first show
     let overlays = {};                      // tile name -> element
