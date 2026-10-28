@@ -798,7 +798,7 @@ header h1 {
 .save-slot-cell {
     display: flex;
     justify-content: center;
-    grid-row: span 2;   /* Game Info and Stats stack beside it */
+    grid-row: span 2;   /* the position and respawn cards stack beside it */
 }
 
 .save-slot {
@@ -813,7 +813,7 @@ header h1 {
     font-family: var(--font-display);
     background:
         linear-gradient(rgba(10, 10, 12, 0.55), rgba(10, 10, 12, 0.75)),
-        var(--scene, none) center / cover no-repeat,
+        var(--slot-scene, var(--scene, none)) center / cover no-repeat,
         #101012;
     border: 2px solid #ece6dc;
     border-radius: 3px;

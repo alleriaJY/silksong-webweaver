@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest';
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { slotNumber, slotPlayTime } from './saveSlot.js';
+import { MAP_ZONES } from '../packs/base/areas.js';
 
 describe('save slot card', () => {
     it('shows play time as the profile screen does', () => {
@@ -14,5 +17,13 @@ describe('save slot card', () => {
         expect(slotNumber('C:/saves/USER4.dat')).toBe(4);
         expect(slotNumber('backup.dat')).toBeNull();
         expect(slotNumber(undefined)).toBeNull();
+    });
+});
+
+describe('area backgrounds', () => {
+    it('every slotScene exists in assets/img/scenes', () => {
+        for (const z of MAP_ZONES.filter(z => z.slotScene)) {
+            expect(existsSync(fileURLToPath(new URL(`../../../assets/img/scenes/${z.slotScene}`, import.meta.url))), z.id).toBe(true);
+        }
     });
 });

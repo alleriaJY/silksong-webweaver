@@ -13,6 +13,7 @@ export const ICON_DIRS = Object.freeze({
     skill: 'assets/img/general/skills',
     crest: 'assets/img/general/crests',
     nail: 'assets/img/general/nail',
+    scene: 'assets/img/scenes',
     root: 'assets/img',
 });
 

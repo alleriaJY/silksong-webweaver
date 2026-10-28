@@ -54,6 +54,7 @@ export default {
         const zone = result.currentArea?.value;
         const known = zone ? ctx.lists('mapZones').find(z => z.zone === zone) : null;
         result.areaName = { value: known ? known.display : (zone ? humanize(zone) : undefined), display: 'Current Area' };
+        result.areaScene = { value: known?.slotScene, display: 'Area background' };
         return result;
     },
 

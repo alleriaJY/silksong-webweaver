@@ -59,6 +59,10 @@ export const AREAS = [
     { id: 'wisp', prefix: 'Wisp', display: 'Wisp Thicket', color: '#64ffda' },
 ];
 
+// slotScene (optional): background for the General tab's save slot card, a
+// file in assets/img/scenes/. Only areas whose art is known are set; the rest
+// use the page's background scene (ROADMAP Asset Requests).
+//
 // playerData.currentArea is the game's MapZone name. Only MOSSCAVE, ENCLAVE
 // and ABYSS appear in the fixture saves; the others follow the save's key
 // naming (HasCrawlMap, UnlockedShadowStation, ...) and are unconfirmed. A zone
@@ -71,13 +75,13 @@ export const MAP_ZONES = [
     { id: 'bone-forest', zone: 'BONE_FOREST', display: 'The Marrow' },
     { id: 'bonetown', zone: 'BONETOWN', display: 'Bone Bottom' },
     { id: 'clover', zone: 'CLOVER', display: 'Verdania' },
-    { id: 'cog-core', zone: 'COG_CORE', display: 'Cogwork Core' },
+    { id: 'cog-core', zone: 'COG_CORE', display: 'Cogwork Core', slotScene: 'scene1.webp' },
     { id: 'cradle', zone: 'CRADLE', display: 'The Cradle' },
     { id: 'crawlspace', zone: 'CRAWLSPACE', display: 'Wormways' },
     { id: 'docks', zone: 'DOCKS', display: 'Deep Docks' },
     { id: 'dustpens', zone: 'DUSTPENS', display: "Sinner's Road" },
     { id: 'enclave', zone: 'ENCLAVE', display: 'Songclave' },
-    { id: 'greymoor', zone: 'GREYMOOR', display: 'Greymoor' },
+    { id: 'greymoor', zone: 'GREYMOOR', display: 'Greymoor', slotScene: 'scene5.webp' },
     { id: 'halfway-house', zone: 'HALFWAY_HOUSE', display: 'Halfway Home' },
     { id: 'hang', zone: 'HANG', display: 'High Halls' },
     { id: 'hunters-nest', zone: 'HUNTERS_NEST', display: "Hunter's March" },

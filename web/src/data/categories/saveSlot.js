@@ -1,7 +1,8 @@
 /**
- * General tab: the save as the game's profile screen shows it. Crest, masks,
+ * Misc tab: the save as the game's profile screen shows it. Crest, masks,
  * silk spool, rosaries and shell shards, completion, play time, slot number
- * and area, over a game scene in a thorned frame. Nothing new is parsed; it
+ * and area, over the area's background (packs/base/areas.js slotScene, else
+ * the page's scene) in a thorned frame. Nothing new is parsed; it
  * reads the other categories' results (render ctx.parsed) and the file name
  * (user1.dat -> slot 1).
  */
@@ -47,6 +48,12 @@ export default {
         const general = name => field(parsed, 'general', name);
         const loaded = general('version') !== undefined;
         root.replaceChildren();
+        // The area's own background when we have it, else the page's scene
+        const scene = field(parsed, 'current', 'areaScene');
+        // absolute: a relative url() in a custom property resolves against the
+        // stylesheet that uses it (src/), not the page
+        if (scene) root.style.setProperty('--slot-scene', `url("${new URL(iconUrl('scene', scene), document.baseURI).href}")`);
+        else root.style.removeProperty('--slot-scene');
         root.classList.toggle('steel-soul', !!ctx.isSteelSoul);
         root.classList.toggle('empty', !loaded);
         if (!loaded) {
