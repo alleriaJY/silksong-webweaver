@@ -36,7 +36,9 @@ export const MAPS = [
 ];
 
 // Travel network: playerData booleans. kind 'bellway' = Bellway station,
-// 'ventrica' = Ventrica tube stop, 'pin' = map pin set sold by the mapper.
+// 'ventrica' = Ventrica tube stop, 'pin' = map pin set or marker sold by Shakra.
+// icon (optional, assets/img/maps/): drawn in the checklist row once the art
+// exists (ROADMAP "Asset Requests"); rows without one show text only.
 // Station names follow silksong-completionist (MIT): the save's names are
 // internal (BoneforestEast = Far Fields, CoralTower = Blasted Steps, Peak =
 // The Slab, Enclave = First Shrine). Bone Bottom and The Marrow both open
@@ -62,7 +64,13 @@ export const TRAVEL = [
     { id: 'ventrica-song', json: 'UnlockedSongTube', display: 'Choral Chambers', kind: 'ventrica' },
     { id: 'ventrica-city-bellway', json: 'UnlockedCityBellwayTube', display: 'Grand Bellway', kind: 'ventrica' },
     { id: 'ventrica-under', json: 'UnlockedUnderTube', display: 'Underworks', kind: 'ventrica' },
-    { id: 'pin-bench', json: 'hasPinBench', display: 'Bench pins', kind: 'pin' },
-    { id: 'pin-stag', json: 'hasPinStag', display: 'Bellway pins', kind: 'pin' },
-    { id: 'pin-tube', json: 'hasPinTube', display: 'Ventrica pins', kind: 'pin' },
+    { id: 'pin-bench', json: 'hasPinBench', display: 'Bench Pins', kind: 'pin' },
+    { id: 'pin-stag', json: 'hasPinStag', display: 'Bellway Pins', kind: 'pin' },
+    { id: 'pin-tube', json: 'hasPinTube', display: 'Ventrica Pins', kind: 'pin' },
+    { id: 'pin-shop', json: 'hasPinShop', display: 'Vendor Pins', kind: 'pin' },
+    { id: 'marker-shell', json: 'hasMarker_a', display: 'Shell Marker', kind: 'pin' },
+    { id: 'marker-ring', json: 'hasMarker_b', display: 'Ring Marker', kind: 'pin' },
+    { id: 'marker-hunt', json: 'hasMarker_c', display: 'Hunt Marker', kind: 'pin' },
+    { id: 'marker-dark', json: 'hasMarker_d', display: 'Dark Marker', kind: 'pin' },
+    { id: 'marker-bronze', json: 'hasMarker_e', display: 'Bronze Marker', kind: 'pin' },
 ];

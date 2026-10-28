@@ -29,7 +29,7 @@ const FIXTURES = readdirSync(FIXTURE_DIR)
 
 /** Icon kind (core/icons.js) for each list that has icons. */
 const ICON_KIND = {
-    tools: 'tool', bosses: 'boss', maps: 'map',
+    tools: 'tool', bosses: 'boss', maps: 'map', travel: 'map',
     abilities: 'ability', otherAbilities: 'ability', cloakTiers: 'ability',
     skills: 'skill', crests: 'crest', specialCrestStates: 'crest', needleTiers: 'nail',
     journal: 'journal',
