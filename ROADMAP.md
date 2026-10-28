@@ -15,7 +15,7 @@
 2. [Phase 0 - Hygiene and Safety Net (DONE 2026-09-23)](#phase-0---hygiene-and-safety-net-done-2026-09-23)
 3. [Phase 1 - Core Rework (DONE 2026-09-30)](#phase-1---core-rework-done-2026-09-30)
 4. [Phase 2 - Parsing Coverage (DONE 2026-09-30)](#phase-2---parsing-coverage-done-2026-09-30)
-5. [Phase 3 - Hero's Path and Map](#phase-3---heros-path-and-map)
+5. [Phase 3 - Hero's Path and Map (DONE 2026-10-28)](#phase-3---heros-path-and-map-done-2026-10-28)
 6. [Phase 4 - App Shell Consolidation (DONE 2026-10-28)](#phase-4---app-shell-consolidation-done-2026-10-28)
 7. [Phase 5 - DLC Readiness](#phase-5---dlc-readiness)
 8. [Phase 6 - Stretch](#phase-6---stretch)
@@ -357,14 +357,14 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ---
 
-## Phase 3 - Hero's Path and Map
+## Phase 3 - Hero's Path and Map (DONE 2026-10-28)
 
 **Goal:** Finish map coverage and make Hero's Path first-class. The standalone map viewer was dropped on 2026-10-09 (owner decision): Hero's Path covers the map, and placed markers would need an unknown in-game-units to map-pixels transform. **Depends on:** Phase 1 (areas in packs), Phase 2 step 4 (story events).
 
 ### Steps
 1. **Tile gap closure.** DONE with `tools/tilefit`: every sprite is reviewed (`review.json`: 739 positioned, 92 removed) and the reviewed set is what the pages read. Coverage of map room pixels 98.4%; the remaining rooms (interiors, challenge rooms) are not drawn on the world map.
 2. **Scene to tile mapping as data.** DONE: `tools/tilefit/scene_tiles.py` writes `scene_tiles.json` (aliases, hash/prefix/case-insensitive names, pieces by longest known scene) and the timeline looks scenes up there. The lookup lives in `web/src/map/sceneTiles.js`.
-3. **Timeline module.** DONE: `web/src/timeline/` reads `saveStore`, with story markers and the visited / in-game map toggle. Port `exploration_timeline.html` into `web/src/timeline/` (module, no own WASM, reads `saveStore`). Keep the slider, play/pause, speed, revealed list. Add story-event markers from Phase 2 step 4 and a "mapped vs visited" toggle using `scenesMapped`.
+3. **Timeline module.** DONE: `web/src/timeline/` reads `saveStore` (no own WASM) and keeps the slider, play/pause, speed and revealed list, with story-event markers and the visited / in-game map toggle (`scenesMapped`). `exploration_timeline.html` is gone.
 4. ~~**Map viewer module.**~~ Dropped 2026-10-09; `map_viewer.html` deleted. If wanted later, a `respawnScene` pin can go on Hero's Path.
 5. **Dev viewer** DONE: `tools/tilefit/viewer.html` via `tools/tilefit/review_server.py` (not deployed).
 6. **Mobile** DONE 2026-10-09: at 375 px Hero's Path fits the screen under the top bar (no page scroll), drag and pinch-zoom work (pointer events), story pins shrink to 8 px.
@@ -373,7 +373,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 - Every sprite has a verdict in `tools/tilefit/review.json` or `confirmed_locks.json` (met).
 - Scene lookup tests pass; the timeline lights the scenes `scene_tiles.json` covers (72% save: 557 of 686, 100% save: 658 of 842; the rest are not on the world map).
 - One upload feeds Statistics and Hero's Path (no second upload) (met).
-- Verification block green; OPUS section 9 updated.
+- Verification block green; OPUS section 9 updated (met: OPUS.md was rebuilt from the code on 2026-10-28; it had never been committed).
 
 ---
 
