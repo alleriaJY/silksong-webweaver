@@ -1099,56 +1099,63 @@ header h1 {
     opacity: 0.85;
 }
 
-/* Current silk: thread segments wound on a spool (CSS only; see ROADMAP
-   "Asset requests" for the in-game spool art) */
+/* Current silk: one spool of wound thread, like the in-game HUD. Each point
+   of max silk is a stretch of thread: bright and glowing when full, dull and
+   ridged when spent; a small steel cap on the left, a copper cap on the right.
+   CSS only; see ROADMAP "Asset requests" for the HUD art. */
 .silk-spool {
     display: flex;
     align-items: center;
     margin: 0.5rem 0 0.75rem;
-    padding: 0 8px;
-    position: relative;
 }
 
-/* spool ends */
-.silk-spool::before,
+.silk-spool::before {
+    content: '';
+    flex: none;
+    width: 4px;
+    height: 12px;
+    border-radius: 1px;
+    background: linear-gradient(#d6d6d6, #6f6f6f);
+}
+
 .silk-spool::after {
     content: '';
     flex: none;
-    width: 6px;
-    height: 22px;
+    width: 7px;
+    height: 20px;
     border-radius: 2px;
-    background: linear-gradient(#8a7a5c, #4a3f2c);
-    box-shadow: 0 0 0 1px #000;
+    background: linear-gradient(90deg, #6b3b14, #c58142 45%, #7a4418);
+    box-shadow: 2px 0 0 -1px #4a4a4a;
 }
 
 .silk-thread {
-    flex: 1;
-    display: flex;
-    gap: 2px;
-    padding: 3px 2px;
-    background: #0d0d0d;
-    border-top: 1px solid var(--border-strong);
-    border-bottom: 1px solid var(--border-strong);
+    /* the spool grows with max silk, as in the game, up to the card width */
+    flex: 0 1 calc(var(--silk-max, 9) * 16px);
     min-width: 0;
+    display: flex;
+    height: 18px;
+    border-radius: 2px;
+    overflow: hidden;
+    background: #1a1a1a;
 }
 
 .silk-seg {
     flex: 1;
-    height: 12px;
-    max-width: 28px;
-    border-radius: 6px;
+    height: 100%;
 }
 
 .silk-seg.full {
     background:
-        repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.0) 0 3px, rgba(160, 150, 135, 0.35) 3px 4px),
-        linear-gradient(var(--silk-color), #b9b0a0);
-    box-shadow: 0 0 5px rgba(232, 225, 211, 0.45);
+        repeating-linear-gradient(90deg, rgba(120, 110, 115, 0.12) 0 1px, transparent 1px 6px),
+        linear-gradient(#ffffff, #f4f0f0 45%, #d8d1d3);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.55);
 }
 
 .silk-seg.empty {
-    background: transparent;
-    border: 1px dashed #3a3a3a;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.45)),
+        repeating-linear-gradient(100deg, #9b9396 0 1px, #cfc8ca 1px 3px, #aaa2a5 3px 4px);
+    opacity: 0.75;
 }
 
 /* Crest Display */
@@ -1268,6 +1275,7 @@ header h1 {
     display: flex;
     gap: 2rem;
     justify-content: center;
+    align-items: flex-end;   /* names line up under icons of different heights */
     padding: 0.5rem 0;
 }
 
@@ -1285,8 +1293,12 @@ header h1 {
     filter: drop-shadow(0 2px 8px var(--icon-glow));
 }
 
+/* The needle sprite is 8x taller than wide: drawn diagonally and larger so
+   it fills about the same box as the cloak beside it */
 #needle-icon {
-    height: 40px;
+    height: 84px;
+    transform: rotate(40deg);
+    margin: -10px 0;
 }
 
 .equipment-column span {
