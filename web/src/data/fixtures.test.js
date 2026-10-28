@@ -67,6 +67,11 @@ describe.each(FIXTURES)('fixture $name', ({ fixture, expected, parsed }) => {
     it('crafting kit sources collected equal ToolKitUpgrades (oracle)', () => {
         expect(parsed.craftingKit.stats.collected).toBe(expected.oracle.ToolKitUpgrades);
     });
+
+    it('tool pouch sources collected equal ToolPouchUpgrades (oracle)', () => {
+        expect(parsed.toolPouch.stats.pending).toBe(0);
+        expect(parsed.toolPouch.stats.collected).toBe(expected.oracle.ToolPouchUpgrades);
+    });
 });
 
 describe('fixture complete (100% save) oracle gaps', () => {

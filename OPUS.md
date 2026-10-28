@@ -74,7 +74,7 @@ Notes:
 - A pack (`data/packs/<id>/index.js`) is `{ id, label, minVersion, detect(save), lists }`. Only `base` exists. Every entry has a stable kebab-case `id`; `json`/`flag`/`sceneName`+`sceneId` point at the save.
 - `mergedList(name, packs)` concatenates a list across active packs and stamps `pack`. Totals are never written in HTML; they come from list lengths.
 - A category module is `{ id, parse(save, ctx), render?(result, ctx), completion?(result, parsed) }`. `parse` is pure; `render` writes only its own elements and is a no-op when they are missing. Template: ROADMAP Appendix C.
-- Source checklists (`categories/checklists.js`) read `*_SOURCES` lists whose entries carry a `flagType`: `bool` (playerData boolean), `quest` (QuestCompletionData `IsCompleted`), `scene` (persistentBools), `flea` (`FleasCollectedTargetOrder` heuristic), `unknown` (rendered as Pending).
+- Source checklists (`categories/checklists.js`) read `*_SOURCES` lists whose entries carry a `flagType`: `bool` (playerData boolean; `flag` may be a list, any counts), `atLeast` (playerData number `>= min`), `quest` (QuestCompletionData `IsCompleted`), `scene` (persistentBools; `sceneId` may be a list, any counts), `unknown` (rendered as Pending).
 - `packs/base/untracked.js` classifies every playerData flag the app deliberately ignores, so `tools/unknown_keys.py` only reports genuinely new keys.
 
 ## 7. Renderers and icons
@@ -118,6 +118,6 @@ Save tools: `decrypt_save.py`, `diff_saves.py` (flag discovery between two saves
 Retired: D1, D2, D3, D4, D5, D8, D10, D15 (Phase 1); D11, D12, D14, D16 (Phase 0/1); D6, D7, D13, D18, D23 (Phases 3-4); D17 (Phase 2, wrong spool reward flags); D21 (equipped Sharp Dart / Pale Nails slot names).
 
 Open:
-- **D20** `FleasCollectedTargetOrder` exists only in 1.0.28561 saves; the Fleamaster Tool Pouch source depends on it.
+- **D20** `FleasCollectedTargetOrder` exists only in 1.0.28561 saves. Nothing reads it any more (the Fleamaster Tool Pouch now uses the Fleatopia scene flag); kept here in case a later feature wants the rescue order.
 - **D22** Seven miniboss defeat flags have no display names or icons (ROADMAP Appendix A).
 - Original wording of D9 and D19 was not recovered; reopen with a new number if the issue resurfaces.

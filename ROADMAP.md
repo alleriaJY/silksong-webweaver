@@ -339,7 +339,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 4. **Story timeline data.** Parse `StoryEvents` (`EventType`, `PlayTime`, `SceneName`) into a `story` category (no tab yet; consumed by Phase 3 timeline markers).
 5. **Benches and bellways.** Parse `scenesEncounteredBench`, `scenesEncounteredCocoon`, `hasPinBench`-style flags and the `*Bench*` booleans into a `travel` sub-section of Maps (count of benches rested at; bellways unlocked from `Bellway_*` scene flags in `persistentBools` if identifiable).
 6. **Fix the two wrong spool fragment flags first** (see Phase 0 results): diff `savefiles/user2.dat` against `savefiles/user3.dat`, look for quest completions and booleans that correlate with the Sherma and Greymoor_17 rewards, then flip the `it.fails` in `fixtures.test.js` to `it` and re-run `node scripts/snapshot-fixtures.mjs`.
-   **Resolve unknowns with the diff tool** for Tool Pouch (Loddie), Craftmetal 8th, and Memory Lockets. Leads from the 100% save: purchase flags `PurchasedPilgrimsRestMemoryLocket`, `PurchasedBelltownMemoryLocket`, `purchasedGrindleMemoryLocket` (Grindle is missing from the current 20-entry list); world pickup `Shadow_27 / Breakable Hang Sack Memory Locket`; the item's internal collectable name is `Crest Socket Unlocker`. Other world lockets are likely generic `Collectable Item Pickup*` IDs, so match them by `SceneName` against the wiki rooms. Method: OPUS section 11. Expected outcome for lockets: purchases map to `Purchased*Locket`/`*MemoryLocket*` booleans, world pickups to `persistentBools` with an ID containing `Locket`; grep `output2.json` and the fixtures for `Locket` (case-insensitive) first. Anything not resolvable from the saves on hand stays `unknown` and goes to Appendix A.
+   **Resolve unknowns with the diff tool** for Tool Pouch (Loddie), Craftmetal 8th, and Memory Lockets (resolved 2026-10-28, Appendix A). Leads from the 100% save: purchase flags `PurchasedPilgrimsRestMemoryLocket`, `PurchasedBelltownMemoryLocket`, `purchasedGrindleMemoryLocket` (Grindle is missing from the current 20-entry list); world pickup `Shadow_27 / Breakable Hang Sack Memory Locket`; the item's internal collectable name is `Crest Socket Unlocker`. Other world lockets are likely generic `Collectable Item Pickup*` IDs, so match them by `SceneName` against the wiki rooms. Method: OPUS section 11. Expected outcome for lockets: purchases map to `Purchased*Locket`/`*MemoryLocket*` booleans, world pickups to `persistentBools` with an ID containing `Locket`; grep `output2.json` and the fixtures for `Locket` (case-insensitive) first. Anything not resolvable from the saves on hand stays `unknown` and goes to Appendix A.
 7. **Update README to-do checkboxes** to match reality.
 
 ### Acceptance criteria
@@ -453,21 +453,25 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 
 | Item | Needed save states | Notes |
 |---|---|---|
-| Memory Locket sources (20) | before/after a world locket pickup | Purchases already have flags (see Phase 2 step 6). World pickups need one bracketing save pair to learn the ID pattern. |
-| Tool Pouch from Loddie | before/after receiving it | |
-| Craftmetal 8th source | none: `savefiles/user3.dat` is 100% | compare its `persistentBools` `Tool Metal` IDs and purchase flags against the 7 known |
-| Sherma / Greymoor spool reward flags (inferred) | before/after either reward | confirm quest `Save Sherma` and `silkFarmBattle1_complete` |
+| Deep Docks Memory Locket (`Dock_13`) | any save that has entered the room | mapping from the reference tracker; no fixture has the room yet, so it is listed in `SCENE_NOT_IN_FIXTURES` (contracts test) |
+| Bilewater cocoon locket ID | a fixture rebuilt from `savefiles/user3.dat` | `Sack Corpse Pickup` (reference) vs `Breakable Hang Sack Memory Locket` (old guess, false in the 100% save); both are accepted. `make_fixture.py` now keeps `Corpse Pickup` IDs: rebuild the fixtures to confirm and drop the alias |
+| Loddie's pouch picked up off the ground | none (reference) | if Loddie's challenge is skipped the pouch can be found at `Bone_12` / `Ladybug Craft Pickup`; add it as an alias once a save shows it |
+| Leads | none | `PurchasedBelltownToolPouch` and `CollectedToolMetal` are false / always true and match no source; `CollectedToolMetal` looks like a "first craftmetal seen" flag |
 | Minibosses (OPUS D22) | none | display names and icons for the 7 defeat flags |
-| Leads | none | `PurchasedBelltownToolPouch` (Loddie?), `CollectedToolMetal` (8th craftmetal?), `purchasedGrindleMemoryLocket` (21st locket?) |
-| Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
 | Flea icon | none | asset needed for the Fleas tab (the Huge Flea portrait stands in) |
-| `FleasCollectedTargetOrder` on newer versions (OPUS D20) | a 1.0.28714+ save after rescuing at least one flea | tells whether the key is created lazily or was removed by a patch; the Fleamaster Tool Pouch source depends on it |
 | Keep hosting Team Cherry assets in the repo? | none (owner decision) | Alternatives: keep with attribution (default), or load from an external host. |
 | Save paths per platform | none (owner check) | Confirm the Phase 0 step 13 paths on each platform. |
 
 Add rows here whenever a step is blocked; remove them when resolved and note the resolving commit.
+
+**Resolved 2026-10-28** (commit "data: map memory lockets, Loddie's pouch and the 8th craftmetal"), using the scene and flag names from [silksong-completionist](https://github.com/Br3zzly/silksong-completionist) (MIT) and checking each against the fixtures:
+- Memory Lockets: 17 world pickups mapped by scene, Volatile Flintbeetles = quest `Rock Rollers`; `purchasedGrindleMemoryLocket` is Grindle's Act 3 restock of Mort's locket (same locket). The 100% fixture reads 17 of 20 (see the two rows above), the 72% fixture 12.
+- Tool Pouch from Loddie: `pinGalleriesCompleted >= 1` (0 in early saves, 1 at 72%, 2 at 100%; the 72% save has all 4 upgrades, so its Loddie flag must be set).
+- Fleamaster Tool Pouch: `Aqueduct_05` / `Caravan Troupe Leader Fleatopia NPC` replaces the `FleasCollectedTargetOrder` heuristic (that key is not written by newer versions, OPUS D20). Every fixture's pouch sources now equal `ToolPouchUpgrades`.
+- Craftmetal 8th source: the Deep Docks chest, `Dock_03` / `Collectable Item Pickup`, set only in the 100% save. `Under_19b` is in the Underworks, not Deep Docks / Far Fields.
+- Greymoor spool fragment: the Fleamaster's reward when the caravan reaches Greymoor (`CaravanTroupeLocation >= 2`), replacing the `silkFarmBattle1_complete` guess.
 
 ---
 

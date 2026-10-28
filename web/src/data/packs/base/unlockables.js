@@ -1,9 +1,15 @@
 /**
  * Source checklists: where each upgrade piece comes from.
- * flagType: bool (playerData boolean), quest (QuestCompletionData IsCompleted),
- * scene (sceneData.persistentBools SceneName/ID), flea (FleasCollectedTargetOrder
- * heuristic), unknown (flag not identified yet; rendered as Pending).
- * Entry: { id, name, flagType, flag? | sceneName+sceneId, icon }
+ * flagType: bool (playerData boolean), atLeast (playerData number >= min),
+ * quest (QuestCompletionData IsCompleted), scene (sceneData.persistentBools
+ * SceneName/ID; sceneId may be a list, any match counts), unknown (flag not
+ * identified yet; rendered as Pending).
+ * Entry: { id, name, flagType, flag?(+min) | sceneName+sceneId, icon };
+ * bool flag may be a list (any counts).
+ *
+ * Sources marked "(ref)" were mapped with the silksong-completionist tracker
+ * (github.com/Br3zzly/silksong-completionist, MIT) and checked against the
+ * fixture saves: each is set in the saves whose upgrade counts require it.
  */
 
 // 20 shards, 4 = 1 mask; base 5 masks, max 10
@@ -31,13 +37,13 @@ export const MASK_SHARD_SOURCES = [
 ];
 
 // 18 fragments, 2 = 1 spool point; base 9 silk, max 18.
-// The two reward fragments (Sherma, Greymoor battle) are INFERRED, not diffed:
-// pilgrimQuestSpoolCollected / tookGreymoor17Spool are false in the 100% save,
-// so they were wrong. The 72% save has 12 fragments (silkMax 15) but only 10
-// world/shop sources, so both rewards were earned by then. Quest 'Save Sherma'
-// and silkFarmBattle1_complete are the only matches for the two events that
-// are true in both late saves and false in every zero-fragment save
-// (ROADMAP Appendix A: confirm with a save pair bracketing either reward).
+// The two reward fragments: Sherma's wish (quest 'Save Sherma') and the
+// Fleamaster's reward once the caravan moves on to Greymoor
+// (CaravanTroupeLocation >= 2, ref). The 72% save has 12 fragments
+// (silkMax 15) with 10 world/shop sources, so both rewards were earned there;
+// both flags are set in both late saves and unset in every zero-fragment save.
+// (The earlier guess, silkFarmBattle1_complete, matches the same saves but has
+// no source naming it as a spool reward.)
 export const SPOOL_FRAGMENT_SOURCES = [
     { id: 'arborium-09-silk-spool', name: 'Memorium (Arborium_09)', flagType: 'scene', sceneName: 'Arborium_09', sceneId: 'Silk Spool', icon: 'spool_upgrade_pickup.png' },
     { id: 'bone-11b-silk-spool', name: 'Mosshome (Bone_11b)', flagType: 'scene', sceneName: 'Bone_11b', sceneId: 'Silk Spool', icon: 'spool_upgrade_pickup.png' },
@@ -56,7 +62,7 @@ export const SPOOL_FRAGMENT_SOURCES = [
     { id: 'purchased-belltown-spool-segment', name: 'Frey (Bellhart, 270 Rosaries)', flagType: 'bool', flag: 'PurchasedBelltownSpoolSegment', icon: 'spool_upgrade_pickup.png' },
     { id: 'purchased-grindle-spool-piece', name: 'Grindle (Blasted Steps, 680 Rosaries)', flagType: 'bool', flag: 'purchasedGrindleSpoolPiece', icon: 'spool_upgrade_pickup.png' },
     { id: 'pilgrim-quest-spool-collected', name: 'Sherma - "Save Sherma" quest reward', flagType: 'quest', flag: 'Save Sherma', icon: 'spool_upgrade_pickup.png' },
-    { id: 'took-greymoor17-spool', name: 'Greymoor - silk farm battle reward', flagType: 'bool', flag: 'silkFarmBattle1_complete', icon: 'spool_upgrade_pickup.png' },
+    { id: 'fleamaster-greymoor-spool', name: 'Fleamaster Mooshka - reward for 14 Lost Fleas (Greymoor)', flagType: 'atLeast', flag: 'CaravanTroupeLocation', min: 2, icon: 'spool_upgrade_pickup.png' },
 ];
 
 // 3 silk hearts (silkRegenMax 0-3), one per boss
@@ -66,12 +72,19 @@ export const SILK_HEART_SOURCES = [
     { id: 'defeated-lace-tower', name: 'Lace, 2nd encounter (The Cradle)', flagType: 'bool', flag: 'defeatedLaceTower', icon: 'general_silkheart.png' },
 ];
 
-// 4 upgrades (ToolPouchUpgrades 0-4)
+// 4 upgrades (ToolPouchUpgrades 0-4). The 72% save has all four, so each
+// source's flag must be set there; every save's collected count equals
+// ToolPouchUpgrades (fixtures.test.js).
+// Loddie: pinGalleriesCompleted counts his finished pin challenges (0 early,
+// 1 in the 72% save, 2 in the 100% save); the first one gives the pouch (ref).
+// Fleamaster: the caravan leader moves to Fleatopia once 20 fleas are saved,
+// which is when the pouch is given (ref). This replaces the old
+// FleasCollectedTargetOrder heuristic, a key newer game versions no longer write.
 export const TOOL_POUCH_SOURCES = [
     { id: 'purchased-pilgrims-rest-tool-pouch', name: "Mort (Pilgrim's Rest, 220 Rosaries)", flagType: 'bool', flag: 'PurchasedPilgrimsRestToolPouch', icon: 'icon_tool_kit_upgrade.png' },
-    { id: 'loddie-the-marrow', name: 'Loddie (The Marrow) - not yet confirmed', flagType: 'unknown', flag: null, icon: 'icon_tool_kit_upgrade.png' },
-    { id: 'journal', name: 'Nuu, Journal quest (Halfway Home)', flagType: 'quest', flag: 'Journal', icon: 'icon_tool_kit_upgrade.png' },
-    { id: 'fleas-collected-target-order', name: 'Fleamaster Mooshka (Fleatopia)', flagType: 'flea', flag: 'FleasCollectedTargetOrder', icon: 'icon_tool_kit_upgrade.png' },
+    { id: 'loddie-the-marrow', name: "Loddie's first pin challenge (The Marrow)", flagType: 'atLeast', flag: 'pinGalleriesCompleted', min: 1, icon: 'icon_tool_kit_upgrade.png' },
+    { id: 'journal', name: 'Nuu, "Bugs of Pharloom" wish (Halfway Home)', flagType: 'quest', flag: 'Journal', icon: 'icon_tool_kit_upgrade.png' },
+    { id: 'fleamaster-fleatopia', name: 'Fleamaster Mooshka - reward for 20 Lost Fleas (Fleatopia)', flagType: 'scene', sceneName: 'Aqueduct_05', sceneId: 'Caravan Troupe Leader Fleatopia NPC', icon: 'icon_tool_kit_upgrade.png' },
 ];
 
 // 4 upgrades (ToolKitUpgrades 0-4)

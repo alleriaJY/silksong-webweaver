@@ -67,8 +67,8 @@
       "total": 3
     },
     "toolPouch": {
-      "collected": 3,
-      "pending": 1,
+      "collected": 4,
+      "pending": 0,
       "total": 4
     },
     "craftingKit": {
@@ -83,12 +83,12 @@
     },
     "craftmetal": {
       "collected": 4,
-      "pending": 1,
+      "pending": 0,
       "total": 8
     },
     "memoryLockets": {
-      "collected": 2,
-      "pending": 17,
+      "collected": 12,
+      "pending": 0,
       "total": 20
     },
     "journal": {

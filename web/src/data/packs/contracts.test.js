@@ -42,7 +42,6 @@ const TOP_LEVEL_LISTS = ['generalFields', 'currentFields', 'miscFields', 'bosses
 /** Top-level keys allowed to be absent from some saves. */
 const OPTIONAL_TOP_KEYS = {
     currentArea: 'not written until the player first enters a named area (absent in brand-new saves)',
-    FleasCollectedTargetOrder: 'present only in the 1.0.28561 saves; either created lazily or dropped by a later patch (ROADMAP Appendix A)',
 };
 
 /** Container names not met in any fixture save. */
@@ -52,6 +51,11 @@ const NEVER_IN_FIXTURES = {
     'WebShot Architect': 'Silkshot variant not chosen in any fixture save',
     'Mosscreep Tool 2': "Druid's Eyes: fixture saves only have Druid's Eye",
     'Shell Satchel': 'Steel Soul only; the Steel Soul fixture is a new game',
+};
+
+/** Scene pickups (scene/ID) not met in any fixture save. */
+const SCENE_NOT_IN_FIXTURES = {
+    'Dock_13/Collectable Item Pickup': 'Deep Docks Memory Locket: no fixture save has entered the room',
 };
 
 const allTopKeys = () => new Set(FIXTURES.flatMap(f => Object.keys(f.save.playerData)));
@@ -92,7 +96,7 @@ describe('pack contracts', () => {
         const keys = new Set([
             ...TOP_LEVEL_LISTS.flatMap(n => mergedList(n).map(e => e.json)),
             ...listNames().filter(n => n.endsWith('Sources')).flatMap(n => mergedList(n))
-                .filter(s => s.flagType === 'bool' || s.flagType === 'flea').map(s => s.flag),
+                .filter(s => s.flagType === 'bool' || s.flagType === 'atLeast').flatMap(s => [s.flag].flat()),
             ...mergedList('cloakTiers').map(t => t.requires).filter(Boolean),
             ...mergedList('mementos').map(m => m.flag).filter(Boolean),
             ...mergedList('mementos').flatMap(m => m.allFlags || []),
@@ -130,7 +134,11 @@ describe('pack contracts', () => {
         for (const name of listNames().filter(n => n.endsWith('Sources'))) {
             for (const s of mergedList(name)) {
                 if (s.flagType === 'quest' && !inSomeFixture('QuestCompletionData', s.flag)) problems.push(`quest ${s.flag}`);
-                if (s.flagType === 'scene' && !scenePickupSeen(s.sceneName, s.sceneId)) problems.push(`scene ${s.sceneName}/${s.sceneId}`);
+                if (s.flagType !== 'scene') continue;
+                const ids = [s.sceneId].flat();
+                if (!SCENE_NOT_IN_FIXTURES[`${s.sceneName}/${ids[0]}`] && !ids.some(id => scenePickupSeen(s.sceneName, id))) {
+                    problems.push(`scene ${s.sceneName}/${ids.join('|')}`);
+                }
             }
         }
         expect(problems).toEqual([]);
@@ -138,6 +146,10 @@ describe('pack contracts', () => {
 
     it('exceptions stay honest: a listed name that appears in a fixture must be removed from the list', () => {
         for (const name of Object.keys(NEVER_IN_FIXTURES)) expect(inSomeFixture('Tools', name), name).toBe(false);
+        for (const key of Object.keys(SCENE_NOT_IN_FIXTURES)) {
+            const [scene, id] = key.split('/');
+            expect(scenePickupSeen(scene, id), key).toBe(false);
+        }
     });
 
     it('every pack declares the required fields', () => {

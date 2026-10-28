@@ -21,6 +21,7 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
 - [x] Parsing: general stats, current state, tools (with upgrade sets), abilities, skills, crests, equipped loadout, bosses, maps, masks, silk spools, silk hearts, needle, crafting kit, tool pouch, craftmetal, other unlockables
 - [x] Completion breakdown that recomputes the game's own percentage exactly
 - [x] Hunter's Journal, Fleas, Quests, relics, mementos, materium, inventory, Bellway and Ventrica travel
+- [x] Every Memory Locket, Tool Pouch and Craftmetal source mapped to its save flag
 - [x] Phase 0: save tools (decrypt, diff, unknown keys, fixtures), repo hygiene
 - [x] Phase 1: core rework (content packs, category modules, renderers, contract and golden tests)
 - [x] Phase 2: parsing coverage; every save flag is either shown or classified with a reason
@@ -28,7 +29,6 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
 - [x] Phase 4: single-page app shell, no iframes, accessibility and performance pass
 
 ### In progress / planned (see ROADMAP.md for the phase each belongs to)
-- [ ] Some Memory Locket sources, Loddie's tool pouch and the 8th craftmetal (need specific saves)
 - [ ] Phase 5: DLC readiness (pack scaffold, unknown-keys dev panel, version banner)
 - [ ] Stretch: save comparison, exports, shareable summary links
 
