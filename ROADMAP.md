@@ -481,6 +481,7 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 | Bilewater cocoon locket ID | a fixture rebuilt from `savefiles/user3.dat` | `Sack Corpse Pickup` (reference) vs `Breakable Hang Sack Memory Locket` (old guess, false in the 100% save); both are accepted. `make_fixture.py` now keeps `Corpse Pickup` IDs: rebuild the fixtures to confirm and drop the alias |
 | Loddie's pouch picked up off the ground | none (reference) | if Loddie's challenge is skipped the pouch can be found at `Bone_12` / `Ladybug Craft Pickup`; add it as an alias once a save shows it |
 | Leads | none | `PurchasedBelltownToolPouch` and `CollectedToolMetal` are false / always true and match no source; `CollectedToolMetal` looks like a "first craftmetal seen" flag |
+| Two relics in no save yet | a save with either collected | `Weaver Totem Bonetown_upper_room` and `Weaver Record Sprint_Challenge` (names from the reference tracker); once a fixture has one, drop it from `RELICS_NEVER_IN_FIXTURES` in `contracts.test.js` |
 | Minibosses (OPUS D22) | none | display names and icons for the 7 defeat flags |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
