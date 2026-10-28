@@ -21,7 +21,7 @@ import {
 import { AREAS, MAP_ZONES } from './areas.js';
 import { JOURNAL } from './journal.js';
 import { QUESTS } from './quests.js';
-import { KEY_ITEMS } from './keyItems.js';
+import { KEY_SOURCES } from './keyItems.js';
 import { UNTRACKED } from './untracked.js';
 
 export default {
@@ -62,7 +62,7 @@ export default {
         materium: MATERIUM,
         mementos: MEMENTOS,
         inventoryItems: INVENTORY_ITEMS,
-        keyItems: KEY_ITEMS,
+        keySources: KEY_SOURCES,
         untracked: UNTRACKED,
     },
 };
