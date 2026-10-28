@@ -75,6 +75,7 @@ Notes:
 - `mergedList(name, packs)` concatenates a list across active packs and stamps `pack`. Totals are never written in HTML; they come from list lengths.
 - A category module is `{ id, parse(save, ctx), render?(result, ctx), completion?(result, parsed) }`. `parse` is pure; `render` writes only its own elements and is a no-op when they are missing. Template: ROADMAP Appendix C.
 - Source checklists (`categories/checklists.js`) read `*_SOURCES` lists whose entries carry a `flagType`: `bool` (playerData boolean; `flag` may be a list, any counts), `atLeast` (playerData number `>= min`), `quest` (QuestCompletionData `IsCompleted`), `scene` (persistentBools; `sceneId` may be a list, any counts), `unknown` (rendered as Pending).
+- Names shown to players are in-game names: area names, wish titles, item names. Scene codes (`Bone_East_20`) and internal quest names stay in `json` / `sceneName` / `flag` and tooltips; a contract test rejects them in `display` / `name`. Areas come from `packs/base/areas.js` (`areaName(scene)` in `map/sceneTiles.js`, longest prefix wins) and `MAP_ZONES` (for `playerData.currentArea`). Most names were checked against [silksong-completionist](https://github.com/Br3zzly/silksong-completionist) (MIT).
 - `packs/base/untracked.js` classifies every playerData flag the app deliberately ignores, so `tools/unknown_keys.py` only reports genuinely new keys.
 
 ## 7. Renderers and icons

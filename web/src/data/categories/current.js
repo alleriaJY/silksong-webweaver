@@ -4,7 +4,7 @@
  * the position fields render into the Current Position card on the Misc tab.
  */
 import { parseSimpleFields, field } from './common.js';
-import { formatNumber } from '../../core/format.js';
+import { formatNumber, humanize } from '../../core/format.js';
 import { setStat } from '../../ui/renderers.js';
 
 function setBar(id, value, max) {
@@ -14,7 +14,14 @@ function setBar(id, value, max) {
 
 export default {
     id: 'current',
-    parse: (save, ctx) => parseSimpleFields(save.playerData, ctx.lists('currentFields')),
+    parse(save, ctx) {
+        const result = parseSimpleFields(save.playerData, ctx.lists('currentFields'));
+        // currentArea is the game's zone name ("MOSSCAVE"); show the area name
+        const zone = result.currentArea?.value;
+        const known = zone ? ctx.lists('mapZones').find(z => z.zone === zone) : null;
+        result.areaName = { value: known ? known.display : (zone ? humanize(zone) : undefined), display: 'Current Area' };
+        return result;
+    },
 
     render(result, ctx) {
         const get = name => field(ctx.parsed, 'current', name);
@@ -33,8 +40,7 @@ export default {
         setStat('geo', geo !== undefined ? formatNumber(geo) : '0');
         setStat('shellShards', shellShards !== undefined ? formatNumber(shellShards) : '0');
 
-        setStat('currentArea', get('currentArea') || 'Unknown');
-        setStat('mapZone', get('mapZone'));
+        setStat('currentArea', get('areaName') || 'Unknown');
         setStat('atBench', get('atBench') ? '✓ Yes' : '✗ No');
     },
 };

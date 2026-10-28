@@ -8,7 +8,7 @@
  *   timeline.show();   // when its page becomes visible
  *   timeline.hide();
  */
-import { FULLMAP, areaOf, litTiles, loadMapData, spriteFile, tilesForScene } from '../map/sceneTiles.js';
+import { FULLMAP, areaName, litTiles, loadMapData, spriteFile, tilesForScene } from '../map/sceneTiles.js';
 import { mergedList } from '../data/packs/index.js';
 import { EVENT_COLORS, formatPlayTime, placeEvents } from './story.js';
 
@@ -77,6 +77,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     root.innerHTML = TEMPLATE;
     const ref = name => root.querySelector(`[data-ref="${name}"]`);
     const areas = mergedList('areas');
+    // Players know areas, not room codes; the code stays in the tooltip
+    const place = scene => areaName(scene, areas) || 'Unmapped room';
 
     let map = null, mapLoading = null;     // published map data, loaded on first show
     let overlays = {};                      // tile name -> element
@@ -174,15 +176,9 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         ref('pos').textContent = position;
         ref('revealed').textContent = lit.size;
         const scene = scenes[position - 1];
-        const area = scene && areaOf(scene, areas);
         const sceneEl = ref('scene');
-        sceneEl.textContent = scene || 'Start';
-        if (area) {
-            const tag = document.createElement('span');
-            tag.className = 'tl-area';
-            tag.textContent = ` [${area.display || area.prefix}]`;
-            sceneEl.appendChild(tag);
-        }
+        sceneEl.textContent = scene ? place(scene) : 'Start';
+        sceneEl.title = scene ? `Room ${scene}` : '';
         for (const { event, el } of pins) el.hidden = event.index > position;
         renderRecent();
         renderEvents();
@@ -197,7 +193,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             m.className = 'tl-mark';
             m.style.left = `${scenes.length ? (100 * e.index) / scenes.length : 0}%`;
             m.style.background = EVENT_COLORS[e.type] || '#ccc';
-            m.title = `Story event (type ${e.type}) · ${e.scene} · ${formatPlayTime(e.playTime)}`;
+            m.title = `Story event (type ${e.type}) · ${place(e.scene)} · ${formatPlayTime(e.playTime)}`;
             m.addEventListener('click', () => { stop(); seek(e.index); });
             marks.appendChild(m);
         }
@@ -230,7 +226,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.style.left = `${(x0 + x1) / 2}px`;
             el.style.top = `${(y0 + y1) / 2}px`;
             el.style.background = EVENT_COLORS[event.type] || '#ccc';
-            el.title = `Story event (type ${event.type}) · ${event.scene} · ${formatPlayTime(event.playTime)}`;
+            el.title = `Story event (type ${event.type}) · ${place(event.scene)} · ${formatPlayTime(event.playTime)}`;
             el.hidden = true;
             layer.appendChild(el);
             pins.push({ event, el });
@@ -248,12 +244,12 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             const dot = document.createElement('i');
             dot.style.background = EVENT_COLORS[e.type] || '#ccc';
             const name = document.createElement('span');
-            name.append(dot, e.scene);
+            name.append(dot, place(e.scene));
             const time = document.createElement('span');
             time.className = 'tl-muted';
             time.textContent = formatPlayTime(e.playTime);
             row.append(name, time);
-            row.title = `Type ${e.type} · reached at scene ${e.index} of ${scenes.length}`;
+            row.title = `Type ${e.type} · room ${e.scene} · reached at scene ${e.index} of ${scenes.length}`;
             row.addEventListener('click', () => { stop(); seek(e.index); });
             list.appendChild(row);
         }
@@ -280,7 +276,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             const row = document.createElement('div');
             row.className = 'tl-recent-item';
             const name = document.createElement('span');
-            name.textContent = scenes[i];
+            name.textContent = place(scenes[i]);
+            row.title = `Room ${scenes[i]}`;
             const count = document.createElement('span');
             count.className = n ? 'tl-area' : 'tl-muted';
             count.textContent = `${n} tile${n === 1 ? '' : 's'}`;

@@ -117,8 +117,8 @@
     "inventoryKinds": 12,
     "travel": {
       "bellway": {
-        "total": 10,
-        "unlocked": 10
+        "total": 12,
+        "unlocked": 12
       },
       "ventrica": {
         "total": 6,

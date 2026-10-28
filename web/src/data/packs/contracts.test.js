@@ -152,6 +152,20 @@ describe('pack contracts', () => {
         }
     });
 
+    it('names shown to players carry no scene codes or internal names', () => {
+        // "Bone_East_20", "Song_09", "Flea (Dock 16)" style leftovers
+        const CODE = /[A-Za-z]_[A-Za-z0-9]|\b[A-Z][a-z]+ \d{2}[a-z]?\b|SavedFlea|Collectable Item/;
+        const problems = [];
+        for (const name of listNames()) {
+            for (const e of mergedList(name)) {
+                for (const field of ['display', 'name']) {
+                    if (typeof e[field] === 'string' && CODE.test(e[field])) problems.push(`${name}/${e.id}: ${e[field]}`);
+                }
+            }
+        }
+        expect(problems).toEqual([]);
+    });
+
     it('every pack declares the required fields', () => {
         for (const p of PACKS) {
             expect(p).toEqual(expect.objectContaining({ id: expect.any(String), label: expect.any(String), minVersion: expect.any(String) }));
