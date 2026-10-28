@@ -1,6 +1,6 @@
 /**
  * Hero's Path: replays scenesVisited over the Pharloom map, lighting the tiles
- * each scene draws, with the save's story events as markers. "In-game map"
+ * each scene draws, with the save's upgrade pickups (StoryEvents) as markers. "In-game map"
  * limits it to scenes the save's own map shows (scenesMapped). Reads the save from the shared saveStore, so the save
  * uploaded on any page drives it; it never decrypts on its own.
  *
@@ -10,7 +10,7 @@
  */
 import { FULLMAP, areaName, litTiles, loadMapData, spriteFile, tilesForScene } from '../map/sceneTiles.js';
 import { mergedList } from '../data/packs/index.js';
-import { EVENT_COLORS, formatPlayTime, placeEvents } from './story.js';
+import { EVENT_COLORS, eventLabel, formatPlayTime, placeEvents } from './story.js';
 
 const PLAY_DURATION_MS = 30000;   // a whole save plays in 30 s
 const RECENT = 10;                // scenes listed in "Recently revealed"
@@ -23,7 +23,7 @@ const TEMPLATE = `
         <div class="tl-stats">
             <div>Revealed tiles: <span data-ref="revealed">0</span></div>
             <div>Mapped tiles: <span data-ref="total">0</span></div>
-            <div>Story events: <span data-ref="events">0</span></div>
+            <div>Upgrades found: <span data-ref="events">0</span></div>
         </div>
         <div class="tl-mode" role="group" aria-label="Which rooms to show">
             <button class="on" data-act="mode-visited" title="Every room you have entered">Visited</button>
@@ -65,7 +65,7 @@ const TEMPLATE = `
         <aside class="tl-side">
             <h2>Recently revealed</h2>
             <div class="tl-recent" data-ref="recent"><p class="tl-muted">No scenes yet</p></div>
-            <h2 class="tl-events-title">Story events</h2>
+            <h2 class="tl-events-title">Upgrades found</h2>
             <div class="tl-legend" data-ref="legend"></div>
             <div class="tl-recent" data-ref="event-list"><p class="tl-muted">None yet</p></div>
             <p class="tl-muted tl-keys">Keys: ← → step · Space play · Home / End</p>
@@ -193,7 +193,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             m.className = 'tl-mark';
             m.style.left = `${scenes.length ? (100 * e.index) / scenes.length : 0}%`;
             m.style.background = EVENT_COLORS[e.type] || '#ccc';
-            m.title = `Story event (type ${e.type}) · ${place(e.scene)} · ${formatPlayTime(e.playTime)}`;
+            m.title = `${eventLabel(e.type)} · ${place(e.scene)} · ${formatPlayTime(e.playTime)}`;
             m.addEventListener('click', () => { stop(); seek(e.index); });
             marks.appendChild(m);
         }
@@ -204,10 +204,9 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             const item = document.createElement('span');
             const dot = document.createElement('i');
             dot.style.background = EVENT_COLORS[t] || '#ccc';
-            item.append(dot, `type ${t}`);
+            item.append(dot, eventLabel(t));
             legend.appendChild(item);
         }
-        if (types.length) legend.append(' (meaning not yet known)');
     }
 
     function buildPins() {
@@ -226,7 +225,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.style.left = `${(x0 + x1) / 2}px`;
             el.style.top = `${(y0 + y1) / 2}px`;
             el.style.background = EVENT_COLORS[event.type] || '#ccc';
-            el.title = `Story event (type ${event.type}) · ${place(event.scene)} · ${formatPlayTime(event.playTime)}`;
+            el.title = `${eventLabel(event.type)} · ${place(event.scene)} · ${formatPlayTime(event.playTime)}`;
             el.hidden = true;
             layer.appendChild(el);
             pins.push({ event, el });
@@ -244,19 +243,19 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             const dot = document.createElement('i');
             dot.style.background = EVENT_COLORS[e.type] || '#ccc';
             const name = document.createElement('span');
-            name.append(dot, place(e.scene));
+            name.append(dot, `${eventLabel(e.type)} · ${place(e.scene)}`);
             const time = document.createElement('span');
             time.className = 'tl-muted';
             time.textContent = formatPlayTime(e.playTime);
             row.append(name, time);
-            row.title = `Type ${e.type} · room ${e.scene} · reached at scene ${e.index} of ${scenes.length}`;
+            row.title = `Room ${e.scene} · reached at scene ${e.index} of ${scenes.length}`;
             row.addEventListener('click', () => { stop(); seek(e.index); });
             list.appendChild(row);
         }
         if (!list.children.length) {
             const p = document.createElement('p');
             p.className = 'tl-muted';
-            p.textContent = events.length ? 'None reached yet' : 'This save has no story events';
+            p.textContent = events.length ? 'None reached yet' : 'This save has no upgrade pickups';
             list.appendChild(p);
         }
     }

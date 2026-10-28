@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { formatPlayTime, placeEvents } from './story.js';
+import { eventLabel, formatPlayTime, placeEvents } from './story.js';
 
 describe('placeEvents', () => {
     const scenes = ['Tut_01', 'Bonetown', 'Bone_01', 'Bone_East_20', 'Shellwood_14'];
@@ -26,5 +26,12 @@ describe('placeEvents', () => {
 describe('formatPlayTime', () => {
     it.each([[16899.4, '4h 41m'], [300, '5m'], [3600, '1h 00m'], [-5, '0m']])('%s -> %s', (s, out) => {
         expect(formatPlayTime(s)).toBe(out);
+    });
+});
+
+describe('eventLabel', () => {
+    it('names the known pickup types and falls back for new ones', () => {
+        expect([0, 1, 3].map(eventLabel)).toEqual(['Mask Shard', 'Spool Fragment', 'Memory Locket']);
+        expect(eventLabel(7)).toBe('Upgrade (type 7)');
     });
 });

@@ -140,3 +140,16 @@ describe.each(FIXTURES)('wish targets on $name (oracle)', ({ parsed }) => {
         }
     });
 });
+
+describe.each(FIXTURES.filter(f => f.fixture.playerData.StoryEvents?.length))('upgrade pickups on $name (oracle)', ({ expected, parsed }) => {
+    const count = type => parsed.story.events.filter(e => e.type === type).length;
+
+    it('type 0 = Mask Shards and type 1 = Spool Fragments, one event each', () => {
+        expect(count(0)).toBe((expected.oracle.maxHealth - 5) * 4);
+        expect(count(1)).toBe((expected.oracle.silkMax - 9) * 2);
+    });
+
+    it('type 3 = Memory Lockets: never fewer events than lockets the checklist finds', () => {
+        expect(count(3)).toBeGreaterThanOrEqual(parsed.memoryLockets.stats.collected);
+    });
+});

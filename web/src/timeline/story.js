@@ -1,5 +1,5 @@
 /**
- * Story events on the Hero's Path timeline.
+ * Upgrade pickups (playerData.StoryEvents) on the Hero's Path timeline.
  *
  * The timeline counts scenes in first-visit order (scenesVisited has no times),
  * while StoryEvents carry a play time. An event is placed at the exploration
@@ -8,8 +8,25 @@
  * save never visited go after the previous event.
  */
 
-/** EventType values are undocumented; these colours only tell them apart. */
-export const EVENT_COLORS = { 0: '#4fc3f7', 1: '#ffb74d', 2: '#e57373', 3: '#81c784' };
+/**
+ * EventType, worked out from the rooms each type happens in: 0 is always a
+ * Mask Shard room (20 in the 100% save = all 20 shards), 1 a Silk Spool room
+ * (18 = all fragments), 3 a Memory Locket room. Type 2 (4 events, the same in
+ * the 72% and 100% saves: Bone Bottom, Dust_06, Songclave, a Blasted Steps
+ * bell shrine) matches no list yet.
+ */
+export const EVENT_TYPES = {
+    0: { label: 'Mask Shard', color: '#e57373' },
+    1: { label: 'Spool Fragment', color: '#e8e1d3' },
+    2: { label: 'Other upgrade', color: '#90a4ae' },
+    3: { label: 'Memory Locket', color: '#d4b36a' },
+};
+export const EVENT_COLORS = Object.fromEntries(Object.entries(EVENT_TYPES).map(([t, v]) => [t, v.color]));
+
+/** 3 -> 'Memory Locket'; an unknown type -> 'Upgrade (type 7)'. */
+export function eventLabel(type) {
+    return EVENT_TYPES[type]?.label ?? `Upgrade (type ${type})`;
+}
 
 /**
  * events: parseStory(...).events (sorted by playTime); scenes: scenesVisited.
