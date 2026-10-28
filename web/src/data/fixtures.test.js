@@ -132,3 +132,11 @@ describe('story events', () => {
         expect(events[0]).toEqual(expect.objectContaining({ scene: expect.any(String), area: expect.any(String), type: expect.any(Number) }));
     });
 });
+
+describe.each(FIXTURES)('wish targets on $name (oracle)', ({ parsed }) => {
+    it('a completed collection wish has counted exactly to its target', () => {
+        for (const q of parsed.quests.quests.filter(q => q.target && q.state === 'completed')) {
+            expect(q.progress, q.json).toBe(q.target);
+        }
+    });
+});
