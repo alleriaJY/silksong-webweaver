@@ -67,8 +67,8 @@
       "total": 3
     },
     "toolPouch": {
-      "collected": 3,
-      "pending": 1,
+      "collected": 4,
+      "pending": 0,
       "total": 4
     },
     "craftingKit": {
@@ -83,12 +83,12 @@
     },
     "craftmetal": {
       "collected": 4,
-      "pending": 1,
+      "pending": 0,
       "total": 8
     },
     "memoryLockets": {
-      "collected": 2,
-      "pending": 17,
+      "collected": 12,
+      "pending": 0,
       "total": 20
     },
     "journal": {
@@ -117,16 +117,16 @@
     "inventoryKinds": 12,
     "travel": {
       "bellway": {
-        "total": 10,
-        "unlocked": 10
+        "total": 12,
+        "unlocked": 12
       },
       "ventrica": {
         "total": 6,
         "unlocked": 6
       },
       "pin": {
-        "total": 3,
-        "unlocked": 3
+        "total": 9,
+        "unlocked": 9
       }
     },
     "storyEvents": 45

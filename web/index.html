@@ -201,16 +201,12 @@
                                                 <span class="stat-label">Current Health</span>
                                                 <span class="stat-value" data-stat="healthDisplay">-</span>
                                             </div>
-                                            <div class="stat-bar" id="health-bar">
-                                                <div class="stat-bar-fill health-fill" id="health-fill"></div>
-                                            </div>
+                                            <div class="mask-row" id="health-masks"></div>
                                             <div class="stat-row">
                                                 <span class="stat-label">Current Silk</span>
                                                 <span class="stat-value" data-stat="silkDisplay">-</span>
                                             </div>
-                                            <div class="stat-bar" id="silk-bar">
-                                                <div class="stat-bar-fill silk-fill" id="silk-fill"></div>
-                                            </div>
+                                            <div class="silk-spool" id="silk-spool"></div>
                                         </div>
 
                                         <!-- Currency Card -->
@@ -294,10 +290,6 @@
                                                 <span class="stat-value highlight" data-stat="currentArea">-</span>
                                             </div>
                                             <div class="stat-row">
-                                                <span class="stat-label">Map Zone</span>
-                                                <span class="stat-value" data-stat="mapZone">-</span>
-                                            </div>
-                                            <div class="stat-row">
                                                 <span class="stat-label">At Bench</span>
                                                 <span class="stat-value" data-stat="atBench">-</span>
                                             </div>
@@ -305,23 +297,14 @@
 
                                         <!-- Respawn Info Card -->
                                         <div class="stat-card">
-                                            <h4>Respawn Info</h4>
+                                            <h4>Respawn</h4>
                                             <div class="stat-row">
                                                 <span class="stat-label">Respawn Area</span>
                                                 <span class="stat-value" data-stat="respawnScene">-</span>
                                             </div>
                                             <div class="stat-row">
-                                                <span class="stat-label">Respawn Marker</span>
-                                                <span class="stat-value" data-stat="respawnMarker">-</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Save Info Card -->
-                                        <div class="stat-card">
-                                            <h4>Save Info</h4>
-                                            <div class="stat-row">
-                                                <span class="stat-label">Respawn Type</span>
-                                                <span class="stat-value" data-stat="respawnType">-</span>
+                                                <span class="stat-label">Respawn Point</span>
+                                                <span class="stat-value" data-stat="respawnPoint">-</span>
                                             </div>
                                         </div>
                                     </div>
@@ -646,9 +629,9 @@
                                             </div>
                                         </div>
 
-                                        <!-- Travel: map pins -->
+                                        <!-- Travel: map pins and markers -->
                                         <div class="stat-card full-width">
-                                            <h4 class="section-header">Map Pins
+                                            <h4 class="section-header">Map Pins &amp; Markers
                                                 <span class="unlocked-stats">(<strong id="map-pins-count">0</strong>/<span id="map-pins-total">0</span>)</span>
                                             </h4>
                                             <div class="source-checklist" id="map-pins-checklist">

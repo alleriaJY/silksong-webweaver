@@ -45,7 +45,7 @@ const emptyBanner = document.getElementById('empty-banner');
 
 // Item lists and visuals that are blurred while no save is loaded
 const PLACEHOLDER_BLUR = '[role="list"], .source-checklist, .inventory-list, .icon-container, '
-    + '.equipped-tools-row, .equipment-columns, .completion-breakdown, .stat-bar';
+    + '.equipped-tools-row, .equipment-columns, .completion-breakdown, .mask-row, .silk-spool';
 // Values that read N/A while no save is loaded, and counts that read a dash ("Unlocked: –/6")
 const PLACEHOLDER_VALUES = '.stat-value, .percent-value, .completion-big-number, #completion-modelled strong';
 const PLACEHOLDER_COUNTS = '.unlocked-stats strong, .panel-description strong';

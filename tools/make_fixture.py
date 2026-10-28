@@ -35,7 +35,7 @@ KEEP_STRUCTURED = {
     "FleasCollectedTargetOrder", "scenesEncounteredBench", "scenesEncounteredCocoon",
 }
 PICKUP_ID = re.compile(
-    r"Heart Piece|Silk Spool|Tool Metal|Locket|Collectable Item Pickup|Crest|Flea|Memento|Relic|Mask Shard",
+    r"Heart Piece|Silk Spool|Tool Metal|Locket|Collectable Item Pickup|Corpse Pickup|Craft Pickup|Crest|Flea|Memento|Relic|Mask Shard",
     re.IGNORECASE,
 )
 MAX_STRING = 64

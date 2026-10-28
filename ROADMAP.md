@@ -15,11 +15,12 @@
 2. [Phase 0 - Hygiene and Safety Net (DONE 2026-09-23)](#phase-0---hygiene-and-safety-net-done-2026-09-23)
 3. [Phase 1 - Core Rework (DONE 2026-09-30)](#phase-1---core-rework-done-2026-09-30)
 4. [Phase 2 - Parsing Coverage (DONE 2026-09-30)](#phase-2---parsing-coverage-done-2026-09-30)
-5. [Phase 3 - Hero's Path and Map](#phase-3---heros-path-and-map)
+5. [Phase 3 - Hero's Path and Map (DONE 2026-10-28)](#phase-3---heros-path-and-map-done-2026-10-28)
 6. [Phase 4 - App Shell Consolidation (DONE 2026-10-28)](#phase-4---app-shell-consolidation-done-2026-10-28)
 7. [Phase 5 - DLC Readiness](#phase-5---dlc-readiness)
 8. [Phase 6 - Stretch](#phase-6---stretch)
 9. [DLC Playbook](#dlc-playbook)
+- [Asset Requests](#asset-requests)
 - [Appendix A - Open Data Questions](#appendix-a---open-data-questions)
 - [Appendix B - Fixture Guidelines](#appendix-b---fixture-guidelines)
 - [Appendix C - Category Module Template](#appendix-c---category-module-template)
@@ -339,7 +340,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 4. **Story timeline data.** Parse `StoryEvents` (`EventType`, `PlayTime`, `SceneName`) into a `story` category (no tab yet; consumed by Phase 3 timeline markers).
 5. **Benches and bellways.** Parse `scenesEncounteredBench`, `scenesEncounteredCocoon`, `hasPinBench`-style flags and the `*Bench*` booleans into a `travel` sub-section of Maps (count of benches rested at; bellways unlocked from `Bellway_*` scene flags in `persistentBools` if identifiable).
 6. **Fix the two wrong spool fragment flags first** (see Phase 0 results): diff `savefiles/user2.dat` against `savefiles/user3.dat`, look for quest completions and booleans that correlate with the Sherma and Greymoor_17 rewards, then flip the `it.fails` in `fixtures.test.js` to `it` and re-run `node scripts/snapshot-fixtures.mjs`.
-   **Resolve unknowns with the diff tool** for Tool Pouch (Loddie), Craftmetal 8th, and Memory Lockets. Leads from the 100% save: purchase flags `PurchasedPilgrimsRestMemoryLocket`, `PurchasedBelltownMemoryLocket`, `purchasedGrindleMemoryLocket` (Grindle is missing from the current 20-entry list); world pickup `Shadow_27 / Breakable Hang Sack Memory Locket`; the item's internal collectable name is `Crest Socket Unlocker`. Other world lockets are likely generic `Collectable Item Pickup*` IDs, so match them by `SceneName` against the wiki rooms. Method: OPUS section 11. Expected outcome for lockets: purchases map to `Purchased*Locket`/`*MemoryLocket*` booleans, world pickups to `persistentBools` with an ID containing `Locket`; grep `output2.json` and the fixtures for `Locket` (case-insensitive) first. Anything not resolvable from the saves on hand stays `unknown` and goes to Appendix A.
+   **Resolve unknowns with the diff tool** for Tool Pouch (Loddie), Craftmetal 8th, and Memory Lockets (resolved 2026-10-28, Appendix A). Leads from the 100% save: purchase flags `PurchasedPilgrimsRestMemoryLocket`, `PurchasedBelltownMemoryLocket`, `purchasedGrindleMemoryLocket` (Grindle is missing from the current 20-entry list); world pickup `Shadow_27 / Breakable Hang Sack Memory Locket`; the item's internal collectable name is `Crest Socket Unlocker`. Other world lockets are likely generic `Collectable Item Pickup*` IDs, so match them by `SceneName` against the wiki rooms. Method: OPUS section 11. Expected outcome for lockets: purchases map to `Purchased*Locket`/`*MemoryLocket*` booleans, world pickups to `persistentBools` with an ID containing `Locket`; grep `output2.json` and the fixtures for `Locket` (case-insensitive) first. Anything not resolvable from the saves on hand stays `unknown` and goes to Appendix A.
 7. **Update README to-do checkboxes** to match reality.
 
 ### Acceptance criteria
@@ -357,14 +358,14 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ---
 
-## Phase 3 - Hero's Path and Map
+## Phase 3 - Hero's Path and Map (DONE 2026-10-28)
 
 **Goal:** Finish map coverage and make Hero's Path first-class. The standalone map viewer was dropped on 2026-10-09 (owner decision): Hero's Path covers the map, and placed markers would need an unknown in-game-units to map-pixels transform. **Depends on:** Phase 1 (areas in packs), Phase 2 step 4 (story events).
 
 ### Steps
 1. **Tile gap closure.** DONE with `tools/tilefit`: every sprite is reviewed (`review.json`: 739 positioned, 92 removed) and the reviewed set is what the pages read. Coverage of map room pixels 98.4%; the remaining rooms (interiors, challenge rooms) are not drawn on the world map.
 2. **Scene to tile mapping as data.** DONE: `tools/tilefit/scene_tiles.py` writes `scene_tiles.json` (aliases, hash/prefix/case-insensitive names, pieces by longest known scene) and the timeline looks scenes up there. The lookup lives in `web/src/map/sceneTiles.js`.
-3. **Timeline module.** DONE: `web/src/timeline/` reads `saveStore`, with story markers and the visited / in-game map toggle. Port `exploration_timeline.html` into `web/src/timeline/` (module, no own WASM, reads `saveStore`). Keep the slider, play/pause, speed, revealed list. Add story-event markers from Phase 2 step 4 and a "mapped vs visited" toggle using `scenesMapped`.
+3. **Timeline module.** DONE: `web/src/timeline/` reads `saveStore` (no own WASM) and keeps the slider, play/pause, speed and revealed list, with story-event markers and the visited / in-game map toggle (`scenesMapped`). `exploration_timeline.html` is gone.
 4. ~~**Map viewer module.**~~ Dropped 2026-10-09; `map_viewer.html` deleted. If wanted later, a `respawnScene` pin can go on Hero's Path.
 5. **Dev viewer** DONE: `tools/tilefit/viewer.html` via `tools/tilefit/review_server.py` (not deployed).
 6. **Mobile** DONE 2026-10-09: at 375 px Hero's Path fits the screen under the top bar (no page scroll), drag and pinch-zoom work (pointer events), story pins shrink to 8 px.
@@ -373,7 +374,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 - Every sprite has a verdict in `tools/tilefit/review.json` or `confirmed_locks.json` (met).
 - Scene lookup tests pass; the timeline lights the scenes `scene_tiles.json` covers (72% save: 557 of 686, 100% save: 658 of 842; the rest are not on the world map).
 - One upload feeds Statistics and Hero's Path (no second upload) (met).
-- Verification block green; OPUS section 9 updated.
+- Verification block green; OPUS section 9 updated (met: OPUS.md was rebuilt from the code on 2026-10-28; it had never been committed).
 
 ---
 
@@ -447,27 +448,52 @@ Base-game saves must render identically before and after adding a pack; the cont
 
 ---
 
+## Asset Requests
+
+Art the UI would use if it were in `web/assets/img/`. Each row names the sprite, where it goes and what the app does without it. Sprites come from the game files (Team Cherry; see README "Assets"); export PNG with transparency at the game's native size. After adding one, point the code at it and drop the fallback.
+
+| Sprite | Folder / file name | Used by | Fallback today |
+|---|---|---|---|
+| HUD mask, empty (lost health) | `general/hud_mask_empty.png` | Current tab health row (`categories/current.js`, `MASK_EMPTY`) | inventory health backboard (`Inv_0030_inv_health_backboard.png`), slightly different shape |
+| HUD mask, empty, Steel Soul | `general/hud_mask_empty_ss.png` | same, Steel Soul saves | `Inv_health_backboard_SS.png` |
+| HUD mask, full (cropped like the empty one) | `general/hud_mask_full.png` | same | `general_hp.png` |
+| HUD silk spool: left cap, right cap, one thread segment full, one empty, and the broken-spool variant | `general/hud_silk_cap_l.png`, `hud_silk_cap_r.png`, `hud_silk_full.png`, `hud_silk_empty.png`, `hud_silk_broken.png` | Current tab silk spool (`.silk-spool` in `styles.css`) | CSS-drawn spool and thread segments |
+| Bellway station icon (the bell / stag beetle map marker) | `maps/travel_bellway.png` | Maps tab, Bellway Stations rows: set `icon` on every `kind: 'bellway'` entry in `packs/base/maps.js` | text only |
+| Ventrica station icon (tube map marker) | `maps/travel_ventrica.png` | Maps tab, Ventrica Tubes rows (`kind: 'ventrica'`) | text only |
+| Pin icons as sold by Shakra: Bench, Bellway, Ventrica, Vendor | `maps/pin_bench.png`, `pin_bellway.png`, `pin_ventrica.png`, `pin_vendor.png` | Maps tab, Map Pins & Markers rows | text only |
+| Marker icons: Shell, Ring, Hunt, Dark, Bronze | `maps/marker_shell.png`, `marker_ring.png`, `marker_hunt.png`, `marker_dark.png`, `marker_bronze.png` | same | text only |
+| The Abyss map | `maps/Shop_map_icon__abyss.png` (if the game has one; Shakra does not sell this map, so it may not exist) | Maps tab; drop `iconStyle: 'placeholder'` from the `the-abyss` entry | generic scroll `I_map_type_02.png`, tinted violet when owned |
+| Lost Flea portrait | `general/flea.png` | Fleas tab (`categories/fleas.js`, also Appendix A) | Huge Flea journal portrait |
+
+The `icon` hook for travel rows is in place (`categories/travel.js`); the contract test checks that every named icon exists, so add the file and the `icon` field in the same commit.
+
+---
+
 ## Appendix A - Open Data Questions
 
 Items that cannot be resolved from the saves in `savefiles/` and `output2.json`. The owner can unblock each by producing a save immediately before and after the event and dropping the pair into `savefiles/`.
 
 | Item | Needed save states | Notes |
 |---|---|---|
-| Memory Locket sources (20) | before/after a world locket pickup | Purchases already have flags (see Phase 2 step 6). World pickups need one bracketing save pair to learn the ID pattern. |
-| Tool Pouch from Loddie | before/after receiving it | |
-| Craftmetal 8th source | none: `savefiles/user3.dat` is 100% | compare its `persistentBools` `Tool Metal` IDs and purchase flags against the 7 known |
-| Sherma / Greymoor spool reward flags (inferred) | before/after either reward | confirm quest `Save Sherma` and `silkFarmBattle1_complete` |
+| Deep Docks Memory Locket (`Dock_13`) | any save that has entered the room | mapping from the reference tracker; no fixture has the room yet, so it is listed in `SCENE_NOT_IN_FIXTURES` (contracts test) |
+| Bilewater cocoon locket ID | a fixture rebuilt from `savefiles/user3.dat` | `Sack Corpse Pickup` (reference) vs `Breakable Hang Sack Memory Locket` (old guess, false in the 100% save); both are accepted. `make_fixture.py` now keeps `Corpse Pickup` IDs: rebuild the fixtures to confirm and drop the alias |
+| Loddie's pouch picked up off the ground | none (reference) | if Loddie's challenge is skipped the pouch can be found at `Bone_12` / `Ladybug Craft Pickup`; add it as an alias once a save shows it |
+| Leads | none | `PurchasedBelltownToolPouch` and `CollectedToolMetal` are false / always true and match no source; `CollectedToolMetal` looks like a "first craftmetal seen" flag |
 | Minibosses (OPUS D22) | none | display names and icons for the 7 defeat flags |
-| Leads | none | `PurchasedBelltownToolPouch` (Loddie?), `CollectedToolMetal` (8th craftmetal?), `purchasedGrindleMemoryLocket` (21st locket?) |
-| Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
 | Flea icon | none | asset needed for the Fleas tab (the Huge Flea portrait stands in) |
-| `FleasCollectedTargetOrder` on newer versions (OPUS D20) | a 1.0.28714+ save after rescuing at least one flea | tells whether the key is created lazily or was removed by a patch; the Fleamaster Tool Pouch source depends on it |
 | Keep hosting Team Cherry assets in the repo? | none (owner decision) | Alternatives: keep with attribution (default), or load from an external host. |
 | Save paths per platform | none (owner check) | Confirm the Phase 0 step 13 paths on each platform. |
 
 Add rows here whenever a step is blocked; remove them when resolved and note the resolving commit.
+
+**Resolved 2026-10-28** (commit "data: map memory lockets, Loddie's pouch and the 8th craftmetal"), using the scene and flag names from [silksong-completionist](https://github.com/Br3zzly/silksong-completionist) (MIT) and checking each against the fixtures:
+- Memory Lockets: 17 world pickups mapped by scene, Volatile Flintbeetles = quest `Rock Rollers`; `purchasedGrindleMemoryLocket` is Grindle's Act 3 restock of Mort's locket (same locket). The 100% fixture reads 17 of 20 (see the two rows above), the 72% fixture 12.
+- Tool Pouch from Loddie: `pinGalleriesCompleted >= 1` (0 in early saves, 1 at 72%, 2 at 100%; the 72% save has all 4 upgrades, so its Loddie flag must be set).
+- Fleamaster Tool Pouch: `Aqueduct_05` / `Caravan Troupe Leader Fleatopia NPC` replaces the `FleasCollectedTargetOrder` heuristic (that key is not written by newer versions, OPUS D20). Every fixture's pouch sources now equal `ToolPouchUpgrades`.
+- Craftmetal 8th source: the Deep Docks chest, `Dock_03` / `Collectable Item Pickup`, set only in the 100% save. `Under_19b` is in the Underworks, not Deep Docks / Far Fields.
+- Greymoor spool fragment: the Fleamaster's reward when the caravan reaches Greymoor (`CaravanTroupeLocation >= 2`), replacing the `silkFarmBattle1_complete` guess.
 
 ---
 

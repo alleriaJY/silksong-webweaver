@@ -1,7 +1,8 @@
 /**
- * Maps tab, Travel section: Bellway stations, Ventrica tubes and map pins
- * (all playerData booleans). Not part of the completion percentage.
+ * Maps tab, Travel section: Bellway stations, Ventrica tubes, map pins and
+ * markers (all playerData booleans). Not part of the completion percentage.
  */
+import { iconUrl } from '../../core/icons.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
 
 const SECTIONS = [
@@ -12,7 +13,7 @@ const SECTIONS = [
 
 export function parseTravel(save, ctx) {
     const items = ctx.lists('travel').map(def => ({
-        json: def.json, display: def.display, kind: def.kind, value: !!save.playerData?.[def.json],
+        json: def.json, display: def.display, kind: def.kind, icon: def.icon, value: !!save.playerData?.[def.json],
     }));
     const stats = {};
     for (const { kind } of SECTIONS) {
@@ -31,8 +32,8 @@ export default {
             const container = document.getElementById(s.container);
             if (!container) continue;
             const rows = result.items.filter(i => i.kind === s.kind)
-                .map(i => ({ name: i.display, collected: i.value, pending: false }));
-            renderChecklist(container, rows, null);
+                .map(i => ({ name: i.display, icon: i.icon, collected: i.value, pending: false }));
+            renderChecklist(container, rows, r => (r.icon ? iconUrl('map', r.icon) : null));
             container.querySelectorAll('.source-item.collected .source-status').forEach(el => { el.textContent = s.status; });
             setText(s.count, result.stats[s.kind].unlocked);
             setText(s.total, result.stats[s.kind].total);

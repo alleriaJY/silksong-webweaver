@@ -51,6 +51,11 @@ export function areaOf(scene, areas) {
     return best;
 }
 
+/** In-game area name for a scene ('Bone_East_20' -> 'Far Fields'), or null. */
+export function areaName(scene, areas) {
+    return (scene && areaOf(scene, areas)?.display) || null;
+}
+
 /** Fetch the published map data; confirmed tiles only. */
 export async function loadMapData(base = FULLMAP) {
     const [coords, scenes] = await Promise.all([

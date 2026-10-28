@@ -121,16 +121,37 @@
 <span class="stat-label">Current Health</span>
 <span class="stat-value" data-stat="healthDisplay">4/5</span>
 </div>
-<div class="stat-bar" id="health-bar">
-<div class="stat-bar-fill health-fill" id="health-fill" style="width: 80%;">
-</div>
+<div class="mask-row" id="health-masks" role="img" aria-label="Health: 4 of 5 masks">
+<img src="assets/img/general/general_hp.png" alt="" class="mask full">
+<img src="assets/img/general/general_hp.png" alt="" class="mask full">
+<img src="assets/img/general/general_hp.png" alt="" class="mask full">
+<img src="assets/img/general/general_hp.png" alt="" class="mask full">
+<img src="assets/img/general/Inv_health_backboard_SS.png" alt="" class="mask empty">
 </div>
 <div class="stat-row">
 <span class="stat-label">Current Silk</span>
 <span class="stat-value" data-stat="silkDisplay">0/9</span>
 </div>
-<div class="stat-bar" id="silk-bar">
-<div class="stat-bar-fill silk-fill" id="silk-fill" style="width: 0%;">
+<div class="silk-spool" id="silk-spool" role="img" aria-label="Silk: 0 of 9">
+<div class="silk-thread">
+<span class="silk-seg empty">
+</span>
+<span class="silk-seg empty">
+</span>
+<span class="silk-seg empty">
+</span>
+<span class="silk-seg empty">
+</span>
+<span class="silk-seg empty">
+</span>
+<span class="silk-seg empty">
+</span>
+<span class="silk-seg empty">
+</span>
+<span class="silk-seg empty">
+</span>
+<span class="silk-seg empty">
+</span>
 </div>
 </div>
 </div>
@@ -208,32 +229,20 @@
 <span class="stat-value highlight" data-stat="currentArea">Unknown</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Map Zone</span>
-<span class="stat-value" data-stat="mapZone">13</span>
-</div>
-<div class="stat-row">
 <span class="stat-label">At Bench</span>
 <span class="stat-value" data-stat="atBench">✗ No</span>
 </div>
 </div>
 <!-- Respawn Info Card -->
 <div class="stat-card">
-<h4>Respawn Info</h4>
+<h4>Respawn</h4>
 <div class="stat-row">
 <span class="stat-label">Respawn Area</span>
-<span class="stat-value" data-stat="respawnScene">Tut_01</span>
+<span class="stat-value" data-stat="respawnScene">Moss Grotto</span>
 </div>
 <div class="stat-row">
-<span class="stat-label">Respawn Marker</span>
-<span class="stat-value" data-stat="respawnMarker">Death Respawn Marker Init</span>
-</div>
-</div>
-<!-- Save Info Card -->
-<div class="stat-card">
-<h4>Save Info</h4>
-<div class="stat-row">
-<span class="stat-label">Respawn Type</span>
-<span class="stat-value" data-stat="respawnType">0</span>
+<span class="stat-label">Respawn Point</span>
+<span class="stat-value" data-stat="respawnPoint">Respawn marker (not a bench)</span>
 </div>
 </div>
 </div>
@@ -295,98 +304,98 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">The Marrow - Lava Gauntlet reward (Bone_East_20)</span>
+<span class="source-name">Far Fields - hidden area left of the Seamstress' home</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">The Marrow - Lava Gauntlet arena (Bone_East_LavaChallenge)</span>
+<span class="source-name">Far Fields - top of the Skull Cavern</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Sands of Karak / Blasted Steps (Coral_19b)</span>
+<span class="source-name">Blasted Steps - top of an area at the map edge</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Wormways (Crawl_02)</span>
+<span class="source-name">Wormways - behind a breakable wall at the water's edge</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Deep Docks (Dock_08)</span>
+<span class="source-name">Deep Docks - near the entrance from The Marrow</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Whispering Vaults (Library_05)</span>
+<span class="source-name">Whispering Vaults</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Mount Fay - Western (Peak_04c)</span>
+<span class="source-name">Mount Fay - inside a hollow cylinder, left of the lowest bench</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Mount Fay - Central (Peak_06)</span>
+<span class="source-name">Mount Fay - very top of Brightvein</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Blasted Steps area (Shadow_13)</span>
+<span class="source-name">Bilewater - end of the long corridors of infested water</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Shellwood (Shellwood_14)</span>
+<span class="source-name">Shellwood - platforming room behind a breakable wall</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">The Slab (Slab_17)</span>
+<span class="source-name">The Slab - platforming room behind a locked door (Key of Apostate)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Choral Chambers (Song_09)</span>
+<span class="source-name">Cogwork Core - top of the left-most tunnel, after an arena battle</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Weavenest Atla (Weave_05b)</span>
+<span class="source-name">Weavenest Atla - behind a breakable wall</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Wisp Thicket (Wisp_07)</span>
+<span class="source-name">Wisp Thicket - platforming challenge on the far right</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -407,28 +416,28 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Sprintmaster Race (Pilgrim's Rest)</span>
+<span class="source-name">"Fastest in Pharloom" wish (Sprintmaster Swift, Far Fields)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Savage Beastfly (Far Fields)</span>
+<span class="source-name">"Savage Beastfly" wish (Bellhart)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Gurr the Outcast (The Marrow)</span>
+<span class="source-name">"The Hidden Hunter" wish (Bellhart)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Inv_0030_inv_health_backboard_mask_2.png" alt="" class="source-icon">
-<span class="source-name">Destroy 12 Void Masses</span>
+<span class="source-name">"Dark Hearts" wish - destroy 12 Void Masses (Bellhart)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -449,105 +458,105 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Memorium (Arborium_09)</span>
+<span class="source-name">Memorium - bottom left</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Mosshome (Bone_11b)</span>
+<span class="source-name">Bone Bottom - above the settlement</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">The Marrow (Bone_East_13)</span>
+<span class="source-name">Deep Docks - end of a long room</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Cogwork Core (Cog_07)</span>
+<span class="source-name">Cogwork Core - bottom right</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Deep Docks (Dock_03c)</span>
+<span class="source-name">Deep Docks - bottom right</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Greymoor (Greymoor_02)</span>
+<span class="source-name">Greymoor - up and right of the Bellshrine</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">High Halls (Hang_03_top)</span>
+<span class="source-name">High Halls - very top</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Whispering Vaults (Library_11b)</span>
+<span class="source-name">Underworks - hidden area near the bottom right</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Mount Fay (Peak_01)</span>
+<span class="source-name">The Slab - top of a frosty section on the left</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Grand Gate (Song_19_entrance)</span>
+<span class="source-name">Grand Gate - very top</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Underworks (Under_10)</span>
+<span class="source-name">Underworks - behind an arena battle</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Whiteward (Ward_01)</span>
+<span class="source-name">Whiteward - bottom of the elevator shaft (call the lift up first)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Weavenest Atla (Weave_11)</span>
+<span class="source-name">Weavenest Atla - behind a breakable wall</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Jubilana (Songclave, 500 Rosaries)</span>
+<span class="source-name">Jubilana (Songclave, 500 Rosaries, after "The Lost Merchant")</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Frey (Bellhart, 270 Rosaries)</span>
+<span class="source-name">Frey (Bellhart, 270 Rosaries, after "My Missing Courier")</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -561,14 +570,14 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Sherma - "Save Sherma" quest reward</span>
+<span class="source-name">"Balm for the Wounded" wish (Sherma, Songclave)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/spool_upgrade_pickup.png" alt="" class="source-icon">
-<span class="source-name">Greymoor - silk farm battle reward</span>
+<span class="source-name">Fleamaster Mooshka - reward for 14 Lost Fleas (Greymoor)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -766,7 +775,7 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Hornet_Tool_Metal_Pouch.png" alt="" class="source-icon">
-<span class="source-name">Creige, Crow Feathers quest (Halfway Home)</span>
+<span class="source-name">"Crawbug Clearing" wish (Bellhart)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -1029,24 +1038,24 @@
 </div>
 <span class="source-status">Missing</span>
 </div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/icon_tool_kit_upgrade.png" alt="" class="source-icon">
-<span class="source-name">Loddie (The Marrow) - not yet confirmed</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/icon_tool_kit_upgrade.png" alt="" class="source-icon">
-<span class="source-name">Nuu, Journal quest (Halfway Home)</span>
+<span class="source-name">Loddie's first pin challenge (The Marrow)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/icon_tool_kit_upgrade.png" alt="" class="source-icon">
-<span class="source-name">Fleamaster Mooshka (Fleatopia)</span>
+<span class="source-name">Nuu, "Bugs of Pharloom" wish (Halfway Home)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/icon_tool_kit_upgrade.png" alt="" class="source-icon">
+<span class="source-name">Fleamaster Mooshka - reward for 20 Lost Fleas (Fleatopia)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -2206,445 +2215,445 @@
 <div class="source-checklist" id="quests-checklist" role="list">
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Citadel Seeker</span>
+<span class="source-name">The Great Citadel · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Mossberry Collection Pre</span>
+<span class="source-name">Berry Picking (start) · Gather wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Mossberry Collection 1</span>
+<span class="source-name">Berry Picking · Gather wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Save the Fleas Pre</span>
+<span class="source-name">The Lost Fleas (start) · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Save the Fleas</span>
+<span class="source-name">The Lost Fleas · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Building Materials</span>
+<span class="source-name">Bone Bottom Repairs · Donate wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Pilgrim Rags</span>
+<span class="source-name">Garb of the Pilgrims · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Brolly Get</span>
+<span class="source-name">Flexile Spines · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Journal</span>
+<span class="source-name">Bugs of Pharloom · Learn wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">The Threadspun Town</span>
+<span class="source-name">The Threadspun Town · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Building Materials (Bridge)</span>
+<span class="source-name">A Lifesaving Bridge · Donate wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Rock Rollers</span>
+<span class="source-name">Volatile Flintbeetles · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Shell Flowers</span>
+<span class="source-name">Rite of the Pollip · Gather wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Crow Feathers Pre</span>
+<span class="source-name">Crawbug Clearing (start) · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Crow Feathers</span>
+<span class="source-name">Crawbug Clearing · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Skull King</span>
+<span class="source-name">The Terrible Tyrant · Grand Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Shiny Bell Goomba</span>
+<span class="source-name">Silver Bells · Gather wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Save Courier Short</span>
+<span class="source-name">My Missing Courier · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">A Pinsmiths Tools</span>
+<span class="source-name">Pinmaster's Oil · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Belltown House Start</span>
+<span class="source-name">Restoration of Bellhart · Donate wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Grand Gate Bellshrines</span>
+<span class="source-name">Grand Gate · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Citadel Investigate</span>
+<span class="source-name">Silent Halls · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Citadel Ascent</span>
+<span class="source-name">Pharloom's Crown · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Songclave Donation 1</span>
+<span class="source-name">Building up Songclave · Donate wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Fine Pins</span>
+<span class="source-name">Fine Pins · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Save City Merchant</span>
+<span class="source-name">The Wandering Merchant · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Great Gourmand</span>
+<span class="source-name">Great Taste of Pharloom · Gather wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Citadel Ascent Melodies</span>
+<span class="source-name">Pharloom's Crown: the three Melodies · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Building Materials (Statue)</span>
+<span class="source-name">An Icon of Hope · Donate wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Song Pilgrim Cloaks</span>
+<span class="source-name">Cloaks of the Choir · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Save Sherma</span>
+<span class="source-name">Balm for the Wounded · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Belltown House Mid</span>
+<span class="source-name">Bellhart's Glory · Donate wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Save Courier Tall</span>
+<span class="source-name">My Missing Brother · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Beastfly Hunt</span>
+<span class="source-name">Savage Beastfly · Grand Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Roach Killing</span>
+<span class="source-name">Roach Guts · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Songclave Donation 2</span>
+<span class="source-name">Strengthening Songclave · Donate wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Broodmother Hunt</span>
+<span class="source-name">The Wailing Mother · Grand Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Citadel Ascent Lift</span>
+<span class="source-name">Pharloom's Crown: the lift · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Citadel Ascent Silk Defeat</span>
+<span class="source-name">Pharloom's Crown: the final battle · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Extractor Blue</span>
+<span class="source-name">Alchemist's Assistant · Gather wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Save City Merchant Bridge</span>
+<span class="source-name">The Lost Merchant · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Courier Delivery Pilgrims Rest</span>
+<span class="source-name">Pilgrim's Rest Supplies · Delivery wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Shakra Final Quest</span>
+<span class="source-name">Trail's End · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Soul Snare Pre</span>
+<span class="source-name">Silk and Soul · Collect wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Courier Delivery Songclave</span>
+<span class="source-name">Songclave Supplies · Delivery wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Soul Snare</span>
+<span class="source-name">Soul Snare · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Song Knight</span>
+<span class="source-name">Final Audience · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Wood Witch Curse</span>
+<span class="source-name">Rite of Rebirth · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Doctor Curse Cure</span>
+<span class="source-name">Infestation Operation · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Silk Defeat Snare</span>
+<span class="source-name">Pale Monarch · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Huntress Quest</span>
+<span class="source-name">Broodfeast · Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Black Thread Pt0</span>
+<span class="source-name">After the Fall · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Black Thread Pt1 Shamans</span>
+<span class="source-name">Awaiting the End · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Bellbeast Rescue</span>
+<span class="source-name">Beast in the Bells · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Diving Bell Pt1 Inspect</span>
+<span class="source-name">The Dark Below: inspect the diving bell · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Diving Bell Pt2 Ballow</span>
+<span class="source-name">The Dark Below: find Ballow · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Diving Bell Pt3 Descend</span>
+<span class="source-name">The Dark Below · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Black Thread Pt2 Abyss</span>
+<span class="source-name">The Dark Below: into the Abyss · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Black Thread Pt3 Escape</span>
+<span class="source-name">Return to Pharloom · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Black Thread Pt4 Return</span>
+<span class="source-name">Spell Seeker · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Black Thread Pt5 Heart</span>
+<span class="source-name">The Old Hearts · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Pinstress Battle Pre</span>
+<span class="source-name">Fatal Resolve (start) · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Flea Games Pre</span>
+<span class="source-name">Ecstasy of the End (start) · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Destroy Thread Cores</span>
+<span class="source-name">Dark Hearts · Grand Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Flea Games</span>
+<span class="source-name">Ecstasy of the End · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Tormented Trobbio</span>
+<span class="source-name">Pain, Anguish, and Misery · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Pinstress Battle</span>
+<span class="source-name">Fatal Resolve · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Garmond Black Threaded</span>
+<span class="source-name">Hero's Call · Wayfarer wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Black Thread Pt6 Flower</span>
+<span class="source-name">The Old Hearts: the Everbloom · Main objective</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Extractor Blue Worms</span>
+<span class="source-name">Advanced Alchemy · Gather wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Sprintmaster Pre</span>
+<span class="source-name">Fastest in Pharloom (start) · Sprint wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Sprintmaster Race</span>
+<span class="source-name">Fastest in Pharloom · Sprint wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Ant Trapper</span>
+<span class="source-name">The Hidden Hunter · Grand Hunt wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Mr Mushroom</span>
+<span class="source-name">Passing of the Age · Witness wish</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -2670,189 +2679,189 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Ant 03)</span>
+<span class="source-name">Hunter's March</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Belltown 04)</span>
+<span class="source-name">Bellhart</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Bone 06)</span>
+<span class="source-name">The Marrow</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Bone East 05)</span>
+<span class="source-name">Deep Docks</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Bone East Church)</span>
+<span class="source-name">Far Fields (2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Bone East 17b)</span>
+<span class="source-name">Far Fields</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Coral 24)</span>
+<span class="source-name">Sands of Karak</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Coral 35)</span>
+<span class="source-name">Blasted Steps</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Crawl 06)</span>
+<span class="source-name">Wormways</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Dock 03d)</span>
+<span class="source-name">Deep Docks (2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Dock 16)</span>
+<span class="source-name">The Marrow (2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Dust 09)</span>
+<span class="source-name">Exhaust Organ</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Dust 12)</span>
+<span class="source-name">Sinner's Road</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Greymoor 06)</span>
+<span class="source-name">Greymoor (2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Greymoor 15b)</span>
+<span class="source-name">Greymoor</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Library 01)</span>
+<span class="source-name">Whispering Vaults</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Library 09)</span>
+<span class="source-name">Songclave</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Peak 05c)</span>
+<span class="source-name">Mount Fay</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Shadow 10)</span>
+<span class="source-name">Bilewater (2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Shadow 28)</span>
+<span class="source-name">Bilewater</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Shellwood 03)</span>
+<span class="source-name">Shellwood</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Slab 06)</span>
+<span class="source-name">The Slab (2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Slab Cell)</span>
+<span class="source-name">The Slab</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Song 11)</span>
+<span class="source-name">Choral Chambers (2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Song 14)</span>
+<span class="source-name">Choral Chambers</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Under 21)</span>
+<span class="source-name">Underworks (2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Flea (Under 23)</span>
+<span class="source-name">Underworks</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -2869,21 +2878,21 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Kratt</span>
+<span class="source-name">Kratt (Greymoor)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Huge Flea</span>
+<span class="source-name">Huge Flea (Memorium)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/bosses/Huge Flea - Giant Flea.png" alt="" class="source-icon">
-<span class="source-name">Vog</span>
+<span class="source-name">Vog (Putrified Ducts)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -2957,9 +2966,9 @@
 <img src="assets/img/maps/Shop_map_icon__0008_coral_cave.png" alt="" title="Sands of Karak" class="locked">
 <span title="Sands of Karak">Sands of Karak</span>
 </div>
-<div class="map-item" role="listitem" aria-label="Weavernest Atla">
-<img src="assets/img/maps/Shop_map_icon__weavehome.png" alt="" title="Weavernest Atla" class="locked">
-<span title="Weavernest Atla">Weavernest Atla</span>
+<div class="map-item" role="listitem" aria-label="Weavenest Atla">
+<img src="assets/img/maps/Shop_map_icon__weavehome.png" alt="" title="Weavenest Atla" class="locked">
+<span title="Weavenest Atla">Weavenest Atla</span>
 </div>
 <div class="map-item" role="listitem" aria-label="Wormways">
 <img src="assets/img/maps/Shop_map_icon__0008_crawl.png" alt="" title="Wormways" class="locked">
@@ -2989,9 +2998,9 @@
 <img src="assets/img/maps/Shop_map_icon__0010_ward.png" alt="" title="Citadel - Whiteward" class="locked">
 <span title="Citadel - Whiteward">Citadel - Whiteward</span>
 </div>
-<div class="map-item" role="listitem" aria-label="Citadel - Whispering Vault">
-<img src="assets/img/maps/Shop_map_icon__0009_library.png" alt="" title="Citadel - Whispering Vault" class="locked">
-<span title="Citadel - Whispering Vault">Citadel - Whispering Vault</span>
+<div class="map-item" role="listitem" aria-label="Citadel - Whispering Vaults">
+<img src="assets/img/maps/Shop_map_icon__0009_library.png" alt="" title="Citadel - Whispering Vaults" class="locked">
+<span title="Citadel - Whispering Vaults">Citadel - Whispering Vaults</span>
 </div>
 <div class="map-item" role="listitem" aria-label="Citadel - Choral Chambers">
 <img src="assets/img/maps/Shop_map_icon__0012_halls_new.png" alt="" title="Citadel - Choral Chambers" class="locked">
@@ -3007,7 +3016,7 @@
 </div>
 <div class="map-item" role="listitem" aria-label="The Abyss">
 <img src="assets/img/maps/I_map_type_02.png" alt="" title="The Abyss" class="locked placeholder-icon">
-<span title="The Abyss" class="status-locked">The Abyss</span>
+<span title="The Abyss">The Abyss</span>
 </div>
 <div class="map-item" role="listitem" aria-label="Verdania">
 <img src="assets/img/maps/Shop_map_icon__0003_clover.png" alt="" title="Verdania" class="locked">
@@ -3018,36 +3027,18 @@
 <!-- Travel: Bellway -->
 <div class="stat-card full-width">
 <h4 class="section-header">Bellway Stations
-                                                <span class="unlocked-stats">(<strong id="bellway-count">0</strong>/<span id="bellway-total">10</span>)</span>
+                                                <span class="unlocked-stats">(<strong id="bellway-count">0</strong>/<span id="bellway-total">12</span>)</span>
 </h4>
 <div class="source-checklist" id="bellway-checklist" role="list">
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Putrified Ducts</span>
+<span class="source-name">Bone Bottom</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Bellhart</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">The Marrow (Boneforest East)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">City</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Coral Tower</span>
+<span class="source-name">The Marrow</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3059,25 +3050,55 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<span class="source-name">Far Fields</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
 <span class="source-name">Greymoor</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Mount Fay</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Shadow</span>
+<span class="source-name">Bellhart</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <span class="source-name">Shellwood</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Blasted Steps</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Slab</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bilewater</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Grand Bellway</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Putrified Ducts</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3097,25 +3118,25 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">City Bellway</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Enclave</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
 <span class="source-name">High Halls</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Song</span>
+<span class="source-name">First Shrine</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Choral Chambers</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Grand Bellway</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3127,27 +3148,63 @@
 </div>
 </div>
 </div>
-<!-- Travel: map pins -->
+<!-- Travel: map pins and markers -->
 <div class="stat-card full-width">
-<h4 class="section-header">Map Pins
-                                                <span class="unlocked-stats">(<strong id="map-pins-count">0</strong>/<span id="map-pins-total">3</span>)</span>
+<h4 class="section-header">Map Pins &amp; Markers
+                                                <span class="unlocked-stats">(<strong id="map-pins-count">0</strong>/<span id="map-pins-total">9</span>)</span>
 </h4>
 <div class="source-checklist" id="map-pins-checklist" role="list">
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Bench pins</span>
+<span class="source-name">Bench Pins</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Bellway pins</span>
+<span class="source-name">Bellway Pins</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Ventrica pins</span>
+<span class="source-name">Ventrica Pins</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Vendor Pins</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Shell Marker</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ring Marker</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Hunt Marker</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Dark Marker</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bronze Marker</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3170,145 +3227,145 @@
                                                 </span>
 </h4>
 <div class="source-checklist" id="memory-lockets-checklist" role="list">
-<div class="source-item pending" role="listitem">
+<div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Bone Bottom - Volatile Flintbeetles wish reward</span>
+<span class="source-name">Bone Bottom - "Volatile Flintbeetles" wish reward</span>
 </div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">The Marrow - arena battle</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Wormways - after Gromling</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Deep Docks - secret passage</span>
-</div>
-<span class="source-status">Pending</span>
+<span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Far Fields - Mort purchase (Pilgrim's Rest, 150 Rosaries)</span>
+<span class="source-name">The Marrow - top of the area (Cling Grip)</span>
 </div>
 <span class="source-status">Missing</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Far Fields - east of Skarrsinger Karmelita arena</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Hunter's March - dead pilgrim</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Greymoor - near Creige (Faydown Cloak)</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Greymoor - backpack ledge</span>
-</div>
-<span class="source-status">Pending</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Bellhart - Frey purchase (330 Rosaries, after Threadspun Town)</span>
+<span class="source-name">Wormways - held by a corpse, bottom right</span>
 </div>
 <span class="source-status">Missing</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Bellhart - Bellhome summit (Silk Soar)</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Blasted Steps - east of Shakra</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Underworks - west of Confession Booth bench</span>
-</div>
-<span class="source-status">Pending</span>
-</div>
-<div class="source-item pending" role="listitem">
-<div class="source-left">
-<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Bilewater - after Muckmaggot path</span>
-</div>
-<span class="source-status">Pending</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Bilewater - destroyed ceiling cocoon (Shadow_27)</span>
+<span class="source-name">Deep Docks - magma room behind a breakable wall</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
-<div class="source-item pending" role="listitem">
+<div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Whispering Vaults - near Giant Drapemite</span>
+<span class="source-name">Far Fields - Mort (Pilgrim's Rest, 150 Rosaries; Grindle in Act 3)</span>
 </div>
-<span class="source-status">Pending</span>
+<span class="source-status">Missing</span>
 </div>
-<div class="source-item pending" role="listitem">
+<div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Choral Chambers - behind trapdoor breakable wall</span>
+<span class="source-name">Far Fields - east of the Skarrsinger Karmelita arena</span>
 </div>
-<span class="source-status">Pending</span>
+<span class="source-status">Missing</span>
 </div>
-<div class="source-item pending" role="listitem">
+<div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Memorium - from Ventrica Station</span>
+<span class="source-name">Hunter's March - cage at the end of the spiky corridor</span>
 </div>
-<span class="source-status">Pending</span>
+<span class="source-status">Missing</span>
 </div>
-<div class="source-item pending" role="listitem">
+<div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">The Slab - Shortcut Cave</span>
+<span class="source-name">Greymoor - inside Halfway Home (Faydown Cloak)</span>
 </div>
-<span class="source-status">Pending</span>
+<span class="source-status">Missing</span>
 </div>
-<div class="source-item pending" role="listitem">
+<div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
-<span class="source-name">Sands of Karak - upper western platform</span>
+<span class="source-name">Greymoor - ledge above a Mitemother</span>
 </div>
-<span class="source-status">Pending</span>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Bellhart - Frey (330 Rosaries, after "The Threadspun Town")</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Bellhart - Silk Soar into the roof</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Blasted Steps - narrow platform above the sands</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Underworks - hidden area west of the confession booth</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Bilewater - far left of a secret room</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Bilewater - cocoon hanging from the ceiling</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Whispering Vaults - top of a tunnel</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Grand Bellway - behind a breakable wall above the station</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Memorium - after a platforming section</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">The Slab - shortcut cave, behind a breakable wall</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<img src="assets/img/general/Charm_Notch.png" alt="" class="source-icon">
+<span class="source-name">Sands of Karak - held by a corpse at the top</span>
+</div>
+<span class="source-status">Missing</span>
 </div>
 </div>
 </div>
@@ -3330,51 +3387,51 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Hornet_Tool_Metal.png" alt="" class="source-icon">
-<span class="source-name">Jubilana (Songclave, 180 Rosaries)</span>
+<span class="source-name">Jubilana (Songclave, 180 Rosaries, after "The Lost Merchant")</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Hornet_Tool_Metal.png" alt="" class="source-icon">
-<span class="source-name">The Marrow (Bone_07)</span>
+<span class="source-name">The Marrow - booby-trapped tunnel in a secret room</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Hornet_Tool_Metal.png" alt="" class="source-icon">
-<span class="source-name">Blasted Steps (Coral_32)</span>
+<span class="source-name">Blasted Steps - end of a passage of worms and falling rocks</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Hornet_Tool_Metal.png" alt="" class="source-icon">
-<span class="source-name">Wisp Thicket (Wisp_05)</span>
+<span class="source-name">Wisp Thicket - hidden path in the top left</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Hornet_Tool_Metal.png" alt="" class="source-icon">
-<span class="source-name">Putrified Ducts (Aqueduct_05)</span>
+<span class="source-name">Putrified Ducts - crevice right of Pale Lake</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Hornet_Tool_Metal.png" alt="" class="source-icon">
-<span class="source-name">Deep Docks / Far Fields (Under_19b)</span>
+<span class="source-name">Underworks - end of a lava-filled tunnel</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
-<div class="source-item pending" role="listitem">
+<div class="source-item missing" role="listitem">
 <div class="source-left">
 <img src="assets/img/general/Hornet_Tool_Metal.png" alt="" class="source-icon">
-<span class="source-name">8th location - not yet confirmed</span>
+<span class="source-name">Deep Docks - chest behind the blockade</span>
 </div>
-<span class="source-status">Pending</span>
+<span class="source-status">Missing</span>
 </div>
 </div>
 </div>
@@ -3386,115 +3443,115 @@
 <div class="source-checklist" id="relics-checklist" role="list">
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Seal Chit (Aspid 01)</span>
+<span class="source-name">Choral Commandment (Bone Bottom)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Bone Record (Bone East 14)</span>
+<span class="source-name">Bone Scroll (Far Fields)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Bone Record (Greymoor flooded corridor)</span>
+<span class="source-name">Bone Scroll (Greymoor)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Weaver Record (Weave 08)</span>
+<span class="source-name">Rune Harp (Weavenest Atla)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Bone Record (Understore Map Room)</span>
+<span class="source-name">Bone Scroll (Underworks)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Seal Chit (Ward Corpse)</span>
+<span class="source-name">Choral Commandment (Whiteward)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Psalm Cylinder (Librarian)</span>
+<span class="source-name">Psalm Cylinder (Whispering Vaults)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Psalm Cylinder (Hang)</span>
+<span class="source-name">Psalm Cylinder (High Halls)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Librarian Melody Cylinder</span>
+<span class="source-name">Sacred Cylinder</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Weaver Totem (Slab Bottom)</span>
+<span class="source-name">Weaver Effigy (The Slab)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Psalm Cylinder (Grindle)</span>
+<span class="source-name">Psalm Cylinder (Blasted Steps)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Bone Record (Wisp Top)</span>
+<span class="source-name">Bone Scroll (Wisp Thicket)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Seal Chit (City Merchant)</span>
+<span class="source-name">Choral Commandment (Songclave)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Weaver Totem (Witch)</span>
+<span class="source-name">Weaver Effigy (Shellwood)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Psalm Cylinder (Library Roof)</span>
+<span class="source-name">Psalm Cylinder (Whispering Vaults, 2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Ancient Egg (Abyss Middle)</span>
+<span class="source-name">Arcane Egg</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Weaver Record (Conductor)</span>
+<span class="source-name">Rune Harp (High Halls)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Seal Chit (Silk Siphon)</span>
+<span class="source-name">Choral Commandment (Whiteward, 2)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Psalm Cylinder (Ward)</span>
+<span class="source-name">Psalm Cylinder (Underworks)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3570,79 +3627,79 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Shell Shard</span>
+<span class="source-name">Shell Shards</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Rosary Small</span>
+<span class="source-name">Rosaries</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Rosary Mid</span>
+<span class="source-name">Shell Rosaries</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Rock Roller Item</span>
+<span class="source-name">Flintgem</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Beastfly Remains</span>
+<span class="source-name">Horn Fragment</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Crow Feathers</span>
+<span class="source-name">Ragpelt</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Song Pilgrim Cloak</span>
+<span class="source-name">Choir Cloak</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Broodmother Remains</span>
+<span class="source-name">Broodmother's Eye</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Roach Corpse Item</span>
+<span class="source-name">Roach Guts</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Courier Supplies Generic</span>
+<span class="source-name">Courier's Swag</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Lifeblood</span>
+<span class="source-name">Plasmium</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Rosary Big</span>
+<span class="source-name">Pearl Rosaries</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Tool Metal</span>
+<span class="source-name">Craftmetal</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3654,25 +3711,25 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Pilgrim Rag</span>
+<span class="source-name">Pilgrim Shawl</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Skull King Fragment</span>
+<span class="source-name">Crown Fragment</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Common Spine</span>
+<span class="source-name">Spine Core</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Silver Bellclapper</span>
+<span class="source-name">Silver Bell</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3684,13 +3741,13 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Shell Flower</span>
+<span class="source-name">Pollip Heart</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Smeltstone</span>
+<span class="source-name">Flintstone</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3702,7 +3759,7 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Courier Supplies Gourmand</span>
+<span class="source-name">Courier's Rasher</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3714,7 +3771,7 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Pickled Roach Egg</span>
+<span class="source-name">Pickled Muckmaggot</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3726,55 +3783,55 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Extractor Machine Pins</span>
+<span class="source-name">Steel Spines</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Enemy Morsel Shredded</span>
+<span class="source-name">Shredded Organ</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Enemy Morsel Speared</span>
+<span class="source-name">Skewered Organ</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Snare Soul Bell Hermit</span>
+<span class="source-name">Hermit's Soul</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Enemy Morsel Seared</span>
+<span class="source-name">Seared Organ</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Snare Soul Churchkeeper</span>
+<span class="source-name">Maiden's Soul</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Snare Soul Swamp Bug</span>
+<span class="source-name">Seeker's Soul</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Voltstone</span>
+<span class="source-name">Voltridian</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Plasmium Blood</span>
+<span class="source-name">Plasmified Blood</span>
 </div>
 <span class="source-status">Missing</span>
 </div>

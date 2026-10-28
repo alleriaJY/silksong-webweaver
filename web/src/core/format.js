@@ -17,3 +17,9 @@ export function formatNumber(value) {
 export function formatPercent(value) {
     return `${(value || 0).toFixed(1)}%`;
 }
+
+/** 'SHELLWOOD_THICKET' -> 'Shellwood Thicket': last resort for an unlisted game name. */
+export function humanize(name) {
+    return String(name ?? '').toLowerCase().split(/[_\s]+/).filter(Boolean)
+        .map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+}

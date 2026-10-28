@@ -18,7 +18,7 @@ import {
 import {
     CRAFTMETAL_SOURCES, MEMORY_LOCKET_SOURCES, RELICS, MATERIUM, MEMENTOS, INVENTORY_ITEMS,
 } from './collectables.js';
-import { AREAS } from './areas.js';
+import { AREAS, MAP_ZONES } from './areas.js';
 import { JOURNAL } from './journal.js';
 import { QUESTS } from './quests.js';
 import { KEY_ITEMS } from './keyItems.js';
@@ -54,6 +54,7 @@ export default {
         craftmetalSources: CRAFTMETAL_SOURCES,
         memoryLocketSources: MEMORY_LOCKET_SOURCES,
         areas: AREAS,
+        mapZones: MAP_ZONES,
         journal: JOURNAL,
         quests: QUESTS,
         relics: RELICS,

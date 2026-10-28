@@ -95,14 +95,13 @@ export const maps = {
     render(result) {
         const grid = document.getElementById('maps-grid');
         if (!grid) return;
-        // Placeholder icons (Abyss) are tinted by CSS and get a coloured label
+        // Placeholder icons (Abyss) are tinted by CSS; the label is like any other map's
         const placeholder = m => m.iconStyle === 'placeholder';
         const on = renderIconGrid(grid, result.maps, {
             itemClass: 'map-item', isOn: m => m.value,
             icon: m => iconUrl('map', m.icon || 'I_map.png'),
             title: m => m.display,
             imgClass: (m, isOn) => `${isOn ? 'unlocked' : 'locked'}${placeholder(m) ? ' placeholder-icon' : ''}`,
-            labelClass: (m, isOn) => (placeholder(m) ? (isOn ? 'status-unlocked' : 'status-locked') : null),
         });
         setText('maps-count', on);
         setText('maps-total-count', result.stats.total);

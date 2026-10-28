@@ -4,8 +4,8 @@
  * says which pack list to read and which elements to fill.
  *
  * flagType (see packs/base/unlockables.js):
- *   bool    playerData boolean          quest   QuestCompletionData IsCompleted
- *   scene   sceneData.persistentBools   flea    FleasCollectedTargetOrder heuristic
+ *   bool    playerData boolean (flag may be a list: any)    quest   QuestCompletionData IsCompleted
+ *   atLeast playerData number >= min    scene   sceneData.persistentBools (sceneId may be a list: any)
  *   unknown flag not identified yet -> rendered as Pending
  */
 import { questCompleted, scenePickup } from '../../core/saveAccess.js';
@@ -13,42 +13,27 @@ import { field } from './common.js';
 import { iconUrl } from '../../core/icons.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
 
-/**
- * Best-effort check for the flea-rescue-order Tool Pouch source. The exact
- * threshold is unconfirmed: any recorded rescue (value !== -1) counts.
- */
-function fleaProgress(playerData, key) {
-    const arr = playerData?.[key];
-    if (!Array.isArray(arr)) return { collected: false, count: 0 };
-    const count = arr.filter(v => v !== -1).length;
-    return { collected: count > 0, count };
-}
-
 export function parseSourceChecklist(playerData, sceneData, sourceList) {
     const sources = sourceList.map(src => {
         let collected = false;
         let pending = false;
-        let progress = null;
         switch (src.flagType) {
             case 'bool':
-                collected = !!playerData?.[src.flag];
+                collected = [src.flag].flat().some(f => !!playerData?.[f]);
+                break;
+            case 'atLeast':
+                collected = (Number(playerData?.[src.flag]) || 0) >= src.min;
                 break;
             case 'quest':
                 collected = questCompleted(playerData, src.flag);
                 break;
             case 'scene':
-                collected = scenePickup(sceneData, src.sceneName, src.sceneId);
+                collected = [src.sceneId].flat().some(id => scenePickup(sceneData, src.sceneName, id));
                 break;
-            case 'flea': {
-                const r = fleaProgress(playerData, src.flag);
-                collected = r.collected;
-                progress = r.count;
-                break;
-            }
             default:
                 pending = true;
         }
-        return { id: src.id, name: src.name, icon: src.icon, flagType: src.flagType, collected, pending, progress };
+        return { id: src.id, name: src.name, icon: src.icon, flagType: src.flagType, collected, pending };
     });
     return {
         sources,
