@@ -1,8 +1,8 @@
 /**
  * playerData.StoryEvents [{ EventType, SceneName, PlayTime }], parsed in
  * play-time order for the Hero's Path timeline. Despite the name they are
- * upgrade pickups: EventType 0 = Mask Shard, 1 = Spool Fragment, 3 = Memory
- * Locket, 2 = not identified (labels in timeline/story.js). The 100% save has
+ * upgrade pickups: EventType 0 = Mask Shard, 1 = Spool Fragment, 2 = Simple
+ * Key, 3 = Memory Locket (labels in timeline/story.js). The 100% save has
  * 20 x 0, 18 x 1, 4 x 2, 18 x 3.
  */
 export function parseStory(save) {

@@ -11,14 +11,14 @@
 /**
  * EventType, worked out from the rooms each type happens in: 0 is always a
  * Mask Shard room (20 in the 100% save = all 20 shards), 1 a Silk Spool room
- * (18 = all fragments), 3 a Memory Locket room. Type 2 (4 events, the same in
- * the 72% and 100% saves: Bone Bottom, Dust_06, Songclave, a Blasted Steps
- * bell shrine) matches no list yet.
+ * (18 = all fragments), 2 a Simple Key source (Pebb in Bone Bottom, the
+ * Sinner's Road cage in Dust_06, Jubilana in Songclave, the corpse at
+ * Bellshrine_Coral: all four keys), 3 a Memory Locket room.
  */
 export const EVENT_TYPES = {
     0: { label: 'Mask Shard', color: '#e57373' },
     1: { label: 'Spool Fragment', color: '#e8e1d3' },
-    2: { label: 'Other upgrade', color: '#90a4ae' },
+    2: { label: 'Simple Key', color: '#90a4ae' },
     3: { label: 'Memory Locket', color: '#d4b36a' },
 };
 export const EVENT_COLORS = Object.fromEntries(Object.entries(EVENT_TYPES).map(([t, v]) => [t, v.color]));
