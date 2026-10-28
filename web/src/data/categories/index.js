@@ -5,7 +5,7 @@
  * (template: ROADMAP.md Appendix C).
  *
  *   parse ctx  { save, packs, lists(name) }      lists() = merged pack list
- *   render ctx { parsed, isSteelSoul }
+ *   render ctx { parsed, isSteelSoul }   (parsed.fileName: set by main.js)
  *
  * parse() is pure and must not touch the DOM. render() only writes elements
  * of its own section and does nothing when they are absent.
@@ -25,6 +25,7 @@ import keyItems from './keyItems.js';
 import quests from './quests.js';
 import story from './story.js';
 import travel from './travel.js';
+import saveSlot from './saveSlot.js';
 import { abilities, skills, maps, bosses } from './flags.js';
 import { CHECKLISTS } from './checklists.js';
 import { computeCompletion, renderCompletion } from '../completion.js';
@@ -49,6 +50,7 @@ export const CATEGORIES = [
     fleas,
     maps,
     travel,
+    saveSlot,
 ];
 
 /** Parse context for a save; `packs` defaults to the packs that detect it. */
