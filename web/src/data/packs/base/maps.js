@@ -1,6 +1,6 @@
 /**
  * Area maps: one playerData Has*Map boolean each.
- * iconStyle: 'placeholder' = generic icon tinted by CSS, with a coloured label.
+ * iconStyle: 'placeholder' = generic icon tinted by CSS (no map art for the area).
  * Entry: { id, json, display, icon, iconStyle? }
  */
 
@@ -27,7 +27,7 @@ export const MAPS = [
     { id: 'citadel-cogwork-core', json: 'HasCogMap', display: 'Citadel - Cogwork Core', icon: 'Shop_map_icon__0012_cog.png' },
     { id: 'citadel-memorium', json: 'HasArboriumMap', display: 'Citadel - Memorium', icon: 'Shop_map_icon__0012_arborium.png' },
     { id: 'citadel-whiteward', json: 'HasWardMap', display: 'Citadel - Whiteward', icon: 'Shop_map_icon__0010_ward.png' },
-    { id: 'citadel-whispering-vault', json: 'HasLibraryMap', display: 'Citadel - Whispering Vault', icon: 'Shop_map_icon__0009_library.png' },
+    { id: 'citadel-whispering-vault', json: 'HasLibraryMap', display: 'Citadel - Whispering Vaults', icon: 'Shop_map_icon__0009_library.png' },
     { id: 'citadel-choral-chambers', json: 'HasHallsMap', display: 'Citadel - Choral Chambers', icon: 'Shop_map_icon__0012_halls_new.png' },
     { id: 'citadel-high-halls', json: 'HasHangMap', display: 'Citadel - High Halls', icon: 'Shop_map_icon__0011_conductor.png' },
     { id: 'the-cradle', json: 'HasCradleMap', display: 'The Cradle', icon: 'Shop_map_icon__0012_cradle.png' },

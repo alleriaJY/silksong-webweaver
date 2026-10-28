@@ -1326,14 +1326,11 @@ header h1 {
     opacity: 0.5;
 }
 
-/* Special placeholder icon (e.g., Abyss) - black/grey styling */
+/* Placeholder icon (The Abyss has no map art): the generic scroll, tinted
+   void-violet when owned; locked looks like every other locked map */
 .map-item img.placeholder-icon.unlocked {
-    filter: brightness(0.2) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
-}
-
-.map-item img.placeholder-icon.locked {
-    filter: grayscale(100%) brightness(0.6);
-    opacity: 0.4;
+    filter: grayscale(100%) brightness(0.75) sepia(0.5) hue-rotate(215deg) saturate(2.2)
+        drop-shadow(0 2px 6px rgba(150, 120, 255, 0.45));
 }
 
 .map-item img:hover {
@@ -1343,10 +1340,13 @@ header h1 {
 .map-item span {
     font-size: 0.7rem;
     color: var(--text-secondary);
-    max-width: 80px;
+    max-width: 88px;
+    line-height: 1.25;
+    /* long names ("Citadel - Whispering Vault") wrap to two lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 /* Bosses Grid - similar to Maps Grid */
