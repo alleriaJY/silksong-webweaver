@@ -12,7 +12,7 @@ This is the "what exists" companion to [ROADMAP.md](ROADMAP.md) ("what to do nex
 
 A static web app (GitHub Pages) that decrypts a Hollow Knight: Silksong `.dat` save in the browser (Rust compiled to WASM), parses it into categories, and shows:
 
-- **Statistics** (`#stats`): eleven tabs of counts, icon grids and source checklists, plus a completion breakdown that recomputes the game's own percentage.
+- **Statistics** (`#stats`): ten tabs of counts, icon grids and source checklists, plus a completion breakdown that recomputes the game's own percentage.
 - **Hero's Path** (`#timeline`): the order in which the player visited scenes, replayed over the Pharloom map, with story-event pins.
 
 Nothing is uploaded anywhere; the save never leaves the browser.

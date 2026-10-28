@@ -1,4 +1,4 @@
-/** Key Items tab: keys and story items, one checklist row each. */
+/** Key Items card on the Collectables tab: keys and story items, one checklist row each. */
 import { parseBooleanFlags } from './common.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
 
