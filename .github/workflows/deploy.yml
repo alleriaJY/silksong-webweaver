@@ -46,8 +46,10 @@ jobs:
 
       # The #dev page (save keys no pack reads) is for local hosting only:
       # main.js offers it only on localhost / LAN, and its code is not published
-      - name: Leave out the local-only dev page
-        run: rm -rf web/src/dev
+      # Fixtures are trimmed copies of real saves and the goldens are rendered
+      # from them; the app never loads either, so they stay out of the site
+      - name: Leave out the local-only dev page and test data
+        run: rm -rf web/src/dev web/src/data/__fixtures__ web/src/__snapshots__
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
