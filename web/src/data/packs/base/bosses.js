@@ -4,6 +4,8 @@
  * Entry: { id, json, display, icon }
  */
 
+// Great Conchflies and Raging Conchfly share the Great Conchfly journal
+// portrait (the old file was a tight face crop that read as a blank face).
 export const BOSSES = [
     { id: 'moss-mother', json: 'defeatedMossMother', display: 'Moss Mother', icon: 'Moss Mother - Mossbone Mother.png' },
     { id: 'bell-beast', json: 'defeatedBellBeast', display: 'Bell Beast', icon: 'Bell Beast - Bone Beast.png' },

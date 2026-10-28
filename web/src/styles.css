@@ -1423,10 +1423,12 @@ header h1 {
     color: var(--accent-color);
 }
 
+/* Bosses get bigger portraits than other grids: about six to a row */
 .bosses-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 1rem;
+    /* at least two columns on phones */
+    grid-template-columns: repeat(auto-fill, minmax(min(130px, calc(50% - 0.5rem)), 1fr));
+    gap: 1.25rem 1rem;
     padding: 1rem 0;
 }
 
@@ -1439,9 +1441,9 @@ header h1 {
 }
 
 .boss-item img {
-    height: 64px;
-    width: auto;
-    max-width: 80px;
+    width: min(112px, 100%);
+    aspect-ratio: 1;
+    height: auto;
     object-fit: contain;
     transition: all 0.3s ease;
 }
@@ -1460,12 +1462,18 @@ header h1 {
 }
 
 .boss-item span {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    max-width: 85px;
+    max-width: 130px;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+}
+
+.boss-item img:hover {
+    transform: scale(1.06);
 }
 
 /* Tools Grid - similar to Bosses/Maps Grid */
