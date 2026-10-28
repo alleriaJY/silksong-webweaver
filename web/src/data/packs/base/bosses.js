@@ -41,4 +41,11 @@ export const BOSSES = [
     { id: 'seth', json: 'defeatedSeth', display: 'Seth', icon: 'Shrine Guardian Seth - Seth.png' },
     { id: 'nyleth', json: 'defeatedFlowerQueen', display: 'Nyleth', icon: 'Nyleth - Flower Queen.png' },
     { id: 'clover-dancers', json: 'defeatedCloverDancers', display: 'Clover Dancers', icon: 'Clover Dancers - Clover Dancer.png' },
+    // Optional fights (the reference tracker lists the first two as bosses).
+    // defeatedGuardBoneEast25 is the void-powered Skarrgard guarding the Far
+    // Fields Memory Locket in Bone_East_25: set only in the 100% save, the one
+    // fixture that has that locket.
+    { id: 'crawfather', json: 'defeatedCrowCourt', display: 'Crawfather', icon: 'Crawfather.png' },
+    { id: 'watcher-at-the-edge', json: 'defeatedGreyWarrior', display: 'Watcher at the Edge', icon: 'Watcher at the Edge - Coral Warrior Grey.png' },
+    { id: 'skarrgard-far-fields', json: 'defeatedGuardBoneEast25', display: 'Skarrgard (Far Fields)', icon: 'Skarrgard - Bone Hunter Throw.png' },
 ];

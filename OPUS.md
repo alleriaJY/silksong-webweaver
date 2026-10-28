@@ -121,5 +121,5 @@ Retired: D1, D2, D3, D4, D5, D8, D10, D15 (Phase 1); D11, D12, D14, D16 (Phase 0
 
 Open:
 - **D20** `FleasCollectedTargetOrder` exists only in 1.0.28561 saves. Nothing reads it any more (the Fleamaster Tool Pouch now uses the Fleatopia scene flag); kept here in case a later feature wants the rescue order.
-- **D22** Seven miniboss defeat flags have no display names or icons (ROADMAP Appendix A).
+- **D22** Four miniboss defeat flags have no display names or icons (ROADMAP Appendix A); three of the original seven are now on the Bosses tab.
 - Original wording of D9 and D19 was not recovered; reopen with a new number if the issue resurfaces.

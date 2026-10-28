@@ -482,7 +482,7 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 | Loddie's pouch picked up off the ground | none (reference) | if Loddie's challenge is skipped the pouch can be found at `Bone_12` / `Ladybug Craft Pickup`; add it as an alias once a save shows it |
 | Leads | none | `PurchasedBelltownToolPouch` and `CollectedToolMetal` are false / always true and match no source; `CollectedToolMetal` looks like a "first craftmetal seen" flag |
 | Two relics in no save yet | a save with either collected | `Weaver Totem Bonetown_upper_room` and `Weaver Record Sprint_Challenge` (names from the reference tracker); once a fixture has one, drop it from `RELICS_NEVER_IN_FIXTURES` in `contracts.test.js` |
-| Minibosses (OPUS D22) | none | display names and icons for the 7 defeat flags |
+| Minibosses (OPUS D22) | before/after each fight | 3 of 7 resolved 2026-10-28 (Crawfather, Watcher at the Edge, the Far Fields Skarrgard, now on the Bosses tab). Still unknown: `defeatedMossEvolver`, `defeatedShellwoodRosaryPilgrim`, `defeatedZapGuard1`, `DefeatedBonetownBoss` (leads from the journal names: Massive Mossgrub, Covetous Pilgrim, a Voltvyrm guard; not confirmed) |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
 | Flea icon | none | asset needed for the Fleas tab (the Huge Flea portrait stands in) |
