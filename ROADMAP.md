@@ -465,6 +465,7 @@ Art the UI would use if it were in `web/assets/img/`. Each row names the sprite,
 | Pin icons as sold by Shakra: Bench, Bellway, Ventrica, Vendor | `maps/pin_bench.png`, `pin_bellway.png`, `pin_ventrica.png`, `pin_vendor.png` | Maps tab, Map Pins & Markers rows | text only |
 | Marker icons: Shell, Ring, Hunt, Dark, Bronze | `maps/marker_shell.png`, `marker_ring.png`, `marker_hunt.png`, `marker_dark.png`, `marker_bronze.png` | same | text only |
 | The Abyss map | `maps/Shop_map_icon__abyss.png` (if the game has one; Shakra does not sell this map, so it may not exist) | Maps tab; drop `iconStyle: 'placeholder'` from the `the-abyss` entry | generic scroll `I_map_type_02.png`, tinted violet when owned |
+| Skarrgard full portrait (the journal art in the repo is a face crop) | `bosses/Skarrgard - Bone Hunter Throw.png` (replace) | Bosses tab, Skarrgard (Far Fields) | face crop |
 | Lost Flea portrait | `general/flea.png` | Fleas tab (`categories/fleas.js`, also Appendix A) | Huge Flea journal portrait |
 
 The `icon` hook for travel rows is in place (`categories/travel.js`); the contract test checks that every named icon exists, so add the file and the `icon` field in the same commit.
