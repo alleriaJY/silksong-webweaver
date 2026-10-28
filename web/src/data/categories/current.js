@@ -1,15 +1,48 @@
 /**
- * Current tab: health and silk bars, currencies. Crest, loadout,
- * cloak and needle on the same tab are rendered by their own categories;
- * the position fields render into the Current Position card on the Misc tab.
+ * Current tab: health as a row of masks and silk as a spool of thread
+ * segments, like the in-game HUD; currencies. Crest, loadout, cloak and
+ * needle on the same tab are rendered by their own categories; the position
+ * fields render into the Current Position card on the Misc tab.
  */
 import { parseSimpleFields, field } from './common.js';
 import { formatNumber, humanize } from '../../core/format.js';
+import { iconUrl } from '../../core/icons.js';
 import { setStat } from '../../ui/renderers.js';
 
-function setBar(id, value, max) {
-    const el = document.getElementById(id);
-    if (el) el.style.width = `${max > 0 ? (value / max) * 100 : 0}%`;
+const MASK_FULL = 'general_hp.png';
+const MASK_EMPTY = 'Inv_0030_inv_health_backboard.png';
+const MASK_EMPTY_STEEL_SOUL = 'Inv_health_backboard_SS.png';
+
+/** One mask per point of max health: filled up to `health`, empty after. */
+function renderMasks(container, health, max, steelSoul) {
+    if (!container) return;
+    container.replaceChildren();
+    container.setAttribute('role', 'img');
+    container.setAttribute('aria-label', `Health: ${health} of ${max} masks`);
+    for (let i = 0; i < max; i++) {
+        const full = i < health;
+        const img = document.createElement('img');
+        img.src = iconUrl('general', full ? MASK_FULL : (steelSoul ? MASK_EMPTY_STEEL_SOUL : MASK_EMPTY));
+        img.alt = '';
+        img.className = full ? 'mask full' : 'mask empty';
+        container.appendChild(img);
+    }
+}
+
+/** One thread segment per point of max silk, wound onto a spool. */
+function renderSpool(container, silk, max) {
+    if (!container) return;
+    container.replaceChildren();
+    container.setAttribute('role', 'img');
+    container.setAttribute('aria-label', `Silk: ${silk} of ${max}`);
+    const thread = document.createElement('div');
+    thread.className = 'silk-thread';
+    for (let i = 0; i < max; i++) {
+        const seg = document.createElement('span');
+        seg.className = i < silk ? 'silk-seg full' : 'silk-seg empty';
+        thread.appendChild(seg);
+    }
+    container.append(thread);
 }
 
 export default {
@@ -32,8 +65,9 @@ export default {
 
         setStat('healthDisplay', `${health}/${maxHealth}`);
         setStat('silkDisplay', `${silk}/${maxSilk}`);
-        setBar('health-fill', health, maxHealth);
-        setBar('silk-fill', silk, maxSilk);
+        // Before a save is loaded, draw a new game's 5 masks and 9 silk (blurred)
+        renderMasks(document.getElementById('health-masks'), Math.min(health, maxHealth), maxHealth || 5, ctx.isSteelSoul);
+        renderSpool(document.getElementById('silk-spool'), Math.min(silk, maxSilk), maxSilk || 9);
 
         const geo = get('geo');
         const shellShards = get('ShellShards');

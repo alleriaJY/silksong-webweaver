@@ -20,6 +20,7 @@
 7. [Phase 5 - DLC Readiness](#phase-5---dlc-readiness)
 8. [Phase 6 - Stretch](#phase-6---stretch)
 9. [DLC Playbook](#dlc-playbook)
+- [Asset Requests](#asset-requests)
 - [Appendix A - Open Data Questions](#appendix-a---open-data-questions)
 - [Appendix B - Fixture Guidelines](#appendix-b---fixture-guidelines)
 - [Appendix C - Category Module Template](#appendix-c---category-module-template)
@@ -444,6 +445,19 @@ Run this when a DLC or major patch ships. Assumes Phases 0, 1 and 5 are done.
 8. Update OPUS.md status snapshot and this file.
 
 Base-game saves must render identically before and after adding a pack; the contract test with `detect: false` fixtures guarantees it.
+
+---
+
+## Asset Requests
+
+Art the UI would use if it were in `web/assets/img/`. Each row names the sprite, where it goes and what the app does without it. Sprites come from the game files (Team Cherry; see README "Assets"); export PNG with transparency at the game's native size. After adding one, point the code at it and drop the fallback.
+
+| Sprite | Folder / file name | Used by | Fallback today |
+|---|---|---|---|
+| HUD mask, empty (lost health) | `general/hud_mask_empty.png` | Current tab health row (`categories/current.js`, `MASK_EMPTY`) | inventory health backboard (`Inv_0030_inv_health_backboard.png`), slightly different shape |
+| HUD mask, empty, Steel Soul | `general/hud_mask_empty_ss.png` | same, Steel Soul saves | `Inv_health_backboard_SS.png` |
+| HUD mask, full (cropped like the empty one) | `general/hud_mask_full.png` | same | `general_hp.png` |
+| HUD silk spool: left cap, right cap, one thread segment full, one empty, and the broken-spool variant | `general/hud_silk_cap_l.png`, `hud_silk_cap_r.png`, `hud_silk_full.png`, `hud_silk_empty.png`, `hud_silk_broken.png` | Current tab silk spool (`.silk-spool` in `styles.css`) | CSS-drawn spool and thread segments |
 
 ---
 

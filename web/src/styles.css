@@ -1074,28 +1074,81 @@ header h1 {
     transform: scale(1.15);
 }
 
-/* Stat Bar (Health & Silk) */
-.stat-bar {
-    height: 10px;
-    background: var(--border-color);
-    border-radius: 5px;
-    margin: 0.5rem 0;
-    overflow: hidden;
+/* Current health: a row of masks, like the in-game HUD */
+.mask-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 3px;
+    margin: 0.5rem 0 0.75rem;
+    min-height: 34px;
 }
 
-.stat-bar-fill {
-    height: 100%;
-    border-radius: 5px;
-    transition: width 0.5s ease;
-    width: 0%;
+.mask-row .mask {
+    height: 32px;
+    width: auto;
 }
 
-.stat-bar-fill.health-fill {
-    background: var(--health-color);
+.mask-row .mask.full {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.35));
 }
 
-.stat-bar-fill.silk-fill {
-    background: var(--silk-color);
+/* the empty-mask backboard is larger than the mask sprite; shrink to match */
+.mask-row .mask.empty {
+    height: 30px;
+    opacity: 0.85;
+}
+
+/* Current silk: thread segments wound on a spool (CSS only; see ROADMAP
+   "Asset requests" for the in-game spool art) */
+.silk-spool {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0 0.75rem;
+    padding: 0 8px;
+    position: relative;
+}
+
+/* spool ends */
+.silk-spool::before,
+.silk-spool::after {
+    content: '';
+    flex: none;
+    width: 6px;
+    height: 22px;
+    border-radius: 2px;
+    background: linear-gradient(#8a7a5c, #4a3f2c);
+    box-shadow: 0 0 0 1px #000;
+}
+
+.silk-thread {
+    flex: 1;
+    display: flex;
+    gap: 2px;
+    padding: 3px 2px;
+    background: #0d0d0d;
+    border-top: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    min-width: 0;
+}
+
+.silk-seg {
+    flex: 1;
+    height: 12px;
+    max-width: 28px;
+    border-radius: 6px;
+}
+
+.silk-seg.full {
+    background:
+        repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.0) 0 3px, rgba(160, 150, 135, 0.35) 3px 4px),
+        linear-gradient(var(--silk-color), #b9b0a0);
+    box-shadow: 0 0 5px rgba(232, 225, 211, 0.45);
+}
+
+.silk-seg.empty {
+    background: transparent;
+    border: 1px dashed #3a3a3a;
 }
 
 /* Crest Display */
