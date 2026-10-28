@@ -17,7 +17,8 @@ import { showBuildInfo } from './app/buildInfo.js';
 import { saveStore } from './app/saveStore.js';
 import { mountTimeline } from './timeline/timeline.js';
 import { checkSave, describeProblem } from './app/errors.js';
-import { startRouter } from './app/router.js';
+import { ROUTES, startRouter } from './app/router.js';
+import { isLocalHost } from './app/devHost.js';
 import { showScene } from './app/scene.js';
 
 // State
@@ -229,6 +230,28 @@ function hideError() {
     errorMessage.hidden = true;
 }
 
+/**
+ * Local hosting only: a #dev page listing save keys no pack reads. Its code
+ * (src/dev/) is not deployed, so it is created here rather than in index.html.
+ */
+function addDevPage() {
+    const item = document.createElement('li');
+    item.innerHTML = '<a class="sidebar-nav-item" href="#dev" data-page="dev"><span class="sidebar-label">Dev: save keys</span></a>';
+    document.querySelector('.sidebar-nav-list')?.appendChild(item);
+    const page = document.createElement('div');
+    page.className = 'app-page';
+    page.id = 'page-dev';
+    document.querySelector('.app-main')?.appendChild(page);
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'src/dev/dev.css';
+    document.head.appendChild(css);
+    import('./dev/devPage.js')
+        .then(m => m.mountDevPage(page, saveStore))
+        .catch(err => { page.textContent = `Dev page unavailable: ${err.message}`; });
+    return 'dev';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     showScene();
     setupFileUpload();
@@ -243,7 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const timeline = mountTimeline(timelineRoot, saveStore, { onUpload: showUploadModal });
         window.addEventListener('app:page', (e) => (e.detail === 'timeline' ? timeline.show() : timeline.hide()));
     }
-    startRouter();   // after the listeners: it announces the first page
+    const routes = isLocalHost(window.location.hostname) ? [...ROUTES, addDevPage()] : ROUTES;
+    startRouter(window, routes);   // after the listeners: it announces the first page
 
     for (const el of document.querySelectorAll('[data-year]')) el.textContent = new Date().getFullYear();
 });

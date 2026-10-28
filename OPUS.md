@@ -25,6 +25,7 @@ Nothing is uploaded anywhere; the save never leaves the browser.
 - Before a save is loaded the Statistics page renders its real layout with N/A values and blurred, inert lists (`showPlaceholder` in `main.js`).
 - `app/saveStore.js` holds the one loaded save (`status`, `fileName`, `save`, `parsed`, `error`); Hero's Path subscribes to it, so one upload feeds both pages.
 - `app/tabs.js` implements the ARIA tabs pattern and loads a tab's deferred icons the first time it is shown (`ui/renderers.js#loadDeferredImages`).
+- Local hosting only: `main.js#addDevPage` adds a `#dev` route (sidebar "Dev: save keys") when `app/devHost.js#isLocalHost` is true. `dev/unknownKeys.js` lists playerData keys no active pack reads (pack strings plus `CODE_READS`), explained by the `untracked` pack list or not; `dev/devPage.js` renders it. `deploy.yml` deletes `web/src/dev/` before uploading, so the published site has neither the route nor the code.
 - `app/scene.js` picks a random background scene from `assets/img/scenes/`.
 
 ## 3. Module layout (`web/src/`)

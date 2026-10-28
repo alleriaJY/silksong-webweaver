@@ -1,0 +1,94 @@
+/* #dev page (local hosting only; not deployed). Uses the tokens in styles.css. */
+
+.dev-page {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+.dev-header h2 {
+    font-family: var(--font-display);
+    color: var(--primary-text);
+    margin-bottom: 0.5rem;
+}
+
+.dev-note {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    max-width: 70ch;
+}
+
+.dev-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+.dev-controls input[type="search"] {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    padding: 0.4rem 0.6rem;
+    min-width: 0;
+    flex: 1 1 200px;
+    max-width: 320px;
+}
+
+.dev-copied {
+    color: var(--success-color);
+    font-size: 0.85rem;
+}
+
+.dev-summary {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.dev-page h3 {
+    font-family: var(--font-display);
+    margin: 1.25rem 0 0.5rem;
+}
+
+.dev-page details {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    margin-bottom: 0.5rem;
+    padding: 0.4rem 0.75rem;
+}
+
+.dev-page summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.dev-reason {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin: 0.25rem 0;
+}
+
+.dev-keys {
+    border-collapse: collapse;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 0.8rem;
+    margin: 0.4rem 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.dev-keys td {
+    padding: 0.15rem 0.5rem 0.15rem 0;
+    overflow-wrap: anywhere;
+    vertical-align: top;
+}
+
+.dev-keys td:first-child {
+    width: 60%;
+}
+
+.dev-value.dev-true { color: var(--success-color); }
+.dev-value.dev-false { color: var(--text-secondary); }
+.dev-value.dev-other { color: var(--secondary-color); }

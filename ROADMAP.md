@@ -401,10 +401,12 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ## Phase 5 - DLC Readiness
 
+**On hold (owner decision 2026-10-28):** skip until a DLC or major content patch is announced; only step 1 is done.
+
 **Goal:** Everything needed to support a content expansion is in place before it ships. **Depends on:** Phase 1; better after Phase 4.
 
 ### Steps
-1. **In-app unknown-keys panel** under a `?dev` route: lists playerData keys and `persistentBools` IDs not referenced by any active pack, grouped by prefix, with copy-to-clipboard. This is the browser twin of `tools/unknown_keys.py` and lets the owner explore a new save without Python.
+1. DONE 2026-10-28 (local hosting only, owner decision): `#dev` page, `web/src/dev/`, offered only on localhost / LAN (`app/devHost.js`) and left out of the Pages upload. **In-app unknown-keys panel** under a `?dev` route: lists playerData keys and `persistentBools` IDs not referenced by any active pack, grouped by prefix, with copy-to-clipboard. This is the browser twin of `tools/unknown_keys.py` and lets the owner explore a new save without Python.
 2. **Pack scaffold script** `tools/new_pack.py <id> "<label>" <minVersion>` that creates `web/src/data/packs/<id>/` with empty category files and registers it in `packs/index.js` (behind `detect: () => false` until a probe is set).
 3. **Version banner**: show `version` and the list of active packs in the General tab header.
 4. **Fixture policy** for packs: every pack must ship at least one fixture where `detect` is true and one where it is false; contract test enforces it.

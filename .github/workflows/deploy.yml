@@ -44,6 +44,11 @@ jobs:
           printf '{"sha":"%s","date":"%s"}\n' "$(git rev-parse HEAD)" "$(git log -1 --format=%cs)" > web/version.json
           cat web/version.json
 
+      # The #dev page (save keys no pack reads) is for local hosting only:
+      # main.js offers it only on localhost / LAN, and its code is not published
+      - name: Leave out the local-only dev page
+        run: rm -rf web/src/dev
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
