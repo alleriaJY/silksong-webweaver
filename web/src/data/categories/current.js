@@ -1,6 +1,6 @@
 /**
- * Current tab: health as a row of masks and silk as a spool of thread
- * segments, like the in-game HUD; currencies. Crest, loadout, cloak and
+ * Current tab: health as a row of masks and silk as one spool of thread,
+ * like the in-game HUD; currencies. Crest, loadout, cloak and
  * needle on the same tab are rendered by their own categories; the position
  * fields render into the Current Position card on the Misc tab.
  */
@@ -29,10 +29,11 @@ function renderMasks(container, health, max, steelSoul) {
     }
 }
 
-/** One thread segment per point of max silk, wound onto a spool. */
+/** One stretch of thread per point of max silk, wound onto a spool. */
 function renderSpool(container, silk, max) {
     if (!container) return;
     container.replaceChildren();
+    container.style.setProperty('--silk-max', max);
     container.setAttribute('role', 'img');
     container.setAttribute('aria-label', `Silk: ${silk} of ${max}`);
     const thread = document.createElement('div');
@@ -53,6 +54,7 @@ export default {
         const zone = result.currentArea?.value;
         const known = zone ? ctx.lists('mapZones').find(z => z.zone === zone) : null;
         result.areaName = { value: known ? known.display : (zone ? humanize(zone) : undefined), display: 'Current Area' };
+        result.areaScene = { value: known?.slotScene, display: 'Area background' };
         return result;
     },
 

@@ -188,6 +188,7 @@ async function analyzeFile() {
         }
         stage = 'parse';
         currentData = parseAllData(save.playerData, save.sceneData);
+        currentData.fileName = selectedFile.name;   // the save slot card shows its number
         displayStats(currentData);
         resetBtn.hidden = false;
         saveStore.set({ status: 'ready', save, parsed: currentData });

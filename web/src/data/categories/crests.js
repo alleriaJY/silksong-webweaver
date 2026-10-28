@@ -36,7 +36,8 @@ export function parseCrests(save, ctx) {
     };
 }
 
-const crestFile = (crest, steelSoul) => (steelSoul && crest.iconSteelSoul ? crest.iconSteelSoul : crest.icon);
+/** The crest's icon file, the Steel Soul variant when there is one. */
+export const crestFile = (crest, steelSoul) => (steelSoul && crest.iconSteelSoul ? crest.iconSteelSoul : crest.icon);
 
 export default {
     id: 'crests',

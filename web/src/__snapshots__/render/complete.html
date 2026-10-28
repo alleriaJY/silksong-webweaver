@@ -1,7 +1,7 @@
 <div class="empty-banner" id="empty-banner" hidden="">
 <p>
-<strong>No save loaded yet.</strong> Everything below reads N/A until you open one.
-                                    Drop <code>user1.dat</code> to <code>user4.dat</code> anywhere on the page, or</p>
+<strong>No save loaded yet.</strong> Drag your save file
+                                    (<code>user1.dat</code> to <code>user4.dat</code>) onto this page, or</p>
 <button class="header-btn upload-btn" id="empty-upload-btn">Open a save</button>
 </div>
 <!-- Tab Navigation -->
@@ -32,9 +32,6 @@
 </button>
 <button class="tab-btn" data-tab="collectables" role="tab" id="tab-collectables" aria-controls="panel-collectables" aria-selected="false" tabindex="-1">
 <span class="tab-text">Collectables</span>
-</button>
-<button class="tab-btn" data-tab="key-items" role="tab" id="tab-key-items" aria-controls="panel-key-items" aria-selected="false" tabindex="-1">
-<span class="tab-text">Key items</span>
 </button>
 <button class="tab-btn" data-tab="misc" role="tab" id="tab-misc" aria-controls="panel-misc" aria-selected="false" tabindex="-1">
 <span class="tab-text">Misc</span>
@@ -144,7 +141,7 @@
 <span class="stat-label">Current Silk</span>
 <span class="stat-value" data-stat="silkDisplay">0/18</span>
 </div>
-<div class="silk-spool" id="silk-spool" role="img" aria-label="Silk: 0 of 18">
+<div class="silk-spool" id="silk-spool" style="--silk-max: 18;" role="img" aria-label="Silk: 0 of 18">
 <div class="silk-thread">
 <span class="silk-seg empty">
 </span>
@@ -272,6 +269,74 @@
 </div>
 </div>
 </div>
+<!-- Inventory: what Hornet is carrying now -->
+<div class="stat-card full-width">
+<h4 class="section-header">Inventory
+                                                <span class="unlocked-stats">(<strong id="inventory-kinds-count">15</strong> kinds of item carried)</span>
+</h4>
+<div class="inventory-list" id="inventory-list">
+<div class="inventory-row">
+<span>Mossberry</span>
+<strong>×1</strong>
+</div>
+<div class="inventory-row">
+<span>Rosary String</span>
+<strong>×3</strong>
+</div>
+<div class="inventory-row">
+<span>Rosary Necklace</span>
+<strong>×1</strong>
+</div>
+<div class="inventory-row">
+<span>Shard Pouch</span>
+<strong>×7</strong>
+</div>
+<div class="inventory-row">
+<span>Heavy Rosary Necklace</span>
+<strong>×2</strong>
+</div>
+<div class="inventory-row">
+<span>Silkeater</span>
+<strong>×5</strong>
+</div>
+<div class="inventory-row">
+<span>Pale Rosary Necklace</span>
+<strong>×2</strong>
+</div>
+<div class="inventory-row">
+<span>Fixer Idol</span>
+<strong>×1</strong>
+</div>
+<div class="inventory-row">
+<span>Great Shard</span>
+<strong>×4</strong>
+</div>
+<div class="inventory-row">
+<span>Pristine Core</span>
+<strong>×2</strong>
+</div>
+<div class="inventory-row">
+<span>Everbloom</span>
+<strong>×1</strong>
+</div>
+<div class="inventory-row">
+<span>Plasmium Gland</span>
+<strong>×1</strong>
+</div>
+<div class="inventory-row">
+<span>Grey Memento</span>
+<strong>×1</strong>
+</div>
+<div class="inventory-row">
+<span>Surface Memento</span>
+<strong>×1</strong>
+</div>
+<div class="inventory-row">
+<span>Hunter's Memento</span>
+<strong>×1</strong>
+</div>
+</div>
+</div>
 </div>
 </div>
 <!-- 3. Misc Tab -->
@@ -281,6 +346,80 @@
 <p class="panel-description">Additional save file details</p>
 </div>
 <div class="panel-content">
+<!-- Save slot, as the game's profile screen shows it (categories/saveSlot.js) -->
+<div class="save-slot-cell">
+<div class="save-slot" id="save-slot" role="img" aria-label="Save slot 1: The Abyss, 100% complete, 65h 47m played, 10 masks, 18 silk">
+<div class="slot-top">
+<img class="slot-crest" src="assets/img/general/crests/Select_Game_Crest_Spools__0008_wanderer.png" alt="">
+<div class="slot-masks">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+<img class="slot-mask" src="assets/img/general/general_hp.png" alt="">
+</div>
+</div>
+<div class="silk-spool slot-spool" style="--silk-max: 18;">
+<div class="silk-thread">
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+<span class="silk-seg full">
+</span>
+</div>
+</div>
+<div class="slot-money">
+<div class="slot-count">
+<img class="slot-currency" src="assets/img/general/general_rosaries.png" alt="">4,100</div>
+<div class="slot-count">
+<img class="slot-currency" src="assets/img/general/general_shard.png" alt="">120</div>
+</div>
+<div class="slot-bottom">
+<span class="slot-number">1.</span>
+<div class="slot-info">
+<span class="slot-percent">100%</span>
+<span class="slot-time">65h 47m</span>
+<span class="slot-area">The Abyss</span>
+</div>
+</div>
+</div>
+</div>
 <!-- Current Position Card -->
 <div class="stat-card">
 <h4>Current Position</h4>
@@ -2522,445 +2661,445 @@
 <div class="source-checklist" id="quests-checklist" role="list">
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Great Citadel · Main objective</span>
+<span class="source-name">The Great Citadel</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Berry Picking (start) · Gather wish</span>
+<span class="source-name">Berry Picking (start)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Berry Picking · Gather wish</span>
+<span class="source-name">Berry Picking</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Lost Fleas (start) · Wayfarer wish</span>
+<span class="source-name">The Lost Fleas (start)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Lost Fleas · Wayfarer wish</span>
+<span class="source-name">The Lost Fleas</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Bone Bottom Repairs · Donate wish</span>
+<span class="source-name">Bone Bottom Repairs</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Garb of the Pilgrims · Hunt wish (13/13)</span>
+<span class="source-name">Garb of the Pilgrims (13/13)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Flexile Spines · Hunt wish</span>
+<span class="source-name">Flexile Spines</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Bugs of Pharloom · Learn wish</span>
+<span class="source-name">Bugs of Pharloom</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Threadspun Town · Main objective</span>
+<span class="source-name">The Threadspun Town</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">A Lifesaving Bridge · Donate wish</span>
+<span class="source-name">A Lifesaving Bridge</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Volatile Flintbeetles · Hunt wish (3/3)</span>
+<span class="source-name">Volatile Flintbeetles (3/3)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Rite of the Pollip · Gather wish</span>
+<span class="source-name">Rite of the Pollip</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Crawbug Clearing (start) · Hunt wish</span>
+<span class="source-name">Crawbug Clearing (start)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Crawbug Clearing · Hunt wish (25/25)</span>
+<span class="source-name">Crawbug Clearing (25/25)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Terrible Tyrant · Grand Hunt wish</span>
+<span class="source-name">The Terrible Tyrant</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Silver Bells · Gather wish (8/8)</span>
+<span class="source-name">Silver Bells (8/8)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">My Missing Courier · Wayfarer wish</span>
+<span class="source-name">My Missing Courier</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Pinmaster's Oil · Wayfarer wish</span>
+<span class="source-name">Pinmaster's Oil</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Restoration of Bellhart · Donate wish</span>
+<span class="source-name">Restoration of Bellhart</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Grand Gate · Main objective</span>
+<span class="source-name">Grand Gate</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Silent Halls · Main objective</span>
+<span class="source-name">Silent Halls</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Pharloom's Crown · Main objective</span>
+<span class="source-name">Pharloom's Crown</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Building up Songclave · Donate wish</span>
+<span class="source-name">Building up Songclave</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Fine Pins · Hunt wish (10/10)</span>
+<span class="source-name">Fine Pins (10/10)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Wandering Merchant · Wayfarer wish</span>
+<span class="source-name">The Wandering Merchant</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Great Taste of Pharloom · Gather wish</span>
+<span class="source-name">Great Taste of Pharloom</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Pharloom's Crown: the three Melodies · Main objective</span>
+<span class="source-name">Pharloom's Crown: the three Melodies</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">An Icon of Hope · Donate wish</span>
+<span class="source-name">An Icon of Hope</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Cloaks of the Choir · Hunt wish (15/15)</span>
+<span class="source-name">Cloaks of the Choir (15/15)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Balm for the Wounded · Wayfarer wish</span>
+<span class="source-name">Balm for the Wounded</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Bellhart's Glory · Donate wish</span>
+<span class="source-name">Bellhart's Glory</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">My Missing Brother · Wayfarer wish</span>
+<span class="source-name">My Missing Brother</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Savage Beastfly · Grand Hunt wish</span>
+<span class="source-name">Savage Beastfly</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Roach Guts · Hunt wish (10/10)</span>
+<span class="source-name">Roach Guts (10/10)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Strengthening Songclave · Donate wish</span>
+<span class="source-name">Strengthening Songclave</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Wailing Mother · Grand Hunt wish</span>
+<span class="source-name">The Wailing Mother</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Pharloom's Crown: the lift · Main objective</span>
+<span class="source-name">Pharloom's Crown: the lift</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Alchemist's Assistant · Gather wish</span>
+<span class="source-name">Alchemist's Assistant</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Lost Merchant · Wayfarer wish</span>
+<span class="source-name">The Lost Merchant</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Pilgrim's Rest Supplies · Delivery wish (5)</span>
+<span class="source-name">Pilgrim's Rest Supplies (5)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Trail's End · Wayfarer wish</span>
+<span class="source-name">Trail's End</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Silk and Soul · Collect wish</span>
+<span class="source-name">Silk and Soul</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Soul Snare · Main objective</span>
+<span class="source-name">Soul Snare</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Final Audience · Wayfarer wish</span>
+<span class="source-name">Final Audience</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Rite of Rebirth · Wayfarer wish</span>
+<span class="source-name">Rite of Rebirth</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Infestation Operation · Wayfarer wish</span>
+<span class="source-name">Infestation Operation</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Pale Monarch · Main objective</span>
+<span class="source-name">Pale Monarch</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Broodfeast · Hunt wish</span>
+<span class="source-name">Broodfeast</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">After the Fall · Main objective</span>
+<span class="source-name">After the Fall</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Awaiting the End · Main objective</span>
+<span class="source-name">Awaiting the End</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Beast in the Bells · Main objective</span>
+<span class="source-name">Beast in the Bells</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Dark Below: inspect the diving bell · Main objective</span>
+<span class="source-name">The Dark Below: inspect the diving bell</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Dark Below: find Ballow · Main objective</span>
+<span class="source-name">The Dark Below: find Ballow</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Dark Below · Main objective</span>
+<span class="source-name">The Dark Below</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Dark Below: into the Abyss · Main objective</span>
+<span class="source-name">The Dark Below: into the Abyss</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Return to Pharloom · Main objective</span>
+<span class="source-name">Return to Pharloom</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Spell Seeker · Main objective</span>
+<span class="source-name">Spell Seeker</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Old Hearts · Main objective</span>
+<span class="source-name">The Old Hearts</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Fatal Resolve (start) · Wayfarer wish</span>
+<span class="source-name">Fatal Resolve (start)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Ecstasy of the End (start) · Wayfarer wish</span>
+<span class="source-name">Ecstasy of the End (start)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Dark Hearts · Grand Hunt wish (12/12)</span>
+<span class="source-name">Dark Hearts (12/12)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Ecstasy of the End · Wayfarer wish</span>
+<span class="source-name">Ecstasy of the End</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Pain, Anguish, and Misery · Wayfarer wish</span>
+<span class="source-name">Pain, Anguish, and Misery</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Fatal Resolve · Wayfarer wish</span>
+<span class="source-name">Fatal Resolve</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Hero's Call · Wayfarer wish</span>
+<span class="source-name">Hero's Call</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Advanced Alchemy · Gather wish</span>
+<span class="source-name">Advanced Alchemy</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Fastest in Pharloom (start) · Sprint wish</span>
+<span class="source-name">Fastest in Pharloom (start)</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Fastest in Pharloom · Sprint wish</span>
+<span class="source-name">Fastest in Pharloom</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">The Hidden Hunter · Grand Hunt wish</span>
+<span class="source-name">The Hidden Hunter</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Passing of the Age · Witness wish</span>
+<span class="source-name">Passing of the Age</span>
 </div>
 <span class="source-status">Completed</span>
 </div>
-<div class="source-item pending" role="listitem">
+<div class="source-item pending" role="listitem" title="Cogwork Core (Centre)">
 <div class="source-left">
-<span class="source-name">Pharloom's Crown: the final battle · Main objective</span>
+<span class="source-name">Pharloom's Crown: the final battle</span>
 </div>
 <span class="source-status">In progress</span>
 </div>
-<div class="source-item pending" role="listitem">
+<div class="source-item pending" role="listitem" title="Bone Bottom (Ruined Chapel): Complete the &quot;Heart of Might&quot;, &quot;Heart of the Woods&quot;, &quot;Heart of the Wild&quot; objectives.">
 <div class="source-left">
-<span class="source-name">The Old Hearts: the Everbloom · Main objective</span>
+<span class="source-name">The Old Hearts: the Everbloom</span>
 </div>
 <span class="source-status">In progress</span>
 </div>
-<div class="source-item missing" role="listitem">
+<div class="source-item missing" role="listitem" title="Bellhart: Wish from Couriers Tipp &amp; Pill (accessible after completing &quot;My Missing Courier&quot; and &quot;My Missing Brother&quot; wishes).">
 <div class="source-left">
-<span class="source-name">Songclave Supplies · Delivery wish</span>
+<span class="source-name">Songclave Supplies</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -4162,91 +4301,75 @@
 </div>
 </div>
 </div>
-<!-- Inventory Section -->
-<div class="stat-card full-width">
-<h4 class="section-header">Inventory
-                                                <span class="unlocked-stats">(<strong id="inventory-kinds-count">15</strong> kinds of item carried)</span>
-</h4>
-<div class="inventory-list" id="inventory-list">
-<div class="inventory-row">
-<span>Mossberry</span>
-<strong>×1</strong>
-</div>
-<div class="inventory-row">
-<span>Rosary String</span>
-<strong>×3</strong>
-</div>
-<div class="inventory-row">
-<span>Rosary Necklace</span>
-<strong>×1</strong>
-</div>
-<div class="inventory-row">
-<span>Shard Pouch</span>
-<strong>×7</strong>
-</div>
-<div class="inventory-row">
-<span>Heavy Rosary Necklace</span>
-<strong>×2</strong>
-</div>
-<div class="inventory-row">
-<span>Silkeater</span>
-<strong>×5</strong>
-</div>
-<div class="inventory-row">
-<span>Pale Rosary Necklace</span>
-<strong>×2</strong>
-</div>
-<div class="inventory-row">
-<span>Fixer Idol</span>
-<strong>×1</strong>
-</div>
-<div class="inventory-row">
-<span>Great Shard</span>
-<strong>×4</strong>
-</div>
-<div class="inventory-row">
-<span>Pristine Core</span>
-<strong>×2</strong>
-</div>
-<div class="inventory-row">
-<span>Everbloom</span>
-<strong>×1</strong>
-</div>
-<div class="inventory-row">
-<span>Plasmium Gland</span>
-<strong>×1</strong>
-</div>
-<div class="inventory-row">
-<span>Grey Memento</span>
-<strong>×1</strong>
-</div>
-<div class="inventory-row">
-<span>Surface Memento</span>
-<strong>×1</strong>
-</div>
-<div class="inventory-row">
-<span>Hunter's Memento</span>
-<strong>×1</strong>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- 8. Key Items Tab -->
-<div class="tab-panel" id="panel-key-items" role="tabpanel" aria-labelledby="tab-key-items" tabindex="0">
-<div class="panel-header">
-<h3>Key Items</h3>
-<p class="panel-description">Keys and story items that open the way forward</p>
-</div>
-<div class="panel-content">
+<!-- Key Items (too few for a tab of their own) -->
 <div class="stat-card full-width">
 <h4 class="section-header">Key Items
-                                                <span class="unlocked-stats">(Obtained: <strong id="key-items-obtained-count">1</strong>/<span id="key-items-total-count">1</span>)</span>
+                                                <span class="unlocked-stats">(Obtained: <strong id="key-items-obtained-count">11</strong>/<span id="key-items-total-count">11</span>)</span>
 </h4>
 <div class="source-checklist" id="key-items-checklist" role="list">
 <div class="source-item collected" role="listitem">
 <div class="source-left">
-<span class="source-name">Ballow's Key (Act 3: given by Ballow, opens the way to the Abyss)</span>
+<span class="source-name">Simple Key - Pebb (Bone Bottom)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Simple Key - Roachkeeper's cage (Sinner's Road)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Simple Key - Jubilana (Songclave)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Simple Key - corpse on the bench (Sands of Karak)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Key of Indolent (The Slab)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Key of Heretic (The Slab)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Key of Apostate (Putrified Ducts)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Architect's Key (Underworks)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">White Key (Whiteward)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Surgeon's Key (Whiteward)</span>
+</div>
+<span class="source-status">Obtained</span>
+</div>
+<div class="source-item collected" role="listitem">
+<div class="source-left">
+<span class="source-name">Diving Bell Key (Ballow, Deep Docks)</span>
 </div>
 <span class="source-status">Obtained</span>
 </div>

@@ -31,7 +31,7 @@ describe('formatPlayTime', () => {
 
 describe('eventLabel', () => {
     it('names the known pickup types and falls back for new ones', () => {
-        expect([0, 1, 3].map(eventLabel)).toEqual(['Mask Shard', 'Spool Fragment', 'Memory Locket']);
+        expect([0, 1, 2, 3].map(eventLabel)).toEqual(['Mask Shard', 'Spool Fragment', 'Simple Key', 'Memory Locket']);
         expect(eventLabel(7)).toBe('Upgrade (type 7)');
     });
 });

@@ -1,6 +1,7 @@
 /**
  * Collectables tab (beyond the Memory Locket / Craftmetal checklists):
- * relics, mementos, materium and the carried inventory. None of these count
+ * relics, mementos and materium; plus the carried inventory, shown on the
+ * Current stats tab. None of these count
  * toward the completion percentage.
  */
 import { savedDataByName } from '../../core/saveAccess.js';

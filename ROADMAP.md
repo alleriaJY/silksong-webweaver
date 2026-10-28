@@ -465,6 +465,10 @@ Art the UI would use if it were in `web/assets/img/`. Each row names the sprite,
 | Pin icons as sold by Shakra: Bench, Bellway, Ventrica, Vendor | `maps/pin_bench.png`, `pin_bellway.png`, `pin_ventrica.png`, `pin_vendor.png` | Maps tab, Map Pins & Markers rows | text only |
 | Marker icons: Shell, Ring, Hunt, Dark, Bronze | `maps/marker_shell.png`, `marker_ring.png`, `marker_hunt.png`, `marker_dark.png`, `marker_bronze.png` | same | text only |
 | The Abyss map | `maps/Shop_map_icon__abyss.png` (if the game has one; Shakra does not sell this map, so it may not exist) | Maps tab; drop `iconStyle: 'placeholder'` from the `the-abyss` entry | generic scroll `I_map_type_02.png`, tinted violet when owned |
+| Skarrgard full portrait (the journal art in the repo is a face crop) | `bosses/Skarrgard - Bone Hunter Throw.png` (replace) | Bosses tab, Skarrgard (Far Fields) | face crop |
+| Profile-screen frame (the thorned border around a save slot) and the Steel Soul variant | `general/slot_frame.png`, `general/slot_frame_ss.png` | Misc tab save slot card (`.save-slot` in `styles.css`) | CSS border with two corner curls |
+| Profile-screen backgrounds, one per area | `scenes/slot_<zone-id>.webp`, then set `slotScene` on that `MAP_ZONES` entry in `packs/base/areas.js` | save slot card background for the save's current area | Cogwork Core and Greymoor use `scene1.webp` / `scene5.webp`; every other area the page's random scene |
+| The two small icons above the percentage on the profile screen (spiral and crescent) | `general/slot_icon_*.png` | save slot card | left out: their meaning is not known yet |
 | Lost Flea portrait | `general/flea.png` | Fleas tab (`categories/fleas.js`, also Appendix A) | Huge Flea journal portrait |
 
 The `icon` hook for travel rows is in place (`categories/travel.js`); the contract test checks that every named icon exists, so add the file and the `icon` field in the same commit.
