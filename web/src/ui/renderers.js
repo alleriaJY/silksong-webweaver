@@ -111,7 +111,7 @@ export function renderIconGrid(container, items, o) {
  * Render a source checklist: rows with collected / missing / pending state.
  *
  * @param {Element|null} container
- * @param {{name, collected, pending}[]} sources
+ * @param {{name, collected, pending, title?}[]} sources  title: hover text for the row
  * @param {Function} iconSrc  (source, index) => img src, or null for no icon
  */
 export function renderChecklist(container, sources, iconSrc) {
@@ -123,6 +123,7 @@ export function renderChecklist(container, sources, iconSrc) {
         const state = source.pending ? 'pending' : (source.collected ? 'collected' : 'missing');
         row.className = `source-item ${state}`;
         row.setAttribute('role', 'listitem');
+        if (source.title) row.title = source.title;
 
         const left = document.createElement('div');
         left.className = 'source-left';
