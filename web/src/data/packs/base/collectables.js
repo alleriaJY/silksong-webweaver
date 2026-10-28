@@ -53,11 +53,10 @@ export const MEMORY_LOCKET_SOURCES = [
 // collectables category reports any save name missing here (unknownNames).
 // ═══════════════════════════════════════════════════════════════════════════
 
-// Relics: playerData.Relics.savedData { IsCollected, IsDeposited } (19 seen).
+// Relics: playerData.Relics.savedData { IsCollected, IsDeposited } (21: 19 seen in saves).
 // kind = relic type (internal); display = "<in-game name> (<area>)", names from
-// silksong-completionist (MIT). Not seen in any save yet, so not listed:
-// 'Weaver Totem Bonetown_upper_room' (Bone Bottom) and
-// 'Weaver Record Sprint_Challenge' (Far Fields).
+// silksong-completionist (MIT). The last two are in no save yet; their
+// names come from that tracker (contracts.test.js lists them as exceptions).
 export const RELICS = [
     { id: 'seal-chit-aspid-01', json: 'Seal Chit Aspid_01', display: 'Choral Commandment (Bone Bottom)', kind: 'seal-chit' },
     { id: 'bone-record-bone-east-14', json: 'Bone Record Bone_East_14', display: 'Bone Scroll (Far Fields)', kind: 'bone-record' },
@@ -78,6 +77,8 @@ export const RELICS = [
     { id: 'weaver-record-conductor', json: 'Weaver Record Conductor', display: 'Rune Harp (High Halls)', kind: 'weaver-record' },
     { id: 'seal-chit-silk-siphon', json: 'Seal Chit Silk Siphon', display: 'Choral Commandment (Whiteward, 2)', kind: 'seal-chit' },
     { id: 'psalm-cylinder-ward', json: 'Psalm Cylinder Ward', display: 'Psalm Cylinder (Underworks)', kind: 'psalm-cylinder' },
+    { id: 'weaver-totem-bonetown-upper-room', json: 'Weaver Totem Bonetown_upper_room', display: 'Weaver Effigy (Bone Bottom)', kind: 'weaver-totem' },
+    { id: 'weaver-record-sprint-challenge', json: 'Weaver Record Sprint_Challenge', display: 'Rune Harp (Far Fields)', kind: 'weaver-record' },
 ];
 
 // Materium entries: playerData.MateriumCollected.savedData (37 seen). Presence in

@@ -11,6 +11,11 @@ describe('routeFromHash', () => {
         expect(routeFromHash('#home')).toBe('stats');       // the dropped Home page
         expect(routeFromHash(undefined)).toBe('stats');
     });
+
+    it('knows extra routes only when given them (#dev is local-only)', () => {
+        expect(routeFromHash('#dev')).toBe(DEFAULT_ROUTE);
+        expect(routeFromHash('#dev', ['stats', 'timeline', 'dev'])).toBe('dev');
+    });
 });
 
 describe('startRouter', () => {

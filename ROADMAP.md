@@ -401,10 +401,12 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ## Phase 5 - DLC Readiness
 
+**On hold (owner decision 2026-10-28):** skip until a DLC or major content patch is announced; only step 1 is done.
+
 **Goal:** Everything needed to support a content expansion is in place before it ships. **Depends on:** Phase 1; better after Phase 4.
 
 ### Steps
-1. **In-app unknown-keys panel** under a `?dev` route: lists playerData keys and `persistentBools` IDs not referenced by any active pack, grouped by prefix, with copy-to-clipboard. This is the browser twin of `tools/unknown_keys.py` and lets the owner explore a new save without Python.
+1. DONE 2026-10-28 (local hosting only, owner decision): `#dev` page, `web/src/dev/`, offered only on localhost / LAN (`app/devHost.js`) and left out of the Pages upload. **In-app unknown-keys panel** under a `?dev` route: lists playerData keys and `persistentBools` IDs not referenced by any active pack, grouped by prefix, with copy-to-clipboard. This is the browser twin of `tools/unknown_keys.py` and lets the owner explore a new save without Python.
 2. **Pack scaffold script** `tools/new_pack.py <id> "<label>" <minVersion>` that creates `web/src/data/packs/<id>/` with empty category files and registers it in `packs/index.js` (behind `detect: () => false` until a probe is set).
 3. **Version banner**: show `version` and the list of active packs in the General tab header.
 4. **Fixture policy** for packs: every pack must ship at least one fixture where `detect` is true and one where it is false; contract test enforces it.
@@ -479,7 +481,8 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 | Bilewater cocoon locket ID | a fixture rebuilt from `savefiles/user3.dat` | `Sack Corpse Pickup` (reference) vs `Breakable Hang Sack Memory Locket` (old guess, false in the 100% save); both are accepted. `make_fixture.py` now keeps `Corpse Pickup` IDs: rebuild the fixtures to confirm and drop the alias |
 | Loddie's pouch picked up off the ground | none (reference) | if Loddie's challenge is skipped the pouch can be found at `Bone_12` / `Ladybug Craft Pickup`; add it as an alias once a save shows it |
 | Leads | none | `PurchasedBelltownToolPouch` and `CollectedToolMetal` are false / always true and match no source; `CollectedToolMetal` looks like a "first craftmetal seen" flag |
-| Minibosses (OPUS D22) | none | display names and icons for the 7 defeat flags |
+| Two relics in no save yet | a save with either collected | `Weaver Totem Bonetown_upper_room` and `Weaver Record Sprint_Challenge` (names from the reference tracker); once a fixture has one, drop it from `RELICS_NEVER_IN_FIXTURES` in `contracts.test.js` |
+| Minibosses (OPUS D22) | before/after each fight | 3 of 7 resolved 2026-10-28 (Crawfather, Watcher at the Edge, the Far Fields Skarrgard, now on the Bosses tab). Still unknown: `defeatedMossEvolver`, `defeatedShellwoodRosaryPilgrim`, `defeatedZapGuard1`, `DefeatedBonetownBoss` (leads from the journal names: Massive Mossgrub, Covetous Pilgrim, a Voltvyrm guard; not confirmed) |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
 | Flea icon | none | asset needed for the Fleas tab (the Huge Flea portrait stands in) |

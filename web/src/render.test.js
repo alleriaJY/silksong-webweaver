@@ -28,6 +28,8 @@ vi.mock('../pkg/wasm_crypto.js', () => ({
     default: vi.fn(async () => {}),
     decrypt_save: vi.fn(() => ({ success: true, error: null, save: wasm.current })),
 }));
+// happy-dom runs on localhost; render the published site, without the local-only #dev page
+vi.mock('./app/devHost.js', () => ({ isLocalHost: () => false }));
 
 const FIXTURES = readdirSync(FIXTURE_DIR)
     .filter(f => f.endsWith('.json') && !f.endsWith('.expected.json'))

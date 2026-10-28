@@ -22,6 +22,7 @@ import { AREAS, MAP_ZONES } from './areas.js';
 import { JOURNAL } from './journal.js';
 import { QUESTS } from './quests.js';
 import { KEY_ITEMS } from './keyItems.js';
+import { UNTRACKED } from './untracked.js';
 
 export default {
     id: 'base',
@@ -62,5 +63,6 @@ export default {
         mementos: MEMENTOS,
         inventoryItems: INVENTORY_ITEMS,
         keyItems: KEY_ITEMS,
+        untracked: UNTRACKED,
     },
 };

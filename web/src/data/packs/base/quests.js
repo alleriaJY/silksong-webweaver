@@ -11,7 +11,10 @@
  *   plus the step ("Fatal Resolve (start)" for a *Pre entry, "The Dark Below:
  *   find Ballow"); those step labels are ours, not in-game text.
  * group:   wish board category (Main = main objectives).
- * Entry: { id, json, display, group }
+ * target:  goal of a collection wish. Read from the saves: a completed wish's
+ *          CompletedCount, identical in the 72% and 100% saves. Courier
+ *          deliveries also count up but are not a collection goal, so none.
+ * Entry: { id, json, display, group, target? }
  */
 
 export const QUESTS = [
@@ -21,17 +24,17 @@ export const QUESTS = [
     { id: 'save-the-fleas-pre', json: 'Save the Fleas Pre', display: 'The Lost Fleas (start)', group: 'Wayfarer' },
     { id: 'save-the-fleas', json: 'Save the Fleas', display: 'The Lost Fleas', group: 'Wayfarer' },
     { id: 'building-materials', json: 'Building Materials', display: 'Bone Bottom Repairs', group: 'Donate' },
-    { id: 'pilgrim-rags', json: 'Pilgrim Rags', display: 'Garb of the Pilgrims', group: 'Hunt' },
+    { id: 'pilgrim-rags', json: 'Pilgrim Rags', display: 'Garb of the Pilgrims', group: 'Hunt', target: 13 },
     { id: 'brolly-get', json: 'Brolly Get', display: 'Flexile Spines', group: 'Hunt' },
     { id: 'journal', json: 'Journal', display: 'Bugs of Pharloom', group: 'Learn' },
     { id: 'the-threadspun-town', json: 'The Threadspun Town', display: 'The Threadspun Town', group: 'Main' },
     { id: 'building-materials-bridge', json: 'Building Materials (Bridge)', display: 'A Lifesaving Bridge', group: 'Donate' },
-    { id: 'rock-rollers', json: 'Rock Rollers', display: 'Volatile Flintbeetles', group: 'Hunt' },
+    { id: 'rock-rollers', json: 'Rock Rollers', display: 'Volatile Flintbeetles', group: 'Hunt', target: 3 },
     { id: 'shell-flowers', json: 'Shell Flowers', display: 'Rite of the Pollip', group: 'Gather' },
     { id: 'crow-feathers-pre', json: 'Crow Feathers Pre', display: 'Crawbug Clearing (start)', group: 'Hunt' },
-    { id: 'crow-feathers', json: 'Crow Feathers', display: 'Crawbug Clearing', group: 'Hunt' },
+    { id: 'crow-feathers', json: 'Crow Feathers', display: 'Crawbug Clearing', group: 'Hunt', target: 25 },
     { id: 'skull-king', json: 'Skull King', display: 'The Terrible Tyrant', group: 'Grand Hunt' },
-    { id: 'shiny-bell-goomba', json: 'Shiny Bell Goomba', display: 'Silver Bells', group: 'Gather' },
+    { id: 'shiny-bell-goomba', json: 'Shiny Bell Goomba', display: 'Silver Bells', group: 'Gather', target: 8 },
     { id: 'save-courier-short', json: 'Save Courier Short', display: 'My Missing Courier', group: 'Wayfarer' },
     { id: 'a-pinsmiths-tools', json: 'A Pinsmiths Tools', display: "Pinmaster's Oil", group: 'Wayfarer' },
     { id: 'belltown-house-start', json: 'Belltown House Start', display: 'Restoration of Bellhart', group: 'Donate' },
@@ -39,17 +42,17 @@ export const QUESTS = [
     { id: 'citadel-investigate', json: 'Citadel Investigate', display: 'Silent Halls', group: 'Main' },
     { id: 'citadel-ascent', json: 'Citadel Ascent', display: "Pharloom's Crown", group: 'Main' },
     { id: 'songclave-donation-1', json: 'Songclave Donation 1', display: 'Building up Songclave', group: 'Donate' },
-    { id: 'fine-pins', json: 'Fine Pins', display: 'Fine Pins', group: 'Hunt' },
+    { id: 'fine-pins', json: 'Fine Pins', display: 'Fine Pins', group: 'Hunt', target: 10 },
     { id: 'save-city-merchant', json: 'Save City Merchant', display: 'The Wandering Merchant', group: 'Wayfarer' },
     { id: 'great-gourmand', json: 'Great Gourmand', display: 'Great Taste of Pharloom', group: 'Gather' },
     { id: 'citadel-ascent-melodies', json: 'Citadel Ascent Melodies', display: "Pharloom's Crown: the three Melodies", group: 'Main' },
     { id: 'building-materials-statue', json: 'Building Materials (Statue)', display: 'An Icon of Hope', group: 'Donate' },
-    { id: 'song-pilgrim-cloaks', json: 'Song Pilgrim Cloaks', display: 'Cloaks of the Choir', group: 'Hunt' },
+    { id: 'song-pilgrim-cloaks', json: 'Song Pilgrim Cloaks', display: 'Cloaks of the Choir', group: 'Hunt', target: 15 },
     { id: 'save-sherma', json: 'Save Sherma', display: 'Balm for the Wounded', group: 'Wayfarer' },
     { id: 'belltown-house-mid', json: 'Belltown House Mid', display: "Bellhart's Glory", group: 'Donate' },
     { id: 'save-courier-tall', json: 'Save Courier Tall', display: 'My Missing Brother', group: 'Wayfarer' },
     { id: 'beastfly-hunt', json: 'Beastfly Hunt', display: 'Savage Beastfly', group: 'Grand Hunt' },
-    { id: 'roach-killing', json: 'Roach Killing', display: 'Roach Guts', group: 'Hunt' },
+    { id: 'roach-killing', json: 'Roach Killing', display: 'Roach Guts', group: 'Hunt', target: 10 },
     { id: 'songclave-donation-2', json: 'Songclave Donation 2', display: 'Strengthening Songclave', group: 'Donate' },
     { id: 'broodmother-hunt', json: 'Broodmother Hunt', display: 'The Wailing Mother', group: 'Grand Hunt' },
     { id: 'citadel-ascent-lift', json: 'Citadel Ascent Lift', display: "Pharloom's Crown: the lift", group: 'Main' },
@@ -78,7 +81,7 @@ export const QUESTS = [
     { id: 'black-thread-pt5-heart', json: 'Black Thread Pt5 Heart', display: 'The Old Hearts', group: 'Main' },
     { id: 'pinstress-battle-pre', json: 'Pinstress Battle Pre', display: 'Fatal Resolve (start)', group: 'Wayfarer' },
     { id: 'flea-games-pre', json: 'Flea Games Pre', display: 'Ecstasy of the End (start)', group: 'Wayfarer' },
-    { id: 'destroy-thread-cores', json: 'Destroy Thread Cores', display: 'Dark Hearts', group: 'Grand Hunt' },
+    { id: 'destroy-thread-cores', json: 'Destroy Thread Cores', display: 'Dark Hearts', group: 'Grand Hunt', target: 12 },
     { id: 'flea-games', json: 'Flea Games', display: 'Ecstasy of the End', group: 'Wayfarer' },
     { id: 'tormented-trobbio', json: 'Tormented Trobbio', display: 'Pain, Anguish, and Misery', group: 'Wayfarer' },
     { id: 'pinstress-battle', json: 'Pinstress Battle', display: 'Fatal Resolve', group: 'Wayfarer' },

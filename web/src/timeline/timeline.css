@@ -134,7 +134,7 @@
 .timeline .tl-mode button { padding: 5px 12px; border: none; background: #1b1b1b; color: #d6d2cb; font-size: 0.8rem; cursor: pointer; }
 .timeline .tl-mode button.on { background: var(--tl-accent-bg); color: var(--text-primary); }
 
-/* Story event markers under the slider */
+/* Upgrade pickup markers under the slider */
 .timeline .tl-track { flex: 1; min-width: 160px; position: relative; padding-bottom: 10px; }
 .timeline .tl-track .tl-slider { width: 100%; min-width: 0; }
 .timeline .tl-marks { position: absolute; left: 9px; right: 9px; bottom: 0; height: 8px; }
@@ -144,7 +144,7 @@
 }
 .timeline .tl-mark:hover { opacity: 1; transform: scaleY(1.5); }
 
-/* Story event pins on the map: counter-scaled so they keep one size on screen */
+/* Upgrade pickup pins on the map: counter-scaled so they keep one size on screen */
 .timeline .tl-pin {
     position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px;
     border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7);

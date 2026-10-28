@@ -53,6 +53,12 @@ const NEVER_IN_FIXTURES = {
     'Shell Satchel': 'Steel Soul only; the Steel Soul fixture is a new game',
 };
 
+/** Relic names (Relics container) not met in any fixture save. */
+const RELICS_NEVER_IN_FIXTURES = {
+    'Weaver Totem Bonetown_upper_room': 'Weaver Effigy above Bone Bottom: not collected in any fixture save',
+    'Weaver Record Sprint_Challenge': 'Rune Harp from the Far Fields sprint plates: not collected in any fixture save',
+};
+
 /** Scene pickups (scene/ID) not met in any fixture save. */
 const SCENE_NOT_IN_FIXTURES = {
     'Dock_13/Collectable Item Pickup': 'Deep Docks Memory Locket: no fixture save has entered the room',
@@ -123,7 +129,10 @@ describe('pack contracts', () => {
             if (!journalNames.has(j.json)) problems.push(`journal ${j.json}`);
         }
         for (const [list, container] of [['relics', 'Relics'], ['materium', 'MateriumCollected'], ['inventoryItems', 'Collectables'], ['quests', 'QuestCompletionData']]) {
-            for (const e of mergedList(list)) if (!inSomeFixture(container, e.json)) problems.push(`${list} ${e.json}`);
+            for (const e of mergedList(list)) {
+                if (list === 'relics' && RELICS_NEVER_IN_FIXTURES[e.json]) continue;
+                if (!inSomeFixture(container, e.json)) problems.push(`${list} ${e.json}`);
+            }
         }
         for (const s of mergedList('skills')) {
             if (!inSomeFixture('Tools', s.equipName)) problems.push(`skill equipName ${s.equipName}`);
@@ -146,6 +155,7 @@ describe('pack contracts', () => {
 
     it('exceptions stay honest: a listed name that appears in a fixture must be removed from the list', () => {
         for (const name of Object.keys(NEVER_IN_FIXTURES)) expect(inSomeFixture('Tools', name), name).toBe(false);
+        for (const name of Object.keys(RELICS_NEVER_IN_FIXTURES)) expect(inSomeFixture('Relics', name), name).toBe(false);
         for (const key of Object.keys(SCENE_NOT_IN_FIXTURES)) {
             const [scene, id] = key.split('/');
             expect(scenePickupSeen(scene, id), key).toBe(false);

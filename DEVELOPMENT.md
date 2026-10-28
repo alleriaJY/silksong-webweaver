@@ -12,6 +12,10 @@ npx --yes serve web -l 5175
 
 To reach it from another device on your network, use `python -m http.server 8080 --bind 0.0.0.0` inside `web/` and open `http://<your-ip>:8080`.
 
+## Dev page (local only)
+
+When the app is served from `localhost` or a LAN address, the sidebar gains **Dev: save keys** (`#dev`). Load a save and it lists every `playerData` key no content pack reads, split into "explained" (matched by `web/src/data/packs/base/untracked.js`) and "unexplained" (new content or missed items), with a filter, a booleans-only switch and a copy button. It is the browser twin of `tools/unknown_keys.py`. The published site never offers it, and the deploy workflow leaves `web/src/dev/` out of the upload.
+
 ## Build WASM (only when `wasm-crypto/src/lib.rs` changes)
 
 ```bash

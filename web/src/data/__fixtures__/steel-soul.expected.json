@@ -19,7 +19,7 @@
     },
     "bosses": {
       "defeated": 0,
-      "total": 36
+      "total": 39
     },
     "maps": {
       "unlocked": 0,
@@ -94,7 +94,7 @@
       "active": 0
     },
     "relics": {
-      "total": 19,
+      "total": 21,
       "collected": 0,
       "deposited": 0
     },

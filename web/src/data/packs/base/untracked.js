@@ -1,6 +1,6 @@
 /**
  * playerData booleans we deliberately do NOT show, grouped by pattern with the
- * reason. tools/unknown_keys.py (and the Phase 5 dev panel) report keys that
+ * reason. tools/unknown_keys.py (and the local #dev page) report keys that
  * match none of these AND are not referenced by any list as "unexplained";
  * that remainder is where new content and missed items show up.
  *

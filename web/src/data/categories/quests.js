@@ -7,6 +7,12 @@ import { renderChecklist, setText } from '../../ui/renderers.js';
 
 const STATUS = { completed: 'Completed', active: 'In progress', seen: 'Seen', none: 'Not started' };
 
+/** ' (5/13)' toward a known goal, ' (5)' without one, '' before any progress. */
+function progressText(q) {
+    if (q.target) return q.progress > 0 || q.state !== 'none' ? ` (${Math.min(q.progress, q.target)}/${q.target})` : '';
+    return q.progress > 0 ? ` (${q.progress})` : '';
+}
+
 /** 'Grand Hunt' -> 'Grand Hunt wish'; 'Main' -> 'Main objective'. */
 const kind = group => (!group ? 'Wish' : group === 'Main' ? 'Main objective' : `${group} wish`);
 
@@ -15,7 +21,7 @@ export function parseQuests(save, ctx) {
     const quests = ctx.lists('quests').map(def => {
         const d = data.get(def.json);
         const state = !d ? 'none' : d.IsCompleted ? 'completed' : d.IsAccepted ? 'active' : d.HasBeenSeen ? 'seen' : 'none';
-        return { json: def.json, display: def.display, group: def.group, state, progress: d?.CompletedCount || 0 };
+        return { json: def.json, display: def.display, group: def.group, target: def.target, state, progress: d?.CompletedCount || 0 };
     });
     const known = new Set(quests.map(q => q.json));
     const by = state => quests.filter(q => q.state === state).length;
@@ -38,7 +44,7 @@ export default {
         const rows = [...result.quests]
             .sort((a, b) => rank[a.state] - rank[b.state])
             .map(q => ({
-                name: `${q.display} · ${kind(q.group)}${q.progress > 0 ? ` (${q.progress})` : ''}`,
+                name: `${q.display} · ${kind(q.group)}${progressText(q)}`,
                 collected: q.state === 'completed',
                 pending: q.state === 'active',
                 status: STATUS[q.state],

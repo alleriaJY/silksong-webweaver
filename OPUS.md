@@ -25,6 +25,7 @@ Nothing is uploaded anywhere; the save never leaves the browser.
 - Before a save is loaded the Statistics page renders its real layout with N/A values and blurred, inert lists (`showPlaceholder` in `main.js`).
 - `app/saveStore.js` holds the one loaded save (`status`, `fileName`, `save`, `parsed`, `error`); Hero's Path subscribes to it, so one upload feeds both pages.
 - `app/tabs.js` implements the ARIA tabs pattern and loads a tab's deferred icons the first time it is shown (`ui/renderers.js#loadDeferredImages`).
+- Local hosting only: `main.js#addDevPage` adds a `#dev` route (sidebar "Dev: save keys") when `app/devHost.js#isLocalHost` is true. `dev/unknownKeys.js` lists playerData keys no active pack reads (pack strings plus `CODE_READS`), explained by the `untracked` pack list or not; `dev/devPage.js` renders it. `deploy.yml` deletes `web/src/dev/` before uploading, so the published site has neither the route nor the code.
 - `app/scene.js` picks a random background scene from `assets/img/scenes/`.
 
 ## 3. Module layout (`web/src/`)
@@ -120,5 +121,5 @@ Retired: D1, D2, D3, D4, D5, D8, D10, D15 (Phase 1); D11, D12, D14, D16 (Phase 0
 
 Open:
 - **D20** `FleasCollectedTargetOrder` exists only in 1.0.28561 saves. Nothing reads it any more (the Fleamaster Tool Pouch now uses the Fleatopia scene flag); kept here in case a later feature wants the rescue order.
-- **D22** Seven miniboss defeat flags have no display names or icons (ROADMAP Appendix A).
+- **D22** Four miniboss defeat flags have no display names or icons (ROADMAP Appendix A); three of the original seven are now on the Bosses tab.
 - Original wording of D9 and D19 was not recovered; reopen with a new number if the issue resurfaces.

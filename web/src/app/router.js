@@ -1,9 +1,11 @@
 /**
- * Hash routes for the one-page app: #stats, #timeline. Pages are
+ * Hash routes for the one-page app: #stats, #timeline (and #dev when served
+ * locally, see main.js). Pages are
  * id="page-<route>", sidebar items data-page="<route>"; never hard-code page
  * ids elsewhere. Every change fires `app:page` (detail = route) on window.
  *
  *   const router = startRouter();   // shows the page for the current hash
+ *   startRouter(window, [...ROUTES, 'dev']);   // with extra routes
  *   router.go('stats');
  */
 
@@ -11,9 +13,9 @@ export const ROUTES = ['stats', 'timeline'];
 export const DEFAULT_ROUTE = 'stats';
 
 /** '#timeline' -> 'timeline'; unknown or empty (and the old '#home') -> the default route. */
-export function routeFromHash(hash) {
+export function routeFromHash(hash, routes = ROUTES) {
     const route = String(hash || '').replace(/^#\/?/, '');
-    return ROUTES.includes(route) ? route : DEFAULT_ROUTE;
+    return routes.includes(route) ? route : DEFAULT_ROUTE;
 }
 
 /** Mark the route's page and sidebar item active. */
@@ -29,10 +31,10 @@ export function showRoute(route, doc = document) {
     }
 }
 
-export function startRouter(win = window) {
+export function startRouter(win = window, routes = ROUTES) {
     let current = null;
     const apply = () => {
-        const route = routeFromHash(win.location.hash);
+        const route = routeFromHash(win.location.hash, routes);
         if (route === current) return;
         current = route;
         showRoute(route, win.document);
