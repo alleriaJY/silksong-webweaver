@@ -1294,11 +1294,18 @@ header h1 {
 }
 
 /* The needle sprite is 8x taller than wide: drawn diagonally and larger so
-   it fills about the same box as the cloak beside it */
+   it fills about the same box as the icons beside it. Margins give back the
+   space the rotation adds or takes (layout uses the unrotated box). */
 #needle-icon {
     height: 84px;
     transform: rotate(40deg);
     margin: -10px 0;
+}
+
+.equipment-item.large #unlockables-needle-icon {
+    height: 96px;
+    transform: rotate(40deg);
+    margin: -12px 20px -12px 34px;
 }
 
 .equipment-column span {
