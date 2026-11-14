@@ -152,6 +152,17 @@
     pointer-events: none;
 }
 
+.timeline .tl-pin.tl-pin-bench {
+    width: 15px; height: 15px; margin: -7.5px 0 0 -7.5px;
+    background: #ffd54f;
+    border: 2px solid #a8352f;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.85), 0 0 8px rgba(255, 213, 79, 0.7);
+    transform: scale(calc(1 / var(--zoom, 1))) rotate(45deg);
+    z-index: 2;
+    pointer-events: auto;
+}
+
 .timeline .tl-events-title { margin-top: 18px; }
 .timeline .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 8px; font-size: 0.75rem; color: var(--text-secondary); }
 .timeline .tl-legend span, .timeline .tl-event span:first-child { display: inline-flex; align-items: center; gap: 5px; }

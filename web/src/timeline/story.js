@@ -1,5 +1,5 @@
 /**
- * Story events on the Hero's Path timeline.
+ * Story events and respawn marker helpers on the Hero's Path timeline.
  *
  * The timeline counts scenes in first-visit order (scenesVisited has no times),
  * while StoryEvents carry a play time. An event is placed at the exploration
@@ -23,6 +23,31 @@ export function placeEvents(events, scenes) {
         progress = Math.max(progress, firstVisit.get(e.scene) ?? progress);
         return { ...e, index: progress };
     });
+}
+
+/** Bounding-box centre of the tiles belonging to `scene`, or null if unmapped. */
+export function sceneBoundsCenter(scene, lookup, tiles) {
+    if (!scene) return null;
+    const names = lookup(scene);
+    if (!names || !names.length) return null;
+    const boxes = names.map(n => tiles[n]).filter(Boolean);
+    if (!boxes.length) return null;
+    const x0 = Math.min(...boxes.map(b => b.x)), x1 = Math.max(...boxes.map(b => b.x + b.width));
+    const y0 = Math.min(...boxes.map(b => b.y)), y1 = Math.max(...boxes.map(b => b.y + b.height));
+    return { x: (x0 + x1) / 2, y: (y0 + y1) / 2 };
+}
+
+/** Build respawn bench pin metadata from `playerData.respawnScene`. */
+export function buildRespawnPin(playerData, lookup, tiles) {
+    const scene = playerData?.respawnScene;
+    if (!scene) return null;
+    const center = sceneBoundsCenter(scene, lookup, tiles);
+    if (!center) return null;
+    const marker = playerData?.respawnMarkerName || null;
+    const title = marker
+        ? `Current respawn bench · ${scene} (${marker})`
+        : `Current respawn bench · ${scene}`;
+    return { scene, marker, x: center.x, y: center.y, title };
 }
 
 /** 16899.4 -> '4h 41m'; 300 -> '5m'. */

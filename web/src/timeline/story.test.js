@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { formatPlayTime, placeEvents } from './story.js';
+import { buildRespawnPin, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
 
 describe('placeEvents', () => {
     const scenes = ['Tut_01', 'Bonetown', 'Bone_01', 'Bone_East_20', 'Shellwood_14'];
@@ -20,6 +20,31 @@ describe('placeEvents', () => {
     it('keeps the event fields', () => {
         expect(placeEvents([{ type: 3, scene: 'Tut_01', playTime: 5, area: 'Tut' }], scenes)[0])
             .toEqual({ type: 3, scene: 'Tut_01', playTime: 5, area: 'Tut', index: 1 });
+    });
+});
+
+describe('sceneBoundsCenter & buildRespawnPin', () => {
+    const tiles = {
+        t1: { x: 100, y: 200, width: 40, height: 20 },
+        t2: { x: 140, y: 200, width: 60, height: 60 },
+    };
+    const lookup = scene => (scene === 'Belletown' ? ['t1', 't2'] : []);
+
+    it('computes the bounding-box centre of a scene\'s tiles', () => {
+        expect(sceneBoundsCenter('Belletown', lookup, tiles)).toEqual({ x: 150, y: 230 });
+        expect(sceneBoundsCenter('Unknown_01', lookup, tiles)).toBeNull();
+    });
+
+    it('builds respawn bench pin data when respawnScene resolves to map tiles', () => {
+        const pin = buildRespawnPin({ respawnScene: 'Belletown', respawnMarkerName: 'RestBench' }, lookup, tiles);
+        expect(pin).toEqual({
+            scene: 'Belletown',
+            marker: 'RestBench',
+            x: 150,
+            y: 230,
+            title: 'Current respawn bench · Belletown (RestBench)',
+        });
+        expect(buildRespawnPin({}, lookup, tiles)).toBeNull();
     });
 });
 

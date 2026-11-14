@@ -10,7 +10,7 @@
  */
 import { FULLMAP, areaOf, litTiles, loadMapData, spriteFile, tilesForScene } from '../map/sceneTiles.js';
 import { mergedList } from '../data/packs/index.js';
-import { EVENT_COLORS, formatPlayTime, placeEvents } from './story.js';
+import { EVENT_COLORS, buildRespawnPin, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
 
 const PLAY_DURATION_MS = 30000;   // a whole save plays in 30 s
 const RECENT = 10;                // scenes listed in "Recently revealed"
@@ -24,6 +24,7 @@ const TEMPLATE = `
             <div>Revealed tiles: <span data-ref="revealed">0</span></div>
             <div>Mapped tiles: <span data-ref="total">0</span></div>
             <div>Story events: <span data-ref="events">0</span></div>
+            <div>Respawn bench: <span data-ref="bench">–</span></div>
         </div>
         <div class="tl-mode" role="group" aria-label="Which rooms to show">
             <button class="on" data-act="mode-visited" title="Every room you have entered">Visited</button>
@@ -83,6 +84,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     let scenes = [];
     let events = [];                        // story events placed on the timeline
     let mapped = new Set();                 // scenesMapped
+    let currentPd = null;                   // active save playerData
     let mode = 'visited';                   // 'visited' | 'mapped'
     let pins = [];                          // [{ event, el }]
     let lookup = () => [];
@@ -143,6 +145,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         ref('slider').max = scenes.length;
         ref('count').textContent = scenes.length;
         const pd = s.status === 'ready' ? s.save?.playerData : null;
+        currentPd = pd;
+        ref('bench').textContent = pd?.respawnScene || '–';
         mapped = new Set(pd?.scenesMapped || []);
         events = placeEvents(s.status === 'ready' ? (s.parsed?.story?.events || []) : [], scenes);
         ref('events').textContent = events.length;
@@ -219,21 +223,26 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         layer.replaceChildren();
         pins = [];
         for (const event of events) {
-            const names = lookup(event.scene);
-            if (!names.length) continue;
-            // centre of the scene's tiles
-            const boxes = names.map(n => map.tiles[n]);
-            const x0 = Math.min(...boxes.map(b => b.x)), x1 = Math.max(...boxes.map(b => b.x + b.width));
-            const y0 = Math.min(...boxes.map(b => b.y)), y1 = Math.max(...boxes.map(b => b.y + b.height));
+            const center = sceneBoundsCenter(event.scene, lookup, map.tiles);
+            if (!center) continue;
             const el = document.createElement('div');
             el.className = 'tl-pin';
-            el.style.left = `${(x0 + x1) / 2}px`;
-            el.style.top = `${(y0 + y1) / 2}px`;
+            el.style.left = `${center.x}px`;
+            el.style.top = `${center.y}px`;
             el.style.background = EVENT_COLORS[event.type] || '#ccc';
             el.title = `Story event (type ${event.type}) · ${event.scene} · ${formatPlayTime(event.playTime)}`;
             el.hidden = true;
             layer.appendChild(el);
             pins.push({ event, el });
+        }
+        const benchPin = buildRespawnPin(currentPd, lookup, map.tiles);
+        if (benchPin) {
+            const el = document.createElement('div');
+            el.className = 'tl-pin tl-pin-bench';
+            el.style.left = `${benchPin.x}px`;
+            el.style.top = `${benchPin.y}px`;
+            el.title = benchPin.title;
+            layer.appendChild(el);
         }
     }
 
