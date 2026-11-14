@@ -408,8 +408,9 @@ Dropped (owner decision): the content-pack structure (`web/src/data/packs/`), `t
 
 Not required for "complete"; pick by owner interest. Each is independent.
 
-- **Save comparison**: load two saves, diff every category (uses `saveStore` with two slots and the category `parse` outputs).
-- **Export**: JSON and CSV of parsed data; PNG snapshot of the map with revealed tiles.
+- **Save comparison**: DONE (`app/compare.js`): load a second `.dat` save from the Statistics header and compare every progression category with `+N` / `-N` badges.
+- **Export**: DONE (`app/export.js`): download the decrypted save as formatted `.json` from the Statistics header.
+- **Hero's Path respawn bench pin**: DONE (`timeline/story.js`, `timeline/timeline.js`): displays Hornet's current respawn bench (`respawnScene` / `respawnMarkerName`) on the Hero's Path map and header.
 - **Shareable read-only link**: encode parsed summary (not the save) in the URL hash.
 - **Wiki links** per item via `id` (a `wiki` field per entry).
 - **Localisation**: display names keyed by the Phase 1 `id` in `packs/<pack>/i18n/<lang>.json`, falling back to English.
@@ -442,7 +443,6 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 | Craftmetal 8th source (inferred) | before/after opening the Deep Docks chest | Inferred as `Dock_03` / `Collectable Item Pickup` (`City Shard Chest` in `Dock_03` is false in the 72% save and true in the 100% save; matches the 8 craftable tools + held `Tool Metal` oracle on every save). |
 | Sherma / Greymoor spool reward flags (inferred) | before/after either reward | confirm quest `Save Sherma` and `silkFarmBattle1_complete` |
 | Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
-| Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
 | Flea icon | none | asset needed for the Fleas tab (the Huge Flea portrait stands in) |
 | `FleasCollectedTargetOrder` on newer versions (OPUS D20) | a 1.0.28714+ save after rescuing at least one flea | tells whether the key is created lazily or was removed by a patch; the Fleamaster Tool Pouch source depends on it |

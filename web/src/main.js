@@ -16,6 +16,7 @@ import { setupTabs, switchTab } from './app/tabs.js';
 import { showBuildInfo } from './app/buildInfo.js';
 import { saveStore } from './app/saveStore.js';
 import { downloadSaveJson } from './app/export.js';
+import { diffParsedSaves, renderComparisonBanner } from './app/compare.js';
 import { mountTimeline } from './timeline/timeline.js';
 import { checkSave, describeProblem } from './app/errors.js';
 import { startRouter } from './app/router.js';
@@ -28,6 +29,9 @@ let currentData = null; // last parsed save
 
 // DOM Elements
 const uploadBtn = document.getElementById('upload-btn');
+const compareBtn = document.getElementById('compare-btn');
+const compareFileInput = document.getElementById('compare-file-input');
+const compareBanner = document.getElementById('compare-banner');
 const downloadJsonBtn = document.getElementById('download-json-btn');
 const resetBtn = document.getElementById('reset-btn');
 const uploadModal = document.getElementById('upload-modal');
@@ -96,6 +100,10 @@ function setupFileUpload() {
     });
 
     resetBtn.addEventListener('click', resetStats);
+    compareBtn?.addEventListener('click', () => compareFileInput?.click());
+    compareFileInput?.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handleCompareFileSelect(e.target.files[0]);
+    });
     downloadJsonBtn?.addEventListener('click', () => {
         const { save, fileName: loadedName } = saveStore.get();
         downloadSaveJson(save, loadedName);
@@ -124,6 +132,9 @@ function resetStats() {
     currentData = null;
     fileName.textContent = '';
     uploadArea.classList.remove('has-file');
+    if (compareBtn) compareBtn.hidden = true;
+    if (compareFileInput) compareFileInput.value = '';
+    renderComparisonBanner(compareBanner, null);
     if (downloadJsonBtn) downloadJsonBtn.hidden = true;
     resetBtn.hidden = true;
     fileInput.value = '';
@@ -195,6 +206,8 @@ async function analyzeFile() {
         stage = 'parse';
         currentData = parseAllData(save.playerData, save.sceneData);
         displayStats(currentData);
+        renderComparisonBanner(compareBanner, null);
+        if (compareBtn) compareBtn.hidden = false;
         if (downloadJsonBtn) downloadJsonBtn.hidden = false;
         resetBtn.hidden = false;
         saveStore.set({ status: 'ready', save, parsed: currentData });
@@ -205,6 +218,38 @@ async function analyzeFile() {
         fail(error instanceof SaveDecryptError || stage === 'decrypt' ? 'decrypt' : 'parse', error.message);
     } finally {
         loading.hidden = true;
+    }
+}
+
+async function handleCompareFileSelect(file) {
+    if (!currentData || !wasmReady) return;
+    hideError();
+    if (!file.name.endsWith('.dat')) {
+        showError('file-type', `Got "${file.name}".`);
+        return;
+    }
+    try {
+        const bytes = new Uint8Array(await file.arrayBuffer());
+        const save = decryptSave(bytes);
+        const blocking = checkSave(save);
+        if (blocking) {
+            showError(blocking.kind, blocking.detail);
+            return;
+        }
+        const otherParsed = parseAllData(save.playerData, save.sceneData);
+        const diff = diffParsedSaves(currentData, otherParsed, {
+            baseName: selectedFile?.name || 'Current save',
+            otherName: file.name,
+        });
+        renderComparisonBanner(compareBanner, diff, {
+            onClear: () => {
+                if (compareFileInput) compareFileInput.value = '';
+                renderComparisonBanner(compareBanner, null);
+            },
+        });
+    } catch (error) {
+        console.error('Compare failed:', error);
+        showError(error instanceof SaveDecryptError ? 'decrypt' : 'parse', error.message);
     }
 }
 

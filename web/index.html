@@ -51,6 +51,10 @@
                             <button class="header-btn upload-btn" id="upload-btn">
                                 <span>Open save</span>
                             </button>
+                            <button class="header-btn reset-btn" id="compare-btn" hidden>
+                                <span>Compare save</span>
+                            </button>
+                            <input type="file" id="compare-file-input" accept=".dat" hidden>
                             <button class="header-btn reset-btn" id="download-json-btn" hidden>
                                 <span>Download JSON</span>
                             </button>
@@ -77,6 +81,9 @@
                                 <small class="error-detail" id="error-detail"></small>
                             </div>
                         </div>
+
+                        <!-- Save Comparison Banner -->
+                        <div class="compare-banner" id="compare-banner" hidden></div>
 
                         <!-- Stats Section with Tabs -->
                         <section class="stats-section" id="stats-section" hidden>

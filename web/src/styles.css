@@ -1985,3 +1985,93 @@ a.sidebar-nav-item {
     border-radius: 50%;
     font-weight: 700;
 }
+
+/* Save Comparison Banner */
+.compare-banner {
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--primary-color);
+    border-radius: var(--radius);
+}
+
+.compare-banner[hidden] {
+    display: none;
+}
+
+.compare-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.compare-title {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.compare-title strong {
+    color: var(--text-primary);
+}
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 0.5rem 0.75rem;
+}
+
+.compare-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.45rem 0.65rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+.compare-label {
+    color: var(--text-secondary);
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.compare-values {
+    color: var(--text-primary);
+    font-family: monospace;
+    font-size: 0.78rem;
+}
+
+.compare-delta {
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.compare-delta.positive {
+    color: var(--success-color, #4ade80);
+    background: rgba(74, 222, 128, 0.12);
+}
+
+.compare-delta.negative {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.12);
+}
+
+.compare-delta.neutral {
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.06);
+}
