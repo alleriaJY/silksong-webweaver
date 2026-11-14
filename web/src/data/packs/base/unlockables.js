@@ -66,10 +66,12 @@ export const SILK_HEART_SOURCES = [
     { id: 'defeated-lace-tower', name: 'Lace, 2nd encounter (The Cradle)', flagType: 'bool', flag: 'defeatedLaceTower', icon: 'general_silkheart.png' },
 ];
 
-// 4 upgrades (ToolPouchUpgrades 0-4)
+// 4 upgrades (ToolPouchUpgrades 0-4). Loddie's reward is inferred from
+// pinGalleriesCompleted (>= 1 -> truthy; 0 in all zero-upgrade saves, 1 in
+// the 72% save, 2 in the 100% save).
 export const TOOL_POUCH_SOURCES = [
     { id: 'purchased-pilgrims-rest-tool-pouch', name: "Mort (Pilgrim's Rest, 220 Rosaries)", flagType: 'bool', flag: 'PurchasedPilgrimsRestToolPouch', icon: 'icon_tool_kit_upgrade.png' },
-    { id: 'loddie-the-marrow', name: 'Loddie (The Marrow) - not yet confirmed', flagType: 'unknown', flag: null, icon: 'icon_tool_kit_upgrade.png' },
+    { id: 'loddie-the-marrow', name: 'Loddie, Pin Gallery challenge (The Marrow)', flagType: 'bool', flag: 'pinGalleriesCompleted', icon: 'icon_tool_kit_upgrade.png' },
     { id: 'journal', name: 'Nuu, Journal quest (Halfway Home)', flagType: 'quest', flag: 'Journal', icon: 'icon_tool_kit_upgrade.png' },
     { id: 'fleas-collected-target-order', name: 'Fleamaster Mooshka (Fleatopia)', flagType: 'flea', flag: 'FleasCollectedTargetOrder', icon: 'icon_tool_kit_upgrade.png' },
 ];

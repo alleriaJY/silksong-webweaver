@@ -5,13 +5,13 @@
  * counts as encountered when it has a Record at all.
  *
  * Generated from the enemy names found in every save in savefiles/ (235) and
- * the icon filenames "<Display> - <Internal Name> #<id>.png". Entries without
- * an icon use the internal name as display (displayUnconfirmed: true).
+ * the icon filenames "<Display> - <Internal Name> #<id>.png". The 5 entries
+ * without an icon use their confirmed wiki display names.
  * killsRequired (kills to complete an entry) is not in the save; it is null
  * until filled from the wiki (ROADMAP Appendix A).
  * Unused icon: 'Garmond & Zaza - Garmond_Zaza #4266959.png' (no save has that name).
  * The journal does not count toward completion.
- * Entry: { id, json, display, icon, killsRequired?, displayUnconfirmed? }
+ * Entry: { id, json, display, icon, killsRequired? }
  */
 
 export const JOURNAL = [
@@ -116,9 +116,9 @@ export const JOURNAL = [
     { id: 'lavalug', json: 'Tar Slug', display: 'Lavalug', icon: 'Lavalug - Tar Slug #4267241.png' },
     { id: 'leaf-glider', json: 'Lilypad Fly', display: 'Leaf Glider', icon: 'Leaf Glider - Lilypad Fly #4267278.png' },
     { id: 'leaf-roller', json: 'Grass Goomba', display: 'Leaf Roller', icon: 'Leaf Roller - Grass Goomba #4267274.png' },
-    { id: 'lifeblood-fly', json: 'Lifeblood Fly', display: 'Lifeblood Fly', icon: null, displayUnconfirmed: true },
+    { id: 'lifeblood-fly', json: 'Lifeblood Fly', display: 'Winged Lifeseed', icon: null },
     { id: 'lost-garmond', json: 'Garmond', display: 'Lost Garmond', icon: 'Lost Garmond - Garmond #4267350.png' },
-    { id: 'lost-lace', json: 'Lost Lace', display: 'Lost Lace', icon: null, displayUnconfirmed: true },
+    { id: 'lost-lace', json: 'Lost Lace', display: 'Lost Lace', icon: null },
     { id: 'maestro', json: 'Song Pilgrim Maestro', display: 'Maestro', icon: 'Maestro - Song Pilgrim Maestro #4267204.png' },
     { id: 'marrowmaw', json: 'Bone Thumper', display: 'Marrowmaw', icon: 'Marrowmaw - Bone Thumper #4267210.png' },
     { id: 'massive-mossgrub', json: 'MossBone Crawler Fat', display: 'Massive Mossgrub', icon: 'Massive Mossgrub - MossBone Crawler Fat #4266867.png' },
@@ -201,7 +201,7 @@ export const JOURNAL = [
     { id: 'smelt-shoveller', json: 'Dock Worker', display: 'Smelt Shoveller', icon: 'Smelt Shoveller - Dock Worker #4267311.png' },
     { id: 'smokerock-sifter', json: 'Shield Dock Worker', display: 'Smokerock Sifter', icon: 'Smokerock Sifter - Shield Dock Worker #4266996.png' },
     { id: 'snitchfly', json: 'Rosary Thief', display: 'Snitchfly', icon: 'Snitchfly - Rosary Thief #4267159.png' },
-    { id: 'song-automaton-fly-spike', json: 'Song Automaton Fly Spike', display: 'Song Automaton Fly Spike', icon: null, displayUnconfirmed: true },
+    { id: 'song-automaton-fly-spike', json: 'Song Automaton Fly Spike', display: 'Cogwork Spine', icon: null },
     { id: 'spear-skarr', json: 'Bone Hunter Fly', display: 'Spear Skarr', icon: 'Spear Skarr - Bone Hunter Fly #4267308.png' },
     { id: 'spinebeak-kai', json: 'Poke Swimmer', display: 'Spinebeak Kai', icon: 'Spinebeak Kai - Poke Swimmer #4266897.png' },
     { id: 'spit-squit', json: 'Swamp Mosquito Skinny', display: 'Spit Squit', icon: 'Spit Squit - Swamp Mosquito Skinny #4267039.png' },
@@ -227,7 +227,7 @@ export const JOURNAL = [
     { id: 'underloft', json: 'Understore Thrower', display: 'Underloft', icon: 'Underloft - Understore Thrower #4267279.png' },
     { id: 'underpoke', json: 'Understore Poker', display: 'Underpoke', icon: 'Underpoke - Understore Poker #4267275.png' },
     { id: 'underscrub', json: 'Pilgrim 03 Understore', display: 'Underscrub', icon: 'Underscrub - Pilgrim 03 Understore #4267331.png' },
-    { id: 'understore-automaton-ex', json: 'Understore Automaton EX', display: 'Understore Automaton EX', icon: null, displayUnconfirmed: true },
+    { id: 'understore-automaton-ex', json: 'Understore Automaton EX', display: 'Cogwork Hauler', icon: null },
     { id: 'undersweep', json: 'Pilgrim Staff Understore', display: 'Undersweep', icon: 'Undersweep - Pilgrim Staff Understore #4267250.png' },
     { id: 'underworker', json: 'Understore Small', display: 'Underworker', icon: 'Underworker - Understore Small #4267087.png' },
     { id: 'vaultborn', json: 'Song Scholar Acolyte', display: 'Vaultborn', icon: 'Vaultborn - Song Scholar Acolyte #4267096.png' },
@@ -235,7 +235,7 @@ export const JOURNAL = [
     { id: 'verdanir', json: 'Grasshopper Slasher', display: 'Verdanir', icon: 'Verdanir - Grasshopper Slasher #4267349.png' },
     { id: 'vicious-caranid', json: 'Bone Circler Vicious', display: 'Vicious Caranid', icon: 'Vicious Caranid - Bone Circler Vicious #4267336.png' },
     { id: 'void-mass', json: 'Black Thread Core', display: 'Void Mass', icon: 'Void Mass - Black Thread Core #4267169.png' },
-    { id: 'void-tendrils', json: 'Void Tendrils', display: 'Void Tendrils', icon: null, displayUnconfirmed: true },
+    { id: 'void-tendrils', json: 'Void Tendrils', display: 'Void Tendrils', icon: null },
     { id: 'voltvyrm', json: 'Zap Core Enemy', display: 'Voltvyrm', icon: 'Voltvyrm - Zap Core Enemy #4267202.png' },
     { id: 'wardenfly', json: 'Slab Fly Large', display: 'Wardenfly', icon: 'Wardenfly - Slab Fly Large #4267003.png' },
     { id: 'watcher-at-the-edge', json: 'Coral Warrior Grey', display: 'Watcher at the Edge', icon: 'Watcher at the Edge - Coral Warrior Grey #4267135.png' },

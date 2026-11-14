@@ -67,6 +67,22 @@ describe.each(FIXTURES)('fixture $name', ({ fixture, expected, parsed }) => {
     it('crafting kit sources collected equal ToolKitUpgrades (oracle)', () => {
         expect(parsed.craftingKit.stats.collected).toBe(expected.oracle.ToolKitUpgrades);
     });
+
+    it('tool pouch sources collected equal ToolPouchUpgrades (oracle)', () => {
+        expect(parsed.toolPouch.stats.collected).toBe(expected.oracle.ToolPouchUpgrades);
+    });
+
+    it('craftmetal sources collected equal crafted tools + held Tool Metal (oracle)', () => {
+        const craftTools = new Set([
+            'Sting Shard', 'Lava Charm', 'Cogwork Saw', 'Scuttlebrace', 'Brolly Spike',
+            'Pimpilo', 'Cogwork Flier', 'WebShot Forge', 'WebShot Architect', 'WebShot Weaver',
+        ]);
+        const crafted = (fixture.playerData.Tools?.savedData || [])
+            .filter(t => craftTools.has(t.Name) && t.Data?.IsUnlocked).length;
+        const held = (fixture.playerData.Collectables?.savedData || [])
+            .find(c => c.Name === 'Tool Metal')?.Data?.Amount || 0;
+        expect(parsed.craftmetal.stats.collected).toBe(crafted + held);
+    });
 });
 
 describe('fixture complete (100% save) oracle gaps', () => {

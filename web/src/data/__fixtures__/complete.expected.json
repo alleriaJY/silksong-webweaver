@@ -18,8 +18,8 @@
       "total": 51
     },
     "bosses": {
-      "defeated": 36,
-      "total": 36
+      "defeated": 40,
+      "total": 40
     },
     "maps": {
       "unlocked": 28,
@@ -66,8 +66,8 @@
       "total": 3
     },
     "toolPouch": {
-      "collected": 3,
-      "pending": 1,
+      "collected": 4,
+      "pending": 0,
       "total": 4
     },
     "craftingKit": {
@@ -81,8 +81,8 @@
       "total": 2
     },
     "craftmetal": {
-      "collected": 7,
-      "pending": 1,
+      "collected": 8,
+      "pending": 0,
       "total": 8
     },
     "memoryLockets": {

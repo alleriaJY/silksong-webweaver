@@ -15,9 +15,9 @@
 2. [Phase 0 - Hygiene and Safety Net (DONE 2026-09-23)](#phase-0---hygiene-and-safety-net-done-2026-09-23)
 3. [Phase 1 - Core Rework (DONE 2026-09-30)](#phase-1---core-rework-done-2026-09-30)
 4. [Phase 2 - Parsing Coverage (DONE 2026-09-30)](#phase-2---parsing-coverage-done-2026-09-30)
-5. [Phase 3 - Hero's Path and Map](#phase-3---heros-path-and-map)
+5. [Phase 3 - Hero's Path and Map (DONE 2026-10-09)](#phase-3---heros-path-and-map-done-2026-10-09)
 6. [Phase 4 - App Shell Consolidation (DONE 2026-10-28)](#phase-4---app-shell-consolidation-done-2026-10-28)
-7. [Phase 5 - DLC Readiness](#phase-5---dlc-readiness)
+7. [Phase 5 - DLC Readiness (DROPPED 2026-11-14)](#phase-5---dlc-readiness-dropped-2026-11-14)
 8. [Phase 6 - Stretch](#phase-6---stretch)
 9. [DLC Playbook](#dlc-playbook)
 - [Appendix A - Open Data Questions](#appendix-a---open-data-questions)
@@ -357,7 +357,7 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ---
 
-## Phase 3 - Hero's Path and Map
+## Phase 3 - Hero's Path and Map (DONE 2026-10-09)
 
 **Goal:** Finish map coverage and make Hero's Path first-class. The standalone map viewer was dropped on 2026-10-09 (owner decision): Hero's Path covers the map, and placed markers would need an unknown in-game-units to map-pixels transform. **Depends on:** Phase 1 (areas in packs), Phase 2 step 4 (story events).
 
@@ -398,22 +398,9 @@ Each step is one category module plus one pack file plus fixtures expectations. 
 
 ---
 
-## Phase 5 - DLC Readiness
+## Phase 5 - DLC Readiness (DROPPED 2026-11-14)
 
-**Goal:** Everything needed to support a content expansion is in place before it ships. **Depends on:** Phase 1; better after Phase 4.
-
-### Steps
-1. **In-app unknown-keys panel** under a `?dev` route: lists playerData keys and `persistentBools` IDs not referenced by any active pack, grouped by prefix, with copy-to-clipboard. This is the browser twin of `tools/unknown_keys.py` and lets the owner explore a new save without Python.
-2. **Pack scaffold script** `tools/new_pack.py <id> "<label>" <minVersion>` that creates `web/src/data/packs/<id>/` with empty category files and registers it in `packs/index.js` (behind `detect: () => false` until a probe is set).
-3. **Version banner**: show `version` and the list of active packs in the General tab header.
-4. **Fixture policy** for packs: every pack must ship at least one fixture where `detect` is true and one where it is false; contract test enforces it.
-5. **Map extension path**: a new area gets tiles by adding its sprites to `tools/tilefit/sprites/` and running `tools/tilefit/run_all.py` on them and the map, then reviewing them in `tilefit_viewer.html`; see `tools/tilefit/README.md`.
-6. Write the DLC Playbook section below into OPUS as the standing procedure.
-
-### Acceptance criteria
-- `python tools/new_pack.py demo "Demo" 9.9.9` followed by `npm test` passes with the demo pack present and detected false; removing it passes too.
-- Dev panel lists unknown keys for the late-game fixture.
-- Verification block green.
+Dropped (owner decision): the content-pack structure (`web/src/data/packs/`), `tools/unknown_keys.py`, and the unknown-content warning in `app/errors.js` are already in place. No upfront scaffolding or in-app dev panel is needed before a DLC actually ships; when one does, update the pack lists directly using the [DLC Playbook](#dlc-playbook).
 
 ---
 
@@ -432,18 +419,15 @@ Not required for "complete"; pick by owner interest. Each is independent.
 
 ## DLC Playbook
 
-Run this when a DLC or major patch ships. Assumes Phases 0, 1 and 5 are done.
+Run this when a DLC or major patch ships.
 
 1. Obtain a save from the new content (owner provides `.dat`). Decrypt: `python tools/decrypt_save.py dlc.dat savefiles/dlc.json`.
-2. `python tools/unknown_keys.py savefiles/dlc.json` (or the `?dev` panel). Pick one key that exists only in DLC saves as the pack's `detect` probe; confirm it is absent in every base fixture.
-3. `python tools/new_pack.py <id> "<label>" <version>` and set `detect`.
-4. Fill pack lists: bosses (`defeated*` keys), maps (`Has*Map`), tools (`Tools.savedData` names not in base), abilities/skills (`has*`), fleas, journal entries (`EnemyJournalKillData` names not in base), areas (new scene prefixes from `scenesVisited`), quests, unlockable sources (`diff_saves.py` between DLC saves).
-5. Add icons under the existing `assets/img/<kind>/` folders; the icon contract test tells you what is missing.
-6. Add a DLC fixture (Appendix B) with its oracle values. Update `completion.js` weights if the DLC changes the 100% breakdown; the oracle test will fail loudly if it does.
-7. Map: if the DLC adds areas, obtain the new clean and labeled maps, update `tools/map_transform.json`, add the new sprites to `tools/tilefit/sprites/`, run `tools/tilefit/run_all.py` (drop `--skip-candidates`) and review the new sprites in `tilefit_viewer.html`.
-8. Update OPUS.md status snapshot and this file.
-
-Base-game saves must render identically before and after adding a pack; the contract test with `detect: false` fixtures guarantees it.
+2. `python tools/unknown_keys.py savefiles/dlc.json`. Either extend `packs/base/` (for a patch) or add a new pack folder under `web/src/data/packs/<id>/` with a `detect` probe key that exists only in DLC saves.
+3. Fill pack lists: bosses (`defeated*` keys), maps (`Has*Map`), tools (`Tools.savedData` names not in base), abilities/skills (`has*`), fleas, journal entries (`EnemyJournalKillData` names not in base), areas (new scene prefixes from `scenesVisited`), quests, unlockable sources (`diff_saves.py` between DLC saves).
+4. Add icons under the existing `assets/img/<kind>/` folders; the icon contract test tells you what is missing.
+5. Add a DLC fixture (Appendix B) with its oracle values. Update `completion.js` weights if the DLC changes the 100% breakdown; the oracle test will fail loudly if it does.
+6. Map: if the DLC adds areas, obtain the new clean and labeled maps, update `tools/map_transform.json`, add the new sprites to `tools/tilefit/sprites/`, run `tools/tilefit/run_all.py` (drop `--skip-candidates`) and review the new sprites in `tilefit_viewer.html`.
+7. Update OPUS.md status snapshot and this file.
 
 ---
 
@@ -453,19 +437,16 @@ Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 
 | Item | Needed save states | Notes |
 |---|---|---|
-| Memory Locket sources (20) | before/after a world locket pickup | Purchases already have flags (see Phase 2 step 6). World pickups need one bracketing save pair to learn the ID pattern. |
-| Tool Pouch from Loddie | before/after receiving it | |
-| Craftmetal 8th source | none: `savefiles/user3.dat` is 100% | compare its `persistentBools` `Tool Metal` IDs and purchase flags against the 7 known |
+| Memory Locket sources (20) | before/after a world locket pickup | 3 mapped (Mort, Frey, Bilewater cocoon sack). The other 17 use generic `Collectable Item Pickup` IDs and need bracketing save pairs. (`purchasedGrindleMemoryLocket` also exists in `playerData`, false in every save.) |
+| Tool Pouch from Loddie (inferred) | before/after receiving it | Inferred as `pinGalleriesCompleted` (>= 1 -> truthy; matches `ToolPouchUpgrades` on every fixture). |
+| Craftmetal 8th source (inferred) | before/after opening the Deep Docks chest | Inferred as `Dock_03` / `Collectable Item Pickup` (`City Shard Chest` in `Dock_03` is false in the 72% save and true in the 100% save; matches the 8 craftable tools + held `Tool Metal` oracle on every save). |
 | Sherma / Greymoor spool reward flags (inferred) | before/after either reward | confirm quest `Save Sherma` and `silkFarmBattle1_complete` |
-| Minibosses (OPUS D22) | none | display names and icons for the 7 defeat flags |
-| Leads | none | `PurchasedBelltownToolPouch` (Loddie?), `CollectedToolMetal` (8th craftmetal?), `purchasedGrindleMemoryLocket` (21st locket?) |
 | Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
 | Journal `killsRequired` | none (wiki) | data entry task |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
 | Flea icon | none | asset needed for the Fleas tab (the Huge Flea portrait stands in) |
 | `FleasCollectedTargetOrder` on newer versions (OPUS D20) | a 1.0.28714+ save after rescuing at least one flea | tells whether the key is created lazily or was removed by a patch; the Fleamaster Tool Pouch source depends on it |
 | Keep hosting Team Cherry assets in the repo? | none (owner decision) | Alternatives: keep with attribution (default), or load from an external host. |
-| Save paths per platform | none (owner check) | Confirm the Phase 0 step 13 paths on each platform. |
 
 Add rows here whenever a step is blocked; remove them when resolved and note the resolving commit.
 

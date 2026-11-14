@@ -17,19 +17,18 @@ Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for f
 - [x] WASM-based decryption (Rust, AES-256-ECB)
 - [x] GitHub Pages deployment with CI (Rust, JS and Python tests); deploys only after CI passes
 - [x] Hero's Path exploration timeline over the Pharloom map
-- [x] Tile confirmation pipeline (629 of 669 tiles confirmed)
-- [x] Parsing: general stats, current state, tools (with upgrade sets), abilities, skills, crests, equipped loadout, bosses, maps, masks, silk spools, silk hearts, needle, crafting kit, tool pouch, craftmetal, other unlockables
+- [x] Tile confirmation pipeline (738 reviewed WebP tiles, 98.4% map room pixel coverage)
+- [x] Parsing: general stats, current state, tools (with upgrade sets), abilities, skills, crests, equipped loadout, bosses (40), maps, masks, silk spools, silk hearts, needle, crafting kit, tool pouch (all 4 sources), craftmetal (all 8 sources), other unlockables
 - [x] Completion breakdown that recomputes the game's own percentage exactly
-- [x] Hunter's Journal, Fleas, Quests, relics, mementos, materium, inventory, Bellway and Ventrica travel
+- [x] Hunter's Journal, Fleas, Quests, relics, mementos, materium, inventory, Key Items, Bellway and Ventrica travel
 - [x] Phase 0: save tools (decrypt, diff, unknown keys, fixtures), repo hygiene
 - [x] Phase 1: core rework (content packs, category modules, renderers, contract and golden tests)
 - [x] Phase 2: parsing coverage; every save flag is either shown or classified with a reason
+- [x] Phase 3: tile gaps closed, Hero's Path in the app on the shared upload, usable on phones
+- [x] Phase 4: single-page app shell, no iframes, accessibility and performance pass
 
 ### In progress / planned (see ROADMAP.md for the phase each belongs to)
-- [ ] Some Memory Locket sources, Loddie's tool pouch and the 8th craftmetal (need specific saves)
-- [x] Phase 3: tile gaps closed, Hero's Path in the app on the shared upload, usable on phones
-- [ ] Phase 4: single-page app shell, no iframes, accessibility and performance pass
-- [ ] Phase 5: DLC readiness (pack scaffold, unknown-keys dev panel, version banner)
+- [ ] Remaining 17 Memory Locket world-pickup IDs (need bracketing saves) and Journal `killsRequired`
 - [ ] Stretch: save comparison, exports, shareable summary links
 
 ## Assets

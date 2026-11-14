@@ -2,7 +2,9 @@
  * Collectable source checklists (same entry shape as unlockables.js).
  */
 
-// 8 craftmetal; 7 sources confirmed
+// 8 craftmetal. The 8th source (Dock_03 chest pickup) is inferred from the
+// 8 craftable tools + held Tool Metal oracle (0 in early saves, 4 in the 72%
+// save, 8 in the 100% save).
 export const CRAFTMETAL_SOURCES = [
     { id: 'purchased-bonebottom-tool-metal', name: 'Pebb (Bone Bottom, 60 Rosaries)', flagType: 'bool', flag: 'PurchasedBonebottomToolMetal', icon: 'Hornet_Tool_Metal.png' },
     { id: 'merchant-enclave-tool-metal', name: 'Jubilana (Songclave, 180 Rosaries)', flagType: 'bool', flag: 'MerchantEnclaveToolMetal', icon: 'Hornet_Tool_Metal.png' },
@@ -10,8 +12,8 @@ export const CRAFTMETAL_SOURCES = [
     { id: 'coral-32-collectable-item-pickup-tool-metal', name: 'Blasted Steps (Coral_32)', flagType: 'scene', sceneName: 'Coral_32', sceneId: 'Collectable Item Pickup - Tool Metal', icon: 'Hornet_Tool_Metal.png' },
     { id: 'wisp-05-collectable-item-pickup-tool-metal', name: 'Wisp Thicket (Wisp_05)', flagType: 'scene', sceneName: 'Wisp_05', sceneId: 'Collectable Item Pickup - Tool Metal', icon: 'Hornet_Tool_Metal.png' },
     { id: 'aqueduct-05-collectable-item-pickup-tool-metal', name: 'Putrified Ducts (Aqueduct_05)', flagType: 'scene', sceneName: 'Aqueduct_05', sceneId: 'Collectable Item Pickup - Tool Metal', icon: 'Hornet_Tool_Metal.png' },
-    { id: 'under-19b-collectable-item-pickup-tool-metal', name: 'Deep Docks / Far Fields (Under_19b)', flagType: 'scene', sceneName: 'Under_19b', sceneId: 'Collectable Item Pickup - Tool Metal', icon: 'Hornet_Tool_Metal.png' },
-    { id: 'craftmetal-8th-unconfirmed', name: '8th location - not yet confirmed', flagType: 'unknown', flag: null, icon: 'Hornet_Tool_Metal.png' },
+    { id: 'under-19b-collectable-item-pickup-tool-metal', name: 'Underworks (Under_19b)', flagType: 'scene', sceneName: 'Under_19b', sceneId: 'Collectable Item Pickup - Tool Metal', icon: 'Hornet_Tool_Metal.png' },
+    { id: 'dock-03-collectable-item-pickup', name: 'Deep Docks / Far Fields chest (Dock_03)', flagType: 'scene', sceneName: 'Dock_03', sceneId: 'Collectable Item Pickup', icon: 'Hornet_Tool_Metal.png' },
 ];
 
 // 20 lockets (wiki list). Mapped only where the save names the locket

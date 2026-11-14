@@ -5,5 +5,5 @@
  */
 
 export const KEY_ITEMS = [
-    { id: 'ballow-key', json: 'BallowGivenKey', display: "Ballow's Key", note: 'Act 3: given by Ballow, opens the way to the Abyss' },
+    { id: 'ballow-key', json: 'BallowGivenKey', display: 'Diving Bell Key', note: 'Act 3: given by Ballow, opens the way to the Abyss' },
 ];

@@ -11,6 +11,7 @@ export const BOSSES = [
     { id: 'fourth-chorus', json: 'defeatedSongGolem', display: 'Fourth Chorus', icon: 'Fourth Chorus - Song Golem.png' },
     { id: 'moorwing', json: 'defeatedVampireGnatBoss', display: 'Moorwing', icon: 'Moorwing - Vampire Gnat.png' },
     { id: 'sister-splinter', json: 'defeatedSplinterQueen', display: 'Sister Splinter', icon: 'Sister Splinter - Splinter Queen.png' },
+    { id: 'widow', json: 'spinnerDefeated', display: 'Widow', icon: 'Widow - Spinner Boss.png' },
     { id: 'skull-tyrant-1', json: 'skullKingDefeated', display: 'Skull Tyrant 1', icon: 'Skull Tyrant - Skull King.png' },
     { id: 'skull-tyrant-2', json: 'skullKingKilled', display: 'Skull Tyrant 2', icon: 'Skull Tyrant - Skull King.png' },
     { id: 'great-conchflies', json: 'defeatedCoralDrillers', display: 'Great Conchflies', icon: 'Great Conchfly - Coral Conch Driller Giant.png' },
@@ -41,4 +42,7 @@ export const BOSSES = [
     { id: 'seth', json: 'defeatedSeth', display: 'Seth', icon: 'Shrine Guardian Seth - Seth.png' },
     { id: 'nyleth', json: 'defeatedFlowerQueen', display: 'Nyleth', icon: 'Nyleth - Flower Queen.png' },
     { id: 'clover-dancers', json: 'defeatedCloverDancers', display: 'Clover Dancers', icon: 'Clover Dancers - Clover Dancer.png' },
+    { id: 'crawfather', json: 'defeatedCrowCourt', display: 'Crawfather', icon: 'Crawfather.png' },
+    { id: 'watcher-at-the-edge', json: 'defeatedGreyWarrior', display: 'Watcher at the Edge', icon: 'Watcher at the Edge - Coral Warrior Grey.png' },
+    { id: 'craggler', json: 'roofCrabDefeated', display: 'Craggler', icon: 'Craggler - Roof Crab.png' },
 ];
