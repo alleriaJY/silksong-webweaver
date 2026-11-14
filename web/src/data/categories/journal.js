@@ -1,9 +1,8 @@
 /**
  * Hunter's Journal tab: EnemyJournalKillData.list matched by internal Name.
- * An enemy is "encountered" when the save has a Record for it. Kills are
- * shown; "complete" needs killsRequired, which is not in the save and stays
- * null until filled from the wiki. The journal does not count toward
- * completion, so there is no completion() hook.
+ * An enemy is "encountered" when the save has a Record for it. Kills and
+ * completion (kills >= killsRequired) are shown. The journal does not count
+ * toward completion, so there is no completion() hook.
  */
 import { savedDataByName } from '../../core/saveAccess.js';
 import { iconUrl, placeholderIconUrl } from '../../core/icons.js';
@@ -34,12 +33,18 @@ export function parseJournal(save, ctx) {
         stats: {
             total: entries.length,
             encountered: entries.filter(e => e.encountered).length,
+            completed: entries.filter(e => e.complete).length,
             kills: entries.reduce((sum, e) => sum + e.kills, 0),
         },
     };
 }
 
 const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+
+function formatKills(e) {
+    if (e.killsRequired !== null) return `${e.kills}/${e.killsRequired} kills`;
+    return plural(e.kills, 'kill');
+}
 
 export default {
     id: 'journal',
@@ -50,11 +55,15 @@ export default {
         if (!grid) return;
         renderIconGrid(grid, result.entries, {
             itemClass: 'journal-item', isOn: e => e.encountered,
+            decorate: (el, e) => { if (e.complete) el.classList.add('completed'); },
             icon: e => (e.icon ? iconUrl('journal', e.icon) : placeholderIconUrl()),
-            title: e => (e.encountered ? `${e.display}: ${plural(e.kills, 'kill')}` : `${e.display}: not encountered`),
-            detail: e => (e.encountered ? plural(e.kills, 'kill') : ''),
+            title: e => (e.encountered
+                ? `${e.display}: ${formatKills(e)}${e.complete ? ' (completed)' : ''}`
+                : `${e.display}: not encountered`),
+            detail: e => (e.encountered ? formatKills(e) : ''),
         });
         setText('journal-encountered-count', result.stats.encountered);
+        setText('journal-completed-count', result.stats.completed);
         setText('journal-total-count', result.stats.total);
         setText('journal-kills-count', result.stats.kills.toLocaleString());
     },

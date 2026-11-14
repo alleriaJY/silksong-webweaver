@@ -1358,6 +1358,10 @@ header h1 {
     color: var(--accent-color);
 }
 
+.journal-item.completed .grid-detail {
+    color: var(--success-color, #4ade80);
+}
+
 .bosses-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));

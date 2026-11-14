@@ -95,6 +95,7 @@ describe('fixture complete (100% save) oracle gaps', () => {
         expect(parsed.abilities.stats.unlocked).toBe(parsed.abilities.stats.total);
         expect(parsed.skills.stats.unlocked).toBe(parsed.skills.stats.total);
         expect(parsed.crests.stats.unlocked).toBe(parsed.crests.stats.total);
+        expect(parsed.journal.stats.completed).toBe(parsed.journal.stats.total);
     });
 
     // Was it.fails until Phase 2 replaced the two wrong reward flags (OPUS D17)

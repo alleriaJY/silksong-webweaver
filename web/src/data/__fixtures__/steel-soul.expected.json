@@ -86,6 +86,7 @@
     "journal": {
       "total": 235,
       "encountered": 0,
+      "completed": 0,
       "kills": 0
     },
     "quests": {
