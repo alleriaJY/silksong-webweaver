@@ -15,6 +15,7 @@ import { setupGlobalDragDrop } from './app/upload.js';
 import { setupTabs, switchTab } from './app/tabs.js';
 import { showBuildInfo } from './app/buildInfo.js';
 import { saveStore } from './app/saveStore.js';
+import { downloadSaveJson } from './app/export.js';
 import { mountTimeline } from './timeline/timeline.js';
 import { checkSave, describeProblem } from './app/errors.js';
 import { startRouter } from './app/router.js';
@@ -27,6 +28,7 @@ let currentData = null; // last parsed save
 
 // DOM Elements
 const uploadBtn = document.getElementById('upload-btn');
+const downloadJsonBtn = document.getElementById('download-json-btn');
 const resetBtn = document.getElementById('reset-btn');
 const uploadModal = document.getElementById('upload-modal');
 const uploadModalBackdrop = document.getElementById('upload-modal-backdrop');
@@ -94,6 +96,10 @@ function setupFileUpload() {
     });
 
     resetBtn.addEventListener('click', resetStats);
+    downloadJsonBtn?.addEventListener('click', () => {
+        const { save, fileName: loadedName } = saveStore.get();
+        downloadSaveJson(save, loadedName);
+    });
     setupGlobalDragDrop(handleFileSelect);
 }
 
@@ -118,6 +124,7 @@ function resetStats() {
     currentData = null;
     fileName.textContent = '';
     uploadArea.classList.remove('has-file');
+    if (downloadJsonBtn) downloadJsonBtn.hidden = true;
     resetBtn.hidden = true;
     fileInput.value = '';
     hideError();
@@ -188,6 +195,7 @@ async function analyzeFile() {
         stage = 'parse';
         currentData = parseAllData(save.playerData, save.sceneData);
         displayStats(currentData);
+        if (downloadJsonBtn) downloadJsonBtn.hidden = false;
         resetBtn.hidden = false;
         saveStore.set({ status: 'ready', save, parsed: currentData });
         const warning = checkSave(save, currentData);
