@@ -5,5 +5,17 @@
  */
 
 export const KEY_ITEMS = [
+    { id: 'simple-key-bonebottom', json: 'PurchasedBonebottomFaithToken', display: 'Simple Key (Bone Bottom)', note: 'Purchased from Pebb for 500 Rosaries' },
+    { id: 'simple-key-sinners-road', json: 'CollectedDustCageKey', display: "Simple Key (Sinner's Road)", note: "Dropped by Roachkeeper in Sinner's Road" },
+    { id: 'simple-key-songclave', json: 'MerchantEnclaveSimpleKey', display: 'Simple Key (Songclave)', note: 'Purchased from Jubilana for 650 Rosaries' },
+    { id: 'slab-key-indolent', json: 'HasSlabKeyA', display: 'Key of Indolent', note: 'The Slab: opens Indolent locks' },
+    { id: 'slab-key-heretic', json: 'HasSlabKeyB', display: 'Key of Heretic', note: 'The Slab: opens Heretic locks' },
+    { id: 'slab-key-apostate', json: 'HasSlabKeyC', display: 'Key of Apostate', note: 'Putrified Ducts / The Slab: opens Apostate locks' },
+    { id: 'architect-key', json: 'PurchasedArchitectKey', display: "Architect's Key", note: 'Underworks: purchased from Twelfth Architect, unlocks the Chapel of the Architect' },
+    { id: 'white-key', json: 'collectedWardKey', display: 'White Key', note: 'Songclave: unlocks the elevator into Whiteward' },
+    { id: 'surgeons-key', json: 'collectedWardBossKey', display: "Surgeon's Key", note: 'Whiteward: opens the sluice gate beneath the operating theatre' },
+    { id: 'bellhome-key', json: 'BelltownHouseUnlocked', display: 'Bellhome Key', note: "Bellhart: received from Pavo, unlocks Hornet's Bellhome" },
+    { id: 'materium-constructed', json: 'ConstructedMaterium', display: 'Materium', note: 'Bellhome: assembled to record materials of Pharloom' },
+    { id: 'farsight-constructed', json: 'ConstructedFarsight', display: 'Farsight', note: 'Bellhome: assembled from Weavenest Absolom, reveals completion percentage' },
     { id: 'ballow-key', json: 'BallowGivenKey', display: 'Diving Bell Key', note: 'Act 3: given by Ballow, opens the way to the Abyss' },
 ];
