@@ -6,7 +6,7 @@
  *   fileName, save ({ playerData, sceneData, roots }), parsed (parseAllData), error
  */
 
-const EMPTY = { status: 'empty', fileName: null, save: null, parsed: null, error: null };
+const EMPTY = { status: 'empty', fileName: null, save: null, parsed: null, compareSave: null, error: null };
 
 export function createSaveStore() {
     const listeners = new Set();

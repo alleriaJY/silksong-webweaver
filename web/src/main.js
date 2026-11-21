@@ -18,6 +18,7 @@ import { saveStore } from './app/saveStore.js';
 import { downloadSaveJson } from './app/export.js';
 import { diffParsedSaves, renderComparisonBanner } from './app/compare.js';
 import { mountTimeline } from './timeline/timeline.js';
+import { mountExplorer } from './explorer/explorer.js';
 import { checkSave, describeProblem } from './app/errors.js';
 import { startRouter } from './app/router.js';
 import { showScene } from './app/scene.js';
@@ -210,7 +211,7 @@ async function analyzeFile() {
         if (compareBtn) compareBtn.hidden = false;
         if (downloadJsonBtn) downloadJsonBtn.hidden = false;
         resetBtn.hidden = false;
-        saveStore.set({ status: 'ready', save, parsed: currentData });
+        saveStore.set({ status: 'ready', save, parsed: currentData, compareSave: null });
         const warning = checkSave(save, currentData);
         if (warning) showError(warning.kind, warning.detail);
     } catch (error) {
@@ -237,6 +238,7 @@ async function handleCompareFileSelect(file) {
             return;
         }
         const otherParsed = parseAllData(save.playerData, save.sceneData);
+        saveStore.set({ compareSave: save });
         const diff = diffParsedSaves(currentData, otherParsed, {
             baseName: selectedFile?.name || 'Current save',
             otherName: file.name,
@@ -245,6 +247,7 @@ async function handleCompareFileSelect(file) {
             onClear: () => {
                 if (compareFileInput) compareFileInput.value = '';
                 renderComparisonBanner(compareBanner, null);
+                saveStore.set({ compareSave: null });
             },
         });
     } catch (error) {
@@ -295,6 +298,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (timelineRoot) {
         const timeline = mountTimeline(timelineRoot, saveStore, { onUpload: showUploadModal });
         window.addEventListener('app:page', (e) => (e.detail === 'timeline' ? timeline.show() : timeline.hide()));
+    }
+    // Save Explorer shares the same saveStore and builds lazily on first visit
+    const explorerRoot = document.getElementById('explorer-root');
+    if (explorerRoot) {
+        const explorer = mountExplorer(explorerRoot, saveStore, { onUpload: showUploadModal });
+        window.addEventListener('app:page', (e) => (e.detail === 'explorer' ? explorer.show() : explorer.hide()));
     }
     startRouter();   // after the listeners: it announces the first page
 
