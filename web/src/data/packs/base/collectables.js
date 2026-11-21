@@ -50,6 +50,37 @@ export const MEMORY_LOCKET_SOURCES = [
     { id: 'sands-of-karak-upper-western-platform', name: 'Sands of Karak - upper western platform (Coral_23)', flagType: 'scene', sceneName: 'Coral_23', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
 ];
 
+// 3 Pale Oil sources (used by Pinmaster Plinney to upgrade Hornet's Needle)
+export const PALE_OIL_SOURCES = [
+    { id: 'pale-oil-whispering-vaults', name: 'Whispering Vaults - box puzzle (Library_03)', flagType: 'scene', sceneName: 'Library_03', sceneId: 'Collectable Item Pickup' },
+    { id: 'pale-oil-great-gourmand', name: 'Choral Chambers - "Great Taste of Pharloom" wish', flagType: 'quest', flag: 'Great Gourmand' },
+    { id: 'pale-oil-flea-games', name: 'Bellhart - "Ecstasy of the End" wish (Act 3)', flagType: 'quest', flag: 'Flea Games' },
+];
+
+// 7 Mossberry sources (4 world fruit + 3 flying enemy drops)
+export const MOSSBERRY_SOURCES = [
+    { id: 'mossberry-tut-02', name: 'Moss Grotto #1 (Tut_02)', flagType: 'scene', sceneName: 'Tut_02', sceneId: 'moss_berry_fruit' },
+    { id: 'mossberry-tut-01b', name: 'Moss Grotto #2 (Tut_01b)', flagType: 'scene', sceneName: 'Tut_01b', sceneId: 'moss_berry_fruit' },
+    { id: 'mossberry-bonetown-aspid', name: 'Moss Grotto - Bone Bottom flying enemy', flagType: 'bool', flag: 'bonetownAspidBerryCollected' },
+    { id: 'mossberry-mosstown-aspid', name: 'Moss Grotto - Mosshome flying enemy', flagType: 'bool', flag: 'mosstownAspidBerryCollected' },
+    { id: 'mossberry-bonegrave-aspid', name: 'Moss Grotto - Bonegrave flying enemy', flagType: 'bool', flag: 'bonegraveAspidBerryCollected' },
+    { id: 'mossberry-weave-03', name: 'Weavenest Atla (Weave_03)', flagType: 'scene', sceneName: 'Weave_03', sceneId: 'moss_berry_fruit' },
+    { id: 'mossberry-arborium-04', name: 'Memorium (Arborium_04)', flagType: 'scene', sceneName: 'Arborium_04', sceneId: 'moss_berry_fruit' },
+];
+
+// 9 Silkeater cocoons (Coral_37 is Classic Mode only)
+export const SILKEATER_SOURCES = [
+    { id: 'silkeater-dock-14', name: 'Deep Docks (Dock_14)', flagType: 'scene', sceneName: 'Dock_14', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-greymoor-04', name: 'Greymoor (Greymoor_04)', flagType: 'scene', sceneName: 'Greymoor_04', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-coral-37', name: 'Blasted Steps - Classic only (Coral_37)', flagType: 'scene', sceneName: 'Coral_37', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-organ-01', name: 'Exhaust Organ (Organ_01)', flagType: 'scene', sceneName: 'Organ_01', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-song-24', name: 'Choral Chambers #1 (Song_24)', flagType: 'scene', sceneName: 'Song_24', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-song-09b', name: 'Choral Chambers #2 (Song_09b)', flagType: 'scene', sceneName: 'Song_09b', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-library-14', name: 'Whispering Vaults (Library_14)', flagType: 'scene', sceneName: 'Library_14', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-ward-04', name: 'Whiteward (Ward_04)', flagType: 'scene', sceneName: 'Ward_04', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-tube-hub', name: 'The Cradle / Terminus (Tube_Hub)', flagType: 'scene', sceneName: 'Tube_Hub', sceneId: 'Silk Grub Large Cocoon' },
+];
+
 // ═══════════════════════════════════════════════════════════════════════════
 // Lists below are generated from the names found in every save in savefiles/.
 // They are the names we have seen, not necessarily the full in-game sets; the
@@ -78,6 +109,8 @@ export const RELICS = [
     { id: 'weaver-record-conductor', json: 'Weaver Record Conductor', display: 'Weaver Record (Conductor)', kind: 'weaver-record' },
     { id: 'seal-chit-silk-siphon', json: 'Seal Chit Silk Siphon', display: 'Seal Chit (Silk Siphon)', kind: 'seal-chit' },
     { id: 'psalm-cylinder-ward', json: 'Psalm Cylinder Ward', display: 'Psalm Cylinder (Ward)', kind: 'psalm-cylinder' },
+    { id: 'weaver-totem-bonetown-upper-room', json: 'Weaver Totem Bonetown_upper_room', display: 'Weaver Totem (Bone Bottom upper room)', kind: 'weaver-totem' },
+    { id: 'weaver-record-sprint-challenge', json: 'Weaver Record Sprint_Challenge', display: 'Weaver Record (Sprint Challenge)', kind: 'weaver-record' },
 ];
 
 // Materium entries: playerData.MateriumCollected.savedData (37 seen). Presence in
@@ -120,6 +153,8 @@ export const MATERIUM = [
     { id: 'voltstone', json: 'Voltstone', display: 'Voltstone' },
     { id: 'plasmium-blood', json: 'Plasmium Blood', display: 'Plasmium Blood' },
     { id: 'magnetite', json: 'Magnetite', display: 'Magnetite' },
+    { id: 'courier-supplies-slave', json: 'Courier Supplies Slave', display: "Queen's Egg (Courier Supplies)" },
+    { id: 'courier-supplies-mask-maker', json: 'Courier Supplies Mask Maker', display: 'Liquid Lacquer (Courier Supplies)' },
 ];
 
 // Mementos: held as a Collectables item or deposited (MementosDeposited), or a
@@ -140,8 +175,8 @@ export const MEMENTOS = [
         allFlags: ['CollectedHeartFlower', 'CollectedHeartCoral', 'CollectedHeartHunter', 'CollectedHeartClover'],
         depositItems: ['Flower Heart', 'Coral Heart', 'Hunter Heart', 'Clover Heart'],
     },
-    { id: 'sprintmaster-memento', display: 'Sprintmaster Memento', flag: 'CollectedMementoSprintmaster' },
-    { id: 'guardian-memento', display: 'Guardian Memento (Flea Games)', flag: 'FleaGamesMementoGiven' },
+    { id: 'sprintmaster-memento', display: 'Sprintmaster Memento', item: 'Sprintmaster Memento', flag: 'CollectedMementoSprintmaster' },
+    { id: 'guardian-memento', display: 'Guardian Memento (Flea Games)', item: 'Memento Seth', flag: 'FleaGamesMementoGiven' },
 ];
 
 // Inventory: playerData.Collectables.savedData { Amount, ... } (76 names seen).

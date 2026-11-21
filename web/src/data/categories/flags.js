@@ -37,7 +37,18 @@ export function parseMaps(save, ctx) {
 }
 
 export function parseBosses(save, ctx) {
-    const bosses = parseIconFlags(save.playerData, ctx.lists('bosses'));
+    const journalKills = new Map(
+        (save.playerData?.EnemyJournalKillData?.list || []).map(e => [e.Name, e.Record?.Kills || 0]),
+    );
+    const bosses = ctx.lists('bosses').map(def => ({
+        json: def.json,
+        display: def.display,
+        icon: def.icon,
+        optional: !!def.optional,
+        value: def.source === 'journal'
+            ? (journalKills.get(def.json) || 0) > 0
+            : !!save.playerData?.[def.json],
+    }));
     return { bosses, stats: { total: bosses.length, defeated: bosses.filter(b => b.value).length } };
 }
 

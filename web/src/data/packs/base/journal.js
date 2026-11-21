@@ -250,4 +250,6 @@ export const JOURNAL = [
     { id: 'yago', json: 'Coral Flyer Throw', display: 'Yago', icon: 'Yago - Coral Flyer Throw #4267261.png', killsRequired: 12 },
     { id: 'yuma', json: 'Coral Swimmer Small', display: 'Yuma', icon: 'Yuma - Coral Swimmer Small #4267262.png', killsRequired: 16 },
     { id: 'yumama', json: 'Coral Big Jellyfish', display: 'Yumama', icon: 'Yumama - Coral Big Jellyfish #4267050.png', killsRequired: 3 },
+    { id: 'garmond-and-zaza', json: 'Garmond_Zaza', display: 'Garmond & Zaza', icon: 'Garmond & Zaza - Garmond_Zaza #4266959.png', killsRequired: 1, optional: true },
+    { id: 'summoned-saviour', json: 'Abyss Mass', display: 'Summoned Saviour (Steel Soul)', icon: null, killsRequired: 1, optional: true },
 ];

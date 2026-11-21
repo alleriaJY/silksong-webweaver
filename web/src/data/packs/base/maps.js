@@ -40,6 +40,8 @@ export const MAPS = [
 // scenesEncounteredBench is empty even in the 100% save, so benches rested at
 // cannot be counted from the save.
 export const TRAVEL = [
+    { id: 'bellway-bone-bottom', json: 'UnlockedFastTravel', display: 'Bone Bottom', kind: 'bellway' },
+    { id: 'bellway-marrow', json: 'defeatedBellBeast', display: 'The Marrow', kind: 'bellway' },
     { id: 'bellway-aqueduct', json: 'UnlockedAqueductStation', display: 'Putrified Ducts', kind: 'bellway' },
     { id: 'bellway-belltown', json: 'UnlockedBelltownStation', display: 'Bellhart', kind: 'bellway' },
     { id: 'bellway-boneforest-east', json: 'UnlockedBoneforestEastStation', display: 'Far Fields', kind: 'bellway' },
@@ -59,4 +61,10 @@ export const TRAVEL = [
     { id: 'pin-bench', json: 'hasPinBench', display: 'Bench pins', kind: 'pin' },
     { id: 'pin-stag', json: 'hasPinStag', display: 'Bellway pins', kind: 'pin' },
     { id: 'pin-tube', json: 'hasPinTube', display: 'Ventrica pins', kind: 'pin' },
+    { id: 'pin-shop', json: 'hasPinShop', display: 'Vendor pins', kind: 'pin' },
+    { id: 'marker-shell', json: 'hasMarker_a', display: 'Shell Marker', kind: 'pin' },
+    { id: 'marker-ring', json: 'hasMarker_b', display: 'Ring Marker', kind: 'pin' },
+    { id: 'marker-hunt', json: 'hasMarker_c', display: 'Hunt Marker', kind: 'pin' },
+    { id: 'marker-dark', json: 'hasMarker_d', display: 'Dark Marker', kind: 'pin' },
+    { id: 'marker-bronze', json: 'hasMarker_e', display: 'Bronze Marker', kind: 'pin' },
 ];

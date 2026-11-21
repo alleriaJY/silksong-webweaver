@@ -36,6 +36,9 @@
 <button class="tab-btn" data-tab="key-items" role="tab" id="tab-key-items" aria-controls="panel-key-items" aria-selected="false" tabindex="-1">
 <span class="tab-text">Key items</span>
 </button>
+<button class="tab-btn" data-tab="world" role="tab" id="tab-world" aria-controls="panel-world" aria-selected="false" tabindex="-1">
+<span class="tab-text">World</span>
+</button>
 <button class="tab-btn" data-tab="misc" role="tab" id="tab-misc" aria-controls="panel-misc" aria-selected="false" tabindex="-1">
 <span class="tab-text">Misc</span>
 </button>
@@ -1077,13 +1080,35 @@
 </div>
 </div>
 </div>
+<!-- Vesticrest (Extra Crest Slots) -->
+<div class="stat-card full-width">
+<h4 class="section-header">Vesticrest
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="vesticrest-collected-count">0</strong>/<span id="vesticrest-total">2</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="vesticrest-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Vesticrest Yellow Slot (Eva)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Vesticrest Blue Slot (Eva)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
 </div>
 </div>
 <!-- 5. Bosses Tab -->
 <div class="tab-panel" id="panel-bosses" role="tabpanel" aria-labelledby="tab-bosses" tabindex="0">
 <div class="panel-header">
 <h3>Bosses</h3>
-<p class="panel-description">Boss encounters defeated (<span id="bosses-count">0</span>/<span id="bosses-total">40</span>)
+<p class="panel-description">Boss encounters defeated (<span id="bosses-count">0</span>/<span id="bosses-total">47</span>)
                                         </p>
 </div>
 <div class="panel-content">
@@ -1250,6 +1275,391 @@
 <img src="assets/img/bosses/Craggler - Roof Crab.png" alt="" title="Craggler" class="not-defeated">
 <span title="Craggler">Craggler</span>
 </div>
+<div class="boss-item" role="listitem" aria-label="Bell Eater">
+<img src="assets/img/bosses/Bell Eater - Giant Centipede.png" alt="" title="Bell Eater" class="not-defeated">
+<span title="Bell Eater">Bell Eater</span>
+</div>
+<div class="boss-item" role="listitem" aria-label="Grand Mother Silk">
+<img src="assets/img/bosses/Grand Mother Silk - Silk Boss.png" alt="" title="Grand Mother Silk" class="not-defeated">
+<span title="Grand Mother Silk">Grand Mother Silk</span>
+</div>
+<div class="boss-item" role="listitem" aria-label="Lost Lace">
+<img src="assets/img/bosses/Lost Lace.png" alt="" title="Lost Lace" class="not-defeated">
+<span title="Lost Lace">Lost Lace</span>
+</div>
+<div class="boss-item" role="listitem" aria-label="Shakra">
+<img src="assets/img/bosses/Shakra.png" alt="" title="Shakra" class="not-defeated">
+<span title="Shakra">Shakra</span>
+</div>
+<div class="boss-item" role="listitem" aria-label="Plasmified Zango">
+<img src="assets/img/bosses/Plasmified Zango - Blue Assistant.png" alt="" title="Plasmified Zango" class="not-defeated">
+<span title="Plasmified Zango">Plasmified Zango</span>
+</div>
+<div class="boss-item" role="listitem" aria-label="Garmond &amp; Zaza">
+<img src="assets/img/bosses/Garmond &amp; Zaza - Garmond_Zaza.png" alt="" title="Garmond &amp; Zaza" class="not-defeated">
+<span title="Garmond &amp; Zaza">Garmond &amp; Zaza</span>
+</div>
+<div class="boss-item" role="listitem" aria-label="Summoned Saviour (Steel Soul)">
+<img src="assets/img/bosses/Summoned Saviour - Abyss Mass.png" alt="" title="Summoned Saviour (Steel Soul)" class="not-defeated">
+<span title="Summoned Saviour (Steel Soul)">Summoned Saviour (Steel Soul)</span>
+</div>
+</div>
+</div>
+<div class="stat-card full-width">
+<h4 class="section-header">Unique Spawns &amp; Mini-Bosses
+                                                <span class="unlocked-stats">
+                                                    (Defeated: <strong id="unique-spawns-collected-count">0</strong>/<span id="unique-spawns-total">58</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="unique-spawns-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Rhinogrund #1 - Far Fields (Pilgrim's Rest, missable)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Rhinogrund #2 - Memorium (Arborium_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Rhinogrund #3 - Far Fields Act 3 (Bone_East_02b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Covetous Pilgrim #1 - Shellwood (Shellgrave)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Covetous Pilgrim #2 - Bilewater (Shadow_23)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Covetous Pilgrim #3 - Moss Grotto Act 3 (Bonegrave)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Shardillard #1 - Deep Docks (Bone_East_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Shardillard #2 - Greymoor (Greymoor_17)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Shardillard #3 - The Marrow (Bone_14)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Shardillard #4 - Far Fields (Bone_East_14)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Shardillard #5 - Sands of Karak (Coral_38)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Shardillard #6 - The Marrow late (Bone_06)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Moss Grotto (Mosstown_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Weavenest Atla (Weave_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - The Marrow #1 (Bone_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - The Marrow #2 (Bone_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - The Marrow #3 (Bone_07)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - The Marrow #4 (Bone_09)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Deep Docks #1 (Bone_East_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Deep Docks #2 (Dock_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Deep Docks #3 (Bone_East_05)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Hunter's March #1 (Ant_04_left)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Hunter's March #2 (Ant_05b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Far Fields #1 (Bone_East_02b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Far Fields #2 (Bone_East_17)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Far Fields #3 (Bone_East_26)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Greymoor #1 (Greymoor_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Greymoor #2 (Greymoor_07)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Greymoor #3 (Greymoor_11)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Greymoor #4 (Greymoor_12)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Greymoor #5 (Greymoor_16)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Shellwood #1 (Shellwood_01b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Shellwood #2 (Shellwood_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Shellwood #3 (Shellwood_04b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Shellwood #4 (Shellwood_26)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Shellwood #5 (Shellwood_15)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Shellwood #6 (Under_27)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Blasted Steps #1 (Coral_11)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Blasted Steps #2 (Coral_12)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Blasted Steps #3 (Coral_32)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Sinner's Road (Dust_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Styx's Nest #1 &amp; #2 (Classic only)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Bilewater (Shadow_05)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Underworks #1 (Under_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Underworks #2 (Under_05)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Underworks #3 (Under_18)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Choral Chambers #1 (Song_01)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Choral Chambers #2 (Song_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Choral Chambers #3 (Song_05)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Choral Chambers #4 (Song_15)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Choral Chambers #5 (Song_17)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Choral Chambers #6 (Song_27)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Whispering Vaults #1 (Library_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Whispering Vaults #2 (Library_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Whispering Vaults #3 (Library_06)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - Cogwork Core (Cog_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - High Halls #1 (Hang_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Void Mass - High Halls #2 (Hang_13)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
 </div>
 </div>
 </div>
@@ -1258,7 +1668,7 @@
 <div class="tab-panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" tabindex="0">
 <div class="panel-header">
 <h3>Hunter's Journal</h3>
-<p class="panel-description">Enemies encountered (<span id="journal-encountered-count">0</span>/<span id="journal-total-count">235</span>),
+<p class="panel-description">Enemies encountered (<span id="journal-encountered-count">0</span>/<span id="journal-total-count">237</span>),
                                             completed <span id="journal-completed-count">0</span>,
                                             <span id="journal-kills-count">0</span> kills in total</p>
 </div>
@@ -2206,6 +2616,14 @@
 <img src="assets/img/journal/Yumama - Coral Big Jellyfish #4267050.png" alt="" title="Yumama: not encountered" class="locked">
 <span title="Yumama">Yumama</span>
 </div>
+<div class="journal-item" role="listitem" aria-label="Garmond &amp; Zaza: not encountered">
+<img src="assets/img/journal/Garmond &amp; Zaza - Garmond_Zaza #4266959.png" alt="" title="Garmond &amp; Zaza: not encountered" class="locked">
+<span title="Garmond &amp; Zaza">Garmond &amp; Zaza</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Summoned Saviour (Steel Soul): not encountered">
+<img src="assets/img/knight_icon.png" alt="" title="Summoned Saviour (Steel Soul): not encountered" class="locked">
+<span title="Summoned Saviour (Steel Soul)">Summoned Saviour (Steel Soul)</span>
+</div>
 </div>
 </div>
 </div>
@@ -2215,7 +2633,7 @@
 <div class="panel-header">
 <h3>Quests &amp; Wishes</h3>
 <p class="panel-description">Completed <span id="quests-completed-count">0</span>,
-                                            in progress <span id="quests-active-count">0</span>, of <span id="quests-total-count">74</span> known</p>
+                                            in progress <span id="quests-active-count">0</span>, of <span id="quests-total-count">81</span> known</p>
 </div>
 <div class="panel-content">
 <div class="stat-card full-width">
@@ -2665,6 +3083,48 @@
 </div>
 <span class="source-status">Not started</span>
 </div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Runtfeast</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bone Bottom Supplies</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Queen's Egg</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Fleatopia Supplies</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Liquid Lacquer</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Survivor's Camp Supplies</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">A Vassal Lost (Steel Soul)</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
 </div>
 </div>
 </div>
@@ -3035,9 +3495,21 @@
 <!-- Travel: Bellway -->
 <div class="stat-card full-width">
 <h4 class="section-header">Bellway Stations
-                                                <span class="unlocked-stats">(<strong id="bellway-count">0</strong>/<span id="bellway-total">10</span>)</span>
+                                                <span class="unlocked-stats">(<strong id="bellway-count">0</strong>/<span id="bellway-total">12</span>)</span>
 </h4>
 <div class="source-checklist" id="bellway-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bone Bottom</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Marrow</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <span class="source-name">Putrified Ducts</span>
@@ -3144,10 +3616,10 @@
 </div>
 </div>
 </div>
-<!-- Travel: map pins -->
+<!-- Travel: map pins & quill -->
 <div class="stat-card full-width">
-<h4 class="section-header">Map Pins
-                                                <span class="unlocked-stats">(<strong id="map-pins-count">0</strong>/<span id="map-pins-total">3</span>)</span>
+<h4 class="section-header">Map Pins &amp; Quill
+                                                <span class="unlocked-stats">(<strong id="map-pins-count">0</strong>/<span id="map-pins-total">9</span> · Quill: <strong id="quill-state-label">None</strong>)</span>
 </h4>
 <div class="source-checklist" id="map-pins-checklist" role="list">
 <div class="source-item missing" role="listitem">
@@ -3165,6 +3637,42 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <span class="source-name">Ventrica pins</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Vendor pins</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Shell Marker</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ring Marker</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Hunt Marker</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Dark Marker</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bronze Marker</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
@@ -3395,10 +3903,154 @@
 </div>
 </div>
 </div>
+<!-- Pale Oil Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">Pale Oil
+                                                <span class="unlocked-stats">
+                                                    (Collected: <strong id="pale-oil-collected-count">0</strong>/<span id="pale-oil-total">3</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="pale-oil-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Whispering Vaults - box puzzle (Library_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Choral Chambers - "Great Taste of Pharloom" wish</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellhart - "Ecstasy of the End" wish (Act 3)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Mossberries Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">Mossberries
+                                                <span class="unlocked-stats">
+                                                    (Collected: <strong id="mossberries-collected-count">0</strong>/<span id="mossberries-total">7</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="mossberries-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Moss Grotto #1 (Tut_02)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Moss Grotto #2 (Tut_01b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Moss Grotto - Bone Bottom flying enemy</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Moss Grotto - Mosshome flying enemy</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Moss Grotto - Bonegrave flying enemy</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Weavenest Atla (Weave_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Memorium (Arborium_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Silkeaters Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">Silkeater Cocoons
+                                                <span class="unlocked-stats">
+                                                    (Collected: <strong id="silkeaters-collected-count">0</strong>/<span id="silkeaters-total">9</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="silkeaters-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Deep Docks (Dock_14)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Greymoor (Greymoor_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Blasted Steps - Classic only (Coral_37)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Exhaust Organ (Organ_01)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Choral Chambers #1 (Song_24)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Choral Chambers #2 (Song_09b)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Whispering Vaults (Library_14)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Whiteward (Ward_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Cradle / Terminus (Tube_Hub)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
 <!-- Relics Section -->
 <div class="stat-card full-width">
 <h4 class="section-header">Relics
-                                                <span class="unlocked-stats">(Collected: <strong id="relics-collected-count">0</strong>, deposited: <strong id="relics-deposited-count">0</strong> of <span id="relics-total-count">19</span> known)</span>
+                                                <span class="unlocked-stats">(Collected: <strong id="relics-collected-count">0</strong>, deposited: <strong id="relics-deposited-count">0</strong> of <span id="relics-total-count">21</span> known)</span>
 </h4>
 <div class="source-checklist" id="relics-checklist" role="list">
 <div class="source-item missing" role="listitem">
@@ -3515,6 +4167,18 @@
 </div>
 <span class="source-status">Missing</span>
 </div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Weaver Totem (Bone Bottom upper room)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Weaver Record (Sprint Challenge)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
 </div>
 </div>
 <!-- Mementos Section -->
@@ -3576,7 +4240,7 @@
 <!-- Materium Section -->
 <div class="stat-card full-width">
 <h4 class="section-header">Materium
-                                                <span class="unlocked-stats">(Recorded: <strong id="materium-collected-count">0</strong>/<span id="materium-total-count">37</span> known)</span>
+                                                <span class="unlocked-stats">(Recorded: <strong id="materium-collected-count">0</strong>/<span id="materium-total-count">39</span> known)</span>
 </h4>
 <div class="source-checklist" id="materium-checklist" role="list">
 <div class="source-item missing" role="listitem">
@@ -3801,6 +4465,18 @@
 </div>
 <span class="source-status">Missing</span>
 </div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Queen's Egg (Courier Supplies)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Liquid Lacquer (Courier Supplies)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
 </div>
 </div>
 <!-- Inventory Section -->
@@ -3905,6 +4581,231 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <span class="source-name">Diving Bell Key (Act 3: given by Ballow, opens the way to the Abyss)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 9. World Tab -->
+<div class="tab-panel" id="panel-world" role="tabpanel" aria-labelledby="tab-world" tabindex="0">
+<div class="panel-header">
+<h3>World &amp; Bellhome</h3>
+<p class="panel-description">Endings, Bellhome upgrades, Bellshrines, Threefold Melody, and arena battles</p>
+</div>
+<div class="panel-content">
+<div class="stat-card full-width">
+<h4 class="section-header">Bellhome Furnishings &amp; Devices
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="bellhome-collected-count">0</strong>/<span id="bellhome-total">8</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="bellhome-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Desk (Frey, 380 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Gleamlights (Frey, 320 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bell Lacquer (Frey, 520 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Personal Spa (Frey, 1100 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Gramophone (Frey, 490 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Materium (device installed)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Crawbell (device installed)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Farsight (device installed)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<div class="stat-card full-width">
+<h4 class="section-header">Endings &amp; World Milestones
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="world-milestones-collected-count">0</strong>/<span id="world-milestones-total">25</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="world-milestones-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ending A: Weaver Queen (Act 2 Regular)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ending D: Twisted Child (Act 2 Cursed)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ending C: Snared Silk (Act 2 Soul Snare)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ending E: Sister of the Void (Act 3)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - The Marrow</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - Far Fields</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - Greymoor</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - Bellhart</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - Shellwood</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Threefold Melody - Architect's Melody</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Threefold Melody - Conductor's Melody</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Threefold Melody - Vaultkeeper's Melody</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Threefold Melody - Cradle Lift Unlocked</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Hunter's March (Ant_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Hunter's March entrance (Ant_21)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Verdania / Aspid (Aspid_06)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Cogwork Core Abyss (Cog_10)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Whispering Vaults Entry</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Whispering Vaults Acolytes</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Sinner's Road (Dust_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Greymoor Tower (Greymoor_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - High Halls Gauntlet (Hang_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - The Slab Cloak Recovery</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Choral Chambers (Song_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Underworks (Under_07)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>

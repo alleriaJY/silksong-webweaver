@@ -1393,6 +1393,18 @@
      "Mutator": 0,
      "SceneName": "Tut_01",
      "Value": true
+    },
+    {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Tut_02",
+     "Value": true
+    },
+    {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Tut_01b",
+     "Value": false
     }
    ]
   },

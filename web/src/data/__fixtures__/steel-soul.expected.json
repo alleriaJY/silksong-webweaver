@@ -19,7 +19,7 @@
     },
     "bosses": {
       "defeated": 0,
-      "total": 40
+      "total": 47
     },
     "maps": {
       "unlocked": 0,
@@ -83,24 +83,59 @@
       "pending": 0,
       "total": 20
     },
+    "vesticrest": {
+      "collected": 0,
+      "pending": 0,
+      "total": 2
+    },
+    "paleOil": {
+      "collected": 0,
+      "pending": 0,
+      "total": 3
+    },
+    "mossberries": {
+      "collected": 0,
+      "pending": 0,
+      "total": 7
+    },
+    "silkeaters": {
+      "collected": 0,
+      "pending": 0,
+      "total": 9
+    },
+    "uniqueSpawns": {
+      "collected": 0,
+      "pending": 0,
+      "total": 58
+    },
+    "bellhome": {
+      "collected": 0,
+      "pending": 0,
+      "total": 8
+    },
+    "worldMilestones": {
+      "collected": 0,
+      "pending": 0,
+      "total": 25
+    },
     "journal": {
-      "total": 235,
+      "total": 237,
       "encountered": 0,
       "completed": 0,
       "kills": 0
     },
     "quests": {
-      "total": 74,
+      "total": 81,
       "completed": 0,
       "active": 0
     },
     "relics": {
-      "total": 19,
+      "total": 21,
       "collected": 0,
       "deposited": 0
     },
     "materium": {
-      "total": 37,
+      "total": 39,
       "collected": 0
     },
     "mementos": {
@@ -110,7 +145,7 @@
     "inventoryKinds": 0,
     "travel": {
       "bellway": {
-        "total": 10,
+        "total": 12,
         "unlocked": 0
       },
       "ventrica": {
@@ -118,7 +153,7 @@
         "unlocked": 0
       },
       "pin": {
-        "total": 3,
+        "total": 9,
         "unlocked": 0
       }
     },

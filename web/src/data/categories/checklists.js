@@ -4,12 +4,13 @@
  * says which pack list to read and which elements to fill.
  *
  * flagType (see packs/base/unlockables.js):
- *   bool         playerData boolean          quest        QuestCompletionData IsCompleted
- *   flagMin      playerData numeric >= min   scene        sceneData.persistentBools
+ *   bool         playerData boolean          flagMin      playerData numeric >= min
+ *   bit          (playerData[flag] & bit)!=0 quest        QuestCompletionData IsCompleted
+ *   scene        sceneData.persistentBools   sceneInt     sceneData.persistentInts === value
  *   sceneVisited playerData.scenesVisited    any          collected if any sub-check in `checks` passes
  *   unknown      flag not identified yet -> rendered as Pending
  */
-import { questCompleted, scenePickup } from '../../core/saveAccess.js';
+import { persistentInt, questCompleted, scenePickup } from '../../core/saveAccess.js';
 import { field } from './common.js';
 import { iconUrl } from '../../core/icons.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
@@ -20,10 +21,14 @@ function evalCheck(playerData, sceneData, check) {
             return !!playerData?.[check.flag];
         case 'flagMin':
             return Number(playerData?.[check.flag]) >= check.min;
+        case 'bit':
+            return (Number(playerData?.[check.flag] || 0) & check.bit) !== 0;
         case 'quest':
             return questCompleted(playerData, check.flag);
         case 'scene':
             return scenePickup(sceneData, check.sceneName, check.sceneId);
+        case 'sceneInt':
+            return persistentInt(sceneData, check.sceneName, check.sceneId) === check.value;
         case 'sceneVisited':
             return Array.isArray(playerData?.scenesVisited) && playerData.scenesVisited.includes(check.sceneName);
         case 'any':
@@ -127,4 +132,11 @@ export const CHECKLISTS = [
     }),
     checklist({ id: 'craftmetal', list: 'craftmetalSources', container: 'craftmetal-checklist', collectedId: 'craftmetal-collected-count', collectedTotalId: 'craftmetal-total' }),
     checklist({ id: 'memoryLockets', list: 'memoryLocketSources', container: 'memory-lockets-checklist', collectedId: 'memory-lockets-collected-count', collectedTotalId: 'memory-lockets-total' }),
+    checklist({ id: 'vesticrest', list: 'vesticrestSources', container: 'vesticrest-checklist', collectedId: 'vesticrest-collected-count', collectedTotalId: 'vesticrest-total' }),
+    checklist({ id: 'paleOil', list: 'paleOilSources', container: 'pale-oil-checklist', collectedId: 'pale-oil-collected-count', collectedTotalId: 'pale-oil-total' }),
+    checklist({ id: 'mossberries', list: 'mossberrySources', container: 'mossberries-checklist', collectedId: 'mossberries-collected-count', collectedTotalId: 'mossberries-total' }),
+    checklist({ id: 'silkeaters', list: 'silkeaterSources', container: 'silkeaters-checklist', collectedId: 'silkeaters-collected-count', collectedTotalId: 'silkeaters-total' }),
+    checklist({ id: 'uniqueSpawns', list: 'uniqueSpawnSources', container: 'unique-spawns-checklist', collectedId: 'unique-spawns-collected-count', collectedTotalId: 'unique-spawns-total' }),
+    checklist({ id: 'bellhome', list: 'bellhomeSources', container: 'bellhome-checklist', collectedId: 'bellhome-collected-count', collectedTotalId: 'bellhome-total' }),
+    checklist({ id: 'worldMilestones', list: 'worldMilestoneSources', container: 'world-milestones-checklist', collectedId: 'world-milestones-collected-count', collectedTotalId: 'world-milestones-total' }),
 ];

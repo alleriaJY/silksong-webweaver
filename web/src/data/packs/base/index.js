@@ -13,11 +13,13 @@ import { CRESTS, SPECIAL_CREST_STATES } from './crests.js';
 import { MAPS, TRAVEL } from './maps.js';
 import {
     MASK_SHARD_SOURCES, SPOOL_FRAGMENT_SOURCES, SILK_HEART_SOURCES, TOOL_POUCH_SOURCES,
-    CRAFTING_KIT_SOURCES, OTHER_UNLOCKABLE_SOURCES, NEEDLE_TIERS,
+    CRAFTING_KIT_SOURCES, OTHER_UNLOCKABLE_SOURCES, VESTICREST_SOURCES, NEEDLE_TIERS,
 } from './unlockables.js';
 import {
-    CRAFTMETAL_SOURCES, MEMORY_LOCKET_SOURCES, RELICS, MATERIUM, MEMENTOS, INVENTORY_ITEMS,
+    CRAFTMETAL_SOURCES, MEMORY_LOCKET_SOURCES, PALE_OIL_SOURCES, MOSSBERRY_SOURCES, SILKEATER_SOURCES,
+    RELICS, MATERIUM, MEMENTOS, INVENTORY_ITEMS,
 } from './collectables.js';
+import { BELLHOME_SOURCES, UNIQUE_SPAWN_SOURCES, WORLD_MILESTONE_SOURCES } from './world.js';
 import { AREAS } from './areas.js';
 import { JOURNAL } from './journal.js';
 import { QUESTS } from './quests.js';
@@ -50,9 +52,16 @@ export default {
         toolPouchSources: TOOL_POUCH_SOURCES,
         craftingKitSources: CRAFTING_KIT_SOURCES,
         otherUnlockableSources: OTHER_UNLOCKABLE_SOURCES,
+        vesticrestSources: VESTICREST_SOURCES,
         needleTiers: NEEDLE_TIERS,
         craftmetalSources: CRAFTMETAL_SOURCES,
         memoryLocketSources: MEMORY_LOCKET_SOURCES,
+        paleOilSources: PALE_OIL_SOURCES,
+        mossberrySources: MOSSBERRY_SOURCES,
+        silkeaterSources: SILKEATER_SOURCES,
+        bellhomeSources: BELLHOME_SOURCES,
+        uniqueSpawnSources: UNIQUE_SPAWN_SOURCES,
+        worldMilestoneSources: WORLD_MILESTONE_SOURCES,
         areas: AREAS,
         journal: JOURNAL,
         quests: QUESTS,

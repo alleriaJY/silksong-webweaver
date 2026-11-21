@@ -83,4 +83,11 @@ export const QUESTS = [
     { id: 'sprintmaster-race', json: 'Sprintmaster Race', display: 'Fastest in Pharloom' },
     { id: 'ant-trapper', json: 'Ant Trapper', display: 'The Hidden Hunter' },
     { id: 'mr-mushroom', json: 'Mr Mushroom', display: 'Passing of the Age' },
+    { id: 'huntress-quest-runt', json: 'Huntress Quest Runt', display: 'Runtfeast' },
+    { id: 'courier-delivery-bonebottom', json: 'Courier Delivery Bonebottom', display: 'Bone Bottom Supplies' },
+    { id: 'courier-delivery-dustpens-slave', json: 'Courier Delivery Dustpens Slave', display: "Queen's Egg" },
+    { id: 'courier-delivery-fleatopia', json: 'Courier Delivery Fleatopia', display: 'Fleatopia Supplies' },
+    { id: 'courier-delivery-mask-maker', json: 'Courier Delivery Mask Maker', display: 'Liquid Lacquer' },
+    { id: 'courier-delivery-fixer', json: 'Courier Delivery Fixer', display: "Survivor's Camp Supplies" },
+    { id: 'steel-sentinel', json: 'Steel Sentinel', display: 'A Vassal Lost (Steel Soul)' },
 ];

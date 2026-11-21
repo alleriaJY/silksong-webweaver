@@ -10,16 +10,21 @@ const SECTIONS = [
     { kind: 'pin', container: 'map-pins-checklist', count: 'map-pins-count', total: 'map-pins-total', status: 'Owned' },
 ];
 
+const QUILL_LABELS = { 0: 'None', 1: 'White Quill', 2: 'Red Quill', 3: 'Purple Quill' };
+
 export function parseTravel(save, ctx) {
+    const pd = save.playerData || {};
     const items = ctx.lists('travel').map(def => ({
-        json: def.json, display: def.display, kind: def.kind, value: !!save.playerData?.[def.json],
+        json: def.json, display: def.display, kind: def.kind, value: !!pd[def.json],
     }));
     const stats = {};
     for (const { kind } of SECTIONS) {
         const ofKind = items.filter(i => i.kind === kind);
         stats[kind] = { total: ofKind.length, unlocked: ofKind.filter(i => i.value).length };
     }
-    return { items, stats };
+    const quillState = pd.hasQuill ? (Number(pd.QuillState) || 1) : 0;
+    const quill = { owned: !!pd.hasQuill, state: quillState, label: QUILL_LABELS[quillState] || `Quill (state ${quillState})` };
+    return { items, quill, stats };
 }
 
 export default {
@@ -37,5 +42,6 @@ export default {
             setText(s.count, result.stats[s.kind].unlocked);
             setText(s.total, result.stats[s.kind].total);
         }
+        setText('quill-state-label', result.quill.label);
     },
 };

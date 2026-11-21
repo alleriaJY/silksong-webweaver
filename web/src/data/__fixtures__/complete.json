@@ -7701,9 +7701,27 @@
      "Value": true
     },
     {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Tut_02",
+     "Value": true
+    },
+    {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Tut_01b",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Bonetown",
+     "Value": false
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Bone_02",
      "Value": false
     },
     {
@@ -7713,10 +7731,22 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Bone_04",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Mosstown_02",
      "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Mosstown_02",
+     "Value": false
     },
     {
      "ID": "Collectable Item Pickup (2)",
@@ -7743,7 +7773,19 @@
      "Value": false
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Bone_09",
+     "Value": false
+    },
+    {
      "ID": "Collectable Item Pickup",
+     "Mutator": 0,
+     "SceneName": "Ant_04_left",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
      "Mutator": 0,
      "SceneName": "Ant_04_left",
      "Value": true
@@ -7758,6 +7800,18 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Bone_East_04b",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Bone_East_03",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Bone_East_05",
      "Value": true
     },
     {
@@ -7788,6 +7842,12 @@
      "ID": "Silk Spool",
      "Mutator": 0,
      "SceneName": "Bone_East_13",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Bone_East_17",
      "Value": true
     },
     {
@@ -7827,6 +7887,12 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Greymoor_02",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Greymoor_15",
@@ -7851,6 +7917,12 @@
      "Value": false
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Greymoor_04",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Greymoor_05",
@@ -7860,6 +7932,18 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Greymoor_16",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Greymoor_16",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Greymoor_07",
      "Value": true
     },
     {
@@ -7875,10 +7959,22 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Shellwood_02",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Shellwood_01b",
      "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Shellwood_01b",
+     "Value": false
     },
     {
      "ID": "Heart Piece",
@@ -7887,9 +7983,27 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Shellwood_04b",
+     "Value": true
+    },
+    {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Shellgrave",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Shellwood_13",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Shellwood_26",
      "Value": true
     },
     {
@@ -7926,6 +8040,12 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Crawl_02",
+     "Value": true
+    },
+    {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Bonegrave",
      "Value": true
     },
     {
@@ -7980,6 +8100,12 @@
      "ID": "crest_shrine_break_tube",
      "Mutator": 0,
      "SceneName": "Weave_02",
+     "Value": true
+    },
+    {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Weave_03",
      "Value": true
     },
     {
@@ -8043,7 +8169,19 @@
      "Value": false
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Coral_12",
+     "Value": false
+    },
+    {
      "ID": "Collectable Item Pickup - Tool Metal",
+     "Mutator": 0,
+     "SceneName": "Coral_32",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
      "Mutator": 0,
      "SceneName": "Coral_32",
      "Value": true
@@ -8059,6 +8197,24 @@
      "Mutator": 0,
      "SceneName": "Dust_06",
      "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Shadow_05",
+     "Value": false
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Dust_11",
+     "Value": false
+    },
+    {
+     "ID": "Black_Thread_Core (1)",
+     "Mutator": 0,
+     "SceneName": "Dust_11",
+     "Value": false
     },
     {
      "ID": "Collectable Item Pickup",
@@ -8079,6 +8235,12 @@
      "Value": true
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Organ_01",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Library_12",
@@ -8091,15 +8253,51 @@
      "Value": true
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Song_24",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Library_03",
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core_Citadel",
+     "Mutator": 0,
+     "SceneName": "Library_04",
+     "Value": false
+    },
+    {
+     "ID": "Black_Thread_Core_Citadel (1)",
+     "Mutator": 0,
+     "SceneName": "Library_04",
+     "Value": false
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Song_Enclave",
+     "Value": false
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Tube_Hub",
+     "Value": false
+    },
+    {
+     "ID": "Black_Thread_Core_Citadel",
+     "Mutator": 0,
+     "SceneName": "Song_27",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core_Citadel",
+     "Mutator": 0,
+     "SceneName": "Song_05",
      "Value": false
     },
     {
@@ -8115,6 +8313,12 @@
      "Value": false
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Under_02",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Under_16",
@@ -8124,6 +8328,12 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Under_03",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Under_05",
      "Value": true
     },
     {
@@ -8157,6 +8367,12 @@
      "Value": false
     },
     {
+     "ID": "Black_Thread_Core_Citadel",
+     "Mutator": 0,
+     "SceneName": "Song_01",
+     "Value": false
+    },
+    {
      "ID": "Silk Spool",
      "Mutator": 0,
      "SceneName": "Ward_01",
@@ -8166,6 +8382,12 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Ward_02b",
+     "Value": true
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Ward_04",
      "Value": true
     },
     {
@@ -8193,9 +8415,21 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Under_18",
+     "Value": false
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Song_26",
+     "Value": true
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Song_09b",
      "Value": true
     },
     {
@@ -8208,6 +8442,12 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Song_09",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Cog_04",
      "Value": true
     },
     {
@@ -8241,6 +8481,12 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core_Citadel",
+     "Mutator": 0,
+     "SceneName": "Library_06",
+     "Value": false
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Ant_08",
@@ -8268,6 +8514,12 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Hang_06_bank",
+     "Value": true
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Library_14",
      "Value": true
     },
     {
@@ -8307,6 +8559,12 @@
      "Value": true
     },
     {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Shadow_23",
+     "Value": true
+    },
+    {
      "ID": "Breakable Hang Sack Memory Locket",
      "Mutator": 0,
      "SceneName": "Shadow_27",
@@ -8323,6 +8581,18 @@
      "Mutator": 0,
      "SceneName": "Shadow_13",
      "Value": true
+    },
+    {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Arborium_04",
+     "Value": true
+    },
+    {
+     "ID": "Rhino",
+     "Mutator": 0,
+     "SceneName": "Arborium_02",
+     "Value": false
     },
     {
      "ID": "Collectable Item Pickup",
@@ -8451,6 +8721,12 @@
      "Value": true
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Coral_37",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Dock_02",
@@ -8469,10 +8745,28 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Dock_03c",
+     "Value": false
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Dock_14",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Dock_11",
      "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Greymoor_11",
+     "Value": false
     },
     {
      "ID": "Collectable Item Pickup",
@@ -8503,6 +8797,12 @@
      "Mutator": 0,
      "SceneName": "Shadow_Bilehaven_Room",
      "Value": true
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Under_20",
+     "Value": false
     },
     {
      "ID": "Collectable Item Pickup",
@@ -8544,6 +8844,24 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Abyss_04",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Dock_04",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Coral_11",
+     "Value": false
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Under_27",
      "Value": true
     },
     {
@@ -8595,6 +8913,12 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core_Citadel",
+     "Mutator": 0,
+     "SceneName": "Bone_East_26",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Bone_East_25",
@@ -8604,6 +8928,18 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Ant_Queen",
+     "Value": true
+    },
+    {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Bone_East_02b",
+     "Value": true
+    },
+    {
+     "ID": "Rhino",
+     "Mutator": 0,
+     "SceneName": "Bone_East_02b",
      "Value": true
     },
     {
@@ -8647,6 +8983,48 @@
   "persistentInts": {
    "serializedList": [
     {
+     "ID": "Shell Fossil Mimic AppearVariant",
+     "Mutator": 0,
+     "SceneName": "Bone_06",
+     "Value": -1
+    },
+    {
+     "ID": "Shell Fossil Mimic",
+     "Mutator": 0,
+     "SceneName": "Bone_14",
+     "Value": 30
+    },
+    {
+     "ID": "Shell Fossil Mimic",
+     "Mutator": 0,
+     "SceneName": "Bone_East_03",
+     "Value": -1
+    },
+    {
+     "ID": "Shell Fossil Mimic",
+     "Mutator": 0,
+     "SceneName": "Bone_East_14",
+     "Value": 30
+    },
+    {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Shellgrave",
+     "Value": 55
+    },
+    {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Bonegrave",
+     "Value": 75
+    },
+    {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Shadow_23",
+     "Value": 75
+    },
+    {
      "ID": "Caravan Troup Member Short Fleatopia",
      "Mutator": 0,
      "SceneName": "Aqueduct_05",
@@ -8657,6 +9035,12 @@
      "Mutator": 0,
      "SceneName": "Aqueduct_05",
      "Value": 1
+    },
+    {
+     "ID": "Shell Fossil Mimic",
+     "Mutator": 0,
+     "SceneName": "Coral_38",
+     "Value": -1
     }
    ]
   }

@@ -91,6 +91,12 @@ export const OTHER_UNLOCKABLE_SOURCES = [
     { id: 'has-seen-eva-heal', name: "Sylphsong (Eva's Heal - 12 Memory Lockets + all Crests)", flagType: 'bool', flag: 'HasBoundCrestUpgrader', icon: 'Eva_heal_prompt.png' },
 ];
 
+// Vesticrest (extra crest slots unlocked via Eva; does not count toward 100%)
+export const VESTICREST_SOURCES = [
+    { id: 'vesticrest-yellow', name: 'Vesticrest Yellow Slot (Eva)', flagType: 'bool', flag: 'UnlockedExtraYellowSlot' },
+    { id: 'vesticrest-blue', name: 'Vesticrest Blue Slot (Eva)', flagType: 'bool', flag: 'UnlockedExtraBlueSlot' },
+];
+
 // Needle tier by playerData.nailUpgrades (0-4). Icons live in general/nail.
 export const NEEDLE_TIERS = [
     { id: 'needle', name: 'Needle', level: 1, icon: 'Inv_0033_inv_nail_01.png' },

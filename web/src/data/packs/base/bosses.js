@@ -45,4 +45,11 @@ export const BOSSES = [
     { id: 'crawfather', json: 'defeatedCrowCourt', display: 'Crawfather', icon: 'Crawfather.png' },
     { id: 'watcher-at-the-edge', json: 'defeatedGreyWarrior', display: 'Watcher at the Edge', icon: 'Watcher at the Edge - Coral Warrior Grey.png' },
     { id: 'craggler', json: 'roofCrabDefeated', display: 'Craggler', icon: 'Craggler - Roof Crab.png' },
+    { id: 'bell-eater', json: 'bellCentipedeAppeared', display: 'Bell Eater', icon: 'Bell Eater - Giant Centipede.png' },
+    { id: 'grand-mother-silk', json: 'Silk Boss', source: 'journal', display: 'Grand Mother Silk', icon: 'Grand Mother Silk - Silk Boss.png' },
+    { id: 'lost-lace', json: 'Lost Lace', source: 'journal', display: 'Lost Lace', icon: 'Lost Lace.png' },
+    { id: 'shakra', json: 'Shakra', source: 'journal', display: 'Shakra', icon: 'Shakra.png' },
+    { id: 'plasmified-zango', json: 'Blue Assistant', source: 'journal', display: 'Plasmified Zango', icon: 'Plasmified Zango - Blue Assistant.png' },
+    { id: 'garmond-and-zaza', json: 'Garmond_Zaza', source: 'journal', optional: true, display: 'Garmond & Zaza', icon: 'Garmond & Zaza - Garmond_Zaza.png' },
+    { id: 'summoned-saviour', json: 'Abyss Mass', source: 'journal', optional: true, display: 'Summoned Saviour (Steel Soul)', icon: 'Summoned Saviour - Abyss Mass.png' },
 ];

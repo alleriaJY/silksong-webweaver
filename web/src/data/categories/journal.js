@@ -18,6 +18,7 @@ export function parseJournal(save, ctx) {
             json: def.json,
             display: def.display,
             icon: def.icon,
+            optional: !!def.optional,
             encountered: !!record,
             kills,
             killsRequired,

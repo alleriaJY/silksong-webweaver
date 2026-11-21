@@ -5888,6 +5888,18 @@
      "Value": true
     },
     {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Tut_02",
+     "Value": true
+    },
+    {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Tut_01b",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Bonetown",
@@ -6032,6 +6044,12 @@
      "Value": false
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Greymoor_04",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Greymoor_05",
@@ -6065,6 +6083,12 @@
      "ID": "Heart Piece",
      "Mutator": 0,
      "SceneName": "Shellwood_14",
+     "Value": true
+    },
+    {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Shellgrave",
      "Value": true
     },
     {
@@ -6164,6 +6188,12 @@
      "Value": true
     },
     {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Weave_03",
+     "Value": true
+    },
+    {
      "ID": "crest_shrine_break_tube (2)",
      "Mutator": 0,
      "SceneName": "Weave_10",
@@ -6236,6 +6266,18 @@
      "Value": true
     },
     {
+     "ID": "Black_Thread_Core",
+     "Mutator": 0,
+     "SceneName": "Dust_11",
+     "Value": false
+    },
+    {
+     "ID": "Black_Thread_Core (1)",
+     "Mutator": 0,
+     "SceneName": "Dust_11",
+     "Value": false
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Shadow_02",
@@ -6254,6 +6296,12 @@
      "Value": true
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Organ_01",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Library_12",
@@ -6266,6 +6314,12 @@
      "Value": true
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Song_24",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Library_03",
@@ -6275,6 +6329,12 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Song_Enclave",
+     "Value": false
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Tube_Hub",
      "Value": false
     },
     {
@@ -6344,6 +6404,12 @@
      "Value": true
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Ward_04",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Under_17",
@@ -6365,6 +6431,12 @@
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Song_26",
+     "Value": true
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Song_09b",
      "Value": true
     },
     {
@@ -6434,6 +6506,12 @@
      "Value": true
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Library_14",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup - Quill Red",
      "Mutator": 0,
      "SceneName": "Library_13b",
@@ -6464,6 +6542,12 @@
      "Value": true
     },
     {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Shadow_23",
+     "Value": true
+    },
+    {
      "ID": "Breakable Hang Sack Memory Locket",
      "Mutator": 0,
      "SceneName": "Shadow_27",
@@ -6480,6 +6564,18 @@
      "Mutator": 0,
      "SceneName": "Shadow_13",
      "Value": true
+    },
+    {
+     "ID": "moss_berry_fruit",
+     "Mutator": 0,
+     "SceneName": "Arborium_04",
+     "Value": true
+    },
+    {
+     "ID": "Rhino",
+     "Mutator": 0,
+     "SceneName": "Arborium_02",
+     "Value": false
     },
     {
      "ID": "Collectable Item Pickup",
@@ -6596,6 +6692,12 @@
      "Value": true
     },
     {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Coral_37",
+     "Value": true
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Dock_02",
@@ -6605,6 +6707,12 @@
      "ID": "Silk Spool",
      "Mutator": 0,
      "SceneName": "Dock_03c",
+     "Value": true
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Dock_14",
      "Value": true
     },
     {
@@ -6642,11 +6750,60 @@
      "Mutator": 0,
      "SceneName": "Shadow_Bilehaven_Room",
      "Value": true
+    },
+    {
+     "ID": "Silk Grub Large Cocoon",
+     "Mutator": 0,
+     "SceneName": "Under_20",
+     "Value": false
     }
    ]
   },
   "persistentInts": {
-   "serializedList": []
+   "serializedList": [
+    {
+     "ID": "Shell Fossil Mimic AppearVariant",
+     "Mutator": 0,
+     "SceneName": "Bone_06",
+     "Value": 30
+    },
+    {
+     "ID": "Shell Fossil Mimic",
+     "Mutator": 0,
+     "SceneName": "Bone_14",
+     "Value": 30
+    },
+    {
+     "ID": "Shell Fossil Mimic",
+     "Mutator": 0,
+     "SceneName": "Bone_East_03",
+     "Value": 30
+    },
+    {
+     "ID": "Shell Fossil Mimic",
+     "Mutator": 0,
+     "SceneName": "Bone_East_14",
+     "Value": 30
+    },
+    {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Shellgrave",
+     "Value": 55
+    },
+    {
+     "ID": "Rosary Pilgrim",
+     "Mutator": 0,
+     "SceneName": "Shadow_23",
+     "Value": 75
+    },
+    {
+     "ID": "Shell Fossil Mimic",
+     "Mutator": 0,
+     "SceneName": "Coral_38",
+     "Value": 30
+    }
+   ]
   }
  }
 }

@@ -88,14 +88,16 @@ describe.each(FIXTURES)('fixture $name', ({ fixture, expected, parsed }) => {
 describe('fixture complete (100% save) oracle gaps', () => {
     const complete = FIXTURES.find(f => f.name === 'complete');
 
-    it('reports every boss, map, ability, skill and crest', () => {
+    it('reports every non-optional boss, map, ability, skill, crest and journal entry', () => {
         const { parsed } = complete;
-        expect(parsed.bosses.stats.defeated).toBe(parsed.bosses.stats.total);
+        const requiredBosses = parsed.bosses.bosses.filter(b => !b.optional);
+        expect(requiredBosses.every(b => b.value)).toBe(true);
         expect(parsed.maps.stats.unlocked).toBe(parsed.maps.stats.total);
         expect(parsed.abilities.stats.unlocked).toBe(parsed.abilities.stats.total);
         expect(parsed.skills.stats.unlocked).toBe(parsed.skills.stats.total);
         expect(parsed.crests.stats.unlocked).toBe(parsed.crests.stats.total);
-        expect(parsed.journal.stats.completed).toBe(parsed.journal.stats.total);
+        const requiredJournal = parsed.journal.entries.filter(e => !e.optional);
+        expect(requiredJournal.every(e => e.complete)).toBe(true);
     });
 
     // Was it.fails until Phase 2 replaced the two wrong reward flags (OPUS D17)
