@@ -4,51 +4,41 @@
  * says which pack list to read and which elements to fill.
  *
  * flagType (see packs/base/unlockables.js):
- *   bool    playerData boolean          quest   QuestCompletionData IsCompleted
- *   scene   sceneData.persistentBools   flea    FleasCollectedTargetOrder heuristic
- *   unknown flag not identified yet -> rendered as Pending
+ *   bool         playerData boolean          quest        QuestCompletionData IsCompleted
+ *   flagMin      playerData numeric >= min   scene        sceneData.persistentBools
+ *   sceneVisited playerData.scenesVisited    any          collected if any sub-check in `checks` passes
+ *   unknown      flag not identified yet -> rendered as Pending
  */
 import { questCompleted, scenePickup } from '../../core/saveAccess.js';
 import { field } from './common.js';
 import { iconUrl } from '../../core/icons.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
 
-/**
- * Best-effort check for the flea-rescue-order Tool Pouch source. The exact
- * threshold is unconfirmed: any recorded rescue (value !== -1) counts.
- */
-function fleaProgress(playerData, key) {
-    const arr = playerData?.[key];
-    if (!Array.isArray(arr)) return { collected: false, count: 0 };
-    const count = arr.filter(v => v !== -1).length;
-    return { collected: count > 0, count };
+function evalCheck(playerData, sceneData, check) {
+    switch (check.flagType) {
+        case 'bool':
+            return !!playerData?.[check.flag];
+        case 'flagMin':
+            return Number(playerData?.[check.flag]) >= check.min;
+        case 'quest':
+            return questCompleted(playerData, check.flag);
+        case 'scene':
+            return scenePickup(sceneData, check.sceneName, check.sceneId);
+        case 'sceneVisited':
+            return Array.isArray(playerData?.scenesVisited) && playerData.scenesVisited.includes(check.sceneName);
+        case 'any':
+            return Array.isArray(check.checks) && check.checks.some(c => evalCheck(playerData, sceneData, c));
+        default:
+            return null;
+    }
 }
 
 export function parseSourceChecklist(playerData, sceneData, sourceList) {
     const sources = sourceList.map(src => {
-        let collected = false;
-        let pending = false;
-        let progress = null;
-        switch (src.flagType) {
-            case 'bool':
-                collected = !!playerData?.[src.flag];
-                break;
-            case 'quest':
-                collected = questCompleted(playerData, src.flag);
-                break;
-            case 'scene':
-                collected = scenePickup(sceneData, src.sceneName, src.sceneId);
-                break;
-            case 'flea': {
-                const r = fleaProgress(playerData, src.flag);
-                collected = r.collected;
-                progress = r.count;
-                break;
-            }
-            default:
-                pending = true;
-        }
-        return { id: src.id, name: src.name, icon: src.icon, flagType: src.flagType, collected, pending, progress };
+        const result = evalCheck(playerData, sceneData, src);
+        const pending = result === null;
+        const collected = result === true;
+        return { id: src.id, name: src.name, icon: src.icon, flagType: src.flagType, collected, pending, progress: null };
     });
     return {
         sources,

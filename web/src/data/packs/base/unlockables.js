@@ -1,9 +1,10 @@
 /**
  * Source checklists: where each upgrade piece comes from.
- * flagType: bool (playerData boolean), quest (QuestCompletionData IsCompleted),
- * scene (sceneData.persistentBools SceneName/ID), flea (FleasCollectedTargetOrder
- * heuristic), unknown (flag not identified yet; rendered as Pending).
- * Entry: { id, name, flagType, flag? | sceneName+sceneId, icon }
+ * flagType: bool (playerData boolean), flagMin (playerData numeric >= min),
+ * quest (QuestCompletionData IsCompleted), scene (sceneData.persistentBools
+ * SceneName/ID), sceneVisited (playerData.scenesVisited), any (any sub-check
+ * in `checks`), unknown (flag not identified yet; rendered as Pending).
+ * Entry: { id, name, flagType, flag? | sceneName+sceneId | checks, icon }
  */
 
 // 20 shards, 4 = 1 mask; base 5 masks, max 10
@@ -31,13 +32,6 @@ export const MASK_SHARD_SOURCES = [
 ];
 
 // 18 fragments, 2 = 1 spool point; base 9 silk, max 18.
-// The two reward fragments (Sherma, Greymoor battle) are INFERRED, not diffed:
-// pilgrimQuestSpoolCollected / tookGreymoor17Spool are false in the 100% save,
-// so they were wrong. The 72% save has 12 fragments (silkMax 15) but only 10
-// world/shop sources, so both rewards were earned by then. Quest 'Save Sherma'
-// and silkFarmBattle1_complete are the only matches for the two events that
-// are true in both late saves and false in every zero-fragment save
-// (ROADMAP Appendix A: confirm with a save pair bracketing either reward).
 export const SPOOL_FRAGMENT_SOURCES = [
     { id: 'arborium-09-silk-spool', name: 'Memorium (Arborium_09)', flagType: 'scene', sceneName: 'Arborium_09', sceneId: 'Silk Spool', icon: 'spool_upgrade_pickup.png' },
     { id: 'bone-11b-silk-spool', name: 'Mosshome (Bone_11b)', flagType: 'scene', sceneName: 'Bone_11b', sceneId: 'Silk Spool', icon: 'spool_upgrade_pickup.png' },
@@ -56,24 +50,31 @@ export const SPOOL_FRAGMENT_SOURCES = [
     { id: 'purchased-belltown-spool-segment', name: 'Frey (Bellhart, 270 Rosaries)', flagType: 'bool', flag: 'PurchasedBelltownSpoolSegment', icon: 'spool_upgrade_pickup.png' },
     { id: 'purchased-grindle-spool-piece', name: 'Grindle (Blasted Steps, 680 Rosaries)', flagType: 'bool', flag: 'purchasedGrindleSpoolPiece', icon: 'spool_upgrade_pickup.png' },
     { id: 'pilgrim-quest-spool-collected', name: 'Sherma - "Save Sherma" quest reward', flagType: 'quest', flag: 'Save Sherma', icon: 'spool_upgrade_pickup.png' },
-    { id: 'took-greymoor17-spool', name: 'Greymoor - silk farm battle reward', flagType: 'bool', flag: 'silkFarmBattle1_complete', icon: 'spool_upgrade_pickup.png' },
+    { id: 'took-greymoor17-spool', name: 'Fleamaster Mooshka - Greymoor reward (14 Fleas)', flagType: 'flagMin', flag: 'CaravanTroupeLocation', min: 2, icon: 'spool_upgrade_pickup.png' },
 ];
 
-// 3 silk hearts (silkRegenMax 0-3), one per boss
+// 3 silk hearts (silkRegenMax 0-3), tracked via each heart's memory scene.
 export const SILK_HEART_SOURCES = [
-    { id: 'defeated-bell-beast', name: 'Bell Beast (The Marrow)', flagType: 'bool', flag: 'defeatedBellBeast', icon: 'general_silkheart.png' },
-    { id: 'ward-boss-defeated', name: 'The Unravelled (Whiteward)', flagType: 'bool', flag: 'wardBossDefeated', icon: 'general_silkheart.png' },
-    { id: 'defeated-lace-tower', name: 'Lace, 2nd encounter (The Cradle)', flagType: 'bool', flag: 'defeatedLaceTower', icon: 'general_silkheart.png' },
+    { id: 'defeated-bell-beast', name: 'Bell Beast (The Marrow)', flagType: 'sceneVisited', sceneName: 'Memory_Silk_Heart_BellBeast', icon: 'general_silkheart.png' },
+    { id: 'ward-boss-defeated', name: 'The Unravelled (Whiteward)', flagType: 'sceneVisited', sceneName: 'Memory_Silk_Heart_WardBoss', icon: 'general_silkheart.png' },
+    { id: 'defeated-lace-tower', name: 'Lace, 2nd encounter (The Cradle)', flagType: 'sceneVisited', sceneName: 'Memory_Silk_Heart_LaceTower', icon: 'general_silkheart.png' },
 ];
 
-// 4 upgrades (ToolPouchUpgrades 0-4). Loddie's reward is inferred from
-// pinGalleriesCompleted (>= 1 -> truthy; 0 in all zero-upgrade saves, 1 in
-// the 72% save, 2 in the 100% save).
+// 4 upgrades (ToolPouchUpgrades 0-4).
 export const TOOL_POUCH_SOURCES = [
     { id: 'purchased-pilgrims-rest-tool-pouch', name: "Mort (Pilgrim's Rest, 220 Rosaries)", flagType: 'bool', flag: 'PurchasedPilgrimsRestToolPouch', icon: 'icon_tool_kit_upgrade.png' },
-    { id: 'loddie-the-marrow', name: 'Loddie, Pin Gallery challenge (The Marrow)', flagType: 'bool', flag: 'pinGalleriesCompleted', icon: 'icon_tool_kit_upgrade.png' },
+    {
+        id: 'loddie-the-marrow',
+        name: 'Loddie, Pin Gallery challenge (The Marrow; ground pickup in Act 3)',
+        flagType: 'any',
+        checks: [
+            { flagType: 'flagMin', flag: 'pinGalleriesCompleted', min: 1 },
+            { flagType: 'scene', sceneName: 'Bone_12', sceneId: 'Ladybug Craft Pickup' },
+        ],
+        icon: 'icon_tool_kit_upgrade.png',
+    },
     { id: 'journal', name: 'Nuu, Journal quest (Halfway Home)', flagType: 'quest', flag: 'Journal', icon: 'icon_tool_kit_upgrade.png' },
-    { id: 'fleas-collected-target-order', name: 'Fleamaster Mooshka (Fleatopia)', flagType: 'flea', flag: 'FleasCollectedTargetOrder', icon: 'icon_tool_kit_upgrade.png' },
+    { id: 'fleas-collected-target-order', name: 'Fleamaster Mooshka (Fleatopia, 20 Fleas)', flagType: 'scene', sceneName: 'Aqueduct_05', sceneId: 'Caravan Troupe Leader Fleatopia NPC', icon: 'icon_tool_kit_upgrade.png' },
 ];
 
 // 4 upgrades (ToolKitUpgrades 0-4)
@@ -87,7 +88,7 @@ export const CRAFTING_KIT_SOURCES = [
 // One-off 1% items
 export const OTHER_UNLOCKABLE_SOURCES = [
     { id: 'completed-red-memory', name: 'Everbloom (Complete the Red Memory)', flagType: 'bool', flag: 'CompletedRedMemory', icon: 'I_white_flower.png' },
-    { id: 'has-seen-eva-heal', name: "Sylphsong (Eva's Heal - 12 Memory Lockets + all Crests)", flagType: 'bool', flag: 'HasSeenEvaHeal', icon: 'Eva_heal_prompt.png' },
+    { id: 'has-seen-eva-heal', name: "Sylphsong (Eva's Heal - 12 Memory Lockets + all Crests)", flagType: 'bool', flag: 'HasBoundCrestUpgrader', icon: 'Eva_heal_prompt.png' },
 ];
 
 // Needle tier by playerData.nailUpgrades (0-4). Icons live in general/nail.

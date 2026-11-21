@@ -42,7 +42,6 @@ const TOP_LEVEL_LISTS = ['generalFields', 'currentFields', 'miscFields', 'bosses
 /** Top-level keys allowed to be absent from some saves. */
 const OPTIONAL_TOP_KEYS = {
     currentArea: 'not written until the player first enters a named area (absent in brand-new saves)',
-    FleasCollectedTargetOrder: 'present only in the 1.0.28561 saves; either created lazily or dropped by a later patch (ROADMAP Appendix A)',
 };
 
 /** Container names not met in any fixture save. */
@@ -54,11 +53,19 @@ const NEVER_IN_FIXTURES = {
     'Shell Satchel': 'Steel Soul only; the Steel Soul fixture is a new game',
 };
 
+/** Scene pickups not visited in any fixture save. */
+const NEVER_IN_FIXTURES_SCENES = {
+    'Dock_13/Collectable Item Pickup': 'Deep Docks Memory Locket not picked up in any fixture save',
+};
+
 const allTopKeys = () => new Set(FIXTURES.flatMap(f => Object.keys(f.save.playerData)));
 const containerNames = (save, key) => new Set((save.playerData[key]?.savedData || []).map(e => e.Name));
 const inSomeFixture = (key, name) => FIXTURES.some(f => containerNames(f.save, key).has(name));
 const scenePickupSeen = (sceneName, id) => FIXTURES.some(f =>
     (f.save.sceneData?.persistentBools?.serializedList || []).some(e => e.SceneName === sceneName && e.ID === id));
+const sceneVisitedSeen = (sceneName) => FIXTURES.some(f =>
+    (f.save.playerData?.scenesVisited || []).includes(sceneName));
+const expandChecks = (src) => (src.flagType === 'any' ? (src.checks || []) : [src]);
 
 describe('pack contracts', () => {
     it('fixtures cover more than one game version', () => {
@@ -90,9 +97,10 @@ describe('pack contracts', () => {
     it('patch drift: top-level keys are present in every fixture', () => {
         const problems = [];
         const keys = new Set([
-            ...TOP_LEVEL_LISTS.flatMap(n => mergedList(n).map(e => e.json)),
+            ...TOP_LEVEL_LISTS.flatMap(n => mergedList(n).flatMap(e => [e.json, ...(e.altFlags || [])]).filter(Boolean)),
             ...listNames().filter(n => n.endsWith('Sources')).flatMap(n => mergedList(n))
-                .filter(s => s.flagType === 'bool' || s.flagType === 'flea').map(s => s.flag),
+                .flatMap(expandChecks)
+                .filter(s => s.flagType === 'bool' || s.flagType === 'flagMin').map(s => s.flag),
             ...mergedList('cloakTiers').map(t => t.requires).filter(Boolean),
             ...mergedList('mementos').map(m => m.flag).filter(Boolean),
             ...mergedList('mementos').flatMap(m => m.allFlags || []),
@@ -127,10 +135,17 @@ describe('pack contracts', () => {
         for (const c of [...mergedList('crests'), ...mergedList('specialCrestStates')]) {
             for (const alias of c.aliases) if (!inSomeFixture('ToolEquips', alias)) problems.push(`crest alias ${alias}`);
         }
+        for (const k of mergedList('keyItems')) {
+            if (k.sceneName && !scenePickupSeen(k.sceneName, k.sceneId)) problems.push(`keyItem scene ${k.sceneName}/${k.sceneId}`);
+        }
         for (const name of listNames().filter(n => n.endsWith('Sources'))) {
-            for (const s of mergedList(name)) {
+            for (const s of mergedList(name).flatMap(expandChecks)) {
                 if (s.flagType === 'quest' && !inSomeFixture('QuestCompletionData', s.flag)) problems.push(`quest ${s.flag}`);
-                if (s.flagType === 'scene' && !scenePickupSeen(s.sceneName, s.sceneId)) problems.push(`scene ${s.sceneName}/${s.sceneId}`);
+                if (s.flagType === 'scene') {
+                    const key = `${s.sceneName}/${s.sceneId}`;
+                    if (!NEVER_IN_FIXTURES_SCENES[key] && !scenePickupSeen(s.sceneName, s.sceneId)) problems.push(`scene ${key}`);
+                }
+                if (s.flagType === 'sceneVisited' && !sceneVisitedSeen(s.sceneName)) problems.push(`sceneVisited ${s.sceneName}`);
             }
         }
         expect(problems).toEqual([]);
@@ -138,6 +153,10 @@ describe('pack contracts', () => {
 
     it('exceptions stay honest: a listed name that appears in a fixture must be removed from the list', () => {
         for (const name of Object.keys(NEVER_IN_FIXTURES)) expect(inSomeFixture('Tools', name), name).toBe(false);
+        for (const key of Object.keys(NEVER_IN_FIXTURES_SCENES)) {
+            const [sceneName, sceneId] = key.split('/');
+            expect(scenePickupSeen(sceneName, sceneId), key).toBe(false);
+        }
     });
 
     it('every pack declares the required fields', () => {

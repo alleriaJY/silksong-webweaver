@@ -434,19 +434,21 @@ Run this when a DLC or major patch ships.
 
 ## Appendix A - Open Data Questions
 
-Items that cannot be resolved from the saves in `savefiles/` and `output2.json`. The owner can unblock each by producing a save immediately before and after the event and dropping the pair into `savefiles/`.
+Items that cannot be resolved from the saves in `savefiles/` and `output2.json`.
 
 | Item | Needed save states | Notes |
 |---|---|---|
-| Memory Locket sources (20) | before/after a world locket pickup | 3 mapped (Mort, Frey, Bilewater cocoon sack). The other 17 use generic `Collectable Item Pickup` IDs and need bracketing save pairs. (`purchasedGrindleMemoryLocket` also exists in `playerData`, false in every save.) |
-| Tool Pouch from Loddie (inferred) | before/after receiving it | Inferred as `pinGalleriesCompleted` (>= 1 -> truthy; matches `ToolPouchUpgrades` on every fixture). |
-| Craftmetal 8th source (inferred) | before/after opening the Deep Docks chest | Inferred as `Dock_03` / `Collectable Item Pickup` (`City Shard Chest` in `Dock_03` is false in the 72% save and true in the 100% save; matches the 8 craftable tools + held `Tool Metal` oracle on every save). |
-| Sherma / Greymoor spool reward flags (inferred) | before/after either reward | confirm quest `Save Sherma` and `silkFarmBattle1_complete` |
-| Fleamaster tool pouch threshold | before/after the Fleatopia reward | confirms the `FleasCollectedTargetOrder` heuristic |
 | Scenes without tile art (gap category D) | none | needs map art from the game's files |
 | Flea icon | none | asset needed for the Fleas tab (the Huge Flea portrait stands in) |
-| `FleasCollectedTargetOrder` on newer versions (OPUS D20) | a 1.0.28714+ save after rescuing at least one flea | tells whether the key is created lazily or was removed by a patch; the Fleamaster Tool Pouch source depends on it |
 | Keep hosting Team Cherry assets in the repo? | none (owner decision) | Alternatives: keep with attribution (default), or load from an external host. |
+
+Resolved (cross-checked against open-source Silksong save analyzers and verified against local fixtures):
+- **Memory Locket sources (20/20)**: all 17 remaining world pickups (`sceneData.persistentBools`), Bone Bottom wish (`Rock Rollers`), Mort/Grindle fallback (`PurchasedPilgrimsRestMemoryLocket` / `purchasedGrindleMemoryLocket`), and `Shadow_27 / Sack Corpse Pickup`.
+- **Tool Pouch (Loddie & Fleamaster)**: Loddie = `pinGalleriesCompleted >= 1` or `Bone_12 / Ladybug Craft Pickup` (Act 3); Fleamaster = `Aqueduct_05 / Caravan Troupe Leader Fleatopia NPC` (replaces version-dependent `FleasCollectedTargetOrder`, retiring OPUS D20).
+- **Spool Fragments (Sherma & Greymoor)**: Sherma confirmed as quest `Save Sherma`; the 18th source is Fleamaster's Greymoor reward (`CaravanTroupeLocation >= 2`), not `silkFarmBattle1_complete`.
+- **Craftmetal 8th source**: confirmed `Dock_03 / Collectable Item Pickup`.
+- **Silk Hearts & Sylphsong**: Silk Hearts switched to `scenesVisited` (`Memory_Silk_Heart_*`); Sylphsong switched to `HasBoundCrestUpgrader`.
+- **Key Items**: added 4th Simple Key (`Bellshrine_Coral / Collectable Item Pickup`) and White Key fallback (`MerchantEnclaveWardKey`).
 
 Add rows here whenever a step is blocked; remove them when resolved and note the resolving commit.
 

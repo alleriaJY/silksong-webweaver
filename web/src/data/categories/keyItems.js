@@ -1,10 +1,18 @@
 /** Key Items tab: keys and story items, one checklist row each. */
-import { parseBooleanFlags } from './common.js';
+import { flag, scenePickup } from '../../core/saveAccess.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
 
 export function parseKeyItems(save, ctx) {
     const defs = ctx.lists('keyItems');
-    const items = parseBooleanFlags(save.playerData, defs).map((item, i) => ({ ...item, note: defs[i].note }));
+    const items = defs.map(def => {
+        let value = false;
+        if (def.sceneName) {
+            value = scenePickup(save.sceneData, def.sceneName, def.sceneId);
+        } else {
+            value = flag(save.playerData, def.json) || (def.altFlags || []).some(f => flag(save.playerData, f));
+        }
+        return { ...def, value };
+    });
     return { items, stats: { total: items.length, obtained: items.filter(k => k.value).length } };
 }
 

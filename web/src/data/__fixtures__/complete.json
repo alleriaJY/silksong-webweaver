@@ -7737,6 +7737,12 @@
      "Value": true
     },
     {
+     "ID": "Ladybug Craft Pickup",
+     "Mutator": 0,
+     "SceneName": "Bone_12",
+     "Value": false
+    },
+    {
      "ID": "Collectable Item Pickup",
      "Mutator": 0,
      "SceneName": "Ant_04_left",
@@ -8305,6 +8311,12 @@
      "Mutator": 0,
      "SceneName": "Shadow_27",
      "Value": false
+    },
+    {
+     "ID": "Sack Corpse Pickup",
+     "Mutator": 0,
+     "SceneName": "Shadow_27",
+     "Value": true
     },
     {
      "ID": "Heart Piece",

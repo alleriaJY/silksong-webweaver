@@ -50,3 +50,30 @@ describe('equipped loadout', () => {
         expect(equippedTools.every(t => t.category === 'Skill' && t.iconKind === 'skill')).toBe(true);
     });
 });
+
+describe('checklist & key item fallbacks', () => {
+    it('recognises Act 3 fallback pickups and alt flags', () => {
+        const parsed = parseAllData(
+            {
+                purchasedGrindleMemoryLocket: true,
+                MerchantEnclaveWardKey: true,
+                CaravanTroupeLocation: 2,
+                scenesVisited: ['Memory_Silk_Heart_BellBeast'],
+            },
+            {
+                persistentBools: {
+                    serializedList: [
+                        { SceneName: 'Bone_12', ID: 'Ladybug Craft Pickup', Value: true },
+                        { SceneName: 'Bellshrine_Coral', ID: 'Collectable Item Pickup', Value: true },
+                    ],
+                },
+            },
+        );
+        expect(parsed.memoryLockets.sources.find(s => s.id === 'far-fields-mort-purchase-pilgrims-rest-150-rosaries').collected).toBe(true);
+        expect(parsed.toolPouch.sources.find(s => s.id === 'loddie-the-marrow').collected).toBe(true);
+        expect(parsed.spoolFragments.sources.find(s => s.id === 'took-greymoor17-spool').collected).toBe(true);
+        expect(parsed.silkHearts.sources.find(s => s.id === 'defeated-bell-beast').collected).toBe(true);
+        expect(parsed.keyItems.items.find(k => k.id === 'white-key').value).toBe(true);
+        expect(parsed.keyItems.items.find(k => k.id === 'simple-key-sands-of-karak').value).toBe(true);
+    });
+});

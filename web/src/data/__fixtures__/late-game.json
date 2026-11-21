@@ -6470,6 +6470,12 @@
      "Value": false
     },
     {
+     "ID": "Sack Corpse Pickup",
+     "Mutator": 0,
+     "SceneName": "Shadow_27",
+     "Value": true
+    },
+    {
      "ID": "Heart Piece",
      "Mutator": 0,
      "SceneName": "Shadow_13",

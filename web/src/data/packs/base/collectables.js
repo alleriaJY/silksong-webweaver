@@ -2,9 +2,8 @@
  * Collectable source checklists (same entry shape as unlockables.js).
  */
 
-// 8 craftmetal. The 8th source (Dock_03 chest pickup) is inferred from the
-// 8 craftable tools + held Tool Metal oracle (0 in early saves, 4 in the 72%
-// save, 8 in the 100% save).
+// 8 craftmetal. Confirmed against the 8 craftable tools + held Tool Metal
+// oracle (0 in early saves, 4 in the 72% save, 8 in the 100% save).
 export const CRAFTMETAL_SOURCES = [
     { id: 'purchased-bonebottom-tool-metal', name: 'Pebb (Bone Bottom, 60 Rosaries)', flagType: 'bool', flag: 'PurchasedBonebottomToolMetal', icon: 'Hornet_Tool_Metal.png' },
     { id: 'merchant-enclave-tool-metal', name: 'Jubilana (Songclave, 180 Rosaries)', flagType: 'bool', flag: 'MerchantEnclaveToolMetal', icon: 'Hornet_Tool_Metal.png' },
@@ -16,32 +15,39 @@ export const CRAFTMETAL_SOURCES = [
     { id: 'dock-03-collectable-item-pickup', name: 'Deep Docks / Far Fields chest (Dock_03)', flagType: 'scene', sceneName: 'Dock_03', sceneId: 'Collectable Item Pickup', icon: 'Hornet_Tool_Metal.png' },
 ];
 
-// 20 lockets (wiki list). Mapped only where the save names the locket
-// explicitly: two shop purchases and the Bilewater sack. The rest use generic
-// 'Collectable Item Pickup' IDs and need a bracketing save pair (Appendix A).
-// Lead: purchasedGrindleMemoryLocket also exists (false in every save) but
-// Grindle is not on the wiki list.
+// All 20 Memory Locket sources: 1 quest reward, 2 shop purchases (Mort's
+// falls back to Grindle in Act 3 via purchasedGrindleMemoryLocket), and 17
+// world pickups in sceneData.persistentBools.
 export const MEMORY_LOCKET_SOURCES = [
-    { id: 'bone-bottom-volatile-flintbeetles-wish-reward', name: 'Bone Bottom - Volatile Flintbeetles wish reward', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'the-marrow-arena-battle', name: 'The Marrow - arena battle', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'wormways-after-gromling', name: 'Wormways - after Gromling', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'deep-docks-secret-passage', name: 'Deep Docks - secret passage', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'far-fields-mort-purchase-pilgrims-rest-150-rosaries', name: "Far Fields - Mort purchase (Pilgrim's Rest, 150 Rosaries)", flagType: 'bool', flag: 'PurchasedPilgrimsRestMemoryLocket', icon: 'Charm_Notch.png' },
-    { id: 'far-fields-east-of-skarrsinger-karmelita-arena', name: 'Far Fields - east of Skarrsinger Karmelita arena', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'hunters-march-dead-pilgrim', name: "Hunter's March - dead pilgrim", flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'greymoor-near-creige-faydown-cloak', name: 'Greymoor - near Creige (Faydown Cloak)', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'greymoor-backpack-ledge', name: 'Greymoor - backpack ledge', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
+    { id: 'bone-bottom-volatile-flintbeetles-wish-reward', name: 'Bone Bottom - Volatile Flintbeetles wish reward', flagType: 'quest', flag: 'Rock Rollers', icon: 'Charm_Notch.png' },
+    { id: 'the-marrow-arena-battle', name: 'The Marrow - arena battle (Bone_18)', flagType: 'scene', sceneName: 'Bone_18', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'wormways-after-gromling', name: 'Wormways - after Gromling (Crawl_09)', flagType: 'scene', sceneName: 'Crawl_09', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'deep-docks-secret-passage', name: 'Deep Docks - secret passage (Dock_13)', flagType: 'scene', sceneName: 'Dock_13', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    {
+        id: 'far-fields-mort-purchase-pilgrims-rest-150-rosaries',
+        name: "Far Fields - Mort purchase (Pilgrim's Rest, 150 Rosaries; Grindle in Act 3)",
+        flagType: 'any',
+        checks: [
+            { flagType: 'bool', flag: 'PurchasedPilgrimsRestMemoryLocket' },
+            { flagType: 'bool', flag: 'purchasedGrindleMemoryLocket' },
+        ],
+        icon: 'Charm_Notch.png',
+    },
+    { id: 'far-fields-east-of-skarrsinger-karmelita-arena', name: 'Far Fields - east of Skarrsinger Karmelita arena (Bone_East_25)', flagType: 'scene', sceneName: 'Bone_East_25', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'hunters-march-dead-pilgrim', name: "Hunter's March - dead pilgrim (Ant_20)", flagType: 'scene', sceneName: 'Ant_20', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'greymoor-near-creige-faydown-cloak', name: 'Greymoor - inside Halfway Home (Halfway_01)', flagType: 'scene', sceneName: 'Halfway_01', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'greymoor-backpack-ledge', name: 'Greymoor - ledge above Mitemother (Greymoor_16)', flagType: 'scene', sceneName: 'Greymoor_16', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
     { id: 'bellhart-frey-purchase-330-rosaries-after-threadspun-town', name: 'Bellhart - Frey purchase (330 Rosaries, after Threadspun Town)', flagType: 'bool', flag: 'PurchasedBelltownMemoryLocket', icon: 'Charm_Notch.png' },
-    { id: 'bellhart-bellhome-summit-silk-soar', name: 'Bellhart - Bellhome summit (Silk Soar)', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'blasted-steps-east-of-shakra', name: 'Blasted Steps - east of Shakra', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'underworks-west-of-confession-booth-bench', name: 'Underworks - west of Confession Booth bench', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'bilewater-after-muckmaggot-path', name: 'Bilewater - after Muckmaggot path', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'bilewater-destroyed-ceiling-cocoon', name: 'Bilewater - destroyed ceiling cocoon (Shadow_27)', flagType: 'scene', sceneName: 'Shadow_27', sceneId: 'Breakable Hang Sack Memory Locket', icon: 'Charm_Notch.png' },
-    { id: 'whispering-vaults-near-giant-drapemite', name: 'Whispering Vaults - near Giant Drapemite', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'choral-chambers-behind-trapdoor-breakable-wall', name: 'Choral Chambers - behind trapdoor breakable wall', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'memorium-from-ventrica-station', name: 'Memorium - from Ventrica Station', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'the-slab-shortcut-cave', name: 'The Slab - Shortcut Cave', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
-    { id: 'sands-of-karak-upper-western-platform', name: 'Sands of Karak - upper western platform', flagType: 'unknown', flag: null, icon: 'Charm_Notch.png' },
+    { id: 'bellhart-bellhome-summit-silk-soar', name: 'Bellhart - Bellhome summit (Belltown)', flagType: 'scene', sceneName: 'Belltown', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'blasted-steps-east-of-shakra', name: 'Blasted Steps - east of Shakra (Coral_02)', flagType: 'scene', sceneName: 'Coral_02', sceneId: 'Collectable Item Pickup (1)', icon: 'Charm_Notch.png' },
+    { id: 'underworks-west-of-confession-booth-bench', name: 'Underworks - west of Confession Booth bench (Under_08)', flagType: 'scene', sceneName: 'Under_08', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'bilewater-after-muckmaggot-path', name: 'Bilewater - after Muckmaggot path (Shadow_20)', flagType: 'scene', sceneName: 'Shadow_20', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'bilewater-destroyed-ceiling-cocoon', name: 'Bilewater - destroyed ceiling cocoon (Shadow_27)', flagType: 'scene', sceneName: 'Shadow_27', sceneId: 'Sack Corpse Pickup', icon: 'Charm_Notch.png' },
+    { id: 'whispering-vaults-near-giant-drapemite', name: 'Whispering Vaults - near Giant Drapemite (Library_08)', flagType: 'scene', sceneName: 'Library_08', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'choral-chambers-behind-trapdoor-breakable-wall', name: 'Choral Chambers - behind trapdoor breakable wall (Bellway_City)', flagType: 'scene', sceneName: 'Bellway_City', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'memorium-from-ventrica-station', name: 'Memorium - from Ventrica Station (Arborium_05)', flagType: 'scene', sceneName: 'Arborium_05', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'the-slab-shortcut-cave', name: 'The Slab - Shortcut Cave (Slab_Cell_Quiet)', flagType: 'scene', sceneName: 'Slab_Cell_Quiet', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
+    { id: 'sands-of-karak-upper-western-platform', name: 'Sands of Karak - upper western platform (Coral_23)', flagType: 'scene', sceneName: 'Coral_23', sceneId: 'Collectable Item Pickup', icon: 'Charm_Notch.png' },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
