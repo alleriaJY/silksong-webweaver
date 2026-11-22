@@ -253,7 +253,7 @@ export const JOURNAL = [
     { id: 'bell-eater', json: 'Giant Centipede', display: 'Bell Eater', icon: 'Bell Eater - Giant Centipede #4267217.png', killsRequired: 1 },
     { id: 'huge-flea', json: 'Giant Flea', display: 'Huge Flea', icon: 'Huge Flea - Giant Flea #4267157.png', killsRequired: 1 },
     { id: 'shakra', json: 'Shakra', display: 'Shakra', icon: 'Shakra #4267195.png', killsRequired: 1 },
-    { id: 'summoned-saviour', json: 'Abyss Mass', display: 'Summoned Saviour (Steel Soul)', icon: null, killsRequired: 1, optional: true },
+    { id: 'summoned-saviour', json: 'Abyss Mass', display: 'Summoned Saviour (Steel Soul)', icon: 'Summoned Saviour - Abyss Mass.png', killsRequired: 1, optional: true },
     { id: 'garmond-and-zaza', json: 'Garmond_Zaza', display: 'Garmond & Zaza', icon: 'Garmond & Zaza - Garmond_Zaza #4266959.png', killsRequired: 1, optional: true },
     { id: 'lost-garmond', json: 'Garmond', display: 'Lost Garmond', icon: 'Lost Garmond - Garmond #4267350.png', killsRequired: 1 },
     { id: 'pinstress-boss', json: 'Pinstress Boss', display: 'Pinstress Boss', icon: 'Pinstress Boss #4267030.png', killsRequired: 1 },
@@ -262,5 +262,5 @@ export const JOURNAL = [
     { id: 'phantom', json: 'Phantom', display: 'Phantom', icon: 'Phantom #4267162.png', killsRequired: 1 },
     { id: 'lace', json: 'Lace', display: 'Lace', icon: 'Lace #4267252.png', killsRequired: 1 },
     { id: 'grand-mother-silk', json: 'Silk Boss', display: 'Grand Mother Silk', icon: 'Grand Mother Silk - Silk Boss #4266984.png', killsRequired: 1 },
-    { id: 'lost-lace', json: 'Lost Lace', display: 'Lost Lace', icon: null, killsRequired: 1 },
+    { id: 'lost-lace', json: 'Lost Lace', display: 'Lost Lace', icon: 'Lost Lace.png', killsRequired: 1 },
 ];

@@ -52,33 +52,33 @@ export const MEMORY_LOCKET_SOURCES = [
 
 // 3 Pale Oil sources (used by Pinmaster Plinney to upgrade Hornet's Needle)
 export const PALE_OIL_SOURCES = [
-    { id: 'pale-oil-whispering-vaults', name: 'Whispering Vaults - box puzzle (Library_03)', flagType: 'scene', sceneName: 'Library_03', sceneId: 'Collectable Item Pickup' },
-    { id: 'pale-oil-great-gourmand', name: 'Choral Chambers - "Great Taste of Pharloom" wish', flagType: 'quest', flag: 'Great Gourmand' },
-    { id: 'pale-oil-flea-games', name: 'Bellhart - "Ecstasy of the End" wish (Act 3)', flagType: 'quest', flag: 'Flea Games' },
+    { id: 'pale-oil-whispering-vaults', name: 'Whispering Vaults - box puzzle (Library_03)', flagType: 'scene', sceneName: 'Library_03', sceneId: 'Collectable Item Pickup', iconKind: 'checklist', icon: 'oil_phial.png' },
+    { id: 'pale-oil-great-gourmand', name: 'Choral Chambers - "Great Taste of Pharloom" wish', flagType: 'quest', flag: 'Great Gourmand', iconKind: 'checklist', icon: 'oil_phial.png' },
+    { id: 'pale-oil-flea-games', name: 'Bellhart - "Ecstasy of the End" wish (Act 3)', flagType: 'quest', flag: 'Flea Games', iconKind: 'checklist', icon: 'oil_phial.png' },
 ];
 
 // 7 Mossberry sources (4 world fruit + 3 flying enemy drops)
 export const MOSSBERRY_SOURCES = [
-    { id: 'mossberry-tut-02', name: 'Moss Grotto #1 (Tut_02)', flagType: 'scene', sceneName: 'Tut_02', sceneId: 'moss_berry_fruit' },
-    { id: 'mossberry-tut-01b', name: 'Moss Grotto #2 (Tut_01b)', flagType: 'scene', sceneName: 'Tut_01b', sceneId: 'moss_berry_fruit' },
-    { id: 'mossberry-bonetown-aspid', name: 'Moss Grotto - Bone Bottom flying enemy', flagType: 'bool', flag: 'bonetownAspidBerryCollected' },
-    { id: 'mossberry-mosstown-aspid', name: 'Moss Grotto - Mosshome flying enemy', flagType: 'bool', flag: 'mosstownAspidBerryCollected' },
-    { id: 'mossberry-bonegrave-aspid', name: 'Moss Grotto - Bonegrave flying enemy', flagType: 'bool', flag: 'bonegraveAspidBerryCollected' },
-    { id: 'mossberry-weave-03', name: 'Weavenest Atla (Weave_03)', flagType: 'scene', sceneName: 'Weave_03', sceneId: 'moss_berry_fruit' },
-    { id: 'mossberry-arborium-04', name: 'Memorium (Arborium_04)', flagType: 'scene', sceneName: 'Arborium_04', sceneId: 'moss_berry_fruit' },
+    { id: 'mossberry-tut-02', name: 'Moss Grotto #1 (Tut_02)', flagType: 'scene', sceneName: 'Tut_02', sceneId: 'moss_berry_fruit', iconKind: 'checklist', icon: 'I_moss_berry.png' },
+    { id: 'mossberry-tut-01b', name: 'Moss Grotto #2 (Tut_01b)', flagType: 'scene', sceneName: 'Tut_01b', sceneId: 'moss_berry_fruit', iconKind: 'checklist', icon: 'I_moss_berry.png' },
+    { id: 'mossberry-bonetown-aspid', name: 'Moss Grotto - Bone Bottom flying enemy', flagType: 'bool', flag: 'bonetownAspidBerryCollected', iconKind: 'checklist', icon: 'I_moss_berry.png' },
+    { id: 'mossberry-mosstown-aspid', name: 'Moss Grotto - Mosshome flying enemy', flagType: 'bool', flag: 'mosstownAspidBerryCollected', iconKind: 'checklist', icon: 'I_moss_berry.png' },
+    { id: 'mossberry-bonegrave-aspid', name: 'Moss Grotto - Bonegrave flying enemy', flagType: 'bool', flag: 'bonegraveAspidBerryCollected', iconKind: 'checklist', icon: 'I_moss_berry.png' },
+    { id: 'mossberry-weave-03', name: 'Weavenest Atla (Weave_03)', flagType: 'scene', sceneName: 'Weave_03', sceneId: 'moss_berry_fruit', iconKind: 'checklist', icon: 'I_moss_berry.png' },
+    { id: 'mossberry-arborium-04', name: 'Memorium (Arborium_04)', flagType: 'scene', sceneName: 'Arborium_04', sceneId: 'moss_berry_fruit', iconKind: 'checklist', icon: 'I_moss_berry.png' },
 ];
 
 // 9 Silkeater cocoons (Coral_37 is Classic Mode only)
 export const SILKEATER_SOURCES = [
-    { id: 'silkeater-dock-14', name: 'Deep Docks (Dock_14)', flagType: 'scene', sceneName: 'Dock_14', sceneId: 'Silk Grub Large Cocoon' },
-    { id: 'silkeater-greymoor-04', name: 'Greymoor (Greymoor_04)', flagType: 'scene', sceneName: 'Greymoor_04', sceneId: 'Silk Grub Large Cocoon' },
-    { id: 'silkeater-coral-37', name: 'Blasted Steps - Classic only (Coral_37)', flagType: 'scene', sceneName: 'Coral_37', sceneId: 'Silk Grub Large Cocoon' },
-    { id: 'silkeater-organ-01', name: 'Exhaust Organ (Organ_01)', flagType: 'scene', sceneName: 'Organ_01', sceneId: 'Silk Grub Large Cocoon' },
-    { id: 'silkeater-song-24', name: 'Choral Chambers #1 (Song_24)', flagType: 'scene', sceneName: 'Song_24', sceneId: 'Silk Grub Large Cocoon' },
-    { id: 'silkeater-song-09b', name: 'Choral Chambers #2 (Song_09b)', flagType: 'scene', sceneName: 'Song_09b', sceneId: 'Silk Grub Large Cocoon' },
-    { id: 'silkeater-library-14', name: 'Whispering Vaults (Library_14)', flagType: 'scene', sceneName: 'Library_14', sceneId: 'Silk Grub Large Cocoon' },
-    { id: 'silkeater-ward-04', name: 'Whiteward (Ward_04)', flagType: 'scene', sceneName: 'Ward_04', sceneId: 'Silk Grub Large Cocoon' },
-    { id: 'silkeater-tube-hub', name: 'The Cradle / Terminus (Tube_Hub)', flagType: 'scene', sceneName: 'Tube_Hub', sceneId: 'Silk Grub Large Cocoon' },
+    { id: 'silkeater-dock-14', name: 'Deep Docks (Dock_14)', flagType: 'scene', sceneName: 'Dock_14', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-greymoor-04', name: 'Greymoor (Greymoor_04)', flagType: 'scene', sceneName: 'Greymoor_04', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-coral-37', name: 'Blasted Steps - Classic only (Coral_37)', flagType: 'scene', sceneName: 'Coral_37', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-organ-01', name: 'Exhaust Organ (Organ_01)', flagType: 'scene', sceneName: 'Organ_01', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-song-24', name: 'Choral Chambers #1 (Song_24)', flagType: 'scene', sceneName: 'Song_24', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-song-09b', name: 'Choral Chambers #2 (Song_09b)', flagType: 'scene', sceneName: 'Song_09b', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-library-14', name: 'Whispering Vaults (Library_14)', flagType: 'scene', sceneName: 'Library_14', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-ward-04', name: 'Whiteward (Ward_04)', flagType: 'scene', sceneName: 'Ward_04', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-tube-hub', name: 'The Cradle / Terminus (Tube_Hub)', flagType: 'scene', sceneName: 'Tube_Hub', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -90,52 +90,52 @@ export const SILKEATER_SOURCES = [
 // Relics: playerData.Relics.savedData { IsCollected, IsDeposited } (19 seen).
 // kind = relic type; display = "<Type> (<where, from the internal name>)".
 export const RELICS = [
-    { id: 'seal-chit-aspid-01', json: 'Seal Chit Aspid_01', display: 'Seal Chit (Aspid 01)', kind: 'seal-chit' },
-    { id: 'bone-record-bone-east-14', json: 'Bone Record Bone_East_14', display: 'Bone Record (Bone East 14)', kind: 'bone-record' },
-    { id: 'bone-record-greymoor-flooded-corridor', json: 'Bone Record Greymoor_flooded_corridor', display: 'Bone Record (Greymoor flooded corridor)', kind: 'bone-record' },
-    { id: 'weaver-record-weave-08', json: 'Weaver Record Weave_08', display: 'Weaver Record (Weave 08)', kind: 'weaver-record' },
-    { id: 'bone-record-understore-map-room', json: 'Bone Record Understore_Map_Room', display: 'Bone Record (Understore Map Room)', kind: 'bone-record' },
-    { id: 'seal-chit-ward-corpse', json: 'Seal Chit Ward Corpse', display: 'Seal Chit (Ward Corpse)', kind: 'seal-chit' },
-    { id: 'psalm-cylinder-librarian', json: 'Psalm Cylinder Librarian', display: 'Psalm Cylinder (Librarian)', kind: 'psalm-cylinder' },
-    { id: 'psalm-cylinder-hang', json: 'Psalm Cylinder Hang', display: 'Psalm Cylinder (Hang)', kind: 'psalm-cylinder' },
-    { id: 'librarian-melody-cylinder', json: 'Librarian Melody Cylinder', display: 'Librarian Melody Cylinder', kind: 'librarian-melody-cylinder' },
-    { id: 'weaver-totem-slab-bottom', json: 'Weaver Totem Slab_Bottom', display: 'Weaver Totem (Slab Bottom)', kind: 'weaver-totem' },
-    { id: 'psalm-cylinder-grindle', json: 'Psalm Cylinder Grindle', display: 'Psalm Cylinder (Grindle)', kind: 'psalm-cylinder' },
-    { id: 'bone-record-wisp-top', json: 'Bone Record Wisp Top', display: 'Bone Record (Wisp Top)', kind: 'bone-record' },
-    { id: 'seal-chit-city-merchant', json: 'Seal Chit City Merchant', display: 'Seal Chit (City Merchant)', kind: 'seal-chit' },
-    { id: 'weaver-totem-witch', json: 'Weaver Totem Witch', display: 'Weaver Totem (Witch)', kind: 'weaver-totem' },
-    { id: 'psalm-cylinder-library-roof', json: 'Psalm Cylinder Library Roof', display: 'Psalm Cylinder (Library Roof)', kind: 'psalm-cylinder' },
-    { id: 'ancient-egg-abyss-middle', json: 'Ancient Egg Abyss Middle', display: 'Ancient Egg (Abyss Middle)', kind: 'ancient-egg' },
-    { id: 'weaver-record-conductor', json: 'Weaver Record Conductor', display: 'Weaver Record (Conductor)', kind: 'weaver-record' },
-    { id: 'seal-chit-silk-siphon', json: 'Seal Chit Silk Siphon', display: 'Seal Chit (Silk Siphon)', kind: 'seal-chit' },
-    { id: 'psalm-cylinder-ward', json: 'Psalm Cylinder Ward', display: 'Psalm Cylinder (Ward)', kind: 'psalm-cylinder' },
-    { id: 'weaver-totem-bonetown-upper-room', json: 'Weaver Totem Bonetown_upper_room', display: 'Weaver Totem (Bone Bottom upper room)', kind: 'weaver-totem' },
-    { id: 'weaver-record-sprint-challenge', json: 'Weaver Record Sprint_Challenge', display: 'Weaver Record (Sprint Challenge)', kind: 'weaver-record' },
+    { id: 'seal-chit-aspid-01', json: 'Seal Chit Aspid_01', display: 'Seal Chit (Aspid 01)', kind: 'seal-chit', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_seal_chit.png' },
+    { id: 'bone-record-bone-east-14', json: 'Bone Record Bone_East_14', display: 'Bone Record (Bone East 14)', kind: 'bone-record', iconKind: 'collectable', icon: 'Hornet_icon_0002_R_bone_record.png' },
+    { id: 'bone-record-greymoor-flooded-corridor', json: 'Bone Record Greymoor_flooded_corridor', display: 'Bone Record (Greymoor flooded corridor)', kind: 'bone-record', iconKind: 'collectable', icon: 'Hornet_icon_0002_R_bone_record.png' },
+    { id: 'weaver-record-weave-08', json: 'Weaver Record Weave_08', display: 'Weaver Record (Weave 08)', kind: 'weaver-record', iconKind: 'collectable', icon: 'Hornet_icon_0002_R_weaver_record.png' },
+    { id: 'bone-record-understore-map-room', json: 'Bone Record Understore_Map_Room', display: 'Bone Record (Understore Map Room)', kind: 'bone-record', iconKind: 'collectable', icon: 'Hornet_icon_0002_R_bone_record.png' },
+    { id: 'seal-chit-ward-corpse', json: 'Seal Chit Ward Corpse', display: 'Seal Chit (Ward Corpse)', kind: 'seal-chit', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_seal_chit.png' },
+    { id: 'psalm-cylinder-librarian', json: 'Psalm Cylinder Librarian', display: 'Psalm Cylinder (Librarian)', kind: 'psalm-cylinder', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_psalm_cylinder_gleam0002.png' },
+    { id: 'psalm-cylinder-hang', json: 'Psalm Cylinder Hang', display: 'Psalm Cylinder (Hang)', kind: 'psalm-cylinder', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_psalm_cylinder_gleam0002.png' },
+    { id: 'librarian-melody-cylinder', json: 'Librarian Melody Cylinder', display: 'Librarian Melody Cylinder', kind: 'librarian-melody-cylinder', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_psalm_cylinder_white.png' },
+    { id: 'weaver-totem-slab-bottom', json: 'Weaver Totem Slab_Bottom', display: 'Weaver Totem (Slab Bottom)', kind: 'weaver-totem', iconKind: 'collectable', icon: 'Hornet_icon_0005_R_saint_locket.png' },
+    { id: 'psalm-cylinder-grindle', json: 'Psalm Cylinder Grindle', display: 'Psalm Cylinder (Grindle)', kind: 'psalm-cylinder', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_psalm_cylinder_gleam0002.png' },
+    { id: 'bone-record-wisp-top', json: 'Bone Record Wisp Top', display: 'Bone Record (Wisp Top)', kind: 'bone-record', iconKind: 'collectable', icon: 'Hornet_icon_0002_R_bone_record.png' },
+    { id: 'seal-chit-city-merchant', json: 'Seal Chit City Merchant', display: 'Seal Chit (City Merchant)', kind: 'seal-chit', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_seal_chit.png' },
+    { id: 'weaver-totem-witch', json: 'Weaver Totem Witch', display: 'Weaver Totem (Witch)', kind: 'weaver-totem', iconKind: 'collectable', icon: 'Hornet_icon_0005_R_saint_locket.png' },
+    { id: 'psalm-cylinder-library-roof', json: 'Psalm Cylinder Library Roof', display: 'Psalm Cylinder (Library Roof)', kind: 'psalm-cylinder', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_psalm_cylinder_gleam0002.png' },
+    { id: 'ancient-egg-abyss-middle', json: 'Ancient Egg Abyss Middle', display: 'Ancient Egg (Abyss Middle)', kind: 'ancient-egg', iconKind: 'collectable', icon: 'Hornet_icon_0004_R_ancient_egg.png' },
+    { id: 'weaver-record-conductor', json: 'Weaver Record Conductor', display: 'Weaver Record (Conductor)', kind: 'weaver-record', iconKind: 'collectable', icon: 'Hornet_icon_0002_R_weaver_record.png' },
+    { id: 'seal-chit-silk-siphon', json: 'Seal Chit Silk Siphon', display: 'Seal Chit (Silk Siphon)', kind: 'seal-chit', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_seal_chit.png' },
+    { id: 'psalm-cylinder-ward', json: 'Psalm Cylinder Ward', display: 'Psalm Cylinder (Ward)', kind: 'psalm-cylinder', iconKind: 'collectable', icon: 'Hornet_icon_0000_R_psalm_cylinder_gleam0002.png' },
+    { id: 'weaver-totem-bonetown-upper-room', json: 'Weaver Totem Bonetown_upper_room', display: 'Weaver Totem (Bone Bottom upper room)', kind: 'weaver-totem', iconKind: 'collectable', icon: 'Hornet_icon_0005_R_saint_locket.png' },
+    { id: 'weaver-record-sprint-challenge', json: 'Weaver Record Sprint_Challenge', display: 'Weaver Record (Sprint Challenge)', kind: 'weaver-record', iconKind: 'collectable', icon: 'Hornet_icon_0002_R_weaver_record.png' },
 ];
 
 // Materium entries: playerData.MateriumCollected.savedData (37 seen). Presence in
 // the list = recorded; IsCollected is only set for the three special stones.
 export const MATERIUM = [
     { id: 'silk', json: 'Silk', display: 'Silk' },
-    { id: 'shell-shard', json: 'Shell Shard', display: 'Shell Shard' },
-    { id: 'rosary-small', json: 'Rosary Small', display: 'Rosary Small' },
-    { id: 'rosary-mid', json: 'Rosary Mid', display: 'Rosary Mid' },
-    { id: 'rock-roller-item', json: 'Rock Roller Item', display: 'Rock Roller Item' },
+    { id: 'shell-shard', json: 'Shell Shard', display: 'Shell Shard', iconKind: 'general', icon: 'general_shard.png' },
+    { id: 'rosary-small', json: 'Rosary Small', display: 'Rosary Small', iconKind: 'general', icon: 'general_rosaries.png' },
+    { id: 'rosary-mid', json: 'Rosary Mid', display: 'Rosary Mid', iconKind: 'general', icon: 'general_rosaries.png' },
+    { id: 'rock-roller-item', json: 'Rock Roller Item', display: 'Rock Roller Item', iconKind: 'tool', icon: 'Hornet_icon_0003_T_flintstone.png' },
     { id: 'beastfly-remains', json: 'Beastfly Remains', display: 'Beastfly Remains' },
     { id: 'crow-feathers', json: 'Crow Feathers', display: 'Crow Feathers' },
     { id: 'song-pilgrim-cloak', json: 'Song Pilgrim Cloak', display: 'Song Pilgrim Cloak' },
     { id: 'broodmother-remains', json: 'Broodmother Remains', display: 'Broodmother Remains' },
     { id: 'roach-corpse-item', json: 'Roach Corpse Item', display: 'Roach Corpse Item' },
     { id: 'courier-supplies-generic', json: 'Courier Supplies Generic', display: 'Courier Supplies Generic' },
-    { id: 'lifeblood', json: 'Lifeblood', display: 'Lifeblood' },
-    { id: 'rosary-big', json: 'Rosary Big', display: 'Rosary Big' },
-    { id: 'tool-metal', json: 'Tool Metal', display: 'Tool Metal' },
-    { id: 'mossberry', json: 'Mossberry', display: 'Mossberry' },
+    { id: 'lifeblood', json: 'Lifeblood', display: 'Lifeblood', iconKind: 'tool', icon: 'T_syringe_lifeblood.png' },
+    { id: 'rosary-big', json: 'Rosary Big', display: 'Rosary Big', iconKind: 'general', icon: 'general_rosaries.png' },
+    { id: 'tool-metal', json: 'Tool Metal', display: 'Tool Metal', iconKind: 'general', icon: 'Hornet_Tool_Metal.png' },
+    { id: 'mossberry', json: 'Mossberry', display: 'Mossberry', iconKind: 'checklist', icon: 'I_moss_berry.png' },
     { id: 'pilgrim-rag', json: 'Pilgrim Rag', display: 'Pilgrim Rag' },
     { id: 'skull-king-fragment', json: 'Skull King Fragment', display: 'Skull King Fragment' },
     { id: 'common-spine', json: 'Common Spine', display: 'Common Spine' },
     { id: 'silver-bellclapper', json: 'Silver Bellclapper', display: 'Silver Bellclapper' },
-    { id: 'pale-oil', json: 'Pale Oil', display: 'Pale Oil' },
+    { id: 'pale-oil', json: 'Pale Oil', display: 'Pale Oil', iconKind: 'checklist', icon: 'oil_phial.png' },
     { id: 'shell-flower', json: 'Shell Flower', display: 'Shell Flower' },
     { id: 'smeltstone', json: 'Smeltstone', display: 'Smeltstone' },
     { id: 'crustnut', json: 'Crustnut', display: 'Crustnut' },
@@ -152,7 +152,7 @@ export const MATERIUM = [
     { id: 'snare-soul-swamp-bug', json: 'Snare Soul Swamp Bug', display: 'Snare Soul Swamp Bug' },
     { id: 'voltstone', json: 'Voltstone', display: 'Voltstone' },
     { id: 'plasmium-blood', json: 'Plasmium Blood', display: 'Plasmium Blood' },
-    { id: 'magnetite', json: 'Magnetite', display: 'Magnetite' },
+    { id: 'magnetite', json: 'Magnetite', display: 'Magnetite', iconKind: 'tool', icon: '_0006_I_magnetite_dice.png' },
     { id: 'courier-supplies-slave', json: 'Courier Supplies Slave', display: "Queen's Egg (Courier Supplies)" },
     { id: 'courier-supplies-mask-maker', json: 'Courier Supplies Mask Maker', display: 'Liquid Lacquer (Courier Supplies)' },
 ];
@@ -165,18 +165,19 @@ export const MATERIUM = [
 // the heart items that can land in MementosDeposited (holding one is not
 // enough, since every heart is a Collectables item).
 export const MEMENTOS = [
-    { id: 'heros-memento', display: "Hero's Memento (Garmond)", item: 'Memento Garmond' },
-    { id: 'craw-memento', display: 'Craw Memento', item: 'Crowman Memento', flag: 'PickedUpCrowMemento' },
-    { id: 'gray-memento', display: 'Gray Memento', item: 'Grey Memento', flag: 'CollectedMementoGrey' },
-    { id: 'surface-memento', display: 'Surface Memento', item: 'Memento Surface' },
-    { id: 'hunter-memento', display: 'Hunter Memento', item: 'Hunter Memento', flag: 'nuuMementoAwarded' },
+    { id: 'heros-memento', display: "Hero's Memento (Garmond)", item: 'Memento Garmond', iconKind: 'memento', icon: 'garmond_memento.png' },
+    { id: 'craw-memento', display: 'Craw Memento', item: 'Crowman Memento', flag: 'PickedUpCrowMemento', iconKind: 'memento', icon: 'craw_court_memento.png' },
+    { id: 'gray-memento', display: 'Gray Memento', item: 'Grey Memento', flag: 'CollectedMementoGrey', iconKind: 'memento', icon: 'grey_warrior_memento.png' },
+    { id: 'surface-memento', display: 'Surface Memento', item: 'Memento Surface', iconKind: 'memento', icon: 'surface_memento.png' },
+    { id: 'hunter-memento', display: 'Hunter Memento', item: 'Hunter Memento', flag: 'nuuMementoAwarded', iconKind: 'memento', icon: 'hunter_nuu_memento_seal.png' },
     {
         id: 'hearts-memento', display: 'Hearts Memento (all four hearts)',
         allFlags: ['CollectedHeartFlower', 'CollectedHeartCoral', 'CollectedHeartHunter', 'CollectedHeartClover'],
         depositItems: ['Flower Heart', 'Coral Heart', 'Hunter Heart', 'Clover Heart'],
+        iconKind: 'memento', icon: 'memento_heart_clover0000.png',
     },
-    { id: 'sprintmaster-memento', display: 'Sprintmaster Memento', item: 'Sprintmaster Memento', flag: 'CollectedMementoSprintmaster' },
-    { id: 'guardian-memento', display: 'Guardian Memento (Flea Games)', item: 'Memento Seth', flag: 'FleaGamesMementoGiven' },
+    { id: 'sprintmaster-memento', display: 'Sprintmaster Memento', item: 'Sprintmaster Memento', flag: 'CollectedMementoSprintmaster', iconKind: 'memento', icon: 'sprintmaster_memento.png' },
+    { id: 'guardian-memento', display: 'Guardian Memento (Flea Games)', item: 'Memento Seth', flag: 'FleaGamesMementoGiven', iconKind: 'memento', icon: 'seth_memento.png' },
 ];
 
 // Inventory: playerData.Collectables.savedData { Amount, ... } (76 names seen).

@@ -7,9 +7,7 @@
 import { iconUrl } from '../../core/icons.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
 
-// No generic flea sprite in the assets yet (ROADMAP Appendix A); the Huge Flea
-// portrait stands in for every row.
-const FLEA_ICON = iconUrl('boss', 'Huge Flea - Giant Flea.png');
+const FLEA_ICON = iconUrl('flea', 'flea.png');
 
 export function parseFleas(save, ctx) {
     const fleas = ctx.lists('fleas').map(def => ({
@@ -29,7 +27,7 @@ function renderKind(result, kind, containerId, countId, totalId) {
     renderChecklist(
         container,
         fleas.map(f => ({ name: f.display, icon: f.icon, iconKind: f.iconKind, collected: f.value, pending: false })),
-        f => (f.icon ? iconUrl(f.iconKind || 'general', f.icon) : FLEA_ICON),
+        f => (f.icon ? iconUrl(f.iconKind || 'flea', f.icon) : FLEA_ICON),
     );
     if (!container) return;
     // A checklist row says "Collected"; for fleas "Saved" reads right

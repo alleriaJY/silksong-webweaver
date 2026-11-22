@@ -12,6 +12,12 @@ const SECTIONS = [
 ];
 
 const QUILL_LABELS = { 0: 'None', 1: 'White Quill', 2: 'Red Quill', 3: 'Purple Quill' };
+const QUILL_ICONS = {
+    0: 'I_quill_and_map.png',
+    1: 'I_quill_and_map.png',
+    2: 'I_quill_and_map_red.png',
+    3: 'I_quill_and_map_purple.png',
+};
 
 export function parseTravel(save, ctx) {
     const pd = save.playerData || {};
@@ -38,6 +44,15 @@ export default {
             if (!container) continue;
             const rows = result.items.filter(i => i.kind === s.kind)
                 .map(i => ({ name: i.display, icon: i.icon, iconKind: i.iconKind, collected: i.value, pending: false }));
+            if (s.kind === 'pin' && result.quill) {
+                rows.push({
+                    name: result.quill.owned ? result.quill.label : 'Quill',
+                    icon: QUILL_ICONS[result.quill.state] || 'I_quill_and_map.png',
+                    iconKind: 'quill',
+                    collected: result.quill.owned,
+                    pending: false,
+                });
+            }
             renderChecklist(container, rows, r => (r.icon ? iconUrl(r.iconKind || 'map', r.icon) : null));
             container.querySelectorAll('.source-item.collected .source-status').forEach(el => { el.textContent = s.status; });
             setText(s.count, result.stats[s.kind].unlocked);
