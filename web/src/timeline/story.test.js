@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildRespawnPin, eventLabel, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
+import { buildRespawnPin, describeStoryEvent, eventLabel, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
 
 describe('placeEvents', () => {
     const scenes = ['Tut_01', 'Bonetown', 'Bone_01', 'Bone_East_20', 'Shellwood_14'];
@@ -17,9 +17,23 @@ describe('placeEvents', () => {
         const placed = placeEvents([ev('Bone_01', 10), ev('Nowhere', 20)], scenes);
         expect(placed.map(e => e.index)).toEqual([3, 3]);
     });
-    it('keeps the event fields', () => {
-        expect(placeEvents([{ type: 3, scene: 'Tut_01', playTime: 5, area: 'Tut' }], scenes)[0])
-            .toEqual({ type: 3, scene: 'Tut_01', playTime: 5, area: 'Tut', index: 1 });
+    it('keeps the event fields and attaches running nth count and sourceName', () => {
+        const placed = placeEvents([
+            { type: 3, scene: 'Bone_18', playTime: 5, area: 'Bone' },
+            { type: 3, scene: 'Bone_East_10_Room', playTime: 15, area: 'Bone_East' },
+        ], scenes);
+        expect(placed[0]).toEqual({
+            type: 3,
+            scene: 'Bone_18',
+            playTime: 5,
+            area: 'Bone',
+            index: 0,
+            nth: 1,
+            sourceName: 'The Marrow - arena battle (Bone_18)',
+        });
+        expect(placed[1].nth).toBe(2);
+        expect(placed[1].sourceName).toBe("Far Fields - Mort (Pilgrim's Rest, 150 Rosaries)");
+        expect(describeStoryEvent(2, 'Dust_06')).toContain('Roachkeeper');
     });
 });
 

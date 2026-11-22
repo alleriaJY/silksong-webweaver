@@ -193,6 +193,11 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     }
 
     // ------------------------------------------------------------ story events
+    function formatEventTooltip(e) {
+        const num = e.nth ? ` #${e.nth}` : '';
+        return `${eventLabel(e.type)}${num} · ${e.sourceName || e.scene} · ${formatPlayTime(e.playTime)}`;
+    }
+
     function renderMarks() {
         const marks = ref('marks');
         marks.replaceChildren();
@@ -201,7 +206,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             m.className = 'tl-mark';
             m.style.left = `${scenes.length ? (100 * e.index) / scenes.length : 0}%`;
             m.style.background = EVENT_COLORS[e.type] || '#ccc';
-            m.title = `${eventLabel(e.type)} · ${e.scene} · ${formatPlayTime(e.playTime)}`;
+            m.title = formatEventTooltip(e);
             m.addEventListener('click', () => { stop(); seek(e.index); });
             marks.appendChild(m);
         }
@@ -229,7 +234,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.style.left = `${center.x}px`;
             el.style.top = `${center.y}px`;
             el.style.background = EVENT_COLORS[event.type] || '#ccc';
-            el.title = `${eventLabel(event.type)} · ${event.scene} · ${formatPlayTime(event.playTime)}`;
+            el.title = formatEventTooltip(event);
             el.hidden = true;
             layer.appendChild(el);
             pins.push({ event, el });
@@ -256,12 +261,13 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             const dot = document.createElement('i');
             dot.style.background = EVENT_COLORS[e.type] || '#ccc';
             const name = document.createElement('span');
-            name.append(dot, `${eventLabel(e.type)} (${e.scene})`);
+            const num = e.nth ? ` #${e.nth}` : '';
+            name.append(dot, `${eventLabel(e.type)}${num}: ${e.sourceName || e.scene}`);
             const time = document.createElement('span');
             time.className = 'tl-muted';
             time.textContent = formatPlayTime(e.playTime);
             row.append(name, time);
-            row.title = `${eventLabel(e.type)} · reached at scene ${e.index} of ${scenes.length}`;
+            row.title = `${formatEventTooltip(e)} (scene ${e.index} of ${scenes.length})`;
             row.addEventListener('click', () => { stop(); seek(e.index); });
             list.appendChild(row);
         }

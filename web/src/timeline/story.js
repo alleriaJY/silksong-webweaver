@@ -8,6 +8,8 @@
  * save never visited go after the previous event.
  */
 
+import { mergedList } from '../data/packs/index.js';
+
 /**
  * StoryEvents EventType enum (verified against all 60 events in the 100% save):
  *   0 = Mask Shard (20)
@@ -28,16 +30,84 @@ export function eventLabel(type) {
 }
 
 /**
+ * Scene-based overrides for StoryEvents where the pickup happens in a shop or
+ * quest/wish turn-in room rather than a `flagType: 'scene'` world pickup.
+ */
+const STORY_SCENE_SOURCES = {
+    0: {
+        Bonetown: 'Bone Bottom - Pebb (300 Rosaries)',
+        Song_Enclave: 'Songclave - Jubilana (750 Rosaries)',
+        Sprintmaster_Cave: 'Far Fields - Sprintmaster Swift race (Sprintmaster_Cave)',
+        Belltown: 'Bellhart - Wishboard reward (Belltown)',
+    },
+    1: {
+        Belltown: 'Bellhart - Frey (270 Rosaries)',
+        Song_Enclave: 'Songclave - Jubilana (500 Rosaries)',
+        Coral_42: 'Blasted Steps - Grindle (680 Rosaries)',
+        Ward_09: 'Whiteward - Rescue Sherma ("Balm for the Wounded")',
+        Coral_Judge_Arena: 'Blasted Steps - Fleamaster Mooshka Caravan (14 Fleas)',
+    },
+    2: {
+        Bonetown: 'Bone Bottom - Pebb (500 Rosaries)',
+        Dust_06: "Sinner's Road - Roachkeeper drop (Dust_06)",
+        Song_Enclave: 'Songclave - Jubilana (650 Rosaries)',
+        Bellshrine_Coral: 'Sands of Karak - Eastern bench corpse (Bellshrine_Coral)',
+    },
+    3: {
+        Bonetown: 'Bone Bottom - "Volatile Flintbeetles" wish reward',
+        Bone_East_10_Room: "Far Fields - Mort (Pilgrim's Rest, 150 Rosaries)",
+        Belltown: 'Bellhart - Frey purchase / Bellhome summit (Belltown)',
+    },
+};
+
+let cachedSceneSources = null;
+function getPackSceneSources() {
+    if (cachedSceneSources) return cachedSceneSources;
+    const byType = { 0: new Map(), 1: new Map(), 2: new Map(), 3: new Map() };
+    for (const s of mergedList('maskShardSources')) {
+        if (s.sceneName) byType[0].set(s.sceneName, s.name);
+    }
+    for (const s of mergedList('spoolFragmentSources')) {
+        if (s.sceneName) byType[1].set(s.sceneName, s.name);
+    }
+    for (const s of mergedList('memoryLocketSources')) {
+        if (s.sceneName) byType[3].set(s.sceneName, s.name);
+    }
+    cachedSceneSources = byType;
+    return cachedSceneSources;
+}
+
+/** Resolve `(type, scene)` of a StoryEvent to its human-readable source description. */
+export function describeStoryEvent(type, scene) {
+    const override = STORY_SCENE_SOURCES[type]?.[scene];
+    if (override) return override;
+    const fromPack = getPackSceneSources()[type]?.get(scene);
+    if (fromPack) return fromPack;
+    return scene || 'Unknown location';
+}
+
+/**
  * events: parseStory(...).events (sorted by playTime); scenes: scenesVisited.
- * Returns the events with `index` = number of scenes visited when it happened.
+ * Returns the events with:
+ *   - `index` = number of scenes visited when it happened
+ *   - `nth` = 1-based running counter for that EventType
+ *   - `sourceName` = human-readable item source description
  */
 export function placeEvents(events, scenes) {
     const firstVisit = new Map();
     scenes.forEach((scene, i) => { if (!firstVisit.has(scene)) firstVisit.set(scene, i + 1); });
+    const counts = {};
     let progress = 0;
     return events.map(e => {
         progress = Math.max(progress, firstVisit.get(e.scene) ?? progress);
-        return { ...e, index: progress };
+        const nth = (counts[e.type] || 0) + 1;
+        counts[e.type] = nth;
+        return {
+            ...e,
+            index: progress,
+            nth,
+            sourceName: describeStoryEvent(e.type, e.scene),
+        };
     });
 }
 
