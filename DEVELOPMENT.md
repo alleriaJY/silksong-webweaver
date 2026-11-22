@@ -39,6 +39,8 @@ python tools/decrypt_save.py savefiles/user1.dat savefiles/user1.json
 python tools/diff_saves.py before.dat after.dat
 python tools/unknown_keys.py savefiles/user1.dat --bools-only
 python tools/inspect_save.py savefiles/user1.dat
+python tools/inspect_save.py savefiles/user1.dat --group sc-darkness-mask
+python tools/inspect_save.py savefiles/user1.dat --undecoded
 python tools/inspect_save.py savefiles/user1.dat --search "Locket"
 python tools/inspect_save.py savefiles/user1.dat --annotate savefiles/user1.annotated.txt
 python tools/make_fixture.py savefiles/user1.dat web/src/data/__fixtures__/<name>.json

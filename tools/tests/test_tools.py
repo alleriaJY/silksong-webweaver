@@ -163,12 +163,16 @@ def test_inspect_save_classifies_every_section(tmp_path):
     for sec_name, rows in sections.items():
         summary = inspect_save.summarize_section(rows)
         assert summary["unknown"] == 0, f"{sec_name} had unknown rows: {rows}"
+        groups = inspect_save.summarize_groups(rows)
+        assert sum(g["total"] for g in groups) == len(rows)
+        assert all("group" in r and "group_label" in r for r in rows)
 
     out = tmp_path / "annotated.txt"
     inspect_save.write_annotated_report(sections, out)
     text = out.read_text(encoding="utf-8")
     assert "Straight Pin" in text
     assert "Bone_East_20 / Heart Piece" in text
+    assert "sc-breakable-wall" in text
 
 
 def test_inspect_save_zero_unknown_across_all_fixtures():
