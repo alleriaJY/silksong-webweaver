@@ -9,6 +9,8 @@ const OVERLAY_HTML = `
     </div>
 `;
 
+const hasFiles = (e) => Array.from(e.dataTransfer?.types || []).includes('Files');
+
 /** Show an overlay while a file is dragged over the window; call onFile on drop. */
 export function setupGlobalDragDrop(onFile) {
     let overlay = document.getElementById('global-drop-overlay');
@@ -21,15 +23,21 @@ export function setupGlobalDragDrop(onFile) {
         document.body.appendChild(overlay);
     }
 
-    // dragenter/dragleave fire for every child element; count them
+    // dragenter/dragleave fire for every child element; count them.
+    // Ignore in-page drags (images, text, map tiles) that carry no Files.
     let depth = 0;
     window.addEventListener('dragenter', (e) => {
+        if (!hasFiles(e)) return;
         e.preventDefault();
         depth++;
-        if (e.dataTransfer.items && e.dataTransfer.items.length > 0) overlay.classList.add('active');
+        overlay.classList.add('active');
     });
-    window.addEventListener('dragover', (e) => e.preventDefault());
+    window.addEventListener('dragover', (e) => {
+        if (!hasFiles(e)) return;
+        e.preventDefault();
+    });
     window.addEventListener('dragleave', (e) => {
+        if (!hasFiles(e)) return;
         e.preventDefault();
         depth--;
         if (depth <= 0) {
@@ -38,6 +46,7 @@ export function setupGlobalDragDrop(onFile) {
         }
     });
     window.addEventListener('drop', (e) => {
+        if (!hasFiles(e)) return;
         e.preventDefault();
         depth = 0;
         overlay.classList.remove('active');

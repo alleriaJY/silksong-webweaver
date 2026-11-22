@@ -180,6 +180,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
                 const sprite = document.createElement('img');
                 sprite.alt = '';
                 sprite.decoding = 'async';
+                sprite.draggable = false;
                 sprite.src = el.dataset.src;
                 el.appendChild(sprite);
                 delete el.dataset.src;
@@ -473,8 +474,12 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     const mapEl = ref('map');
     const pointers = new Map();
     let pinch = null;
+    mapEl.addEventListener('dragstart', e => e.preventDefault());
     mapEl.addEventListener('pointerdown', e => {
         if (e.target.closest('button')) return;
+        // Left-click, middle-click, or touch pan; leave right-click untouched
+        if (e.pointerType === 'mouse' && e.button !== 0 && e.button !== 1) return;
+        e.preventDefault();
         mapEl.setPointerCapture(e.pointerId);
         pointers.set(e.pointerId, [e.clientX, e.clientY]);
         mapEl.classList.add('dragging');
