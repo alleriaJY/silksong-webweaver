@@ -87,6 +87,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     let currentPd = null;                   // active save playerData
     let mode = 'visited';                   // 'visited' | 'mapped'
     let pins = [];                          // [{ event, el }]
+    let hiddenTypes = new Set();            // filtered-out StoryEvent EventType values
+    let activeEvent = null;                 // last clicked StoryEvent for pin highlight
     let lookup = () => [];
     let position = 0;
     let active = false, fitted = false;
@@ -187,9 +189,29 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             tag.textContent = ` [${area.display || area.prefix}]`;
             sceneEl.appendChild(tag);
         }
-        for (const { event, el } of pins) el.hidden = event.index > position;
+        for (const { event, el } of pins) {
+            el.hidden = event.index > position || hiddenTypes.has(event.type);
+            el.classList.toggle('tl-pin-active', event === activeEvent);
+        }
         renderRecent();
         renderEvents();
+    }
+
+    function focusOnScene(scene, targetEvent = null) {
+        activeEvent = targetEvent;
+        if (!map) return;
+        const center = sceneBoundsCenter(scene, lookup, map.tiles, scenes);
+        if (!center) return;
+        const box = ref('map').getBoundingClientRect();
+        if (!box.width || !box.height) return;
+        const targetScale = Math.max(view.scale, 0.65);
+        view.scale = Math.min(MAX_SCALE, targetScale);
+        view.x = box.width / 2 - center.x * view.scale;
+        view.y = box.height / 2 - center.y * view.scale;
+        applyView();
+        for (const { event, el } of pins) {
+            el.classList.toggle('tl-pin-active', event === activeEvent);
+        }
     }
 
     // ------------------------------------------------------------ story events
@@ -207,17 +229,30 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             m.style.left = `${scenes.length ? (100 * e.index) / scenes.length : 0}%`;
             m.style.background = EVENT_COLORS[e.type] || '#ccc';
             m.title = formatEventTooltip(e);
-            m.addEventListener('click', () => { stop(); seek(e.index); });
+            m.hidden = hiddenTypes.has(e.type);
+            m.addEventListener('click', () => { stop(); seek(e.index); focusOnScene(e.scene, e); });
             marks.appendChild(m);
         }
         const legend = ref('legend');
         legend.replaceChildren();
-        const types = [...new Set(events.map(e => e.type))].sort();
-        for (const t of types) {
-            const item = document.createElement('span');
+        const typeCounts = new Map();
+        for (const e of events) typeCounts.set(e.type, (typeCounts.get(e.type) || 0) + 1);
+        for (const t of [...typeCounts.keys()].sort()) {
+            const on = !hiddenTypes.has(t);
+            const item = document.createElement('button');
+            item.type = 'button';
+            item.className = `tl-legend-btn${on ? ' on' : ''}`;
+            item.setAttribute('aria-pressed', String(on));
+            item.title = `Toggle ${eventLabel(t)} markers (${typeCounts.get(t)})`;
             const dot = document.createElement('i');
             dot.style.background = EVENT_COLORS[t] || '#ccc';
-            item.append(dot, eventLabel(t));
+            item.append(dot, `${eventLabel(t)} (${typeCounts.get(t)})`);
+            item.addEventListener('click', () => {
+                if (hiddenTypes.has(t)) hiddenTypes.delete(t);
+                else hiddenTypes.add(t);
+                renderMarks();
+                seek(position);
+            });
             legend.appendChild(item);
         }
     }
@@ -236,6 +271,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.style.background = EVENT_COLORS[event.type] || '#ccc';
             el.title = formatEventTooltip(event);
             el.hidden = true;
+            el.addEventListener('click', () => { stop(); seek(event.index); focusOnScene(event.scene, event); });
             layer.appendChild(el);
             pins.push({ event, el });
         }
@@ -246,6 +282,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.style.left = `${benchPin.x}px`;
             el.style.top = `${benchPin.y}px`;
             el.title = benchPin.title;
+            el.addEventListener('click', () => focusOnScene(benchPin.scene));
             layer.appendChild(el);
         }
     }
@@ -255,9 +292,9 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         list.replaceChildren();
         for (let i = events.length - 1; i >= 0; i--) {
             const e = events[i];
-            if (e.index > position) continue;
+            if (e.index > position || hiddenTypes.has(e.type)) continue;
             const row = document.createElement('button');
-            row.className = 'tl-recent-item tl-event';
+            row.className = `tl-recent-item tl-event${e === activeEvent ? ' active' : ''}`;
             const dot = document.createElement('i');
             dot.style.background = EVENT_COLORS[e.type] || '#ccc';
             const name = document.createElement('span');
@@ -268,7 +305,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             time.textContent = formatPlayTime(e.playTime);
             row.append(name, time);
             row.title = `${formatEventTooltip(e)} (scene ${e.index} of ${scenes.length})`;
-            row.addEventListener('click', () => { stop(); seek(e.index); });
+            row.addEventListener('click', () => { stop(); seek(e.index); focusOnScene(e.scene, e); });
             list.appendChild(row);
         }
         if (!list.children.length) {
@@ -290,15 +327,19 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         const list = ref('recent');
         list.replaceChildren();
         for (let i = position - 1; i >= Math.max(0, position - RECENT); i--) {
-            const n = lookup(scenes[i]).length;
-            const row = document.createElement('div');
-            row.className = 'tl-recent-item';
+            const sc = scenes[i];
+            const n = lookup(sc).length;
+            const row = document.createElement('button');
+            row.type = 'button';
+            row.className = 'tl-recent-item tl-event';
             const name = document.createElement('span');
-            name.textContent = scenes[i];
+            name.textContent = sc;
             const count = document.createElement('span');
             count.className = n ? 'tl-area' : 'tl-muted';
             count.textContent = `${n} tile${n === 1 ? '' : 's'}`;
             row.append(name, count);
+            row.title = `Center map on ${sc}`;
+            row.addEventListener('click', () => focusOnScene(sc));
             list.appendChild(row);
         }
         if (!list.children.length) {
