@@ -43,7 +43,7 @@ export function parseSourceChecklist(playerData, sceneData, sourceList) {
         const result = evalCheck(playerData, sceneData, src);
         const pending = result === null;
         const collected = result === true;
-        return { id: src.id, name: src.name, icon: src.icon, flagType: src.flagType, collected, pending, progress: null };
+        return { id: src.id, name: src.name, icon: src.icon, iconKind: src.iconKind, flagType: src.flagType, collected, pending, progress: null };
     });
     return {
         sources,
@@ -79,7 +79,7 @@ function checklist(c) {
             : undefined,
         render(result, ctx) {
             const container = document.getElementById(c.container);
-            renderChecklist(container, result.sources, s => (s.icon ? iconUrl('general', s.icon) : null));
+            renderChecklist(container, result.sources, s => (s.icon ? iconUrl(s.iconKind || 'general', s.icon) : null));
             if (container && c.collectedId) setText(c.collectedId, result.stats.collected);
             if (c.collectedTotalId) setText(c.collectedTotalId, result.stats.total);
             if (c.unlockedTotalId && c.completion) setText(c.unlockedTotalId, c.completion.max(result));
@@ -137,6 +137,9 @@ export const CHECKLISTS = [
     checklist({ id: 'mossberries', list: 'mossberrySources', container: 'mossberries-checklist', collectedId: 'mossberries-collected-count', collectedTotalId: 'mossberries-total' }),
     checklist({ id: 'silkeaters', list: 'silkeaterSources', container: 'silkeaters-checklist', collectedId: 'silkeaters-collected-count', collectedTotalId: 'silkeaters-total' }),
     checklist({ id: 'uniqueSpawns', list: 'uniqueSpawnSources', container: 'unique-spawns-checklist', collectedId: 'unique-spawns-collected-count', collectedTotalId: 'unique-spawns-total' }),
-    checklist({ id: 'bellhome', list: 'bellhomeSources', container: 'bellhome-checklist', collectedId: 'bellhome-collected-count', collectedTotalId: 'bellhome-total' }),
+    checklist({ id: 'voidMasses', list: 'voidMassSources', container: 'void-masses-checklist', collectedId: 'void-masses-collected-count', collectedTotalId: 'void-masses-total' }),
+    checklist({ id: 'endings', list: 'endingSources', container: 'endings-checklist', collectedId: 'endings-collected-count', collectedTotalId: 'endings-total' }),
     checklist({ id: 'worldMilestones', list: 'worldMilestoneSources', container: 'world-milestones-checklist', collectedId: 'world-milestones-collected-count', collectedTotalId: 'world-milestones-total' }),
+    checklist({ id: 'arenas', list: 'arenaSources', container: 'arenas-checklist', collectedId: 'arenas-collected-count', collectedTotalId: 'arenas-total' }),
+    checklist({ id: 'bellhome', list: 'bellhomeSources', container: 'bellhome-checklist', collectedId: 'bellhome-collected-count', collectedTotalId: 'bellhome-total' }),
 ];

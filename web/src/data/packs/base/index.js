@@ -19,7 +19,10 @@ import {
     CRAFTMETAL_SOURCES, MEMORY_LOCKET_SOURCES, PALE_OIL_SOURCES, MOSSBERRY_SOURCES, SILKEATER_SOURCES,
     RELICS, MATERIUM, MEMENTOS, INVENTORY_ITEMS,
 } from './collectables.js';
-import { BELLHOME_SOURCES, UNIQUE_SPAWN_SOURCES, WORLD_MILESTONE_SOURCES } from './world.js';
+import {
+    BELLHOME_SOURCES, ENDING_SOURCES, WORLD_MILESTONE_SOURCES, ARENA_SOURCES,
+    UNIQUE_SPAWN_SOURCES, VOID_MASS_SOURCES,
+} from './world.js';
 import { AREAS } from './areas.js';
 import { JOURNAL } from './journal.js';
 import { QUESTS } from './quests.js';
@@ -60,8 +63,11 @@ export default {
         mossberrySources: MOSSBERRY_SOURCES,
         silkeaterSources: SILKEATER_SOURCES,
         bellhomeSources: BELLHOME_SOURCES,
-        uniqueSpawnSources: UNIQUE_SPAWN_SOURCES,
+        endingSources: ENDING_SOURCES,
         worldMilestoneSources: WORLD_MILESTONE_SOURCES,
+        arenaSources: ARENA_SOURCES,
+        uniqueSpawnSources: UNIQUE_SPAWN_SOURCES,
+        voidMassSources: VOID_MASS_SOURCES,
         areas: AREAS,
         journal: JOURNAL,
         quests: QUESTS,

@@ -111,19 +111,34 @@
       "total": 9
     },
     "uniqueSpawns": {
-      "collected": 28,
+      "collected": 8,
       "pending": 0,
-      "total": 58
+      "total": 12
+    },
+    "voidMasses": {
+      "collected": 20,
+      "pending": 0,
+      "total": 46
     },
     "bellhome": {
       "collected": 7,
       "pending": 0,
       "total": 8
     },
-    "worldMilestones": {
-      "collected": 23,
+    "endings": {
+      "collected": 4,
       "pending": 0,
-      "total": 25
+      "total": 4
+    },
+    "worldMilestones": {
+      "collected": 9,
+      "pending": 0,
+      "total": 9
+    },
+    "arenas": {
+      "collected": 10,
+      "pending": 0,
+      "total": 12
     },
     "journal": {
       "total": 237,
