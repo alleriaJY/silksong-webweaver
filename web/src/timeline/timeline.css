@@ -178,12 +178,12 @@
     z-index: 2;
 }
 
-/* Custom floating map pin hover tooltip (screen-space, unscaled) */
+/* Custom floating hover tooltip for map pins and timeline playback marks */
 .timeline .tl-tooltip {
-    position: absolute;
-    z-index: 20;
+    position: fixed;
+    z-index: 60;
     pointer-events: none;
-    max-width: min(290px, calc(100% - 20px));
+    max-width: min(290px, calc(100vw - 20px));
     padding: 8px 11px;
     border-radius: 6px;
     background: rgba(14, 14, 16, 0.96);

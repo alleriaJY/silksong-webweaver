@@ -58,7 +58,6 @@ const TEMPLATE = `
                 <button class="tl-zoom-btn" data-act="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
                 <button class="tl-zoom-btn" data-act="zoom-reset" title="Fit map" aria-label="Fit map">⌂</button>
             </div>
-            <div class="tl-tooltip" data-ref="tooltip" role="tooltip" hidden></div>
             <div class="tl-empty" data-ref="empty">
                 <h2>Hero's Path</h2>
                 <p data-ref="empty-text">Open a save to replay your journey across Pharloom.</p>
@@ -77,7 +76,8 @@ const TEMPLATE = `
             </div>
             <p class="tl-muted tl-keys">Keys: ← → step · Space play · Home / End</p>
         </aside>
-    </div>`;
+    </div>
+    <div class="tl-tooltip" data-ref="tooltip" role="tooltip" hidden></div>`;
 
 export function mountTimeline(root, store, { onUpload } = {}) {
     root.classList.add('timeline');
@@ -236,10 +236,18 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         marks.replaceChildren();
         for (const e of events) {
             const m = document.createElement('button');
+            m.type = 'button';
             m.className = 'tl-mark';
             m.style.left = `${scenes.length ? (100 * e.index) / scenes.length : 0}%`;
             m.style.background = EVENT_COLORS[e.type] || '#ccc';
-            m.title = formatEventTooltip(e);
+            const num = e.nth ? ` #${e.nth}` : '';
+            bindPinHover(m, {
+                color: EVENT_COLORS[e.type] || '#ccc',
+                title: `${eventLabel(e.type)}${num}`,
+                subtitle: cleanHoverSubtitle(e.sourceName || '', e.scene),
+                meta: formatPlayTime(e.playTime),
+                preferBelow: true,
+            });
             m.hidden = hiddenTypes.has(e.type);
             m.addEventListener('click', () => { stop(); seek(e.index); focusOnScene(e.scene, e); });
             marks.appendChild(m);
@@ -279,7 +287,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         return out.trim();
     }
 
-    function showPinTooltip(pinEl, { color, title, subtitle = '', meta = '' }) {
+    function showPinTooltip(anchorEl, { color, title, subtitle = '', meta = '', preferBelow = false }) {
         const tip = ref('tooltip');
         if (!tip) return;
         tip.replaceChildren();
@@ -304,13 +312,13 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             tip.append(sub);
         }
         tip.hidden = false;
-        const mapBox = ref('map').getBoundingClientRect();
-        const pinBox = pinEl.getBoundingClientRect();
+        const anchorBox = anchorEl.getBoundingClientRect();
         const tipBox = tip.getBoundingClientRect();
-        const cx = pinBox.left + pinBox.width / 2 - mapBox.left;
-        const left = Math.max(10, Math.min(mapBox.width - tipBox.width - 10, cx - tipBox.width / 2));
-        let top = pinBox.top - mapBox.top - tipBox.height - 12;
-        if (top < 10) top = pinBox.bottom - mapBox.top + 12;
+        const cx = anchorBox.left + anchorBox.width / 2;
+        const left = Math.max(10, Math.min(window.innerWidth - tipBox.width - 10, cx - tipBox.width / 2));
+        let top = preferBelow ? anchorBox.bottom + 10 : anchorBox.top - tipBox.height - 12;
+        if (!preferBelow && top < 10) top = anchorBox.bottom + 12;
+        if (preferBelow && top + tipBox.height > window.innerHeight - 10) top = anchorBox.top - tipBox.height - 10;
         tip.style.left = `${left}px`;
         tip.style.top = `${top}px`;
     }
@@ -324,6 +332,8 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         el.setAttribute('aria-label', info.subtitle ? `${info.title} — ${info.subtitle}` : info.title);
         el.addEventListener('pointerenter', () => showPinTooltip(el, info));
         el.addEventListener('pointerleave', hidePinTooltip);
+        el.addEventListener('focus', () => showPinTooltip(el, info));
+        el.addEventListener('blur', hidePinTooltip);
     }
 
     function buildPins() {
