@@ -20,6 +20,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PACKS, mergedList, listNames } from './index.js';
 import { ICON_DIRS } from '../../core/icons.js';
+import { resolveSaveBanner } from '../categories/general.js';
 
 const WEB = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const FIXTURE_DIR = join(WEB, 'src', 'data', '__fixtures__');
@@ -29,11 +30,11 @@ const FIXTURES = readdirSync(FIXTURE_DIR)
 
 /** Icon kind (core/icons.js) for each list that has icons. */
 const ICON_KIND = {
-    tools: 'tool', bosses: 'boss', maps: 'map', travel: 'map',
+    tools: 'tool', bosses: 'boss', maps: 'map', travel: 'marker',
     abilities: 'ability', otherAbilities: 'ability', cloakTiers: 'ability',
     skills: 'skill', crests: 'crest', specialCrestStates: 'crest', needleTiers: 'nail',
     journal: 'journal',
-    fleas: 'general', relics: 'general', materium: 'general', mementos: 'general', keyItems: 'general',
+    fleas: 'flea', relics: 'collectable', materium: 'general', mementos: 'memento', keyItems: 'key',
 };
 const iconKindOf = name => ICON_KIND[name] ?? (name.endsWith('Sources') ? 'general' : null);
 
@@ -217,5 +218,33 @@ describe('pack contracts', () => {
             expect(p).toEqual(expect.objectContaining({ id: expect.any(String), label: expect.any(String), minVersion: expect.any(String) }));
             expect(typeof p.detect).toBe('function');
         }
+    });
+
+    it('every save slot area banner resolves to an existing saveart file on disk', () => {
+        const areas = [
+            'ABYSS', 'AQUEDUCT', 'ARBORIUM', 'ASPID', 'BELLHART', 'BELLHART_HAUNTED',
+            'BELLHOME', 'BELLSHRINE', 'BELLVEIN', 'BONEBOTTOM', 'BONECHURCH', 'BONEFOREST',
+            'BONEGRAVE', 'BORDER_CAVES', 'CITADEL_STATION', 'CITY_OF_SONG', 'CLOVER',
+            'COG_CORE', 'CORAL_CAVERNS', 'CORAL_GORGE', 'CORAL_TOWER', 'CRADLE',
+            'CRADLE_DESTROYED', 'CRAWL', 'DOCKS', 'DUSTPENS', 'ENCLAVE', 'ENCLAVE_BELLSHRINE',
+            'FLEATOPIA', 'FLEA_FESTIVAL', 'GRAND_GATE', 'GRANDGATE', 'GREYMOOR', 'HALFWAY',
+            'HANG', 'HUNTERS_NEST', 'LIBRARY', 'MEMORY', 'MOSSCAVE', 'MOSSTOWN', 'ORGAN',
+            'PEAK', 'PILGRIMS_REST', 'PINSTRESS', 'RED_MEMORY', 'REDMEMORY', 'SCORCHLANDS',
+            'SEAMSTRESS', 'SHELLWOOD', 'SLAB_CELL', 'SPRINTMASTER_CAVE', 'SWAMP', 'THE_SLAB',
+            'TUBE_HUB', 'UNDERSTORE', 'WARD', 'WEAVER_SHRINE', 'WISP', '',
+        ];
+        const missing = [];
+        for (const currentArea of areas) {
+            for (const blackThreadWorld of [false, true]) {
+                for (const BelltownHouseColour of [0, 1, 2, 3, 4, 5, 6]) {
+                    const { artFile } = resolveSaveBanner({ currentArea, blackThreadWorld, BelltownHouseColour });
+                    if (!existsSync(join(WEB, ICON_DIRS.saveart, artFile))) {
+                        missing.push(`${currentArea}/${blackThreadWorld}/${BelltownHouseColour}: ${artFile}`);
+                    }
+                }
+            }
+        }
+        expect(missing).toEqual([]);
+        expect(existsSync(join(WEB, ICON_DIRS.saveart, 'Area_Art_Black_Thread_Overlay.png'))).toBe(true);
     });
 });

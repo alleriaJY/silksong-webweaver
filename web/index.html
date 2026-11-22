@@ -136,58 +136,103 @@
                                         <h3>General Information</h3>
                                         <p class="panel-description">Overview of your save file</p>
                                     </div>
-                                    <div class="panel-content">
-                                        <!-- Game Info Card -->
-                                        <div class="stat-card">
-                                            <h4>Game Info</h4>
-                                            <div class="stat-row">
-                                                <span class="stat-label">Game Version</span>
-                                                <span class="stat-value" data-stat="version">-</span>
-                                            </div>
-                                            <div class="stat-row">
-                                                <span class="stat-label">Game Mode</span>
-                                                <span class="stat-value" data-stat="permadeath">-</span>
-                                            </div>
-                                            <div class="stat-row">
-                                                <span class="stat-label">Completion</span>
-                                                <span class="stat-value highlight" data-stat="completion">-</span>
-                                            </div>
-                                            <div class="stat-row">
-                                                <span class="stat-label">Play Time</span>
-                                                <span class="stat-value highlight" data-stat="playTime">-</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Max Unlocked Card -->
-                                        <div class="stat-card">
-                                            <h4>Stats</h4>
-                                            <div class="stat-row">
-                                                <span class="stat-label">Max Health</span>
-                                                <span class="stat-value" data-stat="maxHealth">-</span>
-                                            </div>
-                                            <div class="stat-row">
-                                                <span class="stat-label">Max Silk</span>
-                                                <span class="stat-value" data-stat="maxSilk">-</span>
-                                            </div>
-                                            <div class="stat-row">
-                                                <span class="stat-label">Max Silk Hearts</span>
-                                                <span class="stat-value" data-stat="silkHearts">-</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Stats Visual - Full Width -->
-                                        <div class="stat-card full-width">
-                                            <h4>Health & Silk Visual</h4>
-                                            <div class="stat-visual-row">
-                                                <span class="stat-visual-label">Max Health:</span>
-                                                <div class="icon-container" id="health-icons">
-                                                    <!-- Health icons will be populated by JS -->
+                                    <div class="panel-content general-layout">
+                                        <!-- In-Game Save Slot Banner Card -->
+                                        <div class="stat-card save-slot-wrapper">
+                                            <h4>Save Slot Profile</h4>
+                                            <div class="save-slot-card" id="save-slot-card">
+                                                <img src="assets/img/saveart/Area_Art__0011_Mosscave.png" alt="Save Slot Area Art" class="save-slot-art" id="save-banner-art">
+                                                <img src="assets/img/saveart/Area_Art_Black_Thread_Overlay.png" alt="" class="save-slot-black-thread" id="save-banner-black-thread" hidden>
+                                                <div class="save-slot-hud">
+                                                    <div class="save-slot-crest-row">
+                                                        <img src="assets/img/general/crests/Select_Game_Crest_Spools__0000_hunter.png" alt="Equipped Crest" class="save-slot-crest" id="save-banner-crest">
+                                                        <div class="save-slot-vitals">
+                                                            <div class="save-slot-masks-row">
+                                                                <div class="save-slot-masks" id="save-banner-masks"></div>
+                                                                <div class="save-slot-silkhearts" id="save-banner-silkhearts"></div>
+                                                            </div>
+                                                            <div class="save-slot-spool-track">
+                                                                <div class="save-slot-spool-fill" id="save-banner-spool-fill"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="save-slot-currencies">
+                                                        <span class="save-slot-currency">
+                                                            <img src="assets/img/general/general_rosaries.png" alt="Rosaries">
+                                                            <span id="save-banner-geo">0</span>
+                                                        </span>
+                                                        <span class="save-slot-currency">
+                                                            <img src="assets/img/general/general_shard.png" alt="Shell Shards">
+                                                            <span id="save-banner-shards">0</span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="save-slot-footer">
+                                                    <div class="save-slot-title-row">
+                                                        <span class="save-slot-number" id="save-banner-slot">1.</span>
+                                                        <span class="save-slot-area" id="save-banner-area">MOSS GROTTO</span>
+                                                    </div>
+                                                    <div class="save-slot-meta-row">
+                                                        <span class="save-slot-completion" id="save-banner-completion">0%</span>
+                                                        <span class="save-slot-playtime" id="save-banner-playtime">00h 00m 00s</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="stat-visual-row">
-                                                <span class="stat-visual-label">Silk Hearts:</span>
-                                                <div class="icon-container" id="silkheart-icons">
-                                                    <!-- Silk heart icons will be populated by JS -->
+                                        </div>
+
+                                        <div class="general-cards-column">
+                                            <!-- Game Info Card -->
+                                            <div class="stat-card">
+                                                <h4>Game Info</h4>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Game Version</span>
+                                                    <span class="stat-value" data-stat="version">-</span>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Game Mode</span>
+                                                    <span class="stat-value" data-stat="permadeath">-</span>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Completion</span>
+                                                    <span class="stat-value highlight" data-stat="completion">-</span>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Play Time</span>
+                                                    <span class="stat-value highlight" data-stat="playTime">-</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Max Unlocked Card -->
+                                            <div class="stat-card">
+                                                <h4>Stats</h4>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Max Health</span>
+                                                    <span class="stat-value" data-stat="maxHealth">-</span>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Max Silk</span>
+                                                    <span class="stat-value" data-stat="maxSilk">-</span>
+                                                </div>
+                                                <div class="stat-row">
+                                                    <span class="stat-label">Max Silk Hearts</span>
+                                                    <span class="stat-value" data-stat="silkHearts">-</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Stats Visual - Full Width -->
+                                            <div class="stat-card full-width">
+                                                <h4>Health & Silk Visual</h4>
+                                                <div class="stat-visual-row">
+                                                    <span class="stat-visual-label">Max Health:</span>
+                                                    <div class="icon-container" id="health-icons">
+                                                        <!-- Health icons will be populated by JS -->
+                                                    </div>
+                                                </div>
+                                                <div class="stat-visual-row">
+                                                    <span class="stat-visual-label">Silk Hearts:</span>
+                                                    <div class="icon-container" id="silkheart-icons">
+                                                        <!-- Silk heart icons will be populated by JS -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
