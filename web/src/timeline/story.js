@@ -111,10 +111,63 @@ export function placeEvents(events, scenes) {
     });
 }
 
-/** Bounding-box centre of the tiles belonging to `scene`, or null if unmapped. */
-export function sceneBoundsCenter(scene, lookup, tiles) {
+/**
+ * Interior and sub-room scenes that do not have their own world-map sprite,
+ * mapped to the parent exterior room where their doorway sits on the Pharloom map.
+ */
+export const INTERIOR_PARENT_SCENES = {
+    Bone_12: 'Bone_11',
+    Bone_East_10_Room: 'Bone_East_10',
+    Bone_East_LavaChallenge: 'Bone_East_20',
+    Dock_03d: 'Dock_03c',
+    Greymoor_17: 'Greymoor_16',
+    Halfway_01: 'Greymoor_03',
+    Organ_01: 'Dust_09_right',
+    Shadow_20: 'Shadow_20_right',
+    Shadow_23: 'Shadow_22',
+    Slab_Cell: 'Slab_13_2',
+    Slab_Cell_Quiet: 'Slab_08_top',
+    Sprintmaster_Cave: 'Bone_East_24',
+    Ward_09: 'Ward_03',
+    Belltown_Room_Spare: 'Belltown',
+    Belltown_Room_Relic: 'Belltown',
+    Belltown_Room_Doctor: 'Belltown',
+    Belltown_Room_Pinsmith: 'Belltown',
+    Room_Forge: 'Dock_02',
+    Room_Witch: 'Shellwood_13',
+    Room_CrowCourt: 'Greymoor_15',
+    Room_CrowCourt_02: 'Greymoor_15',
+    Room_Pinstress: 'Peak_05',
+    Room_Caravan_Spa: 'Aqueduct_05',
+    Room_Caravan_Interior: 'Aqueduct_05',
+};
+
+/** Resolve a scene (including interior sub-rooms) to tile names via `lookup`. */
+export function resolveSceneTiles(scene, lookup, scenesVisited = []) {
+    if (!scene) return [];
+    const direct = lookup(scene);
+    if (direct && direct.length) return direct;
+
+    const parent = INTERIOR_PARENT_SCENES[scene];
+    if (parent) {
+        const parentTiles = lookup(parent);
+        if (parentTiles && parentTiles.length) return parentTiles;
+    }
+
+    if (Array.isArray(scenesVisited) && scenesVisited.length) {
+        const idx = scenesVisited.indexOf(scene);
+        for (let i = idx - 1; i >= 0; i--) {
+            const prev = lookup(scenesVisited[i]);
+            if (prev && prev.length) return prev;
+        }
+    }
+    return [];
+}
+
+/** Bounding-box centre of the tiles belonging to `scene` (or its parent exterior room), or null if unmapped. */
+export function sceneBoundsCenter(scene, lookup, tiles, scenesVisited = []) {
     if (!scene) return null;
-    const names = lookup(scene);
+    const names = resolveSceneTiles(scene, lookup, scenesVisited);
     if (!names || !names.length) return null;
     const boxes = names.map(n => tiles[n]).filter(Boolean);
     if (!boxes.length) return null;
@@ -124,10 +177,10 @@ export function sceneBoundsCenter(scene, lookup, tiles) {
 }
 
 /** Build respawn bench pin metadata from `playerData.respawnScene`. */
-export function buildRespawnPin(playerData, lookup, tiles) {
+export function buildRespawnPin(playerData, lookup, tiles, scenesVisited = []) {
     const scene = playerData?.respawnScene;
     if (!scene) return null;
-    const center = sceneBoundsCenter(scene, lookup, tiles);
+    const center = sceneBoundsCenter(scene, lookup, tiles, scenesVisited);
     if (!center) return null;
     const marker = playerData?.respawnMarkerName || null;
     const title = marker

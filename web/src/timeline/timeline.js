@@ -227,7 +227,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         layer.replaceChildren();
         pins = [];
         for (const event of events) {
-            const center = sceneBoundsCenter(event.scene, lookup, map.tiles);
+            const center = sceneBoundsCenter(event.scene, lookup, map.tiles, scenes);
             if (!center) continue;
             const el = document.createElement('div');
             el.className = 'tl-pin';
@@ -239,7 +239,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             layer.appendChild(el);
             pins.push({ event, el });
         }
-        const benchPin = buildRespawnPin(currentPd, lookup, map.tiles);
+        const benchPin = buildRespawnPin(currentPd, lookup, map.tiles, scenes);
         if (benchPin) {
             const el = document.createElement('div');
             el.className = 'tl-pin tl-pin-bench';

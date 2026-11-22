@@ -44,9 +44,13 @@ describe('sceneBoundsCenter & buildRespawnPin', () => {
     };
     const lookup = scene => (scene === 'Belletown' ? ['t1', 't2'] : []);
 
-    it('computes the bounding-box centre of a scene\'s tiles', () => {
+    it('computes the bounding-box centre of a scene\'s tiles and resolves interior sub-rooms', () => {
         expect(sceneBoundsCenter('Belletown', lookup, tiles)).toEqual({ x: 150, y: 230 });
         expect(sceneBoundsCenter('Unknown_01', lookup, tiles)).toBeNull();
+        // Interior room mapped via INTERIOR_PARENT_SCENES or scenesVisited fallback
+        const extLookup = scene => (scene === 'Bone_East_10' || scene === 'Belletown' ? ['t1', 't2'] : []);
+        expect(sceneBoundsCenter('Bone_East_10_Room', extLookup, tiles)).toEqual({ x: 150, y: 230 });
+        expect(sceneBoundsCenter('Custom_Interior', extLookup, tiles, ['Belletown', 'Custom_Interior'])).toEqual({ x: 150, y: 230 });
     });
 
     it('builds respawn bench pin data when respawnScene resolves to map tiles', () => {
