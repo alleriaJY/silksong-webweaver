@@ -22,7 +22,7 @@ export const QUESTS = [
     { id: 'citadel-ascent', json: 'Citadel Ascent', display: 'Ascent to the Citadel', kind: 'quest' },
     { id: 'citadel-ascent-melodies', json: 'Citadel Ascent Melodies', display: 'Threefold Melody', kind: 'quest' },
     { id: 'citadel-ascent-lift', json: 'Citadel Ascent Lift', display: 'Ascent Lift', kind: 'quest' },
-    { id: 'citadel-ascent-silk-defeat', json: 'Citadel Ascent Silk Defeat', display: 'Confront the Monarch', kind: 'quest' },
+    { id: 'citadel-ascent-silk-defeat', json: 'Citadel Ascent Silk Defeat', display: 'Confront the Monarch', kind: 'quest', infoNote: 'Not marked completed even in 100% saves — Act II reloads before Grand Mother Silk, and Act III completes Ensnare the Monarch instead.' },
     { id: 'silk-defeat-snare', json: 'Silk Defeat Snare', display: 'Ensnare the Monarch', kind: 'quest' },
     { id: 'black-thread-pt0', json: 'Black Thread Pt0', display: 'Act III: Pharloom Below', kind: 'quest' },
     { id: 'black-thread-pt1-shamans', json: 'Black Thread Pt1 Shamans', display: 'Seek the Snail Shamans', kind: 'quest' },
@@ -34,7 +34,7 @@ export const QUESTS = [
     { id: 'black-thread-pt3-escape', json: 'Black Thread Pt3 Escape', display: 'Escape the Abyss', kind: 'quest' },
     { id: 'black-thread-pt4-return', json: 'Black Thread Pt4 Return', display: 'Return to Pharloom', kind: 'quest' },
     { id: 'black-thread-pt5-heart', json: 'Black Thread Pt5 Heart', display: 'Old Hearts of Pharloom', kind: 'quest' },
-    { id: 'black-thread-pt6-flower', json: 'Black Thread Pt6 Flower', display: 'The Everbloom', kind: 'quest' },
+    { id: 'black-thread-pt6-flower', json: 'Black Thread Pt6 Flower', display: 'The Everbloom', kind: 'quest', infoNote: 'Not marked completed even in 100% saves — Act III reloads before Lost Lace after the ending, so Silksong never sets IsCompleted.' },
 
     // ─── Wishes: Intro / Pre-Quest Leads First (7) ──────────────────────────
     { id: 'mossberry-collection-pre', json: 'Mossberry Collection Pre', display: 'Berry Picking (Intro)', kind: 'wish', intro: true },
@@ -81,7 +81,7 @@ export const QUESTS = [
     { id: 'song-knight', json: 'Song Knight', display: 'Final Audience', kind: 'wish' },
     { id: 'wood-witch-curse', json: 'Wood Witch Curse', display: 'Rite of Rebirth', kind: 'wish' },
     { id: 'doctor-curse-cure', json: 'Doctor Curse Cure', display: 'Infestation Operation', kind: 'wish' },
-    { id: 'huntress-quest', json: 'Huntress Quest', display: 'Broodfeast', kind: 'wish' },
+    { id: 'huntress-quest', json: 'Huntress Quest', display: 'Broodfeast', kind: 'wish', variantGroup: 'huntress-feast', variantNote: 'Runtfeast appears in Act III only if Broodfeast was not completed earlier.' },
     { id: 'destroy-thread-cores', json: 'Destroy Thread Cores', display: 'Dark Hearts', kind: 'wish' },
     { id: 'flea-games', json: 'Flea Games', display: 'Ecstasy of the End', kind: 'wish' },
     { id: 'tormented-trobbio', json: 'Tormented Trobbio', display: 'Pain, Anguish and Misery', kind: 'wish' },
@@ -91,8 +91,8 @@ export const QUESTS = [
     { id: 'sprintmaster-race', json: 'Sprintmaster Race', display: 'Fastest in Pharloom', kind: 'wish' },
     { id: 'ant-trapper', json: 'Ant Trapper', display: 'The Hidden Hunter', kind: 'wish' },
     { id: 'mr-mushroom', json: 'Mr Mushroom', display: 'Passing of the Age', kind: 'wish' },
-    { id: 'huntress-quest-runt', json: 'Huntress Quest Runt', display: 'Runtfeast', kind: 'wish' },
-    { id: 'steel-sentinel', json: 'Steel Sentinel', display: 'A Vassal Lost (Steel Soul)', kind: 'wish' },
+    { id: 'huntress-quest-runt', json: 'Huntress Quest Runt', display: 'Runtfeast', kind: 'wish', variantGroup: 'huntress-feast' },
+    { id: 'steel-sentinel', json: 'Steel Sentinel', display: 'A Vassal Lost (Steel Soul)', kind: 'wish', gameMode: 'steelSoul' },
 
     // ─── Courier Deliveries (7) ─────────────────────────────────────────────
     { id: 'courier-delivery-pilgrims-rest', json: 'Courier Delivery Pilgrims Rest', display: "Pilgrim's Rest Delivery", kind: 'delivery' },

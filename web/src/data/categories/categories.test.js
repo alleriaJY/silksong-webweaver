@@ -77,3 +77,53 @@ describe('checklist & key item fallbacks', () => {
         expect(parsed.keyItems.items.find(k => k.id === 'simple-key-sands-of-karak').value).toBe(true);
     });
 });
+
+describe('game mode filtering (Classic vs Steel Soul)', () => {
+    it('excludes Steel Soul-only entries on Classic saves and includes Classic-only entries', () => {
+        const parsed = parseAllData({ permadeathMode: 0 }, {});
+        expect(parsed.quests.quests.some(q => q.json === 'Steel Sentinel')).toBe(false);
+        expect(parsed.bosses.bosses.some(b => b.json === 'Abyss Mass')).toBe(false);
+        expect(parsed.journal.entries.some(e => e.json === 'Abyss Mass')).toBe(false);
+        expect(parsed.silkeaters.sources.some(s => s.id === 'silkeater-coral-37')).toBe(true);
+        expect(parsed.voidMasses.sources.some(s => s.id === 'void-mass-styx-nest')).toBe(true);
+    });
+
+    it('includes Steel Soul-only entries on Steel Soul saves and excludes Classic-only entries', () => {
+        const parsed = parseAllData({ permadeathMode: 1 }, {});
+        expect(parsed.quests.quests.some(q => q.json === 'Steel Sentinel')).toBe(true);
+        expect(parsed.bosses.bosses.some(b => b.json === 'Abyss Mass')).toBe(true);
+        expect(parsed.journal.entries.some(e => e.json === 'Abyss Mass')).toBe(true);
+        expect(parsed.silkeaters.sources.some(s => s.id === 'silkeater-coral-37')).toBe(false);
+        expect(parsed.voidMasses.sources.some(s => s.id === 'void-mass-styx-nest')).toBe(false);
+    });
+});
+
+describe('mutually exclusive quest variants (Broodfeast / Runtfeast)', () => {
+    it('collapses into one row showing both names when neither is started', () => {
+        const parsed = parseAllData({}, {});
+        const rows = parsed.quests.quests.filter(q => q.variantGroup === 'huntress-feast');
+        expect(rows).toHaveLength(1);
+        expect(rows[0].display).toBe('Broodfeast / Runtfeast');
+        expect(rows[0].state).toBe('none');
+    });
+
+    it('shows the completed variant and keeps both json names known', () => {
+        const brood = parseAllData({
+            QuestCompletionData: { savedData: [{ Name: 'Huntress Quest', Data: { IsAccepted: true, IsCompleted: true } }] },
+        }, {});
+        const broodRow = brood.quests.quests.find(q => q.variantGroup === 'huntress-feast');
+        expect(broodRow.display).toBe('Broodfeast');
+        expect(broodRow.state).toBe('completed');
+        expect(broodRow.variantAlt).toBe('Alt: Runtfeast');
+        expect(brood.quests.unknownNames).toEqual([]);
+
+        const runt = parseAllData({
+            QuestCompletionData: { savedData: [{ Name: 'Huntress Quest Runt', Data: { IsAccepted: true, IsCompleted: true } }] },
+        }, {});
+        const runtRow = runt.quests.quests.find(q => q.variantGroup === 'huntress-feast');
+        expect(runtRow.display).toBe('Runtfeast');
+        expect(runtRow.state).toBe('completed');
+        expect(runtRow.variantAlt).toBe('Alt: Broodfeast');
+        expect(runt.quests.unknownNames).toEqual([]);
+    });
+});

@@ -51,5 +51,5 @@ export const BOSSES = [
     { id: 'shakra', json: 'Shakra', source: 'journal', display: 'Shakra', icon: 'Shakra.png' },
     { id: 'plasmified-zango', json: 'Blue Assistant', source: 'journal', display: 'Plasmified Zango', icon: 'Plasmified Zango - Blue Assistant.png' },
     { id: 'garmond-and-zaza', json: 'Garmond_Zaza', source: 'journal', optional: true, display: 'Garmond & Zaza', icon: 'Garmond & Zaza - Garmond_Zaza.png' },
-    { id: 'summoned-saviour', json: 'Abyss Mass', source: 'journal', optional: true, display: 'Summoned Saviour (Steel Soul)', icon: 'Summoned Saviour - Abyss Mass.png' },
+    { id: 'summoned-saviour', json: 'Abyss Mass', source: 'journal', optional: true, gameMode: 'steelSoul', display: 'Summoned Saviour (Steel Soul)', icon: 'Summoned Saviour - Abyss Mass.png' },
 ];

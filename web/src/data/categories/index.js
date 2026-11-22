@@ -51,14 +51,23 @@ export const CATEGORIES = [
     travel,
 ];
 
+/** Does a pack entry apply to the save's game mode (Classic vs Steel Soul)? */
+const matchesGameMode = (item, isSteelSoul) => !item?.gameMode
+    || (item.gameMode === 'steelSoul' && isSteelSoul)
+    || (item.gameMode === 'classic' && !isSteelSoul);
+
 /** Parse context for a save; `packs` defaults to the packs that detect it. */
 export function makeContext(save, packs = activePacks(save)) {
     const cache = new Map();
+    const isSteelSoul = !!save.playerData?.permadeathMode;
     return {
         save,
         packs,
+        isSteelSoul,
         lists(name) {
-            if (!cache.has(name)) cache.set(name, mergedList(name, packs));
+            if (!cache.has(name)) {
+                cache.set(name, mergedList(name, packs).filter(item => matchesGameMode(item, isSteelSoul)));
+            }
             return cache.get(name);
         },
     };

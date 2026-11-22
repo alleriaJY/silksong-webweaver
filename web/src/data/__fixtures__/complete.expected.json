@@ -19,7 +19,7 @@
     },
     "bosses": {
       "defeated": 45,
-      "total": 47
+      "total": 46
     },
     "maps": {
       "unlocked": 28,
@@ -141,13 +141,13 @@
       "total": 12
     },
     "journal": {
-      "total": 237,
+      "total": 236,
       "encountered": 235,
       "completed": 235,
       "kills": 6623
     },
     "quests": {
-      "total": 81,
+      "total": 79,
       "completed": 71,
       "active": 2
     },

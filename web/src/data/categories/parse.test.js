@@ -148,9 +148,10 @@ describe('parseTools', () => {
 describe('parseBosses', () => {
     it('should parse empty boss data', () => {
         const result = parseBosses({});
+        const classicBosses = BOSSES_LIST.filter(b => b.gameMode !== 'steelSoul');
 
-        expect(result.bosses).toHaveLength(BOSSES_LIST.length);
-        expect(result.stats.total).toBe(BOSSES_LIST.length);
+        expect(result.bosses).toHaveLength(classicBosses.length);
+        expect(result.stats.total).toBe(classicBosses.length);
         expect(result.stats.defeated).toBe(0);
     });
 

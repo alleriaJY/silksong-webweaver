@@ -101,7 +101,7 @@
     "silkeaters": {
       "collected": 0,
       "pending": 0,
-      "total": 9
+      "total": 8
     },
     "uniqueSpawns": {
       "collected": 0,
@@ -111,7 +111,7 @@
     "voidMasses": {
       "collected": 0,
       "pending": 0,
-      "total": 46
+      "total": 45
     },
     "bellhome": {
       "collected": 0,
@@ -140,7 +140,7 @@
       "kills": 0
     },
     "quests": {
-      "total": 81,
+      "total": 80,
       "completed": 0,
       "active": 0
     },

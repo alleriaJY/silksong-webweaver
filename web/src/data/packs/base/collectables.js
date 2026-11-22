@@ -72,7 +72,7 @@ export const MOSSBERRY_SOURCES = [
 export const SILKEATER_SOURCES = [
     { id: 'silkeater-dock-14', name: 'Deep Docks (Dock_14)', flagType: 'scene', sceneName: 'Dock_14', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
     { id: 'silkeater-greymoor-04', name: 'Greymoor (Greymoor_04)', flagType: 'scene', sceneName: 'Greymoor_04', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
-    { id: 'silkeater-coral-37', name: 'Blasted Steps - Classic only (Coral_37)', flagType: 'scene', sceneName: 'Coral_37', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
+    { id: 'silkeater-coral-37', name: 'Blasted Steps - Classic only (Coral_37)', flagType: 'scene', sceneName: 'Coral_37', sceneId: 'Silk Grub Large Cocoon', gameMode: 'classic', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
     { id: 'silkeater-organ-01', name: 'Exhaust Organ (Organ_01)', flagType: 'scene', sceneName: 'Organ_01', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
     { id: 'silkeater-song-24', name: 'Choral Chambers #1 (Song_24)', flagType: 'scene', sceneName: 'Song_24', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
     { id: 'silkeater-song-09b', name: 'Choral Chambers #2 (Song_09b)', flagType: 'scene', sceneName: 'Song_09b', sceneId: 'Silk Grub Large Cocoon', iconKind: 'checklist', icon: 'Silk_Grub_large_cocoon0000.png' },
