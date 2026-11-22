@@ -19,7 +19,7 @@
 <span class="tab-text">Bosses</span>
 </button>
 <button class="tab-btn" data-tab="journal" role="tab" id="tab-journal" aria-controls="panel-journal" aria-selected="false" tabindex="-1">
-<span class="tab-text">Journal</span>
+<span class="tab-text">Hunter's Journal</span>
 </button>
 <button class="tab-btn" data-tab="quests" role="tab" id="tab-quests" aria-controls="panel-quests" aria-selected="false" tabindex="-1">
 <span class="tab-text">Quests</span>
@@ -32,12 +32,6 @@
 </button>
 <button class="tab-btn" data-tab="collectables" role="tab" id="tab-collectables" aria-controls="panel-collectables" aria-selected="false" tabindex="-1">
 <span class="tab-text">Collectables</span>
-</button>
-<button class="tab-btn" data-tab="key-items" role="tab" id="tab-key-items" aria-controls="panel-key-items" aria-selected="false" tabindex="-1">
-<span class="tab-text">Key items</span>
-</button>
-<button class="tab-btn" data-tab="world" role="tab" id="tab-world" aria-controls="panel-world" aria-selected="false" tabindex="-1">
-<span class="tab-text">World</span>
 </button>
 <button class="tab-btn" data-tab="misc" role="tab" id="tab-misc" aria-controls="panel-misc" aria-selected="false" tabindex="-1">
 <span class="tab-text">Misc</span>
@@ -194,13 +188,29 @@
 </div>
 </div>
 </div>
+<!-- Inventory Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">Inventory
+                                                <span class="unlocked-stats">(<strong id="inventory-kinds-count">2</strong> kinds of item carried)</span>
+</h4>
+<div class="inventory-list" id="inventory-list">
+<div class="inventory-row">
+<span>Mossberry</span>
+<strong>×1</strong>
+</div>
+<div class="inventory-row">
+<span>Rosary Set Frayed</span>
+<strong>×1</strong>
+</div>
+</div>
+</div>
 </div>
 </div>
 <!-- 3. Misc Tab -->
 <div class="tab-panel" id="panel-misc" role="tabpanel" aria-labelledby="tab-misc" tabindex="0">
 <div class="panel-header">
 <h3>Miscellaneous</h3>
-<p class="panel-description">Additional save file details</p>
+<p class="panel-description">Save file position, endings, milestones, arenas, and Bellhome upgrades</p>
 </div>
 <div class="panel-content">
 <!-- Current Position Card -->
@@ -237,6 +247,244 @@
 <div class="stat-row">
 <span class="stat-label">Respawn Type</span>
 <span class="stat-value" data-stat="respawnType">0</span>
+</div>
+</div>
+<!-- Endings Card -->
+<div class="stat-card full-width">
+<h4 class="section-header">Endings
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="endings-collected-count">0</strong>/<span id="endings-total">4</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="endings-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ending A: Weaver Queen (Act 2 Regular)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ending D: Twisted Child (Act 2 Cursed)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ending C: Snared Silk (Act 2 Soul Snare)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Ending E: Sister of the Void (Act 3)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- World Milestones Card -->
+<div class="stat-card full-width">
+<h4 class="section-header">World Milestones
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="world-milestones-collected-count">0</strong>/<span id="world-milestones-total">9</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="world-milestones-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - The Marrow</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - Far Fields</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - Greymoor</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - Bellhart</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellshrine - Shellwood</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Threefold Melody - Architect's Melody</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Threefold Melody - Conductor's Melody</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Threefold Melody - Vaultkeeper's Melody</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Threefold Melody - Cradle Lift Unlocked</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Arena Battles Card -->
+<div class="stat-card full-width">
+<h4 class="section-header">Arena Battles &amp; Gauntlets
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="arenas-collected-count">0</strong>/<span id="arenas-total">12</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="arenas-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Hunter's March (Ant_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Hunter's March entrance (Ant_21)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Verdania / Aspid (Aspid_06)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Cogwork Core Abyss (Cog_10)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Whispering Vaults Entry</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Whispering Vaults Acolytes</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Sinner's Road (Dust_03)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Greymoor Tower (Greymoor_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - High Halls Gauntlet (Hang_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - The Slab Cloak Recovery</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Choral Chambers (Song_04)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Arena - Underworks (Under_07)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
+<!-- Bellhome Furnishings Card -->
+<div class="stat-card full-width">
+<h4 class="section-header">Bellhome Furnishings &amp; Devices
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="bellhome-collected-count">0</strong>/<span id="bellhome-total">8</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="bellhome-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Desk (Frey, 380 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Gleamlights (Frey, 320 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bell Lacquer (Frey, 520 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Personal Spa (Frey, 1100 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Gramophone (Frey, 490 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Materium (device installed)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Crawbell (device installed)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Farsight (device installed)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
 </div>
 </div>
 </div>
@@ -1308,354 +1556,421 @@
 <div class="stat-card full-width">
 <h4 class="section-header">Unique Spawns &amp; Mini-Bosses
                                                 <span class="unlocked-stats">
-                                                    (Defeated: <strong id="unique-spawns-collected-count">0</strong>/<span id="unique-spawns-total">58</span>)
+                                                    (Defeated: <strong id="unique-spawns-collected-count">0</strong>/<span id="unique-spawns-total">12</span>)
                                                 </span>
 </h4>
 <div class="source-checklist" id="unique-spawns-checklist" role="list">
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Rhinogrund - Rhino #4267198.png" alt="" class="source-icon">
 <span class="source-name">Rhinogrund #1 - Far Fields (Pilgrim's Rest, missable)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Rhinogrund - Rhino #4267198.png" alt="" class="source-icon">
 <span class="source-name">Rhinogrund #2 - Memorium (Arborium_02)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Rhinogrund - Rhino #4267198.png" alt="" class="source-icon">
 <span class="source-name">Rhinogrund #3 - Far Fields Act 3 (Bone_East_02b)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Covetous Pilgrim - Rosary Pilgrim #4266887.png" alt="" class="source-icon">
 <span class="source-name">Covetous Pilgrim #1 - Shellwood (Shellgrave)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Covetous Pilgrim - Rosary Pilgrim #4266887.png" alt="" class="source-icon">
 <span class="source-name">Covetous Pilgrim #2 - Bilewater (Shadow_23)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Covetous Pilgrim - Rosary Pilgrim #4266887.png" alt="" class="source-icon">
 <span class="source-name">Covetous Pilgrim #3 - Moss Grotto Act 3 (Bonegrave)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="" class="source-icon">
 <span class="source-name">Shardillard #1 - Deep Docks (Bone_East_03)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="" class="source-icon">
 <span class="source-name">Shardillard #2 - Greymoor (Greymoor_17)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="" class="source-icon">
 <span class="source-name">Shardillard #3 - The Marrow (Bone_14)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="" class="source-icon">
 <span class="source-name">Shardillard #4 - Far Fields (Bone_East_14)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="" class="source-icon">
 <span class="source-name">Shardillard #5 - Sands of Karak (Coral_38)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="" class="source-icon">
 <span class="source-name">Shardillard #6 - The Marrow late (Bone_06)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
+</div>
+</div>
+<div class="stat-card full-width">
+<h4 class="section-header">Void Masses
+                                                <span class="unlocked-stats">
+                                                    (Cleared: <strong id="void-masses-collected-count">0</strong>/<span id="void-masses-total">46</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="void-masses-checklist" role="list">
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Moss Grotto (Mosstown_02)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Weavenest Atla (Weave_03)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - The Marrow #1 (Bone_02)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - The Marrow #2 (Bone_04)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - The Marrow #3 (Bone_07)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - The Marrow #4 (Bone_09)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Deep Docks #1 (Bone_East_03)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Deep Docks #2 (Dock_04)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Deep Docks #3 (Bone_East_05)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Hunter's March #1 (Ant_04_left)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Hunter's March #2 (Ant_05b)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Far Fields #1 (Bone_East_02b)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Far Fields #2 (Bone_East_17)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Far Fields #3 (Bone_East_26)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Greymoor #1 (Greymoor_02)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Greymoor #2 (Greymoor_07)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Greymoor #3 (Greymoor_11)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Greymoor #4 (Greymoor_12)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Greymoor #5 (Greymoor_16)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Shellwood #1 (Shellwood_01b)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Shellwood #2 (Shellwood_02)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Shellwood #3 (Shellwood_04b)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Shellwood #4 (Shellwood_26)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Shellwood #5 (Shellwood_15)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Shellwood #6 (Under_27)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Blasted Steps #1 (Coral_11)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Blasted Steps #2 (Coral_12)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Blasted Steps #3 (Coral_32)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Sinner's Road (Dust_03)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Styx's Nest #1 &amp; #2 (Classic only)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Bilewater (Shadow_05)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Underworks #1 (Under_02)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Underworks #2 (Under_05)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Underworks #3 (Under_18)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Choral Chambers #1 (Song_01)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Choral Chambers #2 (Song_04)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Choral Chambers #3 (Song_05)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Choral Chambers #4 (Song_15)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Choral Chambers #5 (Song_17)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Choral Chambers #6 (Song_27)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Whispering Vaults #1 (Library_04)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Whispering Vaults #2 (Library_04)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Whispering Vaults #3 (Library_06)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - Cogwork Core (Cog_04)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - High Halls #1 (Hang_03)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" class="source-icon">
 <span class="source-name">Void Mass - High Halls #2 (Hang_13)</span>
 </div>
 <span class="source-status">Missing</span>
@@ -1676,559 +1991,115 @@
 <div class="stat-card full-width">
 <h4>Entries</h4>
 <div class="journal-grid" id="journal-grid" role="list">
-<div class="journal-item" role="listitem" aria-label="Aknid: not encountered">
-<img src="assets/img/journal/Aknid - Aspid Collector #4267219.png" alt="" title="Aknid: not encountered" class="locked">
-<span title="Aknid">Aknid</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Alita: not encountered">
-<img src="assets/img/journal/Alita - Coral Hunter #4267124.png" alt="" title="Alita: not encountered" class="locked">
-<span title="Alita">Alita</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Barnak: not encountered">
-<img src="assets/img/journal/Barnak - Swamp Barnacle #4266933.png" alt="" title="Barnak: not encountered" class="locked">
-<span title="Barnak">Barnak</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Beastfly: not encountered">
-<img src="assets/img/journal/Beastfly - Bone Flyer #4267155.png" alt="" title="Beastfly: not encountered" class="locked">
-<span title="Beastfly">Beastfly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Bell Beast: not encountered">
-<img src="assets/img/journal/Bell Beast - Bone Beast #4266856.png" alt="" title="Bell Beast: not encountered" class="locked">
-<span title="Bell Beast">Bell Beast</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Bell Eater: not encountered">
-<img src="assets/img/journal/Bell Eater - Giant Centipede #4267217.png" alt="" title="Bell Eater: not encountered" class="locked">
-<span title="Bell Eater">Bell Eater</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Bloatroach: not encountered">
-<img src="assets/img/journal/Bloatroach - Bloat Roach #4267166.png" alt="" title="Bloatroach: not encountered" class="locked">
-<span title="Bloatroach">Bloatroach</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Broodmother: not encountered">
-<img src="assets/img/journal/Broodmother - Slab Fly Broodmother #4266942.png" alt="" title="Broodmother: not encountered" class="locked">
-<span title="Broodmother">Broodmother</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Brushflit: not encountered">
-<img src="assets/img/journal/Brushflit - Fields Flock Flyers #4267294.png" alt="" title="Brushflit: not encountered" class="locked">
-<span title="Brushflit">Brushflit</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Burning Bug: not encountered">
-<img src="assets/img/journal/Burning Bug - Farmer Wisp #4267034.png" alt="" title="Burning Bug: not encountered" class="locked">
-<span title="Burning Bug">Burning Bug</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Caranid: not encountered">
-<img src="assets/img/journal/Caranid - Bone Circler #4266876.png" alt="" title="Caranid: not encountered" class="locked">
-<span title="Caranid">Caranid</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Choir Bellbearer: not encountered">
-<img src="assets/img/journal/Choir Bellbearer - Pilgrim 03 Song #4267057.png" alt="" title="Choir Bellbearer: not encountered" class="locked">
-<span title="Choir Bellbearer">Choir Bellbearer</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Choir Clapper: not encountered">
-<img src="assets/img/journal/Choir Clapper - Song Heavy Sentry #4266859.png" alt="" title="Choir Clapper: not encountered" class="locked">
-<span title="Choir Clapper">Choir Clapper</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Choir Elder: not encountered">
-<img src="assets/img/journal/Choir Elder - Pilgrim Stomper Song #4267283.png" alt="" title="Choir Elder: not encountered" class="locked">
-<span title="Choir Elder">Choir Elder</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Choir Flyer: not encountered">
-<img src="assets/img/journal/Choir Flyer - Pilgrim 04 Song #4267314.png" alt="" title="Choir Flyer: not encountered" class="locked">
-<span title="Choir Flyer">Choir Flyer</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Choir Hornhead: not encountered">
-<img src="assets/img/journal/Choir Hornhead - Pilgrim 02 Song #4267082.png" alt="" title="Choir Hornhead: not encountered" class="locked">
-<span title="Choir Hornhead">Choir Hornhead</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Choir Pouncer: not encountered">
-<img src="assets/img/journal/Choir Pouncer - Pilgrim 01 Song #4266878.png" alt="" title="Choir Pouncer: not encountered" class="locked">
-<span title="Choir Pouncer">Choir Pouncer</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Choristor: not encountered">
-<img src="assets/img/journal/Choristor - Song Pilgrim 03 #4266977.png" alt="" title="Choristor: not encountered" class="locked">
-<span title="Choristor">Choristor</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Clawmaiden: not encountered">
-<img src="assets/img/journal/Clawmaiden - Song Handmaiden #4267069.png" alt="" title="Clawmaiden: not encountered" class="locked">
-<span title="Clawmaiden">Clawmaiden</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Clover Dancers: not encountered">
-<img src="assets/img/journal/Clover Dancers - Clover Dancer #4267109.png" alt="" title="Clover Dancers: not encountered" class="locked">
-<span title="Clover Dancers">Clover Dancers</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cloverstag: not encountered">
-<img src="assets/img/journal/Cloverstag - Cloverstag #4267234.png" alt="" title="Cloverstag: not encountered" class="locked">
-<span title="Cloverstag">Cloverstag</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Choirbug: not encountered">
-<img src="assets/img/journal/Cogwork Choirbug - Song Automaton 01 #4267074.png" alt="" title="Cogwork Choirbug: not encountered" class="locked">
-<span title="Cogwork Choirbug">Cogwork Choirbug</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Clapper: not encountered">
-<img src="assets/img/journal/Cogwork Clapper - Song Automaton Ball #4266895.png" alt="" title="Cogwork Clapper: not encountered" class="locked">
-<span title="Cogwork Clapper">Cogwork Clapper</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Cleanser: not encountered">
-<img src="assets/img/journal/Cogwork Cleanser - Song Automaton 02 #4267150.png" alt="" title="Cogwork Cleanser: not encountered" class="locked">
-<span title="Cogwork Cleanser">Cogwork Cleanser</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Crawler: not encountered">
-<img src="assets/img/journal/Cogwork Crawler - Song Automaton Goomba #4267028.png" alt="" title="Cogwork Crawler: not encountered" class="locked">
-<span title="Cogwork Crawler">Cogwork Crawler</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Dancers: not encountered">
-<img src="assets/img/journal/Cogwork Dancers - Clockwork Dancer #4267321.png" alt="" title="Cogwork Dancers: not encountered" class="locked">
-<span title="Cogwork Dancers">Cogwork Dancers</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Defender: not encountered">
-<img src="assets/img/journal/Cogwork Defender - Song Automaton Shield #4267218.png" alt="" title="Cogwork Defender: not encountered" class="locked">
-<span title="Cogwork Defender">Cogwork Defender</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Underfly: not encountered">
-<img src="assets/img/journal/Cogwork Underfly - Understore Automaton #4266974.png" alt="" title="Cogwork Underfly: not encountered" class="locked">
-<span title="Cogwork Underfly">Cogwork Underfly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogworker: not encountered">
-<img src="assets/img/journal/Cogworker - Song Automaton Fly #4266929.png" alt="" title="Cogworker: not encountered" class="locked">
-<span title="Cogworker">Cogworker</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Conchfly: not encountered">
-<img src="assets/img/journal/Conchfly - Coral Conch Driller #4267164.png" alt="" title="Conchfly: not encountered" class="locked">
-<span title="Conchfly">Conchfly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Coral Furm: not encountered">
-<img src="assets/img/journal/Coral Furm - Coral Spike Goomba #4266986.png" alt="" title="Coral Furm: not encountered" class="locked">
-<span title="Coral Furm">Coral Furm</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Corrcrust Karaka: not encountered">
-<img src="assets/img/journal/Corrcrust Karaka - Coral Bubble Brute #4267020.png" alt="" title="Corrcrust Karaka: not encountered" class="locked">
-<span title="Corrcrust Karaka">Corrcrust Karaka</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Covetous Pilgrim: not encountered">
-<img src="assets/img/journal/Covetous Pilgrim - Rosary Pilgrim #4266887.png" alt="" title="Covetous Pilgrim: not encountered" class="locked">
-<span title="Covetous Pilgrim">Covetous Pilgrim</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Craggler: not encountered">
-<img src="assets/img/journal/Craggler - Roof Crab #4267181.png" alt="" title="Craggler: not encountered" class="locked">
-<span title="Craggler">Craggler</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cragglite: not encountered">
-<img src="assets/img/journal/Cragglite - Small Crab #4266941.png" alt="" title="Cragglite: not encountered" class="locked">
-<span title="Cragglite">Cragglite</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Craw: not encountered">
-<img src="assets/img/journal/Craw - Crow #4267116.png" alt="" title="Craw: not encountered" class="locked">
-<span title="Craw">Craw</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Craw Juror: not encountered">
-<img src="assets/img/journal/Craw Juror - Crowman Juror Tiny #4266952.png" alt="" title="Craw Juror: not encountered" class="locked">
-<span title="Craw Juror">Craw Juror</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Crawfather: not encountered">
-<img src="assets/img/journal/Crawfather #4267260.png" alt="" title="Crawfather: not encountered" class="locked">
-<span title="Crawfather">Crawfather</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Crust King Khann: not encountered">
-<img src="assets/img/journal/Crust King Khann - Coral King #4267201.png" alt="" title="Crust King Khann: not encountered" class="locked">
-<span title="Crust King Khann">Crust King Khann</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Crustcrag: not encountered">
-<img src="assets/img/journal/Crustcrag - Coral Goomba Large #4267288.png" alt="" title="Crustcrag: not encountered" class="locked">
-<span title="Crustcrag">Crustcrag</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Crustcrawler: not encountered">
-<img src="assets/img/journal/Crustcrawler - Coral Goombas #4267226.png" alt="" title="Crustcrawler: not encountered" class="locked">
-<span title="Crustcrawler">Crustcrawler</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Deep Diver: not encountered">
-<img src="assets/img/journal/Deep Diver - Dock Charger #4267102.png" alt="" title="Deep Diver: not encountered" class="locked">
-<span title="Deep Diver">Deep Diver</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Disgraced Chef Lugoli: not encountered">
-<img src="assets/img/journal/Disgraced Chef Lugoli - Roachkeeper Chef #4266971.png" alt="" title="Disgraced Chef Lugoli: not encountered" class="locked">
-<span title="Disgraced Chef Lugoli">Disgraced Chef Lugoli</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Drapefly: not encountered">
-<img src="assets/img/journal/Drapefly - Citadel Bat #4266860.png" alt="" title="Drapefly: not encountered" class="locked">
-<span title="Drapefly">Drapefly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Drapelord: not encountered">
-<img src="assets/img/journal/Drapelord - Citadel Bat Large #4267153.png" alt="" title="Drapelord: not encountered" class="locked">
-<span title="Drapelord">Drapelord</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Drapemite: not encountered">
-<img src="assets/img/journal/Drapemite - Mite Heavy #4267174.png" alt="" title="Drapemite: not encountered" class="locked">
-<span title="Drapemite">Drapemite</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Dreg Catcher: not encountered">
-<img src="assets/img/journal/Dreg Catcher - Farmer Catcher #4267320.png" alt="" title="Dreg Catcher: not encountered" class="locked">
-<span title="Dreg Catcher">Dreg Catcher</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Dreg Husk: not encountered">
-<img src="assets/img/journal/Dreg Husk - Song Threaded Husk #4267167.png" alt="" title="Dreg Husk: not encountered" class="locked">
-<span title="Dreg Husk">Dreg Husk</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Dregwheel: not encountered">
-<img src="assets/img/journal/Dregwheel - Song Threaded Husk Spin #4267306.png" alt="" title="Dregwheel: not encountered" class="locked">
-<span title="Dregwheel">Dregwheel</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Driftlin: not encountered">
-<img src="assets/img/journal/Driftlin - Peaks Drifter #4267356.png" alt="" title="Driftlin: not encountered" class="locked">
-<span title="Driftlin">Driftlin</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Driznarga: not encountered">
-<img src="assets/img/journal/Driznarga - Coral Conch Shooter Heavy #4267078.png" alt="" title="Driznarga: not encountered" class="locked">
-<span title="Driznarga">Driznarga</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Driznit: not encountered">
-<img src="assets/img/journal/Driznit - Coral Conch Shooter #4267013.png" alt="" title="Driznit: not encountered" class="locked">
-<span title="Driznit">Driznit</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Ductsucker: not encountered">
-<img src="assets/img/journal/Ductsucker - Swamp Ductsucker #4267008.png" alt="" title="Ductsucker: not encountered" class="locked">
-<span title="Ductsucker">Ductsucker</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Elder Pilgrim: not encountered">
-<img src="assets/img/journal/Elder Pilgrim - Pilgrim 05 #4267009.png" alt="" title="Elder Pilgrim: not encountered" class="locked">
-<span title="Elder Pilgrim">Elder Pilgrim</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Envoy: not encountered">
-<img src="assets/img/journal/Envoy - Song Pilgrim 01 #4267324.png" alt="" title="Envoy: not encountered" class="locked">
-<span title="Envoy">Envoy</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Escalion: not encountered">
-<img src="assets/img/journal/Escalion - Grasshopper Fly #4266963.png" alt="" title="Escalion: not encountered" class="locked">
-<span title="Escalion">Escalion</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Father of the Flame: not encountered">
-<img src="assets/img/journal/Father of the Flame - Wisp Pyre Effigy #4267131.png" alt="" title="Father of the Flame: not encountered" class="locked">
-<span title="Father of the Flame">Father of the Flame</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Fertid: not encountered">
-<img src="assets/img/journal/Fertid - Fields Goomba #4266883.png" alt="" title="Fertid: not encountered" class="locked">
-<span title="Fertid">Fertid</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="First Sinner: not encountered">
-<img src="assets/img/journal/First Sinner - First Weaver #4266910.png" alt="" title="First Sinner: not encountered" class="locked">
-<span title="First Sinner">First Sinner</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Flapping Fertid: not encountered">
-<img src="assets/img/journal/Flapping Fertid - Fields Flyer #4267152.png" alt="" title="Flapping Fertid: not encountered" class="locked">
-<span title="Flapping Fertid">Flapping Fertid</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Flintbeetle: not encountered">
-<img src="assets/img/journal/Flintbeetle - Rock Roller #4267108.png" alt="" title="Flintbeetle: not encountered" class="locked">
-<span title="Flintbeetle">Flintbeetle</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Flintflame Flyer: not encountered">
-<img src="assets/img/journal/Flintflame Flyer - Dock Bomber #4266909.png" alt="" title="Flintflame Flyer: not encountered" class="locked">
-<span title="Flintflame Flyer">Flintflame Flyer</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Flintstone Flyer: not encountered">
-<img src="assets/img/journal/Flintstone Flyer - Dock Flyer #4267143.png" alt="" title="Flintstone Flyer: not encountered" class="locked">
-<span title="Flintstone Flyer">Flintstone Flyer</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Fluttermite: not encountered">
-<img src="assets/img/journal/Fluttermite - Mitefly #4266951.png" alt="" title="Fluttermite: not encountered" class="locked">
-<span title="Fluttermite">Fluttermite</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Forebrothers Signis &amp; Gron: not encountered">
-<img src="assets/img/journal/Forebrothers Signis &amp; Gron - Dock Guard Thrower #4267289.png" alt="" title="Forebrothers Signis &amp; Gron: not encountered" class="locked">
-<span title="Forebrothers Signis &amp; Gron">Forebrothers Signis &amp; Gron</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Fourth Chorus: not encountered">
-<img src="assets/img/journal/Fourth Chorus - Song Golem #4266912.png" alt="" title="Fourth Chorus: not encountered" class="locked">
-<span title="Fourth Chorus">Fourth Chorus</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Freshfly: not encountered">
-<img src="assets/img/journal/Freshfly - Slab Fly Small Fresh #4267130.png" alt="" title="Freshfly: not encountered" class="locked">
-<span title="Freshfly">Freshfly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Furm: not encountered">
-<img src="assets/img/journal/Furm - Bell Goomba #4267146.png" alt="" title="Furm: not encountered" class="locked">
-<span title="Furm">Furm</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Gahlia: not encountered">
-<img src="assets/img/journal/Gahlia - Bloom Puncher #4267239.png" alt="" title="Gahlia: not encountered" class="locked">
-<span title="Gahlia">Gahlia</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Gargant Gloom: not encountered">
-<img src="assets/img/journal/Gargant Gloom - Gloom Beast #4267136.png" alt="" title="Gargant Gloom: not encountered" class="locked">
-<span title="Gargant Gloom">Gargant Gloom</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Garpid: not encountered">
-<img src="assets/img/journal/Garpid - Centipede_Trap #4267022.png" alt="" title="Garpid: not encountered" class="locked">
-<span title="Garpid">Garpid</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Giant Drapemite: not encountered">
-<img src="assets/img/journal/Giant Drapemite - Understore Mite Giant #4267056.png" alt="" title="Giant Drapemite: not encountered" class="locked">
-<span title="Giant Drapemite">Giant Drapemite</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Gloomsac: not encountered">
-<img src="assets/img/journal/Gloomsac - Gloomfly #4267084.png" alt="" title="Gloomsac: not encountered" class="locked">
-<span title="Gloomsac">Gloomsac</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Grand Mother Silk: not encountered">
-<img src="assets/img/journal/Grand Mother Silk - Silk Boss #4266984.png" alt="" title="Grand Mother Silk: not encountered" class="locked">
-<span title="Grand Mother Silk">Grand Mother Silk</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Grand Reed: not encountered">
-<img src="assets/img/journal/Grand Reed - Song Reed Grand #4267120.png" alt="" title="Grand Reed: not encountered" class="locked">
-<span title="Grand Reed">Grand Reed</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Great Conchfly: not encountered">
-<img src="assets/img/journal/Great Conchfly - Coral Conch Driller Giant #4267185.png" alt="" title="Great Conchfly: not encountered" class="locked">
-<span title="Great Conchfly">Great Conchfly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Groal the Great: not encountered">
-<img src="assets/img/journal/Groal the Great - Swamp Shaman #4267139.png" alt="" title="Groal the Great: not encountered" class="locked">
-<span title="Groal the Great">Groal the Great</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Grom: not encountered">
-<img src="assets/img/journal/Grom - Bone Worm #4266926.png" alt="" title="Grom: not encountered" class="locked">
-<span title="Grom">Grom</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Gromling: not encountered">
-<img src="assets/img/journal/Gromling - Crypt Worm #4266930.png" alt="" title="Gromling: not encountered" class="locked">
-<span title="Gromling">Gromling</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Guardfly: not encountered">
-<img src="assets/img/journal/Guardfly - Slab Fly Mid #4267193.png" alt="" title="Guardfly: not encountered" class="locked">
-<span title="Guardfly">Guardfly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Gurr the Outcast: not encountered">
-<img src="assets/img/journal/Gurr the Outcast - Bone Hunter Trapper #4267097.png" alt="" title="Gurr the Outcast: not encountered" class="locked">
-<span title="Gurr the Outcast">Gurr the Outcast</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Hardbone Elder: not encountered">
-<img src="assets/img/journal/Hardbone Elder - Bone Hopper Giant #4267292.png" alt="" title="Hardbone Elder: not encountered" class="locked">
-<span title="Hardbone Elder">Hardbone Elder</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Hardbone Hopper: not encountered">
-<img src="assets/img/journal/Hardbone Hopper - Bone Hopper #4266989.png" alt="" title="Hardbone Hopper: not encountered" class="locked">
-<span title="Hardbone Hopper">Hardbone Hopper</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Hoker: not encountered">
-<img src="assets/img/journal/Hoker - Spine Floater #4267093.png" alt="" title="Hoker: not encountered" class="locked">
-<span title="Hoker">Hoker</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Huge Flea: not encountered">
-<img src="assets/img/journal/Huge Flea - Giant Flea #4267157.png" alt="" title="Huge Flea: not encountered" class="locked">
-<span title="Huge Flea">Huge Flea</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Imoba: not encountered">
-<img src="assets/img/journal/Imoba - Spike Lazy Flyer #4267310.png" alt="" title="Imoba: not encountered" class="locked">
-<span title="Imoba">Imoba</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Judge: not encountered">
-<img src="assets/img/journal/Judge - Coral Judge #4267104.png" alt="" title="Judge: not encountered" class="locked">
-<span title="Judge">Judge</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Kai: not encountered">
-<img src="assets/img/journal/Kai - Coral Swimmer Fat #4267076.png" alt="" title="Kai: not encountered" class="locked">
-<span title="Kai">Kai</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Kakri: not encountered">
-<img src="assets/img/journal/Kakri - Coral Flyer #4267092.png" alt="" title="Kakri: not encountered" class="locked">
-<span title="Kakri">Kakri</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Karak Gor: not encountered">
-<img src="assets/img/journal/Karak Gor - Coral Brawler #4267247.png" alt="" title="Karak Gor: not encountered" class="locked">
-<span title="Karak Gor">Karak Gor</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Karaka: not encountered">
-<img src="assets/img/journal/Karaka - Coral Warrior #4267144.png" alt="" title="Karaka: not encountered" class="locked">
-<span title="Karaka">Karaka</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Kilik: not encountered">
-<img src="assets/img/journal/Kilik - Bone Crawler #4267231.png" alt="" title="Kilik: not encountered" class="locked">
-<span title="Kilik">Kilik</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Kindanir: not encountered">
-<img src="assets/img/journal/Kindanir - Grasshopper Child #4267103.png" alt="" title="Kindanir: not encountered" class="locked">
-<span title="Kindanir">Kindanir</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Lace: not encountered">
-<img src="assets/img/journal/Lace #4267252.png" alt="" title="Lace: not encountered" class="locked">
-<span title="Lace">Lace</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Lampbearer: not encountered">
-<img src="assets/img/journal/Lampbearer - Lightbearer #4266866.png" alt="" title="Lampbearer: not encountered" class="locked">
-<span title="Lampbearer">Lampbearer</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Last Claw: not encountered">
-<img src="assets/img/journal/Last Claw - Bone Hunter Chief #4266997.png" alt="" title="Last Claw: not encountered" class="locked">
-<span title="Last Claw">Last Claw</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Last Judge: not encountered">
-<img src="assets/img/journal/Last Judge #4266877.png" alt="" title="Last Judge: not encountered" class="locked">
-<span title="Last Judge">Last Judge</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Lavalarga: not encountered">
-<img src="assets/img/journal/Lavalarga - Tar Slug Huge #4267081.png" alt="" title="Lavalarga: not encountered" class="locked">
-<span title="Lavalarga">Lavalarga</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Lavalug: not encountered">
-<img src="assets/img/journal/Lavalug - Tar Slug #4267241.png" alt="" title="Lavalug: not encountered" class="locked">
-<span title="Lavalug">Lavalug</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Leaf Glider: not encountered">
-<img src="assets/img/journal/Leaf Glider - Lilypad Fly #4267278.png" alt="" title="Leaf Glider: not encountered" class="locked">
-<span title="Leaf Glider">Leaf Glider</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Leaf Roller: not encountered">
-<img src="assets/img/journal/Leaf Roller - Grass Goomba #4267274.png" alt="" title="Leaf Roller: not encountered" class="locked">
-<span title="Leaf Roller">Leaf Roller</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Winged Lifeseed: not encountered">
-<img src="assets/img/knight_icon.png" alt="" title="Winged Lifeseed: not encountered" class="locked">
-<span title="Winged Lifeseed">Winged Lifeseed</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Lost Garmond: not encountered">
-<img src="assets/img/journal/Lost Garmond - Garmond #4267350.png" alt="" title="Lost Garmond: not encountered" class="locked">
-<span title="Lost Garmond">Lost Garmond</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Lost Lace: not encountered">
-<img src="assets/img/knight_icon.png" alt="" title="Lost Lace: not encountered" class="locked">
-<span title="Lost Lace">Lost Lace</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Maestro: not encountered">
-<img src="assets/img/journal/Maestro - Song Pilgrim Maestro #4267204.png" alt="" title="Maestro: not encountered" class="locked">
-<span title="Maestro">Maestro</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Marrowmaw: not encountered">
-<img src="assets/img/journal/Marrowmaw - Bone Thumper #4267210.png" alt="" title="Marrowmaw: not encountered" class="locked">
-<span title="Marrowmaw">Marrowmaw</span>
+<div class="journal-item" role="listitem" aria-label="Mossgrub: 2/25 kills">
+<img src="assets/img/journal/Mossgrub - MossBone Crawler #4267158.png" alt="" title="Mossgrub: 2/25 kills" class="unlocked">
+<span title="Mossgrub">Mossgrub</span>
+<small class="grid-detail">2/25 kills</small>
 </div>
 <div class="journal-item" role="listitem" aria-label="Massive Mossgrub: not encountered">
 <img src="assets/img/journal/Massive Mossgrub - MossBone Crawler Fat #4266867.png" alt="" title="Massive Mossgrub: not encountered" class="locked">
 <span title="Massive Mossgrub">Massive Mossgrub</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Mawling: not encountered">
-<img src="assets/img/journal/Mawling - Bone Roller #4266918.png" alt="" title="Mawling: not encountered" class="locked">
-<span title="Mawling">Mawling</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Memoria: not encountered">
-<img src="assets/img/journal/Memoria - Arborium Keeper #4266967.png" alt="" title="Memoria: not encountered" class="locked">
-<span title="Memoria">Memoria</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Minister: not encountered">
-<img src="assets/img/journal/Minister - Song Administrator #4266976.png" alt="" title="Minister: not encountered" class="locked">
-<span title="Minister">Minister</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Miremite: not encountered">
-<img src="assets/img/journal/Miremite - Swamp Goomba #4267071.png" alt="" title="Miremite: not encountered" class="locked">
-<span title="Miremite">Miremite</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Mite: not encountered">
-<img src="assets/img/journal/Mite #4267230.png" alt="" title="Mite: not encountered" class="locked">
-<span title="Mite">Mite</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Mitemother: not encountered">
-<img src="assets/img/journal/Mitemother - Gnat Giant #4267229.png" alt="" title="Mitemother: not encountered" class="locked">
-<span title="Mitemother">Mitemother</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Mnemonid: not encountered">
-<img src="assets/img/journal/Mnemonid - Crystal Drifter #4267129.png" alt="" title="Mnemonid: not encountered" class="locked">
-<span title="Mnemonid">Mnemonid</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Mnemonord: not encountered">
-<img src="assets/img/journal/Mnemonord - Crystal Drifter Giant #4266919.png" alt="" title="Mnemonord: not encountered" class="locked">
-<span title="Mnemonord">Mnemonord</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Moorwing: not encountered">
-<img src="assets/img/journal/Moorwing - Vampire Gnat #4267224.png" alt="" title="Moorwing: not encountered" class="locked">
-<span title="Moorwing">Moorwing</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Mortician: not encountered">
-<img src="assets/img/journal/Mortician - Song Creeper #4266927.png" alt="" title="Mortician: not encountered" class="locked">
-<span title="Mortician">Mortician</span>
+<div class="journal-item" role="listitem" aria-label="Mossmir: not encountered">
+<img src="assets/img/journal/Mossmir - MossBone Fly #4266903.png" alt="" title="Mossmir: not encountered" class="locked">
+<span title="Mossmir">Mossmir</span>
 </div>
 <div class="journal-item completed" role="listitem" aria-label="Moss Mother: 1/1 kills (completed)">
 <img src="assets/img/journal/Moss Mother - Mossbone Mother #4267313.png" alt="" title="Moss Mother: 1/1 kills (completed)" class="unlocked">
 <span title="Moss Mother">Moss Mother</span>
 <small class="grid-detail">1/1 kills</small>
 </div>
-<div class="journal-item" role="listitem" aria-label="Mossgrub: 2/25 kills">
-<img src="assets/img/journal/Mossgrub - MossBone Crawler #4267158.png" alt="" title="Mossgrub: 2/25 kills" class="unlocked">
-<span title="Mossgrub">Mossgrub</span>
-<small class="grid-detail">2/25 kills</small>
+<div class="journal-item" role="listitem" aria-label="Aknid: not encountered">
+<img src="assets/img/journal/Aknid - Aspid Collector #4267219.png" alt="" title="Aknid: not encountered" class="locked">
+<span title="Aknid">Aknid</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Mossmir: not encountered">
-<img src="assets/img/journal/Mossmir - MossBone Fly #4266903.png" alt="" title="Mossmir: not encountered" class="locked">
-<span title="Mossmir">Mossmir</span>
+<div class="journal-item" role="listitem" aria-label="Skull Scuttler: not encountered">
+<img src="assets/img/journal/Skull Scuttler - Bone Goomba #4267240.png" alt="" title="Skull Scuttler: not encountered" class="locked">
+<span title="Skull Scuttler">Skull Scuttler</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Mothleaf Lagnia: not encountered">
-<img src="assets/img/journal/Mothleaf Lagnia - Swamp Drifter #4267100.png" alt="" title="Mothleaf Lagnia: not encountered" class="locked">
-<span title="Mothleaf Lagnia">Mothleaf Lagnia</span>
+<div class="journal-item" role="listitem" aria-label="Skullwing: not encountered">
+<img src="assets/img/journal/Skullwing - Bone Goomba Bounce Fly #4267300.png" alt="" title="Skullwing: not encountered" class="locked">
+<span title="Skullwing">Skullwing</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Muckmaggot: not encountered">
-<img src="assets/img/journal/Muckmaggot - Maggots #4267059.png" alt="" title="Muckmaggot: not encountered" class="locked">
-<span title="Muckmaggot">Muckmaggot</span>
+<div class="journal-item" role="listitem" aria-label="Skull Brute: not encountered">
+<img src="assets/img/journal/Skull Brute - Bone Goomba Large #4267337.png" alt="" title="Skull Brute: not encountered" class="locked">
+<span title="Skull Brute">Skull Brute</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Muckroach: not encountered">
-<img src="assets/img/journal/Muckroach - Dustroach #4267063.png" alt="" title="Muckroach: not encountered" class="locked">
-<span title="Muckroach">Muckroach</span>
+<div class="journal-item" role="listitem" aria-label="Skull Tyrant: not encountered">
+<img src="assets/img/journal/Skull Tyrant - Skull King #4267291.png" alt="" title="Skull Tyrant: not encountered" class="locked">
+<span title="Skull Tyrant">Skull Tyrant</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Nuphar: not encountered">
-<img src="assets/img/journal/Nuphar - Lilypad Trap #4267042.png" alt="" title="Nuphar: not encountered" class="locked">
-<span title="Nuphar">Nuphar</span>
+<div class="journal-item" role="listitem" aria-label="Kilik: not encountered">
+<img src="assets/img/journal/Kilik - Bone Crawler #4267231.png" alt="" title="Kilik: not encountered" class="locked">
+<span title="Kilik">Kilik</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Nyleth: not encountered">
-<img src="assets/img/journal/Nyleth - Flower Queen #4267354.png" alt="" title="Nyleth: not encountered" class="locked">
-<span title="Nyleth">Nyleth</span>
+<div class="journal-item" role="listitem" aria-label="Beastfly: not encountered">
+<img src="assets/img/journal/Beastfly - Bone Flyer #4267155.png" alt="" title="Beastfly: not encountered" class="locked">
+<span title="Beastfly">Beastfly</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Overgrown Pilgrim: not encountered">
-<img src="assets/img/journal/Overgrown Pilgrim - Pilgrim Moss Spitter #4266946.png" alt="" title="Overgrown Pilgrim: not encountered" class="locked">
-<span title="Overgrown Pilgrim">Overgrown Pilgrim</span>
+<div class="journal-item" role="listitem" aria-label="Savage Beastfly: not encountered">
+<img src="assets/img/journal/Savage Beastfly - Bone Flyer Giant #4266890.png" alt="" title="Savage Beastfly: not encountered" class="locked">
+<span title="Savage Beastfly">Savage Beastfly</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Palestag: not encountered">
-<img src="assets/img/journal/Palestag - Cloverstag White #4267105.png" alt="" title="Palestag: not encountered" class="locked">
-<span title="Palestag">Palestag</span>
+<div class="journal-item" role="listitem" aria-label="Caranid: not encountered">
+<img src="assets/img/journal/Caranid - Bone Circler #4266876.png" alt="" title="Caranid: not encountered" class="locked">
+<span title="Caranid">Caranid</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pendra: not encountered">
-<img src="assets/img/journal/Pendra - Hornet Dragonfly #4267186.png" alt="" title="Pendra: not encountered" class="locked">
-<span title="Pendra">Pendra</span>
+<div class="journal-item" role="listitem" aria-label="Vicious Caranid: not encountered">
+<img src="assets/img/journal/Vicious Caranid - Bone Circler Vicious #4267336.png" alt="" title="Vicious Caranid: not encountered" class="locked">
+<span title="Vicious Caranid">Vicious Caranid</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pendragor: not encountered">
-<img src="assets/img/journal/Pendragor - Dragonfly Large #4267054.png" alt="" title="Pendragor: not encountered" class="locked">
-<span title="Pendragor">Pendragor</span>
+<div class="journal-item" role="listitem" aria-label="Hardbone Hopper: not encountered">
+<img src="assets/img/journal/Hardbone Hopper - Bone Hopper #4266989.png" alt="" title="Hardbone Hopper: not encountered" class="locked">
+<span title="Hardbone Hopper">Hardbone Hopper</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Penitent: not encountered">
-<img src="assets/img/journal/Penitent - Slab Prisoner Leaper New #4267317.png" alt="" title="Penitent: not encountered" class="locked">
-<span title="Penitent">Penitent</span>
+<div class="journal-item" role="listitem" aria-label="Hardbone Elder: not encountered">
+<img src="assets/img/journal/Hardbone Elder - Bone Hopper Giant #4267292.png" alt="" title="Hardbone Elder: not encountered" class="locked">
+<span title="Hardbone Elder">Hardbone Elder</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Phacia: not encountered">
-<img src="assets/img/journal/Phacia - Flower Drifter #4266968.png" alt="" title="Phacia: not encountered" class="locked">
-<span title="Phacia">Phacia</span>
+<div class="journal-item" role="listitem" aria-label="Tarmite: not encountered">
+<img src="assets/img/journal/Tarmite - Bone Spitter #4267333.png" alt="" title="Tarmite: not encountered" class="locked">
+<span title="Tarmite">Tarmite</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Phantom: not encountered">
-<img src="assets/img/journal/Phantom #4267162.png" alt="" title="Phantom: not encountered" class="locked">
-<span title="Phantom">Phantom</span>
+<div class="journal-item" role="listitem" aria-label="Mawling: not encountered">
+<img src="assets/img/journal/Mawling - Bone Roller #4266918.png" alt="" title="Mawling: not encountered" class="locked">
+<span title="Mawling">Mawling</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pharlid: not encountered">
-<img src="assets/img/journal/Pharlid - Blade Spider #4267251.png" alt="" title="Pharlid: not encountered" class="locked">
-<span title="Pharlid">Pharlid</span>
+<div class="journal-item" role="listitem" aria-label="Marrowmaw: not encountered">
+<img src="assets/img/journal/Marrowmaw - Bone Thumper #4267210.png" alt="" title="Marrowmaw: not encountered" class="locked">
+<span title="Marrowmaw">Marrowmaw</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pharlid  Diver: not encountered">
-<img src="assets/img/journal/Pharlid  Diver - Blade Spider Hang #4267338.png" alt="" title="Pharlid  Diver: not encountered" class="locked">
-<span title="Pharlid  Diver">Pharlid  Diver</span>
+<div class="journal-item" role="listitem" aria-label="Hoker: not encountered">
+<img src="assets/img/journal/Hoker - Spine Floater #4267093.png" alt="" title="Hoker: not encountered" class="locked">
+<span title="Hoker">Hoker</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pilgrim Bellbearer: not encountered">
-<img src="assets/img/journal/Pilgrim Bellbearer - Pilgrim Bell Thrower #4267068.png" alt="" title="Pilgrim Bellbearer: not encountered" class="locked">
-<span title="Pilgrim Bellbearer">Pilgrim Bellbearer</span>
+<div class="journal-item" role="listitem" aria-label="Flintbeetle: not encountered">
+<img src="assets/img/journal/Flintbeetle - Rock Roller #4267108.png" alt="" title="Flintbeetle: not encountered" class="locked">
+<span title="Flintbeetle">Flintbeetle</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Rhinogrund: not encountered">
+<img src="assets/img/journal/Rhinogrund - Rhino #4267198.png" alt="" title="Rhinogrund: not encountered" class="locked">
+<span title="Rhinogrund">Rhinogrund</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Gromling: not encountered">
+<img src="assets/img/journal/Gromling - Crypt Worm #4266930.png" alt="" title="Gromling: not encountered" class="locked">
+<span title="Gromling">Gromling</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Grom: not encountered">
+<img src="assets/img/journal/Grom - Bone Worm #4266926.png" alt="" title="Grom: not encountered" class="locked">
+<span title="Grom">Grom</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Bell Beast: not encountered">
+<img src="assets/img/journal/Bell Beast - Bone Beast #4266856.png" alt="" title="Bell Beast: not encountered" class="locked">
+<span title="Bell Beast">Bell Beast</span>
 </div>
 <div class="journal-item" role="listitem" aria-label="Pilgrim Groveller: not encountered">
 <img src="assets/img/journal/Pilgrim Groveller - Pilgrim 03 #4266861.png" alt="" title="Pilgrim Groveller: not encountered" class="locked">
 <span title="Pilgrim Groveller">Pilgrim Groveller</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pilgrim Guide: not encountered">
-<img src="assets/img/journal/Pilgrim Guide - Pilgrim StaffWeilder #4267307.png" alt="" title="Pilgrim Guide: not encountered" class="locked">
-<span title="Pilgrim Guide">Pilgrim Guide</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Pilgrim Hiker: not encountered">
-<img src="assets/img/journal/Pilgrim Hiker #4266923.png" alt="" title="Pilgrim Hiker: not encountered" class="locked">
-<span title="Pilgrim Hiker">Pilgrim Hiker</span>
+<div class="journal-item" role="listitem" aria-label="Pilgrim Pouncer: not encountered">
+<img src="assets/img/journal/Pilgrim Pouncer - Pilgrim 01 #4267122.png" alt="" title="Pilgrim Pouncer: not encountered" class="locked">
+<span title="Pilgrim Pouncer">Pilgrim Pouncer</span>
 </div>
 <div class="journal-item" role="listitem" aria-label="Pilgrim Hornfly: not encountered">
 <img src="assets/img/journal/Pilgrim Hornfly - Pilgrim 04 #4266899.png" alt="" title="Pilgrim Hornfly: not encountered" class="locked">
@@ -2238,53 +2109,217 @@
 <img src="assets/img/journal/Pilgrim Hulk - Pilgrim 02 #4267332.png" alt="" title="Pilgrim Hulk: not encountered" class="locked">
 <span title="Pilgrim Hulk">Pilgrim Hulk</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pilgrim Pouncer: not encountered">
-<img src="assets/img/journal/Pilgrim Pouncer - Pilgrim 01 #4267122.png" alt="" title="Pilgrim Pouncer: not encountered" class="locked">
-<span title="Pilgrim Pouncer">Pilgrim Pouncer</span>
+<div class="journal-item" role="listitem" aria-label="Pilgrim Bellbearer: not encountered">
+<img src="assets/img/journal/Pilgrim Bellbearer - Pilgrim Bell Thrower #4267068.png" alt="" title="Pilgrim Bellbearer: not encountered" class="locked">
+<span title="Pilgrim Bellbearer">Pilgrim Bellbearer</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pinstress Boss: not encountered">
-<img src="assets/img/journal/Pinstress Boss #4267030.png" alt="" title="Pinstress Boss: not encountered" class="locked">
-<span title="Pinstress Boss">Pinstress Boss</span>
+<div class="journal-item" role="listitem" aria-label="Winged Pilgrim: not encountered">
+<img src="assets/img/journal/Winged Pilgrim - Pilgrim Fly #4266875.png" alt="" title="Winged Pilgrim: not encountered" class="locked">
+<span title="Winged Pilgrim">Winged Pilgrim</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Plasmid: not encountered">
-<img src="assets/img/journal/Plasmid - Bone Worm BlueBlood #4266872.png" alt="" title="Plasmid: not encountered" class="locked">
-<span title="Plasmid">Plasmid</span>
+<div class="journal-item" role="listitem" aria-label="Elder Pilgrim: not encountered">
+<img src="assets/img/journal/Elder Pilgrim - Pilgrim 05 #4267009.png" alt="" title="Elder Pilgrim: not encountered" class="locked">
+<span title="Elder Pilgrim">Elder Pilgrim</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Plasmidas: not encountered">
-<img src="assets/img/journal/Plasmidas - Bone Worm BlueTurret #4267276.png" alt="" title="Plasmidas: not encountered" class="locked">
-<span title="Plasmidas">Plasmidas</span>
+<div class="journal-item" role="listitem" aria-label="Winged Pilgrim Bellbearer: not encountered">
+<img src="assets/img/journal/Winged Pilgrim Bellbearer - Pilgrim Bellthrower Fly #4267163.png" alt="" title="Winged Pilgrim Bellbearer: not encountered" class="locked">
+<span title="Winged Pilgrim Bellbearer">Winged Pilgrim Bellbearer</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Plasmified Zango: not encountered">
-<img src="assets/img/journal/Plasmified Zango - Blue Assistant #4266965.png" alt="" title="Plasmified Zango: not encountered" class="locked">
-<span title="Plasmified Zango">Plasmified Zango</span>
+<div class="journal-item" role="listitem" aria-label="Pilgrim Hiker: not encountered">
+<img src="assets/img/journal/Pilgrim Hiker #4266923.png" alt="" title="Pilgrim Hiker: not encountered" class="locked">
+<span title="Pilgrim Hiker">Pilgrim Hiker</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pokenabbin: not encountered">
-<img src="assets/img/journal/Pokenabbin - Coral Conch Stabber #4267127.png" alt="" title="Pokenabbin: not encountered" class="locked">
-<span title="Pokenabbin">Pokenabbin</span>
+<div class="journal-item" role="listitem" aria-label="Pilgrim Guide: not encountered">
+<img src="assets/img/journal/Pilgrim Guide - Pilgrim StaffWeilder #4267307.png" alt="" title="Pilgrim Guide: not encountered" class="locked">
+<span title="Pilgrim Guide">Pilgrim Guide</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pollenica: not encountered">
-<img src="assets/img/journal/Pollenica - Bloom Shooter #4267178.png" alt="" title="Pollenica: not encountered" class="locked">
-<span title="Pollenica">Pollenica</span>
+<div class="journal-item" role="listitem" aria-label="Overgrown Pilgrim: not encountered">
+<img src="assets/img/journal/Overgrown Pilgrim - Pilgrim Moss Spitter #4266946.png" alt="" title="Overgrown Pilgrim: not encountered" class="locked">
+<span title="Overgrown Pilgrim">Overgrown Pilgrim</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pond Skipper: not encountered">
-<img src="assets/img/journal/Pond Skipper - Pond Skater #4267236.png" alt="" title="Pond Skipper: not encountered" class="locked">
-<span title="Pond Skipper">Pond Skipper</span>
+<div class="journal-item" role="listitem" aria-label="Covetous Pilgrim: not encountered">
+<img src="assets/img/journal/Covetous Pilgrim - Rosary Pilgrim #4266887.png" alt="" title="Covetous Pilgrim: not encountered" class="locked">
+<span title="Covetous Pilgrim">Covetous Pilgrim</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Pondcatcher: not encountered">
-<img src="assets/img/journal/Pondcatcher - Pilgrim Fisher #4266944.png" alt="" title="Pondcatcher: not encountered" class="locked">
-<span title="Pondcatcher">Pondcatcher</span>
+<div class="journal-item" role="listitem" aria-label="Snitchfly: not encountered">
+<img src="assets/img/journal/Snitchfly - Rosary Thief #4267159.png" alt="" title="Snitchfly: not encountered" class="locked">
+<span title="Snitchfly">Snitchfly</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Puny Penitent: not encountered">
-<img src="assets/img/journal/Puny Penitent - Slab Prisoner Fly New #4267161.png" alt="" title="Puny Penitent: not encountered" class="locked">
-<span title="Puny Penitent">Puny Penitent</span>
+<div class="journal-item" role="listitem" aria-label="Lavalug: not encountered">
+<img src="assets/img/journal/Lavalug - Tar Slug #4267241.png" alt="" title="Lavalug: not encountered" class="locked">
+<span title="Lavalug">Lavalug</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Reed: not encountered">
-<img src="assets/img/journal/Reed - Song Reed #4267007.png" alt="" title="Reed: not encountered" class="locked">
-<span title="Reed">Reed</span>
+<div class="journal-item" role="listitem" aria-label="Lavalarga: not encountered">
+<img src="assets/img/journal/Lavalarga - Tar Slug Huge #4267081.png" alt="" title="Lavalarga: not encountered" class="locked">
+<span title="Lavalarga">Lavalarga</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Rhinogrund: not encountered">
-<img src="assets/img/journal/Rhinogrund - Rhino #4267198.png" alt="" title="Rhinogrund: not encountered" class="locked">
-<span title="Rhinogrund">Rhinogrund</span>
+<div class="journal-item" role="listitem" aria-label="Smelt Shoveller: not encountered">
+<img src="assets/img/journal/Smelt Shoveller - Dock Worker #4267311.png" alt="" title="Smelt Shoveller: not encountered" class="locked">
+<span title="Smelt Shoveller">Smelt Shoveller</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Flintstone Flyer: not encountered">
+<img src="assets/img/journal/Flintstone Flyer - Dock Flyer #4267143.png" alt="" title="Flintstone Flyer: not encountered" class="locked">
+<span title="Flintstone Flyer">Flintstone Flyer</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Flintflame Flyer: not encountered">
+<img src="assets/img/journal/Flintflame Flyer - Dock Bomber #4266909.png" alt="" title="Flintflame Flyer: not encountered" class="locked">
+<span title="Flintflame Flyer">Flintflame Flyer</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Smokerock Sifter: not encountered">
+<img src="assets/img/journal/Smokerock Sifter - Shield Dock Worker #4266996.png" alt="" title="Smokerock Sifter: not encountered" class="locked">
+<span title="Smokerock Sifter">Smokerock Sifter</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Deep Diver: not encountered">
+<img src="assets/img/journal/Deep Diver - Dock Charger #4267102.png" alt="" title="Deep Diver: not encountered" class="locked">
+<span title="Deep Diver">Deep Diver</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Forebrothers Signis &amp; Gron: not encountered">
+<img src="assets/img/journal/Forebrothers Signis &amp; Gron - Dock Guard Thrower #4267289.png" alt="" title="Forebrothers Signis &amp; Gron: not encountered" class="locked">
+<span title="Forebrothers Signis &amp; Gron">Forebrothers Signis &amp; Gron</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cragglite: not encountered">
+<img src="assets/img/journal/Cragglite - Small Crab #4266941.png" alt="" title="Cragglite: not encountered" class="locked">
+<span title="Cragglite">Cragglite</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Craggler: not encountered">
+<img src="assets/img/journal/Craggler - Roof Crab #4267181.png" alt="" title="Craggler: not encountered" class="locked">
+<span title="Craggler">Craggler</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Brushflit: not encountered">
+<img src="assets/img/journal/Brushflit - Fields Flock Flyers #4267294.png" alt="" title="Brushflit: not encountered" class="locked">
+<span title="Brushflit">Brushflit</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Fertid: not encountered">
+<img src="assets/img/journal/Fertid - Fields Goomba #4266883.png" alt="" title="Fertid: not encountered" class="locked">
+<span title="Fertid">Fertid</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Flapping Fertid: not encountered">
+<img src="assets/img/journal/Flapping Fertid - Fields Flyer #4267152.png" alt="" title="Flapping Fertid: not encountered" class="locked">
+<span title="Flapping Fertid">Flapping Fertid</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Fourth Chorus: not encountered">
+<img src="assets/img/journal/Fourth Chorus - Song Golem #4266912.png" alt="" title="Fourth Chorus: not encountered" class="locked">
+<span title="Fourth Chorus">Fourth Chorus</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Skarrlid: not encountered">
+<img src="assets/img/journal/Skarrlid - Bone Hunter Tiny #4266983.png" alt="" title="Skarrlid: not encountered" class="locked">
+<span title="Skarrlid">Skarrlid</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Skarrwing: not encountered">
+<img src="assets/img/journal/Skarrwing - Bone Hunter Buzzer #4266932.png" alt="" title="Skarrwing: not encountered" class="locked">
+<span title="Skarrwing">Skarrwing</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Skarr Scout: not encountered">
+<img src="assets/img/journal/Skarr Scout - Bone Hunter Child #4267265.png" alt="" title="Skarr Scout: not encountered" class="locked">
+<span title="Skarr Scout">Skarr Scout</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Skarr Stalker: not encountered">
+<img src="assets/img/journal/Skarr Stalker - Bone Hunter #4267125.png" alt="" title="Skarr Stalker: not encountered" class="locked">
+<span title="Skarr Stalker">Skarr Stalker</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Spear Skarr: not encountered">
+<img src="assets/img/journal/Spear Skarr - Bone Hunter Fly #4267308.png" alt="" title="Spear Skarr: not encountered" class="locked">
+<span title="Spear Skarr">Spear Skarr</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Skarrgard: not encountered">
+<img src="assets/img/journal/Skarrgard - Bone Hunter Throw #4266949.png" alt="" title="Skarrgard: not encountered" class="locked">
+<span title="Skarrgard">Skarrgard</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Gurr the Outcast: not encountered">
+<img src="assets/img/journal/Gurr the Outcast - Bone Hunter Trapper #4267097.png" alt="" title="Gurr the Outcast: not encountered" class="locked">
+<span title="Gurr the Outcast">Gurr the Outcast</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Last Claw: not encountered">
+<img src="assets/img/journal/Last Claw - Bone Hunter Chief #4266997.png" alt="" title="Last Claw: not encountered" class="locked">
+<span title="Last Claw">Last Claw</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Skarrsinger Karmelita: not encountered">
+<img src="assets/img/journal/Skarrsinger Karmelita - Hunter Queen #4266960.png" alt="" title="Skarrsinger Karmelita: not encountered" class="locked">
+<span title="Skarrsinger Karmelita">Skarrsinger Karmelita</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Mite: not encountered">
+<img src="assets/img/journal/Mite #4267230.png" alt="" title="Mite: not encountered" class="locked">
+<span title="Mite">Mite</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Fluttermite: not encountered">
+<img src="assets/img/journal/Fluttermite - Mitefly #4266951.png" alt="" title="Fluttermite: not encountered" class="locked">
+<span title="Fluttermite">Fluttermite</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Mitemother: not encountered">
+<img src="assets/img/journal/Mitemother - Gnat Giant #4267229.png" alt="" title="Mitemother: not encountered" class="locked">
+<span title="Mitemother">Mitemother</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Dreg Catcher: not encountered">
+<img src="assets/img/journal/Dreg Catcher - Farmer Catcher #4267320.png" alt="" title="Dreg Catcher: not encountered" class="locked">
+<span title="Dreg Catcher">Dreg Catcher</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Silk Snipper: not encountered">
+<img src="assets/img/journal/Silk Snipper - Farmer Scissors #4267197.png" alt="" title="Silk Snipper: not encountered" class="locked">
+<span title="Silk Snipper">Silk Snipper</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Thread Raker: not encountered">
+<img src="assets/img/journal/Thread Raker - Farmer Centipede #4267284.png" alt="" title="Thread Raker: not encountered" class="locked">
+<span title="Thread Raker">Thread Raker</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Moorwing: not encountered">
+<img src="assets/img/journal/Moorwing - Vampire Gnat #4267224.png" alt="" title="Moorwing: not encountered" class="locked">
+<span title="Moorwing">Moorwing</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Wisp: not encountered">
+<img src="assets/img/journal/Wisp #4267141.png" alt="" title="Wisp: not encountered" class="locked">
+<span title="Wisp">Wisp</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Burning Bug: not encountered">
+<img src="assets/img/journal/Burning Bug - Farmer Wisp #4267034.png" alt="" title="Burning Bug: not encountered" class="locked">
+<span title="Burning Bug">Burning Bug</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Father of the Flame: not encountered">
+<img src="assets/img/journal/Father of the Flame - Wisp Pyre Effigy #4267131.png" alt="" title="Father of the Flame: not encountered" class="locked">
+<span title="Father of the Flame">Father of the Flame</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Craw: not encountered">
+<img src="assets/img/journal/Craw - Crow #4267116.png" alt="" title="Craw: not encountered" class="locked">
+<span title="Craw">Craw</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Tallcraw: not encountered">
+<img src="assets/img/journal/Tallcraw - Crowman #4267049.png" alt="" title="Tallcraw: not encountered" class="locked">
+<span title="Tallcraw">Tallcraw</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Squatcraw: not encountered">
+<img src="assets/img/journal/Squatcraw - Crowman Dagger #4266922.png" alt="" title="Squatcraw: not encountered" class="locked">
+<span title="Squatcraw">Squatcraw</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Craw Juror: not encountered">
+<img src="assets/img/journal/Craw Juror - Crowman Juror Tiny #4266952.png" alt="" title="Craw Juror: not encountered" class="locked">
+<span title="Craw Juror">Craw Juror</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Tallcraw Juror: not encountered">
+<img src="assets/img/journal/Tallcraw Juror - Crowman Juror #4267297.png" alt="" title="Tallcraw Juror: not encountered" class="locked">
+<span title="Tallcraw Juror">Tallcraw Juror</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Squatcraw Juror: not encountered">
+<img src="assets/img/journal/Squatcraw Juror - Crowman Dagger Juror #4267091.png" alt="" title="Squatcraw Juror: not encountered" class="locked">
+<span title="Squatcraw Juror">Squatcraw Juror</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Crawfather: not encountered">
+<img src="assets/img/journal/Crawfather #4267260.png" alt="" title="Crawfather: not encountered" class="locked">
+<span title="Crawfather">Crawfather</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Muckmaggot: not encountered">
+<img src="assets/img/journal/Muckmaggot - Maggots #4267059.png" alt="" title="Muckmaggot: not encountered" class="locked">
+<span title="Muckmaggot">Muckmaggot</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Slubberlug: not encountered">
+<img src="assets/img/journal/Slubberlug - Dustroach Pollywog #4267269.png" alt="" title="Slubberlug: not encountered" class="locked">
+<span title="Slubberlug">Slubberlug</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Muckroach: not encountered">
+<img src="assets/img/journal/Muckroach - Dustroach #4267063.png" alt="" title="Muckroach: not encountered" class="locked">
+<span title="Muckroach">Muckroach</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Bloatroach: not encountered">
+<img src="assets/img/journal/Bloatroach - Bloat Roach #4267166.png" alt="" title="Bloatroach: not encountered" class="locked">
+<span title="Bloatroach">Bloatroach</span>
 </div>
 <div class="journal-item" role="listitem" aria-label="Roachcatcher: not encountered">
 <img src="assets/img/journal/Roachcatcher - Roachfeeder Short #4267345.png" alt="" title="Roachcatcher: not encountered" class="locked">
@@ -2302,169 +2337,29 @@
 <img src="assets/img/journal/Roachserver - Roachkeeper Chef Tiny #4267325.png" alt="" title="Roachserver: not encountered" class="locked">
 <span title="Roachserver">Roachserver</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Sandcarver: not encountered">
-<img src="assets/img/journal/Sandcarver - Sand Centipede #4267296.png" alt="" title="Sandcarver: not encountered" class="locked">
-<span title="Sandcarver">Sandcarver</span>
+<div class="journal-item" role="listitem" aria-label="Disgraced Chef Lugoli: not encountered">
+<img src="assets/img/journal/Disgraced Chef Lugoli - Roachkeeper Chef #4266971.png" alt="" title="Disgraced Chef Lugoli: not encountered" class="locked">
+<span title="Disgraced Chef Lugoli">Disgraced Chef Lugoli</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Savage Beastfly: not encountered">
-<img src="assets/img/journal/Savage Beastfly - Bone Flyer Giant #4266890.png" alt="" title="Savage Beastfly: not encountered" class="locked">
-<span title="Savage Beastfly">Savage Beastfly</span>
+<div class="journal-item" role="listitem" aria-label="Wraith: not encountered">
+<img src="assets/img/journal/Wraith #4267255.png" alt="" title="Wraith: not encountered" class="locked">
+<span title="Wraith">Wraith</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Scabfly: not encountered">
-<img src="assets/img/journal/Scabfly - Slab Fly Small #4266955.png" alt="" title="Scabfly: not encountered" class="locked">
-<span title="Scabfly">Scabfly</span>
+<div class="journal-item" role="listitem" aria-label="Mothleaf Lagnia: not encountered">
+<img src="assets/img/journal/Mothleaf Lagnia - Swamp Drifter #4267100.png" alt="" title="Mothleaf Lagnia: not encountered" class="locked">
+<span title="Mothleaf Lagnia">Mothleaf Lagnia</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Scrollreader: not encountered">
-<img src="assets/img/journal/Scrollreader - Scrollkeeper #4267151.png" alt="" title="Scrollreader: not encountered" class="locked">
-<span title="Scrollreader">Scrollreader</span>
+<div class="journal-item" role="listitem" aria-label="Miremite: not encountered">
+<img src="assets/img/journal/Miremite - Swamp Goomba #4267071.png" alt="" title="Miremite: not encountered" class="locked">
+<span title="Miremite">Miremite</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Second Sentinel: not encountered">
-<img src="assets/img/journal/Second Sentinel - Song Knight #4266882.png" alt="" title="Second Sentinel: not encountered" class="locked">
-<span title="Second Sentinel">Second Sentinel</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Servitor Boran: not encountered">
-<img src="assets/img/journal/Servitor Boran - Weaver Servitor Large #4267207.png" alt="" title="Servitor Boran: not encountered" class="locked">
-<span title="Servitor Boran">Servitor Boran</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Servitor Ignim: not encountered">
-<img src="assets/img/journal/Servitor Ignim - Weaver Servitor #4266935.png" alt="" title="Servitor Ignim: not encountered" class="locked">
-<span title="Servitor Ignim">Servitor Ignim</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Shadow Charger: not encountered">
-<img src="assets/img/journal/Shadow Charger - Abyss Crawler Large #4267341.png" alt="" title="Shadow Charger: not encountered" class="locked">
-<span title="Shadow Charger">Shadow Charger</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Shadow Creeper: not encountered">
-<img src="assets/img/journal/Shadow Creeper - Abyss Crawler #4267287.png" alt="" title="Shadow Creeper: not encountered" class="locked">
-<span title="Shadow Creeper">Shadow Creeper</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Shakra: not encountered">
-<img src="assets/img/journal/Shakra #4267195.png" alt="" title="Shakra: not encountered" class="locked">
-<span title="Shakra">Shakra</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Shardillard: not encountered">
-<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="" title="Shardillard: not encountered" class="locked">
-<span title="Shardillard">Shardillard</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Shellwood Gnat: not encountered">
-<img src="assets/img/journal/Shellwood Gnat #4266879.png" alt="" title="Shellwood Gnat: not encountered" class="locked">
-<span title="Shellwood Gnat">Shellwood Gnat</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Shrine Guardian Seth: not encountered">
-<img src="assets/img/journal/Shrine Guardian Seth - Seth #4267346.png" alt="" title="Shrine Guardian Seth: not encountered" class="locked">
-<span title="Shrine Guardian Seth">Shrine Guardian Seth</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Silk Snipper: not encountered">
-<img src="assets/img/journal/Silk Snipper - Farmer Scissors #4267197.png" alt="" title="Silk Snipper: not encountered" class="locked">
-<span title="Silk Snipper">Silk Snipper</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Sister Splinter: not encountered">
-<img src="assets/img/journal/Sister Splinter - Splinter Queen #4267090.png" alt="" title="Sister Splinter: not encountered" class="locked">
-<span title="Sister Splinter">Sister Splinter</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skarr Scout: not encountered">
-<img src="assets/img/journal/Skarr Scout - Bone Hunter Child #4267265.png" alt="" title="Skarr Scout: not encountered" class="locked">
-<span title="Skarr Scout">Skarr Scout</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skarr Stalker: not encountered">
-<img src="assets/img/journal/Skarr Stalker - Bone Hunter #4267125.png" alt="" title="Skarr Stalker: not encountered" class="locked">
-<span title="Skarr Stalker">Skarr Stalker</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skarrgard: not encountered">
-<img src="assets/img/journal/Skarrgard - Bone Hunter Throw #4266949.png" alt="" title="Skarrgard: not encountered" class="locked">
-<span title="Skarrgard">Skarrgard</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skarrlid: not encountered">
-<img src="assets/img/journal/Skarrlid - Bone Hunter Tiny #4266983.png" alt="" title="Skarrlid: not encountered" class="locked">
-<span title="Skarrlid">Skarrlid</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skarrsinger Karmelita: not encountered">
-<img src="assets/img/journal/Skarrsinger Karmelita - Hunter Queen #4266960.png" alt="" title="Skarrsinger Karmelita: not encountered" class="locked">
-<span title="Skarrsinger Karmelita">Skarrsinger Karmelita</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skarrwing: not encountered">
-<img src="assets/img/journal/Skarrwing - Bone Hunter Buzzer #4266932.png" alt="" title="Skarrwing: not encountered" class="locked">
-<span title="Skarrwing">Skarrwing</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skrill: not encountered">
-<img src="assets/img/journal/Skrill - Surface Scuttler #4267233.png" alt="" title="Skrill: not encountered" class="locked">
-<span title="Skrill">Skrill</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skull Brute: not encountered">
-<img src="assets/img/journal/Skull Brute - Bone Goomba Large #4267337.png" alt="" title="Skull Brute: not encountered" class="locked">
-<span title="Skull Brute">Skull Brute</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skull Scuttler: not encountered">
-<img src="assets/img/journal/Skull Scuttler - Bone Goomba #4267240.png" alt="" title="Skull Scuttler: not encountered" class="locked">
-<span title="Skull Scuttler">Skull Scuttler</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skull Tyrant: not encountered">
-<img src="assets/img/journal/Skull Tyrant - Skull King #4267291.png" alt="" title="Skull Tyrant: not encountered" class="locked">
-<span title="Skull Tyrant">Skull Tyrant</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Skullwing: not encountered">
-<img src="assets/img/journal/Skullwing - Bone Goomba Bounce Fly #4267300.png" alt="" title="Skullwing: not encountered" class="locked">
-<span title="Skullwing">Skullwing</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Slubberlug: not encountered">
-<img src="assets/img/journal/Slubberlug - Dustroach Pollywog #4267269.png" alt="" title="Slubberlug: not encountered" class="locked">
-<span title="Slubberlug">Slubberlug</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Smelt Shoveller: not encountered">
-<img src="assets/img/journal/Smelt Shoveller - Dock Worker #4267311.png" alt="" title="Smelt Shoveller: not encountered" class="locked">
-<span title="Smelt Shoveller">Smelt Shoveller</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Smokerock Sifter: not encountered">
-<img src="assets/img/journal/Smokerock Sifter - Shield Dock Worker #4266996.png" alt="" title="Smokerock Sifter: not encountered" class="locked">
-<span title="Smokerock Sifter">Smokerock Sifter</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Snitchfly: not encountered">
-<img src="assets/img/journal/Snitchfly - Rosary Thief #4267159.png" alt="" title="Snitchfly: not encountered" class="locked">
-<span title="Snitchfly">Snitchfly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Spine: not encountered">
-<img src="assets/img/knight_icon.png" alt="" title="Cogwork Spine: not encountered" class="locked">
-<span title="Cogwork Spine">Cogwork Spine</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Spear Skarr: not encountered">
-<img src="assets/img/journal/Spear Skarr - Bone Hunter Fly #4267308.png" alt="" title="Spear Skarr: not encountered" class="locked">
-<span title="Spear Skarr">Spear Skarr</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Spinebeak Kai: not encountered">
-<img src="assets/img/journal/Spinebeak Kai - Poke Swimmer #4266897.png" alt="" title="Spinebeak Kai: not encountered" class="locked">
-<span title="Spinebeak Kai">Spinebeak Kai</span>
+<div class="journal-item" role="listitem" aria-label="Swamp Squit: not encountered">
+<img src="assets/img/journal/Swamp Squit - Swamp Mosquito #4267148.png" alt="" title="Swamp Squit: not encountered" class="locked">
+<span title="Swamp Squit">Swamp Squit</span>
 </div>
 <div class="journal-item" role="listitem" aria-label="Spit Squit: not encountered">
 <img src="assets/img/journal/Spit Squit - Swamp Mosquito Skinny #4267039.png" alt="" title="Spit Squit: not encountered" class="locked">
 <span title="Spit Squit">Spit Squit</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Splinter: not encountered">
-<img src="assets/img/journal/Splinter - Stick Insect #4267160.png" alt="" title="Splinter: not encountered" class="locked">
-<span title="Splinter">Splinter</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Splinterbark: not encountered">
-<img src="assets/img/journal/Splinterbark - Stick Insect Flyer #4267029.png" alt="" title="Splinterbark: not encountered" class="locked">
-<span title="Splinterbark">Splinterbark</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Splinterhorn: not encountered">
-<img src="assets/img/journal/Splinterhorn - Stick Insect Charger #4267322.png" alt="" title="Splinterhorn: not encountered" class="locked">
-<span title="Splinterhorn">Splinterhorn</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Squatcraw: not encountered">
-<img src="assets/img/journal/Squatcraw - Crowman Dagger #4266922.png" alt="" title="Squatcraw: not encountered" class="locked">
-<span title="Squatcraw">Squatcraw</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Squatcraw Juror: not encountered">
-<img src="assets/img/journal/Squatcraw Juror - Crowman Dagger Juror #4267091.png" alt="" title="Squatcraw Juror: not encountered" class="locked">
-<span title="Squatcraw Juror">Squatcraw Juror</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Squirrm: not encountered">
-<img src="assets/img/journal/Squirrm - Coral Judge Child #4266931.png" alt="" title="Squirrm: not encountered" class="locked">
-<span title="Squirrm">Squirrm</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Steelspine Kai: not encountered">
-<img src="assets/img/journal/Steelspine Kai - Spike Swimmer #4267023.png" alt="" title="Steelspine Kai: not encountered" class="locked">
-<span title="Steelspine Kai">Steelspine Kai</span>
 </div>
 <div class="journal-item" role="listitem" aria-label="Stilkin: not encountered">
 <img src="assets/img/journal/Stilkin - Swamp Muckman #4267328.png" alt="" title="Stilkin: not encountered" class="locked">
@@ -2474,141 +2369,149 @@
 <img src="assets/img/journal/Stilkin Trapper - Swamp Muckman Tall #4267304.png" alt="" title="Stilkin Trapper: not encountered" class="locked">
 <span title="Stilkin Trapper">Stilkin Trapper</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Surgeon: not encountered">
-<img src="assets/img/journal/Surgeon - Song Pilgrim 02 #4267257.png" alt="" title="Surgeon: not encountered" class="locked">
-<span title="Surgeon">Surgeon</span>
+<div class="journal-item" role="listitem" aria-label="Groal the Great: not encountered">
+<img src="assets/img/journal/Groal the Great - Swamp Shaman #4267139.png" alt="" title="Groal the Great: not encountered" class="locked">
+<span title="Groal the Great">Groal the Great</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Swamp Squit: not encountered">
-<img src="assets/img/journal/Swamp Squit - Swamp Mosquito #4267148.png" alt="" title="Swamp Squit: not encountered" class="locked">
-<span title="Swamp Squit">Swamp Squit</span>
+<div class="journal-item" role="listitem" aria-label="Barnak: not encountered">
+<img src="assets/img/journal/Barnak - Swamp Barnacle #4266933.png" alt="" title="Barnak: not encountered" class="locked">
+<span title="Barnak">Barnak</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Tallcraw: not encountered">
-<img src="assets/img/journal/Tallcraw - Crowman #4267049.png" alt="" title="Tallcraw: not encountered" class="locked">
-<span title="Tallcraw">Tallcraw</span>
+<div class="journal-item" role="listitem" aria-label="Ductsucker: not encountered">
+<img src="assets/img/journal/Ductsucker - Swamp Ductsucker #4267008.png" alt="" title="Ductsucker: not encountered" class="locked">
+<span title="Ductsucker">Ductsucker</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Tallcraw Juror: not encountered">
-<img src="assets/img/journal/Tallcraw Juror - Crowman Juror #4267297.png" alt="" title="Tallcraw Juror: not encountered" class="locked">
-<span title="Tallcraw Juror">Tallcraw Juror</span>
+<div class="journal-item" role="listitem" aria-label="Pond Skipper: not encountered">
+<img src="assets/img/journal/Pond Skipper - Pond Skater #4267236.png" alt="" title="Pond Skipper: not encountered" class="locked">
+<span title="Pond Skipper">Pond Skipper</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Tarmite: not encountered">
-<img src="assets/img/journal/Tarmite - Bone Spitter #4267333.png" alt="" title="Tarmite: not encountered" class="locked">
-<span title="Tarmite">Tarmite</span>
+<div class="journal-item" role="listitem" aria-label="Pondcatcher: not encountered">
+<img src="assets/img/journal/Pondcatcher - Pilgrim Fisher #4266944.png" alt="" title="Pondcatcher: not encountered" class="locked">
+<span title="Pondcatcher">Pondcatcher</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="The Unravelled: not encountered">
-<img src="assets/img/journal/The Unravelled - Conductor Boss #4267194.png" alt="" title="The Unravelled: not encountered" class="locked">
-<span title="The Unravelled">The Unravelled</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Thread Raker: not encountered">
-<img src="assets/img/journal/Thread Raker - Farmer Centipede #4267284.png" alt="" title="Thread Raker: not encountered" class="locked">
-<span title="Thread Raker">Thread Raker</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Tormented Trobbio: not encountered">
-<img src="assets/img/journal/Tormented Trobbio #4266979.png" alt="" title="Tormented Trobbio: not encountered" class="locked">
-<span title="Tormented Trobbio">Tormented Trobbio</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Trobbio: not encountered">
-<img src="assets/img/journal/Trobbio #4267244.png" alt="" title="Trobbio: not encountered" class="locked">
-<span title="Trobbio">Trobbio</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Undercrank: not encountered">
-<img src="assets/img/journal/Undercrank - Understore Heavy #4267326.png" alt="" title="Undercrank: not encountered" class="locked">
-<span title="Undercrank">Undercrank</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Underloft: not encountered">
-<img src="assets/img/journal/Underloft - Understore Thrower #4267279.png" alt="" title="Underloft: not encountered" class="locked">
-<span title="Underloft">Underloft</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Underpoke: not encountered">
-<img src="assets/img/journal/Underpoke - Understore Poker #4267275.png" alt="" title="Underpoke: not encountered" class="locked">
-<span title="Underpoke">Underpoke</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Underscrub: not encountered">
-<img src="assets/img/journal/Underscrub - Pilgrim 03 Understore #4267331.png" alt="" title="Underscrub: not encountered" class="locked">
-<span title="Underscrub">Underscrub</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Cogwork Hauler: not encountered">
-<img src="assets/img/knight_icon.png" alt="" title="Cogwork Hauler: not encountered" class="locked">
-<span title="Cogwork Hauler">Cogwork Hauler</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Undersweep: not encountered">
-<img src="assets/img/journal/Undersweep - Pilgrim Staff Understore #4267250.png" alt="" title="Undersweep: not encountered" class="locked">
-<span title="Undersweep">Undersweep</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Underworker: not encountered">
-<img src="assets/img/journal/Underworker - Understore Small #4267087.png" alt="" title="Underworker: not encountered" class="locked">
-<span title="Underworker">Underworker</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Vaultborn: not encountered">
-<img src="assets/img/journal/Vaultborn - Song Scholar Acolyte #4267096.png" alt="" title="Vaultborn: not encountered" class="locked">
-<span title="Vaultborn">Vaultborn</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Vaultkeeper: not encountered">
-<img src="assets/img/journal/Vaultkeeper - Scholar #4267173.png" alt="" title="Vaultkeeper: not encountered" class="locked">
-<span title="Vaultkeeper">Vaultkeeper</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Verdanir: not encountered">
-<img src="assets/img/journal/Verdanir - Grasshopper Slasher #4267349.png" alt="" title="Verdanir: not encountered" class="locked">
-<span title="Verdanir">Verdanir</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Vicious Caranid: not encountered">
-<img src="assets/img/journal/Vicious Caranid - Bone Circler Vicious #4267336.png" alt="" title="Vicious Caranid: not encountered" class="locked">
-<span title="Vicious Caranid">Vicious Caranid</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Void Mass: not encountered">
-<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" title="Void Mass: not encountered" class="locked">
-<span title="Void Mass">Void Mass</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Void Tendrils: not encountered">
-<img src="assets/img/knight_icon.png" alt="" title="Void Tendrils: not encountered" class="locked">
-<span title="Void Tendrils">Void Tendrils</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Voltvyrm: not encountered">
-<img src="assets/img/journal/Voltvyrm - Zap Core Enemy #4267202.png" alt="" title="Voltvyrm: not encountered" class="locked">
-<span title="Voltvyrm">Voltvyrm</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Wardenfly: not encountered">
-<img src="assets/img/journal/Wardenfly - Slab Fly Large #4267003.png" alt="" title="Wardenfly: not encountered" class="locked">
-<span title="Wardenfly">Wardenfly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Watcher at the Edge: not encountered">
-<img src="assets/img/journal/Watcher at the Edge - Coral Warrior Grey #4267135.png" alt="" title="Watcher at the Edge: not encountered" class="locked">
-<span title="Watcher at the Edge">Watcher at the Edge</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="White Palace Fly: not encountered">
-<img src="assets/img/journal/White Palace Fly #4266911.png" alt="" title="White Palace Fly: not encountered" class="locked">
-<span title="White Palace Fly">White Palace Fly</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Widow: not encountered">
-<img src="assets/img/journal/Widow - Spinner Boss #4267339.png" alt="" title="Widow: not encountered" class="locked">
-<span title="Widow">Widow</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Winged Furm: not encountered">
-<img src="assets/img/journal/Winged Furm - Bell Fly #4267040.png" alt="" title="Winged Furm: not encountered" class="locked">
-<span title="Winged Furm">Winged Furm</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Winged Pilgrim: not encountered">
-<img src="assets/img/journal/Winged Pilgrim - Pilgrim Fly #4266875.png" alt="" title="Winged Pilgrim: not encountered" class="locked">
-<span title="Winged Pilgrim">Winged Pilgrim</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Winged Pilgrim Bellbearer: not encountered">
-<img src="assets/img/journal/Winged Pilgrim Bellbearer - Pilgrim Bellthrower Fly #4267163.png" alt="" title="Winged Pilgrim Bellbearer: not encountered" class="locked">
-<span title="Winged Pilgrim Bellbearer">Winged Pilgrim Bellbearer</span>
-</div>
-<div class="journal-item" role="listitem" aria-label="Wisp: not encountered">
-<img src="assets/img/journal/Wisp #4267141.png" alt="" title="Wisp: not encountered" class="locked">
-<span title="Wisp">Wisp</span>
+<div class="journal-item" role="listitem" aria-label="Shellwood Gnat: not encountered">
+<img src="assets/img/journal/Shellwood Gnat #4266879.png" alt="" title="Shellwood Gnat: not encountered" class="locked">
+<span title="Shellwood Gnat">Shellwood Gnat</span>
 </div>
 <div class="journal-item" role="listitem" aria-label="Wood Wasp: not encountered">
 <img src="assets/img/journal/Wood Wasp - Shellwood Wasp #4267295.png" alt="" title="Wood Wasp: not encountered" class="locked">
 <span title="Wood Wasp">Wood Wasp</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Wraith: not encountered">
-<img src="assets/img/journal/Wraith #4267255.png" alt="" title="Wraith: not encountered" class="locked">
-<span title="Wraith">Wraith</span>
+<div class="journal-item" role="listitem" aria-label="Splinter: not encountered">
+<img src="assets/img/journal/Splinter - Stick Insect #4267160.png" alt="" title="Splinter: not encountered" class="locked">
+<span title="Splinter">Splinter</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Yago: not encountered">
-<img src="assets/img/journal/Yago - Coral Flyer Throw #4267261.png" alt="" title="Yago: not encountered" class="locked">
-<span title="Yago">Yago</span>
+<div class="journal-item" role="listitem" aria-label="Splinterhorn: not encountered">
+<img src="assets/img/journal/Splinterhorn - Stick Insect Charger #4267322.png" alt="" title="Splinterhorn: not encountered" class="locked">
+<span title="Splinterhorn">Splinterhorn</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Splinterbark: not encountered">
+<img src="assets/img/journal/Splinterbark - Stick Insect Flyer #4267029.png" alt="" title="Splinterbark: not encountered" class="locked">
+<span title="Splinterbark">Splinterbark</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Sister Splinter: not encountered">
+<img src="assets/img/journal/Sister Splinter - Splinter Queen #4267090.png" alt="" title="Sister Splinter: not encountered" class="locked">
+<span title="Sister Splinter">Sister Splinter</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Phacia: not encountered">
+<img src="assets/img/journal/Phacia - Flower Drifter #4266968.png" alt="" title="Phacia: not encountered" class="locked">
+<span title="Phacia">Phacia</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Pollenica: not encountered">
+<img src="assets/img/journal/Pollenica - Bloom Shooter #4267178.png" alt="" title="Pollenica: not encountered" class="locked">
+<span title="Pollenica">Pollenica</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Gahlia: not encountered">
+<img src="assets/img/journal/Gahlia - Bloom Puncher #4267239.png" alt="" title="Gahlia: not encountered" class="locked">
+<span title="Gahlia">Gahlia</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Shrine Guardian Seth: not encountered">
+<img src="assets/img/journal/Shrine Guardian Seth - Seth #4267346.png" alt="" title="Shrine Guardian Seth: not encountered" class="locked">
+<span title="Shrine Guardian Seth">Shrine Guardian Seth</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Nyleth: not encountered">
+<img src="assets/img/journal/Nyleth - Flower Queen #4267354.png" alt="" title="Nyleth: not encountered" class="locked">
+<span title="Nyleth">Nyleth</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Furm: not encountered">
+<img src="assets/img/journal/Furm - Bell Goomba #4267146.png" alt="" title="Furm: not encountered" class="locked">
+<span title="Furm">Furm</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Winged Furm: not encountered">
+<img src="assets/img/journal/Winged Furm - Bell Fly #4267040.png" alt="" title="Winged Furm: not encountered" class="locked">
+<span title="Winged Furm">Winged Furm</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Pharlid: not encountered">
+<img src="assets/img/journal/Pharlid - Blade Spider #4267251.png" alt="" title="Pharlid: not encountered" class="locked">
+<span title="Pharlid">Pharlid</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Pharlid  Diver: not encountered">
+<img src="assets/img/journal/Pharlid  Diver - Blade Spider Hang #4267338.png" alt="" title="Pharlid  Diver: not encountered" class="locked">
+<span title="Pharlid  Diver">Pharlid  Diver</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Shardillard: not encountered">
+<img src="assets/img/journal/Shardillard - Shell Fossil Mimic #4267128.png" alt="" title="Shardillard: not encountered" class="locked">
+<span title="Shardillard">Shardillard</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Sandcarver: not encountered">
+<img src="assets/img/journal/Sandcarver - Sand Centipede #4267296.png" alt="" title="Sandcarver: not encountered" class="locked">
+<span title="Sandcarver">Sandcarver</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Squirrm: not encountered">
+<img src="assets/img/journal/Squirrm - Coral Judge Child #4266931.png" alt="" title="Squirrm: not encountered" class="locked">
+<span title="Squirrm">Squirrm</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Judge: not encountered">
+<img src="assets/img/journal/Judge - Coral Judge #4267104.png" alt="" title="Judge: not encountered" class="locked">
+<span title="Judge">Judge</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Last Judge: not encountered">
+<img src="assets/img/journal/Last Judge #4266877.png" alt="" title="Last Judge: not encountered" class="locked">
+<span title="Last Judge">Last Judge</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Coral Furm: not encountered">
+<img src="assets/img/journal/Coral Furm - Coral Spike Goomba #4266986.png" alt="" title="Coral Furm: not encountered" class="locked">
+<span title="Coral Furm">Coral Furm</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Driznit: not encountered">
+<img src="assets/img/journal/Driznit - Coral Conch Shooter #4267013.png" alt="" title="Driznit: not encountered" class="locked">
+<span title="Driznit">Driznit</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Driznarga: not encountered">
+<img src="assets/img/journal/Driznarga - Coral Conch Shooter Heavy #4267078.png" alt="" title="Driznarga: not encountered" class="locked">
+<span title="Driznarga">Driznarga</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Pokenabbin: not encountered">
+<img src="assets/img/journal/Pokenabbin - Coral Conch Stabber #4267127.png" alt="" title="Pokenabbin: not encountered" class="locked">
+<span title="Pokenabbin">Pokenabbin</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Conchfly: not encountered">
+<img src="assets/img/journal/Conchfly - Coral Conch Driller #4267164.png" alt="" title="Conchfly: not encountered" class="locked">
+<span title="Conchfly">Conchfly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Great Conchfly: not encountered">
+<img src="assets/img/journal/Great Conchfly - Coral Conch Driller Giant #4267185.png" alt="" title="Great Conchfly: not encountered" class="locked">
+<span title="Great Conchfly">Great Conchfly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Crustcrawler: not encountered">
+<img src="assets/img/journal/Crustcrawler - Coral Goombas #4267226.png" alt="" title="Crustcrawler: not encountered" class="locked">
+<span title="Crustcrawler">Crustcrawler</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Crustcrag: not encountered">
+<img src="assets/img/journal/Crustcrag - Coral Goomba Large #4267288.png" alt="" title="Crustcrag: not encountered" class="locked">
+<span title="Crustcrag">Crustcrag</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Kai: not encountered">
+<img src="assets/img/journal/Kai - Coral Swimmer Fat #4267076.png" alt="" title="Kai: not encountered" class="locked">
+<span title="Kai">Kai</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Spinebeak Kai: not encountered">
+<img src="assets/img/journal/Spinebeak Kai - Poke Swimmer #4266897.png" alt="" title="Spinebeak Kai: not encountered" class="locked">
+<span title="Spinebeak Kai">Spinebeak Kai</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Steelspine Kai: not encountered">
+<img src="assets/img/journal/Steelspine Kai - Spike Swimmer #4267023.png" alt="" title="Steelspine Kai: not encountered" class="locked">
+<span title="Steelspine Kai">Steelspine Kai</span>
 </div>
 <div class="journal-item" role="listitem" aria-label="Yuma: not encountered">
 <img src="assets/img/journal/Yuma - Coral Swimmer Small #4267262.png" alt="" title="Yuma: not encountered" class="locked">
@@ -2618,13 +2521,425 @@
 <img src="assets/img/journal/Yumama - Coral Big Jellyfish #4267050.png" alt="" title="Yumama: not encountered" class="locked">
 <span title="Yumama">Yumama</span>
 </div>
-<div class="journal-item" role="listitem" aria-label="Garmond &amp; Zaza: not encountered">
-<img src="assets/img/journal/Garmond &amp; Zaza - Garmond_Zaza #4266959.png" alt="" title="Garmond &amp; Zaza: not encountered" class="locked">
-<span title="Garmond &amp; Zaza">Garmond &amp; Zaza</span>
+<div class="journal-item" role="listitem" aria-label="Karaka: not encountered">
+<img src="assets/img/journal/Karaka - Coral Warrior #4267144.png" alt="" title="Karaka: not encountered" class="locked">
+<span title="Karaka">Karaka</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Kakri: not encountered">
+<img src="assets/img/journal/Kakri - Coral Flyer #4267092.png" alt="" title="Kakri: not encountered" class="locked">
+<span title="Kakri">Kakri</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Yago: not encountered">
+<img src="assets/img/journal/Yago - Coral Flyer Throw #4267261.png" alt="" title="Yago: not encountered" class="locked">
+<span title="Yago">Yago</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Karak Gor: not encountered">
+<img src="assets/img/journal/Karak Gor - Coral Brawler #4267247.png" alt="" title="Karak Gor: not encountered" class="locked">
+<span title="Karak Gor">Karak Gor</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Alita: not encountered">
+<img src="assets/img/journal/Alita - Coral Hunter #4267124.png" alt="" title="Alita: not encountered" class="locked">
+<span title="Alita">Alita</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Corrcrust Karaka: not encountered">
+<img src="assets/img/journal/Corrcrust Karaka - Coral Bubble Brute #4267020.png" alt="" title="Corrcrust Karaka: not encountered" class="locked">
+<span title="Corrcrust Karaka">Corrcrust Karaka</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Crust King Khann: not encountered">
+<img src="assets/img/journal/Crust King Khann - Coral King #4267201.png" alt="" title="Crust King Khann: not encountered" class="locked">
+<span title="Crust King Khann">Crust King Khann</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Watcher at the Edge: not encountered">
+<img src="assets/img/journal/Watcher at the Edge - Coral Warrior Grey #4267135.png" alt="" title="Watcher at the Edge: not encountered" class="locked">
+<span title="Watcher at the Edge">Watcher at the Edge</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Voltvyrm: not encountered">
+<img src="assets/img/journal/Voltvyrm - Zap Core Enemy #4267202.png" alt="" title="Voltvyrm: not encountered" class="locked">
+<span title="Voltvyrm">Voltvyrm</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Drapefly: not encountered">
+<img src="assets/img/journal/Drapefly - Citadel Bat #4266860.png" alt="" title="Drapefly: not encountered" class="locked">
+<span title="Drapefly">Drapefly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Drapelord: not encountered">
+<img src="assets/img/journal/Drapelord - Citadel Bat Large #4267153.png" alt="" title="Drapelord: not encountered" class="locked">
+<span title="Drapelord">Drapelord</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Drapemite: not encountered">
+<img src="assets/img/journal/Drapemite - Mite Heavy #4267174.png" alt="" title="Drapemite: not encountered" class="locked">
+<span title="Drapemite">Drapemite</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Giant Drapemite: not encountered">
+<img src="assets/img/journal/Giant Drapemite - Understore Mite Giant #4267056.png" alt="" title="Giant Drapemite: not encountered" class="locked">
+<span title="Giant Drapemite">Giant Drapemite</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Underworker: not encountered">
+<img src="assets/img/journal/Underworker - Understore Small #4267087.png" alt="" title="Underworker: not encountered" class="locked">
+<span title="Underworker">Underworker</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Underscrub: not encountered">
+<img src="assets/img/journal/Underscrub - Pilgrim 03 Understore #4267331.png" alt="" title="Underscrub: not encountered" class="locked">
+<span title="Underscrub">Underscrub</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Undersweep: not encountered">
+<img src="assets/img/journal/Undersweep - Pilgrim Staff Understore #4267250.png" alt="" title="Undersweep: not encountered" class="locked">
+<span title="Undersweep">Undersweep</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Underpoke: not encountered">
+<img src="assets/img/journal/Underpoke - Understore Poker #4267275.png" alt="" title="Underpoke: not encountered" class="locked">
+<span title="Underpoke">Underpoke</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Underloft: not encountered">
+<img src="assets/img/journal/Underloft - Understore Thrower #4267279.png" alt="" title="Underloft: not encountered" class="locked">
+<span title="Underloft">Underloft</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Undercrank: not encountered">
+<img src="assets/img/journal/Undercrank - Understore Heavy #4267326.png" alt="" title="Undercrank: not encountered" class="locked">
+<span title="Undercrank">Undercrank</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Envoy: not encountered">
+<img src="assets/img/journal/Envoy - Song Pilgrim 01 #4267324.png" alt="" title="Envoy: not encountered" class="locked">
+<span title="Envoy">Envoy</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Choir Pouncer: not encountered">
+<img src="assets/img/journal/Choir Pouncer - Pilgrim 01 Song #4266878.png" alt="" title="Choir Pouncer: not encountered" class="locked">
+<span title="Choir Pouncer">Choir Pouncer</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Choir Hornhead: not encountered">
+<img src="assets/img/journal/Choir Hornhead - Pilgrim 02 Song #4267082.png" alt="" title="Choir Hornhead: not encountered" class="locked">
+<span title="Choir Hornhead">Choir Hornhead</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Choir Bellbearer: not encountered">
+<img src="assets/img/journal/Choir Bellbearer - Pilgrim 03 Song #4267057.png" alt="" title="Choir Bellbearer: not encountered" class="locked">
+<span title="Choir Bellbearer">Choir Bellbearer</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Choir Flyer: not encountered">
+<img src="assets/img/journal/Choir Flyer - Pilgrim 04 Song #4267314.png" alt="" title="Choir Flyer: not encountered" class="locked">
+<span title="Choir Flyer">Choir Flyer</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Choir Elder: not encountered">
+<img src="assets/img/journal/Choir Elder - Pilgrim Stomper Song #4267283.png" alt="" title="Choir Elder: not encountered" class="locked">
+<span title="Choir Elder">Choir Elder</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Choristor: not encountered">
+<img src="assets/img/journal/Choristor - Song Pilgrim 03 #4266977.png" alt="" title="Choristor: not encountered" class="locked">
+<span title="Choristor">Choristor</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Reed: not encountered">
+<img src="assets/img/journal/Reed - Song Reed #4267007.png" alt="" title="Reed: not encountered" class="locked">
+<span title="Reed">Reed</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Grand Reed: not encountered">
+<img src="assets/img/journal/Grand Reed - Song Reed Grand #4267120.png" alt="" title="Grand Reed: not encountered" class="locked">
+<span title="Grand Reed">Grand Reed</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Choir Clapper: not encountered">
+<img src="assets/img/journal/Choir Clapper - Song Heavy Sentry #4266859.png" alt="" title="Choir Clapper: not encountered" class="locked">
+<span title="Choir Clapper">Choir Clapper</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Clawmaiden: not encountered">
+<img src="assets/img/journal/Clawmaiden - Song Handmaiden #4267069.png" alt="" title="Clawmaiden: not encountered" class="locked">
+<span title="Clawmaiden">Clawmaiden</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Memoria: not encountered">
+<img src="assets/img/journal/Memoria - Arborium Keeper #4266967.png" alt="" title="Memoria: not encountered" class="locked">
+<span title="Memoria">Memoria</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Minister: not encountered">
+<img src="assets/img/journal/Minister - Song Administrator #4266976.png" alt="" title="Minister: not encountered" class="locked">
+<span title="Minister">Minister</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Maestro: not encountered">
+<img src="assets/img/journal/Maestro - Song Pilgrim Maestro #4267204.png" alt="" title="Maestro: not encountered" class="locked">
+<span title="Maestro">Maestro</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Second Sentinel: not encountered">
+<img src="assets/img/journal/Second Sentinel - Song Knight #4266882.png" alt="" title="Second Sentinel: not encountered" class="locked">
+<span title="Second Sentinel">Second Sentinel</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Dreg Husk: not encountered">
+<img src="assets/img/journal/Dreg Husk - Song Threaded Husk #4267167.png" alt="" title="Dreg Husk: not encountered" class="locked">
+<span title="Dreg Husk">Dreg Husk</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Dregwheel: not encountered">
+<img src="assets/img/journal/Dregwheel - Song Threaded Husk Spin #4267306.png" alt="" title="Dregwheel: not encountered" class="locked">
+<span title="Dregwheel">Dregwheel</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Surgeon: not encountered">
+<img src="assets/img/journal/Surgeon - Song Pilgrim 02 #4267257.png" alt="" title="Surgeon: not encountered" class="locked">
+<span title="Surgeon">Surgeon</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Mortician: not encountered">
+<img src="assets/img/journal/Mortician - Song Creeper #4266927.png" alt="" title="Mortician: not encountered" class="locked">
+<span title="Mortician">Mortician</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="The Unravelled: not encountered">
+<img src="assets/img/journal/The Unravelled - Conductor Boss #4267194.png" alt="" title="The Unravelled: not encountered" class="locked">
+<span title="The Unravelled">The Unravelled</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Underfly: not encountered">
+<img src="assets/img/journal/Cogwork Underfly - Understore Automaton #4266974.png" alt="" title="Cogwork Underfly: not encountered" class="locked">
+<span title="Cogwork Underfly">Cogwork Underfly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Hauler: not encountered">
+<img src="assets/img/knight_icon.png" alt="" title="Cogwork Hauler: not encountered" class="locked">
+<span title="Cogwork Hauler">Cogwork Hauler</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Crawler: not encountered">
+<img src="assets/img/journal/Cogwork Crawler - Song Automaton Goomba #4267028.png" alt="" title="Cogwork Crawler: not encountered" class="locked">
+<span title="Cogwork Crawler">Cogwork Crawler</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogworker: not encountered">
+<img src="assets/img/journal/Cogworker - Song Automaton Fly #4266929.png" alt="" title="Cogworker: not encountered" class="locked">
+<span title="Cogworker">Cogworker</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Spine: not encountered">
+<img src="assets/img/knight_icon.png" alt="" title="Cogwork Spine: not encountered" class="locked">
+<span title="Cogwork Spine">Cogwork Spine</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Choirbug: not encountered">
+<img src="assets/img/journal/Cogwork Choirbug - Song Automaton 01 #4267074.png" alt="" title="Cogwork Choirbug: not encountered" class="locked">
+<span title="Cogwork Choirbug">Cogwork Choirbug</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Cleanser: not encountered">
+<img src="assets/img/journal/Cogwork Cleanser - Song Automaton 02 #4267150.png" alt="" title="Cogwork Cleanser: not encountered" class="locked">
+<span title="Cogwork Cleanser">Cogwork Cleanser</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Defender: not encountered">
+<img src="assets/img/journal/Cogwork Defender - Song Automaton Shield #4267218.png" alt="" title="Cogwork Defender: not encountered" class="locked">
+<span title="Cogwork Defender">Cogwork Defender</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Clapper: not encountered">
+<img src="assets/img/journal/Cogwork Clapper - Song Automaton Ball #4266895.png" alt="" title="Cogwork Clapper: not encountered" class="locked">
+<span title="Cogwork Clapper">Cogwork Clapper</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cogwork Dancers: not encountered">
+<img src="assets/img/journal/Cogwork Dancers - Clockwork Dancer #4267321.png" alt="" title="Cogwork Dancers: not encountered" class="locked">
+<span title="Cogwork Dancers">Cogwork Dancers</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Vaultborn: not encountered">
+<img src="assets/img/journal/Vaultborn - Song Scholar Acolyte #4267096.png" alt="" title="Vaultborn: not encountered" class="locked">
+<span title="Vaultborn">Vaultborn</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Lampbearer: not encountered">
+<img src="assets/img/journal/Lampbearer - Lightbearer #4266866.png" alt="" title="Lampbearer: not encountered" class="locked">
+<span title="Lampbearer">Lampbearer</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Scrollreader: not encountered">
+<img src="assets/img/journal/Scrollreader - Scrollkeeper #4267151.png" alt="" title="Scrollreader: not encountered" class="locked">
+<span title="Scrollreader">Scrollreader</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Vaultkeeper: not encountered">
+<img src="assets/img/journal/Vaultkeeper - Scholar #4267173.png" alt="" title="Vaultkeeper: not encountered" class="locked">
+<span title="Vaultkeeper">Vaultkeeper</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Trobbio: not encountered">
+<img src="assets/img/journal/Trobbio #4267244.png" alt="" title="Trobbio: not encountered" class="locked">
+<span title="Trobbio">Trobbio</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Tormented Trobbio: not encountered">
+<img src="assets/img/journal/Tormented Trobbio #4266979.png" alt="" title="Tormented Trobbio: not encountered" class="locked">
+<span title="Tormented Trobbio">Tormented Trobbio</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Penitent: not encountered">
+<img src="assets/img/journal/Penitent - Slab Prisoner Leaper New #4267317.png" alt="" title="Penitent: not encountered" class="locked">
+<span title="Penitent">Penitent</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Puny Penitent: not encountered">
+<img src="assets/img/journal/Puny Penitent - Slab Prisoner Fly New #4267161.png" alt="" title="Puny Penitent: not encountered" class="locked">
+<span title="Puny Penitent">Puny Penitent</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Freshfly: not encountered">
+<img src="assets/img/journal/Freshfly - Slab Fly Small Fresh #4267130.png" alt="" title="Freshfly: not encountered" class="locked">
+<span title="Freshfly">Freshfly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Scabfly: not encountered">
+<img src="assets/img/journal/Scabfly - Slab Fly Small #4266955.png" alt="" title="Scabfly: not encountered" class="locked">
+<span title="Scabfly">Scabfly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Guardfly: not encountered">
+<img src="assets/img/journal/Guardfly - Slab Fly Mid #4267193.png" alt="" title="Guardfly: not encountered" class="locked">
+<span title="Guardfly">Guardfly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Wardenfly: not encountered">
+<img src="assets/img/journal/Wardenfly - Slab Fly Large #4267003.png" alt="" title="Wardenfly: not encountered" class="locked">
+<span title="Wardenfly">Wardenfly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Broodmother: not encountered">
+<img src="assets/img/journal/Broodmother - Slab Fly Broodmother #4266942.png" alt="" title="Broodmother: not encountered" class="locked">
+<span title="Broodmother">Broodmother</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Driftlin: not encountered">
+<img src="assets/img/journal/Driftlin - Peaks Drifter #4267356.png" alt="" title="Driftlin: not encountered" class="locked">
+<span title="Driftlin">Driftlin</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Mnemonid: not encountered">
+<img src="assets/img/journal/Mnemonid - Crystal Drifter #4267129.png" alt="" title="Mnemonid: not encountered" class="locked">
+<span title="Mnemonid">Mnemonid</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Mnemonord: not encountered">
+<img src="assets/img/journal/Mnemonord - Crystal Drifter Giant #4266919.png" alt="" title="Mnemonord: not encountered" class="locked">
+<span title="Mnemonord">Mnemonord</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Servitor Ignim: not encountered">
+<img src="assets/img/journal/Servitor Ignim - Weaver Servitor #4266935.png" alt="" title="Servitor Ignim: not encountered" class="locked">
+<span title="Servitor Ignim">Servitor Ignim</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Servitor Boran: not encountered">
+<img src="assets/img/journal/Servitor Boran - Weaver Servitor Large #4267207.png" alt="" title="Servitor Boran: not encountered" class="locked">
+<span title="Servitor Boran">Servitor Boran</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Winged Lifeseed: not encountered">
+<img src="assets/img/knight_icon.png" alt="" title="Winged Lifeseed: not encountered" class="locked">
+<span title="Winged Lifeseed">Winged Lifeseed</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Plasmid: not encountered">
+<img src="assets/img/journal/Plasmid - Bone Worm BlueBlood #4266872.png" alt="" title="Plasmid: not encountered" class="locked">
+<span title="Plasmid">Plasmid</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Plasmidas: not encountered">
+<img src="assets/img/journal/Plasmidas - Bone Worm BlueTurret #4267276.png" alt="" title="Plasmidas: not encountered" class="locked">
+<span title="Plasmidas">Plasmidas</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Plasmified Zango: not encountered">
+<img src="assets/img/journal/Plasmified Zango - Blue Assistant #4266965.png" alt="" title="Plasmified Zango: not encountered" class="locked">
+<span title="Plasmified Zango">Plasmified Zango</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Leaf Glider: not encountered">
+<img src="assets/img/journal/Leaf Glider - Lilypad Fly #4267278.png" alt="" title="Leaf Glider: not encountered" class="locked">
+<span title="Leaf Glider">Leaf Glider</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Leaf Roller: not encountered">
+<img src="assets/img/journal/Leaf Roller - Grass Goomba #4267274.png" alt="" title="Leaf Roller: not encountered" class="locked">
+<span title="Leaf Roller">Leaf Roller</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Pendra: not encountered">
+<img src="assets/img/journal/Pendra - Hornet Dragonfly #4267186.png" alt="" title="Pendra: not encountered" class="locked">
+<span title="Pendra">Pendra</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Pendragor: not encountered">
+<img src="assets/img/journal/Pendragor - Dragonfly Large #4267054.png" alt="" title="Pendragor: not encountered" class="locked">
+<span title="Pendragor">Pendragor</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Nuphar: not encountered">
+<img src="assets/img/journal/Nuphar - Lilypad Trap #4267042.png" alt="" title="Nuphar: not encountered" class="locked">
+<span title="Nuphar">Nuphar</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Cloverstag: not encountered">
+<img src="assets/img/journal/Cloverstag - Cloverstag #4267234.png" alt="" title="Cloverstag: not encountered" class="locked">
+<span title="Cloverstag">Cloverstag</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Palestag: not encountered">
+<img src="assets/img/journal/Palestag - Cloverstag White #4267105.png" alt="" title="Palestag: not encountered" class="locked">
+<span title="Palestag">Palestag</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Kindanir: not encountered">
+<img src="assets/img/journal/Kindanir - Grasshopper Child #4267103.png" alt="" title="Kindanir: not encountered" class="locked">
+<span title="Kindanir">Kindanir</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Verdanir: not encountered">
+<img src="assets/img/journal/Verdanir - Grasshopper Slasher #4267349.png" alt="" title="Verdanir: not encountered" class="locked">
+<span title="Verdanir">Verdanir</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Escalion: not encountered">
+<img src="assets/img/journal/Escalion - Grasshopper Fly #4266963.png" alt="" title="Escalion: not encountered" class="locked">
+<span title="Escalion">Escalion</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Clover Dancers: not encountered">
+<img src="assets/img/journal/Clover Dancers - Clover Dancer #4267109.png" alt="" title="Clover Dancers: not encountered" class="locked">
+<span title="Clover Dancers">Clover Dancers</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Shadow Creeper: not encountered">
+<img src="assets/img/journal/Shadow Creeper - Abyss Crawler #4267287.png" alt="" title="Shadow Creeper: not encountered" class="locked">
+<span title="Shadow Creeper">Shadow Creeper</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Shadow Charger: not encountered">
+<img src="assets/img/journal/Shadow Charger - Abyss Crawler Large #4267341.png" alt="" title="Shadow Charger: not encountered" class="locked">
+<span title="Shadow Charger">Shadow Charger</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Gloomsac: not encountered">
+<img src="assets/img/journal/Gloomsac - Gloomfly #4267084.png" alt="" title="Gloomsac: not encountered" class="locked">
+<span title="Gloomsac">Gloomsac</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Gargant Gloom: not encountered">
+<img src="assets/img/journal/Gargant Gloom - Gloom Beast #4267136.png" alt="" title="Gargant Gloom: not encountered" class="locked">
+<span title="Gargant Gloom">Gargant Gloom</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Void Tendrils: not encountered">
+<img src="assets/img/knight_icon.png" alt="" title="Void Tendrils: not encountered" class="locked">
+<span title="Void Tendrils">Void Tendrils</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Void Mass: not encountered">
+<img src="assets/img/journal/Void Mass - Black Thread Core #4267169.png" alt="" title="Void Mass: not encountered" class="locked">
+<span title="Void Mass">Void Mass</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="White Palace Fly: not encountered">
+<img src="assets/img/journal/White Palace Fly #4266911.png" alt="" title="White Palace Fly: not encountered" class="locked">
+<span title="White Palace Fly">White Palace Fly</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Garpid: not encountered">
+<img src="assets/img/journal/Garpid - Centipede_Trap #4267022.png" alt="" title="Garpid: not encountered" class="locked">
+<span title="Garpid">Garpid</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Imoba: not encountered">
+<img src="assets/img/journal/Imoba - Spike Lazy Flyer #4267310.png" alt="" title="Imoba: not encountered" class="locked">
+<span title="Imoba">Imoba</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Skrill: not encountered">
+<img src="assets/img/journal/Skrill - Surface Scuttler #4267233.png" alt="" title="Skrill: not encountered" class="locked">
+<span title="Skrill">Skrill</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Bell Eater: not encountered">
+<img src="assets/img/journal/Bell Eater - Giant Centipede #4267217.png" alt="" title="Bell Eater: not encountered" class="locked">
+<span title="Bell Eater">Bell Eater</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Huge Flea: not encountered">
+<img src="assets/img/journal/Huge Flea - Giant Flea #4267157.png" alt="" title="Huge Flea: not encountered" class="locked">
+<span title="Huge Flea">Huge Flea</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Shakra: not encountered">
+<img src="assets/img/journal/Shakra #4267195.png" alt="" title="Shakra: not encountered" class="locked">
+<span title="Shakra">Shakra</span>
 </div>
 <div class="journal-item" role="listitem" aria-label="Summoned Saviour (Steel Soul): not encountered">
 <img src="assets/img/knight_icon.png" alt="" title="Summoned Saviour (Steel Soul): not encountered" class="locked">
 <span title="Summoned Saviour (Steel Soul)">Summoned Saviour (Steel Soul)</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Garmond &amp; Zaza: not encountered">
+<img src="assets/img/journal/Garmond &amp; Zaza - Garmond_Zaza #4266959.png" alt="" title="Garmond &amp; Zaza: not encountered" class="locked">
+<span title="Garmond &amp; Zaza">Garmond &amp; Zaza</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Lost Garmond: not encountered">
+<img src="assets/img/journal/Lost Garmond - Garmond #4267350.png" alt="" title="Lost Garmond: not encountered" class="locked">
+<span title="Lost Garmond">Lost Garmond</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Pinstress Boss: not encountered">
+<img src="assets/img/journal/Pinstress Boss #4267030.png" alt="" title="Pinstress Boss: not encountered" class="locked">
+<span title="Pinstress Boss">Pinstress Boss</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Widow: not encountered">
+<img src="assets/img/journal/Widow - Spinner Boss #4267339.png" alt="" title="Widow: not encountered" class="locked">
+<span title="Widow">Widow</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="First Sinner: not encountered">
+<img src="assets/img/journal/First Sinner - First Weaver #4266910.png" alt="" title="First Sinner: not encountered" class="locked">
+<span title="First Sinner">First Sinner</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Phantom: not encountered">
+<img src="assets/img/journal/Phantom #4267162.png" alt="" title="Phantom: not encountered" class="locked">
+<span title="Phantom">Phantom</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Lace: not encountered">
+<img src="assets/img/journal/Lace #4267252.png" alt="" title="Lace: not encountered" class="locked">
+<span title="Lace">Lace</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Grand Mother Silk: not encountered">
+<img src="assets/img/journal/Grand Mother Silk - Silk Boss #4266984.png" alt="" title="Grand Mother Silk: not encountered" class="locked">
+<span title="Grand Mother Silk">Grand Mother Silk</span>
+</div>
+<div class="journal-item" role="listitem" aria-label="Lost Lace: not encountered">
+<img src="assets/img/knight_icon.png" alt="" title="Lost Lace: not encountered" class="locked">
+<span title="Lost Lace">Lost Lace</span>
 </div>
 </div>
 </div>
@@ -2639,8 +2954,12 @@
 </div>
 <div class="panel-content">
 <div class="stat-card full-width">
-<h4 class="section-header">Quests</h4>
-<div class="source-checklist" id="quests-checklist" role="list">
+<h4 class="section-header">Main Quests
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="main-quests-completed-count">0</strong>/<span id="main-quests-total-count">20</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="main-quests-checklist" role="list">
 <div class="source-item pending" role="listitem">
 <div class="source-left">
 <span class="source-name">The Citadel (Seek the Citadel)</span>
@@ -2649,115 +2968,7 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Berry Picking (Intro)</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Berry Picking</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">The Lost Fleas (Intro)</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">The Lost Fleas</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bone Bottom Repairs</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Garb of the Pilgrims</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Flexile Spines</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bugs of Pharloom</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
 <span class="source-name">The Threadspun Town</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">A Lifesaving Bridge</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Volatile Flintbeetles</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Rite of the Pollip</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Crawbug Clearing (Intro)</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Crawbug Clearing</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">The Terrible Tyrant</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Silver Bells</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">My Missing Courier</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Pinmaster's Oil</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Restoration of Bellhart</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -2781,85 +2992,7 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Building Up Songclave</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Fine Pins</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">The Wandering Merchant</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Great Taste of Pharloom</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
 <span class="source-name">Threefold Melody</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">An Icon of Hope</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Cloaks of the Choir</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Balm for the Wounded</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bellhart's Glory</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">My Missing Brother</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Savage Beastfly</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Roach Guts</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Strengthening Songclave</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">The Wailing Mother</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -2877,73 +3010,7 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">Alchemist's Assistant</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">The Lost Merchant</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Pilgrim's Rest Delivery</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Trail's End</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Silk and Soul (Intro)</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Queen's Egg (Songclave Delivery)</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Silk and Soul</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Final Audience</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Rite of Rebirth</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Infestation Operation</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
 <span class="source-name">Ensnare the Monarch</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Broodfeast</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -3009,6 +3076,45 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
+<span class="source-name">The Everbloom</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+</div>
+</div>
+<div class="stat-card full-width">
+<h4 class="section-header">Wishes
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="wishes-completed-count">0</strong>/<span id="wishes-total-count">54</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="wishes-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Berry Picking (Intro)</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Lost Fleas (Intro)</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Crawbug Clearing (Intro)</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Silk and Soul (Intro)</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
 <span class="source-name">Fatal Resolve (Intro)</span>
 </div>
 <span class="source-status">Not started</span>
@@ -3016,6 +3122,228 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <span class="source-name">Ecstasy of the End (Intro)</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Fastest in Pharloom (Intro)</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Berry Picking</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Lost Fleas</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bone Bottom Repairs</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Garb of the Pilgrims</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Flexile Spines</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bugs of Pharloom</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">A Lifesaving Bridge</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Volatile Flintbeetles</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Rite of the Pollip</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Crawbug Clearing</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Terrible Tyrant</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Silver Bells</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">My Missing Courier</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Pinmaster's Oil</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Restoration of Bellhart</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Building Up Songclave</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Fine Pins</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Wandering Merchant</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Great Taste of Pharloom</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">An Icon of Hope</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Cloaks of the Choir</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Balm for the Wounded</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellhart's Glory</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">My Missing Brother</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Savage Beastfly</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Roach Guts</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Strengthening Songclave</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Wailing Mother</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Alchemist's Assistant</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">The Lost Merchant</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Trail's End</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Silk and Soul</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Final Audience</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Rite of Rebirth</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Infestation Operation</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Broodfeast</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -3051,19 +3379,7 @@
 </div>
 <div class="source-item missing" role="listitem">
 <div class="source-left">
-<span class="source-name">The Everbloom</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
 <span class="source-name">Advanced Alchemy</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Fastest in Pharloom (Intro)</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -3088,6 +3404,33 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <span class="source-name">Runtfeast</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">A Vassal Lost (Steel Soul)</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+</div>
+</div>
+<div class="stat-card full-width">
+<h4 class="section-header">Courier Deliveries
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="deliveries-completed-count">0</strong>/<span id="deliveries-total-count">7</span>)
+                                                </span>
+</h4>
+<div class="source-checklist" id="deliveries-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Pilgrim's Rest Delivery</span>
+</div>
+<span class="source-status">Not started</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Queen's Egg (Songclave Delivery)</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -3118,12 +3461,6 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <span class="source-name">Survivor's Camp Supplies</span>
-</div>
-<span class="source-status">Not started</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">A Vassal Lost (Steel Soul)</span>
 </div>
 <span class="source-status">Not started</span>
 </div>
@@ -3686,9 +4023,101 @@
 <div class="tab-panel" id="panel-collectables" role="tabpanel" aria-labelledby="tab-collectables" tabindex="0">
 <div class="panel-header">
 <h3>Collectables</h3>
-<p class="panel-description">Items and collectables found</p>
+<p class="panel-description">Key items and collectables found</p>
 </div>
 <div class="panel-content">
+<!-- Key Items Section -->
+<div class="stat-card full-width">
+<h4 class="section-header">Key Items
+                                                <span class="unlocked-stats">(Obtained: <strong id="key-items-obtained-count">0</strong>/<span id="key-items-total-count">14</span>)</span>
+</h4>
+<div class="source-checklist" id="key-items-checklist" role="list">
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Simple Key (Bone Bottom) (Purchased from Pebb for 500 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Simple Key (Sinner's Road) (Dropped by Roachkeeper in Sinner's Road)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Simple Key (Songclave) (Purchased from Jubilana for 650 Rosaries)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Simple Key (Sands of Karak) (Held by a corpse on the easternmost bench (Bellshrine_Coral))</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Key of Indolent (The Slab: opens Indolent locks)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Key of Heretic (The Slab: opens Heretic locks)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Key of Apostate (Putrified Ducts / The Slab: opens Apostate locks)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Architect's Key (Underworks: purchased from Twelfth Architect, unlocks the Chapel of the Architect)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">White Key (Songclave (or Jubilana for 220 Rosaries): unlocks the elevator into Whiteward)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Surgeon's Key (Whiteward: opens the sluice gate beneath the operating theatre)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Bellhome Key (Bellhart: received from Pavo, unlocks Hornet's Bellhome)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Materium (Bellhome: assembled to record materials of Pharloom)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Farsight (Bellhome: assembled from Weavenest Absolom, reveals completion percentage)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+<div class="source-item missing" role="listitem">
+<div class="source-left">
+<span class="source-name">Diving Bell Key (Act 3: given by Ballow, opens the way to the Abyss)</span>
+</div>
+<span class="source-status">Missing</span>
+</div>
+</div>
+</div>
 <!-- Memory Locket Section -->
 <div class="stat-card full-width">
 <h4 class="section-header">Memory Locket
@@ -4476,347 +4905,6 @@
 <div class="source-item missing" role="listitem">
 <div class="source-left">
 <span class="source-name">Liquid Lacquer (Courier Supplies)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-</div>
-</div>
-<!-- Inventory Section -->
-<div class="stat-card full-width">
-<h4 class="section-header">Inventory
-                                                <span class="unlocked-stats">(<strong id="inventory-kinds-count">2</strong> kinds of item carried)</span>
-</h4>
-<div class="inventory-list" id="inventory-list">
-<div class="inventory-row">
-<span>Mossberry</span>
-<strong>×1</strong>
-</div>
-<div class="inventory-row">
-<span>Rosary Set Frayed</span>
-<strong>×1</strong>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- 8. Key Items Tab -->
-<div class="tab-panel" id="panel-key-items" role="tabpanel" aria-labelledby="tab-key-items" tabindex="0">
-<div class="panel-header">
-<h3>Key Items</h3>
-<p class="panel-description">Keys and story items that open the way forward</p>
-</div>
-<div class="panel-content">
-<div class="stat-card full-width">
-<h4 class="section-header">Key Items
-                                                <span class="unlocked-stats">(Obtained: <strong id="key-items-obtained-count">0</strong>/<span id="key-items-total-count">14</span>)</span>
-</h4>
-<div class="source-checklist" id="key-items-checklist" role="list">
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Simple Key (Bone Bottom) (Purchased from Pebb for 500 Rosaries)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Simple Key (Sinner's Road) (Dropped by Roachkeeper in Sinner's Road)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Simple Key (Songclave) (Purchased from Jubilana for 650 Rosaries)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Simple Key (Sands of Karak) (Held by a corpse on the easternmost bench (Bellshrine_Coral))</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Key of Indolent (The Slab: opens Indolent locks)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Key of Heretic (The Slab: opens Heretic locks)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Key of Apostate (Putrified Ducts / The Slab: opens Apostate locks)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Architect's Key (Underworks: purchased from Twelfth Architect, unlocks the Chapel of the Architect)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">White Key (Songclave (or Jubilana for 220 Rosaries): unlocks the elevator into Whiteward)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Surgeon's Key (Whiteward: opens the sluice gate beneath the operating theatre)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bellhome Key (Bellhart: received from Pavo, unlocks Hornet's Bellhome)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Materium (Bellhome: assembled to record materials of Pharloom)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Farsight (Bellhome: assembled from Weavenest Absolom, reveals completion percentage)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Diving Bell Key (Act 3: given by Ballow, opens the way to the Abyss)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- 9. World Tab -->
-<div class="tab-panel" id="panel-world" role="tabpanel" aria-labelledby="tab-world" tabindex="0">
-<div class="panel-header">
-<h3>World &amp; Bellhome</h3>
-<p class="panel-description">Endings, Bellhome upgrades, Bellshrines, Threefold Melody, and arena battles</p>
-</div>
-<div class="panel-content">
-<div class="stat-card full-width">
-<h4 class="section-header">Bellhome Furnishings &amp; Devices
-                                                <span class="unlocked-stats">
-                                                    (Unlocked: <strong id="bellhome-collected-count">0</strong>/<span id="bellhome-total">8</span>)
-                                                </span>
-</h4>
-<div class="source-checklist" id="bellhome-checklist" role="list">
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Desk (Frey, 380 Rosaries)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Gleamlights (Frey, 320 Rosaries)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bell Lacquer (Frey, 520 Rosaries)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Personal Spa (Frey, 1100 Rosaries)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Gramophone (Frey, 490 Rosaries)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Materium (device installed)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Crawbell (device installed)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Farsight (device installed)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-</div>
-</div>
-<div class="stat-card full-width">
-<h4 class="section-header">Endings &amp; World Milestones
-                                                <span class="unlocked-stats">
-                                                    (Completed: <strong id="world-milestones-collected-count">0</strong>/<span id="world-milestones-total">25</span>)
-                                                </span>
-</h4>
-<div class="source-checklist" id="world-milestones-checklist" role="list">
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Ending A: Weaver Queen (Act 2 Regular)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Ending D: Twisted Child (Act 2 Cursed)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Ending C: Snared Silk (Act 2 Soul Snare)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Ending E: Sister of the Void (Act 3)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bellshrine - The Marrow</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bellshrine - Far Fields</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bellshrine - Greymoor</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bellshrine - Bellhart</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Bellshrine - Shellwood</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Threefold Melody - Architect's Melody</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Threefold Melody - Conductor's Melody</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Threefold Melody - Vaultkeeper's Melody</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Threefold Melody - Cradle Lift Unlocked</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Hunter's March (Ant_04)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Hunter's March entrance (Ant_21)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Verdania / Aspid (Aspid_06)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Cogwork Core Abyss (Cog_10)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Whispering Vaults Entry</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Whispering Vaults Acolytes</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Sinner's Road (Dust_03)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Greymoor Tower (Greymoor_04)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - High Halls Gauntlet (Hang_04)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - The Slab Cloak Recovery</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Choral Chambers (Song_04)</span>
-</div>
-<span class="source-status">Missing</span>
-</div>
-<div class="source-item missing" role="listitem">
-<div class="source-left">
-<span class="source-name">Arena - Underworks (Under_07)</span>
 </div>
 <span class="source-status">Missing</span>
 </div>

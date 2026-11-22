@@ -108,7 +108,7 @@
                                     <span class="tab-text">Bosses</span>
                                 </button>
                                 <button class="tab-btn" data-tab="journal" role="tab" id="tab-journal" aria-controls="panel-journal" aria-selected="false" tabindex="-1">
-                                    <span class="tab-text">Journal</span>
+                                    <span class="tab-text">Hunter's Journal</span>
                                 </button>
                                 <button class="tab-btn" data-tab="quests" role="tab" id="tab-quests" aria-controls="panel-quests" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">Quests</span>
@@ -121,12 +121,6 @@
                                 </button>
                                 <button class="tab-btn" data-tab="collectables" role="tab" id="tab-collectables" aria-controls="panel-collectables" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">Collectables</span>
-                                </button>
-                                <button class="tab-btn" data-tab="key-items" role="tab" id="tab-key-items" aria-controls="panel-key-items" aria-selected="false" tabindex="-1">
-                                    <span class="tab-text">Key items</span>
-                                </button>
-                                <button class="tab-btn" data-tab="world" role="tab" id="tab-world" aria-controls="panel-world" aria-selected="false" tabindex="-1">
-                                    <span class="tab-text">World</span>
                                 </button>
                                 <button class="tab-btn" data-tab="misc" role="tab" id="tab-misc" aria-controls="panel-misc" aria-selected="false" tabindex="-1">
                                     <span class="tab-text">Misc</span>
@@ -289,6 +283,16 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Inventory Section -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">Inventory
+                                                <span class="unlocked-stats">(<strong id="inventory-kinds-count">0</strong> kinds of item carried)</span>
+                                            </h4>
+                                            <div class="inventory-list" id="inventory-list">
+                                                <!-- inventory rows populated by JS -->
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -296,7 +300,7 @@
                                 <div class="tab-panel" id="panel-misc" role="tabpanel" aria-labelledby="tab-misc" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Miscellaneous</h3>
-                                        <p class="panel-description">Additional save file details</p>
+                                        <p class="panel-description">Save file position, endings, milestones, arenas, and Bellhome upgrades</p>
                                     </div>
                                     <div class="panel-content">
                                         <!-- Current Position Card -->
@@ -335,6 +339,54 @@
                                             <div class="stat-row">
                                                 <span class="stat-label">Respawn Type</span>
                                                 <span class="stat-value" data-stat="respawnType">-</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Endings Card -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">Endings
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="endings-collected-count">0</strong>/<span id="endings-total">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="endings-checklist">
+                                                <!-- Ending rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- World Milestones Card -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">World Milestones
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="world-milestones-collected-count">0</strong>/<span id="world-milestones-total">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="world-milestones-checklist">
+                                                <!-- World milestone rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- Arena Battles Card -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">Arena Battles &amp; Gauntlets
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="arenas-collected-count">0</strong>/<span id="arenas-total">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="arenas-checklist">
+                                                <!-- Arena rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <!-- Bellhome Furnishings Card -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">Bellhome Furnishings &amp; Devices
+                                                <span class="unlocked-stats">
+                                                    (Unlocked: <strong id="bellhome-collected-count">0</strong>/<span id="bellhome-total">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="bellhome-checklist">
+                                                <!-- Bellhome rows populated by JS -->
                                             </div>
                                         </div>
                                     </div>
@@ -572,6 +624,17 @@
                                                 <!-- Unique spawn rows populated by JS -->
                                             </div>
                                         </div>
+
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">Void Masses
+                                                <span class="unlocked-stats">
+                                                    (Cleared: <strong id="void-masses-collected-count">0</strong>/<span id="void-masses-total">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="void-masses-checklist">
+                                                <!-- Void Mass rows populated by JS -->
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -604,9 +667,35 @@
                                     </div>
                                     <div class="panel-content">
                                         <div class="stat-card full-width">
-                                            <h4 class="section-header">Quests</h4>
-                                            <div class="source-checklist" id="quests-checklist">
-                                                <!-- Quest rows populated by JS -->
+                                            <h4 class="section-header">Main Quests
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="main-quests-completed-count">0</strong>/<span id="main-quests-total-count">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="main-quests-checklist">
+                                                <!-- Main quest rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">Wishes
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="wishes-completed-count">0</strong>/<span id="wishes-total-count">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="wishes-checklist">
+                                                <!-- Wish rows populated by JS -->
+                                            </div>
+                                        </div>
+
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">Courier Deliveries
+                                                <span class="unlocked-stats">
+                                                    (Completed: <strong id="deliveries-completed-count">0</strong>/<span id="deliveries-total-count">0</span>)
+                                                </span>
+                                            </h4>
+                                            <div class="source-checklist" id="deliveries-checklist">
+                                                <!-- Courier delivery rows populated by JS -->
                                             </div>
                                         </div>
                                     </div>
@@ -699,9 +788,19 @@
                                 <div class="tab-panel" id="panel-collectables" role="tabpanel" aria-labelledby="tab-collectables" tabindex="0">
                                     <div class="panel-header">
                                         <h3>Collectables</h3>
-                                        <p class="panel-description">Items and collectables found</p>
+                                        <p class="panel-description">Key items and collectables found</p>
                                     </div>
                                     <div class="panel-content">
+                                        <!-- Key Items Section -->
+                                        <div class="stat-card full-width">
+                                            <h4 class="section-header">Key Items
+                                                <span class="unlocked-stats">(Obtained: <strong id="key-items-obtained-count">0</strong>/<span id="key-items-total-count">0</span>)</span>
+                                            </h4>
+                                            <div class="source-checklist" id="key-items-checklist">
+                                                <!-- rows populated by JS -->
+                                            </div>
+                                        </div>
+
                                         <!-- Memory Locket Section -->
                                         <div class="stat-card full-width">
                                             <h4 class="section-header">Memory Locket
@@ -789,65 +888,6 @@
                                             </h4>
                                             <div class="source-checklist" id="materium-checklist">
                                                 <!-- rows populated by JS -->
-                                            </div>
-                                        </div>
-
-                                        <!-- Inventory Section -->
-                                        <div class="stat-card full-width">
-                                            <h4 class="section-header">Inventory
-                                                <span class="unlocked-stats">(<strong id="inventory-kinds-count">0</strong> kinds of item carried)</span>
-                                            </h4>
-                                            <div class="inventory-list" id="inventory-list">
-                                                <!-- inventory rows populated by JS -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 8. Key Items Tab -->
-                                <div class="tab-panel" id="panel-key-items" role="tabpanel" aria-labelledby="tab-key-items" tabindex="0">
-                                    <div class="panel-header">
-                                        <h3>Key Items</h3>
-                                        <p class="panel-description">Keys and story items that open the way forward</p>
-                                    </div>
-                                    <div class="panel-content">
-                                        <div class="stat-card full-width">
-                                            <h4 class="section-header">Key Items
-                                                <span class="unlocked-stats">(Obtained: <strong id="key-items-obtained-count">0</strong>/<span id="key-items-total-count">0</span>)</span>
-                                            </h4>
-                                            <div class="source-checklist" id="key-items-checklist">
-                                                <!-- rows populated by JS -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 9. World Tab -->
-                                <div class="tab-panel" id="panel-world" role="tabpanel" aria-labelledby="tab-world" tabindex="0">
-                                    <div class="panel-header">
-                                        <h3>World &amp; Bellhome</h3>
-                                        <p class="panel-description">Endings, Bellhome upgrades, Bellshrines, Threefold Melody, and arena battles</p>
-                                    </div>
-                                    <div class="panel-content">
-                                        <div class="stat-card full-width">
-                                            <h4 class="section-header">Bellhome Furnishings &amp; Devices
-                                                <span class="unlocked-stats">
-                                                    (Unlocked: <strong id="bellhome-collected-count">0</strong>/<span id="bellhome-total">0</span>)
-                                                </span>
-                                            </h4>
-                                            <div class="source-checklist" id="bellhome-checklist">
-                                                <!-- Bellhome rows populated by JS -->
-                                            </div>
-                                        </div>
-
-                                        <div class="stat-card full-width">
-                                            <h4 class="section-header">Endings &amp; World Milestones
-                                                <span class="unlocked-stats">
-                                                    (Completed: <strong id="world-milestones-collected-count">0</strong>/<span id="world-milestones-total">0</span>)
-                                                </span>
-                                            </h4>
-                                            <div class="source-checklist" id="world-milestones-checklist">
-                                                <!-- World milestone rows populated by JS -->
                                             </div>
                                         </div>
                                     </div>

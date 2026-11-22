@@ -25,7 +25,7 @@ export function switchTab(tabNav, tabId) {
     }
 }
 
-const KEY_STEP = { ArrowRight: 1, ArrowLeft: -1 };
+const KEY_STEP = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 5, ArrowUp: -5 };
 
 export function setupTabs(tabNav) {
     const buttons = () => [...tabNav.querySelectorAll('.tab-btn')];
