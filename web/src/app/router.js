@@ -7,7 +7,7 @@
  *   router.go('stats');
  */
 
-export const ROUTES = ['stats', 'timeline', 'explorer'];
+export const ROUTES = ['stats', 'timeline'];
 export const DEFAULT_ROUTE = 'stats';
 
 /** '#timeline' -> 'timeline'; unknown or empty (and the old '#home') -> the default route. */

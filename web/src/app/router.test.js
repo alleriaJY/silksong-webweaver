@@ -6,7 +6,6 @@ describe('routeFromHash', () => {
     it('maps known hashes and falls back to stats', () => {
         expect(routeFromHash('#stats')).toBe('stats');
         expect(routeFromHash('#/timeline')).toBe('timeline');
-        expect(routeFromHash('#explorer')).toBe('explorer');
         expect(routeFromHash('')).toBe(DEFAULT_ROUTE);
         expect(routeFromHash('#map')).toBe(DEFAULT_ROUTE);   // the dropped map viewer
         expect(routeFromHash('#home')).toBe('stats');       // the dropped Home page

@@ -18,7 +18,6 @@ import { saveStore } from './app/saveStore.js';
 import { downloadSaveJson } from './app/export.js';
 import { diffParsedSaves, renderComparisonBanner } from './app/compare.js';
 import { mountTimeline } from './timeline/timeline.js';
-import { mountExplorer } from './explorer/explorer.js';
 import { checkSave, describeProblem } from './app/errors.js';
 import { startRouter } from './app/router.js';
 import { showScene } from './app/scene.js';
@@ -298,12 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (timelineRoot) {
         const timeline = mountTimeline(timelineRoot, saveStore, { onUpload: showUploadModal });
         window.addEventListener('app:page', (e) => (e.detail === 'timeline' ? timeline.show() : timeline.hide()));
-    }
-    // Save Explorer shares the same saveStore and builds lazily on first visit
-    const explorerRoot = document.getElementById('explorer-root');
-    if (explorerRoot) {
-        const explorer = mountExplorer(explorerRoot, saveStore, { onUpload: showUploadModal });
-        window.addEventListener('app:page', (e) => (e.detail === 'explorer' ? explorer.show() : explorer.hide()));
     }
     startRouter();   // after the listeners: it announces the first page
 
