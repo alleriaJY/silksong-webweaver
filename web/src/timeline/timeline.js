@@ -58,6 +58,7 @@ const TEMPLATE = `
                 <button class="tl-zoom-btn" data-act="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
                 <button class="tl-zoom-btn" data-act="zoom-reset" title="Fit map" aria-label="Fit map">⌂</button>
             </div>
+            <div class="tl-tooltip" data-ref="tooltip" role="tooltip" hidden></div>
             <div class="tl-empty" data-ref="empty">
                 <h2>Hero's Path</h2>
                 <p data-ref="empty-text">Open a save to replay your journey across Pharloom.</p>
@@ -267,7 +268,66 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         }
     }
 
+    function cleanHoverSubtitle(text, scene) {
+        if (!text) return '';
+        let out = text;
+        if (scene) {
+            const escaped = scene.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            out = out.replace(new RegExp(`\\s*\\(${escaped}\\)\\s*$`, 'i'), '');
+        }
+        out = out.replace(/\s*\([A-Z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+\)\s*$/, '');
+        return out.trim();
+    }
+
+    function showPinTooltip(pinEl, { color, title, subtitle = '', meta = '' }) {
+        const tip = ref('tooltip');
+        if (!tip) return;
+        tip.replaceChildren();
+        const header = document.createElement('div');
+        header.className = 'tl-tooltip-head';
+        const dot = document.createElement('i');
+        dot.style.background = color || '#ccc';
+        const heading = document.createElement('strong');
+        heading.textContent = title;
+        header.append(dot, heading);
+        if (meta) {
+            const metaEl = document.createElement('span');
+            metaEl.className = 'tl-tooltip-meta';
+            metaEl.textContent = meta;
+            header.append(metaEl);
+        }
+        tip.append(header);
+        if (subtitle) {
+            const sub = document.createElement('div');
+            sub.className = 'tl-tooltip-sub';
+            sub.textContent = subtitle;
+            tip.append(sub);
+        }
+        tip.hidden = false;
+        const mapBox = ref('map').getBoundingClientRect();
+        const pinBox = pinEl.getBoundingClientRect();
+        const tipBox = tip.getBoundingClientRect();
+        const cx = pinBox.left + pinBox.width / 2 - mapBox.left;
+        const left = Math.max(10, Math.min(mapBox.width - tipBox.width - 10, cx - tipBox.width / 2));
+        let top = pinBox.top - mapBox.top - tipBox.height - 12;
+        if (top < 10) top = pinBox.bottom - mapBox.top + 12;
+        tip.style.left = `${left}px`;
+        tip.style.top = `${top}px`;
+    }
+
+    function hidePinTooltip() {
+        const tip = ref('tooltip');
+        if (tip) tip.hidden = true;
+    }
+
+    function bindPinHover(el, info) {
+        el.setAttribute('aria-label', info.subtitle ? `${info.title} — ${info.subtitle}` : info.title);
+        el.addEventListener('pointerenter', () => showPinTooltip(el, info));
+        el.addEventListener('pointerleave', hidePinTooltip);
+    }
+
     function buildPins() {
+        hidePinTooltip();
         const layer = ref('pins');
         layer.replaceChildren();
         pins = [];
@@ -279,7 +339,13 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.style.left = `${center.x}px`;
             el.style.top = `${center.y}px`;
             el.style.background = EVENT_COLORS[event.type] || '#ccc';
-            el.title = formatEventTooltip(event);
+            const num = event.nth ? ` #${event.nth}` : '';
+            bindPinHover(el, {
+                color: EVENT_COLORS[event.type] || '#ccc',
+                title: `${eventLabel(event.type)}${num}`,
+                subtitle: cleanHoverSubtitle(event.sourceName || '', event.scene),
+                meta: formatPlayTime(event.playTime),
+            });
             el.hidden = true;
             el.addEventListener('click', () => { stop(); seek(event.index); focusOnScene(event.scene, event); });
             layer.appendChild(el);
@@ -291,7 +357,11 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.className = 'tl-pin tl-pin-bench';
             el.style.left = `${benchPin.x}px`;
             el.style.top = `${benchPin.y}px`;
-            el.title = benchPin.title;
+            bindPinHover(el, {
+                color: '#ffd54f',
+                title: 'Respawn Bench',
+                subtitle: benchPin.scene,
+            });
             el.addEventListener('click', () => focusOnScene(benchPin.scene));
             layer.appendChild(el);
         }
@@ -302,7 +372,11 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.style.left = `${item.x}px`;
             el.style.top = `${item.y}px`;
             el.style.borderColor = item.color;
-            el.title = item.title;
+            bindPinHover(el, {
+                color: item.color,
+                title: `Missing: ${item.kind}`,
+                subtitle: cleanHoverSubtitle(item.name || '', item.scene),
+            });
             el.hidden = !showMissing;
             el.addEventListener('click', () => focusOnScene(item.scene, item));
             layer.appendChild(el);
@@ -480,6 +554,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         // Left-click, middle-click, or touch pan; leave right-click untouched
         if (e.pointerType === 'mouse' && e.button !== 0 && e.button !== 1) return;
         e.preventDefault();
+        hidePinTooltip();
         mapEl.setPointerCapture(e.pointerId);
         pointers.set(e.pointerId, [e.clientX, e.clientY]);
         mapEl.classList.add('dragging');

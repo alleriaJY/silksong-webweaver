@@ -178,6 +178,51 @@
     z-index: 2;
 }
 
+/* Custom floating map pin hover tooltip (screen-space, unscaled) */
+.timeline .tl-tooltip {
+    position: absolute;
+    z-index: 20;
+    pointer-events: none;
+    max-width: min(290px, calc(100% - 20px));
+    padding: 8px 11px;
+    border-radius: 6px;
+    background: rgba(14, 14, 16, 0.96);
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.78);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    line-height: 1.35;
+}
+.timeline .tl-tooltip[hidden] { display: none; }
+.timeline .tl-tooltip-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.timeline .tl-tooltip-head i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.timeline .tl-tooltip-head strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.timeline .tl-tooltip-meta {
+    margin-left: auto;
+    padding-left: 10px;
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+.timeline .tl-tooltip-sub {
+    margin-top: 3px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
 .timeline .tl-events-title { margin-top: 18px; }
 .timeline .tl-legend { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; font-size: 0.75rem; color: var(--text-secondary); }
 .timeline .tl-legend-btn {
