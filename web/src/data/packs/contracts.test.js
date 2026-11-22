@@ -29,10 +29,11 @@ const FIXTURES = readdirSync(FIXTURE_DIR)
 
 /** Icon kind (core/icons.js) for each list that has icons. */
 const ICON_KIND = {
-    tools: 'tool', bosses: 'boss', maps: 'map',
+    tools: 'tool', bosses: 'boss', maps: 'map', travel: 'map',
     abilities: 'ability', otherAbilities: 'ability', cloakTiers: 'ability',
     skills: 'skill', crests: 'crest', specialCrestStates: 'crest', needleTiers: 'nail',
     journal: 'journal',
+    fleas: 'general', relics: 'general', materium: 'general', mementos: 'general', keyItems: 'general',
 };
 const iconKindOf = name => ICON_KIND[name] ?? (name.endsWith('Sources') ? 'general' : null);
 
@@ -105,9 +106,10 @@ describe('pack contracts', () => {
     it('every icon exists on disk', () => {
         const missing = [];
         for (const name of listNames()) {
-            const kind = iconKindOf(name);
-            if (!kind) continue;
+            const defaultKind = iconKindOf(name);
             for (const entry of mergedList(name)) {
+                const kind = entry.iconKind || defaultKind;
+                if (!kind) continue;
                 for (const field of ['icon', 'iconSteelSoul']) {
                     const file = entry[field];
                     if (file && !existsSync(join(WEB, ICON_DIRS[kind], file))) missing.push(`${name}/${entry.id}.${field}: ${file}`);

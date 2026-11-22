@@ -4,6 +4,7 @@
  * toward the completion percentage.
  */
 import { savedDataByName } from '../../core/saveAccess.js';
+import { iconUrl } from '../../core/icons.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
 
 /** Names in a save container that no pack lists: new content or a pack gap. */
@@ -21,19 +22,19 @@ export function parseCollection(save, ctx) {
 
     const relics = ctx.lists('relics').map(def => {
         const d = relicData.get(def.json);
-        return { json: def.json, display: def.display, kind: def.kind, collected: !!d?.IsCollected, deposited: !!d?.IsDeposited };
+        return { json: def.json, display: def.display, kind: def.kind, icon: def.icon, iconKind: def.iconKind, collected: !!d?.IsCollected, deposited: !!d?.IsDeposited };
     });
     // An entry is recorded in the Materium when it is in the list at all;
     // IsCollected is only set for the three special stones (Smeltstone,
     // Voltstone, Magnetite), so it cannot mean "recorded".
     const materium = ctx.lists('materium').map(def => ({
-        json: def.json, display: def.display, collected: materiumData.has(def.json),
+        json: def.json, display: def.display, icon: def.icon, iconKind: def.iconKind, collected: materiumData.has(def.json),
     }));
     const mementos = ctx.lists('mementos').map(def => {
         const held = def.item ? (items.get(def.item)?.Amount || 0) > 0 : false;
         const isDeposited = [def.item, ...(def.depositItems || [])].some(name => name && !!deposited.get(name)?.IsDeposited);
         const flagged = (def.flag ? !!pd[def.flag] : false) || (!!def.allFlags && def.allFlags.every(f => !!pd[f]));
-        return { id: def.id, display: def.display, obtained: held || isDeposited || flagged, deposited: isDeposited };
+        return { id: def.id, display: def.display, icon: def.icon, iconKind: def.iconKind, obtained: held || isDeposited || flagged, deposited: isDeposited };
     });
     const itemDefs = ctx.lists('inventoryItems');
     const displayOf = new Map(itemDefs.map(d => [d.json, d.display]));
@@ -64,7 +65,7 @@ export function parseCollection(save, ctx) {
 /** Checklist rows with custom status text; state class stays collected/missing. */
 function renderRows(id, rows) {
     const container = document.getElementById(id);
-    renderChecklist(container, rows, null);
+    renderChecklist(container, rows, r => (r.icon ? iconUrl(r.iconKind || 'general', r.icon) : null));
     if (!container) return;
     container.querySelectorAll('.source-status').forEach((el, i) => { el.textContent = rows[i].status; });
 }
@@ -94,33 +95,38 @@ export default {
     parse: parseCollection,
 
     render(result) {
-        if (!document.getElementById('panel-collectables')) return;
         const s = result.stats;
 
-        renderRows('relics-checklist', result.relics.map(r => ({
-            name: r.display,
-            collected: r.collected,
-            pending: false,
-            status: r.deposited ? 'Deposited' : (r.collected ? 'Collected' : 'Missing'),
-        })));
-        setText('relics-collected-count', s.relics.collected);
-        setText('relics-deposited-count', s.relics.deposited);
-        setText('relics-total-count', s.relics.total);
+        if (document.getElementById('panel-collectables')) {
+            renderRows('relics-checklist', result.relics.map(r => ({
+                name: r.display,
+                icon: r.icon,
+                iconKind: r.iconKind,
+                collected: r.collected,
+                pending: false,
+                status: r.deposited ? 'Deposited' : (r.collected ? 'Collected' : 'Missing'),
+            })));
+            setText('relics-collected-count', s.relics.collected);
+            setText('relics-deposited-count', s.relics.deposited);
+            setText('relics-total-count', s.relics.total);
 
-        renderRows('mementos-checklist', result.mementos.map(m => ({
-            name: m.display,
-            collected: m.obtained,
-            pending: false,
-            status: m.deposited ? 'Deposited' : (m.obtained ? 'Obtained' : 'Missing'),
-        })));
-        setText('mementos-obtained-count', s.mementos.obtained);
-        setText('mementos-total-count', s.mementos.total);
+            renderRows('mementos-checklist', result.mementos.map(m => ({
+                name: m.display,
+                icon: m.icon,
+                iconKind: m.iconKind,
+                collected: m.obtained,
+                pending: false,
+                status: m.deposited ? 'Deposited' : (m.obtained ? 'Obtained' : 'Missing'),
+            })));
+            setText('mementos-obtained-count', s.mementos.obtained);
+            setText('mementos-total-count', s.mementos.total);
 
-        renderRows('materium-checklist', result.materium.map(m => ({
-            name: m.display, collected: m.collected, pending: false, status: m.collected ? 'Recorded' : 'Missing',
-        })));
-        setText('materium-collected-count', s.materium.collected);
-        setText('materium-total-count', s.materium.total);
+            renderRows('materium-checklist', result.materium.map(m => ({
+                name: m.display, icon: m.icon, iconKind: m.iconKind, collected: m.collected, pending: false, status: m.collected ? 'Recorded' : 'Missing',
+            })));
+            setText('materium-collected-count', s.materium.collected);
+            setText('materium-total-count', s.materium.total);
+        }
 
         renderInventory(result.inventory);
         setText('inventory-kinds-count', s.inventory.kinds);

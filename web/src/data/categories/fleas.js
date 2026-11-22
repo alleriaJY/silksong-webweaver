@@ -16,6 +16,8 @@ export function parseFleas(save, ctx) {
         json: def.json,
         display: def.display,
         kind: def.kind,
+        icon: def.icon,
+        iconKind: def.iconKind,
         value: save.playerData?.[def.json] || false,
     }));
     return { fleas, stats: { total: fleas.length, saved: fleas.filter(f => f.value).length } };
@@ -24,7 +26,11 @@ export function parseFleas(save, ctx) {
 function renderKind(result, kind, containerId, countId, totalId) {
     const fleas = result.fleas.filter(f => f.kind === kind);
     const container = document.getElementById(containerId);
-    renderChecklist(container, fleas.map(f => ({ name: f.display, collected: f.value, pending: false })), () => FLEA_ICON);
+    renderChecklist(
+        container,
+        fleas.map(f => ({ name: f.display, icon: f.icon, iconKind: f.iconKind, collected: f.value, pending: false })),
+        f => (f.icon ? iconUrl(f.iconKind || 'general', f.icon) : FLEA_ICON),
+    );
     if (!container) return;
     // A checklist row says "Collected"; for fleas "Saved" reads right
     for (const status of container.querySelectorAll('.source-item.collected .source-status')) status.textContent = 'Saved';

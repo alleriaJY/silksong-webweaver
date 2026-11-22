@@ -1,5 +1,6 @@
 /** Key Items tab: keys and story items, one checklist row each. */
 import { flag, scenePickup } from '../../core/saveAccess.js';
+import { iconUrl } from '../../core/icons.js';
 import { renderChecklist, setText } from '../../ui/renderers.js';
 
 export function parseKeyItems(save, ctx) {
@@ -23,8 +24,14 @@ export default {
     render(result) {
         const container = document.getElementById('key-items-checklist');
         if (!container) return;
-        const rows = result.items.map(k => ({ name: k.note ? `${k.display} (${k.note})` : k.display, collected: k.value, pending: false }));
-        renderChecklist(container, rows, null);
+        const rows = result.items.map(k => ({
+            name: k.note ? `${k.display} (${k.note})` : k.display,
+            icon: k.icon,
+            iconKind: k.iconKind,
+            collected: k.value,
+            pending: false,
+        }));
+        renderChecklist(container, rows, r => (r.icon ? iconUrl(r.iconKind || 'general', r.icon) : null));
         container.querySelectorAll('.source-status').forEach((el, i) => { el.textContent = rows[i].collected ? 'Obtained' : 'Missing'; });
         setText('key-items-obtained-count', result.stats.obtained);
         setText('key-items-total-count', result.stats.total);
