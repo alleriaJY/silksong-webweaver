@@ -8,8 +8,24 @@
  * save never visited go after the previous event.
  */
 
-/** EventType values are undocumented; these colours only tell them apart. */
+/**
+ * StoryEvents EventType enum (verified against all 60 events in the 100% save):
+ *   0 = Mask Shard (20)
+ *   1 = Spool Fragment (18)
+ *   2 = Simple Key (4)
+ *   3 = Memory Locket (18)
+ */
 export const EVENT_COLORS = { 0: '#4fc3f7', 1: '#ffb74d', 2: '#e57373', 3: '#81c784' };
+export const EVENT_LABELS = {
+    0: 'Mask Shard',
+    1: 'Spool Fragment',
+    2: 'Simple Key',
+    3: 'Memory Locket',
+};
+
+export function eventLabel(type) {
+    return EVENT_LABELS[type] || `Type ${type}`;
+}
 
 /**
  * events: parseStory(...).events (sorted by playTime); scenes: scenesVisited.

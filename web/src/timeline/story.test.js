@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildRespawnPin, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
+import { buildRespawnPin, eventLabel, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
 
 describe('placeEvents', () => {
     const scenes = ['Tut_01', 'Bonetown', 'Bone_01', 'Bone_East_20', 'Shellwood_14'];
@@ -48,8 +48,15 @@ describe('sceneBoundsCenter & buildRespawnPin', () => {
     });
 });
 
-describe('formatPlayTime', () => {
+describe('formatPlayTime & eventLabel', () => {
     it.each([[16899.4, '4h 41m'], [300, '5m'], [3600, '1h 00m'], [-5, '0m']])('%s -> %s', (s, out) => {
         expect(formatPlayTime(s)).toBe(out);
+    });
+    it('maps StoryEvents EventType 0..3 to item categories', () => {
+        expect(eventLabel(0)).toBe('Mask Shard');
+        expect(eventLabel(1)).toBe('Spool Fragment');
+        expect(eventLabel(2)).toBe('Simple Key');
+        expect(eventLabel(3)).toBe('Memory Locket');
+        expect(eventLabel(99)).toBe('Type 99');
     });
 });

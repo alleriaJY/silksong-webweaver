@@ -10,7 +10,7 @@
  */
 import { FULLMAP, areaOf, litTiles, loadMapData, spriteFile, tilesForScene } from '../map/sceneTiles.js';
 import { mergedList } from '../data/packs/index.js';
-import { EVENT_COLORS, buildRespawnPin, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
+import { EVENT_COLORS, buildRespawnPin, eventLabel, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
 
 const PLAY_DURATION_MS = 30000;   // a whole save plays in 30 s
 const RECENT = 10;                // scenes listed in "Recently revealed"
@@ -201,7 +201,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             m.className = 'tl-mark';
             m.style.left = `${scenes.length ? (100 * e.index) / scenes.length : 0}%`;
             m.style.background = EVENT_COLORS[e.type] || '#ccc';
-            m.title = `Story event (type ${e.type}) · ${e.scene} · ${formatPlayTime(e.playTime)}`;
+            m.title = `${eventLabel(e.type)} · ${e.scene} · ${formatPlayTime(e.playTime)}`;
             m.addEventListener('click', () => { stop(); seek(e.index); });
             marks.appendChild(m);
         }
@@ -212,10 +212,9 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             const item = document.createElement('span');
             const dot = document.createElement('i');
             dot.style.background = EVENT_COLORS[t] || '#ccc';
-            item.append(dot, `type ${t}`);
+            item.append(dot, eventLabel(t));
             legend.appendChild(item);
         }
-        if (types.length) legend.append(' (meaning not yet known)');
     }
 
     function buildPins() {
@@ -230,7 +229,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.style.left = `${center.x}px`;
             el.style.top = `${center.y}px`;
             el.style.background = EVENT_COLORS[event.type] || '#ccc';
-            el.title = `Story event (type ${event.type}) · ${event.scene} · ${formatPlayTime(event.playTime)}`;
+            el.title = `${eventLabel(event.type)} · ${event.scene} · ${formatPlayTime(event.playTime)}`;
             el.hidden = true;
             layer.appendChild(el);
             pins.push({ event, el });
@@ -257,12 +256,12 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             const dot = document.createElement('i');
             dot.style.background = EVENT_COLORS[e.type] || '#ccc';
             const name = document.createElement('span');
-            name.append(dot, e.scene);
+            name.append(dot, `${eventLabel(e.type)} (${e.scene})`);
             const time = document.createElement('span');
             time.className = 'tl-muted';
             time.textContent = formatPlayTime(e.playTime);
             row.append(name, time);
-            row.title = `Type ${e.type} · reached at scene ${e.index} of ${scenes.length}`;
+            row.title = `${eventLabel(e.type)} · reached at scene ${e.index} of ${scenes.length}`;
             row.addEventListener('click', () => { stop(); seek(e.index); });
             list.appendChild(row);
         }
