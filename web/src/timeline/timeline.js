@@ -10,7 +10,7 @@
  */
 import { FULLMAP, areaOf, litTiles, loadMapData, spriteFile, tilesForScene } from '../map/sceneTiles.js';
 import { mergedList } from '../data/packs/index.js';
-import { EVENT_COLORS, buildRespawnPin, eventLabel, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
+import { EVENT_COLORS, buildMissingPins, buildRespawnPin, eventLabel, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
 
 const PLAY_DURATION_MS = 30000;   // a whole save plays in 30 s
 const RECENT = 10;                // scenes listed in "Recently revealed"
@@ -29,6 +29,7 @@ const TEMPLATE = `
         <div class="tl-mode" role="group" aria-label="Which rooms to show">
             <button class="on" data-act="mode-visited" title="Every room you have entered">Visited</button>
             <button data-act="mode-mapped" title="Only rooms your in-game map shows">In-game map</button>
+            <button data-act="toggle-missing" data-ref="missing-btn" title="Pin uncollected Mask Shards, Spool Fragments, Lockets, Fleas, and upgrades on the map">Missing items (0)</button>
         </div>
     </div>
     <div class="tl-controls">
@@ -69,6 +70,10 @@ const TEMPLATE = `
             <h2 class="tl-events-title">Story events</h2>
             <div class="tl-legend" data-ref="legend"></div>
             <div class="tl-recent" data-ref="event-list"><p class="tl-muted">None yet</p></div>
+            <div data-ref="missing-section" hidden>
+                <h2 class="tl-events-title">Missing items (<span data-ref="missing-count">0</span>)</h2>
+                <div class="tl-recent" data-ref="missing-list"></div>
+            </div>
             <p class="tl-muted tl-keys">Keys: ← → step · Space play · Home / End</p>
         </aside>
     </div>`;
@@ -85,8 +90,11 @@ export function mountTimeline(root, store, { onUpload } = {}) {
     let events = [];                        // story events placed on the timeline
     let mapped = new Set();                 // scenesMapped
     let currentPd = null;                   // active save playerData
+    let currentParsed = null;               // active save parsed categories
     let mode = 'visited';                   // 'visited' | 'mapped'
+    let showMissing = false;                // toggle for uncollected item pins
     let pins = [];                          // [{ event, el }]
+    let missingPins = [];                   // [{ item, el }]
     let hiddenTypes = new Set();            // filtered-out StoryEvent EventType values
     let activeEvent = null;                 // last clicked StoryEvent for pin highlight
     let lookup = () => [];
@@ -148,6 +156,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         ref('count').textContent = scenes.length;
         const pd = s.status === 'ready' ? s.save?.playerData : null;
         currentPd = pd;
+        currentParsed = s.status === 'ready' ? s.parsed : null;
         ref('bench').textContent = pd?.respawnScene || '–';
         mapped = new Set(pd?.scenesMapped || []);
         events = placeEvents(s.status === 'ready' ? (s.parsed?.story?.events || []) : [], scenes);
@@ -285,6 +294,69 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             el.addEventListener('click', () => focusOnScene(benchPin.scene));
             layer.appendChild(el);
         }
+        missingPins = [];
+        for (const item of buildMissingPins(currentParsed, lookup, map.tiles, scenes)) {
+            const el = document.createElement('div');
+            el.className = 'tl-pin tl-pin-missing';
+            el.style.left = `${item.x}px`;
+            el.style.top = `${item.y}px`;
+            el.style.borderColor = item.color;
+            el.title = item.title;
+            el.hidden = !showMissing;
+            el.addEventListener('click', () => focusOnScene(item.scene, item));
+            layer.appendChild(el);
+            missingPins.push({ item, el });
+        }
+        updateMissingUI();
+    }
+
+    function updateMissingUI() {
+        const count = missingPins.length;
+        const btn = ref('missing-btn');
+        if (btn) {
+            btn.textContent = `Missing items (${count})`;
+            btn.classList.toggle('on', showMissing);
+            btn.setAttribute('aria-pressed', String(showMissing));
+        }
+        for (const { item, el } of missingPins) {
+            el.hidden = !showMissing;
+            el.classList.toggle('tl-pin-active', item === activeEvent);
+        }
+        const section = ref('missing-section');
+        if (section) section.hidden = !showMissing;
+        const countEl = ref('missing-count');
+        if (countEl) countEl.textContent = count;
+        const list = ref('missing-list');
+        if (!list) return;
+        list.replaceChildren();
+        if (!showMissing) return;
+        for (const { item } of missingPins) {
+            const row = document.createElement('button');
+            row.type = 'button';
+            row.className = `tl-recent-item tl-event${item === activeEvent ? ' active' : ''}`;
+            const dot = document.createElement('i');
+            dot.style.background = item.color;
+            const name = document.createElement('span');
+            name.append(dot, `${item.kind}: ${item.name}`);
+            row.append(name);
+            row.title = `${item.title} (${item.scene})`;
+            row.addEventListener('click', () => {
+                focusOnScene(item.scene, item);
+                updateMissingUI();
+            });
+            list.appendChild(row);
+        }
+        if (!list.children.length) {
+            const p = document.createElement('p');
+            p.className = 'tl-muted';
+            p.textContent = currentParsed ? 'All tracked items collected!' : 'Open a save to see missing items';
+            list.appendChild(p);
+        }
+    }
+
+    function toggleMissing() {
+        showMissing = !showMissing;
+        updateMissingUI();
     }
 
     function renderEvents() {
@@ -449,6 +521,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
         upload: () => onUpload?.(),
         'mode-visited': () => setMode('visited'),
         'mode-mapped': () => setMode('mapped'),
+        'toggle-missing': toggleMissing,
     };
     root.addEventListener('click', e => {
         const btn = e.target.closest('[data-act]');

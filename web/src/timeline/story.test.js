@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildRespawnPin, describeStoryEvent, eventLabel, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
+import { buildMissingPins, buildRespawnPin, describeStoryEvent, eventLabel, formatPlayTime, placeEvents, sceneBoundsCenter } from './story.js';
 
 describe('placeEvents', () => {
     const scenes = ['Tut_01', 'Bonetown', 'Bone_01', 'Bone_East_20', 'Shellwood_14'];
@@ -63,6 +63,36 @@ describe('sceneBoundsCenter & buildRespawnPin', () => {
             title: 'Current respawn bench · Belletown (RestBench)',
         });
         expect(buildRespawnPin({}, lookup, tiles)).toBeNull();
+    });
+
+    it('builds missing collectible pins from parsed save checklists and fleas', () => {
+        const mapLookup = scene => (['Bone_East_20', 'Bonetown', 'Bone_06'].includes(scene) ? ['t1', 't2'] : []);
+        const parsed = {
+            maskShards: {
+                sources: [
+                    { id: 'bone-east-20-heart-piece', name: 'Lava Gauntlet', collected: false, pending: false },
+                    { id: 'purchased-bonebottom-heart-piece', name: 'Pebb shard', collected: false, pending: false },
+                ],
+            },
+            craftmetal: {
+                sources: [
+                    { id: 'purchased-bonebottom-tool-metal', name: 'Pebb craftmetal', collected: false, pending: false },
+                ],
+            },
+            fleas: {
+                fleas: [
+                    { id: 'flea-bone-06', json: 'SavedFlea_Bone_06', display: 'The Marrow (Bone_06)', value: false },
+                    { id: 'flea-dock-16', json: 'SavedFlea_Dock_16', display: 'Deep Docks (Dock_16)', value: true },
+                ],
+            },
+        };
+        const pins = buildMissingPins(parsed, mapLookup, tiles);
+        expect(pins).toHaveLength(4);
+        expect(pins.map(p => p.kind)).toEqual(['Mask Shard', 'Mask Shard', 'Craftmetal', 'Flea']);
+        // Co-located Bonetown pins are offset so they don't share identical coordinates
+        const bonetownPins = pins.filter(p => p.scene === 'Bonetown');
+        expect(bonetownPins).toHaveLength(2);
+        expect(bonetownPins[0].x).not.toBe(bonetownPins[1].x);
     });
 });
 

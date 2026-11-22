@@ -189,6 +189,127 @@ export function buildRespawnPin(playerData, lookup, tiles, scenesVisited = []) {
     return { scene, marker, x: center.x, y: center.y, title };
 }
 
+/** Fallback room mapping for shop/quest checklist entries that lack a direct `sceneName`. */
+const ITEM_ID_SCENES = {
+    'purchased-bonebottom-heart-piece': 'Bonetown',
+    'purchased-bonebottom-tool-metal': 'Bonetown',
+    'bone-bottom-volatile-flintbeetles-wish-reward': 'Bonetown',
+    'mossberry-bonetown-aspid': 'Bonetown',
+    'mossberry-mosstown-aspid': 'Mosstown_02',
+    'mossberry-bonegrave-aspid': 'Bone_01',
+    'merchant-enclave-shell-fragment': 'Song_Enclave',
+    'merchant-enclave-spool-piece': 'Song_Enclave',
+    'merchant-enclave-tool-metal': 'Song_Enclave',
+    'purchased-belltown-spool-segment': 'Belltown',
+    'bellhart-frey-purchase-330-rosaries-after-threadspun-town': 'Belltown',
+    'beastfly-hunt': 'Belltown',
+    'ant-trapper': 'Belltown',
+    'destroy-thread-cores': 'Belltown',
+    'pale-oil-flea-games': 'Belltown',
+    'purchased-grindle-spool-piece': 'Coral_42',
+    'purchased-grindle-tool-kit': 'Coral_42',
+    'pilgrim-quest-spool-collected': 'Ward_03',
+    'took-greymoor17-spool': 'Greymoor_16',
+    'purchased-pilgrims-rest-tool-pouch': 'Bone_East_10',
+    'far-fields-mort-purchase-pilgrims-rest-150-rosaries': 'Bone_East_10',
+    'loddie-the-marrow': 'Bone_11',
+    'journal': 'Greymoor_03',
+    'crow-feathers': 'Greymoor_03',
+    'purchased-forge-tool-kit': 'Dock_02',
+    'purchased-architect-tool-kit': 'Under_17',
+    'pale-oil-great-gourmand': 'Song_20',
+    'sprintmaster-race': 'Bone_East_24',
+};
+
+const MISSING_CHECKLISTS = [
+    { parsedKey: 'maskShards', listName: 'maskShardSources', kind: 'Mask Shard', color: '#4fc3f7' },
+    { parsedKey: 'spoolFragments', listName: 'spoolFragmentSources', kind: 'Spool Fragment', color: '#ffb74d' },
+    { parsedKey: 'memoryLockets', listName: 'memoryLocketSources', kind: 'Memory Locket', color: '#81c784' },
+    { parsedKey: 'craftmetal', listName: 'craftmetalSources', kind: 'Craftmetal', color: '#b0bec5' },
+    { parsedKey: 'toolPouch', listName: 'toolPouchSources', kind: 'Tool Pouch', color: '#ce93d8' },
+    { parsedKey: 'craftingKit', listName: 'craftingKitSources', kind: 'Crafting Kit', color: '#ce93d8' },
+    { parsedKey: 'paleOil', listName: 'paleOilSources', kind: 'Pale Oil', color: '#fff176' },
+    { parsedKey: 'mossberries', listName: 'mossberrySources', kind: 'Mossberry', color: '#a5d6a7' },
+    { parsedKey: 'silkeaters', listName: 'silkeaterSources', kind: 'Silkeater', color: '#ef9a9a' },
+];
+
+function sceneForChecklistEntry(packEntry) {
+    if (packEntry.sceneName) return packEntry.sceneName;
+    if (Array.isArray(packEntry.checks)) {
+        const sc = packEntry.checks.find(c => c.sceneName)?.sceneName;
+        if (sc) return sc;
+    }
+    return ITEM_ID_SCENES[packEntry.id] || null;
+}
+
+/**
+ * Build map pins for uncollected items in `parsed` across upgrade & collectable
+ * checklists plus scattered Fleas (`SavedFlea_<Scene>`).
+ */
+export function buildMissingPins(parsed, lookup, tiles, scenesVisited = []) {
+    if (!parsed) return [];
+    const rawPins = [];
+
+    for (const cfg of MISSING_CHECKLISTS) {
+        const parsedSources = parsed[cfg.parsedKey]?.sources || [];
+        const packById = new Map(mergedList(cfg.listName).map(e => [e.id, e]));
+        for (const src of parsedSources) {
+            if (src.collected || src.pending) continue;
+            const packEntry = packById.get(src.id);
+            const scene = packEntry ? sceneForChecklistEntry(packEntry) : null;
+            if (!scene) continue;
+            const center = sceneBoundsCenter(scene, lookup, tiles, scenesVisited);
+            if (!center) continue;
+            rawPins.push({
+                id: src.id,
+                kind: cfg.kind,
+                name: src.name,
+                scene,
+                color: cfg.color,
+                x: center.x,
+                y: center.y,
+                title: `Missing ${cfg.kind} · ${src.name}`,
+            });
+        }
+    }
+
+    for (const flea of parsed.fleas?.fleas || []) {
+        if (flea.value || !flea.json?.startsWith('SavedFlea_')) continue;
+        const scene = flea.json.slice('SavedFlea_'.length);
+        const center = sceneBoundsCenter(scene, lookup, tiles, scenesVisited);
+        if (!center) continue;
+        rawPins.push({
+            id: flea.id || flea.json,
+            kind: 'Flea',
+            name: flea.display,
+            scene,
+            color: '#f48fb1',
+            x: center.x,
+            y: center.y,
+            title: `Missing Flea · ${flea.display}`,
+        });
+    }
+
+    // Offset pins that share the exact same room center so all remain clickable
+    const byCoord = new Map();
+    for (const p of rawPins) {
+        const key = `${Math.round(p.x)},${Math.round(p.y)}`;
+        if (!byCoord.has(key)) byCoord.set(key, []);
+        byCoord.get(key).push(p);
+    }
+    for (const group of byCoord.values()) {
+        if (group.length <= 1) continue;
+        const radius = 14;
+        group.forEach((p, idx) => {
+            const angle = (2 * Math.PI * idx) / group.length;
+            p.x = Math.round((p.x + radius * Math.cos(angle)) * 10) / 10;
+            p.y = Math.round((p.y + radius * Math.sin(angle)) * 10) / 10;
+        });
+    }
+
+    return rawPins;
+}
+
 /** 16899.4 -> '4h 41m'; 300 -> '5m'. */
 export function formatPlayTime(seconds) {
     const total = Math.max(0, Math.floor(seconds / 60));
