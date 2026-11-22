@@ -372,7 +372,7 @@ export function mountTimeline(root, store, { onUpload } = {}) {
             dot.style.background = EVENT_COLORS[e.type] || '#ccc';
             const name = document.createElement('span');
             const num = e.nth ? ` #${e.nth}` : '';
-            name.append(dot, `${eventLabel(e.type)}${num}: ${e.sourceName || e.scene}`);
+            name.append(dot, `${eventLabel(e.type)}${num}`);
             const time = document.createElement('span');
             time.className = 'tl-muted';
             time.textContent = formatPlayTime(e.playTime);
