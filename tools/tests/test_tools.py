@@ -11,6 +11,7 @@ sys.path.insert(0, str(TOOLS_DIR))
 
 import decrypt_save  # noqa: E402
 import diff_saves  # noqa: E402
+import inspect_save  # noqa: E402
 import make_fixture  # noqa: E402
 import unknown_keys  # noqa: E402
 from savelib import HEADER_SIZE, SaveFormatError, decrypt_bytes, encrypt_save, load_save  # noqa: E402
@@ -152,3 +153,33 @@ def test_untracked_patterns_explain_unreferenced_keys(tmp_path):
 def test_real_untracked_file_loads():
     ids = [pid for pid, _ in unknown_keys.untracked_patterns()]
     assert "npc-state" in ids and "world-state" in ids and len(ids) == len(set(ids))
+
+
+# --- inspect_save (internal line-by-line dictionary) ------------------------
+
+def test_inspect_save_classifies_every_section(tmp_path):
+    d = inspect_save.SaveDictionary()
+    sections = inspect_save.inspect_save(SAMPLE, d)
+    for sec_name, rows in sections.items():
+        summary = inspect_save.summarize_section(rows)
+        assert summary["unknown"] == 0, f"{sec_name} had unknown rows: {rows}"
+
+    out = tmp_path / "annotated.txt"
+    inspect_save.write_annotated_report(sections, out)
+    text = out.read_text(encoding="utf-8")
+    assert "Straight Pin" in text
+    assert "Bone_East_20 / Heart Piece" in text
+
+
+def test_inspect_save_zero_unknown_across_all_fixtures():
+    d = inspect_save.SaveDictionary()
+    fixtures_dir = TOOLS_DIR.parent / "web" / "src" / "data" / "__fixtures__"
+    for path in sorted(fixtures_dir.glob("*.json")):
+        if path.name.endswith(".expected.json"):
+            continue
+        save = load_save(path)
+        sections = inspect_save.inspect_save(save, d)
+        for sec_name, rows in sections.items():
+            unknowns = [r["key"] for r in rows if r["status"] == "unknown"]
+            assert unknowns == [], f"{path.name} [{sec_name}] had unknown entries: {unknowns}"
+
