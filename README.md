@@ -2,39 +2,64 @@
 
 # Silksong: Webweaver
 
-Re-weaving the timeline. A Hollow Knight: Silksong savefile loader project for fun.
+Re-weaving the timeline. Drop in a Hollow Knight: Silksong save file and see everything it remembers: your completion, every collectible, and the path Hornet took across Pharloom.
 
-## Documentation
+**Open the app:** https://alleriajy.github.io/silksong-webweaver/
 
-- [OPUS.md](OPUS.md) - as-is technical reference: architecture, save format, schema system, map pipeline, known debt.
-- [ROADMAP.md](ROADMAP.md) - target architecture and the phased plan (Phase 0 to 6) with acceptance criteria, plus the DLC playbook.
-- [DEVELOPMENT.md](DEVELOPMENT.md) - quick start for running and building locally.
+<br clear="left" />
 
-## Status
+## What it does
 
-### Completed
-- [x] Web UI with drag-and-drop upload: one page with Statistics and Hero's Path
-- [x] WASM-based decryption (Rust, AES-256-ECB)
-- [x] GitHub Pages deployment with CI (Rust, JS and Python tests); deploys only after CI passes
-- [x] Hero's Path exploration timeline over the Pharloom map
-- [x] Tile confirmation pipeline (738 reviewed WebP tiles, 98.4% map room pixel coverage)
-- [x] Parsing: general stats, current state, tools (with upgrade sets), abilities, skills, crests, equipped loadout, bosses (47) and unique spawns / Void Masses (58), maps, masks, silk spools, silk hearts, needle, crafting kit, tool pouch (all 4 sources), craftmetal (all 8 sources), memory lockets (all 20 sources), pale oil (3), mossberries (7), silkeater cocoons (11), vesticrest (2), other unlockables
-- [x] Completion breakdown that recomputes the game's own percentage exactly
-- [x] Hunter's Journal (237 entries with `killsRequired` completion tracking), Fleas (30), Quests & Wishes (81), relics, mementos, materium, inventory, Key Items (14), Bellway (12), Ventrica (7), Map Pins & Quill, World & Bellhome (endings, bellshrines, threefold melody, arena battles, furnishings)
-- [x] Save comparison, decrypted JSON export, decoded StoryEvents (`Mask Shard`, `Spool Fragment`, `Simple Key`, `Memory Locket`) and current respawn bench pin on Hero's Path
-- [x] Phase 0: save tools (decrypt, diff, unknown keys, line-by-line save inspector `tools/inspect_save.py`, fixtures), repo hygiene
-- [x] Phase 1: core rework (content packs, category modules, renderers, contract and golden tests)
-- [x] Phase 2: parsing coverage; every save flag is either shown or classified with a reason
-- [x] Phase 3: tile gaps closed, Hero's Path in the app on the shared upload, usable on phones
-- [x] Phase 4: single-page app shell, no iframes, accessibility and performance pass
+**Statistics** reads the whole save and lays it out tab by tab:
 
-### In progress / planned (see ROADMAP.md for the phase each belongs to)
-- [ ] Optional stretch: shareable summary links, localisation
+- **General and Current stats**: a Save Slot Profile banner, play time, completion, the current loadout, and the respawn bench.
+- **Unlockables**: tools and their upgrades, crests, abilities, skills, Mask Shards, Spool Fragments, Silk Hearts, Craftmetal, Memory Lockets, Tool Pouch and Crafting Kit upgrades, the needle, and more. Every source is listed, so you can see which ones you still need.
+- **Bosses and Hunter's Journal**: all bosses and Void Masses, and every journal entry with its kill target.
+- **Quests, Fleas, Maps and Collectables**: main quests, wishes, courier deliveries, fleas, maps, map pins and the quill, Bellway and Ventrica stations, relics, mementos, materium, and key items.
+- **Misc**: endings, milestones, arenas, bellshrines, and Bellhome upgrades.
+- **Completion breakdown**: rebuilds the game's own completion percentage piece by piece, so you can see exactly where each percent comes from.
+- **Compare**: load a second save to see what changed between the two (`+N` / `-N` on every category).
+- **Export**: download the decrypted save as readable JSON.
+
+**Hero's Path** draws your run on the full Pharloom map: the rooms you have visited, story events (Mask Shards, Spool Fragments, keys, lockets) in the order you found them, filters by category, a playback bar, your current bench, and pins for collectibles you have missed.
+
+Entries that only exist in one game mode (for example Steel Soul) are shown only for saves in that mode.
+
+## Your save stays on your device
+
+The save is decrypted in your browser by a small WebAssembly module. Nothing is uploaded and there is no server: the site is static files on GitHub Pages.
+
+## Finding your save file
+
+Each save slot is its own file, `user1.dat` to `user4.dat`:
+
+| Platform | Folder |
+|---|---|
+| Windows | `%USERPROFILE%\AppData\LocalLow\Team Cherry\Hollow Knight Silksong\<id>\` |
+| macOS | `~/Library/Application Support/unity.Team-Cherry.Silksong/<id>/` |
+| Linux / Steam Deck | `~/.config/unity3d/Team Cherry/Hollow Knight Silksong/<id>/` |
+
+`<id>` is a numeric folder named after your platform account. Paths can differ by store or launcher.
+
+## Running it yourself
+
+```bash
+npx --yes serve web -l 5175
+```
+
+Then open http://localhost:5175. See [DEVELOPMENT.md](DEVELOPMENT.md) for building the WASM module, running the tests, and the save inspection tools.
+
+## Built with
+
+- Plain JavaScript ES modules, with no framework and no build step for the site
+- Rust compiled to WebAssembly for save decryption
+- Python tools for inspecting saves and for placing the map tiles
+- GitHub Actions running the Rust, JavaScript and Python tests; the site deploys only after they pass
 
 ## Assets
 
-Game sprites, icons and map art under `web/assets/img/` are the property of Team Cherry. They are used here for a free, non-commercial fan tool with no affiliation to Team Cherry, and will be removed on request. The code in this repository is covered by the license below; the game assets are not.
+Game sprites, icons and map art under `web/assets/img/` belong to Team Cherry. They are used here for a free, non-commercial fan tool with no affiliation to Team Cherry, and will be removed on request. The license below covers the code in this repository, not the game assets.
 
-## 📄 License
+## License
 
-See [LICENSE](LICENSE) for details.
+GPL-3.0. See [LICENSE](LICENSE).
