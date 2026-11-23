@@ -26,8 +26,9 @@ output.json
 __pycache__/
 *.pyc
 
-# Local editor/agent config
-/.claude/settings.local.json
-
 # tilefit working files (published copies live in tools/tilefit/published/)
 /tools/tilefit/out/
+
+# Local agent folders (kept on disk, not tracked)
+/.claude/
+/.Jules/
