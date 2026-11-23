@@ -160,10 +160,20 @@ export const MATERIUM = [
 // Mementos: held as a Collectables item or deposited (MementosDeposited), or a
 // playerData flag for the two with no item name in any save. Hero's =
 // 'Memento Garmond' by elimination (the other six match by name).
-// Hearts Memento: the story needs only three of the four hearts; the fourth
-// becomes the memento. `allFlags` all set = obtained, and `depositItems` are
-// the heart items that can land in MementosDeposited (holding one is not
-// enough, since every heart is a Collectables item).
+// Hearts Memento: Red Memory (the Everbloom) needs three of the four Old
+// Hearts; the unused one becomes the memento, with its own icon. Holding all
+// four before Red Memory keeps the Conjoined Heart; otherwise it is whichever
+// heart is collected after the other three. `allFlags` all set = obtained, and
+// `depositItems` are the heart items that can land in MementosDeposited
+// (holding one is not enough, since every heart is a Collectables item).
+// `hearts` lists the four so the parser can tell which one is the memento.
+export const OLD_HEARTS = [
+    { item: 'Coral Heart', flag: 'CollectedHeartCoral', name: 'Encrusted Heart', icon: 'memento_heart_coral0000.png' },
+    { item: 'Flower Heart', flag: 'CollectedHeartFlower', name: 'Pollen Heart', icon: 'memento_heart_shellwood0000.png' },
+    { item: 'Hunter Heart', flag: 'CollectedHeartHunter', name: "Hunter's Heart", icon: 'memento_heart_ant0000.png' },
+    { item: 'Clover Heart', flag: 'CollectedHeartClover', name: 'Conjoined Heart', icon: 'memento_heart_clover0000.png' },
+];
+
 export const MEMENTOS = [
     { id: 'heros-memento', display: "Hero's Memento (Garmond)", item: 'Memento Garmond', iconKind: 'memento', icon: 'garmond_memento.png' },
     { id: 'craw-memento', display: 'Craw Memento', item: 'Crowman Memento', flag: 'PickedUpCrowMemento', iconKind: 'memento', icon: 'craw_court_memento.png' },
@@ -171,9 +181,10 @@ export const MEMENTOS = [
     { id: 'surface-memento', display: 'Surface Memento', item: 'Memento Surface', iconKind: 'memento', icon: 'surface_memento.png' },
     { id: 'hunter-memento', display: 'Hunter Memento', item: 'Hunter Memento', flag: 'nuuMementoAwarded', iconKind: 'memento', icon: 'hunter_nuu_memento_seal.png' },
     {
-        id: 'hearts-memento', display: 'Hearts Memento (all four hearts)',
-        allFlags: ['CollectedHeartFlower', 'CollectedHeartCoral', 'CollectedHeartHunter', 'CollectedHeartClover'],
-        depositItems: ['Flower Heart', 'Coral Heart', 'Hunter Heart', 'Clover Heart'],
+        id: 'hearts-memento', display: 'Hearts Memento',
+        allFlags: OLD_HEARTS.map(h => h.flag),
+        depositItems: OLD_HEARTS.map(h => h.item),
+        hearts: OLD_HEARTS,
         iconKind: 'memento', icon: 'memento_heart_clover0000.png',
     },
     { id: 'sprintmaster-memento', display: 'Sprintmaster Memento', item: 'Sprintmaster Memento', flag: 'CollectedMementoSprintmaster', iconKind: 'memento', icon: 'sprintmaster_memento.png' },

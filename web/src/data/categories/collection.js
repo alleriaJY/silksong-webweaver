@@ -13,6 +13,27 @@ function unknown(map, list) {
     return [...map.keys()].filter(name => !known.has(name));
 }
 
+/**
+ * Which Old Heart is (or will be) the Hearts Memento, or null while it can't
+ * be known yet (fewer than three hearts). Red Memory uses three hearts and the
+ * fourth becomes the memento:
+ *   - a heart in MementosDeposited is the memento;
+ *   - with exactly three collected, the missing one will be;
+ *   - with all four, the one still carried (Amount > 0) is, if exactly one is;
+ *     otherwise the Conjoined Heart, which the game keeps when all four are
+ *     held before Red Memory.
+ */
+export function mementoHeart(hearts, pd, items, deposited) {
+    const placed = hearts.find(h => deposited.get(h.item)?.IsDeposited);
+    if (placed) return placed;
+    const missing = hearts.filter(h => !pd[h.flag]);
+    if (missing.length === 1) return missing[0];
+    if (missing.length > 1) return null;
+    const carried = hearts.filter(h => (items.get(h.item)?.Amount || 0) > 0);
+    if (carried.length === 1) return carried[0];
+    return hearts.find(h => h.flag === 'CollectedHeartClover') || null;
+}
+
 export function parseCollection(save, ctx) {
     const pd = save.playerData || {};
     const relicData = savedDataByName(pd.Relics);
@@ -34,7 +55,15 @@ export function parseCollection(save, ctx) {
         const held = def.item ? (items.get(def.item)?.Amount || 0) > 0 : false;
         const isDeposited = [def.item, ...(def.depositItems || [])].some(name => name && !!deposited.get(name)?.IsDeposited);
         const flagged = (def.flag ? !!pd[def.flag] : false) || (!!def.allFlags && def.allFlags.every(f => !!pd[f]));
-        return { id: def.id, display: def.display, icon: def.icon, iconKind: def.iconKind, obtained: held || isDeposited || flagged, deposited: isDeposited };
+        const heart = def.hearts ? mementoHeart(def.hearts, pd, items, deposited) : null;
+        return {
+            id: def.id,
+            display: heart ? `${def.display} (${heart.name})` : def.display,
+            icon: heart?.icon || def.icon,
+            iconKind: def.iconKind,
+            obtained: held || isDeposited || flagged,
+            deposited: isDeposited,
+        };
     });
     const itemDefs = ctx.lists('inventoryItems');
     const displayOf = new Map(itemDefs.map(d => [d.json, d.display]));

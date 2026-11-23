@@ -114,6 +114,9 @@ describe('pack contracts', () => {
                     const file = entry[field];
                     if (file && !existsSync(join(WEB, ICON_DIRS[kind], file))) missing.push(`${name}/${entry.id}.${field}: ${file}`);
                 }
+                for (const heart of entry.hearts || []) {
+                    if (!existsSync(join(WEB, ICON_DIRS[kind], heart.icon))) missing.push(`${name}/${entry.id}.hearts: ${heart.icon}`);
+                }
             }
         }
         expect(missing).toEqual([]);
