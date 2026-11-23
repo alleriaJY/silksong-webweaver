@@ -12,12 +12,14 @@ const SECTIONS = [
 ];
 
 const QUILL_LABELS = { 0: 'None', 1: 'White Quill', 2: 'Red Quill', 3: 'Purple Quill' };
-const QUILL_ICONS = {
-    0: 'I_quill_and_map.png',
-    1: 'I_quill_and_map.png',
-    2: 'I_quill_and_map_red.png',
-    3: 'I_quill_and_map_purple.png',
-};
+// QuillState: 1 = white (bought from Shakra), 2 = red (taken from Trobbio's
+// desk in Act 2 without a quill), 3 = purple (same, in Act 3). The inventory
+// shows the quill on its own until Hornet owns a map, then "Map & Quill".
+const QUILL_COLOUR_SUFFIX = { 2: '_red', 3: '_purple' };
+
+export function quillIcon(state, hasMap) {
+    return `${hasMap ? 'I_quill_and_map' : 'I_quill'}${QUILL_COLOUR_SUFFIX[state] || ''}.png`;
+}
 
 export function parseTravel(save, ctx) {
     const pd = save.playerData || {};
@@ -30,7 +32,14 @@ export function parseTravel(save, ctx) {
         stats[kind] = { total: ofKind.length, unlocked: ofKind.filter(i => i.value).length };
     }
     const quillState = pd.hasQuill ? (Number(pd.QuillState) || 1) : 0;
-    const quill = { owned: !!pd.hasQuill, state: quillState, label: QUILL_LABELS[quillState] || `Quill (state ${quillState})` };
+    const hasMap = ctx.lists('maps').some(m => !!pd[m.json]);
+    const quill = {
+        owned: !!pd.hasQuill,
+        state: quillState,
+        hasMap,
+        icon: quillIcon(quillState, hasMap),
+        label: QUILL_LABELS[quillState] || `Quill (state ${quillState})`,
+    };
     return { items, quill, stats };
 }
 
@@ -47,7 +56,7 @@ export default {
             if (s.kind === 'pin' && result.quill) {
                 rows.push({
                     name: result.quill.owned ? result.quill.label : 'Quill',
-                    icon: QUILL_ICONS[result.quill.state] || 'I_quill_and_map.png',
+                    icon: result.quill.icon,
                     iconKind: 'quill',
                     collected: result.quill.owned,
                     pending: false,
