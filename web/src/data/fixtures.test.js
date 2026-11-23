@@ -100,7 +100,7 @@ describe('fixture complete (100% save) oracle gaps', () => {
         expect(requiredJournal.every(e => e.complete)).toBe(true);
     });
 
-    // Was it.fails until Phase 2 replaced the two wrong reward flags (OPUS D17)
+    // Guards the Sherma and Greymoor spool sources against regressions
     it('spool fragments collected are consistent with silkMax', () => {
         const { parsed, expected } = complete;
         expect(parsed.spoolFragments.stats.collected).toBe((expected.oracle.silkMax - 9) * 2);

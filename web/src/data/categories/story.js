@@ -1,6 +1,6 @@
 /**
  * Story events: playerData.StoryEvents [{ EventType, SceneName, PlayTime }],
- * parsed in play-time order for the Hero's Path timeline (ROADMAP Phase 3).
+ * parsed in play-time order for the Hero's Path timeline.
  * No tab yet. EventType values 0-3 are not documented; they are kept as-is
  * (the 100% save has 20 x 0, 18 x 1, 4 x 2, 18 x 3).
  */

@@ -7,7 +7,7 @@
  *   - oracle:   read straight from the save (the game's own numbers). These are
  *               ground truth and must never be "fixed" to make a test pass.
  *   - baseline: produced by the parsers at the time of the snapshot. They pin
- *               current behaviour so refactors (ROADMAP Phase 1) can prove they
+ *               current behaviour so refactors can prove they
  *               changed nothing. Re-run this script only when a behaviour change
  *               is intentional, and say so in the commit message.
  */

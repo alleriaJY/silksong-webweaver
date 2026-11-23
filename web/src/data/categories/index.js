@@ -2,7 +2,7 @@
  * Category registry: the ordered list of everything the stats page parses
  * and renders. Each category is { id, parse(save, ctx), render?(result, ctx),
  * completion?(result, parsed) -> { label, earned, max } } (see data/completion.js)
- * (template: ROADMAP.md Appendix C).
+ * (see DEVELOPMENT.md "Code layout").
  *
  *   parse ctx  { save, packs, lists(name) }      lists() = merged pack list
  *   render ctx { parsed, isSteelSoul }

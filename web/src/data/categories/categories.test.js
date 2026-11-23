@@ -2,7 +2,7 @@
 import { describe, it, expect } from 'vitest';
 import { CATEGORIES, makeContext, parseAllData, renderAll } from './index.js';
 
-describe('category registry contract (ROADMAP Appendix C)', () => {
+describe('category registry contract', () => {
     it('ids are unique and every category can parse', () => {
         const ids = CATEGORIES.map(c => c.id);
         expect(new Set(ids).size).toBe(ids.length);

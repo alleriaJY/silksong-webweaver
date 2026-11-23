@@ -3,7 +3,7 @@
  * core/wasm.js); every helper tolerates missing containers and returns a safe
  * default, so parsers never need null checks for absent data.
  *
- * Shapes (OPUS.md section 5):
+ * Shapes:
  *   Name/Data containers  { savedData: [ { Name, Data: {...} } ] }
  *   Journal               { list: [ { Name, Record: {...} } ] }
  *   sceneData lists       { serializedList: [ { SceneName, ID, Value } ] }

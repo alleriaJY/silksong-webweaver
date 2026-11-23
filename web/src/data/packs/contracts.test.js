@@ -1,6 +1,5 @@
 /**
- * Contract tests between content packs, assets and real saves
- * (ROADMAP Phase 1 steps 10 and 11).
+ * Contract tests between content packs, assets and real saves.
  *
  * - every icon a pack names exists under web/assets/img
  * - ids are unique per list across all packs

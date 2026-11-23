@@ -1,7 +1,8 @@
 /**
  * Base game content pack. Every list the app reads lives in `lists`, keyed by
  * a camelCase name; a DLC pack uses the same keys for the entries it adds
- * (see ROADMAP "DLC Playbook"). Lists are merged in PACKS order.
+ * (see DEVELOPMENT.md "Updating for a DLC or patch"). Lists are merged in
+ * PACKS order.
  */
 import { GENERAL_FIELDS, CURRENT_FIELDS, MISC_FIELDS } from './fields.js';
 import { TOOLS, TOOL_UPGRADE_SETS } from './tools.js';
